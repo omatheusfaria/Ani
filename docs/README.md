@@ -6,7 +6,7 @@ Este diretório concentra os artefatos de documentação do projeto organizados 
 
 - [tap](./tap/README.md): documentos do Termo de Abertura do Projeto.
 - [elicitacao-de-requisitos](./elicitacao-de-requisitos/README.md): materiais de levantamento, técnicas e registros de elicitação.
-- [bpmn](./bpmn/README.md): diagramas e descrições de processos em BPMN.
+- [bpmn](./bpmn/README.md): diagramas, arquivos-fonte e descrições de processos em BPMN.
 - [requisitos](./requisitos/README.md): requisitos funcionais, não funcionais e regras de negócio.
 - [caso-de-uso](./caso-de-uso/README.md): diagrama e especificações de caso de uso.
 - [diagrama-de-classe](./diagrama-de-classe/README.md): diagrama de classes e materiais relacionados.
