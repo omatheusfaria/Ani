@@ -9,7 +9,6 @@
         <bpmn:flowNodeRef>Activity_06402vm</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1vgoeue</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0jsjsks</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1pya542</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1rjxoky</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1akct8x</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_04bgtcy</bpmn:flowNodeRef>
@@ -94,15 +93,8 @@
       <bpmn:incoming>Flow_1lj1ea7</bpmn:incoming>
       <bpmn:outgoing>Flow_0b9nlx0</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:userTask id="Activity_1pya542" name="Realizar escolha na memória">
-      <bpmn:extensionElements>
-        <zeebe:userTask />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1o1ycw1</bpmn:incoming>
-      <bpmn:outgoing>Flow_1tvuv55</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:task id="Activity_1rjxoky" name="Finalizar memória">
-      <bpmn:incoming>Flow_1tvuv55</bpmn:incoming>
+      <bpmn:incoming>Flow_1o1ycw1</bpmn:incoming>
       <bpmn:outgoing>Flow_0aw04om</bpmn:outgoing>
     </bpmn:task>
     <bpmn:task id="Activity_050ud03" name="Carregar objeto">
@@ -140,8 +132,7 @@
     <bpmn:sequenceFlow id="Flow_0rwrg7x" name="Ainda há objetos" sourceRef="Gateway_0v6r6z2" targetRef="Activity_16in04h" />
     <bpmn:sequenceFlow id="Flow_00skcrs" sourceRef="Activity_1fvjdmf" targetRef="Event_0wqpqb6" />
     <bpmn:sequenceFlow id="Flow_1lj1ea7" sourceRef="Event_04bgtcy" targetRef="Activity_1ekapyu" />
-    <bpmn:sequenceFlow id="Flow_1o1ycw1" sourceRef="Activity_1akct8x" targetRef="Activity_1pya542" />
-    <bpmn:sequenceFlow id="Flow_1tvuv55" sourceRef="Activity_1pya542" targetRef="Activity_1rjxoky" />
+    <bpmn:sequenceFlow id="Flow_1o1ycw1" sourceRef="Activity_1akct8x" targetRef="Activity_1rjxoky" />
     <bpmn:sequenceFlow id="Flow_07ym4tb" sourceRef="Activity_1es83es" targetRef="Activity_1akct8x" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -212,9 +203,6 @@
       <bpmndi:BPMNShape id="Activity_1ekapyu_di" bpmnElement="Activity_1ekapyu">
         <dc:Bounds x="220" y="460" width="100" height="80" />
         <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0n10hu4_di" bpmnElement="Activity_1pya542">
-        <dc:Bounds x="1780" y="140" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1rjxoky_di" bpmnElement="Activity_1rjxoky">
         <dc:Bounds x="2100" y="140" width="100" height="80" />
@@ -333,10 +321,6 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1o1ycw1_di" bpmnElement="Flow_1o1ycw1">
         <di:waypoint x="1480" y="180" />
-        <di:waypoint x="1780" y="180" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1tvuv55_di" bpmnElement="Flow_1tvuv55">
-        <di:waypoint x="1880" y="180" />
         <di:waypoint x="2100" y="180" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_07ym4tb_di" bpmnElement="Flow_07ym4tb">
