@@ -1,14 +1,15 @@
-# Requisitos Não Funcionais - Ani: A Jornada da Virtude
+# Requisitos Não Funcionais
 
-| Código  | Requisito                                                                 | Tipo                                   |
-|---------|---------------------------------------------------------------------------|----------------------------------------|
-| RNF001  | O jogo deve rodar a 60 FPS em configuração mínima (Intel HD, 4GB RAM).    | ( ) Desejável (X) Obrigatório (X) Permanente |
-| RNF002  | Saves locais devem carregar em < 5s e garantir integridade (JSON/binário). | ( ) Desejável (X) Obrigatório (X) Permanente |
-| RNF003  | Código e assets devem permitir futura portabilidade (Linux/Console).      | (X) Desejável ( ) Obrigatório (X) Permanente |
-| RNF004  | Jogabilidade deve ser intuitiva sem tutorial extenso.                     | ( ) Desejável (X) Obrigatório (X) Permanente |
-| RNF005  | Exibir aviso de conteúdo sensível (saúde mental) ao iniciar o jogo.       | ( ) Desejável (X) Obrigatório (X) Permanente |
-| RNF006  | Texto em PT-BR, estrutura para traduções futuras via arquivos de string.  | (X) Desejável (X) Obrigatório ( ) Transitório |
-| RNF007  | Assets gráficos devem manter estilo desenhado à mão e tamanho total ~2GB. | (X) Desejável ( ) Obrigatório (X) Permanente |
-| RNF008  | Interface minimalista inspirada em diário, menus e HUD estilizados.       | (X) Desejável (X) Obrigatório (X) Permanente |
-| RNF009  | Acessibilidade: opções de intensidade visual, legendas e controle de volume. | (X) Desejável (X) Obrigatório (X) Permanente |
+Este documento descreve os critérios de qualidade, desempenho, experiência de uso e manutenção esperados para **Ani: A Jornada da Virtude**.
 
+| Código | Requisito | Classificação |
+| --- | --- | --- |
+| RNF001 | O jogo deve rodar a 60 FPS na configuração mínima estimada, com hardware equivalente a Intel HD e 4 GB de RAM. | Obrigatório, permanente |
+| RNF002 | Saves locais devem carregar em menos de 5 segundos e preservar a integridade dos dados. | Obrigatório, permanente |
+| RNF003 | Código e assets devem favorecer futura portabilidade para outras plataformas. | Desejável, permanente |
+| RNF004 | A jogabilidade deve ser intuitiva, sem depender de tutorial extenso. | Obrigatório, permanente |
+| RNF005 | O jogo deve exibir aviso de conteúdo sensível relacionado à saúde mental ao iniciar. | Obrigatório, permanente |
+| RNF006 | O texto base deve estar em PT-BR, com estrutura preparada para traduções futuras. | Obrigatório e desejável, transitório |
+| RNF007 | Os assets gráficos devem manter estilo desenhado à mão e tamanho compatível com o escopo do projeto. | Desejável, permanente |
+| RNF008 | A interface deve seguir a proposta minimalista inspirada em diário, com menus e HUD estilizados. | Obrigatório e desejável, permanente |
+| RNF009 | O jogo deve oferecer recursos de acessibilidade, como controle de intensidade visual, legendas e ajustes de volume. | Obrigatório e desejável, permanente |
