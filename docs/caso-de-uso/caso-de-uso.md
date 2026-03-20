@@ -24,9 +24,9 @@
 
 ---
 
-| Caso de Uso | UC-S004 – Colidir com cenário |
+| Caso de Uso | UC-S003 – Colidir com cenário |
 |-------------|-------------------------------|
-| **ID** | UC-S004 |
+| **ID** | UC-S003 |
 | **Descrição** | O sistema deve impedir Ani de atravessar objetos e barreiras sólidas. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Ani em movimento. |
@@ -36,9 +36,9 @@
 
 ---
 
-| Caso de Uso | UC-S005 – Interagir com Objeto |
+| Caso de Uso | UC-S004 – Interagir com Objeto |
 |-------------|--------------------------------|
-| **ID** | UC-S005 |
+| **ID** | UC-S004 |
 | **Descrição** | O sistema deve permitir que Ani interaja com objetos para acessar memórias. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Ani deve estar próximo de um objeto interativo. |
@@ -48,9 +48,9 @@
 
 ---
 
-| Caso de Uso | UC-S007 – Interagir com NPCs |
+| Caso de Uso | UC-S005 – Interagir com NPCs |
 |-------------|------------------------------|
-| **ID** | UC-S007 |
+| **ID** | UC-S005 |
 | **Descrição** | O sistema deve permitir diálogos fragmentados com NPCs. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Ani deve estar próximo de um NPC. |
@@ -60,9 +60,9 @@
 
 ---
 
-| Caso de Uso | UC-S008 – Ler Documentos |
+| Caso de Uso | UC-S006 – Ler Documentos |
 |-------------|---------------------------|
-| **ID** | UC-S008 |
+| **ID** | UC-S006 |
 | **Descrição** | O sistema deve permitir que o jogador abra documentos coletados. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Pelo menos uma memória coletada. |
@@ -72,9 +72,9 @@
 
 ---
 
-| Caso de Uso | UC-S009 – Abrir Inventário |
+| Caso de Uso | UC-S007 – Abrir Inventário |
 |-------------|----------------------------|
-| **ID** | UC-S009 |
+| **ID** | UC-S007 |
 | **Descrição** | O sistema deve permitir que o jogador acesse o diário/inventário. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Jogo em execução. |
@@ -84,9 +84,9 @@
 
 ---
 
-| Caso de Uso | UC-S010 – Pausar Jogo |
+| Caso de Uso | UC-S008 – Pausar Jogo |
 |-------------|------------------------|
-| **ID** | UC-S010 |
+| **ID** | UC-S008 |
 | **Descrição** | O sistema deve permitir que o jogador pause o jogo. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Sessão em andamento. |
@@ -96,9 +96,9 @@
 
 ---
 
-| Caso de Uso | UC-S011 – Configurar Jogo |
+| Caso de Uso | UC-S009 – Configurar Jogo |
 |-------------|----------------------------|
-| **ID** | UC-S011 |
+| **ID** | UC-S009 |
 | **Descrição** | O sistema deve permitir que o jogador configure opções gerais. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Menu de pausa ou inicial aberto. |
@@ -108,9 +108,9 @@
 
 ---
 
-| Caso de Uso | UC-S012 – Configurar Vídeo |
+| Caso de Uso | UC-S010 – Configurar Vídeo |
 |-------------|-----------------------------|
-| **ID** | UC-S012 |
+| **ID** | UC-S010 |
 | **Descrição** | O sistema deve permitir ajustes gráficos (resolução, qualidade). |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Menu de configurações aberto. |
@@ -120,9 +120,9 @@
 
 ---
 
-| Caso de Uso | UC-S013 – Configurar Áudio |
+| Caso de Uso | UC-S011 – Configurar Áudio |
 |-------------|-----------------------------|
-| **ID** | UC-S013 |
+| **ID** | UC-S011 |
 | **Descrição** | O sistema deve permitir ajustes de volume e efeitos sonoros. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Menu de configurações aberto. |
@@ -132,9 +132,9 @@
 
 ---
 
-| Caso de Uso | UC-S014 – Configurar Controles |
+| Caso de Uso | UC-S012 – Configurar Controles |
 |-------------|--------------------------------|
-| **ID** | UC-S014 |
+| **ID** | UC-S012 |
 | **Descrição** | O sistema deve permitir customização de teclas e gamepad. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Menu de configurações aberto. |
@@ -144,9 +144,9 @@
 
 ---
 
-| Caso de Uso | UC-S015 – Sair do Jogo |
+| Caso de Uso | UC-S013 – Sair do Jogo |
 |-------------|-------------------------|
-| **ID** | UC-S015 |
+| **ID** | UC-S013 |
 | **Descrição** | O sistema deve permitir que o jogador encerre a sessão. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Jogo em execução. |
@@ -156,9 +156,9 @@
 
 ---
 
-| Caso de Uso | UC-S016 – Carregar Cenário |
+| Caso de Uso | UC-S014 – Carregar Cenário |
 |-------------|-----------------------------|
-| **ID** | UC-S016 |
+| **ID** | UC-S014 |
 | **Descrição** | O sistema deve carregar o cenário atual ou novo conforme a progressão. |
 | **Ator Primário** | Sistema |
 | **Pré-condição** | Jogo iniciado ou transição de memória/cômodo. |
@@ -168,9 +168,9 @@
 
 ---
 
-| Caso de Uso | UC-S018 – Gerenciar Diálogos |
+| Caso de Uso | UC-S015 – Gerenciar Diálogos |
 |-------------|-------------------------------|
-| **ID** | UC-S018 |
+| **ID** | UC-S015 |
 | **Descrição** | O sistema deve controlar exibição e fluxo dos diálogos com NPCs. |
 | **Ator Primário** | Sistema |
 | **Pré-condição** | Interação com NPC iniciada. |
@@ -180,9 +180,9 @@
 
 ---
 
-| Caso de Uso | UC-S019 – Salvar Jogo |
+| Caso de Uso | UC-S016 – Salvar Jogo |
 |-------------|------------------------|
-| **ID** | UC-S019 |
+| **ID** | UC-S016 |
 | **Descrição** | O sistema deve salvar progresso do jogador em arquivo local. |
 | **Ator Primário** | Sistema |
 | **Pré-condição** | Sessão em andamento. |
