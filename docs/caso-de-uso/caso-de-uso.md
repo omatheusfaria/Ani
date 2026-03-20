@@ -1,4 +1,4 @@
-# Caso de Uso - Ani: A Jornada da Virtude
+# Caso de Uso - Ani אֲנִי
 
 | Caso de Uso | UC-S001 – Movimentar Personagem |
 |-------------|---------------------------------|
@@ -9,18 +9,6 @@
 | **Cenário Principal** | 1. Jogador pressiona teclas de movimento.<br>2. Sistema captura entrada.<br>3. Sistema aplica movimento no personagem.<br>4. Sistema verifica colisões.<br>5. Ani é movido corretamente pelo cenário. |
 | **Pós-condição** | Ani está em nova posição válida. |
 | **Cenários Alternativos** | - Se colisão ocorrer, movimento é bloqueado. |
-
----
-
-| Caso de Uso | UC-S002 – Andar |
-|-------------|-----------------|
-| **ID** | UC-S002 |
-| **Descrição** | O sistema deve processar entradas de movimento lateral para Ani. |
-| **Ator Primário** | Jogador |
-| **Pré-condição** | Ani deve estar em pé sobre uma superfície. |
-| **Cenário Principal** | 1. Jogador pressiona teclas direcionais.<br>2. Sistema atualiza posição horizontal de Ani.<br>3. Sistema executa animação de caminhada. |
-| **Pós-condição** | Ani caminha lateralmente no cenário. |
-| **Cenários Alternativos** | - Se jogador soltar as teclas, Ani para de andar. |
 
 ---
 
@@ -39,11 +27,11 @@
 | Caso de Uso | UC-S004 – Interagir com Objeto |
 |-------------|--------------------------------|
 | **ID** | UC-S004 |
-| **Descrição** | O sistema deve permitir que Ani interaja com objetos para acessar memórias. |
+| **Descrição** | O sistema deve permitir que Ani interaja com objetos significativos para acessar memórias, fragmentos narrativos ou elementos contemplativos do cenário. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Ani deve estar próximo de um objeto interativo. |
-| **Cenário Principal** | 1. Jogador pressiona tecla de interação.<br>2. Sistema identifica objeto interativo.<br>3. Sistema abre memória ou documento associado. |
-| **Pós-condição** | Memória é registrada no diário de Ani. |
+| **Cenário Principal** | 1. Jogador pressiona tecla de interação.<br>2. Sistema identifica o tipo de objeto interativo.<br>3. Sistema ativa o conteúdo associado, como memória, fragmento textual, objeto restaurável ou evento contemplativo.<br>4. Quando aplicável, o conteúdo é registrado no diário de Ani. |
+| **Pós-condição** | O conteúdo vinculado ao objeto é processado e, quando aplicável, registrado no diário. |
 | **Cenários Alternativos** | - Se objeto não for interativo, nada acontece. |
 
 ---
@@ -51,11 +39,11 @@
 | Caso de Uso | UC-S005 – Interagir com NPCs |
 |-------------|------------------------------|
 | **ID** | UC-S005 |
-| **Descrição** | O sistema deve permitir diálogos fragmentados com NPCs. |
+| **Descrição** | O sistema deve permitir diálogos fragmentados com personagens de memória e arquétipos filosóficos. |
 | **Ator Primário** | Jogador |
-| **Pré-condição** | Ani deve estar próximo de um NPC. |
-| **Cenário Principal** | 1. Jogador aciona interação.<br>2. Sistema exibe diálogo textual.<br>3. Jogador avança o texto.<br>4. Sistema registra diálogo como memória narrativa. |
-| **Pós-condição** | Diálogo é concluído. |
+| **Pré-condição** | Ani deve estar próximo de um personagem interativo. |
+| **Cenário Principal** | 1. Jogador aciona interação.<br>2. Sistema identifica se a entidade é um personagem de memória ou um arquétipo filosófico.<br>3. Sistema exibe diálogo textual fragmentado.<br>4. Jogador avança o texto.<br>5. Quando aplicável, o conteúdo é registrado como memória narrativa ou reforço simbólico do ato atual. |
+| **Pós-condição** | O diálogo é concluído e o conteúdo narrativo associado é processado pelo sistema. |
 | **Cenários Alternativos** | - Se jogador ignorar NPC, diálogo não é iniciado. |
 
 ---
@@ -162,7 +150,7 @@
 | **Descrição** | O sistema deve carregar o cenário atual ou novo conforme a progressão. |
 | **Ator Primário** | Sistema |
 | **Pré-condição** | Jogo iniciado ou transição de memória/cômodo. |
-| **Cenário Principal** | 1. Sistema carrega recursos gráficos e de áudio.<br>2. Posiciona Ani no ponto inicial.<br>3. Atualiza HUD e inventário. |
+| **Cenário Principal** | 1. Sistema carrega recursos visuais, sonoros e interativos do cenário correspondente ao ato ou memória atual.<br>2. Sistema posiciona Ani no ponto inicial adequado.<br>3. Sistema atualiza o estado do diário, da atmosfera e dos elementos ativos do cenário. |
 | **Pós-condição** | Novo cenário é exibido corretamente. |
 | **Cenários Alternativos** | - Se recursos não carregarem, exibe mensagem de erro. |
 
@@ -186,6 +174,6 @@
 | **Descrição** | O sistema deve salvar progresso do jogador em arquivo local. |
 | **Ator Primário** | Sistema |
 | **Pré-condição** | Sessão em andamento. |
-| **Cenário Principal** | 1. Jogador solicita salvar.<br>2. Sistema coleta estado atual (memórias, decisões, inventário).<br>3. Grava arquivo de save. |
+| **Cenário Principal** | 1. Jogador solicita salvar.<br>2. Sistema coleta o estado atual do jogo, incluindo ato em curso, memórias registradas, estado do diário e estado visual da casa.<br>3. Sistema grava o arquivo de save. |
 | **Pós-condição** | Progresso registrado para continuidade futura. |
 | **Cenários Alternativos** | - Se erro ocorrer, sistema notifica jogador. |
