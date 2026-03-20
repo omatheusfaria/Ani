@@ -24,18 +24,6 @@
 
 ---
 
-| Caso de Uso | UC-S003 – Pular |
-|-------------|-----------------|
-| **ID** | UC-S003 |
-| **Descrição** | O sistema deve permitir que Ani pule sobre obstáculos. |
-| **Ator Primário** | Jogador |
-| **Pré-condição** | Ani deve estar em contato com o chão. |
-| **Cenário Principal** | 1. Jogador pressiona a tecla de pulo.<br>2. Sistema aplica força vertical.<br>3. Sistema executa animação de salto. |
-| **Pós-condição** | Ani aterrissa em uma superfície válida. |
-| **Cenários Alternativos** | - Se Ani já estiver no ar, comando de pulo é ignorado. |
-
----
-
 | Caso de Uso | UC-S004 – Colidir com cenário |
 |-------------|-------------------------------|
 | **ID** | UC-S004 |
@@ -57,18 +45,6 @@
 | **Cenário Principal** | 1. Jogador pressiona tecla de interação.<br>2. Sistema identifica objeto interativo.<br>3. Sistema abre memória ou documento associado. |
 | **Pós-condição** | Memória é registrada no diário de Ani. |
 | **Cenários Alternativos** | - Se objeto não for interativo, nada acontece. |
-
----
-
-| Caso de Uso | UC-S006 – Tomar Decisão Moral |
-|-------------|-------------------------------|
-| **ID** | UC-S006 |
-| **Descrição** | O sistema deve permitir que o jogador escolha Virtude, Vício Menor ou Vício Maior em dilemas. |
-| **Ator Primário** | Jogador |
-| **Pré-condição** | Memória deve conter um dilema moral. |
-| **Cenário Principal** | 1. Sistema apresenta opções de decisão.<br>2. Jogador escolhe uma opção.<br>3. Sistema registra escolha.<br>4. Sistema aplica efeitos visuais/sonoros. |
-| **Pós-condição** | O mundo é atualizado de acordo com a escolha. |
-| **Cenários Alternativos** | - Se jogador não escolher, o sistema aplica opção padrão. |
 
 ---
 
@@ -189,18 +165,6 @@
 | **Cenário Principal** | 1. Sistema carrega recursos gráficos e de áudio.<br>2. Posiciona Ani no ponto inicial.<br>3. Atualiza HUD e inventário. |
 | **Pós-condição** | Novo cenário é exibido corretamente. |
 | **Cenários Alternativos** | - Se recursos não carregarem, exibe mensagem de erro. |
-
----
-
-| Caso de Uso | UC-S017 – Aplicar Escolha Moral |
-|-------------|---------------------------------|
-| **ID** | UC-S017 |
-| **Descrição** | O sistema deve aplicar os efeitos da decisão moral tomada pelo jogador. |
-| **Ator Primário** | Sistema |
-| **Pré-condição** | Decisão moral já escolhida pelo jogador. |
-| **Cenário Principal** | 1. Sistema registra a escolha.<br>2. Aplica efeitos visuais (cores, shaders).<br>3. Aplica efeitos sonoros.<br>4. Atualiza estado do mundo e diário. |
-| **Pós-condição** | Estado do mundo alterado conforme decisão. |
-| **Cenários Alternativos** | - Se falha técnica, estado permanece inalterado. |
 
 ---
 
