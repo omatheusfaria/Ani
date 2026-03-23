@@ -20,25 +20,22 @@ O Quadro 1 apresenta a estrutura de classes, atributos e métodos modelada para 
 
 | Classe | Atributos | Métodos |
 | --- | --- | --- |
-| Jogo | Não há atributos explícitos no diagrama. | `iniciar()`, `pausar()`, `encerrar()` |
+| Jogo | `titulo : string`, `atoAtual : Ato`, `cenarioAtual : Cenario` | `iniciar()`, `pausar()`, `encerrar()`, `carregarProgresso()` |
 | Personagem | `posicaoX : float`, `posicaoY : float`, `sprite : string` | `mover()` |
-| Ani | Não há atributos explícitos no diagrama. | `pular()`, `interagir()` |
-| NPC | `nome : string` | `falar()` |
-| ControleMovimento | Não há atributos explícitos no diagrama. | `processarEntrada()` |
-| Colisao | Não há atributos explícitos no diagrama. | `detectar()`, `bloquearMovimento()` |
-| ObjetoInterativo | `id : int`, `tipo : string` | `ativar()` |
-| Memoria | `id : int`, `conteudo : string` | `exibir()` |
-| DecisaoMoral | Não há atributos explícitos no diagrama. | `aplicarEscolha()` |
-| Diario | `entradas : List<Memoria>` | `adicionarMemoria()`, `abrir()` |
-| Dialogo | `falas : List<string>` | `exibirDialogo()` |
-| GerenciadorCenario | Não há atributos explícitos no diagrama. | `carregarCenario()`, `transicionar()` |
-| GerenciadorDecisoes | Não há atributos explícitos no diagrama. | `aplicarConsequencia()` |
-| SaveLoad | Não há atributos explícitos no diagrama. | `salvar()`, `carregar()` |
-| Configuracao | `video : string`, `audio : string`, `controles : string` | `aplicar()` |
+| Player | `estadoEmocional : string`, `diario : Diario` | `interagir()`, `observar()`, `registrarMemoria()` |
+| NPC | `nome : string`, `tipo : string` | `falar()`, `interagir()` |
+| ObjetoInterativo | `id : int`, `tipo : string`, `descricao : string` | `ativar()` |
+| Memoria | `id : int`, `conteudo : string`, `atoOrigem : int` | `exibir()`, `registrarNoDiario()` |
+| Diario | `entradas : List<EntradaDiario>` | `abrir()`, `adicionarEntrada()`, `consultarEntrada()` |
+| Cenario | `nome : string`, `tipo : string`, `desbloqueado : boolean` | `carregarCenario()`, `desbloquearArea()` |
+| Ato | `id : int`, `nome : string`, `descricao : string` | `iniciarAto()`, `concluirAto()` |
+| ObjetoRestauravel | `estado : string` | `restaurar()` |
+| ElementoContemplativo | `descricao : string`, `tempoMinimoObservacao : float` | `observar()`, `liberarNarracao()` |
+| EntradaDiario | `titulo : string`, `conteudo : string`, `tipo : string` | `atualizarLeitura()` |
 
-O conjunto dessas classes mostra a separação entre lógica de jogo, entidades do domínio narrativo, componentes de interação e serviços de suporte. Essa organização é relevante para o projeto porque ajuda a distribuir responsabilidades entre os elementos do sistema e favorece uma implementação mais clara, modular e alinhada aos requisitos já definidos.
+O conjunto dessas classes mostra a separação entre a lógica principal do jogo, os elementos narrativos, os objetos de interação e os artefatos de registro da experiência do jogador. Essa organização é relevante para o projeto porque ajuda a distribuir responsabilidades entre os elementos do sistema e favorece uma implementação mais clara, modular e alinhada aos requisitos já definidos.
 
-O arquivo do diagrama pode ser consultado em [diagrama-de-classe.drawio.svg](./diagrama-de-classe.drawio.svg).
+O arquivo do diagrama pode ser consultado em [diagrama-de-classe.drawio](./diagrama-de-classe.drawio) e sua versão de visualização em [diagrama-de-classe.drawio.svg](./diagrama-de-classe.drawio.svg).
 
 ## Referências
 
