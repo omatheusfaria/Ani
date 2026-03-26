@@ -4,7 +4,7 @@
 
 | Item | Descrição |
 | --- | --- |
-| Nome do projeto | Ani אֲנִי |
+| Nome do projeto | Ani אני |
 | Tipo | Jogo digital narrativo contemplativo |
 | Área | Desenvolvimento de software e jogos digitais |
 | Plataforma inicial | PC (Windows) |
@@ -30,7 +30,7 @@ Desenvolver um protótipo funcional de jogo narrativo contemplativo que represen
 
 ## 5. Justificativa
 
-Jogos digitais constituem um meio singular para explorar experiências internas e subjetivas: a interatividade permite que o jogador não apenas observe uma jornada, mas a habite ativamente, vivenciando estados emocionais, percepções e transformações de dentro para fora. Essa capacidade imersiva distingue o jogo de outras mídias narrativas e o torna especialmente adequado para representar processos internos complexos como identidade, sofrimento e transformação filosófica.
+Jogos digitais constituem um meio singular para explorar experiências internas e subjetivas: a interatividade permite que o jogador não apenas observe uma jornada, mas a habite ativamente, vivenciando estados emocionais, percepções e transformações de dentro para fora. Essa capacidade imersiva distingue o jogo de outras mídias narrativas e o torna especialmente adequado para representar processos internos complexos, como identidade, sofrimento e transformação filosófica.
 
 **Ani** parte dessa premissa para investigar como a filosofia pode funcionar como linguagem acessível dentro de um jogo narrativo. Correntes como o pessimismo existencial de Zapffe e Mainlander e filosofias contemplativas japonesas, como Wabi-Sabi, Mono no Aware e Yugen, carregam ideias densas que, quando traduzidas em espaço, mecânica e atmosfera, tornam-se experienciáveis sem depender de mediação teórica.
 
@@ -65,7 +65,7 @@ As tecnologias e ferramentas utilizadas são:
 ### Escopo Não Incluído
 
 - lançamento comercial do jogo;
-- versão final completa com todo o conteúdo planejado refinado e polido;
+- versão final completa com todo o conteúdo planejado, refinado e polido;
 - portabilidade efetiva para consoles ou outras plataformas;
 - produção final de todos os assets artísticos e sonoros definitivos.
 

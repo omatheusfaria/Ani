@@ -47,7 +47,7 @@ O Quadro 2 apresenta, como exemplo, a especificação de um dos casos de uso do 
 | Descrição | O sistema deve permitir que Ani interaja com objetos significativos para acessar memórias, fragmentos narrativos ou elementos contemplativos do cenário. |
 | Ator Primário | Jogador |
 | Pré-condição | Ani deve estar próximo de um objeto interativo. |
-| Cenário Principal | 1. Jogador pressiona tecla de interação.<br>2. Sistema identifica o tipo de objeto interativo.<br>3. Sistema ativa o conteúdo associado, como memória, fragmento textual, objeto restaurável ou evento contemplativo.<br>4. Quando aplicável, o conteúdo é registrado no diário de Ani. |
+| Cenário Principal | 1. Jogador pressiona a tecla de interação.<br>2. Sistema identifica o tipo de objeto interativo.<br>3. Sistema ativa o conteúdo associado, como memória, fragmento textual, objeto restaurável ou evento contemplativo.<br>4. Quando aplicável, o conteúdo é registrado no diário de Ani. |
 | Pós-condição | O conteúdo vinculado ao objeto é processado e, quando aplicável, registrado no diário. |
 | Cenários Alternativos | Se o objeto não for interativo, nada acontece. |
 

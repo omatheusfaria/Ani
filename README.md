@@ -1,26 +1,26 @@
 # Ani
 
-**Ani** e um jogo narrativo contemplativo em desenvolvimento, estruturado como uma experiencia de exploracao, memoria e transformacao interior.
+**Ani** é um jogo narrativo contemplativo em desenvolvimento, estruturado como uma experiência de exploração, memória e transformação interior.
 
-O projeto acompanha a jornada de um protagonista em colapso existencial que atravessa espacos mentais distorcidos, memorias fragmentadas e manifestacoes simbolicas da propria consciencia. Em vez de combate ou moralidade binaria, a proposta se concentra em atmosfera, percepcao, silencio, introspeccao e ressignificacao.
+O projeto acompanha a jornada de um protagonista em colapso existencial que atravessa espaços mentais distorcidos, memórias fragmentadas e manifestações simbólicas da própria consciência. Em vez de combate ou moralidade binária, a proposta se concentra em atmosfera, percepção, silêncio, introspecção e ressignificação.
 
-## Visao Atual
+## Visão Atual
 
-- jornada filosofica organizada em cinco atos;
-- progressao baseada em exploracao, observacao e memoria;
-- diario como elemento central de registro narrativo;
-- foco em experiencia sensorial e contemplativa;
-- direcao conceitual orientada por pessimismo existencial e filosofias contemplativas.
+- jornada filosófica organizada em cinco atos;
+- progressão baseada em exploração, observação e memória;
+- diário como elemento central de registro narrativo;
+- foco em experiência sensorial e contemplativa;
+- direção conceitual orientada por pessimismo existencial e filosofias contemplativas.
 
-## O Que Este Repositorio Reune
+## O Que Este Repositório Reúne
 
-Este repositorio concentra principalmente os artefatos de planejamento, levantamento de requisitos e modelagem produzidos para o projeto. Ele funciona como base academica e tecnica para a evolucao do prototipo.
+Este repositório concentra principalmente os artefatos de planejamento, levantamento de requisitos e modelagem produzidos para o projeto. Ele funciona como base acadêmica e técnica para a evolução do protótipo.
 
-Os principais materiais estao em [docs/README.md](./docs/README.md), com destaque para:
+Os principais materiais estão em [docs/README.md](./docs/README.md), com destaque para:
 
 - [GDD](./docs/gdd.md)
 - [TAP](./docs/tap/README.md)
-- [Elicitacao de Requisitos](./docs/elicitacao-de-requisitos/README.md)
+- [Elicitação de Requisitos](./docs/elicitacao-de-requisitos/README.md)
 - [BPMN](./docs/bpmn/README.md)
 - [Requisitos](./docs/requisitos/README.md)
 - [Caso de Uso](./docs/caso-de-uso/README.md)
@@ -45,4 +45,4 @@ docs/
 
 ## Objetivo
 
-O objetivo atual do repositorio e manter coerencia entre a documentacao academica do TG e a base conceitual do jogo, permitindo que requisitos, diagramas e demais artefatos acompanhem a versao mais recente do projeto.
+O objetivo atual do repositório é manter coerência entre a documentação acadêmica do TG e a base conceitual do jogo, permitindo que requisitos, diagramas e demais artefatos acompanhem a versão mais recente do projeto.

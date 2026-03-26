@@ -4,7 +4,7 @@ Os requisitos do projeto definem o que o sistema deve fazer, sob quais restriç�
 
 ## Requisitos Funcionais
 
-Requisitos funcionais descrevem as funcionalidades, serviços e comportamentos que o sistema deve oferecer para atender às necessidades dos usuários e aos objetivos do projeto. Em outras palavras, eles definem o que o software deve fazer em termos de ações, respostas e operações esperadas [1].
+Requisitos funcionais descrevem as funcionalidades, os serviços e os comportamentos que o sistema deve oferecer para atender às necessidades dos usuários e aos objetivos do projeto. Em outras palavras, eles definem o que o software deve fazer em termos de ações, respostas e operações esperadas [1].
 
 No projeto **Ani**, os requisitos funcionais contemplam elementos centrais da experiência, como movimentação, interação com objetos, sistema de memórias, progressão por atos e mecânicas específicas da proposta narrativa.
 

@@ -1,321 +1,321 @@
-# GDD: Ani
+﻿# GDD: Ani
 
-## O que e o GDD
+## O que é o GDD
 
-Um *Game Design Document* (GDD) e o documento que organiza e registra a visao geral de um jogo, reunindo elementos como proposta conceitual, narrativa, mecanicas, direcao estetica, interface, publico-alvo e diretrizes tecnicas. Em termos de desenvolvimento, ele funciona como uma referencia estruturadora para que as decisoes criativas e de implementacao permanecam coerentes ao longo do projeto [1][2].
+Um *Game Design Document* (GDD) é o documento que organiza e registra a visão geral de um jogo, reunindo elementos como proposta conceitual, narrativa, mecânicas, direção estética, interface, público-alvo e diretrizes técnicas. Em termos de desenvolvimento, ele funciona como uma referência estruturadora para que as decisões criativas e de implementação permaneçam coerentes ao longo do projeto [1][2].
 
-## Importancia do GDD
+## Importância do GDD
 
-A importancia do GDD esta em transformar uma ideia de jogo em uma base documental consistente. Ao consolidar a experiencia pretendida, suas regras, seus objetivos e sua identidade, o documento reduz ambiguidades, favorece a comunicacao entre os envolvidos e oferece rastreabilidade entre concepcao, modelagem e desenvolvimento [1][2].
+A importância do GDD está em transformar uma ideia de jogo em uma base documental consistente. Ao consolidar a experiência pretendida, suas regras, seus objetivos e sua identidade, o documento reduz ambiguidades, favorece a comunicação entre os envolvidos e oferece rastreabilidade entre concepção, modelagem e desenvolvimento [1][2].
 
 ## Status do Documento
 
-Este documento registra a direcao criativa, filosofica, narrativa e tecnica atualmente adotada para **Ani**.
+Este documento registra a direção criativa, filosófica, narrativa e técnica atualmente adotada para **Ani**.
 
-- O conteudo ainda esta em evolucao e pode conter pontos a revisar conforme o projeto amadurecer.
-- O objetivo deste arquivo e consolidar a direcao criativa do jogo em um formato Markdown versionavel.
+- O conteúdo ainda está em evolução e pode conter pontos a revisar conforme o projeto amadurecer.
+- O objetivo deste arquivo é consolidar a direção criativa do jogo em um formato Markdown versionável.
 
-## 1. Introducao
+## 1. Introdução
 
-### Visao
+### Visão
 
-**Ani** e uma experiencia contemplativa e emocional que conduz o jogador por uma jornada filosofica de sofrimento, percepcao e transformacao interior. Em vez de se apoiar em escolhas morais tradicionais, o jogo acompanha a mudanca da forma como o protagonista percebe a existencia.
+**Ani** é uma experiência contemplativa e emocional que conduz o jogador por uma jornada filosófica de sofrimento, percepção e transformação interior. Em vez de se apoiar em escolhas morais tradicionais, o jogo acompanha a mudança da forma como o protagonista percebe a existência.
 
-Ani e um homem comum em colapso existencial, atravessando espacos mentais distorcidos, memorias fragmentadas e manifestacoes simbolicas da propria consciencia. O nome do protagonista vem do hebraico **אני**, que significa **"eu"**. A proposta e aproximar jogador e personagem: o jogador nao observa Ani a distancia, ele habita sua experiencia.
+Ani é um homem comum em colapso existencial, atravessando espaços mentais distorcidos, memórias fragmentadas e manifestações simbólicas da própria consciência. O nome do protagonista vem do hebraico **אני**, que significa **"eu"**. A proposta é aproximar jogador e personagem: o jogador não observa Ani à distância, ele habita sua experiência.
 
 ### Logline
 
-Um side-scroller narrativo contemplativo sobre consciencia, sofrimento e a descoberta lenta do sentido.
+Um side-scroller narrativo contemplativo sobre consciência, sofrimento e a descoberta lenta do sentido.
 
 ### Sinopse
 
-Ani acorda em um lugar que parece sua propria mente: familiar, mas deformado; intimo, mas opressivo. Nao ha mapa, nao ha tutorial explicito e nao ha inimigos no sentido tradicional. O que existe sao memorias, silencio, ruinas emocionais e o peso de existir com consciencia demais.
+Ani acorda em um lugar que parece sua própria mente: familiar, mas deformado; íntimo, mas opressivo. Não há mapa, não há tutorial explícito e não há inimigos no sentido tradicional. O que existe são memórias, silêncio, ruínas emocionais e o peso de existir com consciência demais.
 
-Ao longo de cinco atos, o mundo nao muda porque o jogador escolheu entre certo e errado. Ele muda porque Ani muda. A cada etapa, o jogo abandona um pouco do pessimismo radical que marca o inicio da jornada e se aproxima de filosofias contemplativas orientais que acolhem imperfeicao, impermanencia e misterio.
+Ao longo de cinco atos, o mundo não muda porque o jogador escolheu entre certo e errado. Ele muda porque Ani muda. A cada etapa, o jogo abandona um pouco do pessimismo radical que marca o início da jornada e se aproxima de filosofias contemplativas orientais que acolhem imperfeição, impermanência e mistério.
 
-### Ficha Tecnica
+### Ficha Técnica
 
-| Item | Descricao |
+| Item | Descrição |
 | --- | --- |
-| Titulo | Ani |
-| Genero | Side-scroller narrativo contemplativo |
+| Título | Ani |
+| Gênero | Side-scroller narrativo contemplativo |
 | Plataforma principal | PC (Windows) |
 | Engine | Unity |
 | Linguagem | C# |
-| Camera | Lateral fixa com zoom narrativo |
-| Publico-alvo | 16 a 28 anos, com interesse em filosofia, arte e narrativas reflexivas |
-| Tom | Sombrio, melancolico e contemplativo, com redencao gradual |
-| Duracao estimada | 3 a 5 horas por jornada |
+| Câmera | Lateral fixa com zoom narrativo |
+| Público-alvo | 16 a 28 anos, com interesse em filosofia, arte e narrativas reflexivas |
+| Tom | Sombrio, melancólico e contemplativo, com redenção gradual |
+| Duração estimada | 3 a 5 horas por jornada |
 
 ## 2. Pilar Conceitual
 
-### A Transicao Filosofica
+### A Transição Filosófica
 
-A espinha dorsal de **Ani** nao e uma historia de moralidade, mas uma historia de percepcao.
+A espinha dorsal de **Ani** não é uma história de moralidade, mas uma história de percepção.
 
-O jogo comeca imerso em correntes pessimistas da filosofia ocidental e, ao longo dos cinco atos, caminha em direcao a filosofias contemplativas japonesas. Essa transicao nao e didatica nem explicada em excesso. Ela se manifesta no ambiente, na musica, na estrutura do espaco, nas mecanicas e no ritmo da experiencia.
+O jogo começa imerso em correntes pessimistas da filosofia ocidental e, ao longo dos cinco atos, caminha em direção a filosofias contemplativas japonesas. Essa transição não é didática nem explicada em excesso. Ela se manifesta no ambiente, na música, na estrutura do espaço, nas mecânicas e no ritmo da experiência.
 
-### Eixo Filosofico por Ato
+### Eixo Filosófico por Ato
 
-| Ato | Referencia Filosofica | Tom | Simbolo |
+| Ato | Referência Filosófica | Tom | Símbolo |
 | --- | --- | --- | --- |
-| I | Zapffe | O peso da consciencia | Relogio parado |
-| II | Mainlander e Bahnsen | A vontade que se devora e o loop irresoluvel | Corredor em loop |
+| I | Zapffe | O peso da consciência | Relógio parado |
+| II | Mainländer e Bahnsen | A vontade que se devora e o loop irresolúvel | Corredor em loop |
 | III | Wabi-Sabi | Beleza no quebrado | Kintsugi |
-| IV | Mono no Aware e Ikigai | Sentir o que passa e encontrar um fio de sentido | Petalas de cerejeira |
-| V | Yugen | O que nao cabe em palavras | Estrela solitaria |
+| IV | Mono no Aware e Ikigai | Sentir o que passa e encontrar um fio de sentido | Pétalas de cerejeira |
+| V | Yugen | O que não cabe em palavras | Estrela solitária |
 
-### Principios de Direcao
+### Princípios de Direção
 
-- O jogo nao e sobre vencer o sofrimento, mas atravessa-lo.
-- Nao existe sistema de moralidade binaria.
-- Nao ha combate como eixo principal da experiencia.
-- As mecanicas existem para produzir sensacao e significado, nao para gamificar emocao.
-- O silencio, a pausa e a observacao sao tao importantes quanto a interacao.
+- O jogo não é sobre vencer o sofrimento, mas atravessá-lo.
+- Não existe sistema de moralidade binária.
+- Não há combate como eixo principal da experiência.
+- As mecânicas existem para produzir sensação e significado, não para gamificar emoção.
+- O silêncio, a pausa e a observação são tão importantes quanto a interação.
 
 ## 3. Mundo do Jogo
 
 ### Estrutura Geral
 
-O jogo se passa inteiramente na mente de Ani, representada como um espaco arquitetonico impossivel: apartamentos que se repetem, corredores alagados, ruinas em loop, jardins noturnos e cenarios familiares ligeiramente errados.
+O jogo se passa inteiramente na mente de Ani, representada como um espaço arquitetônico impossível: apartamentos que se repetem, corredores alagados, ruínas em loop, jardins noturnos e cenários familiares ligeiramente errados.
 
-O nucleo central e a casa de Ani, inicialmente cinzenta, incompleta e sufocante. Conforme os atos avancam, ela ganha textura, luz e reorganizacao espacial. Novos comodos, passagens, portas e escadas surgem a medida que a jornada se aprofunda.
+O núcleo central é a casa de Ani, inicialmente cinzenta, incompleta e sufocante. Conforme os atos avançam, ela ganha textura, luz e reorganização espacial. Novos cômodos, passagens, portas e escadas surgem à medida que a jornada se aprofunda.
 
-### Cenarios de Memoria
+### Cenários de Memória
 
-As memorias aparecem como extensoes da casa e como portais para fragmentos do passado.
+As memórias aparecem como extensões da casa e como portais para fragmentos do passado.
 
-- Casa de infancia em epocas diferentes
+- Casa de infância em épocas diferentes
 - Escola com corredores alongados e rostos indistintos
-- Trabalho como escritorio repetido em variacoes
-- Ruas familiares, porem deslocadas
+- Trabalho como escritório repetido em variações
+- Ruas familiares, porém deslocadas
 - Hospital com atmosfera branca e opressiva
-- Bares e espacos sociais, onde a ansiedade se intensifica
+- Bares e espaços sociais, onde a ansiedade se intensifica
 
-### Progressao Visual por Ato
+### Progressão Visual por Ato
 
 | Ato | Paleta | Atmosfera |
 | --- | --- | --- |
-| I | Cinza-chumbo e preto profundo | Claustrofobia, tetos baixos, relogios parados |
-| II | Cinza-azulado e sombras densas | Labirinto, repeticao e desorientacao |
+| I | Cinza-chumbo e preto profundo | Claustrofobia, tetos baixos, relógios parados |
+| II | Cinza-azulado e sombras densas | Labirinto, repetição e desorientação |
 | III | Ocre, marrom e ouro nas rachaduras | Quietude, musgo, frestas de luz |
-| IV | Azul-indigo, rosa-cerejeira e dourado | Abertura, respiro, contemplacao |
-| V | Azul muito escuro quase preto | Imensidao, vazio e coexistencia simbolica |
+| IV | Azul-índigo, rosa-cerejeira e dourado | Abertura, respiro, contemplação |
+| V | Azul muito escuro, quase preto | Imensidão, vazio e coexistência simbólica |
 
 ## 4. Narrativa
 
 ### Estrutura Geral
 
-A narrativa de **Ani** e organizada em cinco atos. Cada ato corresponde a uma transformacao filosofica e emocional, com linguagem visual, sonora e mecanica proprias.
+A narrativa de **Ani** é organizada em cinco atos. Cada ato corresponde a uma transformação filosófica e emocional, com linguagem visual, sonora e mecânica próprias.
 
 ### Ato I: O Peso
 
-**Referencia:** Zapffe  
-**Ideia central:** a consciencia como fardo
+**Referência:** Zapffe  
+**Ideia central:** a consciência como fardo
 
-Ani desperta em um apartamento escuro, apertado e opressivo. Tudo parece minimamente familiar, mas deslocado. O mundo pesa. Os objetos da memoria aparecem espalhados, e lembrar exige esforco.
+Ani desperta em um apartamento escuro, apertado e opressivo. Tudo parece minimamente familiar, mas deslocado. O mundo pesa. Os objetos da memória aparecem espalhados, e lembrar exige esforço.
 
-O encerramento do ato acontece quando Ani encontra uma porta que nao conduz a libertacao, mas a uma descida ainda mais profunda.
+O encerramento do ato acontece quando Ani encontra uma porta que não conduz à libertação, mas a uma descida ainda mais profunda.
 
 ### Ato II: O Abismo
 
-**Referencia:** Mainlander e Bahnsen  
+**Referência:** Mainländer e Bahnsen  
 **Ideia central:** a vontade que se contradiz e se devora
 
-Ani atravessa ruinas subterraneas e espacos em loop. Figuras sem rosto nao atacam, apenas refletem e distorcem sua presenca. O labirinto e propositalmente contraditorio. O jogador se perde porque a propria estrutura do ato comunica irresolucao.
+Ani atravessa ruínas subterrâneas e espaços em loop. Figuras sem rosto não atacam, apenas refletem e distorcem sua presença. O labirinto é propositalmente contraditório. O jogador se perde porque a própria estrutura do ato comunica irresolução.
 
-O centro simbolico desse trecho e **O Arquiteto**, figura que constroi estruturas que desabam assim que terminam.
+O centro simbólico desse trecho é **O Arquiteto**, figura que constrói estruturas que desabam assim que terminam.
 
 ### Ato III: A Rachadura
 
-**Referencia:** Wabi-Sabi  
-**Ideia central:** a beleza do que esta quebrado
+**Referência:** Wabi-Sabi  
+**Ideia central:** a beleza do que está quebrado
 
-O mundo nao se torna subitamente belo, mas se torna honesto. As ruinas continuam presentes, porem agora possuem textura, musgo, luz e marcas assumidas. Objetos quebrados nao sao restaurados ao estado original; sao ressignificados.
+O mundo não se torna subitamente belo, mas se torna honesto. As ruínas continuam presentes, porém agora possuem textura, musgo, luz e marcas assumidas. Objetos quebrados não são restaurados ao estado original; são ressignificados.
 
-O principal simbolo do ato e o **Kintsugi**, a ceramica remontada com ouro.
+O principal símbolo do ato é o **Kintsugi**, a cerâmica remontada com ouro.
 
 ### Ato IV: A Passagem
 
-**Referencia:** Mono no Aware e Ikigai  
-**Ideia central:** sentir a impermanencia e reconhecer pequenos fios de sentido
+**Referência:** Mono no Aware e Ikigai  
+**Ideia central:** sentir a impermanência e reconhecer pequenos fios de sentido
 
-Pela primeira vez, Ani alcanca um espaco aberto: um jardim noturno com cerejeiras e lanternas. As manifestacoes deixam de ser apenas ameacadoras e passam a existir como presencas do passado. O jogo convida o jogador a parar, observar e aceitar o que nao pode ser retido.
+Pela primeira vez, Ani alcança um espaço aberto: um jardim noturno com cerejeiras e lanternas. As manifestações deixam de ser apenas ameaçadoras e passam a existir como presenças do passado. O jogo convida o jogador a parar, observar e aceitar o que não pode ser retido.
 
-Nesse ato surge **A Crianca**, figura associada a atencao plena e ao gesto simples.
+Nesse ato surge **A Criança**, figura associada à atenção plena e ao gesto simples.
 
 ### Ato V: O Limiar
 
-**Referencia:** Yugen  
-**Ideia central:** o misterio que nao cabe em palavras
+**Referência:** Yugen  
+**Ideia central:** o mistério que não cabe em palavras
 
-O ato final acontece em um espaco aberto e indefinido, onde fragmentos dos atos coexistem. As mecanicas sao retiradas progressivamente ate restar apenas caminhar, observar e ouvir.
+O ato final acontece em um espaço aberto e indefinido, onde fragmentos dos atos coexistem. As mecânicas são retiradas progressivamente até restar apenas caminhar, observar e ouvir.
 
-O encerramento e deliberadamente aberto. O jogo nao explica tudo, nao fecha todos os sentidos e nao entrega resposta definitiva sobre o destino de Ani.
+O encerramento é deliberadamente aberto. O jogo não explica tudo, não fecha todos os sentidos e não entrega resposta definitiva sobre o destino de Ani.
 
 ## 5. Personagens
 
 ### Ani
 
 - Homem de aproximadamente 32 anos
-- Humano comum, sem poderes ou missao heroica
-- Sua identidade e ponto de partida, nao recompensa final
-- Visualmente comeca quase como silhueta e ganha presenca ao longo dos atos
+- Humano comum, sem poderes ou missão heroica
+- Sua identidade é ponto de partida, não recompensa final
+- Visualmente começa quase como silhueta e ganha presença ao longo dos atos
 
-### Personagens de Memoria
+### Personagens de Memória
 
-Esses personagens aparecem principalmente como ecos do passado e nao como companheiros estaveis no presente narrativo.
+Esses personagens aparecem principalmente como ecos do passado e não como companheiros estáveis no presente narrativo.
 
 | Personagem | Tipo | Papel Narrativo |
 | --- | --- | --- |
-| Mae | Familia / memoria | Ancora emocional importante, ligada a protecao e sufocamento |
-| Padrasto | Familia / memoria | Presenca pesada, associada a distorcao e opressao |
-| Namorada | Familia / memoria | Memoria mais recente, ligada a fragilidade afetiva |
-| Primo | Familia / memoria | Presenca leve em contraste com os momentos mais densos |
+| Mãe | Família / memória | Âncora emocional importante, ligada à proteção e ao sufocamento |
+| Padrasto | Família / memória | Presença pesada, associada à distorção e à opressão |
+| Namorada | Família / memória | Memória mais recente, ligada à fragilidade afetiva |
+| Primo | Família / memória | Presença leve em contraste com os momentos mais densos |
 
-### Arquetipos
+### Arquétipos
 
 | Personagem | Papel |
 | --- | --- |
-| O Arquiteto | Manifestacao da contradicao irresoluvel do Ato II |
-| A Ceramista | Manifestacao do Wabi-Sabi e da aceitacao das fendas |
-| A Crianca | Manifestacao do Ikigai, da atencao e da presenca |
+| O Arquiteto | Manifestação da contradição irresolúvel do Ato II |
+| A Ceramista | Manifestação do Wabi-Sabi e da aceitação das fendas |
+| A Criança | Manifestação do Ikigai, da atenção e da presença |
 
-### Manifestacoes
+### Manifestações
 
-As manifestacoes sao figuras sem rosto que refletem Ani. Elas nao funcionam como inimigos tradicionais. Em alguns momentos espelham, observam, sussurram ou intensificam crises emocionais.
+As manifestações são figuras sem rosto que refletem Ani. Elas não funcionam como inimigos tradicionais. Em alguns momentos, espelham, observam, sussurram ou intensificam crises emocionais.
 
-## 6. Mecanicas
+## 6. Mecânicas
 
-### Principio Central
+### Princípio Central
 
-**Ani** nao possui sistema de combate, sistema de moralidade, pontuacao ou arvore de escolhas com multiplos finais baseados em bom ou mau comportamento. As mecanicas existem para dar corpo as ideias do jogo.
+**Ani** não possui sistema de combate, sistema de moralidade, pontuação ou árvore de escolhas com múltiplos finais baseados em bom ou mau comportamento. As mecânicas existem para dar corpo às ideias do jogo.
 
-### Mecanicas por Ato
+### Mecânicas por Ato
 
 #### Ato I: Peso Literal
 
-Cada memoria tocada adiciona peso ao movimento de Ani. Ignorar o passado parece mais confortavel, mas impede o avanco.
+Cada memória tocada adiciona peso ao movimento de Ani. Ignorar o passado parece mais confortável, mas impede o avanço.
 
-#### Ato II: Ecos de Decisao
+#### Ato II: Ecos de Decisão
 
-Ani revive certos momentos e pode tentar agir de outro modo, mas o resultado continua preso ao mesmo impasse. A mecanica comunica repeticao e contradicao.
+Ani revive certos momentos e pode tentar agir de outro modo, mas o resultado continua preso ao mesmo impasse. A mecânica comunica repetição e contradição.
 
-#### Ato III: Restauracao por Aceitacao
+#### Ato III: Restauração por Aceitação
 
-Objetos quebrados podem ser restaurados, mas nunca apagando suas marcas. O gesto e de aceitacao, nao de retorno ao estado original.
+Objetos quebrados podem ser restaurados, mas nunca apagando suas marcas. O gesto é de aceitação, não de retorno ao estado original.
 
-#### Ato IV: Contemplacao Ativa
+#### Ato IV: Contemplação Ativa
 
-Parar diante de elementos especificos do cenario libera memoria, narracao e sentido. A observacao passa a ser uma forma central de interacao.
+Parar diante de elementos específicos do cenário libera memória, narração e sentido. A observação passa a ser uma forma central de interação.
 
-#### Ato V: Dissolucao das Mecanicas
+#### Ato V: Dissolução das Mecânicas
 
-As mecanicas do jogo sao progressivamente removidas ate restar apenas caminhar e contemplar.
+As mecânicas do jogo são progressivamente removidas até restar apenas caminhar e contemplar.
 
-### Exploracao e Diario de Memorias
+### Exploração e Diário de Memórias
 
-Ani explora a casa e suas memorias interagindo com objetos significativos. Cartas, bilhetes, fotografias e fragmentos textuais ficam registrados em um diario de memorias com estetica manual.
+Ani explora a casa e suas memórias interagindo com objetos significativos. Cartas, bilhetes, fotografias e fragmentos textuais ficam registrados em um diário de memórias com estética manual.
 
-O mesmo item pode adquirir nova leitura conforme os atos avancam. A mudanca esta menos no texto bruto e mais no contexto em que ele e reencontrado.
+O mesmo item pode adquirir nova leitura conforme os atos avançam. A mudança está menos no texto bruto e mais no contexto em que ele é reencontrado.
 
-### Ansiedade e Respiracao
+### Ansiedade e Respiração
 
 Crises de ansiedade continuam como uma das bases sensoriais do jogo.
 
 - O ambiente se distorce
 - O som se fragmenta
-- As manifestacoes se multiplicam
-- A respiracao de Ani se torna indicador importante do estado emocional
+- As manifestações se multiplicam
+- A respiração de Ani se torna indicador importante do estado emocional
 
 ## 7. Interface
 
 ### Filosofia de UI
 
-A interface deve ser quase invisivel. O jogo comunica estado por atmosfera, som, ritmo, distorcao e comportamento do cenario.
+A interface deve ser quase invisível. O jogo comunica estado por atmosfera, som, ritmo, distorção e comportamento do cenário.
 
 ### Diretrizes
 
 - Sem HUD permanente
-- Sem barras numericas
-- Icones discretos e rabiscados
-- Diario de memorias acessivel como objeto diegetico
-- A respiracao funciona como indicador sensorial recorrente
+- Sem barras numéricas
+- Ícones discretos e rabiscados
+- Diário de memórias acessível como objeto diegético
+- A respiração funciona como indicador sensorial recorrente
 
 ### Controles no PC
 
-| Acao | Controle |
+| Ação | Controle |
 | --- | --- |
 | Movimento | WASD ou setas |
 | Interagir | E ou clique esquerdo |
-| Diario de memorias | Tab |
-| Contemplar | Sem botao dedicado; depende de parar e observar |
+| Diário de memórias | Tab |
+| Contemplar | Sem botão dedicado; depende de parar e observar |
 
-## 8. Audio
+## 8. Áudio
 
-### Principio Sonoro
+### Princípio Sonoro
 
-O audio acompanha a transicao filosofica do jogo: parte de um espaco abafado e claustrofobico e gradualmente se torna mais organico, silencioso e contemplativo. O silencio nao e ausencia de conteudo, mas parte da linguagem.
+O áudio acompanha a transição filosófica do jogo: parte de um espaço abafado e claustrofóbico e gradualmente se torna mais orgânico, silencioso e contemplativo. O silêncio não é ausência de conteúdo, mas parte da linguagem.
 
-### Direcao por Ato
+### Direção por Ato
 
 | Ato | Clima Sonoro | Elementos |
 | --- | --- | --- |
-| I | Peso e clausura | Silencio pesado, rangidos, passos ecoados, relogios que nao andam |
-| II | Loop e distorcao | Repeticoes ligeiramente erradas, batimentos, ecos codificados |
-| III | Textura e imperfeicao | Cordas imperfeitas, ceramica, madeira, presenca tatil dos sons |
-| IV | Abertura e passagem | Flauta, vento, sino distante, queda de petalas e pausas longas |
-| V | Imensidao e silencio | Sustentacao minima, espaco entre notas e sensacao de vazio |
+| I | Peso e clausura | Silêncio pesado, rangidos, passos ecoados, relógios que não andam |
+| II | Loop e distorção | Repetições ligeiramente erradas, batimentos, ecos codificados |
+| III | Textura e imperfeição | Cordas imperfeitas, cerâmica, madeira, presença tátil dos sons |
+| IV | Abertura e passagem | Flauta, vento, sino distante, queda de pétalas e pausas longas |
+| V | Imensidão e silêncio | Sustentação mínima, espaço entre notas e sensação de vazio |
 
 ### Vozes e Efeitos
 
 - NPCs se comunicam principalmente por texto
 - Crises de ansiedade usam sussurros humanos distorcidos
-- Memorias felizes trazem sons urbanos suaves e papel sendo folheado
-- Memorias traumaticas usam abafamento, ruido e silencio subito
-- Interacoes materiais devem soar tateis, intimas e fisicas
+- Memórias felizes trazem sons urbanos suaves e papel sendo folheado
+- Memórias traumáticas usam abafamento, ruído e silêncio súbito
+- Interações materiais devem soar táteis, íntimas e físicas
 
-## 9. Principais Caracteristicas
+## 9. Principais Características
 
 - Side-scroller narrativo contemplativo
-- Progressao em cinco atos filosoficos
-- Ausencia de combate e moralidade binaria
-- Mundo mental simbolico e mutavel
-- Mecanicas que nascem e desaparecem conforme o significado de cada ato
-- Diario de memorias como elemento narrativo central
-- Crises de ansiedade como recurso sensorial e dramatico
-- Interface minimalista e diegetica
-- Final unico, aberto e interpretativo
+- Progressão em cinco atos filosóficos
+- Ausência de combate e moralidade binária
+- Mundo mental simbólico e mutável
+- Mecânicas que nascem e desaparecem conforme o significado de cada ato
+- Diário de memórias como elemento narrativo central
+- Crises de ansiedade como recurso sensorial e dramático
+- Interface minimalista e diegética
+- Final único, aberto e interpretativo
 
-## 10. Especificacoes Tecnicas
+## 10. Especificações Técnicas
 
-### Base Tecnica
+### Base Técnica
 
-| Item | Direcao Atual |
+| Item | Direção Atual |
 | --- | --- |
 | Engine | Unity |
 | Linguagem | C# |
 | Plataforma inicial | PC (Windows) |
 | Estrutura visual | Side-scroller lateral com elementos 3D estilizados |
-| Camera | Lateral fixa com zoom narrativo |
-| Texturas | Estetica de desenho a mao, aquarela e grafite |
-| Efeitos visuais | Distorcao emocional, vinheta dinamica e transicoes de cor por ato |
+| Câmera | Lateral fixa com zoom narrativo |
+| Texturas | Estética de desenho à mão, aquarela e grafite |
+| Efeitos visuais | Distorção emocional, vinheta dinâmica e transições de cor por ato |
 
-### Loop de Progressao
+### Loop de Progressão
 
 Cada ato segue um ciclo estrutural simples:
 
 1. Explorar a casa e perceber o que mudou.
-2. Encontrar a passagem para uma memoria ou regiao mental.
-3. Atravessar a experiencia central do ato.
-4. Retornar a casa e registrar o avanco no diario.
+2. Encontrar a passagem para uma memória ou região mental.
+3. Atravessar a experiência central do ato.
+4. Retornar à casa e registrar o avanço no diário.
 5. Abrir passagem para o ato seguinte.
 
 ## 11. Encerramento
 
-**Ani** nao e um jogo sobre oferecer respostas definitivas. E um jogo sobre aprender a viver com perguntas, com rachaduras, com silencio e com aquilo que continua sem nome mesmo depois que a jornada termina.
+**Ani** não é um jogo sobre oferecer respostas definitivas. É um jogo sobre aprender a viver com perguntas, com rachaduras, com silêncio e com aquilo que continua sem nome mesmo depois que a jornada termina.
 
-## Referencias
+## Referências
 
 [1] FULLERTON, Tracy. *Game Design Workshop: A Playcentric Approach to Creating Innovative Games*. 4. ed. Boca Raton: CRC Press, 2018.
 

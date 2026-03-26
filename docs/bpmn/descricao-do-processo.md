@@ -39,7 +39,7 @@ O BPMN está organizado em três raias:
 
 Após a interação com um objeto, o sistema segue um gateway exclusivo com dois caminhos:
 
-- **Objeto de memória**: leva ao carregamento de memória, exploração do cenário da memória e finalização da memória.
+- **Objeto de memória**: leva ao carregamento de memória, à exploração do cenário da memória e à finalização da memória.
 - **Objeto comum**: leva ao carregamento direto do objeto.
 
 ### Verificação de Progresso

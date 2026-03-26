@@ -1,110 +1,110 @@
-# Documentacao do DER
+# Documentação do DER
 
 ## Entidades principais
 
 ### Save
 
-Representa a unidade de persistencia da partida.
+Representa a unidade de persistência da partida.
 
-| Campo | Descricao |
+| Campo | Descrição |
 | --- | --- |
 | `id_save` | Identificador do save. |
-| `data_criacao` | Data de criacao do registro de save. |
-| `data_ultima_atualizacao` | Data da ultima alteracao do save. |
+| `data_criacao` | Data de criação do registro de save. |
+| `data_ultima_atualizacao` | Data da última alteração do save. |
 
 ### Ato
 
-Representa cada etapa da progressao narrativa do jogo.
+Representa cada etapa da progressão narrativa do jogo.
 
-| Campo | Descricao |
+| Campo | Descrição |
 | --- | --- |
 | `id_ato` | Identificador do ato. |
 | `nome` | Nome do ato. |
-| `descricao` | Descricao do ato. |
+| `descricao` | Descrição do ato. |
 
 ### Cenario
 
-Representa os cenarios pertencentes aos atos.
+Representa os cenários pertencentes aos atos.
 
-| Campo | Descricao |
+| Campo | Descrição |
 | --- | --- |
-| `id_cenario` | Identificador do cenario. |
-| `nome` | Nome do cenario. |
-| `tipo` | Tipo do cenario. |
-| `descricao` | Descricao resumida do cenario. |
+| `id_cenario` | Identificador do cenário. |
+| `nome` | Nome do cenário. |
+| `tipo` | Tipo do cenário. |
+| `descricao` | Descrição resumida do cenário. |
 
 ### Diario
 
-Representa o diario associado ao progresso salvo.
+Representa o diário associado ao progresso salvo.
 
-| Campo | Descricao |
+| Campo | Descrição |
 | --- | --- |
-| `id_diario` | Identificador do diario. |
-| `titulo` | Titulo do diario. |
-| `descricao` | Descricao do diario. |
+| `id_diario` | Identificador do diário. |
+| `titulo` | Título do diário. |
+| `descricao` | Descrição do diário. |
 
 ### EntradaDiario
 
-Representa cada entrada consultavel no diario.
+Representa cada entrada consultável no diário.
 
-| Campo | Descricao |
+| Campo | Descrição |
 | --- | --- |
 | `id_entrada` | Identificador da entrada. |
-| `titulo` | Titulo exibido no diario. |
-| `texto` | Conteudo textual da entrada. |
-| `ordem` | Ordem de apresentacao da entrada. |
+| `titulo` | Título exibido no diário. |
+| `texto` | Conteúdo textual da entrada. |
+| `ordem` | Ordem de apresentação da entrada. |
 
 ### Memoria
 
-Representa os fragmentos narrativos relacionados ao diario e aos objetos do mundo.
+Representa os fragmentos narrativos relacionados ao diário e aos objetos do mundo.
 
-| Campo | Descricao |
+| Campo | Descrição |
 | --- | --- |
-| `id_memoria` | Identificador da memoria. |
-| `titulo` | Titulo da memoria. |
-| `conteudo` | Conteudo da memoria. |
-| `tipo` | Tipo da memoria. |
+| `id_memoria` | Identificador da memória. |
+| `titulo` | Título da memória. |
+| `conteudo` | Conteúdo da memória. |
+| `tipo` | Tipo da memória. |
 
 ### ObjetoInterativo
 
 Representa a superentidade dos objetos interativos do jogo.
 
-| Campo | Descricao |
+| Campo | Descrição |
 | --- | --- |
 | `id_objeto` | Identificador do objeto. |
 | `nome` | Nome do objeto. |
-| `descricao` | Descricao do objeto. |
+| `descricao` | Descrição do objeto. |
 
-## Especializacoes
+## Especializações
 
-O diagrama mostra uma especializacao de `ObjetoInterativo` em tres subtipos:
+O diagrama mostra uma especialização de `ObjetoInterativo` em três subtipos:
 
-| Subtipo | Atributo proprio | Finalidade |
+| Subtipo | Atributo próprio | Finalidade |
 | --- | --- | --- |
-| `ObjetoMemoria` | `gatilhoNarrativo` | Dispara a revelacao de memorias. |
-| `ObjetoRestauravel` | `estado` | Guarda o estado de objetos restauraveis. |
-| `ObjetoContemplativo` | `tempoMinimoObservacao` | Controla interacoes contemplativas por tempo de observacao. |
+| `ObjetoMemoria` | `gatilhoNarrativo` | Dispara a revelação de memórias. |
+| `ObjetoRestauravel` | `estado` | Guarda o estado de objetos restauráveis. |
+| `ObjetoContemplativo` | `tempoMinimoObservacao` | Controla interações contemplativas por tempo de observação. |
 
 ## Relacionamentos
 
-| Relacionamento | Descricao |
+| Relacionamento | Descrição |
 | --- | --- |
 | `Save` `estaEm` `Ato` | Define em qual ato o save se encontra. |
-| `Ato` `Contem` `Cenario` | Liga cada ato aos cenarios que o compoem. |
-| `ObjetoInterativo` `Pertence` `Cenario` | Define que cada objeto interativo pertence a um cenario. |
-| `Save` `Possui` `Diario` | Associa o save ao diario do jogador. |
-| `Diario` `Contem` `EntradaDiario` | Estrutura as entradas internas do diario. |
-| `EntradaDiario` `Referencia` `Memoria` | Liga as entradas do diario aos fragmentos narrativos. |
-| `ObjetoMemoria` `Revela` `Memoria` | Mostra que determinados objetos sao gatilhos para memorias. |
+| `Ato` `Contem` `Cenario` | Liga cada ato aos cenários que o compõem. |
+| `ObjetoInterativo` `Pertence` `Cenario` | Define que cada objeto interativo pertence a um cenário. |
+| `Save` `Possui` `Diario` | Associa o save ao diário do jogador. |
+| `Diario` `Contem` `EntradaDiario` | Estrutura as entradas internas do diário. |
+| `EntradaDiario` `Referencia` `Memoria` | Liga as entradas do diário aos fragmentos narrativos. |
+| `ObjetoMemoria` `Revela` `Memoria` | Mostra que determinados objetos são gatilhos para memórias. |
 
 ## Justificativa da modelagem
 
 Esse DER ficou coerente com o projeto porque:
 
 - representa o progresso salvo do jogador por meio de `Save`;
-- organiza a progressao narrativa com `Ato` e `Cenario`;
+- organiza a progressão narrativa com `Ato` e `Cenario`;
 - preserva o papel central do `Diario` e das `Memoria`;
-- modela objetos interativos com heranca, sem perder as diferencas entre tipos de objeto;
+- modela objetos interativos com herança, sem perder as diferenças entre tipos de objeto;
 - evita trazer para o DER elementos mais comportamentais, que fazem mais sentido no diagrama de classes do que no modelo de dados.
 
-Mesmo em um jogo que use JSON para save, essa estrutura continua valida como modelo conceitual de persistencia.
+Mesmo em um jogo que use JSON para save, essa estrutura continua válida como modelo conceitual de persistência.

@@ -1,75 +1,75 @@
-# Apendice A - Perguntas e respostas selecionadas do questionario
+# Apêndice A - Perguntas e respostas selecionadas do questionário
 
-Este apendice apresenta as perguntas do formulario aplicado ao publico-alvo e uma selecao anonima de respostas consideradas mais uteis para a elicitacao de requisitos do projeto **Ani**.
+Este apêndice apresenta as perguntas do formulário aplicado ao público-alvo e uma seleção anônima de respostas consideradas mais úteis para a elicitação de requisitos do projeto **Ani**.
 
-Os nomes dos participantes foram removidos. Em alguns casos, respostas com conteudo aproveitavel foram reescritas de forma sintetica, preservando seu sentido principal. Respostas muito vagas, ofensivas, sem relacao com o projeto ou pouco aproveitaveis do ponto de vista analitico nao foram reproduzidas.
+Os nomes dos participantes foram removidos. Em alguns casos, respostas com conteúdo aproveitável foram reescritas de forma sintética, preservando seu sentido principal. Respostas muito vagas, ofensivas, sem relação com o projeto ou pouco aproveitáveis do ponto de vista analítico não foram reproduzidas.
 
 ## 1. O que mais te atrai em um jogo narrativo?
 
 ### Respostas selecionadas
 
-- Participante A: reflexoes filosoficas e profundas.
-- Participante B: estilo de arte e trilha sonora unicos.
-- Participante C: enredo complexo e com possibilidade de interpretacao.
+- Participante A: reflexões filosóficas e profundas.
+- Participante B: estilo de arte e trilha sonora únicos.
+- Participante C: enredo complexo e com possibilidade de interpretação.
 
-### Sintese
+### Síntese
 
-As respostas indicam interesse por jogos que combinam impacto estetico, profundidade tematica e narrativa com valor reflexivo.
+As respostas indicam interesse por jogos que combinam impacto estético, profundidade temática e narrativa com valor reflexivo.
 
-## 2. Sobre a fluidez e a programacao
-
-### Respostas selecionadas
-
-- Participante A: espera controles responsivos, interacoes fluidas e transicoes visuais e sonoras sem quebras de imersao.
-- Participante B: espera uma experiencia intuitiva, sem atrasos, travamentos ou elementos tecnicos que prejudiquem a atmosfera.
-- Participante C: espera gameplay fluida, carregamento rapido e boa precisao nos controles.
-
-### Sintese
-
-As respostas reforcam requisitos ligados a responsividade, estabilidade, fluidez e preservacao da imersao.
-
-## 3. Sobre as mecanicas de jogo
+## 2. Sobre a fluidez e a programação
 
 ### Respostas selecionadas
 
-- Participante A: espera exploracao significativa, com cenarios que tenham algo a contar e impacto emocional perceptivel.
-- Participante B: valoriza descoberta de memorias, caminhos de exploracao e interacao com elementos narrativos do cenario.
-- Participante C: deseja que a exploracao produza consequencias perceptiveis no mundo e na experiencia do personagem.
+- Participante A: espera controles responsivos, interações fluidas e transições visuais e sonoras sem quebras de imersão.
+- Participante B: espera uma experiência intuitiva, sem atrasos, travamentos ou elementos técnicos que prejudiquem a atmosfera.
+- Participante C: espera gameplay fluida, carregamento rápido e boa precisão nos controles.
 
-### Sintese
+### Síntese
 
-As respostas mostram preferencia por mecanicas de exploracao com funcao narrativa, em vez de interacoes puramente instrumentais. Sugestoes muito distantes da proposta consolidada do projeto, como combate central ou estrutura fortemente ramificada, nao foram adotadas como base principal.
+As respostas reforçam requisitos ligados à responsividade, estabilidade, fluidez e preservação da imersão.
+
+## 3. Sobre as mecânicas de jogo
+
+### Respostas selecionadas
+
+- Participante A: espera exploração significativa, com cenários que tenham algo a contar e impacto emocional perceptível.
+- Participante B: valoriza descoberta de memórias, caminhos de exploração e interação com elementos narrativos do cenário.
+- Participante C: deseja que a exploração produza consequências perceptíveis no mundo e na experiência do personagem.
+
+### Síntese
+
+As respostas mostram preferência por mecânicas de exploração com função narrativa, em vez de interações puramente instrumentais. Sugestões muito distantes da proposta consolidada do projeto, como combate central ou estrutura fortemente ramificada, não foram adotadas como base principal.
 
 ## 4. Sobre a arte e o design
 
 ### Respostas selecionadas
 
-- Participante A: espera uma estetica que comunique emocao de forma sutil e acompanhe a jornada do personagem.
-- Participante B: deseja um estilo visual poetico, com trilha delicada e introspectiva.
-- Participante C: espera coerencia entre arte, musica e narrativa ao longo da progressao.
+- Participante A: espera uma estética que comunique emoção de forma sutil e acompanhe a jornada do personagem.
+- Participante B: deseja um estilo visual poético, com trilha delicada e introspectiva.
+- Participante C: espera coerência entre arte, música e narrativa ao longo da progressão.
 
-### Sintese
+### Síntese
 
-As respostas apontam para a importancia de uma direcao artistica sensivel, coerente e articulada com o estado emocional do jogo.
+As respostas apontam para a importância de uma direção artística sensível, coerente e articulada com o estado emocional do jogo.
 
-## 5. Sobre a historia e o significado
+## 5. Sobre a história e o significado
 
 ### Respostas selecionadas
 
-- Participante A: espera uma experiencia que deixe algo significativo e confie na interpretacao do jogador.
-- Participante B: espera reflexao sobre a propria vida e impacto emocional duradouro.
-- Participante C: espera uma historia ligada a filosofia, relacoes humanas e leitura sensivel do mundo.
+- Participante A: espera uma experiência que deixe algo significativo e confie na interpretação do jogador.
+- Participante B: espera reflexão sobre a própria vida e impacto emocional duradouro.
+- Participante C: espera uma história ligada à filosofia, relações humanas e leitura sensível do mundo.
 
-### Sintese
+### Síntese
 
-As respostas reforcam que o jogo deve buscar significado, densidade interpretativa e reflexao, sem depender apenas de explicacoes diretas.
+As respostas reforçam que o jogo deve buscar significado, densidade interpretativa e reflexão, sem depender apenas de explicações diretas.
 
-## 6. Principais contribuicoes do questionario
+## 6. Principais contribuições do questionário
 
-A partir da analise das respostas selecionadas, foi possivel consolidar percepcoes importantes para a elicitacao:
+A partir da análise das respostas selecionadas, foi possível consolidar percepções importantes para a elicitação:
 
-- necessidade de movimentacao e interacao fluidas;
-- valorizacao da atmosfera visual e sonora;
-- importancia da exploracao com funcao narrativa;
-- centralidade de memorias, diario e simbolismo;
-- preferencia por uma experiencia reflexiva, interpretativa e emocionalmente significativa.
+- necessidade de movimentação e interação fluidas;
+- valorização da atmosfera visual e sonora;
+- importância da exploração com função narrativa;
+- centralidade de memórias, diário e simbolismo;
+- preferência por uma experiência reflexiva, interpretativa e emocionalmente significativa.
