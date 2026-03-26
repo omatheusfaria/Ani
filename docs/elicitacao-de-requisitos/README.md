@@ -4,7 +4,7 @@ A elicitacao de requisitos e uma atividade central da Engenharia de Requisitos, 
 
 A importancia da elicitacao de requisitos esta em reduzir ambiguidades, alinhar expectativas e orientar a definicao correta do problema que o software precisa resolver. Quando bem conduzida, ela contribui para a comunicacao entre envolvidos, para a priorizacao de necessidades e para a construcao de um produto mais coerente com o objetivo do projeto [1][2].
 
-No projeto **Ani**, a elicitacao de requisitos foi conduzida a partir de duas tecnicas centrais: um questionario exploratorio aplicado de forma remota e a introspeccao estruturada do designer como stakeholder primario. Como apoio a esse processo, o GDD foi utilizado como base conceitual para consolidar os requisitos levantados.
+No projeto **Ani**, a elicitacao de requisitos foi conduzida a partir de duas tecnicas centrais: um questionario exploratorio aplicado de forma remota e a introspeccao estruturada do designer como stakeholder primario. Como etapa complementar de organizacao, a modelagem incremental foi utilizada para refinar e consolidar os requisitos levantados a partir do GDD e das demais evidencias produzidas.
 
 O Quadro 1 apresenta as tecnicas de elicitacao adotadas no projeto.
 
