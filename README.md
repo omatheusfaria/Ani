@@ -1,46 +1,48 @@
 # Ani
 
-**Ani** é um side-scroller narrativo contemplativo sobre consciência, sofrimento e a descoberta lenta do sentido.
+**Ani** e um jogo narrativo contemplativo em desenvolvimento, estruturado como uma experiencia de exploracao, memoria e transformacao interior.
 
-O jogo acompanha Ani, um homem comum em colapso existencial, atravessando espaços mentais distorcidos, memórias fragmentadas e manifestações simbólicas da própria consciência. A experiência abandona sistemas tradicionais de combate e moralidade para focar em atmosfera, percepção, silêncio e transformação interior.
+O projeto acompanha a jornada de um protagonista em colapso existencial que atravessa espacos mentais distorcidos, memorias fragmentadas e manifestacoes simbolicas da propria consciencia. Em vez de combate ou moralidade binaria, a proposta se concentra em atmosfera, percepcao, silencio, introspeccao e ressignificacao.
 
-## Visão do Projeto
+## Visao Atual
 
-- jornada filosófica estruturada em cinco atos;
-- progressão baseada em percepção e contemplação, não em moralidade binária;
-- mundo mental simbólico que se transforma junto com o protagonista;
-- foco em exploração, memória, ansiedade, observação e ressignificação;
-- direção estética sombria com abertura gradual para impermanência, beleza e mistério.
+- jornada filosofica organizada em cinco atos;
+- progressao baseada em exploracao, observacao e memoria;
+- diario como elemento central de registro narrativo;
+- foco em experiencia sensorial e contemplativa;
+- direcao conceitual orientada por pessimismo existencial e filosofias contemplativas.
 
-## Direção Atual
+## O Que Este Repositorio Reune
 
-Na reformulação atual, o projeto deixou para trás o eixo anterior de virtude e vício e passou a adotar uma abordagem mais filosófica, centrada em:
+Este repositorio concentra principalmente os artefatos de planejamento, levantamento de requisitos e modelagem produzidos para o projeto. Ele funciona como base academica e tecnica para a evolucao do prototipo.
 
-- pessimismo existencial como ponto de partida;
-- transição gradual para filosofias contemplativas orientais;
-- mecânicas que existem para comunicar sensação e significado;
-- narrativa íntima, simbólica e aberta à interpretação.
+Os principais materiais estao em [docs/README.md](./docs/README.md), com destaque para:
 
-## Documentação Principal
+- [GDD](./docs/gdd.md)
+- [TAP](./docs/tap/README.md)
+- [Elicitacao de Requisitos](./docs/elicitacao-de-requisitos/README.md)
+- [BPMN](./docs/bpmn/README.md)
+- [Requisitos](./docs/requisitos/README.md)
+- [Caso de Uso](./docs/caso-de-uso/README.md)
+- [Diagrama de Classes](./docs/diagrama-de-classe/README.md)
+- [DER](./docs/diagrama-entidade-relacionamento/README.md)
 
-- [GDD reformulado](./docs/gdd.md)
-- [Índice da documentação](./docs/README.md)
-
-## Estrutura de Documentação
+## Estrutura Atual
 
 ```text
 docs/
-├── tap/
-├── elicitacao-de-requisitos/
-├── bpmn/
-├── requisitos/
-├── caso-de-uso/
-├── diagrama-de-classe/
-├── diagrama-entidade-relacionamento/
-├── recursos-utilizados/
-└── gdd.md
+|-- tap/
+|-- elicitacao-de-requisitos/
+|-- bpmn/
+|-- requisitos/
+|-- caso-de-uso/
+|-- diagrama-de-classe/
+|-- diagrama-entidade-relacionamento/
+|-- recursos-utilizados/
+|-- gdd.md
+`-- README.md
 ```
 
-## Objetivo do Repositório
+## Objetivo
 
-Este repositório concentra a documentação de planejamento e modelagem do projeto, servindo como base para refinamento narrativo, técnico e estrutural ao longo do desenvolvimento.
+O objetivo atual do repositorio e manter coerencia entre a documentacao academica do TG e a base conceitual do jogo, permitindo que requisitos, diagramas e demais artefatos acompanhem a versao mais recente do projeto.
