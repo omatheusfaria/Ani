@@ -26,7 +26,7 @@ O Quadro 2 apresenta os principais stakeholders considerados durante a elicitaca
 | Orientador academico | Responsavel pelo acompanhamento metodologico da documentacao. | Apoio na validacao da estrutura dos artefatos e no direcionamento academico do trabalho. |
 | Publico-alvo / participantes do questionario | Fonte exploratoria de percepcao e referencia de experiencia de uso. | Indicacoes sobre atmosfera, ritmo, interacao, acessibilidade e expectativa de experiencia contemplativa. |
 
-No caso de **Ani**, o questionario teve alcance menor do que o inicialmente planejado e nem todas as respostas apresentaram detalhamento suficiente para aproveitamento analitico. Ainda assim, as respostas uteis forneceram insumos iniciais relevantes, especialmente sobre ritmo de progressao, valorizacao da atmosfera e rejeicao a punicoes sistemicas em uma experiencia contemplativa.
+No caso de **Ani**, o questionario teve alcance menor do que o inicialmente planejado e nem todas as respostas apresentaram detalhamento suficiente para aproveitamento analitico. Por isso, foi realizada uma selecao das contribuicoes mais relevantes, com sintese textual apenas das respostas que continham elementos efetivamente aproveitaveis. Ainda assim, esse material forneceu insumos iniciais importantes, especialmente sobre ritmo de progressao, valorizacao da atmosfera e rejeicao a punicoes sistemicas em uma experiencia contemplativa.
 
 O Quadro 3 apresenta alguns dos principais resultados obtidos a partir da elicitacao de requisitos.
 
@@ -41,7 +41,18 @@ O Quadro 3 apresenta alguns dos principais resultados obtidos a partir da elicit
 | Direcao contemplativa | Exclusao de combate e de moralidade binaria como eixo do sistema. |
 | Ritmo e experiencia de uso | Reforco de uma progressao mais atmosferica, introspectiva e sem punicao excessiva. |
 
-A documentacao complementar da elicitacao pode ser consultada em [elicitacao-de-requisitos.md](./elicitacao-de-requisitos.md).
+O Quadro 4 apresenta algumas historias de usuario derivadas do levantamento realizado.
+
+## Quadro 4 - Historias de usuario derivadas da elicitacao
+
+| Codigo | Historia de usuario |
+| --- | --- |
+| US01 | Como jogador, quero explorar cenarios com fluidez e responsividade para que a imersao nao seja quebrada por problemas tecnicos. |
+| US02 | Como jogador, quero que a atmosfera visual e sonora acompanhe o estado emocional da jornada para que a experiencia tenha impacto sensorial e narrativo. |
+| US03 | Como jogador, quero uma experiencia contemplativa e interpretativa para que o jogo provoque reflexao sem depender de combate ou punicao excessiva. |
+| US04 | Como jogador, quero perceber transformacoes no mundo e na narrativa conforme avanco para que a progressao pareca significativa. |
+
+As perguntas do formulario e as respostas selecionadas e anonimizadas encontram-se no Apendice A, disponivel em [apendice-questionario.md](./apendice-questionario.md). A documentacao complementar da elicitacao pode ser consultada em [elicitacao-de-requisitos.md](./elicitacao-de-requisitos.md).
 
 ## Referencias
 
