@@ -149,11 +149,15 @@ O projeto será considerado bem-sucedido se conseguir entregar um protótipo fun
 
 A elicitação de requisitos corresponde ao processo de descoberta, compreensão, registro e refinamento das necessidades que um sistema deve atender. Em Engenharia de Software, essa atividade é fundamental porque os requisitos representam a base sobre a qual serão estruturados o projeto, a modelagem, a implementação e a validação do sistema. Sommerville (2019) destaca que requisitos expressam serviços, restrições e propriedades esperadas do software, enquanto Pressman e Maxim (2016) reforçam que a qualidade do produto final depende, em grande medida, da qualidade com que esses requisitos são levantados e especificados.
 
-No projeto **Ani אֲנִי**, a elicitação foi conduzida com forte apoio da análise documental e da introspecção estruturada do designer, tendo o Game Design Document (GDD) como fonte primária de derivação dos elementos funcionais, narrativos e experienciais do jogo. Além do GDD, o repositório registra uma documentação específica de elicitação, na qual são mencionados questionário exploratório, consulta ao público-alvo, consolidação documental e posterior refinamento por meio da modelagem. Esse processo foi especialmente adequado ao caráter autoral do projeto, em que a coerência entre filosofia, atmosfera, mecânicas e narrativa constitui requisito central.
+No projeto **Ani אֲנִי**, a elicitação foi conduzida por meio da análise documental, da introspecção estruturada do designer e da consulta exploratória ao público-alvo. O Game Design Document (GDD) foi utilizado como principal fonte documental para derivar requisitos relacionados às mecânicas, à narrativa, à atmosfera, à progressão por atos, à interface e à experiência pretendida pelo jogador. Além dele, foram produzidos artefatos específicos de elicitação, incluindo questionário exploratório, apêndice com respostas anonimizadas, consolidação das informações levantadas e refinamento posterior por meio da modelagem do sistema.
 
-Os requisitos identificados foram classificados em requisitos funcionais e requisitos não funcionais. Também se observa, no artefato de requisitos funcionais, a distinção entre requisitos **evidentes** e **ocultos**, o que permite separar funcionalidades diretamente percebidas pelo jogador de comportamentos estruturais que organizam a progressão e a experiência do sistema. Além disso, os requisitos foram priorizados em níveis como **altíssima**, **alta** e **média**, oferecendo suporte à organização incremental do desenvolvimento e à definição do núcleo mínimo do protótipo.
+A introspecção estruturada do designer foi empregada como técnica adequada ao caráter autoral do projeto, pois o próprio autor atua como stakeholder primário e detém conhecimento direto sobre a proposta conceitual, estética e filosófica do jogo. Para reduzir o risco de subjetividade excessiva, essa introspecção foi apoiada por registros documentais, especialmente o GDD, e confrontada com os demais artefatos produzidos ao longo do levantamento, como requisitos, regras de negócio, casos de uso, BPMN, diagrama de classes e diagrama entidade-relacionamento.
 
-Assim, a especificação de requisitos de **Ani** não se limita a uma simples listagem de funcionalidades, mas constitui uma tradução formal da proposta conceitual do jogo em necessidades de software observáveis, restrições de qualidade e regras de comportamento. Os requisitos completos, devidamente organizados, são apresentados nas seções seguintes.
+O questionário exploratório teve função complementar, sendo aplicado a um grupo reduzido de 8 participantes com perfil próximo ao público-alvo, especialmente pessoas interessadas em jogos narrativos, experiências artísticas interativas e temas introspectivos. Esse número limita a representatividade estatística da coleta, mas é coerente com a função qualitativa e exploratória que o instrumento cumpriu no processo. As respostas coletadas foram anonimizadas e, no apêndice, foram sintetizadas apenas as contribuições com conteúdo diretamente aproveitável para a elicitação, excluindo respostas vagas ou sem relação clara com o escopo do projeto.
+
+As contribuições do questionário reforçaram necessidades ligadas à fluidez da movimentação, preservação da imersão, coerência entre arte, música e narrativa, exploração simbólica, diário de memórias e experiência reflexiva. Dessa forma, a consulta ao público-alvo não substituiu a derivação principal feita a partir do GDD, mas funcionou como evidência de apoio para validar e ajustar decisões de requisitos. Como exemplo de rastreabilidade, a necessidade de coerência entre arte, música e narrativa, presente tanto no questionário quanto no GDD, contribuiu para a definição do **RF010**, relacionado ao feedback sonoro e musical por ato, e do **RNF007**, relacionado à preservação da direção visual definida para o jogo.
+
+Assim, a especificação de requisitos de **Ani** funciona como uma formalização da proposta conceitual do jogo em termos de software, reunindo as necessidades identificadas a partir do GDD, do questionário exploratório, da introspecção estruturada e dos demais artefatos de modelagem. Com isso, os requisitos servem de base para a continuidade do projeto, orientando a modelagem, a implementação e a validação do protótipo. Os requisitos completos são apresentados nas seções seguintes.
 
 ### Referências Bibliográficas
 
@@ -167,7 +171,7 @@ A BPMN (*Business Process Model and Notation*) é uma notação gráfica padroni
 
 No contexto de projetos de software, a BPMN é útil para explicitar fluxos de interação entre usuário, aplicação e sistema, permitindo identificar pontos de decisão, laços de repetição e critérios de encerramento. Em **Ani**, o uso da BPMN é relevante porque o jogo depende de um ciclo estruturado de exploração, interação com objetos, processamento de memórias e verificação de progresso. Modelar esse fluxo ajuda a transformar a proposta conceitual do GDD em uma sequência operacional mais clara, servindo de ponte entre requisitos, casos de uso e implementação.
 
-A descrição textual a seguir corresponde ao fluxo BPMN documentado no repositório do projeto. O diagrama visual encontra-se disponível em `docs/bpmn/`, e [Figura X – fluxo BPMN do ciclo principal de exploração de Ani] apresenta a modelagem gráfica correspondente.
+A descrição textual a seguir apresenta o fluxo representado no diagrama BPMN do ciclo principal de exploração de **Ani**, contemplando as interações entre jogador, aplicação e sistema ao longo da progressão no jogo. A modelagem gráfica correspondente é apresentada na Figura X.
 
 ### Objetivo do Processo
 
@@ -230,10 +234,6 @@ O diagrama representa um loop central de gameplay:
 Esse fluxo ajuda a visualizar a lógica macro da progressão do jogo e reforça a relação entre exploração, memórias e avanço estrutural da experiência.
 
 ### Observações do Processo
-
-- O BPMN atual representa bem a estrutura geral do ciclo de exploração.
-- Como o projeto passou por reformulação conceitual, este processo pode precisar de revisão futura para refletir com mais precisão a nova direção filosófica do GDD.
-- A remoção da etapa de escolha explícita dentro da memória deixa o BPMN mais alinhado com a direção atual do projeto, que prioriza exploração, contemplação e progressão narrativa.
 
 O uso da BPMN neste projeto é particularmente importante porque organiza a experiência jogável em termos de processo, tornando explícito como memórias, objetos e progressão por exploração se articulam. Isso fortalece a consistência entre a visão artística do jogo e sua modelagem funcional, além de facilitar a compreensão da lógica de navegação do protótipo.
 
