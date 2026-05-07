@@ -4,7 +4,7 @@ O Termo de Abertura do Projeto (TAP) é o documento que formaliza o início de u
 
 Em projetos acadêmicos de desenvolvimento de software, o TAP também contribui para a rastreabilidade entre a proposta conceitual e os artefatos produzidos ao longo do ciclo de vida do sistema. Ao delimitar o problema de pesquisa, o objetivo geral, os objetivos específicos e as entregas esperadas, o documento favorece a organização metodológica do trabalho e reduz ambiguidades quanto ao que se pretende construir e avaliar. De acordo com o Project Management Institute, a formalização da abertura do projeto é parte importante da governança do trabalho, pois autoriza sua existência e estabelece seus direcionadores iniciais (PROJECT MANAGEMENT INSTITUTE, 2017).
 
-No projeto **Ani אֲנִי**, o TAP cumpre justamente essa função de consolidar, em linguagem objetiva, a proposta de um jogo narrativo contemplativo orientado por uma jornada filosófica de transformação interior. A seguir, apresenta-se o conteúdo do TAP do projeto, estruturado a partir do arquivo-fonte do repositório e reorganizado em formato acadêmico.
+No projeto **Ani אֲנִי**, o TAP cumpre justamente essa função de consolidar, em linguagem objetiva, a proposta de um jogo narrativo contemplativo orientado por uma jornada filosófica de transformação interior. A seguir, apresenta-se o conteúdo do TAP do projeto, reorganizado em formato acadêmico.
 
 ## Referência Bibliográfica
 
@@ -155,7 +155,7 @@ A introspecção estruturada do designer foi empregada como técnica adequada ao
 
 O questionário exploratório teve função complementar, sendo aplicado a um grupo reduzido de 8 participantes com perfil próximo ao público-alvo, especialmente pessoas interessadas em jogos narrativos, experiências artísticas interativas e temas introspectivos. Esse número limita a representatividade estatística da coleta, mas é coerente com a função qualitativa e exploratória que o instrumento cumpriu no processo. As respostas coletadas foram anonimizadas e, no apêndice, foram sintetizadas apenas as contribuições com conteúdo diretamente aproveitável para a elicitação, excluindo respostas vagas ou sem relação clara com o escopo do projeto.
 
-As contribuições do questionário reforçaram necessidades ligadas à fluidez da movimentação, preservação da imersão, coerência entre arte, música e narrativa, exploração simbólica, diário de memórias e experiência reflexiva. Dessa forma, a consulta ao público-alvo não substituiu a derivação principal feita a partir do GDD, mas funcionou como evidência de apoio para validar e ajustar decisões de requisitos. Como exemplo de rastreabilidade, a necessidade de coerência entre arte, música e narrativa, presente tanto no questionário quanto no GDD, contribuiu para a definição do **RF010**, relacionado ao feedback sonoro e musical por ato, e do **RNF007**, relacionado à preservação da direção visual definida para o jogo.
+As contribuições do questionário reforçaram necessidades ligadas à fluidez da movimentação, preservação da imersão, coerência entre arte, música e narrativa, exploração simbólica, diário de memórias e experiência reflexiva. Dessa forma, a consulta ao público-alvo não substituiu a derivação principal feita a partir do GDD, mas funcionou como evidência de apoio para validar e ajustar decisões de requisitos. Como exemplo de rastreabilidade, a necessidade de coerência entre arte, música e narrativa, presente tanto no questionário quanto no GDD, contribuiu para a definição do **RF010**, relacionado ao feedback sonoro e musical por ato, e do **RNF007**, relacionado aos recursos de acessibilidade sensorial e de áudio.
 
 Assim, a especificação de requisitos de **Ani** funciona como uma formalização da proposta conceitual do jogo em termos de software, reunindo as necessidades identificadas a partir do GDD, do questionário exploratório, da introspecção estruturada e dos demais artefatos de modelagem. Com isso, os requisitos servem de base para a continuidade do projeto, orientando a modelagem, a implementação e a validação do protótipo. Os requisitos completos são apresentados nas seções seguintes.
 
@@ -247,6 +247,8 @@ Requisitos funcionais descrevem os serviços, comportamentos e operações que o
 
 No caso de jogos digitais, os requisitos funcionais não se limitam a ações clássicas de interface, mas abrangem também sistemas de progressão, interação com o ambiente, gatilhos narrativos e comportamentos sensoriais que constituem a experiência proposta. Em **Ani**, eles articulam desde a movimentação básica da personagem até mecânicas específicas de cada ato filosófico, conectando a estrutura técnica do protótipo à sua intenção estética e narrativa.
 
+O Quadro X apresenta os requisitos funcionais do sistema, organizados por código, título, categoria, prioridade e descrição.
+
 | Código | Título | Categoria | Prioridade | Descrição |
 | --- | --- | --- | --- | --- |
 | RF001 | Movimentar personagem | Evidente | Altíssima | O sistema deve permitir que o jogador mova Ani lateralmente usando teclado. |
@@ -275,39 +277,38 @@ Observa-se que os requisitos funcionais distribuem-se em **8 requisitos de prior
 
 Os requisitos não funcionais definem restrições, critérios de qualidade e propriedades globais do sistema, em vez de serviços específicos. Eles tratam de aspectos como desempenho, usabilidade, acessibilidade, portabilidade, segurança e experiência de uso. Para Sommerville (2019), esses requisitos são decisivos porque frequentemente influenciam a arquitetura do software e condicionam a forma como as funcionalidades serão implementadas.
 
-Em jogos digitais, requisitos não funcionais têm impacto direto sobre a percepção da experiência, já que fluidez, clareza de interação, consistência visual e recursos de acessibilidade podem ser tão importantes quanto as mecânicas centrais. Em **Ani**, os requisitos não funcionais reforçam a proposta contemplativa do projeto ao estabelecer parâmetros para desempenho, carregamento, linguagem, direção estética, interface diegética e sensibilidade no tratamento de temas emocionais.
+Em jogos digitais, requisitos não funcionais têm impacto direto sobre a percepção da experiência, já que fluidez, clareza de interação, consistência visual e recursos de acessibilidade podem ser tão importantes quanto as mecânicas centrais. Em **Ani**, os requisitos não funcionais reforçam a proposta contemplativa do projeto ao estabelecer parâmetros para desempenho, carregamento, portabilidade, localização, jogabilidade autoexplicativa, acessibilidade e sensibilidade no tratamento de temas emocionais.
+
+O Quadro X apresenta os requisitos não funcionais do sistema, indicando os critérios de qualidade e suas respectivas classificações.
 
 | Código | Requisito | Classificação |
 | --- | --- | --- |
-| RNF001 | O jogo deve rodar a 60 FPS na configuração mínima estimada, com hardware equivalente a Intel HD e 4 GB de RAM. | Obrigatório, permanente |
-| RNF002 | Saves locais devem carregar em menos de 5 segundos e preservar a integridade dos dados de progresso por ato. | Obrigatório, permanente |
-| RNF003 | Código e assets devem favorecer futura portabilidade para outras plataformas. | Desejável, permanente |
-| RNF004 | A jogabilidade deve ser compreensível sem depender de tutorial extenso ou instruções explícitas constantes em tela. | Obrigatório, permanente |
-| RNF005 | O jogo deve exibir aviso de conteúdo sensível relacionado à saúde mental, sofrimento existencial e temas filosóficos densos, com opção de pular cenas de alta carga emocional sem quebrar a continuidade narrativa. | Obrigatório, permanente |
-| RNF006 | O texto base deve estar em PT-BR, com estrutura preparada para traduções futuras por meio de arquivos externos de string. | Obrigatório e desejável, transitório |
-| RNF007 | A direção visual deve preservar a proposta de desenho à mão, aquarela, grafite e estética de diário definida no GDD. | Desejável, permanente |
-| RNF008 | A interface não deve depender de HUD numérico permanente. O estado emocional de Ani deve ser comunicado principalmente por elementos do mundo, da trilha, da distorção visual e da respiração sensorial. | Obrigatório e desejável, permanente |
-| RNF009 | O jogo deve oferecer recursos de acessibilidade, como controle de intensidade de distorção visual, legendas para efeitos sonoros narrativos e controle independente de volume por camada de áudio. | Obrigatório e desejável, permanente |
+| RNF001 | O sistema deve manter taxa mínima de 60 FPS em hardware equivalente a Intel HD Graphics e 4 GB de RAM. | Obrigatório, permanente |
+| RNF002 | O sistema deve carregar saves locais em menos de 5 segundos e preservar a integridade dos dados de progresso por ato. | Obrigatório, permanente |
+| RNF003 | O sistema deve ser estruturado de forma a permitir adaptação para outras plataformas com alterações mínimas no código e nos assets. | Desejável, permanente |
+| RNF004 | O sistema deve permitir que novos jogadores compreendam as mecânicas básicas sem necessidade de tutorial extenso ou instruções constantes em tela. | Obrigatório, permanente |
+| RNF005 | O sistema deve exibir aviso de conteúdo sensível e permitir ao jogador pular cenas de alta carga emocional sem comprometer a continuidade narrativa. | Obrigatório, permanente |
+| RNF006 | O sistema deve suportar internacionalização por meio de arquivos externos de texto, permitindo tradução para outros idiomas. | Obrigatório, transitório |
+| RNF007 | O sistema deve oferecer recursos de acessibilidade, incluindo controle de intensidade visual, legendas para efeitos sonoros e controle independente de volume por camada de áudio. | Obrigatório, permanente |
 
-Os principais grupos de requisitos não funcionais identificados são: **desempenho** e persistência de dados (RNF001 e RNF002), **usabilidade** e legibilidade da interação (RNF004), **acessibilidade** e cuidado com sensibilidade emocional (RNF005 e RNF009), **internacionalização** (RNF006) e **identidade visual / direção artística** (RNF007 e RNF008). Esse conjunto mostra que o projeto não se preocupa apenas com o funcionamento do jogo, mas também com a forma como ele é percebido, sentido e acessado.
+Os principais grupos de requisitos não funcionais identificados são: **desempenho** e persistência de dados (RNF001 e RNF002), **portabilidade** (RNF003), **usabilidade** e legibilidade da interação (RNF004), **cuidado com conteúdo sensível** (RNF005), **internacionalização** (RNF006) e **acessibilidade sensorial e de áudio** (RNF007). Esse conjunto mostra que o projeto não se preocupa apenas com o funcionamento do jogo, mas também com a forma como ele é percebido, sentido e acessado.
 
 ## 2.5 Regras de Negócio
 
 Regras de negócio representam determinações, restrições e políticas que orientam o comportamento esperado de um sistema dentro de seu domínio. Diferentemente dos requisitos funcionais, que descrevem serviços e operações, as regras de negócio definem condições e limites que governam esses serviços, garantindo coerência interna e aderência à lógica conceitual do projeto. Pressman e Maxim (2016) observam que tais regras são essenciais para assegurar consistência entre o problema de domínio e a solução computacional desenvolvida.
 
-Em jogos digitais com forte componente narrativo, as regras de negócio ajudam a preservar a identidade da experiência, evitando que a implementação se desvie da proposta central. Em **Ani**, elas formalizam aspectos como ordem estrutural dos atos, registro único de memórias, convergência de determinadas interações e natureza textual dos diálogos, funcionando como salvaguardas para a integridade filosófica e narrativa do jogo.
+Em jogos digitais com forte componente narrativo, as regras de negócio ajudam a preservar a identidade da experiência, evitando que a implementação se desvie da proposta central. Em **Ani**, elas formalizam aspectos como progressão estrutural dos atos, registro único de memórias, avanço parcial no Ato I, ressignificação de fragmentos e convergência de determinadas interações, funcionando como salvaguardas para a integridade filosófica e narrativa do jogo.
+
+O Quadro X apresenta as regras de negócio do sistema, descrevendo as restrições conceituais que orientam a progressão e o comportamento narrativo de **Ani**.
 
 | Código | Nome | Descrição |
 | --- | --- | --- |
-| RN001 | Registro único de memória | Cada fragmento encontrado deve ser registrado apenas uma vez no diário. Revisitas podem alterar a leitura visual ou contextual do item, mas não criar um novo registro. |
-| RN002 | Ordem variável de descoberta das memórias | Como o jogador pode interagir com diferentes objetos de memória, a ordem de descoberta dos fragmentos pode variar sem alterar a sequência estrutural dos atos. |
-| RN003 | Progressão fixa entre atos | A sequência dos atos deve seguir a ordem definida no GDD, sem ramificação estrutural entre eles. |
-| RN004 | Critério de avanço por conclusão de ato | A passagem para o ato seguinte só pode ser liberada quando os critérios narrativos e de exploração do ato atual forem concluídos. |
-| RN005 | Avanço parcial no Ato I | No Ato I, o avanço para o ato seguinte não deve exigir a visualização de todas as memórias disponíveis, apenas o cumprimento de um limiar mínimo definido pelo projeto. |
-| RN006 | Ressignificação de objetos e memórias | Um mesmo objeto ou fragmento pode assumir nova interpretação conforme o avanço de Ani, sem alterar sua identidade base no diário. |
-| RN007 | Ansiedade sem punição sistêmica explícita | As crises de ansiedade devem impactar a atmosfera, a imagem e o som. |
-| RN008 | Convergência dos ecos de decisão | Nos ecos de decisão do Ato II, tentativas diferentes do jogador devem convergir para o mesmo impasse narrativo. |
-| RN009 | Presença textual dos personagens | NPCs e arquétipos devem se comunicar principalmente por texto, preservando o caráter fragmentado e contemplativo da narrativa. |
+| RN001 | Registro único de memória | Cada fragmento de memória pode ser registrado apenas uma vez no diário. |
+| RN002 | Progressão fixa entre atos | A progressão entre atos ocorre de forma sequencial, seguindo a ordem definida no GDD, sem possibilidade de retorno ou salto de ordem. |
+| RN003 | Critério de avanço por conclusão de ato | A progressão para o ato seguinte depende da conclusão dos critérios do ato atual. |
+| RN004 | Avanço parcial no Ato I | No Ato I, o avanço não exige a visualização de todas as memórias, apenas o cumprimento de um limiar mínimo definido. |
+| RN005 | Ressignificação de objetos e memórias | Um fragmento pode assumir diferentes interpretações ao longo da progressão do jogo, sem alteração de sua identidade original no diário. |
+| RN006 | Convergência dos ecos de decisão | Nos momentos de eco de decisão no Ato II, diferentes interações do jogador levam ao mesmo impasse narrativo. |
 
 As regras de negócio reforçam diretamente a proposta filosófica e contemplativa de **Ani** porque impedem que o jogo se transforme em uma experiência centrada em ramificações competitivas, recompensas excessivas ou redundância mecânica. Ao privilegiar registro único, progressão fixa entre atos, ressignificação contextual e convergência simbólica das decisões, essas regras sustentam uma experiência de introspecção, permanência e transformação subjetiva.
 
@@ -317,11 +318,11 @@ PRESSMAN, Roger S.; MAXIM, Bruce R. *Engenharia de Software: uma abordagem profi
 
 ## 2.6 Casos de Uso
 
-Casos de uso são descrições estruturadas das interações entre atores e sistema, com o objetivo de evidenciar como determinadas funcionalidades são acionadas e quais respostas são esperadas. Na perspectiva da UML, esse artefato contribui para a compreensão do comportamento externo do sistema, permitindo documentar cenários principais, pré-condições, pós-condições e caminhos alternativos. Jacobson, um dos principais difusores da técnica, destaca que casos de uso ajudam a capturar requisitos a partir do ponto de vista do usuário e do valor esperado em cada interação.
+Casos de uso são descrições estruturadas das interações entre atores e sistema, com o objetivo de evidenciar como determinadas funcionalidades são acionadas e quais respostas são esperadas. Na perspectiva da UML, esse artefato contribui para a compreensão do comportamento externo do sistema, permitindo documentar cenários principais, pré-condições, pós-condições e caminhos alternativos. A IBM destaca que diagramas e visões de caso de uso ajudam a representar as funcionalidades esperadas do sistema e a relação entre atores externos e serviços oferecidos pela aplicação (IBM, s.d.a, online; IBM, s.d.b, online).
 
-Em Engenharia de Software, os casos de uso cumprem papel intermediário entre requisitos textuais e modelagem mais detalhada, pois traduzem necessidades do domínio em fluxos de interação verificáveis. Para Sommerville (2019), eles também favorecem a comunicação entre stakeholders e equipe técnica, reduzindo ambiguidades sobre o comportamento esperado do sistema.
+Em Engenharia de Software, os casos de uso cumprem papel intermediário entre requisitos textuais e modelagem mais detalhada, pois traduzem necessidades do domínio em fluxos de interação verificáveis. Essa modelagem também favorece a comunicação entre os envolvidos no projeto, pois delimita o escopo funcional do sistema e torna mais clara a ligação entre atores, objetivos e funcionalidades (IBM, s.d.a, online; IBM, s.d.b, online).
 
-No projeto **Ani**, os casos de uso são particularmente importantes porque organizam a experiência jogável em operações concretas, como movimentar a personagem, interagir com objetos, abrir o diário, configurar o jogo, gerenciar diálogos e salvar o progresso. O diagrama de casos de uso está disponível em `docs/caso-de-uso/`, e [Figura X – diagrama de casos de uso de Ani] apresenta sua representação gráfica.
+No projeto **Ani**, os casos de uso são particularmente importantes porque organizam a experiência jogável em operações concretas, como movimentar a personagem, interagir com objetos, abrir o diário, configurar o jogo, gerenciar diálogos e salvar o progresso. O Quadro X apresenta o índice de casos de uso do sistema, enquanto a modelagem gráfica correspondente é apresentada na Figura X.
 
 ### Índice de Casos de Uso
 
@@ -525,15 +526,15 @@ No projeto **Ani**, os casos de uso são particularmente importantes porque orga
 
 ### Referências Bibliográficas
 
-JACOBSON, Ivar et al. *Object-Oriented Software Engineering: A Use Case Driven Approach*. Reading: Addison-Wesley, 1992.
+IBM. *Creating use-case diagrams*. Disponível em: <https://www.ibm.com/docs/en/dma?topic=diagrams-creating-use-case>. Acesso em: 22 mar. 2026.
 
-SOMMERVILLE, Ian. *Engenharia de Software*. 10. ed. São Paulo: Pearson, 2019.
+IBM. *Use case view*. Disponível em: <https://www.ibm.com/docs/en/systems-engineering/1.5.0?topic=views-use-case-view>. Acesso em: 22 mar. 2026.
 
 ## 2.7 Diagrama de Classes
 
-O diagrama de classes UML é um artefato estrutural que representa classes, atributos, operações e relacionamentos entre os elementos de um sistema orientado a objetos. Seu objetivo é oferecer uma visão estática da arquitetura lógica do software, evidenciando composição, associação, herança e responsabilidades das entidades modeladas. Segundo Booch, Rumbaugh e Jacobson (2005), esse tipo de diagrama é essencial para a comunicação do desenho do sistema e para a organização de sua implementação.
+O diagrama de classes UML é um artefato estrutural que representa classes, atributos, operações e relacionamentos entre os elementos de um sistema orientado a objetos. Seu objetivo é oferecer uma visão estática da arquitetura lógica do software, evidenciando composição, associação, herança e responsabilidades das entidades modeladas. Segundo a IBM, diagramas UML auxiliam a representar diferentes perspectivas de um sistema, enquanto a Visual Paradigm destaca que o diagrama de classes descreve a estrutura do sistema por meio de classes, atributos, métodos e relações (IBM, s.d., online; Visual Paradigm, s.d., online).
 
-Em projetos de software com múltiplos elementos de domínio, como jogos digitais, o diagrama de classes auxilia na decomposição da solução em componentes mais claros e reutilizáveis. Em **Ani**, ele é importante por traduzir o universo conceitual do jogo em elementos de software que suportam exploração, memórias, diário, personagens, cenários e progressão por atos. O diagrama completo está disponível em `docs/diagrama-de-classe/diagrama-de-classe.drawio`, e [Figura X – diagrama de classes do projeto Ani] apresenta sua visualização gráfica.
+Em projetos de software com múltiplos elementos de domínio, como jogos digitais, o diagrama de classes auxilia na decomposição da solução em componentes mais claros e reutilizáveis, facilitando o entendimento das responsabilidades e vínculos entre objetos (IBM, s.d., online; Visual Paradigm, s.d., online). Em **Ani**, ele é importante por traduzir o universo conceitual do jogo em elementos de software que suportam exploração, memórias, diário, personagens, cenários e progressão por atos. A modelagem gráfica correspondente é apresentada na Figura X, e a estrutura textual das classes é detalhada a seguir.
 
 ### Classe: Jogo
 
@@ -703,13 +704,15 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 
 ### Referência Bibliográfica
 
-BOOCH, Grady; RUMBAUGH, James; JACOBSON, Ivar. *The Unified Modeling Language User Guide*. 2. ed. Boston: Addison-Wesley, 2005.
+IBM. *UML diagrams*. Disponível em: <https://www.ibm.com/docs/en/radfws/9.6.1?topic=diagrams-uml>. Acesso em: 22 mar. 2026.
+
+VISUAL PARADIGM. *What is Class Diagram?* Disponível em: <https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-class-diagram/>. Acesso em: 22 mar. 2026.
 
 ## 2.8 Diagrama Entidade-Relacionamento (DER)
 
-O Diagrama Entidade-Relacionamento (DER) é um modelo conceitual de dados utilizado para representar entidades, atributos e relacionamentos relevantes em um domínio de aplicação. Sua importância reside em oferecer uma visão organizada das informações que o sistema precisa persistir ou manipular, servindo de base para a modelagem lógica e, posteriormente, para o desenho físico de banco de dados ou de estruturas persistentes equivalentes. Entre os autores clássicos da área, destaca-se Elmasri e Navathe, para quem a modelagem conceitual é etapa fundamental para garantir consistência semântica na organização dos dados.
+O Diagrama Entidade-Relacionamento (DER) é um modelo conceitual de dados utilizado para representar entidades, atributos e relacionamentos relevantes em um domínio de aplicação. Sua importância reside em oferecer uma visão organizada das informações que o sistema precisa persistir ou manipular, servindo de base para a modelagem lógica e, posteriormente, para o desenho físico de banco de dados ou de estruturas persistentes equivalentes. A IBM descreve o DER como uma forma de visualizar entidades e relações em um domínio de dados, enquanto a Lucidchart destaca seu papel na organização lógica das informações e na compreensão das cardinalidades entre entidades (IBM, s.d., online; Lucidchart, s.d., online).
 
-No projeto **Ani**, o DER é útil mesmo considerando a possibilidade de persistência por arquivos locais, pois o jogo possui elementos de estado que precisam ser organizados conceitualmente: progressão por atos, cenários desbloqueados, memórias registradas, entradas de diário, personagens e objetos interativos. Com base no diagrama de classes e nas regras de negócio documentadas, o modelo a seguir sintetiza as entidades conceituais centrais do projeto. O diagrama visual encontra-se no repositório, em `docs/der/` como referência acadêmica esperada; no repositório atual, o artefato equivalente está em `docs/diagrama-entidade-relacionamento/`, e [Figura X – diagrama entidade-relacionamento do projeto Ani] representa essa modelagem.
+No projeto **Ani**, o DER é útil mesmo considerando a possibilidade de persistência por arquivos locais, pois o jogo possui elementos de estado que precisam ser organizados conceitualmente: progressão por atos, cenários desbloqueados, memórias registradas, entradas de diário, personagens e objetos interativos. Com base no diagrama de classes e nas regras de negócio documentadas, o modelo a seguir sintetiza as entidades conceituais centrais do projeto. A modelagem gráfica correspondente é apresentada na Figura X, e a descrição textual das entidades é detalhada na sequência.
 
 ### Entidade: JOGO
 
@@ -818,11 +821,13 @@ O modelo conceitual evidencia que o núcleo persistente de **Ani** está menos l
 
 ### Referência Bibliográfica
 
-ELMASRI, Ramez; NAVATHE, Shamkant B. *Sistemas de Banco de Dados*. 7. ed. São Paulo: Pearson, 2018.
+IBM. *What is an entity relationship diagram?* Disponível em: <https://www.ibm.com/think/topics/entity-relationship-diagram>. Acesso em: 25 mar. 2026.
+
+LUCIDCHART. *What is an Entity Relationship Diagram (ERD)?* Disponível em: <https://www.lucidchart.com/pages/er-diagrams/>. Acesso em: 25 mar. 2026.
 
 # 3 Game Design Document (GDD)
 
-O *Game Design Document* (GDD) é um artefato que consolida a visão criativa, narrativa, mecânica, estética e técnica de um jogo digital, funcionando como referência central para orientar o desenvolvimento e manter coerência entre proposta e implementação. Autores como Schell (2011), Rogers (2014) e Fullerton (2019) destacam que esse tipo de documento é fundamental para registrar a experiência pretendida, reduzir ambiguidades e alinhar decisões de design ao longo do projeto. A seguir, apresenta-se o GDD do projeto **Ani**, preservando o conteúdo estrutural documentado no arquivo-fonte do repositório.
+O *Game Design Document* (GDD) é um artefato que consolida a visão criativa, narrativa, mecânica, estética e técnica de um jogo digital, funcionando como referência central para orientar o desenvolvimento e manter coerência entre proposta e implementação. Autores como Schell (2011), Rogers (2014) e Fullerton (2019) destacam que esse tipo de documento é fundamental para registrar a experiência pretendida, reduzir ambiguidades e alinhar decisões de design ao longo do projeto. A seguir, apresenta-se o GDD do projeto **Ani**, preservando sua estrutura conceitual.
 
 ## O que é o GDD
 
@@ -855,11 +860,11 @@ Um side-scroller narrativo contemplativo sobre consciência, sofrimento e a desc
 
 Ani acorda em um lugar que parece sua própria mente: familiar, mas deformado; íntimo, mas opressivo. Não há mapa, não há tutorial explícito e não há inimigos no sentido tradicional. O que existe são memórias, silêncio, ruínas emocionais e o peso de existir com consciência demais.
 
-*→ Formalizado em RNF004 — Jogabilidade sem tutorial extenso (docs/requisitos/requisitos-nao-funcionais.md).*
+*→ Formalizado em RNF004 — Jogabilidade autoexplicativa.*
 
 Ao longo de cinco atos, o mundo não muda porque o jogador escolheu entre certo e errado. Ele muda porque Ani muda. A cada etapa, o jogo abandona um pouco do pessimismo radical que marca o início da jornada e se aproxima de filosofias contemplativas orientais que acolhem imperfeição, impermanência e mistério.
 
-*→ Formalizado em RF012 — Progressão por atos filosóficos e RN003 — Progressão fixa entre atos (docs/requisitos/requisitos-funcionais.md; docs/requisitos/regras-de-negocio.md).*
+*→ Formalizado em RF012 — Progressão por atos filosóficos e RN002 — Progressão fixa entre atos.*
 
 ### Ficha Técnica
 
@@ -885,7 +890,7 @@ A espinha dorsal de **Ani** não é uma história de moralidade, mas uma histór
 
 O jogo começa imerso em correntes pessimistas da filosofia ocidental e, ao longo dos cinco atos, caminha em direção a filosofias contemplativas japonesas. Essa transição não é didática nem explicada em excesso. Ela se manifesta no ambiente, na música, na estrutura do espaço, nas mecânicas e no ritmo da experiência.
 
-*→ Formalizado em RF010 — Feedback sonoro e musical por ato e RF012 — Progressão por atos filosóficos (docs/requisitos/requisitos-funcionais.md).*
+*→ Formalizado em RF010 — Feedback sonoro e musical por ato e RF012 — Progressão por atos filosóficos.*
 
 ### Eixo Filosófico por Ato
 
@@ -899,7 +904,7 @@ A tabela a seguir apresenta o eixo filosófico que orienta cada ato da jornada d
 | IV | Mono no Aware e Ikigai | Sentir o que passa e encontrar um fio de sentido | Pétalas de cerejeira |
 | V | Yugen | O que não cabe em palavras | Estrela solitária |
 
-*→ Sequência formalizada em RF012 — Progressão por atos filosóficos e RN003 — Progressão fixa entre atos (docs/requisitos/requisitos-funcionais.md; docs/requisitos/regras-de-negocio.md).*
+*→ Sequência formalizada em RF012 — Progressão por atos filosóficos e RN002 — Progressão fixa entre atos.*
 
 ### Princípios de Direção
 
@@ -917,13 +922,13 @@ O jogo se passa inteiramente na mente de Ani, representada como um espaço arqui
 
 O núcleo central é a casa de Ani, inicialmente cinzenta, incompleta e sufocante. Conforme os atos avançam, ela ganha textura, luz e reorganização espacial. Novos cômodos, passagens, portas e escadas surgem à medida que a jornada se aprofunda.
 
-*→ Formalizado em RF006 — Desbloqueio progressivo do cenário (docs/requisitos/requisitos-funcionais.md).*
+*→ Formalizado em RF006 — Desbloqueio progressivo do cenário.*
 
 ### Cenários de Memória
 
 As memórias aparecem como extensões da casa e como portais para fragmentos do passado.
 
-*→ Formalizado em RF004 — Sistema de memórias e RN002 — Ordem variável de descoberta das memórias (docs/requisitos/requisitos-funcionais.md; docs/requisitos/regras-de-negocio.md).*
+*→ Formalizado em RF004 — Sistema de memórias.*
 
 - Casa de infância em épocas diferentes
 - Escola com corredores alongados e rostos indistintos
@@ -944,7 +949,7 @@ A tabela a seguir apresenta a progressão visual planejada para cada ato do jogo
 | IV | Azul-índigo, rosa-cerejeira e dourado | Abertura, respiro, contemplação |
 | V | Azul muito escuro, quase preto | Imensidão, vazio e coexistência simbólica |
 
-*→ Formalizado em RF012 — Progressão por atos filosóficos e RNF007 — Direção visual do GDD (docs/requisitos/requisitos-funcionais.md; docs/requisitos/requisitos-nao-funcionais.md).*
+*→ Relacionado a RF012 — Progressão por atos filosóficos; a direção visual permanece definida no GDD.*
 
 ## 4. Narrativa
 
@@ -952,7 +957,7 @@ A tabela a seguir apresenta a progressão visual planejada para cada ato do jogo
 
 A narrativa de **Ani** é organizada em cinco atos. Cada ato corresponde a uma transformação filosófica e emocional, com linguagem visual, sonora e mecânica próprias.
 
-*→ Formalizado em RF012 — Progressão por atos filosóficos e RN003 — Progressão fixa entre atos (docs/requisitos/requisitos-funcionais.md; docs/requisitos/regras-de-negocio.md).*
+*→ Formalizado em RF012 — Progressão por atos filosóficos e RN002 — Progressão fixa entre atos.*
 
 ### Ato I: O Peso
 
@@ -961,11 +966,11 @@ A narrativa de **Ani** é organizada em cinco atos. Cada ato corresponde a uma t
 
 Ani desperta em um apartamento escuro, apertado e opressivo. Tudo parece minimamente familiar, mas deslocado. O mundo pesa. Os objetos da memória aparecem espalhados, e lembrar exige esforço.
 
-*→ Formalizado em RF013 — Mecânica de peso literal no Ato I e RF019 — Desbloqueio mínimo de memórias no Ato I (docs/requisitos/requisitos-funcionais.md).*
+*→ Formalizado em RF013 — Mecânica de peso literal no Ato I e RF019 — Desbloqueio mínimo de memórias no Ato I.*
 
 O encerramento do ato acontece quando Ani encontra uma porta que não conduz à libertação, mas a uma descida ainda mais profunda.
 
-*→ Formalizado em RN004 — Critério de avanço por conclusão de ato (docs/requisitos/regras-de-negocio.md).*
+*→ Formalizado em RN003 — Critério de avanço por conclusão de ato.*
 
 ### Ato II: O Abismo
 
@@ -974,11 +979,11 @@ O encerramento do ato acontece quando Ani encontra uma porta que não conduz à 
 
 Ani atravessa ruínas subterrâneas e espaços em loop. Figuras sem rosto não atacam, apenas refletem e distorcem sua presença. O labirinto é propositalmente contraditório. O jogador se perde porque a própria estrutura do ato comunica irresolução.
 
-*→ Formalizado em RF014 — Mecânica de ecos de decisão no Ato II e RN008 — Convergência dos ecos de decisão (docs/requisitos/requisitos-funcionais.md; docs/requisitos/regras-de-negocio.md).*
+*→ Formalizado em RF014 — Mecânica de ecos de decisão no Ato II e RN006 — Convergência dos ecos de decisão.*
 
 O centro simbólico desse trecho é **O Arquiteto**, figura que constrói estruturas que desabam assim que terminam.
 
-*→ Formalizado em RF008 — Diálogos com personagens de memória e arquétipos (docs/requisitos/requisitos-funcionais.md).*
+*→ Formalizado em RF008 — Diálogos com personagens de memória e arquétipos.*
 
 ### Ato III: A Rachadura
 
@@ -987,7 +992,7 @@ O centro simbólico desse trecho é **O Arquiteto**, figura que constrói estrut
 
 O mundo não se torna subitamente belo, mas se torna honesto. As ruínas continuam presentes, porém agora possuem textura, musgo, luz e marcas assumidas. Objetos quebrados não são restaurados ao estado original; são ressignificados.
 
-*→ Formalizado em RF015 — Mecânica de restauração por aceitação no Ato III e RN006 — Ressignificação de objetos e memórias (docs/requisitos/requisitos-funcionais.md; docs/requisitos/regras-de-negocio.md).*
+*→ Formalizado em RF015 — Mecânica de restauração por aceitação no Ato III e RN005 — Ressignificação de objetos e memórias.*
 
 O principal símbolo do ato é o **Kintsugi**, a cerâmica remontada com ouro.
 
@@ -998,11 +1003,11 @@ O principal símbolo do ato é o **Kintsugi**, a cerâmica remontada com ouro.
 
 Pela primeira vez, Ani alcança um espaço aberto: um jardim noturno com cerejeiras e lanternas. As manifestações deixam de ser apenas ameaçadoras e passam a existir como presenças do passado. O jogo convida o jogador a parar, observar e aceitar o que não pode ser retido.
 
-*→ Formalizado em RF016 — Mecânica de contemplação ativa no Ato IV (docs/requisitos/requisitos-funcionais.md).*
+*→ Formalizado em RF016 — Mecânica de contemplação ativa no Ato IV.*
 
 Nesse ato surge **A Criança**, figura associada à atenção plena e ao gesto simples.
 
-*→ Formalizado em RF008 — Diálogos com personagens de memória e arquétipos (docs/requisitos/requisitos-funcionais.md).*
+*→ Formalizado em RF008 — Diálogos com personagens de memória e arquétipos.*
 
 ### Ato V: O Limiar
 
@@ -1011,7 +1016,7 @@ Nesse ato surge **A Criança**, figura associada à atenção plena e ao gesto s
 
 O ato final acontece em um espaço aberto e indefinido, onde fragmentos dos atos coexistem. As mecânicas são retiradas progressivamente até restar apenas caminhar, observar e ouvir.
 
-*→ Formalizado em RF017 — Dissolução de mecânicas no Ato V (docs/requisitos/requisitos-funcionais.md).*
+*→ Formalizado em RF017 — Dissolução de mecânicas no Ato V.*
 
 O encerramento é deliberadamente aberto. O jogo não explica tudo, não fecha todos os sentidos e não entrega resposta definitiva sobre o destino de Ani.
 
@@ -1028,7 +1033,7 @@ O encerramento é deliberadamente aberto. O jogo não explica tudo, não fecha t
 
 Esses personagens aparecem principalmente como ecos do passado e não como companheiros estáveis no presente narrativo.
 
-*→ Formalizado em RF008 — Diálogos com personagens de memória e arquétipos e RN009 — Presença textual dos personagens (docs/requisitos/requisitos-funcionais.md; docs/requisitos/regras-de-negocio.md).*
+*→ Formalizado em RF008 — Diálogos com personagens de memória e arquétipos.*
 
 | Personagem | Tipo | Papel Narrativo |
 | --- | --- | --- |
@@ -1047,13 +1052,13 @@ A tabela a seguir apresenta os arquétipos filosóficos que acompanham a jornada
 | A Ceramista | Manifestação do Wabi-Sabi e da aceitação das fendas |
 | A Criança | Manifestação do Ikigai, da atenção e da presença |
 
-*→ Formalizado em RF008 — Diálogos com personagens de memória e arquétipos (docs/requisitos/requisitos-funcionais.md).*
+*→ Formalizado em RF008 — Diálogos com personagens de memória e arquétipos.*
 
 ### Manifestações
 
 As manifestações são figuras sem rosto que refletem Ani. Elas não funcionam como inimigos tradicionais. Em alguns momentos, espelham, observam, sussurram ou intensificam crises emocionais.
 
-*→ Formalizado em RF018 — Crises de ansiedade como elemento sensorial (docs/requisitos/requisitos-funcionais.md).*
+*→ Formalizado em RF018 — Crises de ansiedade como elemento sensorial.*
 
 ## 6. Mecânicas
 
@@ -1067,41 +1072,41 @@ As manifestações são figuras sem rosto que refletem Ani. Elas não funcionam 
 
 Cada memória tocada adiciona peso ao movimento de Ani. Ignorar o passado parece mais confortável, mas impede o avanço.
 
-*→ Formalizado em RF013 — Mecânica de peso literal no Ato I e RN005 — Avanço parcial no Ato I (docs/requisitos/requisitos-funcionais.md; docs/requisitos/regras-de-negocio.md).*
+*→ Formalizado em RF013 — Mecânica de peso literal no Ato I e RN004 — Avanço parcial no Ato I.*
 
 #### Ato II: Ecos de Decisão
 
 Ani revive certos momentos e pode tentar agir de outro modo, mas o resultado continua preso ao mesmo impasse. A mecânica comunica repetição e contradição.
 
-*→ Formalizado em RF014 — Mecânica de ecos de decisão no Ato II e RN008 — Convergência dos ecos de decisão (docs/requisitos/requisitos-funcionais.md; docs/requisitos/regras-de-negocio.md).*
+*→ Formalizado em RF014 — Mecânica de ecos de decisão no Ato II e RN006 — Convergência dos ecos de decisão.*
 
 #### Ato III: Restauração por Aceitação
 
 Objetos quebrados podem ser restaurados, mas nunca apagando suas marcas. O gesto é de aceitação, não de retorno ao estado original.
 
-*→ Formalizado em RF015 — Mecânica de restauração por aceitação no Ato III e RN006 — Ressignificação de objetos e memórias (docs/requisitos/requisitos-funcionais.md; docs/requisitos/regras-de-negocio.md).*
+*→ Formalizado em RF015 — Mecânica de restauração por aceitação no Ato III e RN005 — Ressignificação de objetos e memórias.*
 
 #### Ato IV: Contemplação Ativa
 
 Parar diante de elementos específicos do cenário libera memória, narração e sentido. A observação passa a ser uma forma central de interação.
 
-*→ Formalizado em RF016 — Mecânica de contemplação ativa no Ato IV (docs/requisitos/requisitos-funcionais.md).*
+*→ Formalizado em RF016 — Mecânica de contemplação ativa no Ato IV.*
 
 #### Ato V: Dissolução das Mecânicas
 
 As mecânicas do jogo são progressivamente removidas até restar apenas caminhar e contemplar.
 
-*→ Formalizado em RF017 — Dissolução de mecânicas no Ato V (docs/requisitos/requisitos-funcionais.md).*
+*→ Formalizado em RF017 — Dissolução de mecânicas no Ato V.*
 
 ### Exploração e Diário de Memórias
 
 Ani explora a casa e suas memórias interagindo com objetos significativos. Cartas, bilhetes, fotografias e fragmentos textuais ficam registrados em um diário de memórias com estética manual.
 
-*→ Formalizado em RF003 — Interagir com objetos, RF004 — Sistema de memórias, RF005 — Diário de memórias e UC-S004 — Interagir com Objeto (docs/requisitos/requisitos-funcionais.md; docs/caso-de-uso/README.md).*
+*→ Formalizado em RF003 — Interagir com objetos, RF004 — Sistema de memórias, RF005 — Diário de memórias e UC-S004 — Interagir com Objeto.*
 
 O mesmo item pode adquirir nova leitura conforme os atos avançam. A mudança está menos no texto bruto e mais no contexto em que ele é reencontrado.
 
-*→ Formalizado em RN001 — Registro único de memória e RN006 — Ressignificação de objetos e memórias (docs/requisitos/regras-de-negocio.md).*
+*→ Formalizado em RN001 — Registro único de memória e RN005 — Ressignificação de objetos e memórias.*
 
 ### Ansiedade e Respiração
 
@@ -1112,7 +1117,7 @@ Crises de ansiedade continuam como uma das bases sensoriais do jogo.
 - As manifestações se multiplicam
 - A respiração de Ani se torna indicador importante do estado emocional
 
-*→ Formalizado em RF018 — Crises de ansiedade como elemento sensorial, RN007 — Ansiedade sem punição sistêmica explícita e RNF008 — Interface sem HUD numérico permanente (docs/requisitos/requisitos-funcionais.md; docs/requisitos/regras-de-negocio.md; docs/requisitos/requisitos-nao-funcionais.md).*
+*→ Formalizado em RF018 — Crises de ansiedade como elemento sensorial e apoiado por RNF007 — Acessibilidade sensorial e de áudio.*
 
 ## 7. Interface
 
@@ -1120,7 +1125,7 @@ Crises de ansiedade continuam como uma das bases sensoriais do jogo.
 
 A interface deve ser quase invisível. O jogo comunica estado por atmosfera, som, ritmo, distorção e comportamento do cenário.
 
-*→ Formalizado em RNF008 — Interface sem HUD numérico permanente (docs/requisitos/requisitos-nao-funcionais.md).*
+*→ Diretriz definida no GDD e apoiada por RNF004 — Jogabilidade autoexplicativa.*
 
 ### Diretrizes
 
@@ -1130,7 +1135,7 @@ A interface deve ser quase invisível. O jogo comunica estado por atmosfera, som
 - Diário de memórias acessível como objeto diegético
 - A respiração funciona como indicador sensorial recorrente
 
-*→ Formalizado em RF005 — Diário de memórias, RNF008 — Interface sem HUD numérico permanente e RNF009 — Recursos de acessibilidade (docs/requisitos/requisitos-funcionais.md; docs/requisitos/requisitos-nao-funcionais.md).*
+*→ Formalizado em RF005 — Diário de memórias e RNF007 — Acessibilidade sensorial e de áudio.*
 
 ### Controles
 
@@ -1145,7 +1150,7 @@ A tabela a seguir apresenta os controles previstos para a versão de PC.
 | Diário de memórias | Tab |
 | Contemplar | Sem botão dedicado; depende de parar e observar |
 
-*→ Formalizado em RF001 — Movimentar personagem, RF003 — Interagir com objetos, RF005 — Diário de memórias e UC-S001/UC-S004/UC-S007 (docs/requisitos/requisitos-funcionais.md; docs/caso-de-uso/README.md).*
+*→ Formalizado em RF001 — Movimentar personagem, RF003 — Interagir com objetos, RF005 — Diário de memórias e UC-S001/UC-S004/UC-S007.*
 
 ## 8. Áudio
 
@@ -1153,7 +1158,7 @@ A tabela a seguir apresenta os controles previstos para a versão de PC.
 
 O áudio acompanha a transição filosófica do jogo: parte de um espaço abafado e claustrofóbico e gradualmente se torna mais orgânico, silencioso e contemplativo. O silêncio não é ausência de conteúdo, mas parte da linguagem.
 
-*→ Formalizado em RF010 — Feedback sonoro e musical por ato (docs/requisitos/requisitos-funcionais.md).*
+*→ Formalizado em RF010 — Feedback sonoro e musical por ato.*
 
 ### Direção por Ato
 
@@ -1167,7 +1172,7 @@ A tabela a seguir apresenta a direção sonora associada a cada ato do jogo.
 | IV | Abertura e passagem | Flauta, vento, sino distante, queda de pétalas e pausas longas |
 | V | Imensidão e silêncio | Sustentação mínima, espaço entre notas e sensação de vazio |
 
-*→ Formalizado em RF010 — Feedback sonoro e musical por ato (docs/requisitos/requisitos-funcionais.md).*
+*→ Formalizado em RF010 — Feedback sonoro e musical por ato.*
 
 ### Vozes e Efeitos
 
@@ -1177,7 +1182,7 @@ A tabela a seguir apresenta a direção sonora associada a cada ato do jogo.
 - Memórias traumáticas usam abafamento, ruído e silêncio súbito
 - Interações materiais devem soar táteis, íntimas e físicas
 
-*→ Formalizado em RF008 — Diálogos com personagens de memória e arquétipos, RF018 — Crises de ansiedade como elemento sensorial e RN009 — Presença textual dos personagens (docs/requisitos/requisitos-funcionais.md; docs/requisitos/regras-de-negocio.md).*
+*→ Formalizado em RF008 — Diálogos com personagens de memória e arquétipos e RF018 — Crises de ansiedade como elemento sensorial.*
 
 ## 9. Principais Características
 
@@ -1207,13 +1212,13 @@ A tabela a seguir apresenta a base técnica atualmente definida para o projeto.
 | Texturas | Estética de desenho à mão, aquarela e grafite |
 | Efeitos visuais | Distorção emocional, vinheta dinâmica e transições de cor por ato |
 
-*→ Formalizado em RNF001 — Desempenho, RNF003 — Portabilidade futura e RNF007 — Direção visual do GDD (docs/requisitos/requisitos-nao-funcionais.md).*
+*→ Formalizado em RNF001 — Desempenho mínimo e RNF003 — Portabilidade de código e assets.*
 
 ### Loop de Progressão
 
 Cada ato segue um ciclo estrutural simples:
 
-*→ Fluxo representado no diagrama BPMN (docs/bpmn/README.md); progressão formalizada em RF006, RF012, RN003 e RN004 (docs/requisitos/requisitos-funcionais.md; docs/requisitos/regras-de-negocio.md).*
+*→ Fluxo representado no diagrama BPMN; progressão formalizada em RF006, RF012, RN002 e RN003.*
 
 1. Explorar a casa e perceber o que mudou.
 2. Encontrar a passagem para uma memória ou região mental.
@@ -1221,13 +1226,13 @@ Cada ato segue um ciclo estrutural simples:
 4. Retornar à casa e registrar o avanço no diário.
 5. Abrir passagem para o ato seguinte.
 
-*→ Interações representadas em UC-S004 — Interagir com Objeto, UC-S006 — Ler Documentos e UC-S016 — Salvar Jogo (docs/caso-de-uso/README.md).*
+*→ Interações representadas em UC-S004 — Interagir com Objeto, UC-S006 — Ler Documentos e UC-S016 — Salvar Jogo.*
 
 ## 11. Reformulação em Relação ao GDD Anterior
 
-O arquivo-fonte `docs/gdd.md` não apresenta uma seção autônoma intitulada **Reformulação em Relação ao GDD Anterior**. Ainda assim, o próprio documento registra que o conteúdo se encontra em evolução, que o projeto passou por reformulação conceitual e que determinados artefatos, como o BPMN, podem necessitar de revisão para refletir com mais precisão a direção filosófica atual do jogo. Também há menções explícitas à remoção de escolhas morais tradicionais, à centralidade da contemplação e à reorganização das mecânicas em torno de cinco atos filosóficos.
+O GDD apresentado neste capítulo não apresenta uma seção autônoma intitulada **Reformulação em Relação ao GDD Anterior**. Ainda assim, o próprio documento registra que o conteúdo se encontra em evolução, que o projeto passou por reformulação conceitual e que determinados artefatos, como o BPMN, podem necessitar de revisão para refletir com mais precisão a direção filosófica atual do jogo. Também há menções explícitas à remoção de escolhas morais tradicionais, à centralidade da contemplação e à reorganização das mecânicas em torno de cinco atos filosóficos.
 
-Assim, a reformulação identificável a partir do material do repositório pode ser sintetizada nos seguintes pontos:
+Assim, a reformulação identificável a partir do material documental pode ser sintetizada nos seguintes pontos:
 
 - Consolidação de **Ani** como experiência contemplativa e não como jogo orientado por combate.
 - Abandono de sistemas de moralidade binária e de múltiplos finais baseados em julgamento comportamental.

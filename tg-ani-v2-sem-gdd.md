@@ -48,7 +48,7 @@ O Termo de Abertura do Projeto (TAP) é o documento que formaliza a existência 
 
 No contexto acadêmico, o TAP exerce papel equivalente ao de um contrato de projeto, pois delimita o que será construído, quem participa do processo, quais recursos são previstos e quais limites precisam ser respeitados. Em trabalhos de software, esse artefato também favorece a rastreabilidade entre problema de pesquisa, objetivos, modelagem e implementação, reduzindo ambiguidades nas etapas subsequentes.
 
-No caso de **Ani**, o TAP organiza a proposta de um jogo narrativo contemplativo em termos de gerenciamento, escopo e viabilidade. A seguir, apresenta-se o conteúdo completo do artefato disponível no repositório, acrescido da contextualização do produto digital a ser entregue.
+No caso de **Ani**, o TAP organiza a proposta de um jogo narrativo contemplativo em termos de gerenciamento, escopo e viabilidade. A seguir, apresenta-se o conteúdo completo do artefato, acrescido da contextualização do produto digital a ser entregue.
 
 ## 1. Identificação do Projeto
 
@@ -221,7 +221,7 @@ Além da análise documental, o refinamento ocorreu pelo confronto entre intenç
 
 Quanto à classificação, adotou-se a distinção entre requisitos **evidentes**, visíveis ao usuário final em suas interações diretas, e requisitos **ocultos**, relacionados à organização interna da progressão, às mecânicas por ato e aos efeitos sistêmicos que moldam a experiência. Também se utilizou priorização por níveis, com destaque para Altíssima, Alta e Média, permitindo identificar o núcleo funcional indispensável do protótipo.
 
-O conjunto de mecânicas e diretrizes do projeto orientou diretamente a geração dos requisitos. A mecânica de **Peso Literal**, no Ato I, originou RF013; **Ecos de Decisão**, no Ato II, originou RF014; a **Restauração por Aceitação**, no Ato III, originou RF015; a **Contemplação Ativa**, no Ato IV, originou RF016; e a **Dissolução de Mecânicas**, no Ato V, originou RF017. O **Sistema de Memórias** e o **Diário** originaram RF004 e RF005; as **Crises de Ansiedade** originaram RF018; a **Interface minimalista sem HUD** sustentou RNF008; a **Progressão em cinco atos filosóficos** fundamentou RF012 e RF006; e a **direção de áudio por ato** fundamentou RF010.
+O conjunto de mecânicas e diretrizes do projeto orientou diretamente a geração dos requisitos. A mecânica de **Peso Literal**, no Ato I, originou RF013; **Ecos de Decisão**, no Ato II, originou RF014; a **Restauração por Aceitação**, no Ato III, originou RF015; a **Contemplação Ativa**, no Ato IV, originou RF016; e a **Dissolução de Mecânicas**, no Ato V, originou RF017. O **Sistema de Memórias** e o **Diário** originaram RF004 e RF005; as **Crises de Ansiedade** originaram RF018; a **jogabilidade autoexplicativa** sustentou RNF004; a **Progressão em cinco atos filosóficos** fundamentou RF012 e RF006; e a **direção de áudio por ato** fundamentou RF010.
 
 Essa rastreabilidade mostra que os requisitos de **Ani** derivam de uma visão de produto em que atmosfera, percepção, tempo e transformação são tão importantes quanto comandos, colisão e persistência. Assim, a elicitação não apenas identificou funcionalidades, mas formalizou em linguagem de software a proposta filosófica, estética e interativa do projeto.
 
@@ -325,6 +325,8 @@ Requisitos funcionais descrevem os serviços e comportamentos que o sistema deve
 
 Em **Ani**, os requisitos funcionais descrevem tanto funcionalidades convencionais quanto mecanismos capazes de converter intenção artística em experiência jogável. Assim, além de mover a personagem, interagir com objetos ou salvar progresso, os RFs também formalizam peso literal, ecos de decisão, contemplação ativa, dissolução de mecânicas e adaptação sonora por ato.
 
+O Quadro X apresenta os requisitos funcionais do sistema, organizados por código, título, categoria, prioridade e descrição.
+
 | Código | Título | Categoria | Prioridade | Descrição |
 | --- | --- | --- | --- | --- |
 | RF001 | Movimentar personagem | Evidente | Altíssima | O sistema deve permitir que o jogador mova Ani lateralmente usando teclado. |
@@ -353,21 +355,21 @@ Observa-se uma distribuição de 8 requisitos com prioridade Altíssima, 10 com 
 
 Requisitos não funcionais expressam restrições de qualidade, desempenho, usabilidade, portabilidade e demais condições que moldam como o sistema deve operar. Segundo Sommerville (2019), eles não descrevem serviços específicos, mas propriedades e limites que influenciam o comportamento global do software. Pressman e Maxim (2016) reforçam que tais requisitos afetam diretamente a aceitabilidade do produto.
 
-Em **Ani**, os RNFs não se limitam a desempenho técnico. Eles também registram compromissos com identidade visual, interface sensorial, acessibilidade e tratamento responsável de conteúdo sensível. Assim, a proibição de HUD numérico permanente e a preservação da estética de desenho à mão são restrições de experiência derivadas diretamente da proposta do jogo.
+Em **Ani**, os RNFs não se limitam a desempenho técnico. Eles também registram compromissos com portabilidade, acessibilidade, localização, jogabilidade autoexplicativa e tratamento responsável de conteúdo sensível. Assim, os requisitos não funcionais delimitam condições de qualidade que ajudam a preservar a proposta contemplativa do jogo.
+
+O Quadro X apresenta os requisitos não funcionais do sistema, indicando os critérios de qualidade e suas respectivas classificações.
 
 | Código | Requisito | Classificação |
 | --- | --- | --- |
-| RNF001 | O jogo deve rodar a 60 FPS na configuração mínima estimada, com hardware equivalente a Intel HD e 4 GB de RAM. | Obrigatório, permanente |
-| RNF002 | Saves locais devem carregar em menos de 5 segundos e preservar a integridade dos dados de progresso por ato. | Obrigatório, permanente |
-| RNF003 | Código e assets devem favorecer futura portabilidade para outras plataformas. | Desejável, permanente |
-| RNF004 | A jogabilidade deve ser compreensível sem depender de tutorial extenso ou instruções explícitas constantes em tela. | Obrigatório, permanente |
-| RNF005 | O jogo deve exibir aviso de conteúdo sensível relacionado à saúde mental, sofrimento existencial e temas filosóficos densos, com opção de pular cenas de alta carga emocional sem quebrar a continuidade narrativa. | Obrigatório, permanente |
-| RNF006 | O texto base deve estar em PT-BR, com estrutura preparada para traduções futuras por meio de arquivos externos de string. | Obrigatório e desejável, transitório |
-| RNF007 | A direção visual deve preservar a proposta de desenho à mão, aquarela, grafite e estética de diário definida no projeto. | Desejável, permanente |
-| RNF008 | A interface não deve depender de HUD numérico permanente. O estado emocional de Ani deve ser comunicado principalmente por elementos do mundo, da trilha, da distorção visual e da respiração sensorial. | Obrigatório e desejável, permanente |
-| RNF009 | O jogo deve oferecer recursos de acessibilidade, como controle de intensidade de distorção visual, legendas para efeitos sonoros narrativos e controle independente de volume por camada de áudio. | Obrigatório e desejável, permanente |
+| RNF001 | O sistema deve manter taxa mínima de 60 FPS em hardware equivalente a Intel HD Graphics e 4 GB de RAM. | Obrigatório, permanente |
+| RNF002 | O sistema deve carregar saves locais em menos de 5 segundos e preservar a integridade dos dados de progresso por ato. | Obrigatório, permanente |
+| RNF003 | O sistema deve ser estruturado de forma a permitir adaptação para outras plataformas com alterações mínimas no código e nos assets. | Desejável, permanente |
+| RNF004 | O sistema deve permitir que novos jogadores compreendam as mecânicas básicas sem necessidade de tutorial extenso ou instruções constantes em tela. | Obrigatório, permanente |
+| RNF005 | O sistema deve exibir aviso de conteúdo sensível e permitir ao jogador pular cenas de alta carga emocional sem comprometer a continuidade narrativa. | Obrigatório, permanente |
+| RNF006 | O sistema deve suportar internacionalização por meio de arquivos externos de texto, permitindo tradução para outros idiomas. | Obrigatório, transitório |
+| RNF007 | O sistema deve oferecer recursos de acessibilidade, incluindo controle de intensidade visual, legendas para efeitos sonoros e controle independente de volume por camada de áudio. | Obrigatório, permanente |
 
-Os RNFs podem ser agrupados por tema da seguinte forma: desempenho em RNF001 e RNF002; portabilidade em RNF003; usabilidade em RNF004; saúde mental e conteúdo sensível em RNF005; internacionalização em RNF006; identidade visual em RNF007; interface diegética em RNF008; e acessibilidade em RNF009.
+Os RNFs podem ser agrupados por tema da seguinte forma: desempenho e persistência em RNF001 e RNF002; portabilidade em RNF003; usabilidade em RNF004; saúde mental e conteúdo sensível em RNF005; internacionalização em RNF006; e acessibilidade sensorial e de áudio em RNF007.
 
 ## 2.5 Regras de Negócio
 
@@ -375,27 +377,28 @@ Regras de negócio são enunciados que impõem restrições, condições ou pol�
 
 No caso de **Ani**, as regras de negócio não se limitam a validações administrativas; elas traduzem diretamente opções filosóficas e narrativas do projeto. A regra de convergência dos ecos de decisão, por exemplo, expressa em linguagem sistêmica a irresolução do Ato II, em que diferentes tentativas do jogador ainda convergem para o mesmo impasse narrativo.
 
+O Quadro X apresenta as regras de negócio do sistema, descrevendo as restrições conceituais que orientam a progressão e o comportamento narrativo de **Ani**.
+
 | Código | Nome | Descrição |
 | --- | --- | --- |
-| RN001 | Registro único de memória | Cada fragmento encontrado deve ser registrado apenas uma vez no diário. Revisitas podem alterar a leitura visual ou contextual do item, mas não criar um novo registro. |
-| RN002 | Ordem variável de descoberta das memórias | Como o jogador pode interagir com diferentes objetos de memória, a ordem de descoberta dos fragmentos pode variar sem alterar a sequência estrutural dos atos. |
-| RN003 | Progressão fixa entre atos | A sequência dos atos deve seguir a ordem definida no projeto, sem ramificação estrutural entre eles. |
-| RN004 | Critério de avanço por conclusão de ato | A passagem para o ato seguinte só pode ser liberada quando os critérios narrativos e de exploração do ato atual forem concluídos. |
-| RN005 | Avanço parcial no Ato I | No Ato I, o avanço para o ato seguinte não deve exigir a visualização de todas as memórias disponíveis, apenas o cumprimento de um limiar mínimo definido pelo projeto. |
-| RN006 | Ressignificação de objetos e memórias | Um mesmo objeto ou fragmento pode assumir nova interpretação conforme o avanço de Ani, sem alterar sua identidade base no diário. |
-| RN007 | Ansiedade sem punição sistêmica explícita | As crises de ansiedade devem impactar a atmosfera, a imagem e o som. |
-| RN008 | Convergência dos ecos de decisão | Nos ecos de decisão do Ato II, tentativas diferentes do jogador devem convergir para o mesmo impasse narrativo. |
-| RN009 | Presença textual dos personagens | NPCs e arquétipos devem se comunicar principalmente por texto, preservando o caráter fragmentado e contemplativo da narrativa. |
+| RN001 | Registro único de memória | Cada fragmento de memória pode ser registrado apenas uma vez no diário. |
+| RN002 | Progressão fixa entre atos | A progressão entre atos ocorre de forma sequencial, seguindo a ordem definida no projeto, sem possibilidade de retorno ou salto de ordem. |
+| RN003 | Critério de avanço por conclusão de ato | A progressão para o ato seguinte depende da conclusão dos critérios do ato atual. |
+| RN004 | Avanço parcial no Ato I | No Ato I, o avanço não exige a visualização de todas as memórias, apenas o cumprimento de um limiar mínimo definido. |
+| RN005 | Ressignificação de objetos e memórias | Um fragmento pode assumir diferentes interpretações ao longo da progressão do jogo, sem alteração de sua identidade original no diário. |
+| RN006 | Convergência dos ecos de decisão | Nos momentos de eco de decisão no Ato II, diferentes interações do jogador levam ao mesmo impasse narrativo. |
 
-Em termos de rastreabilidade, RN001 origina-se da seção de exploração e diário; RN002 deriva da mesma base em conjunto com RF004; RN003 decorre da estrutura narrativa em cinco atos; RN004 decorre da conclusão de cada ato; RN005 deriva do Ato I e da mecânica de peso literal; RN006 origina-se da exploração, do diário e da ressignificação de objetos; RN007 decorre da seção de ansiedade e respiração; RN008 vem diretamente do Ato II e dos ecos de decisão; e RN009 relaciona-se à interface e à seção de personagens.
+Em termos de rastreabilidade, RN001 origina-se da seção de exploração e diário; RN002 decorre da estrutura narrativa em cinco atos; RN003 decorre da conclusão de cada ato; RN004 deriva do Ato I e da mecânica de peso literal; RN005 origina-se da exploração, do diário e da ressignificação de objetos; e RN006 vem diretamente do Ato II e dos ecos de decisão.
 
 ## 2.6 Casos de Uso
 
-Casos de uso são descrições estruturadas das interações entre atores e sistema com o objetivo de alcançar resultados observáveis. Jacobson (1992) os apresenta como instrumento central para capturar funcionalidade sob a perspectiva do usuário, enquanto Sommerville (2019) destaca sua utilidade para organizar serviços do sistema e cenários de interação.
+Casos de uso são descrições estruturadas das interações entre atores e sistema, com o objetivo de evidenciar como determinadas funcionalidades são acionadas e quais respostas são esperadas. Na perspectiva da UML, esse artefato contribui para a compreensão do comportamento externo do sistema, permitindo documentar cenários principais, pré-condições, pós-condições e caminhos alternativos. A IBM destaca que diagramas e visões de caso de uso ajudam a representar as funcionalidades esperadas do sistema e a relação entre atores externos e serviços oferecidos pela aplicação (IBM, s.d.a, online; IBM, s.d.b, online).
 
-Sua importância reside em tornar explícito quem aciona o sistema, em que condições, com quais passos principais e com quais alternativas. Em projetos de software interativo, esse tipo de artefato ajuda a conectar requisitos abstratos a fluxos operacionais verificáveis, servindo como ponte entre análise e implementação.
+Sua importância reside em tornar explícito quem aciona o sistema, em que condições, com quais passos principais e com quais alternativas. Em projetos de software interativo, esse tipo de artefato ajuda a conectar requisitos abstratos a fluxos operacionais verificáveis, servindo como ponte entre análise e implementação. Essa modelagem também favorece a comunicação entre os envolvidos no projeto, pois delimita o escopo funcional do sistema e torna mais clara a ligação entre atores, objetivos e funcionalidades (IBM, s.d.a, online; IBM, s.d.b, online).
 
 Em **Ani**, os casos de uso foram derivados dos requisitos funcionais e das mecânicas do projeto. Eles cobrem tanto ações clássicas, como movimentar, pausar e salvar, quanto interações alinhadas ao núcleo da experiência, como ativar objetos significativos, acessar o diário de memórias e carregar cenários coerentes com a progressão por atos.
+
+O Quadro X apresenta o índice de casos de uso do sistema, enquanto a modelagem gráfica correspondente é apresentada na Figura 2.
 
 | ID | Nome do Caso de Uso | Ator Primário |
 | --- | --- | --- |
@@ -601,9 +604,9 @@ Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 r
 
 ## 2.7 Diagrama de Classes
 
-O Diagrama de Classes UML representa estruturalmente os elementos de um sistema orientado a objetos, indicando classes, atributos, operações e relacionamentos. Booch, Rumbaugh e Jacobson (1999) tratam esse artefato como um dos principais instrumentos para explicitar a arquitetura estática do software, enquanto Fowler (2003) destaca seu valor na comunicação de modelos conceituais e de projeto.
+O Diagrama de Classes UML representa estruturalmente os elementos de um sistema orientado a objetos, indicando classes, atributos, operações e relacionamentos. Segundo a IBM, diagramas UML auxiliam a representar diferentes perspectivas de um sistema, enquanto a Visual Paradigm destaca que o diagrama de classes descreve a estrutura do sistema por meio de classes, atributos, métodos e relações (IBM, s.d.c, online; Visual Paradigm, s.d., online).
 
-Sua importância neste trabalho está em mostrar como a experiência contemplativa de **Ani** é traduzida em entidades de software com responsabilidades definidas. Ao explicitar a estrutura do jogo, o diagrama favorece a rastreabilidade entre requisitos, regras de negócio, persistência e implementação.
+Sua importância neste trabalho está em mostrar como a experiência contemplativa de **Ani** é traduzida em entidades de software com responsabilidades definidas. Ao explicitar a estrutura do jogo, o diagrama favorece a rastreabilidade entre requisitos, regras de negócio, persistência e implementação. A modelagem gráfica correspondente é apresentada na Figura 3, e a estrutura textual das classes é detalhada a seguir.
 
 [Figura 3 – Diagrama de Classes de Ani]
 
@@ -738,9 +741,11 @@ As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sin
 
 ## 2.8 Diagrama Entidade-Relacionamento (DER)
 
-O Diagrama Entidade-Relacionamento é um modelo conceitual voltado à representação de dados, entidades, atributos e relacionamentos de um domínio. Chen (1976) propõe o DER como forma unificada de estruturar dados antes da implementação, e Elmasri e Navathe (2005) reforçam sua importância para o projeto coerente de persistência.
+O Diagrama Entidade-Relacionamento é um modelo conceitual voltado à representação de dados, entidades, atributos e relacionamentos de um domínio. A IBM descreve o DER como uma forma de visualizar entidades e relações em um domínio de dados, enquanto a Lucidchart destaca seu papel na organização lógica das informações e na compreensão das cardinalidades entre entidades (IBM, s.d.d, online; Lucidchart, s.d., online).
 
-No presente projeto, o DER deriva do Diagrama de Classes e das Regras de Negócio para representar aquilo que precisa ser persistido no jogo. Seu foco incide sobre progresso do jogador, memórias coletadas, estado do diário e relações mínimas entre atos, cenários e objetos interativos, especialmente em função de RF009, RN001 e RN006.
+No presente projeto, o DER deriva do Diagrama de Classes e das Regras de Negócio para representar aquilo que precisa ser persistido no jogo. Seu foco incide sobre progresso do jogador, memórias coletadas, estado do diário e relações mínimas entre atos, cenários e objetos interativos, especialmente em função de RF009, RN001 e RN005.
+
+A modelagem gráfica correspondente é apresentada na Figura 4, e a descrição textual das entidades é detalhada na sequência.
 
 [Figura 4 – Diagrama Entidade-Relacionamento de Ani]
 
@@ -874,15 +879,15 @@ Além disso, as ferramentas utilizadas apresentam licenças compatíveis com uso
 **Função no projeto:** modelagem de diagramas UML, BPMN e demais artefatos estruturais.  
 **Justificativa de escolha:** foi utilizada para representar visualmente a estrutura do sistema e o fluxo principal de gameplay, fortalecendo a documentação e a rastreabilidade entre modelagem e implementação.
 
-| Artefato | Ferramenta / Repositório |
+| Artefato | Ferramenta / Meio de produção |
 | --- | --- |
-| GDD | GitHub (`/docs/gdd.md`) |
-| TAP | GitHub (`/docs/tap/tap.md`) |
-| BPMN | GitHub (`/docs/bpmn/`) |
-| Diagrama de Classes | GitHub (`/docs/diagrama-de-classe/`) |
-| Código-fonte | GitHub (repositório principal) |
-| Assets visuais | Aseprite / Photoshop (pasta `/assets/`) |
-| Assets de áudio | Audacity / FMOD (pasta `/audio/`) |
+| GDD | Markdown |
+| TAP | Markdown |
+| BPMN | draw.io / diagrams.net |
+| Diagrama de Classes | draw.io / diagrams.net |
+| Código-fonte | Unity / C# |
+| Assets visuais | Aseprite / Photoshop |
+| Assets de áudio | Audacity / FMOD |
 
 # 4 Desenvolvimento
 
@@ -931,12 +936,12 @@ O sistema de memórias e diário conecta exploração, narrativa e persistência
 
 - **Classes envolvidas:** `ObjetoInterativo`, `Memoria`, `Diario`, `EntradaDiario`
 - **Requisito funcional correspondente:** RF003, RF004, RF005
-- **Regra de negócio correspondente:** RN001, RN002, RN006
+- **Regra de negócio correspondente:** RN001, RN005
 - **Princípio do projeto que originou o sistema:** exploração e diário de memórias como centro da experiência
 - **Trecho de código relevante:** `[Código 2 — fluxo de ativação de objeto interativo, criação de memória e adição de entrada ao diário]`
 - **Captura de tela comentada:** `[Figura 6 – Registro de fragmento narrativo no diário após interação com objeto de memória]`
 
-Quando o jogador interage com um objeto significativo, o sistema identifica seu tipo, ativa a memória ou evento correspondente e, se cabível, cria ou atualiza uma entrada no diário. RN001 impede duplicidade de registros, RN002 permite ordem variável de descoberta, e RN006 assegura que o mesmo item possa adquirir nova interpretação sem perder sua identidade base.
+Quando o jogador interage com um objeto significativo, o sistema identifica seu tipo, ativa a memória ou evento correspondente e, se cabível, cria ou atualiza uma entrada no diário. RN001 impede duplicidade de registros, RF004 permite ordem variável de descoberta dos fragmentos, e RN005 assegura que o mesmo item possa adquirir nova interpretação sem perder sua identidade base.
 
 ### 4.2.3 Sistema de Progressão por Atos
 
@@ -944,12 +949,12 @@ O sistema de progressão por atos organiza a jornada em cinco etapas sequenciais
 
 - **Classes envolvidas:** `Ato`, `Jogo`, `Cenario`
 - **Requisito funcional correspondente:** RF006, RF012, RF019
-- **Regra de negócio correspondente:** RN003, RN004, RN005
+- **Regra de negócio correspondente:** RN002, RN003, RN004
 - **Princípio do projeto que originou o sistema:** jornada filosófica em cinco atos sequenciais
 - **Trecho de código relevante:** `[Código 3 — verificação de conclusão de ato e desbloqueio do cenário seguinte]`
 - **Captura de tela comentada:** `[Figura 7 – Transição de ato com alteração de cenário e atmosfera]`
 
-O sistema detecta a conclusão de cada etapa pela combinação entre exploração, memórias e eventos centrais do ato corrente. No Ato I, RN005 permite avanço mediante um limiar mínimo de memórias, sem exigir exaustão total do conteúdo disponível.
+O sistema detecta a conclusão de cada etapa pela combinação entre exploração, memórias e eventos centrais do ato corrente. No Ato I, RN004 permite avanço mediante um limiar mínimo de memórias, sem exigir exaustão total do conteúdo disponível.
 
 | Ato | Referência Filosófica | Tom | Símbolo |
 | --- | --- | --- | --- |
@@ -965,7 +970,7 @@ A mecânica de peso literal transforma o contato com memórias em alteração se
 
 - **Classes envolvidas:** `Player`, `Ato`, `Memoria`
 - **Requisito funcional correspondente:** RF013
-- **Regra de negócio correspondente:** RN005
+- **Regra de negócio correspondente:** RN004
 - **Princípio do projeto que originou o sistema:** Ato I como experiência do peso da consciência
 - **Trecho de código relevante:** `[Código 4 — ajuste progressivo da velocidade do personagem conforme memórias coletadas]`
 - **Captura de tela comentada:** `[Figura 8 – Redução perceptível da velocidade de Ani após contato com memórias do Ato I]`
@@ -978,7 +983,7 @@ Os ecos de decisão estruturam situações em que o jogador tenta variar sua aç
 
 - **Classes envolvidas:** `Player`, `Ato`, `Memoria`
 - **Requisito funcional correspondente:** RF014
-- **Regra de negócio correspondente:** RN008
+- **Regra de negócio correspondente:** RN006
 - **Princípio do projeto que originou o sistema:** irresolução filosófica do Ato II
 - **Trecho de código relevante:** `[Código 5 — recondução de estados alternativos para um mesmo desfecho narrativo]`
 - **Captura de tela comentada:** `[Figura 9 – Corredor em loop com recorrência de situação decisória convergente]`
@@ -991,7 +996,7 @@ Essa mecânica permite restaurar objetos quebrados sem apagar suas marcas, em co
 
 - **Classes envolvidas:** `ObjetoRestauravel`, `ObjetoInterativo`
 - **Requisito funcional correspondente:** RF015
-- **Regra de negócio correspondente:** RN006
+- **Regra de negócio correspondente:** RN005
 - **Princípio do projeto que originou o sistema:** beleza do quebrado e aceitação da rachadura
 - **Trecho de código relevante:** `[Código 6 — mudança de estado de objeto restaurável e atualização visual após interação]`
 - **Captura de tela comentada:** `[Figura 10 – Objeto do Ato III antes e depois da restauração, preservando marcas]`
@@ -1017,7 +1022,7 @@ No Ato V, o protótipo abandona progressivamente mecânicas dos atos anteriores 
 
 - **Classes envolvidas:** `Ato`, `Jogo`, `Player`
 - **Requisito funcional correspondente:** RF017
-- **Regra de negócio correspondente:** RN003
+- **Regra de negócio correspondente:** RN002
 - **Princípio do projeto que originou o sistema:** o mistério que não cabe em palavras
 - **Trecho de código relevante:** `[Código 8 — desativação progressiva de subsistemas conforme avanço do Ato V]`
 - **Captura de tela comentada:** `[Figura 12 – Cenário final com mecânicas reduzidas e predominância de contemplação]`
@@ -1030,7 +1035,7 @@ O sistema de crises de ansiedade atua no plano sensorial, alterando imagem, som 
 
 - **Classes envolvidas:** `Player`, `Cenario`
 - **Requisito funcional correspondente:** RF018
-- **Regra de negócio correspondente:** RN007
+- **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** ansiedade e respiração como base sensorial
 - **Trecho de código relevante:** `[Código 9 — acionamento de distorção visual, fragmentação sonora e aumento de manifestações]`
 - **Captura de tela comentada:** `[Figura 13 – Episódio de crise com distorção visual e reforço atmosférico]`
@@ -1063,8 +1068,8 @@ O sistema deve operar em consonância com RNF002, segundo o qual os saves locais
 A interface do projeto segue uma filosofia de quase invisibilidade. Em vez de HUD permanente e barras numéricas, o estado do jogo é comunicado por atmosfera, distorção, respiração, ícones discretos e pelo próprio diário de memórias como objeto diegético.
 
 - **Classes envolvidas:** `Jogo`, `Diario`
-- **Requisito funcional correspondente:** RNF004, RNF008
-- **Regra de negócio correspondente:** RN009
+- **Requisitos correspondentes:** RF005, RNF004
+- **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** interface mínima, sensorial e integrada ao mundo
 - **Trecho de código relevante:** `[Código 11 — abertura do diário diegético e acionamento de indicadores discretos de interação]`
 - **Captura de tela comentada:** `[Figura 15 – Interface do diário e ausência de HUD permanente durante exploração]`
@@ -1123,15 +1128,15 @@ Descrição: a imagem deve mostrar um espaço aberto e indefinido, com redução
 
 # Referências
 
-BOOCH, Grady; RUMBAUGH, James; JACOBSON, Ivar. *The Unified Modeling Language User Guide*. Reading: Addison-Wesley, 1999.
+IBM. *Creating use-case diagrams*. Disponível em: <https://www.ibm.com/docs/en/dma?topic=diagrams-creating-use-case>. Acesso em: 22 mar. 2026.
 
-CHEN, Peter P. The entity-relationship model: toward a unified view of data. *ACM Transactions on Database Systems*, v. 1, n. 1, p. 9-36, 1976.
+IBM. *Use case view*. Disponível em: <https://www.ibm.com/docs/en/systems-engineering/1.5.0?topic=views-use-case-view>. Acesso em: 22 mar. 2026.
 
-ELMASRI, Ramez; NAVATHE, Shamkant B. *Sistemas de banco de dados*. 4. ed. São Paulo: Pearson Addison Wesley, 2005.
+IBM. *UML diagrams*. Disponível em: <https://www.ibm.com/docs/en/radfws/9.6.1?topic=diagrams-uml>. Acesso em: 22 mar. 2026.
 
-FOWLER, Martin. *UML Distilled: A Brief Guide to the Standard Object Modeling Language*. 3. ed. Boston: Addison-Wesley, 2003.
+IBM. *What is an entity relationship diagram?* Disponível em: <https://www.ibm.com/think/topics/entity-relationship-diagram>. Acesso em: 25 mar. 2026.
 
-JACOBSON, Ivar. *Object-Oriented Software Engineering: A Use Case Driven Approach*. Reading: Addison-Wesley, 1992.
+LUCIDCHART. *What is an Entity Relationship Diagram (ERD)?* Disponível em: <https://www.lucidchart.com/pages/er-diagrams/>. Acesso em: 25 mar. 2026.
 
 OBJECT MANAGEMENT GROUP. *Business Process Model and Notation (BPMN) Version 2.0*. Needham: OMG, 2011. Disponível em: https://www.omg.org/spec/BPMN/2.0. Acesso em: 2024.
 
@@ -1144,3 +1149,5 @@ ROGERS, Scott. *Level Up!: The Guide to Great Video Game Design*. 2. ed. Chiches
 SCHELL, Jesse. *A Arte de Game Design: o livro dos elementos*. Rio de Janeiro: Elsevier, 2011.
 
 SOMMERVILLE, Ian. *Engenharia de Software*. 10. ed. São Paulo: Pearson, 2019.
+
+VISUAL PARADIGM. *What is Class Diagram?* Disponível em: <https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-class-diagram/>. Acesso em: 22 mar. 2026.

@@ -26,7 +26,7 @@ A documentação completa dos requisitos funcionais pode ser consultada em [requ
 
 Requisitos não funcionais descrevem critérios de qualidade e restrições que determinam como o sistema deve operar, considerando aspectos como desempenho, usabilidade, acessibilidade, confiabilidade e experiência de uso. Em vez de descrever funções específicas, eles definem as condições em que essas funções devem ser executadas [1].
 
-No projeto **Ani**, os requisitos não funcionais orientam aspectos fundamentais da qualidade da experiência, como desempenho mínimo, integridade dos saves, acessibilidade, linguagem, direção visual e comunicação sensorial da interface.
+No projeto **Ani**, os requisitos não funcionais orientam aspectos fundamentais da qualidade da experiência, como desempenho mínimo, integridade dos saves, portabilidade, acessibilidade, localização, jogabilidade autoexplicativa e cuidado com conteúdo sensível.
 
 O Quadro 2 apresenta alguns dos requisitos não funcionais do projeto.
 
@@ -34,11 +34,11 @@ O Quadro 2 apresenta alguns dos requisitos não funcionais do projeto.
 
 | Código | Requisito | Classificação |
 | --- | --- | --- |
-| RNF001 | O jogo deve rodar a 60 FPS na configuração mínima estimada. | Obrigatório, permanente |
-| RNF002 | Saves locais devem carregar em menos de 5 segundos e preservar a integridade dos dados. | Obrigatório, permanente |
-| RNF004 | A jogabilidade deve ser compreensível sem depender de tutorial extenso. | Obrigatório, permanente |
-| RNF005 | O jogo deve exibir aviso de conteúdo sensível e permitir pular cenas de alta carga emocional. | Obrigatório, permanente |
-| RNF009 | O jogo deve oferecer recursos de acessibilidade, como controle de distorção visual, legendas e controle de volume por camada de áudio. | Obrigatório e desejável, permanente |
+| RNF001 | O sistema deve manter taxa mínima de 60 FPS em hardware equivalente a Intel HD Graphics e 4 GB de RAM. | Obrigatório, permanente |
+| RNF002 | O sistema deve carregar saves locais em menos de 5 segundos e preservar a integridade dos dados de progresso por ato. | Obrigatório, permanente |
+| RNF004 | O sistema deve permitir que novos jogadores compreendam as mecânicas básicas sem necessidade de tutorial extenso ou instruções constantes em tela. | Obrigatório, permanente |
+| RNF005 | O sistema deve exibir aviso de conteúdo sensível e permitir ao jogador pular cenas de alta carga emocional sem comprometer a continuidade narrativa. | Obrigatório, permanente |
+| RNF007 | O sistema deve oferecer recursos de acessibilidade, incluindo controle de intensidade visual, legendas para efeitos sonoros e controle independente de volume por camada de áudio. | Obrigatório, permanente |
 
 A documentação completa dos requisitos não funcionais pode ser consultada em [requisitos-nao-funcionais.md](./requisitos-nao-funcionais.md).
 
@@ -48,7 +48,7 @@ Regras de negócio são declarações que definem ou restringem algum aspecto do
 
 A importância das regras de negócio está em garantir consistência entre a proposta do projeto e o comportamento efetivo do sistema. Quando bem documentadas, elas ajudam a evitar ambiguidades, orientam a implementação das funcionalidades e preservam as restrições conceituais da aplicação ao longo do desenvolvimento [2][3].
 
-No projeto **Ani**, as regras de negócio são especialmente importantes porque a experiência depende de coerência estrutural entre narrativa, progressão por atos, registro de memórias e lógica de avanço do jogador.
+No projeto **Ani**, as regras de negócio são especialmente importantes porque a experiência depende de coerência estrutural entre narrativa, progressão por atos, registro de memórias, ressignificação e lógica de avanço do jogador.
 
 O Quadro 3 apresenta algumas das regras de negócio do projeto.
 
@@ -56,11 +56,11 @@ O Quadro 3 apresenta algumas das regras de negócio do projeto.
 
 | Código | Nome | Descrição |
 | --- | --- | --- |
-| RN001 | Registro único de memória | Cada fragmento encontrado deve ser registrado apenas uma vez no diário. |
-| RN003 | Progressão fixa entre atos | A sequência dos atos deve seguir a ordem definida no GDD, sem ramificação estrutural entre eles. |
-| RN005 | Avanço parcial no Ato I | No Ato I, o avanço para o ato seguinte não deve exigir a visualização de todas as memórias disponíveis. |
-| RN008 | Convergência dos ecos de decisão | Nos ecos de decisão do Ato II, tentativas diferentes do jogador devem convergir para o mesmo impasse narrativo. |
-| RN009 | Presença textual dos personagens | NPCs e arquétipos devem se comunicar principalmente por texto, preservando o caráter fragmentado e contemplativo da narrativa. |
+| RN001 | Registro único de memória | Cada fragmento de memória pode ser registrado apenas uma vez no diário. |
+| RN002 | Progressão fixa entre atos | A progressão entre atos ocorre de forma sequencial, seguindo a ordem definida no GDD, sem possibilidade de retorno ou salto de ordem. |
+| RN004 | Avanço parcial no Ato I | No Ato I, o avanço não exige a visualização de todas as memórias, apenas o cumprimento de um limiar mínimo definido. |
+| RN005 | Ressignificação de objetos e memórias | Um fragmento pode assumir diferentes interpretações ao longo da progressão do jogo, sem alteração de sua identidade original no diário. |
+| RN006 | Convergência dos ecos de decisão | Nos momentos de eco de decisão no Ato II, diferentes interações do jogador levam ao mesmo impasse narrativo. |
 
 O documento completo de regras de negócio pode ser consultado em [regras-de-negocio.md](./regras-de-negocio.md).
 
