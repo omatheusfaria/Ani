@@ -329,199 +329,160 @@ No projeto **Ani**, os casos de uso são particularmente importantes porque orga
 | ID | Nome do Caso de Uso | Ator Primário |
 | --- | --- | --- |
 | UC-S001 | Movimentar Personagem | Jogador |
-| UC-S003 | Colidir com cenário | Jogador |
-| UC-S004 | Interagir com Objeto | Jogador |
-| UC-S005 | Interagir com NPCs | Jogador |
-| UC-S006 | Ler Documentos | Jogador |
-| UC-S007 | Abrir Inventário | Jogador |
-| UC-S008 | Pausar Jogo | Jogador |
-| UC-S009 | Configurar Jogo | Jogador |
-| UC-S010 | Configurar Vídeo | Jogador |
-| UC-S011 | Configurar Áudio | Jogador |
-| UC-S012 | Configurar Controles | Jogador |
-| UC-S013 | Sair do Jogo | Jogador |
-| UC-S014 | Carregar Cenário | Sistema |
-| UC-S015 | Gerenciar Diálogos | Sistema |
-| UC-S016 | Salvar Jogo | Sistema |
+| UC-S002 | Interagir com Objetos | Jogador |
+| UC-S003 | Dialogar com Personagens | Jogador |
+| UC-S004 | Consultar Documentos Coletados | Jogador |
+| UC-S005 | Acessar Diário de Memórias | Jogador |
+| UC-S006 | Pausar Jogo | Jogador |
+| UC-S007 | Configurar Jogo | Jogador |
+| UC-S008 | Ajustar Configurações de Vídeo | Jogador |
+| UC-S009 | Ajustar Configurações de Áudio | Jogador |
+| UC-S010 | Configurar Controles | Jogador |
+| UC-S011 | Sair do Jogo | Jogador |
+| UC-S012 | Salvar Jogo | Jogador |
 
 ### UC-S001 - Movimentar Personagem
 
 | Campo | Conteúdo |
 | --- | --- |
 | ID | UC-S001 |
-| Descrição | O sistema deve permitir que Ani se mova pelo cenário. |
+| Descrição | Este caso de uso tem por objetivo permitir a movimentação de Ani pelo cenário durante a exploração lateral. |
 | Ator Primário | Jogador |
 | Pré-condição | Jogo iniciado com Ani carregado. |
 | Cenário Principal | 1. Jogador pressiona teclas de movimento.<br>2. Sistema captura a entrada.<br>3. Sistema aplica movimento no personagem.<br>4. Sistema verifica colisões.<br>5. Ani é movido corretamente pelo cenário. |
-| Pós-condição | Ani está em nova posição válida. |
+| Pós-condição | A posição de Ani é atualizada para uma coordenada válida no cenário, respeitando os limites e obstáculos existentes. |
 | Cenários Alternativos | - Se ocorrer colisão, o movimento é bloqueado. |
 
-### UC-S003 - Colidir com cenário
+### UC-S002 - Interagir com Objetos
+
+| Campo | Conteúdo |
+| --- | --- |
+| ID | UC-S002 |
+| Descrição | Este caso de uso permite que o jogador interaja com objetos significativos para acessar memórias, fragmentos narrativos ou elementos contemplativos do cenário. |
+| Ator Primário | Jogador |
+| Pré-condição | Ani deve estar próximo de um objeto interativo. |
+| Cenário Principal | 1. Jogador pressiona a tecla de interação.<br>2. Sistema identifica o tipo de objeto interativo.<br>3. Sistema ativa o conteúdo associado, como memória, fragmento textual, objeto restaurável ou evento contemplativo.<br>4. Quando aplicável, o conteúdo é registrado no diário de Ani. |
+| Pós-condição | O conteúdo associado ao objeto é disponibilizado ao jogador e, quando aplicável, registrado no diário de memórias. |
+| Cenários Alternativos | - Se o objeto não for interativo, nada acontece. |
+
+### UC-S003 - Dialogar com Personagens
 
 | Campo | Conteúdo |
 | --- | --- |
 | ID | UC-S003 |
-| Descrição | O sistema deve impedir Ani de atravessar objetos e barreiras sólidas. |
+| Descrição | Este caso de uso tem por objetivo permitir a interação narrativa com personagens de memória e arquétipos filosóficos. |
 | Ator Primário | Jogador |
-| Pré-condição | Ani em movimento. |
-| Cenário Principal | 1. Ani se move em direção a um obstáculo.<br>2. Sistema detecta a colisão.<br>3. O movimento é bloqueado na barreira. |
-| Pós-condição | Ani permanece na borda do obstáculo. |
-| Cenários Alternativos | - Se o objeto não tiver colisor definido, Ani o atravessa (falha do sistema). |
+| Pré-condição | Ani deve estar próximo de um personagem interativo. |
+| Cenário Principal | 1. Jogador aciona a interação.<br>2. Sistema identifica se a entidade é um personagem de memória ou um arquétipo filosófico.<br>3. Sistema exibe diálogo textual fragmentado.<br>4. Jogador avança o texto.<br>5. Quando aplicável, o conteúdo é registrado como memória narrativa ou reforço simbólico do ato atual. |
+| Pós-condição | O diálogo é concluído e o estado narrativo associado à interação é atualizado pelo sistema. |
+| Cenários Alternativos | - Se o jogador ignorar o NPC, o diálogo não é iniciado. |
 
-### UC-S004 - Interagir com Objeto
+### UC-S004 - Consultar Documentos Coletados
 
 | Campo | Conteúdo |
 | --- | --- |
 | ID | UC-S004 |
-| Descrição | O sistema deve permitir que Ani interaja com objetos significativos para acessar memórias, fragmentos narrativos ou elementos contemplativos do cenário. |
+| Descrição | Este caso de uso permite que o jogador consulte documentos e fragmentos já registrados no diário de memórias. |
 | Ator Primário | Jogador |
-| Pré-condição | Ani deve estar próximo de um objeto interativo. |
-| Cenário Principal | 1. Jogador pressiona a tecla de interação.<br>2. Sistema identifica o tipo de objeto interativo.<br>3. Sistema ativa o conteúdo associado, como memória, fragmento textual, objeto restaurável ou evento contemplativo.<br>4. Quando aplicável, o conteúdo é registrado no diário de Ani. |
-| Pós-condição | O conteúdo vinculado ao objeto é processado e, quando aplicável, registrado no diário. |
-| Cenários Alternativos | - Se o objeto não for interativo, nada acontece. |
+| Pré-condição | Pelo menos uma memória coletada. |
+| Cenário Principal | 1. Jogador acessa o diário.<br>2. Sistema abre o documento selecionado.<br>3. Jogador lê o conteúdo. |
+| Pós-condição | O documento selecionado é disponibilizado para leitura dentro do diário de memórias. |
+| Cenários Alternativos | - Se o diário não contiver documentos, exibe páginas em branco. |
 
-### UC-S005 - Interagir com NPCs
+### UC-S005 - Acessar Diário de Memórias
 
 | Campo | Conteúdo |
 | --- | --- |
 | ID | UC-S005 |
-| Descrição | O sistema deve permitir diálogos fragmentados com personagens de memória e arquétipos filosóficos. |
+| Descrição | Este caso de uso tem por objetivo permitir que o jogador acesse e navegue pelo diário de memórias de Ani. |
 | Ator Primário | Jogador |
-| Pré-condição | Ani deve estar próximo de um personagem interativo. |
-| Cenário Principal | 1. Jogador aciona a interação.<br>2. Sistema identifica se a entidade é um personagem de memória ou um arquétipo filosófico.<br>3. Sistema exibe diálogo textual fragmentado.<br>4. Jogador avança o texto.<br>5. Quando aplicável, o conteúdo é registrado como memória narrativa ou reforço simbólico do ato atual. |
-| Pós-condição | O diálogo é concluído e o conteúdo narrativo associado é processado pelo sistema. |
-| Cenários Alternativos | - Se o jogador ignorar o NPC, o diálogo não é iniciado. |
+| Pré-condição | Jogo em execução. |
+| Cenário Principal | 1. Jogador pressiona a tecla de inventário.<br>2. Sistema abre uma interface estilizada em forma de diário.<br>3. Jogador navega pelas páginas. |
+| Pós-condição | O diário de memórias é disponibilizado para navegação pelo jogador. |
+| Cenários Alternativos | - Se o inventário estiver vazio, mostra páginas sem conteúdo. |
 
-### UC-S006 - Ler Documentos
+### UC-S006 - Pausar Jogo
 
 | Campo | Conteúdo |
 | --- | --- |
 | ID | UC-S006 |
-| Descrição | O sistema deve permitir que o jogador abra documentos coletados. |
+| Descrição | Este caso de uso permite que o jogador suspenda temporariamente a sessão em andamento. |
 | Ator Primário | Jogador |
-| Pré-condição | Pelo menos uma memória coletada. |
-| Cenário Principal | 1. Jogador acessa o diário.<br>2. Sistema abre o documento selecionado.<br>3. Jogador lê o conteúdo. |
-| Pós-condição | O documento é exibido na tela. |
-| Cenários Alternativos | - Se o diário não contiver documentos, exibe páginas em branco. |
+| Pré-condição | Sessão em andamento. |
+| Cenário Principal | 1. Jogador pressiona a tecla de pausa.<br>2. Sistema suspende o gameplay.<br>3. Exibe o menu de pausa. |
+| Pós-condição | O estado da sessão é atualizado para pausado, mantendo o jogo suspenso até nova ação do jogador. |
+| Cenários Alternativos | - Se o jogador retomar, o jogo volta ao estado normal. |
 
-### UC-S007 - Abrir Inventário
+### UC-S007 - Configurar Jogo
 
 | Campo | Conteúdo |
 | --- | --- |
 | ID | UC-S007 |
-| Descrição | O sistema deve permitir que o jogador acesse o diário/inventário. |
+| Descrição | Este caso de uso tem por objetivo permitir que o jogador ajuste opções gerais da experiência de jogo. |
 | Ator Primário | Jogador |
-| Pré-condição | Jogo em execução. |
-| Cenário Principal | 1. Jogador pressiona a tecla de inventário.<br>2. Sistema abre uma interface estilizada em forma de diário.<br>3. Jogador navega pelas páginas. |
-| Pós-condição | Diário exibido na tela. |
-| Cenários Alternativos | - Se o inventário estiver vazio, mostra páginas sem conteúdo. |
+| Pré-condição | Menu de pausa ou inicial aberto. |
+| Cenário Principal | 1. Jogador acessa o menu de configurações.<br>2. Sistema exibe opções de vídeo, áudio e controles.<br>3. Jogador altera os valores. |
+| Pós-condição | As configurações selecionadas são aplicadas conforme as opções alteradas pelo jogador. |
+| Cenários Alternativos | - Se o jogador cancelar, as alterações não são salvas. |
 
-### UC-S008 - Pausar Jogo
+### UC-S008 - Ajustar Configurações de Vídeo
 
 | Campo | Conteúdo |
 | --- | --- |
 | ID | UC-S008 |
-| Descrição | O sistema deve permitir que o jogador pause o jogo. |
+| Descrição | Este caso de uso permite que o jogador ajuste parâmetros visuais, como resolução e qualidade gráfica. |
 | Ator Primário | Jogador |
-| Pré-condição | Sessão em andamento. |
-| Cenário Principal | 1. Jogador pressiona a tecla de pausa.<br>2. Sistema suspende o gameplay.<br>3. Exibe o menu de pausa. |
-| Pós-condição | Jogo pausado, aguardando ação. |
-| Cenários Alternativos | - Se o jogador retomar, o jogo volta ao estado normal. |
+| Pré-condição | Menu de configurações aberto. |
+| Cenário Principal | 1. Jogador seleciona as opções de vídeo.<br>2. Sistema aplica as alterações.<br>3. Exibe o resultado em tempo real. |
+| Pós-condição | O estado de configuração de vídeo da sessão é atualizado conforme os parâmetros selecionados. |
+| Cenários Alternativos | - Se o hardware não suportar, o sistema retorna à configuração padrão. |
 
-### UC-S009 - Configurar Jogo
+### UC-S009 - Ajustar Configurações de Áudio
 
 | Campo | Conteúdo |
 | --- | --- |
 | ID | UC-S009 |
-| Descrição | O sistema deve permitir que o jogador configure opções gerais. |
+| Descrição | Este caso de uso permite que o jogador ajuste volumes de música e efeitos sonoros. |
 | Ator Primário | Jogador |
-| Pré-condição | Menu de pausa ou inicial aberto. |
-| Cenário Principal | 1. Jogador acessa o menu de configurações.<br>2. Sistema exibe opções de vídeo, áudio e controles.<br>3. Jogador altera os valores. |
-| Pós-condição | Configurações aplicadas. |
-| Cenários Alternativos | - Se o jogador cancelar, as alterações não são salvas. |
+| Pré-condição | Menu de configurações aberto. |
+| Cenário Principal | 1. Jogador altera o volume da música e dos efeitos.<br>2. Sistema aplica a alteração.<br>3. Testa a configuração em tempo real. |
+| Pós-condição | O estado de configuração de áudio é atualizado conforme as preferências definidas pelo jogador. |
+| Cenários Alternativos | - Se a alteração for inválida, o sistema restaura os valores padrão. |
 
-### UC-S010 - Configurar Vídeo
+### UC-S010 - Configurar Controles
 
 | Campo | Conteúdo |
 | --- | --- |
 | ID | UC-S010 |
-| Descrição | O sistema deve permitir ajustes gráficos (resolução, qualidade). |
+| Descrição | Este caso de uso tem por objetivo permitir que o jogador personalize teclas e entradas de gamepad. |
 | Ator Primário | Jogador |
 | Pré-condição | Menu de configurações aberto. |
-| Cenário Principal | 1. Jogador seleciona as opções de vídeo.<br>2. Sistema aplica as alterações.<br>3. Exibe o resultado em tempo real. |
-| Pós-condição | Vídeo configurado conforme o jogador. |
-| Cenários Alternativos | - Se o hardware não suportar, o sistema retorna à configuração padrão. |
+| Cenário Principal | 1. Jogador seleciona a opção de controles.<br>2. Sistema permite redefinir teclas.<br>3. Jogador confirma as alterações. |
+| Pós-condição | As configurações de controle são atualizadas e salvas para uso em sessões futuras. |
+| Cenários Alternativos | - Se o jogador cancelar, o sistema mantém a configuração anterior. |
 
-### UC-S011 - Configurar Áudio
+### UC-S011 - Sair do Jogo
 
 | Campo | Conteúdo |
 | --- | --- |
 | ID | UC-S011 |
-| Descrição | O sistema deve permitir ajustes de volume e efeitos sonoros. |
+| Descrição | Este caso de uso permite que o jogador encerre a sessão de jogo. |
 | Ator Primário | Jogador |
-| Pré-condição | Menu de configurações aberto. |
-| Cenário Principal | 1. Jogador altera o volume da música e dos efeitos.<br>2. Sistema aplica a alteração.<br>3. Testa a configuração em tempo real. |
-| Pós-condição | Áudio ajustado conforme a preferência. |
-| Cenários Alternativos | - Se a alteração for inválida, o sistema restaura os valores padrão. |
+| Pré-condição | Jogo em execução. |
+| Cenário Principal | 1. Jogador seleciona sair.<br>2. Sistema exibe uma mensagem de confirmação.<br>3. Se confirmado, encerra a aplicação. |
+| Pós-condição | A sessão de jogo é finalizada e o estado de execução da aplicação é encerrado. |
+| Cenários Alternativos | - Se o jogador cancelar, a sessão continua. |
 
-### UC-S012 - Configurar Controles
+### UC-S012 - Salvar Jogo
 
 | Campo | Conteúdo |
 | --- | --- |
 | ID | UC-S012 |
-| Descrição | O sistema deve permitir customização de teclas e gamepad. |
+| Descrição | Este caso de uso tem por objetivo registrar o progresso do jogador em arquivo local para continuidade futura. |
 | Ator Primário | Jogador |
-| Pré-condição | Menu de configurações aberto. |
-| Cenário Principal | 1. Jogador seleciona a opção de controles.<br>2. Sistema permite redefinir teclas.<br>3. Jogador confirma as alterações. |
-| Pós-condição | Controles salvos para futuras sessões. |
-| Cenários Alternativos | - Se o jogador cancelar, o sistema mantém a configuração anterior. |
-
-### UC-S013 - Sair do Jogo
-
-| Campo | Conteúdo |
-| --- | --- |
-| ID | UC-S013 |
-| Descrição | O sistema deve permitir que o jogador encerre a sessão. |
-| Ator Primário | Jogador |
-| Pré-condição | Jogo em execução. |
-| Cenário Principal | 1. Jogador seleciona sair.<br>2. Sistema exibe uma mensagem de confirmação.<br>3. Se confirmado, encerra a aplicação. |
-| Pós-condição | Sessão de jogo finalizada. |
-| Cenários Alternativos | - Se o jogador cancelar, a sessão continua. |
-
-### UC-S014 - Carregar Cenário
-
-| Campo | Conteúdo |
-| --- | --- |
-| ID | UC-S014 |
-| Descrição | O sistema deve carregar o cenário atual ou um novo cenário conforme a progressão. |
-| Ator Primário | Sistema |
-| Pré-condição | Jogo iniciado ou transição de memória/cômodo. |
-| Cenário Principal | 1. Sistema carrega recursos visuais, sonoros e interativos do cenário correspondente ao ato ou à memória atual.<br>2. Sistema posiciona Ani no ponto inicial adequado.<br>3. Sistema atualiza o estado do diário, da atmosfera e dos elementos ativos do cenário. |
-| Pós-condição | Novo cenário exibido corretamente. |
-| Cenários Alternativos | - Se os recursos não carregarem, exibe mensagem de erro. |
-
-### UC-S015 - Gerenciar Diálogos
-
-| Campo | Conteúdo |
-| --- | --- |
-| ID | UC-S015 |
-| Descrição | O sistema deve controlar a exibição e o fluxo dos diálogos com NPCs. |
-| Ator Primário | Sistema |
-| Pré-condição | Interação com NPC iniciada. |
-| Cenário Principal | 1. Sistema apresenta balões de texto.<br>2. Gerencia o avanço do diálogo.<br>3. Aplica sons ou efeitos visuais conforme a fala. |
-| Pós-condição | Diálogo finalizado e registrado. |
-| Cenários Alternativos | - Se o diálogo for interrompido, o progresso é perdido. |
-
-### UC-S016 - Salvar Jogo
-
-| Campo | Conteúdo |
-| --- | --- |
-| ID | UC-S016 |
-| Descrição | O sistema deve salvar o progresso do jogador em arquivo local. |
-| Ator Primário | Sistema |
 | Pré-condição | Sessão em andamento. |
 | Cenário Principal | 1. Jogador solicita salvar.<br>2. Sistema coleta o estado atual do jogo, incluindo o ato em curso, as memórias registradas, o estado do diário e o estado visual da casa.<br>3. Sistema grava o arquivo de save. |
-| Pós-condição | Progresso registrado para continuidade futura. |
+| Pós-condição | O progresso do jogador é persistido em arquivo local, permitindo a continuidade da sessão em momento posterior. |
 | Cenários Alternativos | - Se ocorrer erro, o sistema notifica o jogador. |
 
 ### Referências Bibliográficas
@@ -1102,7 +1063,7 @@ As mecânicas do jogo são progressivamente removidas até restar apenas caminha
 
 Ani explora a casa e suas memórias interagindo com objetos significativos. Cartas, bilhetes, fotografias e fragmentos textuais ficam registrados em um diário de memórias com estética manual.
 
-*→ Formalizado em RF003 — Interagir com objetos, RF004 — Sistema de memórias, RF005 — Diário de memórias e UC-S004 — Interagir com Objeto.*
+*→ Formalizado em RF003 — Interagir com objetos, RF004 — Sistema de memórias, RF005 — Diário de memórias e UC-S002 — Interagir com Objetos.*
 
 O mesmo item pode adquirir nova leitura conforme os atos avançam. A mudança está menos no texto bruto e mais no contexto em que ele é reencontrado.
 
@@ -1150,7 +1111,7 @@ A tabela a seguir apresenta os controles previstos para a versão de PC.
 | Diário de memórias | Tab |
 | Contemplar | Sem botão dedicado; depende de parar e observar |
 
-*→ Formalizado em RF001 — Movimentar personagem, RF003 — Interagir com objetos, RF005 — Diário de memórias e UC-S001/UC-S004/UC-S007.*
+*→ Formalizado em RF001 — Movimentar personagem, RF003 — Interagir com objetos, RF005 — Diário de memórias e UC-S001/UC-S002/UC-S005.*
 
 ## 8. Áudio
 
@@ -1226,7 +1187,7 @@ Cada ato segue um ciclo estrutural simples:
 4. Retornar à casa e registrar o avanço no diário.
 5. Abrir passagem para o ato seguinte.
 
-*→ Interações representadas em UC-S004 — Interagir com Objeto, UC-S006 — Ler Documentos e UC-S016 — Salvar Jogo.*
+*→ Interações representadas em UC-S002 — Interagir com Objetos, UC-S004 — Consultar Documentos Coletados e UC-S012 — Salvar Jogo.*
 
 ## 11. Reformulação em Relação ao GDD Anterior
 

@@ -273,7 +273,7 @@ As mecânicas do jogo são progressivamente removidas até restar apenas caminha
 
 Ani explora a casa e suas memórias interagindo com objetos significativos. Cartas, bilhetes, fotografias e fragmentos textuais ficam registrados em um diário de memórias com estética manual.
 
-*→ Formalizado em RF003 — Interagir com objetos, RF004 — Sistema de memórias, RF005 — Diário de memórias e UC-S004 — Interagir com Objeto (docs/requisitos/requisitos-funcionais.md; docs/caso-de-uso/README.md).*
+*→ Formalizado em RF003 — Interagir com objetos, RF004 — Sistema de memórias, RF005 — Diário de memórias e UC-S002 — Interagir com Objetos (docs/requisitos/requisitos-funcionais.md; docs/caso-de-uso/README.md).*
 
 O mesmo item pode adquirir nova leitura conforme os atos avançam. A mudança está menos no texto bruto e mais no contexto em que ele é reencontrado.
 
@@ -319,7 +319,7 @@ A tabela a seguir apresenta os controles previstos para a versão de PC.
 | Diário de memórias | Tab |
 | Contemplar | Sem botão dedicado; depende de parar e observar |
 
-*→ Formalizado em RF001 — Movimentar personagem, RF003 — Interagir com objetos, RF005 — Diário de memórias e UC-S001/UC-S004/UC-S007 (docs/requisitos/requisitos-funcionais.md; docs/caso-de-uso/README.md).*
+*→ Formalizado em RF001 — Movimentar personagem, RF003 — Interagir com objetos, RF005 — Diário de memórias e UC-S001/UC-S002/UC-S005 (docs/requisitos/requisitos-funcionais.md; docs/caso-de-uso/README.md).*
 
 ## 8. Áudio
 
@@ -395,7 +395,7 @@ Cada ato segue um ciclo estrutural simples:
 4. Retornar à casa e registrar o avanço no diário.
 5. Abrir passagem para o ato seguinte.
 
-*→ Interações representadas em UC-S004 — Interagir com Objeto, UC-S006 — Ler Documentos e UC-S016 — Salvar Jogo (docs/caso-de-uso/README.md).*
+*→ Interações representadas em UC-S002 — Interagir com Objetos, UC-S004 — Consultar Documentos Coletados e UC-S012 — Salvar Jogo (docs/caso-de-uso/README.md).*
 
 ## 11. Encerramento
 

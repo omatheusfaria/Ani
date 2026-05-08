@@ -4,7 +4,7 @@ Caso de uso é uma técnica de modelagem utilizada para descrever, sob a perspec
 
 A importância do caso de uso está em apoiar a identificação e a organização dos requisitos funcionais, além de tornar mais clara a relação entre os atores e as principais funcionalidades do sistema. Essa modelagem também contribui para delimitar o escopo do projeto e facilitar a comunicação entre desenvolvimento, orientação e demais envolvidos [1][2].
 
-No projeto **Ani**, os casos de uso são importantes para representar as principais interações entre o jogador e o sistema, como movimentação, interação com objetos, leitura de documentos, gerenciamento de diálogos, salvamento de progresso e configuração da experiência.
+No projeto **Ani**, os casos de uso são importantes para representar as principais interações entre o jogador e o sistema, como movimentação, interação com objetos, leitura de documentos, acesso ao diário de memórias, salvamento de progresso e configuração da experiência.
 
 A Figura 1 apresenta o diagrama de casos de uso do projeto **Ani**, elaborado conforme o modelo estudado nas aulas de Engenharia de Software.
 
@@ -18,38 +18,38 @@ O Quadro 1 apresenta o índice dos casos de uso atualmente documentados no proje
 
 ## Quadro 1 - Índice de Casos de Uso do projeto Ani
 
-| ID | Caso de Uso | Ator Primário |
+| ID | Caso de Uso Revisado | Ator Primário |
 | --- | --- | --- |
 | UC-S001 | Movimentar Personagem | Jogador |
-| UC-S003 | Colidir com cenário | Jogador |
-| UC-S004 | Interagir com Objeto | Jogador |
-| UC-S005 | Interagir com NPCs | Jogador |
-| UC-S006 | Ler Documentos | Jogador |
-| UC-S007 | Abrir Inventário | Jogador |
-| UC-S008 | Pausar Jogo | Jogador |
-| UC-S009 | Configurar Jogo | Jogador |
-| UC-S010 | Configurar Vídeo | Jogador |
-| UC-S011 | Configurar Áudio | Jogador |
-| UC-S012 | Configurar Controles | Jogador |
-| UC-S013 | Sair do Jogo | Jogador |
-| UC-S014 | Carregar Cenário | Sistema |
-| UC-S015 | Gerenciar Diálogos | Sistema |
-| UC-S016 | Salvar Jogo | Sistema |
+| UC-S002 | Interagir com Objetos | Jogador |
+| UC-S003 | Dialogar com Personagens | Jogador |
+| UC-S004 | Consultar Documentos Coletados | Jogador |
+| UC-S005 | Acessar Diário de Memórias | Jogador |
+| UC-S006 | Pausar Jogo | Jogador |
+| UC-S007 | Configurar Jogo | Jogador |
+| UC-S008 | Ajustar Configurações de Vídeo | Jogador |
+| UC-S009 | Ajustar Configurações de Áudio | Jogador |
+| UC-S010 | Configurar Controles | Jogador |
+| UC-S011 | Sair do Jogo | Jogador |
+| UC-S012 | Salvar Jogo | Jogador |
 
 O Quadro 2 apresenta, como exemplo, a especificação de um dos casos de uso do projeto.
 
-## Quadro 2 - Especificação de Caso de Uso: Interagir com Objeto
+## Quadro 2 - Especificação de Caso de Uso: Interagir com Objetos
 
 | Campo | Descrição |
 | --- | --- |
-| Caso de Uso | UC-S004 - Interagir com Objeto |
-| ID | UC-S004 |
-| Descrição | O sistema deve permitir que Ani interaja com objetos significativos para acessar memórias, fragmentos narrativos ou elementos contemplativos do cenário. |
+| Caso de Uso | UC-S002 - Interagir com Objetos |
+| ID | UC-S002 |
+| Nome revisado | Interagir com Objetos |
+| Descrição | Este caso de uso permite que o jogador interaja com objetos significativos para acessar memórias, fragmentos narrativos ou elementos contemplativos do cenário. |
 | Ator Primário | Jogador |
 | Pré-condição | Ani deve estar próximo de um objeto interativo. |
 | Cenário Principal | 1. Jogador pressiona a tecla de interação.<br>2. Sistema identifica o tipo de objeto interativo.<br>3. Sistema ativa o conteúdo associado, como memória, fragmento textual, objeto restaurável ou evento contemplativo.<br>4. Quando aplicável, o conteúdo é registrado no diário de Ani. |
-| Pós-condição | O conteúdo vinculado ao objeto é processado e, quando aplicável, registrado no diário. |
+| Pós-condição | O conteúdo associado ao objeto é disponibilizado ao jogador e, quando aplicável, registrado no diário de memórias. |
 | Cenários Alternativos | Se o objeto não for interativo, nada acontece. |
+| Observações arquiteturais | Mantém relação direta com RF003, RF004, RF015 e RF016. |
+| Indicação | Permanecer. |
 
 A documentação completa de casos de uso, incluindo o índice de casos de uso, o diagrama e a especificação de cada caso, pode ser consultada em [caso-de-uso.md](./caso-de-uso.md).
 
