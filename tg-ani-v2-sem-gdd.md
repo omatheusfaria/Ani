@@ -9,8 +9,8 @@ Nesse contexto, o projeto **Ani אֲנִי** propõe um side-scroller narrativo 
 | Título | Ani |
 | Gênero | Side-scroller narrativo contemplativo |
 | Plataforma principal | PC (Windows) |
-| Engine | Unity |
-| Linguagem | C# |
+| Engine | Unreal Engine |
+| Linguagem | C++ |
 | Câmera | Lateral fixa com zoom narrativo |
 | Público-alvo | 16 a 28 anos, com interesse em filosofia, arte e narrativas reflexivas |
 | Tom | Sombrio, melancólico e contemplativo, com redenção gradual |
@@ -40,7 +40,7 @@ O objetivo geral do projeto é desenvolver um protótipo funcional de jogo narra
 
 A justificativa do trabalho apoia-se na singularidade dos jogos digitais como meio para representar experiências internas e subjetivas. Em **Ani**, a ausência de combate, de HUD numérico permanente e de moralidade binária não decorre de limitação técnica, mas de aderência ao objeto de pesquisa. Como o foco está na travessia do sofrimento, na observação e na transformação de percepção, a interface minimalista, as pausas, o silêncio e as mecânicas contemplativas tornam-se escolhas metodologicamente coerentes com o que se pretende investigar em software interativo.
 
-O projeto é desenvolvido segundo a metodologia Cascata, com fases sequenciais de levantamento de requisitos, modelagem, design de sistemas e implementação. As ferramentas centrais registradas no projeto são Unity, C#, Aseprite, Photoshop/Illustrator e Audacity/FMOD. A organização deste documento acompanha esse percurso: após a introdução, apresenta-se o Termo de Abertura do Projeto; em seguida, o levantamento de requisitos, com BPMN, requisitos, regras, casos de uso, diagrama de classes e DER; depois, as ferramentas e métodos empregados; por fim, descreve-se o desenvolvimento do protótipo funcional.
+O projeto é desenvolvido segundo a metodologia Cascata, com fases sequenciais de levantamento de requisitos, modelagem, design de sistemas e implementação. As ferramentas centrais registradas no projeto são Unreal Engine, C++, Aseprite, Photoshop/Illustrator e Audacity/FMOD. A organização deste documento acompanha esse percurso: após a introdução, apresenta-se o Termo de Abertura do Projeto; em seguida, o levantamento de requisitos, com BPMN, requisitos, regras, casos de uso, diagrama de classes e DER; depois, as ferramentas e métodos empregados; por fim, descreve-se o desenvolvimento do protótipo funcional.
 
 # 1.1 Termo de Abertura do Projeto (TAP)
 
@@ -58,8 +58,8 @@ No caso de **Ani**, o TAP organiza a proposta de um jogo narrativo contemplativo
 | Tipo | Jogo digital narrativo contemplativo |
 | Área | Desenvolvimento de software e jogos digitais |
 | Plataforma inicial | PC (Windows) |
-| Motor de jogo | Unity |
-| Linguagem principal | C# |
+| Motor de jogo | Unreal Engine |
+| Linguagem principal | C++ |
 | Natureza do projeto | Projeto autoral com finalidade acadêmica e prototipação |
 
 ### Ficha do Produto
@@ -69,8 +69,8 @@ No caso de **Ani**, o TAP organiza a proposta de um jogo narrativo contemplativo
 | Título | Ani |
 | Gênero | Side-scroller narrativo contemplativo |
 | Plataforma principal | PC (Windows) |
-| Engine | Unity |
-| Linguagem | C# |
+| Engine | Unreal Engine |
+| Linguagem | C++ |
 | Câmera | Lateral fixa com zoom narrativo |
 | Público-alvo | 16 a 28 anos, com interesse em filosofia, arte e narrativas reflexivas |
 | Tom | Sombrio, melancólico e contemplativo, com redenção gradual |
@@ -108,8 +108,8 @@ A modelagem utiliza BPMN para representação dos fluxos de gameplay e UML para 
 
 As tecnologias e ferramentas utilizadas são:
 
-- Unity como motor de jogo;
-- C# como linguagem de programação;
+- Unreal Engine como motor de jogo;
+- C++ como linguagem de programação;
 - Aseprite para sprites e animações;
 - Photoshop / Illustrator para ilustrações e texturas;
 - Audacity / FMOD para design sonoro e efeitos de áudio.
@@ -217,7 +217,7 @@ A elicitação de requisitos corresponde ao processo de identificar, compreender
 
 No presente projeto, a elicitação foi conduzida principalmente por análise documental e refinamento iterativo. A documentação já existente do jogo funcionou como base primária para transformar intenções conceituais em exigências formais de software. Em especial, o documento de direção do projeto exerceu o papel de fonte de requisitos de produto, registrando narrativa, mecânicas, mundo, interface, áudio e especificações técnicas que depois foram convertidos em artefatos de engenharia.
 
-Além da análise documental, o refinamento ocorreu pelo confronto entre intenção de design e viabilidade de implementação na engine Unity. Isso permitiu distinguir funcionalidades centrais do protótipo, desdobrar mecânicas em regras verificáveis e traduzir elementos atmosféricos em restrições não funcionais e comportamentos do sistema. Tal processo foi particularmente importante porque **Ani** não depende apenas de ações visíveis, mas também de transformações internas, progressão sensorial e mudanças de leitura ao longo dos atos.
+Além da análise documental, o refinamento ocorreu pelo confronto entre intenção de design e viabilidade de implementação na Unreal Engine. Isso permitiu distinguir funcionalidades centrais do protótipo, desdobrar mecânicas em regras verificáveis e traduzir elementos atmosféricos em restrições não funcionais e comportamentos do sistema. Tal processo foi particularmente importante porque **Ani** não depende apenas de ações visíveis, mas também de transformações internas, progressão sensorial e mudanças de leitura ao longo dos atos.
 
 Quanto à classificação, adotou-se a distinção entre requisitos **evidentes**, visíveis ao usuário final em suas interações diretas, e requisitos **ocultos**, relacionados à organização interna da progressão, às mecânicas por ato e aos efeitos sistêmicos que moldam a experiência. Também se utilizou priorização por níveis, com destaque para Altíssima, Alta e Média, permitindo identificar o núcleo funcional indispensável do protótipo.
 
@@ -837,19 +837,19 @@ A seleção de ferramentas do projeto foi orientada por três critérios centrai
 
 Além disso, as ferramentas utilizadas apresentam licenças compatíveis com uso acadêmico e estão alinhadas às tecnologias registradas no Termo de Abertura do Projeto. Sempre que os artefatos-fonte não informam versão específica utilizada, essa ausência é explicitada, a fim de preservar a fidelidade documental.
 
-### Ferramenta: Unity
+### Ferramenta: Unreal Engine
 **Versão utilizada:** não especificada nos artefatos-fonte  
-**Tipo de licença:** Unity Personal (uso educacional)  
+**Tipo de licença:** licença da Epic Games, com uso gratuito conforme condições da Unreal Engine  
 **Site oficial:** não especificado nos artefatos-fonte  
 **Função no projeto:** motor de jogo responsável pela implementação do protótipo, gerenciamento de cenas, lógica de gameplay, física, interface e integração audiovisual.  
-**Justificativa de escolha:** foi escolhida por suportar desenvolvimento 2D com side-scroller lateral, câmera lateral fixa e elementos 3D estilizados, conforme a base técnica do projeto. Também oferece suporte a partículas e efeitos úteis para distorção emocional e transições por ato.
+**Justificativa de escolha:** foi escolhida por oferecer recursos robustos para ambientes 3D estilizados, câmera lateral, iluminação, efeitos visuais e organização modular de sistemas de gameplay, mantendo aderência à proposta de um side-scroller narrativo contemplativo.
 
-### Ferramenta: C#
+### Ferramenta: C++
 **Versão utilizada:** não especificada nos artefatos-fonte  
 **Tipo de licença:** não especificada nos artefatos-fonte  
 **Site oficial:** não especificado nos artefatos-fonte  
 **Função no projeto:** linguagem principal de programação para implementação dos sistemas do jogo.  
-**Justificativa de escolha:** foi adotada por ser a linguagem nativa da Unity e por favorecer modelagem orientada a objetos coerente com o diagrama de classes, especialmente na organização de `Jogo`, `Ato`, `Ani`, `Memoria` e `Diario`.
+**Justificativa de escolha:** foi adotada por ser a linguagem principal de programação da Unreal Engine e por favorecer uma modelagem modular e orientada a objetos coerente com o diagrama de classes, especialmente na organização de `Jogo`, `Ato`, `Ani`, `Memoria` e `Diario`.
 
 ### Ferramenta: Aseprite
 **Versão utilizada:** não especificada nos artefatos-fonte  
@@ -892,7 +892,7 @@ Além disso, as ferramentas utilizadas apresentam licenças compatíveis com uso
 | TAP | Markdown |
 | BPMN | draw.io / diagrams.net |
 | Diagrama de Classes | draw.io / diagrams.net |
-| Código-fonte | Unity / C# |
+| Código-fonte | Unreal Engine / C++ |
 | Assets visuais | Aseprite / Photoshop |
 | Assets de áudio | Audacity / FMOD |
 

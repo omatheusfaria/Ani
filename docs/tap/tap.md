@@ -8,8 +8,8 @@
 | Tipo | Jogo digital narrativo contemplativo |
 | Área | Desenvolvimento de software e jogos digitais |
 | Plataforma inicial | PC (Windows) |
-| Motor de jogo | Unity |
-| Linguagem principal | C# |
+| Motor de jogo | Unreal Engine |
+| Linguagem principal | C++ |
 | Natureza do projeto | Projeto autoral com finalidade acadêmica e prototipação |
 
 ## 2. Problema de Pesquisa
@@ -44,8 +44,8 @@ A modelagem utiliza BPMN para representação dos fluxos de gameplay e UML para 
 
 As tecnologias e ferramentas utilizadas são:
 
-- Unity como motor de jogo;
-- C# como linguagem de programação;
+- Unreal Engine como motor de jogo;
+- C++ como linguagem de programação;
 - Aseprite para sprites e animações;
 - Photoshop / Illustrator para ilustrações e texturas;
 - Audacity / FMOD para design sonoro e efeitos de áudio.
