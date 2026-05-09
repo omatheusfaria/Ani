@@ -21,6 +21,8 @@ Representa cada etapa da progressão narrativa do jogo.
 | `id_ato` | Identificador do ato. |
 | `nome` | Nome do ato. |
 | `descricao` | Descrição do ato. |
+| `concluido` | Indica se o ato foi concluído. |
+| `limiar_memorias` | Quantidade mínima de memórias considerada para conclusão ou avanço do ato. |
 
 ### Cenario
 
@@ -30,8 +32,8 @@ Representa os cenários pertencentes aos atos.
 | --- | --- |
 | `id_cenario` | Identificador do cenário. |
 | `nome` | Nome do cenário. |
-| `tipo` | Tipo do cenário. |
 | `descricao` | Descrição resumida do cenário. |
+| `desbloqueado` | Indica se o cenário está disponível para acesso. |
 
 ### Diario
 
@@ -63,7 +65,8 @@ Representa os fragmentos narrativos relacionados ao diário e aos objetos do mun
 | `id_memoria` | Identificador da memória. |
 | `titulo` | Título da memória. |
 | `conteudo` | Conteúdo da memória. |
-| `tipo` | Tipo da memória. |
+| `ato_origem` | Ato ao qual a memória está vinculada. |
+| `coletada` | Indica se a memória já foi registrada na experiência do jogador. |
 
 ### ObjetoInterativo
 
@@ -81,7 +84,7 @@ O diagrama mostra uma especialização de `ObjetoInterativo` em três subtipos:
 
 | Subtipo | Atributo próprio | Finalidade |
 | --- | --- | --- |
-| `ObjetoMemoria` | `gatilhoNarrativo` | Dispara a revelação de memórias. |
+| `ObjetoMemoria` | `coletada` | Dispara a revelação e o registro de memórias. |
 | `ObjetoRestauravel` | `estado` | Guarda o estado de objetos restauráveis. |
 | `ObjetoContemplativo` | `tempoMinimoObservacao` | Controla interações contemplativas por tempo de observação. |
 

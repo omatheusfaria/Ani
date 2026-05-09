@@ -21,13 +21,13 @@ O Quadro 1 apresenta as entidades, atributos e especializações modeladas no DE
 | Entidade | Atributos | Observação |
 | --- | --- | --- |
 | `Save` | `id_save`, `data_criacao`, `data_ultima_atualizacao` | Representa o estado geral salvo da partida. |
-| `Ato` | `id_ato`, `nome`, `descricao` | Representa cada etapa narrativa e filosófica do jogo. |
-| `Cenario` | `id_cenario`, `nome`, `tipo`, `descricao` | Representa os cenários vinculados aos atos. |
+| `Ato` | `id_ato`, `nome`, `descricao`, `concluido`, `limiar_memorias` | Representa cada etapa narrativa e filosófica do jogo. |
+| `Cenario` | `id_cenario`, `nome`, `descricao`, `desbloqueado` | Representa os cenários vinculados aos atos. |
 | `Diario` | `id_diario`, `titulo`, `descricao` | Representa o diário associado ao progresso do jogador. |
 | `EntradaDiario` | `id_entrada`, `titulo`, `texto`, `ordem` | Representa cada registro exibido dentro do diário. |
-| `Memoria` | `id_memoria`, `titulo`, `conteudo`, `tipo` | Representa os fragmentos narrativos acessados ao longo da experiência. |
+| `Memoria` | `id_memoria`, `titulo`, `conteudo`, `ato_origem`, `coletada` | Representa os fragmentos narrativos acessados ao longo da experiência. |
 | `ObjetoInterativo` | `id_objeto`, `nome`, `descricao` | Entidade genérica para objetos com interação e impacto narrativo. |
-| `ObjetoMemoria` | `gatilhoNarrativo` | Especialização de `ObjetoInterativo` voltada a revelar memórias. |
+| `ObjetoMemoria` | `coletada` | Especialização de `ObjetoInterativo` voltada a revelar e registrar memórias. |
 | `ObjetoRestauravel` | `estado` | Especialização de `ObjetoInterativo` voltada à restauração de objetos. |
 | `ObjetoContemplativo` | `tempoMinimoObservacao` | Especialização de `ObjetoInterativo` voltada a eventos contemplativos. |
 
