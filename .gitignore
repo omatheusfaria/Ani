@@ -1,3 +1,5 @@
 .obsidian/workspace*.json
 *.lnk
 *.docx
+.claude/skills/
+skills-lock.json
