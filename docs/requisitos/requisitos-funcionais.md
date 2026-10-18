@@ -1,6 +1,8 @@
 # Requisitos Funcionais
 
-Este documento reúne as funcionalidades atualmente alinhadas ao GDD reformulado de **Ani**.
+Requisitos funcionais descrevem as funcionalidades, os serviços e os comportamentos que o sistema deve oferecer para atender às necessidades dos usuários e aos objetivos do projeto. Eles indicam, portanto, o que o software deve fazer, incluindo ações, respostas, operações e interações esperadas durante seu uso [1].
+
+No projeto **Ani**, os requisitos funcionais reúnem as funcionalidades atualmente alinhadas ao GDD reformulado, incluindo movimentação, interação com objetos, sistema de memórias, progressão por atos e mecânicas específicas da experiência narrativa.
 
 | Código | Título | Categoria | Prioridade | Descrição |
 | --- | --- | --- | --- | --- |
@@ -15,11 +17,15 @@ Este documento reúne as funcionalidades atualmente alinhadas ao GDD reformulado
 | RF009 | Sistema de save/load | Evidente | Altíssima | O sistema deve salvar e carregar o progresso do jogador, incluindo ato atual, memórias registradas, estado do diário e estado visual da casa. |
 | RF010 | Feedback sonoro e musical por ato | Evidente | Alta | O sistema deve adaptar trilha sonora e efeitos sonoros de acordo com o ato filosófico em curso. |
 | RF011 | Suporte a gamepad | Evidente | Média | O sistema deve permitir que o jogo seja controlado também por gamepad. |
-| RF012 | Progressão por atos filosóficos | Oculto | Altíssima | O jogo deve ser estruturado em cinco atos sequenciais, com mudança de atmosfera, paleta, comportamento das manifestações e mecânicas conforme a progressão. |
-| RF013 | Mecânica de peso literal no Ato I | Oculto | Alta | No Ato I, cada memória tocada deve aumentar a sensação de peso no deslocamento de Ani, tornando o avanço mais lento. |
-| RF014 | Mecânica de ecos de decisão no Ato II | Oculto | Alta | No Ato II, o jogador deve poder revisitar situações em que tenta agir de outro modo, mas o resultado permanece preso ao mesmo impasse narrativo. |
-| RF015 | Mecânica de restauração por aceitação no Ato III | Evidente | Alta | No Ato III, o sistema deve permitir a restauração de objetos quebrados sem apagar suas marcas, em linha com a ideia de Kintsugi. |
-| RF016 | Mecânica de contemplação ativa no Ato IV | Oculto | Alta | No Ato IV, o sistema deve revelar fragmentos de narração quando o jogador permanece em observação diante de elementos contemplativos do cenário. |
-| RF017 | Dissolução de mecânicas no Ato V | Oculto | Alta | No Ato V, o sistema deve retirar progressivamente as mecânicas centrais dos atos anteriores até restarem principalmente deslocamento e contemplação. |
+| RF012 | Progressão por atos filosóficos | Oculto | Altíssima | O sistema deve estruturar o jogo em cinco atos sequenciais, com mudança de atmosfera, paleta, comportamento das manifestações e mecânicas conforme a progressão. |
+| RF013 | Mecânica de peso literal no Ato I | Oculto | Alta | O sistema deve aumentar a sensação de peso no deslocamento de Ani a cada memória tocada no Ato I, tornando o avanço mais lento. |
+| RF014 | Mecânica de ecos de decisão no Ato II | Oculto | Alta | O sistema deve permitir que o jogador revisite, no Ato II, situações em que tenta agir de outro modo, mantendo o resultado preso ao mesmo impasse narrativo. |
+| RF015 | Mecânica de restauração por aceitação no Ato III | Evidente | Alta | O sistema deve permitir, no Ato III, a restauração de objetos quebrados sem apagar suas marcas, em linha com a ideia de Kintsugi. |
+| RF016 | Mecânica de contemplação ativa no Ato IV | Oculto | Alta | O sistema deve revelar, no Ato IV, fragmentos de narração quando o jogador permanece em observação diante de elementos contemplativos do cenário. |
+| RF017 | Dissolução de mecânicas no Ato V | Oculto | Alta | O sistema deve retirar progressivamente, no Ato V, as mecânicas centrais dos atos anteriores até restarem principalmente deslocamento e contemplação. |
 | RF018 | Crises de ansiedade como elemento sensorial | Oculto | Alta | O sistema deve representar crises de ansiedade por distorção visual, fragmentação sonora e intensificação das manifestações, sem depender de um sistema de escolhas morais. |
-| RF019 | Desbloqueio mínimo de memórias no Ato I | Oculto | Alta | No Ato I, a passagem para o ato seguinte deve ser liberada após a coleta de uma quantidade mínima de memórias. Esse limiar existe para permitir que o jogador avance sem consumir todas as memórias do ato. O valor exato pode ser ajustado durante o refinamento do projeto. |
+| RF019 | Desbloqueio mínimo de memórias no Ato I | Oculto | Alta | O sistema deve liberar, no Ato I, a passagem para o ato seguinte após a coleta de uma quantidade mínima de memórias, permitindo que o jogador avance sem consumir todas as memórias do ato. O valor exato desse limiar pode ser ajustado durante o refinamento do projeto. |
+
+## Referência
+
+[1] IBM. *What is requirements management?* Disponível em: <https://www.ibm.com/think/topics/what-is-requirements-management>. Acesso em: 22 mar. 2026.
