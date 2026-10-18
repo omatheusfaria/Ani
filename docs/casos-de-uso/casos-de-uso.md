@@ -19,7 +19,9 @@
 | UC-S011 | Sair do Jogo | Jogador |
 | UC-S012 | Salvar Jogo | Jogador |
 
-| Caso de Uso | Movimentar Personagem |
+**Quadro 4 – Use Case Movimentar Personagem**
+
+| Caso de Uso – Movimentar Personagem | |
 | --- | --- |
 | **ID** | UC-S001 |
 | **Descrição** | Este caso de uso tem por objetivo permitir a movimentação de Ani pelo cenário durante a exploração lateral. |
@@ -31,7 +33,9 @@
 
 ---
 
-| Caso de Uso | Interagir com Objetos |
+**Quadro 5 – Use Case Interagir com Objetos**
+
+| Caso de Uso – Interagir com Objetos | |
 | --- | --- |
 | **ID** | UC-S002 |
 | **Descrição** | Este caso de uso permite que o jogador interaja com objetos significativos para acessar memórias, fragmentos narrativos ou elementos contemplativos do cenário. |
@@ -43,7 +47,9 @@
 
 ---
 
-| Caso de Uso | Dialogar com Personagens |
+**Quadro 6 – Use Case Dialogar com Personagens**
+
+| Caso de Uso – Dialogar com Personagens | |
 | --- | --- |
 | **ID** | UC-S003 |
 | **Descrição** | Este caso de uso tem por objetivo permitir a interação narrativa com personagens de memória e arquétipos filosóficos. |
@@ -55,7 +61,9 @@
 
 ---
 
-| Caso de Uso | Consultar Documentos Coletados |
+**Quadro 7 – Use Case Consultar Documentos Coletados**
+
+| Caso de Uso – Consultar Documentos Coletados | |
 | --- | --- |
 | **ID** | UC-S004 |
 | **Descrição** | Este caso de uso permite que o jogador consulte documentos e fragmentos já registrados no diário de memórias. |
@@ -67,7 +75,9 @@
 
 ---
 
-| Caso de Uso | Acessar Diário de Memórias |
+**Quadro 8 – Use Case Acessar Diário de Memórias**
+
+| Caso de Uso – Acessar Diário de Memórias | |
 | --- | --- |
 | **ID** | UC-S005 |
 | **Descrição** | Este caso de uso tem por objetivo permitir que o jogador acesse e navegue pelo diário de memórias de Ani. |
@@ -79,7 +89,9 @@
 
 ---
 
-| Caso de Uso | Pausar Jogo |
+**Quadro 9 – Use Case Pausar Jogo**
+
+| Caso de Uso – Pausar Jogo | |
 | --- | --- |
 | **ID** | UC-S006 |
 | **Descrição** | Este caso de uso permite que o jogador suspenda temporariamente a sessão em andamento. |
@@ -91,7 +103,9 @@
 
 ---
 
-| Caso de Uso | Configurar Jogo |
+**Quadro 10 – Use Case Configurar Jogo**
+
+| Caso de Uso – Configurar Jogo | |
 | --- | --- |
 | **ID** | UC-S007 |
 | **Descrição** | Este caso de uso tem por objetivo permitir que o jogador ajuste opções gerais da experiência de jogo. |
@@ -103,7 +117,9 @@
 
 ---
 
-| Caso de Uso | Ajustar Configurações de Vídeo |
+**Quadro 11 – Use Case Ajustar Configurações de Vídeo**
+
+| Caso de Uso – Ajustar Configurações de Vídeo | |
 | --- | --- |
 | **ID** | UC-S008 |
 | **Descrição** | Este caso de uso permite que o jogador ajuste parâmetros visuais, como resolução e qualidade gráfica. |
@@ -115,7 +131,9 @@
 
 ---
 
-| Caso de Uso | Ajustar Configurações de Áudio |
+**Quadro 12 – Use Case Ajustar Configurações de Áudio**
+
+| Caso de Uso – Ajustar Configurações de Áudio | |
 | --- | --- |
 | **ID** | UC-S009 |
 | **Descrição** | Este caso de uso permite que o jogador ajuste volumes de música e efeitos sonoros. |
@@ -127,7 +145,9 @@
 
 ---
 
-| Caso de Uso | Configurar Controles |
+**Quadro 13 – Use Case Configurar Controles**
+
+| Caso de Uso – Configurar Controles | |
 | --- | --- |
 | **ID** | UC-S010 |
 | **Descrição** | Este caso de uso tem por objetivo permitir que o jogador personalize teclas e entradas de gamepad. |
@@ -139,7 +159,9 @@
 
 ---
 
-| Caso de Uso | Sair do Jogo |
+**Quadro 14 – Use Case Sair do Jogo**
+
+| Caso de Uso – Sair do Jogo | |
 | --- | --- |
 | **ID** | UC-S011 |
 | **Descrição** | Este caso de uso permite que o jogador encerre a sessão de jogo. |
@@ -151,7 +173,9 @@
 
 ---
 
-| Caso de Uso | Salvar Jogo |
+**Quadro 15 – Use Case Salvar Jogo**
+
+| Caso de Uso – Salvar Jogo | |
 | --- | --- |
 | **ID** | UC-S012 |
 | **Descrição** | Este caso de uso tem por objetivo registrar o progresso do jogador em arquivo local para continuidade futura. |

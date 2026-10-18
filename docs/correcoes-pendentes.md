@@ -12,8 +12,10 @@ Status: `aberta`, `decisão` (depende de escolha do autor) ou `resolvida`.
 | 2 | aberta | RNF sem nome (`RNFxxx-Nome`) e sem coluna Tipo; classificação gravada como texto único ("Obrigatório, permanente"). | Notas `docs/requisitos/nao-funcionais/` | Adicionar `nome` e `tipo_rnf` no frontmatter de cada RNF (o script já os usa; hoje sai "—"). Padronizar "Permanente"/"Transitório" com inicial maiúscula. |
 | 3 | aberta | Casos de uso têm campos fora do modelo ("Nome revisado", "Observações arquiteturais", "Indicação"), omitidos no consolidado. | Notas `docs/casos-de-uso/` | Decidir se esses campos continuam só nas notas (como anotação de trabalho) ou se são removidos. |
 | 4 | aberta | Cenários alternativos não estão numerados no padrão do modelo (4a, 4a.1). | Todas as notas de UC | Renumerar referenciando o passo do cenário principal. |
-| 5 | aberta | Os formatos acima vêm da skill, não foram conferidos no `.docx` do modelo (o arquivo não está na pasta do repositório). | `tg-modelo-prjSoftware-ads-v2023ago.docx` | Colocar o modelo na pasta e conferir colunas de RF e classificação de RNF. |
-| 6 | decisão | Referências usam "Acesso em: 22 mar. 2026" (NBR 6023:2018); o modelo cita NBR 6023:2002 ("Acesso em: 05.out.2015"). | Todos os documentos com referências | Confirmar com o orientador qual norma vale e padronizar. |
+| 5 | resolvida | Formatos dos quadros conferidos no `.docx` do modelo. O gerador passou a usar as caixas de seleção do modelo (`(X) Evidente`, `(X) Altíssima`, `(X) Obrigatório`, `(X) Permanente`), RNF sem linha de cabeçalho e um quadro por caso de uso ("Quadro N – Use Case Nome", linha "Caso de Uso – Nome"). | `scripts/gerar_consolidados.py` | — |
+| 6 | decisão | Referências usam "Acesso em: 22 mar. 2026" (NBR 6023:2018); o modelo exige NBR 6023:2002 ("Acesso em: 05.out.2015") e, no texto, citação da internet como "chave, data ou sd, online". | Todos os documentos com referências | Confirmar com o orientador qual norma vale e padronizar. |
+| 6a | decisão | O modelo identifica casos de uso como `UC 001`; o projeto usa `UC-S001`. | Notas de UC, diagramas, TG | Manter `UC-S001` (canon da skill) ou adotar o padrão do modelo. |
+| 6b | aberta | Os Anexos/Apêndices do modelo pedem missão, visão e valores (Anexo 1) e as perguntas e respostas da elicitação (Anexo 2). | Rascunhos do TG | Conferir se os dois constam no TG. |
 
 ## Requisitos e regras
 

@@ -86,6 +86,15 @@ def conferir(fm, campo, valor):
         raise SystemExit(f"{fm['id']}: '{campo}' no frontmatter ({fm[campo]}) difere da tabela da nota ({valor})")
 
 
+def marcar(item, opcoes, valor):
+    """Opções no estilo de caixa de seleção do modelo: (X) Escolhida (  ) Outra."""
+    if valor is None:
+        return " ".join(f"(  ) {o}" for o in opcoes)
+    if valor.lower() not in (o.lower() for o in opcoes):
+        raise SystemExit(f"{item}: valor '{valor}' fora das opções do modelo {opcoes}")
+    return " ".join(f"({'X' if o.lower() == valor.lower() else '  '}) {o}" for o in opcoes)
+
+
 def quadro_rf():
     blocos = []
     for fm, tabela in notas("RF"):
@@ -93,8 +102,10 @@ def quadro_rf():
         conferir(fm, "titulo", c["Título"])
         conferir(fm, "prioridade", c["Prioridade"])
         conferir(fm, "visibilidade", c["Categoria"])
+        categoria = marcar(fm["id"], ["Oculto", "Evidente"], c["Categoria"])
+        prioridade = marcar(fm["id"], ["Altíssima", "Alta", "Média", "Baixa"], c["Prioridade"])
         blocos.append("\n".join([
-            f"| {fm['id']}-{c['Título']} | Categoria: {c['Categoria']} | Prioridade: {c['Prioridade']} |",
+            f"| {fm['id']}-{c['Título']} | Categoria: {categoria} | Prioridade: {prioridade} |",
             "| --- | --- | --- |",
             f"| **Descrição**: {c['Descrição']} | | |",
         ]))
@@ -102,12 +113,8 @@ def quadro_rf():
 
 
 def quadro_rnf():
-    linhas = [
-        "**Quadro 2 – Requisitos Não Funcionais do sistema**",
-        "",
-        "| Requisito | Descrição | Tipo | Desejável / Obrigatório | Permanente / Transitório |",
-        "| --- | --- | --- | --- | --- |",
-    ]
+    # O modelo não tem linha de cabeçalho: cada RNF é uma linha de cinco colunas.
+    blocos = []
     for fm, tabela in notas("RNF"):
         c = linha_do_item(fm, tabela)
         classif, _, vig = c["Classificação"].partition(",")
@@ -115,8 +122,13 @@ def quadro_rnf():
         conferir(fm, "vigencia", vig.strip() or None)
         nome = f"{fm['id']}-{fm['nome']}" if fm.get("nome") else fm["id"]
         tipo = fm.get("tipo_rnf") or "—"
-        linhas.append(f"| {nome} | {c['Requisito']} | {tipo} | {classif.strip()} | {vig.strip() or '—'} |")
-    return "\n".join(linhas)
+        obrig = marcar(fm["id"], ["Desejável", "Obrigatório"], classif.strip())
+        perm = marcar(fm["id"], ["Permanente", "Transitório"], vig.strip() or None)
+        blocos.append("\n".join([
+            f"| {nome} | {c['Requisito']} | {tipo} | {obrig} | {perm} |",
+            "| --- | --- | --- | --- | --- |",
+        ]))
+    return "**Quadro 2 – Requisitos Não Funcionais do sistema**\n\n" + "\n\n".join(blocos)
 
 
 def quadro_rn():
@@ -151,12 +163,14 @@ def campos_uc(tabela):
 def quadros_uc():
     indice = ["**Índice de Casos de Uso**", "", "| ID | Nome | Ator Primário |", "| --- | --- | --- |"]
     blocos = []
-    for fm, tabela in notas("UC"):
+    # No TG, os quadros 1 a 3 são RF, RNF e RN; cada caso de uso tem o seu, a partir do 4.
+    for n, (fm, tabela) in enumerate(notas("UC"), start=4):
         f = campos_uc(tabela)
         conferir(fm, "titulo", f["Nome revisado"])
         conferir(fm, "ator_primario", f["Ator Primário"])
         indice.append(f"| {fm['id']} | {f['Nome revisado']} | {f['Ator Primário']} |")
-        bloco = [f"| Caso de Uso | {f['Nome revisado']} |", "| --- | --- |"]
+        bloco = [f"**Quadro {n} – Use Case {f['Nome revisado']}**", "",
+                 f"| Caso de Uso – {f['Nome revisado']} | |", "| --- | --- |"]
         bloco += [f"| **{rotulo}** | {f[campo]} |" for rotulo, campo in CAMPOS_UC]
         blocos.append("\n".join(bloco))
     return "\n".join(indice), "\n\n---\n\n".join(blocos)
