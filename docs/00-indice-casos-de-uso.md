@@ -3,6 +3,7 @@
 ```dataview
 TABLE WITHOUT ID file.link AS "ID", titulo AS "Nome", ator_primario AS "Ator primário", map(requisitos_funcionais, (x) => link(x)) AS "Requisitos funcionais"
 FROM "docs/casos-de-uso"
+WHERE tipo = "caso-de-uso"
 SORT id ASC
 ```
 

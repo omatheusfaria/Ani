@@ -51,7 +51,7 @@ O Quadro 2 apresenta, como exemplo, a especificação de um dos casos de uso do 
 | Observações arquiteturais | Mantém relação direta com RF003, RF004, RF015 e RF016. |
 | Indicação | Permanecer. |
 
-A documentação completa de casos de uso, incluindo o índice de casos de uso, o diagrama e a especificação de cada caso, pode ser consultada em [caso-de-uso.md](./caso-de-uso.md).
+A documentação completa de casos de uso, incluindo o índice de casos de uso, o diagrama e a especificação de cada caso, pode ser consultada em [casos-de-uso.md](./casos-de-uso.md).
 
 ## Referências
 

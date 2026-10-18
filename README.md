@@ -23,7 +23,7 @@ Os principais materiais estão em [docs/README.md](./docs/README.md), com destaq
 - [Elicitação de Requisitos](./docs/elicitacao-de-requisitos/README.md)
 - [BPMN](./docs/bpmn/README.md)
 - [Requisitos](./docs/requisitos/README.md)
-- [Caso de Uso](./docs/caso-de-uso/README.md)
+- [Caso de Uso](./docs/casos-de-uso/README.md)
 - [Diagrama de Classes](./docs/diagrama-de-classe/README.md)
 - [DER](./docs/diagrama-entidade-relacionamento/README.md)
 
@@ -35,7 +35,7 @@ docs/
 |-- elicitacao-de-requisitos/
 |-- bpmn/
 |-- requisitos/
-|-- caso-de-uso/
+|-- casos-de-uso/
 |-- diagrama-de-classe/
 |-- diagrama-entidade-relacionamento/
 |-- recursos-utilizados/

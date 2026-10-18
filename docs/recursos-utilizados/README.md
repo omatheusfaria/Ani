@@ -39,7 +39,7 @@ No desenvolvimento da interface e da experiência do jogo, o método adotado foi
 Os arquivos-fonte dos diagramas produzidos no projeto podem ser consultados nas respectivas pastas da documentação, com destaque para:
 
 - [bpmn/ani.bpmn](../bpmn/ani.bpmn)
-- [caso-de-uso/caso-de-uso.drawio.svg](../caso-de-uso/caso-de-uso.drawio.svg)
+- [casos-de-uso/caso-de-uso.drawio.svg](../casos-de-uso/caso-de-uso.drawio.svg)
 - [diagrama-de-classe/diagrama-de-classe.drawio](../diagrama-de-classe/diagrama-de-classe.drawio)
 - [diagrama-entidade-relacionamento/diagrama-entidade-relacionamento.drawio](../diagrama-entidade-relacionamento/diagrama-entidade-relacionamento.drawio)
 

@@ -5,6 +5,7 @@
 ```dataview
 TABLE WITHOUT ID file.link AS "ID", titulo AS "Título", prioridade AS "Prioridade", visibilidade AS "Visibilidade"
 FROM "docs/requisitos/funcionais"
+WHERE tipo = "requisito-funcional"
 SORT id ASC
 ```
 
@@ -33,6 +34,7 @@ SORT id ASC
 ```dataview
 TABLE WITHOUT ID file.link AS "ID", classificacao AS "Classificação", vigencia AS "Vigência", titulo AS "Requisito"
 FROM "docs/requisitos/nao-funcionais"
+WHERE tipo = "requisito-nao-funcional"
 SORT id ASC
 ```
 
