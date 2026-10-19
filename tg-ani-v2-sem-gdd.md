@@ -16,7 +16,7 @@ Nesse contexto, o projeto **Ani אֲנִי** propõe um side-scroller narrativo 
 | Tom | Sombrio, melancólico e contemplativo, com redenção gradual |
 | Duração estimada | 3 a 5 horas por jornada |
 
-A originalidade do projeto reside no fato de que sua espinha dorsal não é uma estrutura de moralidade binária, mas uma jornada de percepção organizada em cinco atos filosóficos. O percurso parte do pessimismo ocidental, associado a Zapffe, Mainlander e Bahnsen, e avança em direção a filosofias contemplativas japonesas, como Wabi-Sabi, Mono no Aware, Ikigai e Yugen. Essa transição não é tratada como exposição teórica, mas como mudança de atmosfera, espaço, ritmo, mecânica e linguagem sensorial.
+A originalidade do projeto reside no fato de que sua espinha dorsal não é uma estrutura de moralidade binária, mas uma jornada de percepção organizada em cinco atos filosóficos. O percurso parte do pessimismo ocidental, associado a Zapffe, Mainländer e Bahnsen, e avança em direção a filosofias contemplativas japonesas, como Wabi-Sabi, Mono no Aware, Ikigai e Yugen. Essa transição não é tratada como exposição teórica, mas como mudança de atmosfera, espaço, ritmo, mecânica e linguagem sensorial.
 
 | Ato | Referência Filosófica | Tom | Símbolo |
 | --- | --- | --- | --- |
@@ -96,7 +96,7 @@ Desenvolver um protótipo funcional de jogo narrativo contemplativo que represen
 
 Jogos digitais constituem um meio singular para explorar experiências internas e subjetivas: a interatividade permite que o jogador não apenas observe uma jornada, mas a habite ativamente, vivenciando estados emocionais, percepções e transformações de dentro para fora. Essa capacidade imersiva distingue o jogo de outras mídias narrativas e o torna especialmente adequado para representar processos internos complexos, como identidade, sofrimento e transformação filosófica.
 
-**Ani** parte dessa premissa para investigar como a filosofia pode funcionar como linguagem acessível dentro de um jogo narrativo. Correntes como o pessimismo existencial de Zapffe e Mainlander e filosofias contemplativas japonesas, como Wabi-Sabi, Mono no Aware e Yugen, carregam ideias densas que, quando traduzidas em espaço, mecânica e atmosfera, tornam-se experienciáveis sem depender de mediação teórica.
+**Ani** parte dessa premissa para investigar como a filosofia pode funcionar como linguagem acessível dentro de um jogo narrativo. Correntes como o pessimismo existencial de Zapffe e Mainländer e filosofias contemplativas japonesas, como Wabi-Sabi, Mono no Aware e Yugen, carregam ideias densas que, quando traduzidas em espaço, mecânica e atmosfera, tornam-se experienciáveis sem depender de mediação teórica.
 
 O jogo se torna, assim, não um veículo de ensino da filosofia, mas um modo de sentir o que ela descreve.
 
@@ -920,7 +920,7 @@ O sistema detecta a conclusão de cada etapa pela combinação entre exploraçã
 | Ato | Referência Filosófica | Tom | Símbolo |
 | --- | --- | --- | --- |
 | I | Zapffe | O peso da consciência | Relógio parado |
-| II | Mainlander e Bahnsen | A vontade que se devora e o loop irresolúvel | Corredor em loop |
+| II | Mainländer e Bahnsen | A vontade que se devora e o loop irresolúvel | Corredor em loop |
 | III | Wabi-Sabi | Beleza no quebrado | Kintsugi |
 | IV | Mono no Aware e Ikigai | Sentir o que passa e encontrar um fio de sentido | Pétalas de cerejeira |
 | V | Yugen | O que não cabe em palavras | Estrela solitária |
