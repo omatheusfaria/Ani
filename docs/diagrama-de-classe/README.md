@@ -4,7 +4,7 @@ O diagrama de classes é um diagrama estrutural da UML utilizado para representa
 
 A importância do diagrama de classes está em apoiar a modelagem da arquitetura do sistema antes e durante a implementação. Ao explicitar classes, operações e vínculos entre objetos, ele facilita o entendimento da solução, orienta a organização do código e contribui para a comunicação técnica entre os envolvidos no projeto [1][2].
 
-No projeto **Ani**, o diagrama de classes é importante porque descreve a base estrutural dos principais elementos do jogo, como jogo, player, NPCs, memórias, diário, atos, cenários e objetos interativos. Com isso, o artefato organiza a visão estrutural do sistema de forma mais coerente com a versão atual do projeto.
+No projeto **Ani**, o diagrama de classes é importante porque descreve a base estrutural dos principais elementos do jogo, como jogo, Ani, NPCs, memórias, diário, atos, cenários e objetos interativos. Com isso, o artefato organiza a visão estrutural do sistema de forma mais coerente com a versão atual do projeto.
 
 A Figura 1 apresenta o diagrama de classes do projeto **Ani**, elaborado conforme o modelo estudado nas aulas de Engenharia de Software.
 
@@ -22,7 +22,7 @@ O Quadro 1 apresenta a estrutura de classes, atributos e métodos modelada para 
 | --- | --- | --- |
 | Jogo | `titulo : string`, `atoAtual : Ato`, `cenarioAtual : Cenario` | `iniciar()`, `pausar()`, `encerrar()`, `carregarProgresso()` |
 | Personagem | `posicaoX : float`, `posicaoY : float`, `sprite : string` | `mover()` |
-| Player | `estadoEmocional : string`, `diario : Diario` | `interagir()`, `observar()`, `registrarMemoria()` |
+| Ani | `estadoEmocional : string`, `diario : Diario` | `interagir()`, `observar()`, `registrarMemoria()` |
 | NPC | `nome : string`, `tipo : string` | `falar()`, `interagir()` |
 | ObjetoInterativo | `id : int`, `tipo : string`, `descricao : string` | `ativar()` |
 | Memoria | `id : int`, `conteudo : string`, `atoOrigem : int` | `exibir()`, `registrarNoDiario()` |

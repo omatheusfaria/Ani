@@ -524,7 +524,7 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 
 - `+ mover(): void`
 
-### Classe: Player
+### Classe: Ani
 
 **Atributos:**
 
@@ -652,10 +652,10 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 | --- | --- | --- | --- |
 | Jogo | Composição | Ato | `Jogo 1` para `Ato 1..*` |
 | Jogo | Composição | Cenario | `Jogo 1` para `Cenario 1..*` |
-| Player | Herança / Generalização | Personagem | Especialização de `Personagem` |
+| Ani | Herança / Generalização | Personagem | Especialização de `Personagem` |
 | NPC | Herança / Generalização | Personagem | Especialização de `Personagem` |
-| Player | Composição | Diario | `Player 1` para `Diario 1` |
-| Player | Associação | ObjetoInterativo | `Player 1` para `ObjetoInterativo 0..*` |
+| Ani | Composição | Diario | `Ani 1` para `Diario 1` |
+| Ani | Associação | ObjetoInterativo | `Ani 1` para `ObjetoInterativo 0..*` |
 | Memoria | Herança / Generalização | ObjetoInterativo | Especialização de `ObjetoInterativo` |
 | Memoria | Associação | Ato | `Memoria 0..*` para `Ato 0..1` |
 | Diario | Composição | EntradaDiario | `Diario 1` para `EntradaDiario 0..*` |
@@ -705,9 +705,9 @@ No projeto **Ani**, o DER é útil mesmo considerando a possibilidade de persist
 - Relaciona-se com `NPC` (`1:N`)
 - Relaciona-se com `OBJETO_INTERATIVO` (`1:N`)
 
-### Entidade: PLAYER
+### Entidade: ANI
 
-**Atributos:** `id_player (PK)`, `estado_emocional`
+**Atributos:** `id_ani (PK)`, `estado_emocional`
 
 **Relacionamentos:**
 
@@ -729,7 +729,7 @@ No projeto **Ani**, o DER é útil mesmo considerando a possibilidade de persist
 **Relacionamentos:**
 
 - Relaciona-se com `CENARIO` (`N:1`)
-- Relaciona-se com `PLAYER` (`N:1`)
+- Relaciona-se com `ANI` (`N:1`)
 - Relaciona-se com `MEMORIA` (`1:0..1`, quando o objeto atua como gatilho narrativo)
 
 ### Entidade: MEMORIA
@@ -748,7 +748,7 @@ No projeto **Ani**, o DER é útil mesmo considerando a possibilidade de persist
 
 **Relacionamentos:**
 
-- Relaciona-se com `PLAYER` (`1:1`)
+- Relaciona-se com `ANI` (`1:1`)
 - Relaciona-se com `ENTRADA_DIARIO` (`1:N`)
 
 ### Entidade: ENTRADA_DIARIO
