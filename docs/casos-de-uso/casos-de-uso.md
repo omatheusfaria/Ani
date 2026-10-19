@@ -1,6 +1,6 @@
 <!-- Gerado por scripts/gerar_consolidados.py a partir das notas individuais. Não edite à mão. -->
 
-# Caso de Uso - Ani אני
+# Caso de Uso - Ani אֲנִי
 
 **Índice de Casos de Uso**
 

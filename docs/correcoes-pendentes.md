@@ -60,7 +60,7 @@ Status: `aberta`, `decisão` (depende de escolha do autor) ou `resolvida`.
 
 | # | Status | Item | Onde | Correção sugerida |
 | --- | --- | --- | --- | --- |
-| 18 | aberta | "Ani אני" sem niqqud. | Título do consolidado de casos de uso (vem de `scripts/modelos/casos-de-uso.md`) | Trocar por "Ani אֲנִי" no modelo do script. |
+| 18 | resolvida | "Ani אני" sem niqqud. | Título do consolidado de casos de uso (vem de `scripts/modelos/casos-de-uso.md`) | Trocado por "Ani אֲנִי" no modelo do script e consolidado regerado. |
 | 19 | aberta | "Mainlander" sem trema. | `tg-ani-v2-sem-gdd.md` (linhas 19, 99 e 923) | Trocar por "Mainländer". |
 | 20 | aberta | `docs/requisitos/README.md` mostra só parte dos itens (omite RN003, RNF003, RNF006 e vários RF) e copia o texto à mão; as cópias já divergem (RF009 sem "estado visual da casa"; RF012 na redação antiga). | `docs/requisitos/README.md` | Atualizar os quadros de exemplo a partir das notas ou só apontar para os consolidados. |
 | 21 | aberta | Rascunhos do TG trazem tabelas de RF/RN/UC copiadas à mão, em redação anterior à reescrita de RF012–RF019. | `tg-ani.md`, `tg-ani-v2-sem-gdd.md` | Atualizar a partir dos consolidados gerados. |
