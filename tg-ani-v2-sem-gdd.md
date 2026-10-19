@@ -329,7 +329,7 @@ O Quadro X apresenta os requisitos funcionais do sistema, organizados por códig
 
 | Código | Título | Categoria | Prioridade | Descrição |
 | --- | --- | --- | --- | --- |
-| RF001 | Movimentar personagem | Evidente | Altíssima | O sistema deve permitir que o jogador mova Ani lateralmente usando teclado. |
+| RF001 | Movimentar personagem | Evidente | Altíssima | O sistema deve permitir que o jogador mova Ani lateralmente por teclado ou gamepad. |
 | RF002 | Colisão com cenário e objetos | Evidente | Altíssima | O sistema deve impedir que Ani ultrapasse paredes, pisos e objetos sólidos. |
 | RF003 | Interagir com objetos | Evidente | Altíssima | O sistema deve permitir interação com objetos significativos para acessar memórias, fragmentos narrativos e elementos contemplativos do cenário. |
 | RF004 | Sistema de memórias | Evidente | Altíssima | O sistema deve apresentar memórias como fragmentos narrativos, como cartas, bilhetes, fotografias e diários, acessíveis por meio da interação com o ambiente. Como o jogador pode interagir com diferentes objetos de memória, a ordem de descoberta desses fragmentos pode variar entre sessões e trajetórias dentro de um mesmo ato. |

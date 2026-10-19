@@ -33,7 +33,7 @@ Status: `aberta`, `decisão` (depende de escolha do autor) ou `resolvida`.
 | 12 | aberta | RNF001, RNF003, RNF005 e RNF006 sem vínculo com RF ou UC. | Notas de RNF | Avaliar se o vínculo é necessário; RNF005 (pular cenas) pode exigir um RF/UC próprio. |
 | 13 | aberta | Relacionamentos que vêm só dos rascunhos do TG (RF005–UC-S004, RF005–RNF004, RF009–RN001, RF012–RN003, RF017–RN002) e um deduzido só pelo conteúdo (UC-S009–RNF007). | Frontmatter das notas | Confirmar ou remover cada um. |
 | 14 | aberta | RF003–RF005 ligados a RN001/RN005 em bloco (GDD e TG agrupam por sistema), não par a par. | RF003, RF004, RF005 | Confirmar cada par. |
-| 27 | aberta | RF001 diz "usando teclado", o que conflita com o suporte a gamepad do RF011. | RF001, RF011 | Retirar "usando teclado" ou escrever "por teclado ou gamepad". |
+| 27 | resolvida | RF001 diz "usando teclado", o que conflita com o suporte a gamepad do RF011. | RF001, RF011 | Trocado por "por teclado ou gamepad" na nota, no README e nos rascunhos; consolidado regerado. |
 | 28 | decisão | RF015 (restauração no Ato III) está como Evidente, e os demais RFs de mecânica por ato (RF013, RF014, RF016, RF017) estão como Ocultos. | RF015 | Uniformizar a categoria ou justificar a diferença. Se o RF015 continuar Evidente, ele precisa de caso de uso (ver item 10). |
 
 ## Casos de uso

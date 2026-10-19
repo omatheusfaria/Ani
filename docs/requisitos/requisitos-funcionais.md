@@ -10,7 +10,7 @@ No projeto **Ani**, os requisitos funcionais reúnem as funcionalidades atualmen
 
 | RF001-Movimentar personagem | Categoria: (  ) Oculto (X) Evidente | Prioridade: (X) Altíssima (  ) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |
-| **Descrição**: O sistema deve permitir que o jogador mova Ani lateralmente usando teclado. | | |
+| **Descrição**: O sistema deve permitir que o jogador mova Ani lateralmente por teclado ou gamepad. | | |
 
 | RF002-Colisão com cenário e objetos | Categoria: (  ) Oculto (X) Evidente | Prioridade: (X) Altíssima (  ) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |
