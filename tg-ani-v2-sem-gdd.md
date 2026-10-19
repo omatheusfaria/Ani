@@ -856,7 +856,7 @@ Além disso, as ferramentas utilizadas apresentam licenças compatíveis com uso
 
 A arquitetura geral do protótipo é organizada a partir de uma estrutura orientada a objetos compatível com a modelagem apresentada no Diagrama de Classes. O estado global do jogo é centralizado na classe `Jogo`, que mantém referências ao ato atual e ao cenário atual, enquanto a progressão filosófica é controlada pela classe `Ato`. A partir dessa base, o sistema articula exploração, interação, ativação de conteúdo narrativo, persistência e transição entre cenários.
 
-Do ponto de vista operacional, a entrada do jogador é convertida em ações de movimentação, interação, observação e consulta ao diário. Essas ações incidem sobre o `Ani`, que por sua vez aciona objetos interativos, registra memórias no diário, observa elementos contemplativos e participa da progressão entre atos. `Cenario`, `Memoria`, `Diario`, `ObjetoRestauravel` e `ElementoContemplativo` distribuem responsabilidades específicas de carregamento, registro, ressignificação e liberação de conteúdo.
+Do ponto de vista operacional, a entrada do jogador é convertida em ações de movimentação, interação, observação e consulta ao diário. Essas ações incidem sobre a classe `Ani`, que por sua vez aciona objetos interativos, registra memórias no diário, observa elementos contemplativos e participa da progressão entre atos. `Cenario`, `Memoria`, `Diario`, `ObjetoRestauravel` e `ElementoContemplativo` distribuem responsabilidades específicas de carregamento, registro, ressignificação e liberação de conteúdo.
 
 O fluxo principal de dados do protótipo pode ser descrito da seguinte forma:
 
