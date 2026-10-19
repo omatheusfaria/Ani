@@ -4,7 +4,7 @@
 
 | Item | Descrição |
 | --- | --- |
-| Nome do projeto | Ani אני |
+| Nome do projeto | Ani אֲנִי |
 | Tipo | Jogo digital narrativo contemplativo |
 | Área | Desenvolvimento de software e jogos digitais |
 | Plataforma inicial | PC (Windows) |

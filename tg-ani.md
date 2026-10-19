@@ -811,7 +811,7 @@ Este documento registra a direção criativa, filosófica, narrativa e técnica 
 
 **Ani** é uma experiência contemplativa e emocional que conduz o jogador por uma jornada filosófica de sofrimento, percepção e transformação interior. Em vez de se apoiar em escolhas morais tradicionais, o jogo acompanha a mudança da forma como a protagonista percebe a existência.
 
-Ani é uma mulher comum em colapso existencial, atravessando espaços mentais distorcidos, memórias fragmentadas e manifestações simbólicas da própria consciência. O nome da protagonista vem do hebraico **אני**, que significa **"eu"**. A proposta é aproximar jogador e personagem: o jogador não observa Ani à distância, ele habita sua experiência.
+Ani é uma mulher comum em colapso existencial, atravessando espaços mentais distorcidos, memórias fragmentadas e manifestações simbólicas da própria consciência. O nome da protagonista vem do hebraico **אֲנִי**, que significa **"eu"**. A proposta é aproximar jogador e personagem: o jogador não observa Ani à distância, ele habita sua experiência.
 
 ### Logline
 
