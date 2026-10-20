@@ -62,6 +62,6 @@ O documento completo do TAP está disponível em [tap.md](./tap.md).
 
 ## Referências
 
-[1] PROJECT MANAGEMENT INSTITUTE (PMI). *The charter - selling your project*. Disponível em: <https://www.pmi.org/learning/library/charter-selling-project-7473>. Acesso em: 22 mar. 2026.
+[1] PROJECT MANAGEMENT INSTITUTE (PMI). *The charter - selling your project*. Disponível em: <https://www.pmi.org/learning/library/charter-selling-project-7473>. Acesso em: 22.mar.2026.
 
-[2] ATLASSIAN. *Project charter vs. project poster: key differences*. Disponível em: <https://www.atlassian.com/work-management/project-management/project-planning/project-charter>. Acesso em: 22 mar. 2026.
+[2] ATLASSIAN. *Project charter vs. project poster: key differences*. Disponível em: <https://www.atlassian.com/work-management/project-management/project-planning/project-charter>. Acesso em: 22.mar.2026.

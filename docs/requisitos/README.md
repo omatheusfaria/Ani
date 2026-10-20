@@ -66,8 +66,8 @@ O documento completo de regras de negócio pode ser consultado em [regras-de-neg
 
 ## Referências
 
-[1] IBM. *What is requirements management?* Disponível em: <https://www.ibm.com/think/topics/what-is-requirements-management>. Acesso em: 22 mar. 2026.
+[1] IBM. *What is requirements management?* Disponível em: <https://www.ibm.com/think/topics/what-is-requirements-management>. Acesso em: 22.mar.2026.
 
-[2] IBM. *What are business rules?* Disponível em: <https://www.ibm.com/topics/business-rules>. Acesso em: 22 mar. 2026.
+[2] IBM. *What are business rules?* Disponível em: <https://www.ibm.com/topics/business-rules>. Acesso em: 22.mar.2026.
 
-[3] BUSINESS RULES GROUP. *Defining Business Rules ~ What Are They Really?* Disponível em: <https://www.businessrulesgroup.org/first_paper.htm>. Acesso em: 22 mar. 2026.
+[3] BUSINESS RULES GROUP. *Defining Business Rules ~ What Are They Really?* Disponível em: <https://www.businessrulesgroup.org/first_paper.htm>. Acesso em: 22.mar.2026.

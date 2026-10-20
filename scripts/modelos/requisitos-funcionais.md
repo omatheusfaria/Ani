@@ -8,4 +8,4 @@ No projeto **Ani**, os requisitos funcionais reúnem as funcionalidades atualmen
 
 ## Referência
 
-[1] IBM. *What is requirements management?* Disponível em: <https://www.ibm.com/think/topics/what-is-requirements-management>. Acesso em: 22 mar. 2026.
+[1] IBM. *What is requirements management?* Disponível em: <https://www.ibm.com/think/topics/what-is-requirements-management>. Acesso em: 22.mar.2026.

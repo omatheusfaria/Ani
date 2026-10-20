@@ -45,14 +45,14 @@ Os arquivos-fonte dos diagramas produzidos no projeto podem ser consultados nas 
 
 ## Referências
 
-[1] UNITY TECHNOLOGIES. *Unity*. Disponível em: <https://unity.com/>. Acesso em: 26 mar. 2026.
+[1] UNITY TECHNOLOGIES. *Unity*. Disponível em: <https://unity.com/>. Acesso em: 26.mar.2026.
 
-[2] MICROSOFT. *Official home of .NET*. Disponível em: <https://dotnet.microsoft.com/>. Acesso em: 26 mar. 2026.
+[2] MICROSOFT. *Official home of .NET*. Disponível em: <https://dotnet.microsoft.com/>. Acesso em: 26.mar.2026.
 
-[3] JGRAPH LTD. *draw.io / diagrams.net*. Disponível em: <https://www.diagrams.net/>. Acesso em: 26 mar. 2026.
+[3] JGRAPH LTD. *draw.io / diagrams.net*. Disponível em: <https://www.diagrams.net/>. Acesso em: 26.mar.2026.
 
-[4] GRUBER, John. *Markdown*. Disponível em: <https://daringfireball.net/projects/markdown/>. Acesso em: 26 mar. 2026.
+[4] GRUBER, John. *Markdown*. Disponível em: <https://daringfireball.net/projects/markdown/>. Acesso em: 26.mar.2026.
 
-[5] SOFTWARE FREEDOM CONSERVANCY. *Git*. Disponível em: <https://git-scm.com/>. Acesso em: 26 mar. 2026.
+[5] SOFTWARE FREEDOM CONSERVANCY. *Git*. Disponível em: <https://git-scm.com/>. Acesso em: 26.mar.2026.
 
-[6] GITHUB. *GitHub*. Disponível em: <https://github.com/>. Acesso em: 26 mar. 2026.
+[6] GITHUB. *GitHub*. Disponível em: <https://github.com/>. Acesso em: 26.mar.2026.
