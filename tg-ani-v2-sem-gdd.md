@@ -215,7 +215,9 @@ O projeto será considerado bem-sucedido se conseguir entregar um protótipo fun
 
 A elicitação de requisitos corresponde ao processo de identificar, compreender, negociar e documentar os serviços, restrições e comportamentos esperados de um sistema. Para Sommerville (2019), os requisitos expressam aquilo que o software deve fazer e as condições sob as quais deve operar; Pressman e Maxim (2016) destacam que a qualidade da solução depende fortemente da qualidade da descoberta inicial dessas necessidades. Em projetos digitais complexos, a elicitação não é apenas levantamento, mas também interpretação técnica do domínio.
 
-No presente projeto, a elicitação foi conduzida principalmente por análise documental e refinamento iterativo. A documentação já existente do jogo funcionou como base primária para transformar intenções conceituais em exigências formais de software. Em especial, o documento de direção do projeto exerceu o papel de fonte de requisitos de produto, registrando narrativa, mecânicas, mundo, interface, áudio e especificações técnicas que depois foram convertidos em artefatos de engenharia.
+No presente projeto, foi aplicado por formulário um questionário exploratório a 8 participantes com perfil próximo ao público-alvo, com cinco perguntas: o que atrai o participante em um jogo narrativo, e o que ele espera quanto à fluidez e à programação, às mecânicas, à arte e ao design, e à história e ao significado. As respostas foram, em geral, vagas e não geraram mecânicas nem decisões de design; as que tinham algum conteúdo aproveitável foram anonimizadas e estão no Apêndice A. Nenhum requisito deste trabalho tem o questionário como fonte.
+
+Por esse baixo aproveitamento, a elicitação foi conduzida principalmente por análise documental e refinamento iterativo. A documentação já existente do jogo funcionou como base primária para transformar intenções conceituais em exigências formais de software. Em especial, o documento de direção do projeto exerceu o papel de fonte de requisitos de produto, registrando narrativa, mecânicas, mundo, interface, áudio e especificações técnicas que depois foram convertidos em artefatos de engenharia.
 
 Além da análise documental, o refinamento ocorreu pelo confronto entre intenção de design e viabilidade de implementação na engine Unity. Isso permitiu distinguir funcionalidades centrais do protótipo, desdobrar mecânicas em regras verificáveis e traduzir elementos atmosféricos em restrições não funcionais e comportamentos do sistema. Tal processo foi particularmente importante porque **Ani** não depende apenas de ações visíveis, mas também de transformações internas, progressão sensorial e mudanças de leitura ao longo dos atos.
 
@@ -1112,3 +1114,81 @@ SCHELL, Jesse. *A Arte de Game Design: o livro dos elementos*. Rio de Janeiro: E
 SOMMERVILLE, Ian. *Engenharia de Software*. 10. ed. São Paulo: Pearson, 2019.
 
 VISUAL PARADIGM. *What is Class Diagram?* Disponível em: <https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-class-diagram/>. Acesso em: 22 mar. 2026.
+
+# Apêndice A - Perguntas e respostas selecionadas do questionário
+
+Este apêndice apresenta as perguntas do formulário aplicado ao público-alvo e uma seleção anônima de respostas consideradas mais úteis para a elicitação de requisitos do projeto **Ani**.
+
+O formulário foi respondido por 8 participantes. As respostas foram, em geral, vagas e não geraram mecânicas nem decisões de design.
+
+Os nomes dos participantes foram removidos. Em alguns casos, respostas com conteúdo aproveitável foram reescritas de forma sintética, preservando seu sentido principal. Respostas muito vagas, ofensivas, sem relação com o projeto ou pouco aproveitáveis do ponto de vista analítico não foram reproduzidas.
+
+## 1. O que mais te atrai em um jogo narrativo?
+
+### Respostas selecionadas
+
+- Participante A: reflexões filosóficas e profundas.
+- Participante B: estilo de arte e trilha sonora únicos.
+- Participante C: enredo complexo e com possibilidade de interpretação.
+
+### Síntese
+
+As respostas indicam interesse por jogos que combinam impacto estético, profundidade temática e narrativa com valor reflexivo.
+
+## 2. Sobre a fluidez e a programação
+
+### Respostas selecionadas
+
+- Participante A: espera controles responsivos, interações fluidas e transições visuais e sonoras sem quebras de imersão.
+- Participante B: espera uma experiência intuitiva, sem atrasos, travamentos ou elementos técnicos que prejudiquem a atmosfera.
+- Participante C: espera gameplay fluida, carregamento rápido e boa precisão nos controles.
+
+### Síntese
+
+As respostas reforçam requisitos ligados à responsividade, estabilidade, fluidez e preservação da imersão.
+
+## 3. Sobre as mecânicas de jogo
+
+### Respostas selecionadas
+
+- Participante A: espera exploração significativa, com cenários que tenham algo a contar e impacto emocional perceptível.
+- Participante B: valoriza descoberta de memórias, caminhos de exploração e interação com elementos narrativos do cenário.
+- Participante C: deseja que a exploração produza consequências perceptíveis no mundo e na experiência do personagem.
+
+### Síntese
+
+As respostas mostram preferência por mecânicas de exploração com função narrativa, em vez de interações puramente instrumentais. Sugestões muito distantes da proposta consolidada do projeto, como combate central ou estrutura fortemente ramificada, não foram adotadas como base principal.
+
+## 4. Sobre a arte e o design
+
+### Respostas selecionadas
+
+- Participante A: espera uma estética que comunique emoção de forma sutil e acompanhe a jornada do personagem.
+- Participante B: deseja um estilo visual poético, com trilha delicada e introspectiva.
+- Participante C: espera coerência entre arte, música e narrativa ao longo da progressão.
+
+### Síntese
+
+As respostas apontam para a importância de uma direção artística sensível, coerente e articulada com o estado emocional do jogo.
+
+## 5. Sobre a história e o significado
+
+### Respostas selecionadas
+
+- Participante A: espera uma experiência que deixe algo significativo e confie na interpretação do jogador.
+- Participante B: espera reflexão sobre a própria vida e impacto emocional duradouro.
+- Participante C: espera uma história ligada à filosofia, relações humanas e leitura sensível do mundo.
+
+### Síntese
+
+As respostas reforçam que o jogo deve buscar significado, densidade interpretativa e reflexão, sem depender apenas de explicações diretas.
+
+## 6. Principais contribuições do questionário
+
+A partir da análise das respostas selecionadas, foi possível consolidar percepções importantes para a elicitação:
+
+- necessidade de movimentação e interação fluidas;
+- valorização da atmosfera visual e sonora;
+- importância da exploração com função narrativa;
+- centralidade de memórias, diário e simbolismo;
+- preferência por uma experiência reflexiva, interpretativa e emocionalmente significativa.

@@ -2,6 +2,8 @@
 
 Este apêndice apresenta as perguntas do formulário aplicado ao público-alvo e uma seleção anônima de respostas consideradas mais úteis para a elicitação de requisitos do projeto **Ani**.
 
+O formulário foi respondido por 8 participantes. As respostas foram, em geral, vagas e não geraram mecânicas nem decisões de design.
+
 Os nomes dos participantes foram removidos. Em alguns casos, respostas com conteúdo aproveitável foram reescritas de forma sintética, preservando seu sentido principal. Respostas muito vagas, ofensivas, sem relação com o projeto ou pouco aproveitáveis do ponto de vista analítico não foram reproduzidas.
 
 ## 1. O que mais te atrai em um jogo narrativo?

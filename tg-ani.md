@@ -149,15 +149,13 @@ O projeto será considerado bem-sucedido se conseguir entregar um protótipo fun
 
 A elicitação de requisitos corresponde ao processo de descoberta, compreensão, registro e refinamento das necessidades que um sistema deve atender. Em Engenharia de Software, essa atividade é fundamental porque os requisitos representam a base sobre a qual serão estruturados o projeto, a modelagem, a implementação e a validação do sistema. Sommerville (2019) destaca que requisitos expressam serviços, restrições e propriedades esperadas do software, enquanto Pressman e Maxim (2016) reforçam que a qualidade do produto final depende, em grande medida, da qualidade com que esses requisitos são levantados e especificados.
 
-No projeto **Ani אֲנִי**, a elicitação foi conduzida por meio da análise documental, da introspecção estruturada do designer e da consulta exploratória ao público-alvo. O Game Design Document (GDD) foi utilizado como principal fonte documental para derivar requisitos relacionados às mecânicas, à narrativa, à atmosfera, à progressão por atos, à interface e à experiência pretendida pelo jogador. Além dele, foram produzidos artefatos específicos de elicitação, incluindo questionário exploratório, apêndice com respostas anonimizadas, consolidação das informações levantadas e refinamento posterior por meio da modelagem do sistema.
+No projeto **Ani אֲנִי**, a elicitação contou com um questionário exploratório aplicado ao público-alvo, com a introspecção estruturada do designer e com a análise documental. Como o questionário teve baixo aproveitamento, a especificação se apoiou principalmente na análise documental: o Game Design Document (GDD) foi a principal fonte para derivar requisitos relacionados às mecânicas, à narrativa, à atmosfera, à progressão por atos, à interface e à experiência pretendida pelo jogador.
 
 A introspecção estruturada do designer foi empregada como técnica adequada ao caráter autoral do projeto, pois o próprio autor atua como stakeholder primário e detém conhecimento direto sobre a proposta conceitual, estética e filosófica do jogo. Para reduzir o risco de subjetividade excessiva, essa introspecção foi apoiada por registros documentais, especialmente o GDD, e confrontada com os demais artefatos produzidos ao longo do levantamento, como requisitos, regras de negócio, casos de uso, BPMN, diagrama de classes e diagrama entidade-relacionamento.
 
-O questionário exploratório teve função complementar, sendo aplicado a um grupo reduzido de 8 participantes com perfil próximo ao público-alvo, especialmente pessoas interessadas em jogos narrativos, experiências artísticas interativas e temas introspectivos. Esse número limita a representatividade estatística da coleta, mas é coerente com a função qualitativa e exploratória que o instrumento cumpriu no processo. As respostas coletadas foram anonimizadas e, no apêndice, foram sintetizadas apenas as contribuições com conteúdo diretamente aproveitável para a elicitação, excluindo respostas vagas ou sem relação clara com o escopo do projeto.
+O questionário foi aplicado por formulário a 8 participantes com perfil próximo ao público-alvo, com cinco perguntas: o que atrai o participante em um jogo narrativo, e o que ele espera quanto à fluidez e à programação, às mecânicas, à arte e ao design, e à história e ao significado. As respostas foram, em geral, vagas e não geraram mecânicas nem decisões de design. As que tinham algum conteúdo aproveitável foram anonimizadas e estão no Apêndice A, onde se registram percepções sobre movimentação e interação fluidas, atmosfera visual e sonora, exploração com função narrativa, memórias e diário, e experiência reflexiva. Nenhum requisito deste trabalho tem o questionário como fonte.
 
-As contribuições do questionário reforçaram necessidades ligadas à fluidez da movimentação, preservação da imersão, coerência entre arte, música e narrativa, exploração simbólica, diário de memórias e experiência reflexiva. Dessa forma, a consulta ao público-alvo não substituiu a derivação principal feita a partir do GDD, mas funcionou como evidência de apoio para validar e ajustar decisões de requisitos. Como exemplo de rastreabilidade, a necessidade de coerência entre arte, música e narrativa, presente tanto no questionário quanto no GDD, contribuiu para a definição do **RF010**, relacionado ao feedback sonoro e musical por ato, e do **RNF007**, relacionado aos recursos de acessibilidade sensorial e de áudio.
-
-Assim, a especificação de requisitos de **Ani** funciona como uma formalização da proposta conceitual do jogo em termos de software, reunindo as necessidades identificadas a partir do GDD, do questionário exploratório, da introspecção estruturada e dos demais artefatos de modelagem. Com isso, os requisitos servem de base para a continuidade do projeto, orientando a modelagem, a implementação e a validação do protótipo. Os requisitos completos são apresentados nas seções seguintes.
+Assim, a especificação de requisitos de **Ani** funciona como uma formalização da proposta conceitual do jogo em termos de software, reunindo as necessidades identificadas a partir do GDD, da introspecção estruturada e dos demais artefatos de modelagem. Com isso, os requisitos servem de base para a continuidade do projeto, orientando a modelagem, a implementação e a validação do protótipo. Os requisitos completos são apresentados nas seções seguintes.
 
 ### Referências Bibliográficas
 
@@ -1216,3 +1214,81 @@ Assim, a reformulação identificável a partir do material documental pode ser 
 SCHELL, Jesse. *A Arte de Game Design: o livro dos elementos*. Rio de Janeiro: Elsevier, 2011.
 
 ROGERS, Scott. *Level Up!: The Guide to Great Video Game Design*. 2. ed. Chichester: Wiley, 2014.
+
+# Apêndice A - Perguntas e respostas selecionadas do questionário
+
+Este apêndice apresenta as perguntas do formulário aplicado ao público-alvo e uma seleção anônima de respostas consideradas mais úteis para a elicitação de requisitos do projeto **Ani**.
+
+O formulário foi respondido por 8 participantes. As respostas foram, em geral, vagas e não geraram mecânicas nem decisões de design.
+
+Os nomes dos participantes foram removidos. Em alguns casos, respostas com conteúdo aproveitável foram reescritas de forma sintética, preservando seu sentido principal. Respostas muito vagas, ofensivas, sem relação com o projeto ou pouco aproveitáveis do ponto de vista analítico não foram reproduzidas.
+
+## 1. O que mais te atrai em um jogo narrativo?
+
+### Respostas selecionadas
+
+- Participante A: reflexões filosóficas e profundas.
+- Participante B: estilo de arte e trilha sonora únicos.
+- Participante C: enredo complexo e com possibilidade de interpretação.
+
+### Síntese
+
+As respostas indicam interesse por jogos que combinam impacto estético, profundidade temática e narrativa com valor reflexivo.
+
+## 2. Sobre a fluidez e a programação
+
+### Respostas selecionadas
+
+- Participante A: espera controles responsivos, interações fluidas e transições visuais e sonoras sem quebras de imersão.
+- Participante B: espera uma experiência intuitiva, sem atrasos, travamentos ou elementos técnicos que prejudiquem a atmosfera.
+- Participante C: espera gameplay fluida, carregamento rápido e boa precisão nos controles.
+
+### Síntese
+
+As respostas reforçam requisitos ligados à responsividade, estabilidade, fluidez e preservação da imersão.
+
+## 3. Sobre as mecânicas de jogo
+
+### Respostas selecionadas
+
+- Participante A: espera exploração significativa, com cenários que tenham algo a contar e impacto emocional perceptível.
+- Participante B: valoriza descoberta de memórias, caminhos de exploração e interação com elementos narrativos do cenário.
+- Participante C: deseja que a exploração produza consequências perceptíveis no mundo e na experiência do personagem.
+
+### Síntese
+
+As respostas mostram preferência por mecânicas de exploração com função narrativa, em vez de interações puramente instrumentais. Sugestões muito distantes da proposta consolidada do projeto, como combate central ou estrutura fortemente ramificada, não foram adotadas como base principal.
+
+## 4. Sobre a arte e o design
+
+### Respostas selecionadas
+
+- Participante A: espera uma estética que comunique emoção de forma sutil e acompanhe a jornada do personagem.
+- Participante B: deseja um estilo visual poético, com trilha delicada e introspectiva.
+- Participante C: espera coerência entre arte, música e narrativa ao longo da progressão.
+
+### Síntese
+
+As respostas apontam para a importância de uma direção artística sensível, coerente e articulada com o estado emocional do jogo.
+
+## 5. Sobre a história e o significado
+
+### Respostas selecionadas
+
+- Participante A: espera uma experiência que deixe algo significativo e confie na interpretação do jogador.
+- Participante B: espera reflexão sobre a própria vida e impacto emocional duradouro.
+- Participante C: espera uma história ligada à filosofia, relações humanas e leitura sensível do mundo.
+
+### Síntese
+
+As respostas reforçam que o jogo deve buscar significado, densidade interpretativa e reflexão, sem depender apenas de explicações diretas.
+
+## 6. Principais contribuições do questionário
+
+A partir da análise das respostas selecionadas, foi possível consolidar percepções importantes para a elicitação:
+
+- necessidade de movimentação e interação fluidas;
+- valorização da atmosfera visual e sonora;
+- importância da exploração com função narrativa;
+- centralidade de memórias, diário e simbolismo;
+- preferência por uma experiência reflexiva, interpretativa e emocionalmente significativa.
