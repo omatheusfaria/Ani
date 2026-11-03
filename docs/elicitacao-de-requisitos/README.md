@@ -4,7 +4,7 @@ A elicitação de requisitos é uma atividade central da Engenharia de Requisito
 
 A importância da elicitação de requisitos está em reduzir ambiguidades, alinhar expectativas e orientar a definição correta do problema que o software precisa resolver. Quando bem conduzida, ela contribui para a comunicação entre envolvidos, para a priorização de necessidades e para a construção de um produto mais coerente com o objetivo do projeto [1][2].
 
-No projeto **Ani**, a elicitação de requisitos foi conduzida a partir de duas técnicas centrais: um questionário exploratório aplicado de forma remota e a introspecção estruturada do designer como stakeholder primário. Como etapa complementar de organização, a modelagem incremental foi utilizada para refinar e consolidar os requisitos levantados a partir do GDD e das demais evidências produzidas.
+No projeto **Ani**, foi aplicado um questionário exploratório a 8 participantes do público-alvo, mas suas respostas foram, em geral, vagas e não geraram mecânicas nem decisões de design. Por esse baixo aproveitamento, a especificação se apoiou principalmente na análise documental do GDD e na introspecção estruturada do designer como stakeholder primário. Como etapa complementar de organização, a modelagem incremental foi utilizada para refinar e consolidar os requisitos levantados.
 
 O Quadro 1 apresenta as técnicas de elicitação adotadas no projeto.
 
@@ -12,8 +12,9 @@ O Quadro 1 apresenta as técnicas de elicitação adotadas no projeto.
 
 | Técnica | Aplicação no projeto | Resultado principal |
 | --- | --- | --- |
-| Questionário exploratório | Aplicação de formulário digital com perguntas sobre jogos narrativos contemplativos, atmosfera, exploração, diário de memórias e progressão. | Levantamento inicial de percepções do público-alvo sobre ritmo, atmosfera e ausência de punição sistêmica. |
-| Introspecção estruturada | Análise reflexiva conduzida pelo autor do projeto, tomando o [GDD](../gdd.md) como referência central. | Derivação das funcionalidades, restrições e comportamentos necessários para viabilizar a experiência pretendida. |
+| Análise documental | Leitura sistemática do [GDD](../gdd.md) como fonte primária de requisitos. | Derivação das funcionalidades, restrições e comportamentos a partir da narrativa, das mecânicas, do mundo, da interface, do áudio e das especificações técnicas. |
+| Introspecção estruturada | Análise reflexiva conduzida pelo autor do projeto, tomando o [GDD](../gdd.md) como referência central. | Avaliação de quais funcionalidades, comportamentos e restrições o sistema precisa ter para viabilizar a experiência pretendida. |
+| Questionário exploratório | Formulário digital com cinco perguntas, respondido por 8 participantes do público-alvo. | Baixo aproveitamento: as respostas foram, em geral, vagas e não geraram mecânicas nem decisões de design. |
 | Modelagem incremental | Uso progressivo de requisitos, casos de uso, diagramas e demais artefatos para refinar o que foi levantado. | Organização e rastreabilidade entre decisões conceituais e especificações técnicas. |
 
 O Quadro 2 apresenta os principais stakeholders considerados durante a elicitação.
@@ -24,9 +25,9 @@ O Quadro 2 apresenta os principais stakeholders considerados durante a elicitaç
 | --- | --- | --- |
 | Autor do projeto | Responsável pela concepção do jogo e pela derivação principal dos requisitos. | Definição da identidade do sistema, das mecânicas e das restrições conceituais do projeto. |
 | Orientador acadêmico | Responsável pelo acompanhamento metodológico da documentação. | Apoio na validação da estrutura dos artefatos e no direcionamento acadêmico do trabalho. |
-| Público-alvo / participantes do questionário | Fonte exploratória de percepção e referência de experiência de uso. | Indicações sobre atmosfera, ritmo, interação, acessibilidade e expectativa de experiência contemplativa. |
+| Público-alvo / participantes do questionário | Respondentes do questionário exploratório. | Percepções gerais, registradas em resumo no Apêndice A, que não geraram mecânicas nem decisões de design. |
 
-No caso de **Ani**, o questionário teve alcance menor do que o inicialmente planejado e nem todas as respostas apresentaram detalhamento suficiente para aproveitamento analítico. Por isso, foi realizada uma seleção das contribuições mais relevantes, com síntese textual apenas das respostas que continham elementos efetivamente aproveitáveis. Ainda assim, esse material forneceu insumos iniciais importantes, especialmente sobre ritmo de progressão, valorização da atmosfera e rejeição a punições sistêmicas em uma experiência contemplativa.
+No caso de **Ani**, o questionário teve baixo aproveitamento: as respostas foram, em geral, vagas. As que tinham algum conteúdo aproveitável foram resumidas e anonimizadas no Apêndice A; os resumos não são transcrições, porque as respostas originais não foram preservadas. Nenhum requisito do projeto tem o questionário como fonte.
 
 O Quadro 3 apresenta alguns dos principais resultados obtidos a partir da elicitação de requisitos.
 
@@ -52,7 +53,7 @@ O Quadro 4 apresenta algumas histórias de usuário derivadas do levantamento re
 | US03 | Como jogador, quero uma experiência contemplativa e interpretativa para que o jogo provoque reflexão sem depender de combate ou punição excessiva. |
 | US04 | Como jogador, quero perceber transformações no mundo e na narrativa conforme avanço para que a progressão pareça significativa. |
 
-As perguntas do formulário e as respostas selecionadas e anonimizadas encontram-se no Apêndice A, disponível em [apendice-questionario.md](./apendice-questionario.md). A documentação complementar da elicitação pode ser consultada em [elicitacao-de-requisitos.md](./elicitacao-de-requisitos.md).
+As perguntas do formulário e os resumos das respostas selecionadas encontram-se no Apêndice A, disponível em [apendice-questionario.md](./apendice-questionario.md). A documentação complementar da elicitação pode ser consultada em [elicitacao-de-requisitos.md](./elicitacao-de-requisitos.md).
 
 ## Referências
 

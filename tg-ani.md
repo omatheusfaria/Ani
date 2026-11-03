@@ -153,7 +153,7 @@ No projeto **Ani אֲנִי**, a elicitação contou com um questionário explor
 
 A introspecção estruturada do designer foi empregada como técnica adequada ao caráter autoral do projeto, pois o próprio autor atua como stakeholder primário e detém conhecimento direto sobre a proposta conceitual, estética e filosófica do jogo. Para reduzir o risco de subjetividade excessiva, essa introspecção foi apoiada por registros documentais, especialmente o GDD, e confrontada com os demais artefatos produzidos ao longo do levantamento, como requisitos, regras de negócio, casos de uso, BPMN, diagrama de classes e diagrama entidade-relacionamento.
 
-O questionário foi aplicado por formulário a 8 participantes com perfil próximo ao público-alvo, com cinco perguntas: o que atrai o participante em um jogo narrativo, e o que ele espera quanto à fluidez e à programação, às mecânicas, à arte e ao design, e à história e ao significado. As respostas foram, em geral, vagas e não geraram mecânicas nem decisões de design. As que tinham algum conteúdo aproveitável foram anonimizadas e estão no Apêndice A, onde se registram percepções sobre movimentação e interação fluidas, atmosfera visual e sonora, exploração com função narrativa, memórias e diário, e experiência reflexiva. Nenhum requisito deste trabalho tem o questionário como fonte.
+O questionário foi aplicado por formulário a 8 participantes com perfil próximo ao público-alvo, com cinco perguntas: o que atrai o participante em um jogo narrativo, e o que ele espera quanto à fluidez e à programação, às mecânicas, à arte e ao design, e à história e ao significado. As respostas foram, em geral, vagas e não geraram mecânicas nem decisões de design. As que tinham algum conteúdo aproveitável foram anonimizadas e resumidas no Apêndice A (os resumos não são transcrições; as respostas originais não foram preservadas), onde se registram percepções sobre movimentação e interação fluidas, atmosfera visual e sonora, exploração com função narrativa, memórias e diário, e experiência reflexiva. Nenhum requisito deste trabalho tem o questionário como fonte.
 
 Assim, a especificação de requisitos de **Ani** funciona como uma formalização da proposta conceitual do jogo em termos de software, reunindo as necessidades identificadas a partir do GDD, da introspecção estruturada e dos demais artefatos de modelagem. Com isso, os requisitos servem de base para a continuidade do projeto, orientando a modelagem, a implementação e a validação do protótipo. Os requisitos completos são apresentados nas seções seguintes.
 
@@ -1265,17 +1265,17 @@ SCHELL, Jesse. *A Arte de Game Design: o livro dos elementos*. Rio de Janeiro: E
 
 ROGERS, Scott. *Level Up!: The Guide to Great Video Game Design*. 2. ed. Chichester: Wiley, 2014.
 
-# Apêndice A - Perguntas e respostas selecionadas do questionário
+# Apêndice A - Perguntas do questionário e resumos das respostas selecionadas
 
-Este apêndice apresenta as perguntas do formulário aplicado ao público-alvo e uma seleção anônima de respostas consideradas mais úteis para a elicitação de requisitos do projeto **Ani**.
+Este apêndice apresenta as perguntas do formulário aplicado ao público-alvo e resumos anônimos das respostas consideradas mais úteis para a elicitação de requisitos do projeto **Ani**.
 
 O formulário foi respondido por 8 participantes. As respostas foram, em geral, vagas e não geraram mecânicas nem decisões de design.
 
-Os nomes dos participantes foram removidos. Em alguns casos, respostas com conteúdo aproveitável foram reescritas de forma sintética, preservando seu sentido principal. Respostas muito vagas, ofensivas, sem relação com o projeto ou pouco aproveitáveis do ponto de vista analítico não foram reproduzidas.
+Os textos abaixo são resumos das respostas, não transcrições: as respostas originais do formulário não foram preservadas. Os nomes dos participantes foram removidos. Respostas muito vagas, ofensivas, sem relação com o projeto ou pouco aproveitáveis do ponto de vista analítico não foram reproduzidas.
 
 ## 1. O que mais te atrai em um jogo narrativo?
 
-### Respostas selecionadas
+### Resumos das respostas selecionadas
 
 - Participante A: reflexões filosóficas e profundas.
 - Participante B: estilo de arte e trilha sonora únicos.
@@ -1287,7 +1287,7 @@ As respostas indicam interesse por jogos que combinam impacto estético, profund
 
 ## 2. Sobre a fluidez e a programação
 
-### Respostas selecionadas
+### Resumos das respostas selecionadas
 
 - Participante A: espera controles responsivos, interações fluidas e transições visuais e sonoras sem quebras de imersão.
 - Participante B: espera uma experiência intuitiva, sem atrasos, travamentos ou elementos técnicos que prejudiquem a atmosfera.
@@ -1299,7 +1299,7 @@ As respostas reforçam requisitos ligados à responsividade, estabilidade, fluid
 
 ## 3. Sobre as mecânicas de jogo
 
-### Respostas selecionadas
+### Resumos das respostas selecionadas
 
 - Participante A: espera exploração significativa, com cenários que tenham algo a contar e impacto emocional perceptível.
 - Participante B: valoriza descoberta de memórias, caminhos de exploração e interação com elementos narrativos do cenário.
@@ -1311,7 +1311,7 @@ As respostas mostram preferência por mecânicas de exploração com função na
 
 ## 4. Sobre a arte e o design
 
-### Respostas selecionadas
+### Resumos das respostas selecionadas
 
 - Participante A: espera uma estética que comunique emoção de forma sutil e acompanhe a jornada do personagem.
 - Participante B: deseja um estilo visual poético, com trilha delicada e introspectiva.
@@ -1323,7 +1323,7 @@ As respostas apontam para a importância de uma direção artística sensível, 
 
 ## 5. Sobre a história e o significado
 
-### Respostas selecionadas
+### Resumos das respostas selecionadas
 
 - Participante A: espera uma experiência que deixe algo significativo e confie na interpretação do jogador.
 - Participante B: espera reflexão sobre a própria vida e impacto emocional duradouro.
@@ -1333,9 +1333,9 @@ As respostas apontam para a importância de uma direção artística sensível, 
 
 As respostas reforçam que o jogo deve buscar significado, densidade interpretativa e reflexão, sem depender apenas de explicações diretas.
 
-## 6. Principais contribuições do questionário
+## 6. Temas recorrentes nos resumos das respostas
 
-A partir da análise das respostas selecionadas, foi possível consolidar percepções importantes para a elicitação:
+Os resumos das respostas selecionadas giram em torno dos seguintes temas, que não chegaram a gerar mecânicas nem decisões de design:
 
 - necessidade de movimentação e interação fluidas;
 - valorização da atmosfera visual e sonora;

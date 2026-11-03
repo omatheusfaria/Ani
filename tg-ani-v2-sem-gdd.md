@@ -215,7 +215,7 @@ O projeto será considerado bem-sucedido se conseguir entregar um protótipo fun
 
 A elicitação de requisitos corresponde ao processo de identificar, compreender, negociar e documentar os serviços, restrições e comportamentos esperados de um sistema. Para Sommerville (2019), os requisitos expressam aquilo que o software deve fazer e as condições sob as quais deve operar; Pressman e Maxim (2016) destacam que a qualidade da solução depende fortemente da qualidade da descoberta inicial dessas necessidades. Em projetos digitais complexos, a elicitação não é apenas levantamento, mas também interpretação técnica do domínio.
 
-No presente projeto, foi aplicado por formulário um questionário exploratório a 8 participantes com perfil próximo ao público-alvo, com cinco perguntas: o que atrai o participante em um jogo narrativo, e o que ele espera quanto à fluidez e à programação, às mecânicas, à arte e ao design, e à história e ao significado. As respostas foram, em geral, vagas e não geraram mecânicas nem decisões de design; as que tinham algum conteúdo aproveitável foram anonimizadas e estão no Apêndice A. Nenhum requisito deste trabalho tem o questionário como fonte.
+No presente projeto, foi aplicado por formulário um questionário exploratório a 8 participantes com perfil próximo ao público-alvo, com cinco perguntas: o que atrai o participante em um jogo narrativo, e o que ele espera quanto à fluidez e à programação, às mecânicas, à arte e ao design, e à história e ao significado. As respostas foram, em geral, vagas e não geraram mecânicas nem decisões de design; as que tinham algum conteúdo aproveitável foram anonimizadas e resumidas no Apêndice A (os resumos não são transcrições; as respostas originais não foram preservadas). Nenhum requisito deste trabalho tem o questionário como fonte.
 
 Por esse baixo aproveitamento, a elicitação foi conduzida principalmente por análise documental e refinamento iterativo. A documentação já existente do jogo funcionou como base primária para transformar intenções conceituais em exigências formais de software. Em especial, o documento de direção do projeto exerceu o papel de fonte de requisitos de produto, registrando narrativa, mecânicas, mundo, interface, áudio e especificações técnicas que depois foram convertidos em artefatos de engenharia.
 
@@ -1161,17 +1161,17 @@ SOMMERVILLE, Ian. *Engenharia de Software*. 10. ed. São Paulo: Pearson, 2019.
 
 VISUAL PARADIGM. *What is Class Diagram?* Disponível em: <https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-class-diagram/>. Acesso em: 22.mar.2026.
 
-# Apêndice A - Perguntas e respostas selecionadas do questionário
+# Apêndice A - Perguntas do questionário e resumos das respostas selecionadas
 
-Este apêndice apresenta as perguntas do formulário aplicado ao público-alvo e uma seleção anônima de respostas consideradas mais úteis para a elicitação de requisitos do projeto **Ani**.
+Este apêndice apresenta as perguntas do formulário aplicado ao público-alvo e resumos anônimos das respostas consideradas mais úteis para a elicitação de requisitos do projeto **Ani**.
 
 O formulário foi respondido por 8 participantes. As respostas foram, em geral, vagas e não geraram mecânicas nem decisões de design.
 
-Os nomes dos participantes foram removidos. Em alguns casos, respostas com conteúdo aproveitável foram reescritas de forma sintética, preservando seu sentido principal. Respostas muito vagas, ofensivas, sem relação com o projeto ou pouco aproveitáveis do ponto de vista analítico não foram reproduzidas.
+Os textos abaixo são resumos das respostas, não transcrições: as respostas originais do formulário não foram preservadas. Os nomes dos participantes foram removidos. Respostas muito vagas, ofensivas, sem relação com o projeto ou pouco aproveitáveis do ponto de vista analítico não foram reproduzidas.
 
 ## 1. O que mais te atrai em um jogo narrativo?
 
-### Respostas selecionadas
+### Resumos das respostas selecionadas
 
 - Participante A: reflexões filosóficas e profundas.
 - Participante B: estilo de arte e trilha sonora únicos.
@@ -1183,7 +1183,7 @@ As respostas indicam interesse por jogos que combinam impacto estético, profund
 
 ## 2. Sobre a fluidez e a programação
 
-### Respostas selecionadas
+### Resumos das respostas selecionadas
 
 - Participante A: espera controles responsivos, interações fluidas e transições visuais e sonoras sem quebras de imersão.
 - Participante B: espera uma experiência intuitiva, sem atrasos, travamentos ou elementos técnicos que prejudiquem a atmosfera.
@@ -1195,7 +1195,7 @@ As respostas reforçam requisitos ligados à responsividade, estabilidade, fluid
 
 ## 3. Sobre as mecânicas de jogo
 
-### Respostas selecionadas
+### Resumos das respostas selecionadas
 
 - Participante A: espera exploração significativa, com cenários que tenham algo a contar e impacto emocional perceptível.
 - Participante B: valoriza descoberta de memórias, caminhos de exploração e interação com elementos narrativos do cenário.
@@ -1207,7 +1207,7 @@ As respostas mostram preferência por mecânicas de exploração com função na
 
 ## 4. Sobre a arte e o design
 
-### Respostas selecionadas
+### Resumos das respostas selecionadas
 
 - Participante A: espera uma estética que comunique emoção de forma sutil e acompanhe a jornada do personagem.
 - Participante B: deseja um estilo visual poético, com trilha delicada e introspectiva.
@@ -1219,7 +1219,7 @@ As respostas apontam para a importância de uma direção artística sensível, 
 
 ## 5. Sobre a história e o significado
 
-### Respostas selecionadas
+### Resumos das respostas selecionadas
 
 - Participante A: espera uma experiência que deixe algo significativo e confie na interpretação do jogador.
 - Participante B: espera reflexão sobre a própria vida e impacto emocional duradouro.
@@ -1229,9 +1229,9 @@ As respostas apontam para a importância de uma direção artística sensível, 
 
 As respostas reforçam que o jogo deve buscar significado, densidade interpretativa e reflexão, sem depender apenas de explicações diretas.
 
-## 6. Principais contribuições do questionário
+## 6. Temas recorrentes nos resumos das respostas
 
-A partir da análise das respostas selecionadas, foi possível consolidar percepções importantes para a elicitação:
+Os resumos das respostas selecionadas giram em torno dos seguintes temas, que não chegaram a gerar mecânicas nem decisões de design:
 
 - necessidade de movimentação e interação fluidas;
 - valorização da atmosfera visual e sonora;

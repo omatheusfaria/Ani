@@ -1,14 +1,14 @@
-# Apêndice A - Perguntas e respostas selecionadas do questionário
+# Apêndice A - Perguntas do questionário e resumos das respostas selecionadas
 
-Este apêndice apresenta as perguntas do formulário aplicado ao público-alvo e uma seleção anônima de respostas consideradas mais úteis para a elicitação de requisitos do projeto **Ani**.
+Este apêndice apresenta as perguntas do formulário aplicado ao público-alvo e resumos anônimos das respostas consideradas mais úteis para a elicitação de requisitos do projeto **Ani**.
 
 O formulário foi respondido por 8 participantes. As respostas foram, em geral, vagas e não geraram mecânicas nem decisões de design.
 
-Os nomes dos participantes foram removidos. Em alguns casos, respostas com conteúdo aproveitável foram reescritas de forma sintética, preservando seu sentido principal. Respostas muito vagas, ofensivas, sem relação com o projeto ou pouco aproveitáveis do ponto de vista analítico não foram reproduzidas.
+Os textos abaixo são resumos das respostas, não transcrições: as respostas originais do formulário não foram preservadas. Os nomes dos participantes foram removidos. Respostas muito vagas, ofensivas, sem relação com o projeto ou pouco aproveitáveis do ponto de vista analítico não foram reproduzidas.
 
 ## 1. O que mais te atrai em um jogo narrativo?
 
-### Respostas selecionadas
+### Resumos das respostas selecionadas
 
 - Participante A: reflexões filosóficas e profundas.
 - Participante B: estilo de arte e trilha sonora únicos.
@@ -20,7 +20,7 @@ As respostas indicam interesse por jogos que combinam impacto estético, profund
 
 ## 2. Sobre a fluidez e a programação
 
-### Respostas selecionadas
+### Resumos das respostas selecionadas
 
 - Participante A: espera controles responsivos, interações fluidas e transições visuais e sonoras sem quebras de imersão.
 - Participante B: espera uma experiência intuitiva, sem atrasos, travamentos ou elementos técnicos que prejudiquem a atmosfera.
@@ -32,7 +32,7 @@ As respostas reforçam requisitos ligados à responsividade, estabilidade, fluid
 
 ## 3. Sobre as mecânicas de jogo
 
-### Respostas selecionadas
+### Resumos das respostas selecionadas
 
 - Participante A: espera exploração significativa, com cenários que tenham algo a contar e impacto emocional perceptível.
 - Participante B: valoriza descoberta de memórias, caminhos de exploração e interação com elementos narrativos do cenário.
@@ -44,7 +44,7 @@ As respostas mostram preferência por mecânicas de exploração com função na
 
 ## 4. Sobre a arte e o design
 
-### Respostas selecionadas
+### Resumos das respostas selecionadas
 
 - Participante A: espera uma estética que comunique emoção de forma sutil e acompanhe a jornada do personagem.
 - Participante B: deseja um estilo visual poético, com trilha delicada e introspectiva.
@@ -56,7 +56,7 @@ As respostas apontam para a importância de uma direção artística sensível, 
 
 ## 5. Sobre a história e o significado
 
-### Respostas selecionadas
+### Resumos das respostas selecionadas
 
 - Participante A: espera uma experiência que deixe algo significativo e confie na interpretação do jogador.
 - Participante B: espera reflexão sobre a própria vida e impacto emocional duradouro.
@@ -66,9 +66,9 @@ As respostas apontam para a importância de uma direção artística sensível, 
 
 As respostas reforçam que o jogo deve buscar significado, densidade interpretativa e reflexão, sem depender apenas de explicações diretas.
 
-## 6. Principais contribuições do questionário
+## 6. Temas recorrentes nos resumos das respostas
 
-A partir da análise das respostas selecionadas, foi possível consolidar percepções importantes para a elicitação:
+Os resumos das respostas selecionadas giram em torno dos seguintes temas, que não chegaram a gerar mecânicas nem decisões de design:
 
 - necessidade de movimentação e interação fluidas;
 - valorização da atmosfera visual e sonora;
