@@ -18,7 +18,7 @@ O Quadro 1 apresenta alguns dos requisitos funcionais do projeto.
 | RF003 | Interagir com objetos | Evidente | Altíssima | O sistema deve permitir interação com objetos significativos para acessar memórias, fragmentos narrativos e elementos contemplativos do cenário. |
 | RF005 | Diário de memórias | Evidente | Altíssima | O sistema deve registrar os fragmentos coletados em um diário estilizado acessível ao jogador. |
 | RF009 | Sistema de save/load | Evidente | Altíssima | O sistema deve salvar e carregar o progresso do jogador, incluindo ato atual, memórias registradas e estado do diário. |
-| RF012 | Progressão por atos filosóficos | Oculto | Altíssima | O jogo deve ser estruturado em cinco atos sequenciais, com mudança de atmosfera, paleta, comportamento das manifestações e mecânicas conforme a progressão. |
+| RF012 | Progressão por atos filosóficos | Evidente | Altíssima | O jogo deve ser estruturado em cinco atos sequenciais, com mudança de atmosfera, paleta, comportamento das manifestações e mecânicas conforme a progressão. |
 
 A documentação completa dos requisitos funcionais pode ser consultada em [requisitos-funcionais.md](./requisitos-funcionais.md).
 

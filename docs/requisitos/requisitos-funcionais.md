@@ -52,15 +52,15 @@ No projeto **Ani**, os requisitos funcionais reúnem as funcionalidades atualmen
 | --- | --- | --- |
 | **Descrição**: O sistema deve permitir que o jogo seja controlado também por gamepad. | | |
 
-| RF012-Progressão por atos filosóficos | Categoria: (X) Oculto (  ) Evidente | Prioridade: (X) Altíssima (  ) Alta (  ) Média (  ) Baixa |
+| RF012-Progressão por atos filosóficos | Categoria: (  ) Oculto (X) Evidente | Prioridade: (X) Altíssima (  ) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |
 | **Descrição**: O sistema deve estruturar o jogo em cinco atos sequenciais, com mudança de atmosfera, paleta, comportamento das manifestações e mecânicas conforme a progressão. | | |
 
-| RF013-Mecânica de peso literal no Ato I | Categoria: (X) Oculto (  ) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
+| RF013-Mecânica de peso literal no Ato I | Categoria: (  ) Oculto (X) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |
 | **Descrição**: O sistema deve aumentar a sensação de peso no deslocamento de Ani a cada memória tocada no Ato I, tornando o avanço mais lento. | | |
 
-| RF014-Mecânica de ecos de decisão no Ato II | Categoria: (X) Oculto (  ) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
+| RF014-Mecânica de ecos de decisão no Ato II | Categoria: (  ) Oculto (X) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |
 | **Descrição**: O sistema deve permitir que o jogador revisite, no Ato II, situações em que tenta agir de outro modo, mantendo o resultado preso ao mesmo impasse narrativo. | | |
 
@@ -68,15 +68,15 @@ No projeto **Ani**, os requisitos funcionais reúnem as funcionalidades atualmen
 | --- | --- | --- |
 | **Descrição**: O sistema deve permitir, no Ato III, a restauração de objetos quebrados sem apagar suas marcas, em linha com a ideia de Kintsugi. | | |
 
-| RF016-Mecânica de contemplação ativa no Ato IV | Categoria: (X) Oculto (  ) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
+| RF016-Mecânica de contemplação ativa no Ato IV | Categoria: (  ) Oculto (X) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |
 | **Descrição**: O sistema deve revelar, no Ato IV, fragmentos de narração quando o jogador permanece em observação diante de elementos contemplativos do cenário. | | |
 
-| RF017-Dissolução de mecânicas no Ato V | Categoria: (X) Oculto (  ) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
+| RF017-Dissolução de mecânicas no Ato V | Categoria: (  ) Oculto (X) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |
 | **Descrição**: O sistema deve retirar progressivamente, no Ato V, as mecânicas centrais dos atos anteriores até restarem principalmente deslocamento e contemplação. | | |
 
-| RF018-Crises de ansiedade como elemento sensorial | Categoria: (X) Oculto (  ) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
+| RF018-Crises de ansiedade como elemento sensorial | Categoria: (  ) Oculto (X) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |
 | **Descrição**: O sistema deve representar crises de ansiedade por distorção visual, fragmentação sonora e intensificação das manifestações, sem depender de um sistema de escolhas morais. | | |
 
