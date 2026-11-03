@@ -495,11 +495,13 @@ O diagrama de classes UML é um artefato estrutural que representa classes, atri
 
 Em projetos de software com múltiplos elementos de domínio, como jogos digitais, o diagrama de classes auxilia na decomposição da solução em componentes mais claros e reutilizáveis, facilitando o entendimento das responsabilidades e vínculos entre objetos (IBM, s.d., online; Visual Paradigm, s.d., online). Em **Ani**, ele é importante por traduzir o universo conceitual do jogo em elementos de software que suportam exploração, memórias, diário, personagens, diálogos, cenários e progressão por atos. A modelagem gráfica correspondente é apresentada na Figura X, e a estrutura textual das classes é detalhada a seguir.
 
+Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`, `FString`, `TArray<...>`). Os nomes das classes e enumerações do modelo omitem os prefixos da convenção da Unreal (`U` para classes derivadas de `UObject`, `A` para atores, `F` para estruturas e `E` para enumerações), que podem ser aplicados na implementação.
+
 ### Classe: Jogo
 
 **Atributos:**
 
-- `- titulo: string`
+- `- titulo: FString`
 - `- atoAtual: Ato`
 - `- cenarioAtual: Cenario`
 
@@ -514,10 +516,10 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 
 **Atributos:**
 
-- `- nome: string`
+- `- nome: FString`
 - `- posicaoX: float`
 - `- posicaoY: float`
-- `- sprite: string`
+- `- sprite: FString`
 - `- velocidade: float`
 
 **Métodos:**
@@ -552,9 +554,9 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 
 **Atributos:**
 
-- `- id: int`
-- `- linhas: List<string>`
-- `- fragmentado: boolean`
+- `- id: int32`
+- `- linhas: TArray<FString>`
+- `- fragmentado: bool`
 
 **Métodos:**
 
@@ -566,8 +568,8 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 
 **Atributos:**
 
-- `- id: int`
-- `- descricao: string`
+- `- id: int32`
+- `- descricao: FString`
 
 **Métodos:**
 
@@ -577,7 +579,7 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 
 **Atributos:**
 
-- `- coletada: boolean`
+- `- coletada: bool`
 
 **Métodos:**
 
@@ -588,11 +590,11 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 
 **Atributos:**
 
-- `- id: int`
-- `- titulo: string`
-- `- conteudo: string`
-- `- atoOrigem: int`
-- `- coletada: boolean`
+- `- id: int32`
+- `- titulo: FString`
+- `- conteudo: FString`
+- `- atoOrigem: int32`
+- `- coletada: bool`
 
 **Métodos:**
 
@@ -603,7 +605,7 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 
 **Atributos:**
 
-- `- entradas: List<EntradaDiario>`
+- `- entradas: TArray<EntradaDiario>`
 
 **Métodos:**
 
@@ -615,8 +617,8 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 
 **Atributos:**
 
-- `- titulo: string`
-- `- conteudo: string`
+- `- titulo: FString`
+- `- conteudo: FString`
 - `- tipo: TipoEntradaDiario`
 
 **Métodos:**
@@ -627,8 +629,8 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 
 **Atributos:**
 
-- `- nome: string`
-- `- desbloqueado: boolean`
+- `- nome: FString`
+- `- desbloqueado: bool`
 
 **Métodos:**
 
@@ -639,11 +641,11 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 
 **Atributos:**
 
-- `- id: int`
-- `- nome: string`
-- `- descricao: string`
-- `- concluido: boolean`
-- `- limiarMemorias: int`
+- `- id: int32`
+- `- nome: FString`
+- `- descricao: FString`
+- `- concluido: bool`
+- `- limiarMemorias: int32`
 
 **Métodos:**
 

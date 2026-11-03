@@ -20,20 +20,22 @@ O Quadro 1 apresenta a estrutura de classes, atributos e métodos modelada para 
 
 | Classe | Atributos | Métodos |
 | --- | --- | --- |
-| Jogo | `titulo : string`, `atoAtual : Ato`, `cenarioAtual : Cenario` | `iniciar()`, `pausar()`, `encerrar()`, `carregarProgresso()` |
-| Personagem | `nome : string`, `posicaoX : float`, `posicaoY : float`, `sprite : string`, `velocidade : float` | `mover()` |
+| Jogo | `titulo : FString`, `atoAtual : Ato`, `cenarioAtual : Cenario` | `iniciar()`, `pausar()`, `encerrar()`, `carregarProgresso()` |
+| Personagem | `nome : FString`, `posicaoX : float`, `posicaoY : float`, `sprite : FString`, `velocidade : float` | `mover()` |
 | Ani | `estadoEmocional : EstadoEmocional`, `diario : Diario` | `interagir()`, `observar()`, `registrarMemoria()` |
 | NPC | `tipo : TipoNPC` | `falar()`, `interagir()` |
-| Dialogo | `id : int`, `linhas : List<string>`, `fragmentado : boolean` | `iniciar()`, `avançar()`, `encerrar()` |
-| ObjetoInterativo | `id : int`, `descricao : string` | `ativar()` |
-| ObjetoMemoria | `coletada : boolean` | `exibir()`, `registrarNoDiario()` |
-| Memoria | `id : int`, `titulo : string`, `conteudo : string`, `atoOrigem : int`, `coletada : boolean` | `registrar()`, `atualizarLeitura()` |
-| Diario | `entradas : List<EntradaDiario>` | `abrir()`, `adicionarEntrada()`, `consultarEntrada()` |
-| EntradaDiario | `titulo : string`, `conteudo : string`, `tipo : TipoEntradaDiario` | `atualizarLeitura()` |
-| Cenario | `nome : string`, `desbloqueado : boolean` | `carregarCenario()`, `desbloquearArea()` |
-| Ato | `id : int`, `nome : string`, `descricao : string`, `concluido : boolean`, `limiarMemorias : int` | `iniciarAto()`, `verificarConclusao()`, `concluirAto()` |
+| Dialogo | `id : int32`, `linhas : TArray<FString>`, `fragmentado : bool` | `iniciar()`, `avançar()`, `encerrar()` |
+| ObjetoInterativo | `id : int32`, `descricao : FString` | `ativar()` |
+| ObjetoMemoria | `coletada : bool` | `exibir()`, `registrarNoDiario()` |
+| Memoria | `id : int32`, `titulo : FString`, `conteudo : FString`, `atoOrigem : int32`, `coletada : bool` | `registrar()`, `atualizarLeitura()` |
+| Diario | `entradas : TArray<EntradaDiario>` | `abrir()`, `adicionarEntrada()`, `consultarEntrada()` |
+| EntradaDiario | `titulo : FString`, `conteudo : FString`, `tipo : TipoEntradaDiario` | `atualizarLeitura()` |
+| Cenario | `nome : FString`, `desbloqueado : bool` | `carregarCenario()`, `desbloquearArea()` |
+| Ato | `id : int32`, `nome : FString`, `descricao : FString`, `concluido : bool`, `limiarMemorias : int32` | `iniciarAto()`, `verificarConclusao()`, `concluirAto()` |
 | ObjetoRestauravel | `estado : EstadoObjeto` | `restaurar()` |
 | ObjetoContemplativo | `tempoMinimoObservacao : float` | `observar()`, `liberarNarracao()` |
+
+Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`, `FString`, `TArray<...>`). Os nomes das classes e enumerações do modelo omitem os prefixos da convenção da Unreal (`U` para classes derivadas de `UObject`, `A` para atores, `F` para estruturas e `E` para enumerações), que podem ser aplicados na implementação.
 
 O Quadro 2 apresenta as enumerações utilizadas para restringir valores recorrentes da modelagem.
 

@@ -575,9 +575,11 @@ Sua importância neste trabalho está em mostrar como a experiência contemplati
 
 As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sintetiza os cinco atos filosóficos; `Memoria`, `Diario` e `EntradaDiario` formalizam o sistema de memórias; `ObjetoMemoria` representa o gatilho interativo de revelação de memórias; `ObjetoRestauravel` traduz a lógica de Kintsugi do Ato III; `ObjetoContemplativo` traduz a contemplação ativa do Ato IV; `NPC` e `Dialogo` representam personagens de memória, arquétipos e seus fluxos textuais; e `Ani` constitui a representação sistêmica da protagonista como sujeito da experiência.
 
+Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`, `FString`, `TArray<...>`). Os nomes das classes e enumerações do modelo omitem os prefixos da convenção da Unreal (`U` para classes derivadas de `UObject`, `A` para atores, `F` para estruturas e `E` para enumerações), que podem ser aplicados na implementação.
+
 ### Classe: Jogo
 **Atributos:**
-- `- titulo: string`
+- `- titulo: FString`
 - `- atoAtual: Ato`
 - `- cenarioAtual: Cenario`
 
@@ -589,10 +591,10 @@ As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sin
 
 ### Classe: Personagem
 **Atributos:**
-- `- nome: string`
+- `- nome: FString`
 - `- posicaoX: float`
 - `- posicaoY: float`
-- `- sprite: string`
+- `- sprite: FString`
 - `- velocidade: float`
 
 **Métodos:**
@@ -618,9 +620,9 @@ As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sin
 
 ### Classe: Dialogo
 **Atributos:**
-- `- id: int`
-- `- linhas: List<string>`
-- `- fragmentado: boolean`
+- `- id: int32`
+- `- linhas: TArray<FString>`
+- `- fragmentado: bool`
 
 **Métodos:**
 - `+ iniciar()`
@@ -629,15 +631,15 @@ As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sin
 
 ### Classe: ObjetoInterativo
 **Atributos:**
-- `- id: int`
-- `- descricao: string`
+- `- id: int32`
+- `- descricao: FString`
 
 **Métodos:**
 - `+ ativar()`
 
 ### Classe: ObjetoMemoria
 **Atributos:**
-- `- coletada: boolean`
+- `- coletada: bool`
 
 **Métodos:**
 - `+ exibir()`
@@ -645,11 +647,11 @@ As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sin
 
 ### Classe: Memoria
 **Atributos:**
-- `- id: int`
-- `- titulo: string`
-- `- conteudo: string`
-- `- atoOrigem: int`
-- `- coletada: boolean`
+- `- id: int32`
+- `- titulo: FString`
+- `- conteudo: FString`
+- `- atoOrigem: int32`
+- `- coletada: bool`
 
 **Métodos:**
 - `+ registrar()`
@@ -657,7 +659,7 @@ As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sin
 
 ### Classe: Diario
 **Atributos:**
-- `- entradas: List<EntradaDiario>`
+- `- entradas: TArray<EntradaDiario>`
 
 **Métodos:**
 - `+ abrir()`
@@ -666,8 +668,8 @@ As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sin
 
 ### Classe: EntradaDiario
 **Atributos:**
-- `- titulo: string`
-- `- conteudo: string`
+- `- titulo: FString`
+- `- conteudo: FString`
 - `- tipo: TipoEntradaDiario`
 
 **Métodos:**
@@ -675,8 +677,8 @@ As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sin
 
 ### Classe: Cenario
 **Atributos:**
-- `- nome: string`
-- `- desbloqueado: boolean`
+- `- nome: FString`
+- `- desbloqueado: bool`
 
 **Métodos:**
 - `+ carregarCenario()`
@@ -684,11 +686,11 @@ As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sin
 
 ### Classe: Ato
 **Atributos:**
-- `- id: int`
-- `- nome: string`
-- `- descricao: string`
-- `- concluido: boolean`
-- `- limiarMemorias: int`
+- `- id: int32`
+- `- nome: FString`
+- `- descricao: FString`
+- `- concluido: bool`
+- `- limiarMemorias: int32`
 
 **Métodos:**
 - `+ iniciarAto()`
