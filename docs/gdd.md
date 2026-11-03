@@ -46,8 +46,8 @@ A tabela a seguir apresenta a ficha técnica base do projeto **Ani**.
 | Título | Ani |
 | Gênero | Side-scroller narrativo contemplativo |
 | Plataforma principal | PC (Windows) |
-| Engine | Unity |
-| Linguagem | C# |
+| Engine | Unreal Engine |
+| Linguagem | C++ |
 | Câmera | Lateral fixa com zoom narrativo |
 | Público-alvo | 16 a 28 anos, com interesse em filosofia, arte e narrativas reflexivas |
 | Tom | Sombrio, melancólico e contemplativo, com redenção gradual |
@@ -373,8 +373,8 @@ A tabela a seguir apresenta a base técnica atualmente definida para o projeto.
 
 | Item | Direção Atual |
 | --- | --- |
-| Engine | Unity |
-| Linguagem | C# |
+| Engine | Unreal Engine |
+| Linguagem | C++ |
 | Plataforma inicial | PC (Windows) |
 | Estrutura visual | Side-scroller lateral com elementos 3D estilizados |
 | Câmera | Lateral fixa com zoom narrativo |

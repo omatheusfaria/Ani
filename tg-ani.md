@@ -18,8 +18,8 @@ PROJECT MANAGEMENT INSTITUTE. *Um Guia do Conhecimento em Gerenciamento de Proje
 | Tipo | Jogo digital narrativo contemplativo |
 | Área | Desenvolvimento de software e jogos digitais |
 | Plataforma inicial | PC (Windows) |
-| Motor de jogo | Unity |
-| Linguagem principal | C# |
+| Motor de jogo | Unreal Engine |
+| Linguagem principal | C++ |
 | Natureza do projeto | Projeto autoral com finalidade acadêmica e prototipação |
 
 ## 2. Problema de Pesquisa
@@ -54,8 +54,8 @@ A modelagem utiliza BPMN para representação dos fluxos de gameplay e UML para 
 
 As tecnologias e ferramentas utilizadas são:
 
-- Unity como motor de jogo.
-- C# como linguagem de programação.
+- Unreal Engine como motor de jogo.
+- C++ como linguagem de programação.
 - Aseprite para sprites e animações.
 - Photoshop / Illustrator para ilustrações e texturas.
 - Audacity / FMOD para design sonoro e efeitos de áudio.
@@ -493,7 +493,7 @@ IBM. *Use case view*. Disponível em: <https://www.ibm.com/docs/en/systems-engin
 
 O diagrama de classes UML é um artefato estrutural que representa classes, atributos, operações e relacionamentos entre os elementos de um sistema orientado a objetos. Seu objetivo é oferecer uma visão estática da arquitetura lógica do software, evidenciando composição, associação, herança e responsabilidades das entidades modeladas. Segundo a IBM, diagramas UML auxiliam a representar diferentes perspectivas de um sistema, enquanto a Visual Paradigm destaca que o diagrama de classes descreve a estrutura do sistema por meio de classes, atributos, métodos e relações (IBM, s.d., online; Visual Paradigm, s.d., online).
 
-Em projetos de software com múltiplos elementos de domínio, como jogos digitais, o diagrama de classes auxilia na decomposição da solução em componentes mais claros e reutilizáveis, facilitando o entendimento das responsabilidades e vínculos entre objetos (IBM, s.d., online; Visual Paradigm, s.d., online). Em **Ani**, ele é importante por traduzir o universo conceitual do jogo em elementos de software que suportam exploração, memórias, diário, personagens, cenários e progressão por atos. A modelagem gráfica correspondente é apresentada na Figura X, e a estrutura textual das classes é detalhada a seguir.
+Em projetos de software com múltiplos elementos de domínio, como jogos digitais, o diagrama de classes auxilia na decomposição da solução em componentes mais claros e reutilizáveis, facilitando o entendimento das responsabilidades e vínculos entre objetos (IBM, s.d., online; Visual Paradigm, s.d., online). Em **Ani**, ele é importante por traduzir o universo conceitual do jogo em elementos de software que suportam exploração, memórias, diário, personagens, diálogos, cenários e progressão por atos. A modelagem gráfica correspondente é apresentada na Figura X, e a estrutura textual das classes é detalhada a seguir.
 
 ### Classe: Jogo
 
@@ -514,9 +514,11 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 
 **Atributos:**
 
+- `- nome: string`
 - `- posicaoX: float`
 - `- posicaoY: float`
 - `- sprite: string`
+- `- velocidade: float`
 
 **Métodos:**
 
@@ -526,7 +528,7 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 
 **Atributos:**
 
-- `- estadoEmocional: string`
+- `- estadoEmocional: EstadoEmocional`
 - `- diario: Diario`
 
 **Métodos:**
@@ -539,38 +541,63 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 
 **Atributos:**
 
-- `- nome: string`
-- `- tipo: string`
+- `- tipo: TipoNPC`
 
 **Métodos:**
 
 - `+ falar(): void`
 - `+ interagir(): void`
 
+### Classe: Dialogo
+
+**Atributos:**
+
+- `- id: int`
+- `- linhas: List<string>`
+- `- fragmentado: boolean`
+
+**Métodos:**
+
+- `+ iniciar(): void`
+- `+ avançar(): void`
+- `+ encerrar(): void`
+
 ### Classe: ObjetoInterativo
 
 **Atributos:**
 
 - `- id: int`
-- `- tipo: string`
 - `- descricao: string`
 
 **Métodos:**
 
 - `+ ativar(): void`
 
-### Classe: Memoria
+### Classe: ObjetoMemoria
 
 **Atributos:**
 
 - `- coletada: boolean`
-- `- conteudo: string`
-- `- atoOrigem: int`
 
 **Métodos:**
 
 - `+ exibir(): void`
 - `+ registrarNoDiario(): void`
+
+### Classe: Memoria
+
+**Atributos:**
+
+- `- id: int`
+- `- titulo: string`
+- `- conteudo: string`
+- `- atoOrigem: int`
+- `- coletada: boolean`
+
+**Métodos:**
+
+- `+ registrar(): void`
+- `+ atualizarLeitura(): void`
 
 ### Classe: Diario
 
@@ -590,7 +617,7 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 
 - `- titulo: string`
 - `- conteudo: string`
-- `- tipo: string`
+- `- tipo: TipoEntradaDiario`
 
 **Métodos:**
 
@@ -601,7 +628,6 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 **Atributos:**
 
 - `- nome: string`
-- `- tipo: string`
 - `- desbloqueado: boolean`
 
 **Métodos:**
@@ -616,17 +642,29 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 - `- id: int`
 - `- nome: string`
 - `- descricao: string`
+- `- concluido: boolean`
+- `- limiarMemorias: int`
 
 **Métodos:**
 
 - `+ iniciarAto(): void`
+- `+ verificarConclusao(): void`
 - `+ concluirAto(): void`
 
-### Classe: ElementoContemplativo
+### Classe: ObjetoRestauravel
 
 **Atributos:**
 
-- `- descricao: string`
+- `- estado: EstadoObjeto`
+
+**Métodos:**
+
+- `+ restaurar(): void`
+
+### Classe: ObjetoContemplativo
+
+**Atributos:**
+
 - `- tempoMinimoObservacao: float`
 
 **Métodos:**
@@ -634,15 +672,14 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 - `+ observar(): void`
 - `+ liberarNarracao(): void`
 
-### Classe: ObjetoRestauravel
+### Enumerações
 
-**Atributos:**
-
-- `- estado: string`
-
-**Métodos:**
-
-- `+ restaurar(): void`
+| Enumeração | Valores |
+| --- | --- |
+| TipoNPC | `NpcMemoria`, `Arquetipo`, `Aparicao` |
+| EstadoEmocional | `Neutro`, `Ansioso`, `Deprimido`, `Contemplativo`, `Sereno`, `Medo` |
+| TipoEntradaDiario | `Memoria`, `Documento`, `Fotografia`, `Objeto`, `Contemplacao` |
+| EstadoObjeto | `Quebrado`, `Restaurado` |
 
 ### Relacionamentos entre Classes
 
@@ -654,12 +691,16 @@ Em projetos de software com múltiplos elementos de domínio, como jogos digitai
 | NPC | Herança / Generalização | Personagem | Especialização de `Personagem` |
 | Ani | Composição | Diario | `Ani 1` para `Diario 1` |
 | Ani | Associação | ObjetoInterativo | `Ani 1` para `ObjetoInterativo 0..*` |
-| Memoria | Herança / Generalização | ObjetoInterativo | Especialização de `ObjetoInterativo` |
-| Memoria | Associação | Ato | `Memoria 0..*` para `Ato 0..1` |
+| NPC | Composição | Dialogo | `NPC 1` para `Dialogo 0..*` |
+| Cenario | Composição | NPC | `Cenario 1` para `NPC 0..*` |
+| Cenario | Composição | ObjetoInterativo | `Cenario 1` para `ObjetoInterativo 0..*` |
+| ObjetoMemoria | Herança / Generalização | ObjetoInterativo | Especialização de `ObjetoInterativo` |
+| ObjetoRestauravel | Herança / Generalização | ObjetoInterativo | Especialização de `ObjetoInterativo` |
+| ObjetoContemplativo | Herança / Generalização | ObjetoInterativo | Especialização de `ObjetoInterativo` |
+| ObjetoMemoria | Associação | Memoria | `ObjetoMemoria 1` para `Memoria 1` |
+| Memoria | Associação | EntradaDiario | `Memoria 1` para `EntradaDiario 1` |
 | Diario | Composição | EntradaDiario | `Diario 1` para `EntradaDiario 0..*` |
 | Ato | Associação | Cenario | `Ato 0..1` para `Cenario 0..*` |
-| ElementoContemplativo | Herança / Generalização | ObjetoInterativo | Especialização de `ObjetoInterativo` |
-| ObjetoRestauravel | Herança / Generalização | ObjetoInterativo | Especialização de `ObjetoInterativo` |
 
 ### Referência Bibliográfica
 
@@ -684,7 +725,7 @@ No projeto **Ani**, o DER é útil mesmo considerando a possibilidade de persist
 
 ### Entidade: ATO
 
-**Atributos:** `id_ato (PK)`, `nome`, `descricao`
+**Atributos:** `id_ato (PK)`, `nome`, `descricao`, `concluido`, `limiar_memorias`
 
 **Relacionamentos:**
 
@@ -694,7 +735,7 @@ No projeto **Ani**, o DER é útil mesmo considerando a possibilidade de persist
 
 ### Entidade: CENARIO
 
-**Atributos:** `id_cenario (PK)`, `nome`, `tipo`, `descricao`, `desbloqueado`
+**Atributos:** `id_cenario (PK)`, `nome`, `descricao`, `desbloqueado`
 
 **Relacionamentos:**
 
@@ -722,23 +763,32 @@ No projeto **Ani**, o DER é útil mesmo considerando a possibilidade de persist
 
 ### Entidade: OBJETO_INTERATIVO
 
-**Atributos:** `id_objeto (PK)`, `tipo`, `descricao`
+**Atributos:** `id_objeto (PK)`, `descricao`
 
 **Relacionamentos:**
 
 - Relaciona-se com `CENARIO` (`N:1`)
 - Relaciona-se com `ANI` (`N:1`)
-- Relaciona-se com `MEMORIA` (`1:0..1`, quando o objeto atua como gatilho narrativo)
+- Possui especializações conceituais em `OBJETO_MEMORIA`, `OBJETO_RESTAURAVEL` e `OBJETO_CONTEMPLATIVO` (`1:1`, quando aplicável)
+
+### Entidade: OBJETO_MEMORIA
+
+**Atributos:** `id_objeto_memoria (PK, FK para OBJETO_INTERATIVO)`, `coletada`
+
+**Relacionamentos:**
+
+- Relaciona-se com `OBJETO_INTERATIVO` (`1:1` como especialização conceitual)
+- Relaciona-se com `MEMORIA` (`1:1`)
 
 ### Entidade: MEMORIA
 
-**Atributos:** `id_memoria (PK)`, `coletada`, `conteudo`, `ato_origem`
+**Atributos:** `id_memoria (PK)`, `titulo`, `conteudo`, `ato_origem`, `coletada`
 
 **Relacionamentos:**
 
 - Relaciona-se com `ATO` (`N:1`)
 - Relaciona-se com `DIARIO` por meio de `ENTRADA_DIARIO` (`1:N`)
-- Relaciona-se com `OBJETO_INTERATIVO` (`0..1:1`)
+- Relaciona-se com `OBJETO_MEMORIA` (`1:1`)
 
 ### Entidade: DIARIO
 
@@ -758,9 +808,9 @@ No projeto **Ani**, o DER é útil mesmo considerando a possibilidade de persist
 - Relaciona-se com `DIARIO` (`N:1`)
 - Relaciona-se com `MEMORIA` (`N:1`)
 
-### Entidade: ELEMENTO_CONTEMPLATIVO
+### Entidade: OBJETO_CONTEMPLATIVO
 
-**Atributos:** `id_elemento (PK)`, `descricao`, `tempo_minimo_observacao`
+**Atributos:** `id_objeto_contemplativo (PK)`, `tempo_minimo_observacao`
 
 **Relacionamentos:**
 
@@ -834,8 +884,8 @@ A tabela a seguir apresenta a ficha técnica base do projeto **Ani**.
 | Título | Ani |
 | Gênero | Side-scroller narrativo contemplativo |
 | Plataforma principal | PC (Windows) |
-| Engine | Unity |
-| Linguagem | C# |
+| Engine | Unreal Engine |
+| Linguagem | C++ |
 | Câmera | Lateral fixa com zoom narrativo |
 | Público-alvo | 16 a 28 anos, com interesse em filosofia, arte e narrativas reflexivas |
 | Tom | Sombrio, melancólico e contemplativo, com redenção gradual |
@@ -1163,8 +1213,8 @@ A tabela a seguir apresenta a base técnica atualmente definida para o projeto.
 
 | Item | Direção Atual |
 | --- | --- |
-| Engine | Unity |
-| Linguagem | C# |
+| Engine | Unreal Engine |
+| Linguagem | C++ |
 | Plataforma inicial | PC (Windows) |
 | Estrutura visual | Side-scroller lateral com elementos 3D estilizados |
 | Câmera | Lateral fixa com zoom narrativo |

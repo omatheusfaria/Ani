@@ -9,8 +9,8 @@ Nesse contexto, o projeto **Ani אֲנִי** propõe um side-scroller narrativo 
 | Título | Ani |
 | Gênero | Side-scroller narrativo contemplativo |
 | Plataforma principal | PC (Windows) |
-| Engine | Unity |
-| Linguagem | C# |
+| Engine | Unreal Engine |
+| Linguagem | C++ |
 | Câmera | Lateral fixa com zoom narrativo |
 | Público-alvo | 16 a 28 anos, com interesse em filosofia, arte e narrativas reflexivas |
 | Tom | Sombrio, melancólico e contemplativo, com redenção gradual |
@@ -40,7 +40,7 @@ O objetivo geral do projeto é desenvolver um protótipo funcional de jogo narra
 
 A justificativa do trabalho apoia-se na singularidade dos jogos digitais como meio para representar experiências internas e subjetivas. Em **Ani**, a ausência de combate, de HUD numérico permanente e de moralidade binária não decorre de limitação técnica, mas de aderência ao objeto de pesquisa. Como o foco está na travessia do sofrimento, na observação e na transformação de percepção, a interface minimalista, as pausas, o silêncio e as mecânicas contemplativas tornam-se escolhas metodologicamente coerentes com o que se pretende investigar em software interativo.
 
-O projeto é desenvolvido segundo a metodologia Cascata, com fases sequenciais de levantamento de requisitos, modelagem, design de sistemas e implementação. As ferramentas centrais registradas no projeto são Unity, C#, Aseprite, Photoshop/Illustrator e Audacity/FMOD. A organização deste documento acompanha esse percurso: após a introdução, apresenta-se o Termo de Abertura do Projeto; em seguida, o levantamento de requisitos, com BPMN, requisitos, regras, casos de uso, diagrama de classes e DER; depois, as ferramentas e métodos empregados; por fim, descreve-se o desenvolvimento do protótipo funcional.
+O projeto é desenvolvido segundo a metodologia Cascata, com fases sequenciais de levantamento de requisitos, modelagem, design de sistemas e implementação. As ferramentas centrais registradas no projeto são Unreal Engine, C++, Aseprite, Photoshop/Illustrator e Audacity/FMOD. A organização deste documento acompanha esse percurso: após a introdução, apresenta-se o Termo de Abertura do Projeto; em seguida, o levantamento de requisitos, com BPMN, requisitos, regras, casos de uso, diagrama de classes e DER; depois, as ferramentas e métodos empregados; por fim, descreve-se o desenvolvimento do protótipo funcional.
 
 # 1.1 Termo de Abertura do Projeto (TAP)
 
@@ -58,8 +58,8 @@ No caso de **Ani**, o TAP organiza a proposta de um jogo narrativo contemplativo
 | Tipo | Jogo digital narrativo contemplativo |
 | Área | Desenvolvimento de software e jogos digitais |
 | Plataforma inicial | PC (Windows) |
-| Motor de jogo | Unity |
-| Linguagem principal | C# |
+| Motor de jogo | Unreal Engine |
+| Linguagem principal | C++ |
 | Natureza do projeto | Projeto autoral com finalidade acadêmica e prototipação |
 
 ### Ficha do Produto
@@ -69,8 +69,8 @@ No caso de **Ani**, o TAP organiza a proposta de um jogo narrativo contemplativo
 | Título | Ani |
 | Gênero | Side-scroller narrativo contemplativo |
 | Plataforma principal | PC (Windows) |
-| Engine | Unity |
-| Linguagem | C# |
+| Engine | Unreal Engine |
+| Linguagem | C++ |
 | Câmera | Lateral fixa com zoom narrativo |
 | Público-alvo | 16 a 28 anos, com interesse em filosofia, arte e narrativas reflexivas |
 | Tom | Sombrio, melancólico e contemplativo, com redenção gradual |
@@ -108,8 +108,8 @@ A modelagem utiliza BPMN para representação dos fluxos de gameplay e UML para 
 
 As tecnologias e ferramentas utilizadas são:
 
-- Unity como motor de jogo;
-- C# como linguagem de programação;
+- Unreal Engine como motor de jogo;
+- C++ como linguagem de programação;
 - Aseprite para sprites e animações;
 - Photoshop / Illustrator para ilustrações e texturas;
 - Audacity / FMOD para design sonoro e efeitos de áudio.
@@ -219,7 +219,7 @@ No presente projeto, foi aplicado por formulário um questionário exploratório
 
 Por esse baixo aproveitamento, a elicitação foi conduzida principalmente por análise documental e refinamento iterativo. A documentação já existente do jogo funcionou como base primária para transformar intenções conceituais em exigências formais de software. Em especial, o documento de direção do projeto exerceu o papel de fonte de requisitos de produto, registrando narrativa, mecânicas, mundo, interface, áudio e especificações técnicas que depois foram convertidos em artefatos de engenharia.
 
-Além da análise documental, o refinamento ocorreu pelo confronto entre intenção de design e viabilidade de implementação na engine Unity. Isso permitiu distinguir funcionalidades centrais do protótipo, desdobrar mecânicas em regras verificáveis e traduzir elementos atmosféricos em restrições não funcionais e comportamentos do sistema. Tal processo foi particularmente importante porque **Ani** não depende apenas de ações visíveis, mas também de transformações internas, progressão sensorial e mudanças de leitura ao longo dos atos.
+Além da análise documental, o refinamento ocorreu pelo confronto entre intenção de design e viabilidade de implementação na Unreal Engine. Isso permitiu distinguir funcionalidades centrais do protótipo, desdobrar mecânicas em regras verificáveis e traduzir elementos atmosféricos em restrições não funcionais e comportamentos do sistema. Tal processo foi particularmente importante porque **Ani** não depende apenas de ações visíveis, mas também de transformações internas, progressão sensorial e mudanças de leitura ao longo dos atos.
 
 Quanto à classificação, adotou-se a distinção entre requisitos **evidentes**, visíveis ao usuário final em suas interações diretas, e requisitos **ocultos**, relacionados à organização interna da progressão, às mecânicas por ato e aos efeitos sistêmicos que moldam a experiência. Também se utilizou priorização por níveis, com destaque para Altíssima, Alta e Média, permitindo identificar o núcleo funcional indispensável do protótipo.
 
@@ -573,7 +573,7 @@ Sua importância neste trabalho está em mostrar como a experiência contemplati
 
 [Figura 3 – Diagrama de Classes de Ani]
 
-As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sintetiza os cinco atos filosóficos; `Memoria`, `Diario` e `EntradaDiario` formalizam o sistema de memórias; `ObjetoRestauravel` traduz a lógica de Kintsugi do Ato III; `ElementoContemplativo` traduz a contemplação ativa do Ato IV; `NPC` representa personagens de memória e arquétipos; e `Ani` constitui a representação sistêmica da protagonista como sujeito da experiência.
+As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sintetiza os cinco atos filosóficos; `Memoria`, `Diario` e `EntradaDiario` formalizam o sistema de memórias; `ObjetoMemoria` representa o gatilho interativo de revelação de memórias; `ObjetoRestauravel` traduz a lógica de Kintsugi do Ato III; `ObjetoContemplativo` traduz a contemplação ativa do Ato IV; `NPC` e `Dialogo` representam personagens de memória, arquétipos e seus fluxos textuais; e `Ani` constitui a representação sistêmica da protagonista como sujeito da experiência.
 
 ### Classe: Jogo
 **Atributos:**
@@ -589,16 +589,18 @@ As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sin
 
 ### Classe: Personagem
 **Atributos:**
+- `- nome: string`
 - `- posicaoX: float`
 - `- posicaoY: float`
 - `- sprite: string`
+- `- velocidade: float`
 
 **Métodos:**
 - `+ mover()`
 
 ### Classe: Ani
 **Atributos:**
-- `- estadoEmocional: string`
+- `- estadoEmocional: EstadoEmocional`
 - `- diario: Diario`
 
 **Métodos:**
@@ -608,31 +610,50 @@ As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sin
 
 ### Classe: NPC
 **Atributos:**
-- `- nome: string`
-- `- tipo: string`
+- `- tipo: TipoNPC`
 
 **Métodos:**
 - `+ falar()`
 - `+ interagir()`
 
+### Classe: Dialogo
+**Atributos:**
+- `- id: int`
+- `- linhas: List<string>`
+- `- fragmentado: boolean`
+
+**Métodos:**
+- `+ iniciar()`
+- `+ avançar()`
+- `+ encerrar()`
+
 ### Classe: ObjetoInterativo
 **Atributos:**
 - `- id: int`
-- `- tipo: string`
 - `- descricao: string`
 
 **Métodos:**
 - `+ ativar()`
 
-### Classe: Memoria
+### Classe: ObjetoMemoria
 **Atributos:**
 - `- coletada: boolean`
-- `- conteudo: string`
-- `- atoOrigem: int`
 
 **Métodos:**
 - `+ exibir()`
 - `+ registrarNoDiario()`
+
+### Classe: Memoria
+**Atributos:**
+- `- id: int`
+- `- titulo: string`
+- `- conteudo: string`
+- `- atoOrigem: int`
+- `- coletada: boolean`
+
+**Métodos:**
+- `+ registrar()`
+- `+ atualizarLeitura()`
 
 ### Classe: Diario
 **Atributos:**
@@ -647,7 +668,7 @@ As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sin
 **Atributos:**
 - `- titulo: string`
 - `- conteudo: string`
-- `- tipo: string`
+- `- tipo: TipoEntradaDiario`
 
 **Métodos:**
 - `+ atualizarLeitura()`
@@ -655,7 +676,6 @@ As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sin
 ### Classe: Cenario
 **Atributos:**
 - `- nome: string`
-- `- tipo: string`
 - `- desbloqueado: boolean`
 
 **Métodos:**
@@ -667,26 +687,39 @@ As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sin
 - `- id: int`
 - `- nome: string`
 - `- descricao: string`
+- `- concluido: boolean`
+- `- limiarMemorias: int`
 
 **Métodos:**
 - `+ iniciarAto()`
+- `+ verificarConclusao()`
 - `+ concluirAto()`
 
-### Classe: ElementoContemplativo
+### Classe: ObjetoRestauravel
 **Atributos:**
-- `- descricao: string`
+- `- estado: EstadoObjeto`
+
+**Métodos:**
+- `+ restaurar()`
+
+### Classe: ObjetoContemplativo
+**Atributos:**
 - `- tempoMinimoObservacao: float`
 
 **Métodos:**
 - `+ observar()`
 - `+ liberarNarracao()`
 
-### Classe: ObjetoRestauravel
-**Atributos:**
-- `- estado: string`
+### Enumerações
 
-**Métodos:**
-- `+ restaurar()`
+| Enumeração | Valores |
+| --- | --- |
+| TipoNPC | `NpcMemoria`, `Arquetipo`, `Aparicao` |
+| EstadoEmocional | `Neutro`, `Ansioso`, `Deprimido`, `Contemplativo`, `Sereno`, `Medo` |
+| TipoEntradaDiario | `Memoria`, `Documento`, `Fotografia`, `Objeto`, `Contemplacao` |
+| EstadoObjeto | `Quebrado`, `Restaurado` |
+
+### Relacionamentos entre Classes
 
 | Classe Origem | Tipo de Relacionamento | Classe Destino | Multiplicidade |
 | --- | --- | --- | --- |
@@ -696,11 +729,16 @@ As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sin
 | NPC | Herança | Personagem | 1 para 1 |
 | Ani | Composição | Diario | 1 para 1 |
 | Ani | Associação | ObjetoInterativo | 1 para 0..* |
-| Memoria | Herança | ObjetoInterativo | 1 para 1 |
+| NPC | Composição | Dialogo | 1 para 0..* |
+| Cenario | Composição | NPC | 1 para 0..* |
+| Cenario | Composição | ObjetoInterativo | 1 para 0..* |
+| ObjetoMemoria | Herança | ObjetoInterativo | 1 para 1 |
 | ObjetoRestauravel | Herança | ObjetoInterativo | 1 para 1 |
-| ElementoContemplativo | Herança | ObjetoInterativo | 1 para 1 |
-| Memoria | Associação | Ato | 0..* para 0..1 |
+| ObjetoContemplativo | Herança | ObjetoInterativo | 1 para 1 |
+| ObjetoMemoria | Associação | Memoria | 1 para 1 |
+| Memoria | Associação | EntradaDiario | 1 para 1 |
 | Diario | Composição | EntradaDiario | 1 para 0..* |
+| Ato | Associação | Cenario | 0..1 para 0..* |
 
 ## 2.8 Diagrama Entidade-Relacionamento (DER)
 
@@ -720,7 +758,7 @@ A modelagem gráfica correspondente é apresentada na Figura 4, e a descrição 
 **Origem no GDD:** seção 10, Especificações Técnicas
 
 ### Entidade: ATO
-**Atributos:** id (PK), nome, descricao, referenciaFilosofica, simbolo, paletaCor, climaSonoro
+**Atributos:** id (PK), nome, descricao, concluido, limiarMemorias, referenciaFilosofica, simbolo, paletaCor, climaSonoro
 **Relacionamentos:**
 - Relaciona-se com JOGO (cardinalidade: N:1)
 - Relaciona-se com CENARIO (cardinalidade: 1:N)
@@ -728,7 +766,7 @@ A modelagem gráfica correspondente é apresentada na Figura 4, e a descrição 
 **Origem no GDD:** seções 2, 3 e 4
 
 ### Entidade: CENARIO
-**Atributos:** id (PK), nome, tipo, desbloqueado, idAto (FK)
+**Atributos:** id (PK), nome, desbloqueado, idAto (FK)
 **Relacionamentos:**
 - Relaciona-se com ATO (cardinalidade: N:1)
 - Relaciona-se com OBJETO_INTERATIVO (cardinalidade: 1:N)
@@ -738,7 +776,7 @@ A modelagem gráfica correspondente é apresentada na Figura 4, e a descrição 
 **Atributos:** id (PK), posicaoX, posicaoY, sprite, estadoEmocional, idDiario (FK)
 **Relacionamentos:**
 - Relaciona-se com DIARIO (cardinalidade: 1:1)
-- Relaciona-se com OBJETO_INTERATIVO (cardinalidade: N:M)
+- Relaciona-se com OBJETO_INTERATIVO (cardinalidade: 1:N)
 **Origem no GDD:** seções 5 e 6
 
 ### Entidade: NPC
@@ -748,11 +786,19 @@ A modelagem gráfica correspondente é apresentada na Figura 4, e a descrição 
 **Origem no GDD:** seção 5
 
 ### Entidade: OBJETO_INTERATIVO
-**Atributos:** id (PK), tipo, descricao, idCenario (FK)
+**Atributos:** id (PK), descricao, idCenario (FK)
 **Relacionamentos:**
 - Relaciona-se com CENARIO (cardinalidade: N:1)
-- Relaciona-se com MEMORIA (cardinalidade: 1:0..1)
+- Relaciona-se com ANI (cardinalidade: N:1)
+- Possui especializações conceituais em OBJETO_MEMORIA, OBJETO_RESTAURAVEL e OBJETO_CONTEMPLATIVO (cardinalidade: 1:1, quando aplicável)
 **Origem no GDD:** seção 6
+
+### Entidade: OBJETO_MEMORIA
+**Atributos:** id (PK, FK → OBJETO_INTERATIVO), coletada
+**Relacionamentos:**
+- Relaciona-se com OBJETO_INTERATIVO (cardinalidade: 1:1, especialização)
+- Relaciona-se com MEMORIA (cardinalidade: 1:1)
+**Origem no GDD:** seção 6, Exploração e Diário de Memórias
 
 ### Entidade: OBJETO_RESTAURAVEL
 **Atributos:** id (PK, FK → OBJETO_INTERATIVO), estado
@@ -760,16 +806,16 @@ A modelagem gráfica correspondente é apresentada na Figura 4, e a descrição 
 - Relaciona-se com OBJETO_INTERATIVO (cardinalidade: 1:1, especialização)
 **Origem no GDD:** seção 6, Ato III
 
-### Entidade: ELEMENTO_CONTEMPLATIVO
-**Atributos:** id (PK, FK → OBJETO_INTERATIVO), descricao, tempoMinimoObservacao
+### Entidade: OBJETO_CONTEMPLATIVO
+**Atributos:** id (PK, FK → OBJETO_INTERATIVO), tempoMinimoObservacao
 **Relacionamentos:**
 - Relaciona-se com OBJETO_INTERATIVO (cardinalidade: 1:1, especialização)
 **Origem no GDD:** seção 6, Ato IV
 
 ### Entidade: MEMORIA
-**Atributos:** id (PK), conteudo, coletada, atoOrigem, idObjetoInterativo (FK)
+**Atributos:** id (PK), titulo, conteudo, coletada, atoOrigem, idObjetoMemoria (FK)
 **Relacionamentos:**
-- Relaciona-se com OBJETO_INTERATIVO (cardinalidade: N:1)
+- Relaciona-se com OBJETO_MEMORIA (cardinalidade: 1:1)
 - Relaciona-se com ENTRADA_DIARIO (cardinalidade: 1:0..1)
 **Origem no GDD:** seção 6, Exploração e Diário de Memórias
 
@@ -793,19 +839,19 @@ A seleção de ferramentas do projeto foi orientada por três critérios centrai
 
 Além disso, as ferramentas utilizadas apresentam licenças compatíveis com uso acadêmico e estão alinhadas às tecnologias registradas no Termo de Abertura do Projeto. Sempre que os artefatos-fonte não informam versão específica utilizada, essa ausência é explicitada, a fim de preservar a fidelidade documental.
 
-### Ferramenta: Unity
+### Ferramenta: Unreal Engine
 **Versão utilizada:** não especificada nos artefatos-fonte  
-**Tipo de licença:** Unity Personal (uso educacional)  
+**Tipo de licença:** licença da Epic Games, com uso gratuito conforme condições da Unreal Engine  
 **Site oficial:** não especificado nos artefatos-fonte  
 **Função no projeto:** motor de jogo responsável pela implementação do protótipo, gerenciamento de cenas, lógica de gameplay, física, interface e integração audiovisual.  
-**Justificativa de escolha:** foi escolhida por suportar desenvolvimento 2D com side-scroller lateral, câmera lateral fixa e elementos 3D estilizados, conforme a base técnica do projeto. Também oferece suporte a partículas e efeitos úteis para distorção emocional e transições por ato.
+**Justificativa de escolha:** foi escolhida por oferecer recursos robustos para ambientes 3D estilizados, câmera lateral, iluminação, efeitos visuais e organização modular de sistemas de gameplay, mantendo aderência à proposta de um side-scroller narrativo contemplativo.
 
-### Ferramenta: C#
+### Ferramenta: C++
 **Versão utilizada:** não especificada nos artefatos-fonte  
 **Tipo de licença:** não especificada nos artefatos-fonte  
 **Site oficial:** não especificado nos artefatos-fonte  
 **Função no projeto:** linguagem principal de programação para implementação dos sistemas do jogo.  
-**Justificativa de escolha:** foi adotada por ser a linguagem nativa da Unity e por favorecer modelagem orientada a objetos coerente com o diagrama de classes, especialmente na organização de `Jogo`, `Ato`, `Ani`, `Memoria` e `Diario`.
+**Justificativa de escolha:** foi adotada por ser a linguagem principal de programação da Unreal Engine e por favorecer uma modelagem modular e orientada a objetos coerente com o diagrama de classes, especialmente na organização de `Jogo`, `Ato`, `Ani`, `Memoria` e `Diario`.
 
 ### Ferramenta: Aseprite
 **Versão utilizada:** não especificada nos artefatos-fonte  
@@ -848,7 +894,7 @@ Além disso, as ferramentas utilizadas apresentam licenças compatíveis com uso
 | TAP | Markdown |
 | BPMN | draw.io / diagrams.net |
 | Diagrama de Classes | draw.io / diagrams.net |
-| Código-fonte | Unity / C# |
+| Código-fonte | Unreal Engine / C++ |
 | Assets visuais | Aseprite / Photoshop |
 | Assets de áudio | Audacity / FMOD |
 
@@ -858,7 +904,7 @@ Além disso, as ferramentas utilizadas apresentam licenças compatíveis com uso
 
 A arquitetura geral do protótipo é organizada a partir de uma estrutura orientada a objetos compatível com a modelagem apresentada no Diagrama de Classes. O estado global do jogo é centralizado na classe `Jogo`, que mantém referências ao ato atual e ao cenário atual, enquanto a progressão filosófica é controlada pela classe `Ato`. A partir dessa base, o sistema articula exploração, interação, ativação de conteúdo narrativo, persistência e transição entre cenários.
 
-Do ponto de vista operacional, a entrada do jogador é convertida em ações de movimentação, interação, observação e consulta ao diário. Essas ações incidem sobre a classe `Ani`, que por sua vez aciona objetos interativos, registra memórias no diário, observa elementos contemplativos e participa da progressão entre atos. `Cenario`, `Memoria`, `Diario`, `ObjetoRestauravel` e `ElementoContemplativo` distribuem responsabilidades específicas de carregamento, registro, ressignificação e liberação de conteúdo.
+Do ponto de vista operacional, a entrada do jogador é convertida em ações de movimentação, interação, observação e consulta ao diário. Essas ações incidem sobre a classe `Ani`, que por sua vez aciona objetos interativos, registra memórias no diário, observa elementos contemplativos e participa da progressão entre atos. `Cenario`, `Memoria`, `Diario`, `ObjetoRestauravel` e `ObjetoContemplativo` distribuem responsabilidades específicas de carregamento, registro, ressignificação e liberação de conteúdo.
 
 O fluxo principal de dados do protótipo pode ser descrito da seguinte forma:
 
@@ -868,9 +914,9 @@ Input (WASD / E / Tab)
     → GameManager
       → Ani (mover, interagir, observar, registrarMemoria)
         → ObjetoInterativo.ativar()
-          → Memoria.registrarNoDiario() → Diario.adicionarEntrada()
+          → ObjetoMemoria.registrarNoDiario() → Diario.adicionarEntrada()
           → ObjetoRestauravel.restaurar()
-          → ElementoContemplativo.liberarNarracao()
+          → ObjetoContemplativo.liberarNarracao()
       → Cenario.carregarCenario()
       → Ato.iniciarAto() / Ato.concluirAto()
         → Jogo.carregarProgresso()
@@ -970,7 +1016,7 @@ O valor sistêmico da mecânica está menos na reparação utilitária e mais na
 
 A contemplação ativa converte a pausa em forma de interação. Em vez de exigir comando explícito, o sistema detecta permanência da personagem diante de elementos específicos por um tempo mínimo e, então, libera memória, narração ou efeito simbólico.
 
-- **Classes envolvidas:** `ElementoContemplativo`, `Ani`
+- **Classes envolvidas:** `ObjetoContemplativo`, `Ani`
 - **Requisito funcional correspondente:** RF016
 - **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** observação, impermanência e presença
