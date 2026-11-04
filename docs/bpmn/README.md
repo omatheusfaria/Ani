@@ -20,4 +20,4 @@ O arquivo-fonte do diagrama está disponível em [ani.bpmn](./ani.bpmn), e a des
 
 [1] OBJECT MANAGEMENT GROUP. *Business Process Model and Notation (BPMN), Version 2.0.2*. Needham: OMG, 2014.
 
-[2] LUCID SOFTWARE INC. *BPMN tutorial*. Disponível em: <https://www.lucidchart.com/pages/tutorial/bpmn>. Acesso em: 22.mar.2026.
+[2] LUCIDCHART. *BPMN tutorial*. Disponível em: <https://www.lucidchart.com/pages/tutorial/bpmn>. Acesso em: 22.mar.2026.

@@ -59,4 +59,4 @@ As perguntas do formulário e os resumos das respostas selecionadas encontram-se
 
 [1] GOGUEN, Joseph; LINDE, Charlotte. *Techniques for Requirements Elicitation*. Disponível em: <https://www.cs.ox.ac.uk/publications/publication2405-abstract.html>. Acesso em: 25.mar.2026.
 
-[2] IBM. *What is requirements management?* Disponível em: <https://www.ibm.com/think/topics/what-is-requirements-management>. Acesso em: 25.mar.2026.
+[2] IBM. *What is requirements management?* Disponível em: <https://www.ibm.com/think/topics/what-is-requirements-management>. Acesso em: 22.mar.2026.
