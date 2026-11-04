@@ -20,7 +20,7 @@ Este documento descreve as regras e restrições de comportamento atualmente ali
 
 | RN004 - Avanço parcial no Ato I |
 | --- |
-| **Descrição**: No Ato I, o avanço não exige a visualização de todas as memórias, apenas o cumprimento de um limiar mínimo definido. |
+| **Descrição**: No Ato I, o avanço não exige a visualização de todas as memórias, apenas o cumprimento de um limiar mínimo definido. O valor exato do limiar pode ser ajustado durante o refinamento do projeto. |
 
 | RN005 - Ressignificação de objetos e memórias |
 | --- |

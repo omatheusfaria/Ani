@@ -30,7 +30,7 @@ No projeto **Ani**, os requisitos funcionais reúnem as funcionalidades atualmen
 
 | RF006-Desbloqueio progressivo do cenário | Categoria: (  ) Oculto (X) Evidente | Prioridade: (X) Altíssima (  ) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |
-| **Descrição**: O sistema deve desbloquear cômodos, passagens, portas e escadas conforme o jogador atravessa memórias e conclui o ciclo de progressão de cada ato. No Ato I, a passagem para o ato seguinte deve exigir apenas uma quantidade mínima de memórias, sem obrigar o jogador a visualizar todas as memórias disponíveis. | | |
+| **Descrição**: O sistema deve desbloquear cômodos, passagens, portas e escadas conforme o jogador atravessa memórias e conclui o ciclo de progressão de cada ato, segundo a regra de conclusão de ato (RN003) e, no Ato I, a de avanço parcial (RN004). | | |
 
 | RF007-Sistema de puzzles | Categoria: (  ) Oculto (X) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |
@@ -82,7 +82,7 @@ No projeto **Ani**, os requisitos funcionais reúnem as funcionalidades atualmen
 
 | RF019-Desbloqueio mínimo de memórias no Ato I | Categoria: (X) Oculto (  ) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |
-| **Descrição**: O sistema deve liberar, no Ato I, a passagem para o ato seguinte após a coleta de uma quantidade mínima de memórias, permitindo que o jogador avance sem consumir todas as memórias do ato. O valor exato desse limiar pode ser ajustado durante o refinamento do projeto. | | |
+| **Descrição**: O sistema deve contar, no Ato I, as memórias coletadas e liberar a passagem para o ato seguinte quando a contagem atingir o limiar mínimo definido na RN004. | | |
 
 ## Referência
 

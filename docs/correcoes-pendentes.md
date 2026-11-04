@@ -33,7 +33,7 @@ Desde o item 49, `tg-ani.md` é o antigo `tg-ani-v2-sem-gdd.md`, e o primeiro ra
 
 | # | Status | Item | Onde | Correção sugerida |
 | --- | --- | --- | --- | --- |
-| 7 | aberta | RF006, RF019 e RN004 descrevem a mesma regra do limiar mínimo do Ato I. | RF006, RF019, RN004 | Deixar a regra só na RN004; RF006 trata do desbloqueio de cenário e RF019 do mecanismo de liberação, ambos citando a RN004. |
+| 7 | resolvida | RF006, RF019 e RN004 descrevem a mesma regra do limiar mínimo do Ato I. | RF006, RF019, RN004 | Resolvido: a regra do limiar (inclusive "o valor pode ser ajustado") ficou só na RN004. RF006 trata do desbloqueio do cenário e cita RN003/RN004; RF019 trata da contagem que libera a passagem e cita a RN004. Atualizado nas notas, no README de requisitos, nos consolidados e no `tg-ani.md`. |
 | 8 | aberta | RF009 inclui "carregar", mas não existe caso de uso de carregar/continuar jogo. | RF009, casos de uso | Criar UC "Carregar Jogo" (ou "Continuar Jogo") ligado ao RF009. |
 | 9 | aberta | Não há RF para pausar, configurar e sair do jogo (UC-S006 a UC-S011 sem RF). | UC-S006, UC-S007, UC-S008, UC-S009, UC-S010*, UC-S011 | Criar RFs (ex.: Pausar jogo, Configurar vídeo/áudio/controles, Sair do jogo) e ligar aos UCs. *UC-S010 já se liga ao RF011 (gamepad), mas a remapeação de teclas não tem RF. |
 | 10 | resolvida | RFs das mecânicas dos atos, RF006 e RF010 não se ligavam a nenhum caso de uso. | RF006, RF010, RF012–RF014, RF017–RF019 | RF006, RF013, RF014, RF017 e RF019 ligados à UC-S002 (disparados pela interação com objetos); RF010, RF012 e RF018 ligados à UC-S001 (ocorrem durante a exploração). RF010 mantido como Evidente. |

@@ -336,7 +336,7 @@ O Quadro X apresenta os requisitos funcionais do sistema, organizados por códig
 | RF003 | Interagir com objetos | Evidente | Altíssima | O sistema deve permitir interação com objetos significativos para acessar memórias, fragmentos narrativos e elementos contemplativos do cenário. |
 | RF004 | Sistema de memórias | Evidente | Altíssima | O sistema deve apresentar memórias como fragmentos narrativos, como cartas, bilhetes, fotografias e diários, acessíveis por meio da interação com o ambiente. Como o jogador pode interagir com diferentes objetos de memória, a ordem de descoberta desses fragmentos pode variar entre sessões e trajetórias dentro de um mesmo ato. |
 | RF005 | Diário de memórias | Evidente | Altíssima | O sistema deve registrar os fragmentos coletados em um diário estilizado acessível ao jogador. Os itens podem ganhar nova leitura visual ou contextual conforme os atos avançam. |
-| RF006 | Desbloqueio progressivo do cenário | Evidente | Altíssima | O sistema deve desbloquear cômodos, passagens, portas e escadas conforme o jogador atravessa memórias e conclui o ciclo de progressão de cada ato. No Ato I, a passagem para o ato seguinte deve exigir apenas uma quantidade mínima de memórias, sem obrigar o jogador a visualizar todas as memórias disponíveis. |
+| RF006 | Desbloqueio progressivo do cenário | Evidente | Altíssima | O sistema deve desbloquear cômodos, passagens, portas e escadas conforme o jogador atravessa memórias e conclui o ciclo de progressão de cada ato, segundo a regra de conclusão de ato (RN003) e, no Ato I, a de avanço parcial (RN004). |
 | RF007 | Sistema de puzzles | Evidente | Alta | O sistema deve incluir puzzles contextuais integrados ao ambiente e à narrativa dos atos. |
 | RF008 | Diálogos com personagens de memória e arquétipos | Evidente | Alta | O sistema deve apresentar diálogos textuais fragmentados para personagens de memória, como Mãe, Padrasto, Namorada e Primo, e para arquétipos filosóficos, como O Arquiteto, A Ceramista e A Criança. |
 | RF009 | Sistema de save/load | Evidente | Altíssima | O sistema deve salvar e carregar o progresso do jogador, incluindo ato atual, memórias registradas, estado do diário e estado visual da casa. |
@@ -349,7 +349,7 @@ O Quadro X apresenta os requisitos funcionais do sistema, organizados por códig
 | RF016 | Mecânica de contemplação ativa no Ato IV | Evidente | Alta | No Ato IV, o sistema deve revelar fragmentos de narração quando o jogador permanece em observação diante de elementos contemplativos do cenário. |
 | RF017 | Dissolução de mecânicas no Ato V | Evidente | Alta | No Ato V, o sistema deve retirar progressivamente as mecânicas centrais dos atos anteriores até restarem principalmente deslocamento e contemplação. |
 | RF018 | Crises de ansiedade como elemento sensorial | Evidente | Alta | O sistema deve representar crises de ansiedade por distorção visual, fragmentação sonora e intensificação das manifestações, sem depender de um sistema de escolhas morais. |
-| RF019 | Desbloqueio mínimo de memórias no Ato I | Oculto | Alta | No Ato I, a passagem para o ato seguinte deve ser liberada após a coleta de uma quantidade mínima de memórias. Esse limiar existe para permitir que o jogador avance sem consumir todas as memórias do ato. O valor exato pode ser ajustado durante o refinamento do projeto. |
+| RF019 | Desbloqueio mínimo de memórias no Ato I | Oculto | Alta | O sistema deve contar, no Ato I, as memórias coletadas e liberar a passagem para o ato seguinte quando a contagem atingir o limiar mínimo definido na RN004. |
 
 Observa-se uma distribuição de 8 requisitos com prioridade Altíssima, 10 com prioridade Alta e 1 com prioridade Média. Pela classificação adotada, há 18 requisitos evidentes e 1 oculto. O bloco RF012 a RF019 concentra as mecânicas filosóficas por ato e, como seus efeitos são percebidos pelo jogador, é quase todo evidente; apenas o RF019 permanece oculto, pois o jogador percebe a abertura da passagem (RF006), mas não a contagem do limiar que a determina.
 
@@ -386,7 +386,7 @@ O Quadro X apresenta as regras de negócio do sistema, descrevendo as restriçõ
 | RN001 | Registro único de memória | Cada fragmento de memória pode ser registrado apenas uma vez no diário. |
 | RN002 | Progressão fixa entre atos | A progressão entre atos ocorre de forma sequencial, seguindo a ordem definida no projeto, sem possibilidade de retorno ou salto de ordem. |
 | RN003 | Critério de avanço por conclusão de ato | A progressão para o ato seguinte depende da conclusão dos critérios do ato atual. |
-| RN004 | Avanço parcial no Ato I | No Ato I, o avanço não exige a visualização de todas as memórias, apenas o cumprimento de um limiar mínimo definido. |
+| RN004 | Avanço parcial no Ato I | No Ato I, o avanço não exige a visualização de todas as memórias, apenas o cumprimento de um limiar mínimo definido. O valor exato do limiar pode ser ajustado durante o refinamento do projeto. |
 | RN005 | Ressignificação de objetos e memórias | Um fragmento pode assumir diferentes interpretações ao longo da progressão do jogo, sem alteração de sua identidade original no diário. |
 | RN006 | Convergência dos ecos de decisão | Nos momentos de eco de decisão no Ato II, diferentes interações do jogador levam ao mesmo impasse narrativo. |
 
