@@ -914,23 +914,26 @@ A arquitetura geral do protótipo é organizada a partir de uma estrutura orient
 
 Do ponto de vista operacional, a entrada do jogador é convertida em ações de movimentação, interação, observação e consulta ao diário. Essas ações incidem sobre a classe `Ani`, que por sua vez aciona objetos interativos, registra memórias no diário, observa elementos contemplativos e participa da progressão entre atos. `Cenario`, `Memoria`, `Diario`, `ObjetoRestauravel` e `ObjetoContemplativo` distribuem responsabilidades específicas de carregamento, registro, ressignificação e liberação de conteúdo.
 
+A entrada é tratada pelo sistema Enhanced Input da Unreal Engine 5: teclas e botões são mapeados em *Input Actions* por um *Input Mapping Context*, e as ações resultantes são encaminhadas a `Ani`, sem uma classe própria de gerenciamento de entrada. Da mesma forma, o papel de gerenciador do jogo fica com as classes de framework da Unreal, em conjunto com a classe `Jogo`: o *GameMode* define as regras da partida, a *GameInstance* permanece ativa durante toda a execução, inclusive entre trocas de nível, e `Jogo` mantém o ato e o cenário atuais.
+
 O fluxo principal de dados do protótipo pode ser descrito da seguinte forma:
 
 ```text
 Input (WASD / E / Tab)
-  → InputManager
-    → GameManager
-      → Ani (mover, interagir, observar, registrarMemoria)
-        → ObjetoInterativo.ativar()
-          → ObjetoMemoria.registrarNoDiario() → Diario.adicionarEntrada()
-          → ObjetoRestauravel.restaurar()
-          → ObjetoContemplativo.liberarNarracao()
-      → Cenario.carregarCenario()
-      → Ato.iniciarAto() / Ato.concluirAto()
-        → Jogo.carregarProgresso()
+  → Enhanced Input (Input Mapping Context → Input Actions)
+    → Ani (mover, interagir, observar, registrarMemoria)
+      → ObjetoInterativo.ativar()
+        → ObjetoMemoria.registrarNoDiario() → Diario.adicionarEntrada()
+        → ObjetoRestauravel.restaurar()
+        → ObjetoContemplativo.liberarNarracao()
+
+GameMode / GameInstance + Jogo
+  → Cenario.carregarCenario()
+  → Ato.iniciarAto() / Ato.concluirAto()
+  → Save.salvar() / Jogo.carregarProgresso() → Save.carregar()
 ```
 
-Essa organização evidencia que a progressão por atos é controlada por `Ato`, ao passo que `Jogo` concentra o estado global e a continuidade da sessão. Com isso, a arquitetura consegue sustentar uma experiência em que atmosfera, memória e progressão possuem suporte estrutural claro.
+Essa organização evidencia que a progressão por atos é controlada por `Ato`, ao passo que `Jogo`, apoiado pelo GameMode e pela GameInstance, concentra o estado global e a continuidade da sessão. Com isso, a arquitetura consegue sustentar uma experiência em que atmosfera, memória e progressão possuem suporte estrutural claro.
 
 ## 4.2 Sistemas Implementados
 
