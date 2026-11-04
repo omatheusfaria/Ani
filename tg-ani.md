@@ -431,7 +431,7 @@ Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 r
 | Pré-condição | Jogo iniciado com Ani carregado. |
 | Cenário Principal | 1. Jogador pressiona teclas de movimento.<br>2. Sistema captura a entrada.<br>3. Sistema aplica movimento no personagem.<br>4. Sistema verifica colisões.<br>5. Ani é movido corretamente pelo cenário. |
 | Pós-condição | A posição de Ani é atualizada para uma coordenada válida no cenário, respeitando os limites e obstáculos existentes. |
-| Cenários Alternativos | - Se ocorrer colisão, o movimento é bloqueado. |
+| Cenários Alternativos | 4a. Colisão detectada:<br>4a.1. O sistema bloqueia o movimento. |
 
 ### Caso de Uso: UC-S002 - Interagir com Objetos
 
@@ -455,7 +455,7 @@ Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 r
 | Pré-condição | Ani deve estar próximo de um personagem interativo. |
 | Cenário Principal | 1. Jogador aciona a interação.<br>2. Sistema identifica se a entidade é um personagem de memória ou um arquétipo filosófico.<br>3. Sistema exibe diálogo textual fragmentado.<br>4. Jogador avança o texto.<br>5. Quando aplicável, o conteúdo é registrado como memória narrativa ou reforço simbólico do ato atual. |
 | Pós-condição | O diálogo é concluído e o estado narrativo associado à interação é atualizado pelo sistema. |
-| Cenários Alternativos | - Se o jogador ignorar o personagem, o diálogo não é iniciado. |
+| Cenários Alternativos | 1a. Jogador ignora o personagem:<br>1a.1. O diálogo não é iniciado. |
 
 ### Caso de Uso: UC-S004 - Consultar Documentos Coletados
 
@@ -467,7 +467,7 @@ Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 r
 | Pré-condição | Pelo menos uma memória coletada. |
 | Cenário Principal | 1. Jogador acessa o diário.<br>2. Sistema abre o documento selecionado.<br>3. Jogador lê o conteúdo. |
 | Pós-condição | O documento selecionado é disponibilizado para leitura dentro do diário de memórias. |
-| Cenários Alternativos | - Se o diário não contiver documentos, exibe páginas em branco. |
+| Cenários Alternativos | 2a. O diário não contém documentos:<br>2a.1. O sistema exibe páginas em branco. |
 
 ### Caso de Uso: UC-S005 - Acessar Diário de Memórias
 
@@ -477,9 +477,9 @@ Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 r
 | Descrição | Este caso de uso tem por objetivo permitir que o jogador acesse e navegue pelo diário de memórias de Ani. |
 | Ator Primário | Jogador |
 | Pré-condição | Jogo em execução. |
-| Cenário Principal | 1. Jogador pressiona a tecla de inventário.<br>2. Sistema abre uma interface estilizada em forma de diário.<br>3. Jogador navega pelas páginas. |
+| Cenário Principal | 1. Jogador pressiona a tecla do diário de memórias.<br>2. Sistema abre uma interface estilizada em forma de diário.<br>3. Jogador navega pelas páginas. |
 | Pós-condição | O diário de memórias é disponibilizado para navegação pelo jogador. |
-| Cenários Alternativos | - Se o inventário estiver vazio, mostra páginas sem conteúdo. |
+| Cenários Alternativos | 2a. O diário de memórias está vazio:<br>2a.1. O sistema mostra páginas sem conteúdo. |
 
 ### Caso de Uso: UC-S006 - Pausar Jogo
 
@@ -491,7 +491,7 @@ Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 r
 | Pré-condição | Sessão em andamento. |
 | Cenário Principal | 1. Jogador pressiona a tecla de pausa.<br>2. Sistema suspende o gameplay.<br>3. Exibe o menu de pausa. |
 | Pós-condição | O estado da sessão é atualizado para pausado, mantendo o jogo suspenso até nova ação do jogador. |
-| Cenários Alternativos | - Se o jogador retomar, o jogo volta ao estado normal. |
+| Cenários Alternativos | 3a. Jogador retoma o jogo:<br>3a.1. O jogo volta ao estado normal. |
 
 ### Caso de Uso: UC-S007 - Configurar Jogo
 
@@ -503,7 +503,7 @@ Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 r
 | Pré-condição | Menu de pausa ou inicial aberto. |
 | Cenário Principal | 1. Jogador acessa o menu de configurações.<br>2. Sistema exibe opções de vídeo, áudio e controles.<br>3. Jogador altera os valores. |
 | Pós-condição | As configurações selecionadas são aplicadas conforme as opções alteradas pelo jogador. |
-| Cenários Alternativos | - Se o jogador cancelar, as alterações não são salvas. |
+| Cenários Alternativos | 3a. Jogador cancela:<br>3a.1. As alterações não são salvas. |
 
 ### Caso de Uso: UC-S008 - Ajustar Configurações de Vídeo
 
@@ -515,7 +515,7 @@ Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 r
 | Pré-condição | Menu de configurações aberto. |
 | Cenário Principal | 1. Jogador seleciona as opções de vídeo.<br>2. Sistema aplica as alterações.<br>3. Exibe o resultado em tempo real. |
 | Pós-condição | O estado de configuração de vídeo da sessão é atualizado conforme os parâmetros selecionados. |
-| Cenários Alternativos | - Se o hardware não suportar, o sistema retorna à configuração padrão. |
+| Cenários Alternativos | 2a. O hardware não suporta a opção escolhida:<br>2a.1. O sistema retorna à configuração padrão. |
 
 ### Caso de Uso: UC-S009 - Ajustar Configurações de Áudio
 
@@ -527,7 +527,7 @@ Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 r
 | Pré-condição | Menu de configurações aberto. |
 | Cenário Principal | 1. Jogador altera o volume da música e dos efeitos.<br>2. Sistema aplica a alteração.<br>3. Testa a configuração em tempo real. |
 | Pós-condição | O estado de configuração de áudio é atualizado conforme as preferências definidas pelo jogador. |
-| Cenários Alternativos | - Se a alteração for inválida, o sistema restaura os valores padrão. |
+| Cenários Alternativos | 2a. A alteração é inválida:<br>2a.1. O sistema restaura os valores padrão. |
 
 ### Caso de Uso: UC-S010 - Configurar Controles
 
@@ -539,7 +539,7 @@ Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 r
 | Pré-condição | Menu de configurações aberto. |
 | Cenário Principal | 1. Jogador seleciona a opção de controles.<br>2. Sistema permite redefinir teclas.<br>3. Jogador confirma as alterações. |
 | Pós-condição | As configurações de controle são atualizadas e salvas para uso em sessões futuras. |
-| Cenários Alternativos | - Se o jogador cancelar, o sistema mantém a configuração anterior. |
+| Cenários Alternativos | 3a. Jogador cancela:<br>3a.1. O sistema mantém a configuração anterior. |
 
 ### Caso de Uso: UC-S011 - Sair do Jogo
 
@@ -551,7 +551,7 @@ Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 r
 | Pré-condição | Jogo em execução. |
 | Cenário Principal | 1. Jogador seleciona sair.<br>2. Sistema exibe uma mensagem de confirmação.<br>3. Se confirmado, encerra a aplicação. |
 | Pós-condição | A sessão de jogo é finalizada e o estado de execução da aplicação é encerrado. |
-| Cenários Alternativos | - Se o jogador cancelar, a sessão continua. |
+| Cenários Alternativos | 3a. Jogador cancela a confirmação:<br>3a.1. A sessão continua. |
 
 ### Caso de Uso: UC-S012 - Salvar Jogo
 
@@ -563,7 +563,7 @@ Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 r
 | Pré-condição | Sessão em andamento. |
 | Cenário Principal | 1. Jogador solicita salvar.<br>2. Sistema coleta o estado atual do jogo, incluindo o ato em curso, as memórias registradas, o estado do diário e o estado visual da casa.<br>3. Sistema grava o arquivo de save. |
 | Pós-condição | O progresso do jogador é persistido em arquivo local, permitindo a continuidade da sessão em momento posterior. |
-| Cenários Alternativos | - Se ocorrer erro, o sistema notifica o jogador. |
+| Cenários Alternativos | 3a. Ocorre erro na gravação:<br>3a.1. O sistema notifica o jogador. |
 
 ## 2.7 Diagrama de Classes
 
