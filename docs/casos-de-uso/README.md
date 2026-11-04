@@ -41,15 +41,12 @@ O Quadro 2 apresenta, como exemplo, a especificação de um dos casos de uso do 
 | --- | --- |
 | Caso de Uso | UC-S002 - Interagir com Objetos |
 | ID | UC-S002 |
-| Nome revisado | Interagir com Objetos |
 | Descrição | Este caso de uso permite que o jogador interaja com objetos significativos para acessar memórias, fragmentos narrativos ou elementos contemplativos do cenário. |
 | Ator Primário | Jogador |
 | Pré-condição | Ani deve estar próximo de um objeto interativo. |
 | Cenário Principal | 1. Jogador pressiona a tecla de interação.<br>2. Sistema identifica o tipo de objeto interativo.<br>3. Sistema ativa o conteúdo associado, como memória, fragmento textual, objeto restaurável ou evento contemplativo.<br>4. Quando aplicável, o conteúdo é registrado no diário de Ani. |
 | Pós-condição | O conteúdo associado ao objeto é disponibilizado ao jogador e, quando aplicável, registrado no diário de memórias. |
-| Cenários Alternativos | Se o objeto não for interativo, nada acontece. |
-| Observações arquiteturais | Mantém relação direta com RF003, RF004, RF015 e RF016. |
-| Indicação | Permanecer. |
+| Cenários Alternativos | 1a. Elemento contemplativo (Ato IV):<br>1a.1. Jogador mantém Ani parada diante do elemento, sem acionar a interação.<br>1a.2. Ao completar o tempo mínimo de observação, o sistema revela o fragmento de narração associado (RF016).<br>1a.3. Se Ani se afastar antes disso, nada é revelado.<br>2a. Objeto não interativo:<br>2a.1. Nada acontece. |
 
 A documentação completa de casos de uso, incluindo o índice de casos de uso, o diagrama e a especificação de cada caso, pode ser consultada em [casos-de-uso.md](./casos-de-uso.md).
 
