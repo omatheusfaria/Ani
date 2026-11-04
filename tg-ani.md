@@ -351,8 +351,12 @@ O Quadro X apresenta os requisitos funcionais do sistema, organizados por códig
 | RF018 | Crises de ansiedade como elemento sensorial | Evidente | Alta | O sistema deve representar crises de ansiedade por distorção visual, fragmentação sonora e intensificação das manifestações, sem depender de um sistema de escolhas morais. |
 | RF019 | Desbloqueio mínimo de memórias no Ato I | Oculto | Alta | O sistema deve contar, no Ato I, as memórias coletadas e liberar a passagem para o ato seguinte quando a contagem atingir o limiar mínimo definido na RN004. |
 | RF020 | Aviso de conteúdo sensível | Evidente | Alta | O sistema deve exibir, antes do início do jogo, um aviso sobre temas sensíveis (ansiedade, sofrimento psíquico). |
+| RF021 | Pausar jogo | Evidente | Alta | O sistema deve permitir que o jogador pause a sessão em andamento, suspendendo o gameplay e exibindo o menu de pausa, e retome o jogo do mesmo ponto. |
+| RF022 | Configurar vídeo, áudio e controles | Evidente | Média | O sistema deve permitir que o jogador ajuste opções de vídeo, áudio e controles a partir do menu inicial ou do menu de pausa. |
+| RF023 | Sair do jogo | Evidente | Alta | O sistema deve permitir que o jogador encerre a aplicação, pedindo confirmação antes de sair. |
+| RF024 | Remapear controles | Evidente | Média | O sistema deve permitir que o jogador redefina as teclas do teclado e os botões do gamepad associados a cada comando. |
 
-Observa-se uma distribuição de 8 requisitos com prioridade Altíssima, 11 com prioridade Alta e 1 com prioridade Média. Pela classificação adotada, há 19 requisitos evidentes e 1 oculto. O bloco RF012 a RF019 concentra as mecânicas filosóficas por ato e, como seus efeitos são percebidos pelo jogador, é quase todo evidente; apenas o RF019 permanece oculto, pois o jogador percebe a abertura da passagem (RF006), mas não a contagem do limiar que a determina.
+Observa-se uma distribuição de 8 requisitos com prioridade Altíssima, 13 com prioridade Alta e 3 com prioridade Média. Pela classificação adotada, há 23 requisitos evidentes e 1 oculto. O bloco RF012 a RF019 concentra as mecânicas filosóficas por ato e, como seus efeitos são percebidos pelo jogador, é quase todo evidente; apenas o RF019 permanece oculto, pois o jogador percebe a abertura da passagem (RF006), mas não a contagem do limiar que a determina.
 
 ## 2.4 Requisitos Não Funcionais
 
@@ -420,7 +424,7 @@ O Quadro X apresenta o índice de casos de uso do sistema, enquanto a modelagem 
 
 [Figura 2 – Diagrama de Casos de Uso de Ani]
 
-Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 relaciona-se a RF001 e à exploração lateral; UC-S002 conecta-se a RF003, RF004, RF015 e RF016, cobrindo objetos significativos e mecânicas por ato; UC-S003 deriva de RF008 e dos personagens de memória e arquétipos; UC-S004 e UC-S005 conectam-se a RF005 e ao diário de memórias; e UC-S012 e UC-S013 correspondem a RF009, salvando e carregando o progresso conforme a persistência descrita nas especificações técnicas.
+Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 relaciona-se a RF001 e à exploração lateral; UC-S002 conecta-se a RF003, RF004, RF015 e RF016, cobrindo objetos significativos e mecânicas por ato; UC-S003 deriva de RF008 e dos personagens de memória e arquétipos; UC-S004 e UC-S005 conectam-se a RF005 e ao diário de memórias; UC-S006 corresponde a RF021 (pausa); UC-S007, UC-S008 e UC-S009, a RF022 (configurações de vídeo, áudio e controles); UC-S010, a RF024 (remapeamento de controles) e a RF011 (gamepad); UC-S011, a RF023 (saída); e UC-S012 e UC-S013 correspondem a RF009, salvando e carregando o progresso conforme a persistência descrita nas especificações técnicas.
 
 ### Caso de Uso: UC-S001 - Movimentar Personagem
 
@@ -1116,7 +1120,7 @@ O sistema deve operar em consonância com RNF002, segundo o qual os saves locais
 A interface do projeto segue uma filosofia de quase invisibilidade. Em vez de HUD permanente e barras numéricas, o estado do jogo é comunicado por atmosfera, distorção, respiração, ícones discretos e pelo próprio diário de memórias como objeto diegético.
 
 - **Classes envolvidas:** `Jogo`, `Diario`
-- **Requisitos correspondentes:** RF005, RNF004
+- **Requisitos correspondentes:** RF005, RF021, RF024, RNF004
 - **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** interface mínima, sensorial e integrada ao mundo
 - **Trecho de código relevante:** `[Código 11 — abertura do diário diegético e acionamento de indicadores discretos de interação]`

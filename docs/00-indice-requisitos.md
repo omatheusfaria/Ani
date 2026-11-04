@@ -29,6 +29,10 @@ SORT id ASC
 - [RF018](requisitos/funcionais/RF018.md) — Crises de ansiedade como elemento sensorial
 - [RF019](requisitos/funcionais/RF019.md) — Desbloqueio mínimo de memórias no Ato I
 - [RF020](requisitos/funcionais/RF020.md) — Aviso de conteúdo sensível
+- [RF021](requisitos/funcionais/RF021.md) — Pausar jogo
+- [RF022](requisitos/funcionais/RF022.md) — Configurar vídeo, áudio e controles
+- [RF023](requisitos/funcionais/RF023.md) — Sair do jogo
+- [RF024](requisitos/funcionais/RF024.md) — Remapear controles
 
 ## Requisitos não funcionais
 

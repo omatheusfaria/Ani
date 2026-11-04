@@ -88,6 +88,22 @@ No projeto **Ani**, os requisitos funcionais reúnem as funcionalidades atualmen
 | --- | --- | --- |
 | **Descrição**: O sistema deve exibir, antes do início do jogo, um aviso sobre temas sensíveis (ansiedade, sofrimento psíquico). | | |
 
+| RF021-Pausar jogo | Categoria: (  ) Oculto (X) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
+| --- | --- | --- |
+| **Descrição**: O sistema deve permitir que o jogador pause a sessão em andamento, suspendendo o gameplay e exibindo o menu de pausa, e retome o jogo do mesmo ponto. | | |
+
+| RF022-Configurar vídeo, áudio e controles | Categoria: (  ) Oculto (X) Evidente | Prioridade: (  ) Altíssima (  ) Alta (X) Média (  ) Baixa |
+| --- | --- | --- |
+| **Descrição**: O sistema deve permitir que o jogador ajuste opções de vídeo, áudio e controles a partir do menu inicial ou do menu de pausa. | | |
+
+| RF023-Sair do jogo | Categoria: (  ) Oculto (X) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
+| --- | --- | --- |
+| **Descrição**: O sistema deve permitir que o jogador encerre a aplicação, pedindo confirmação antes de sair. | | |
+
+| RF024-Remapear controles | Categoria: (  ) Oculto (X) Evidente | Prioridade: (  ) Altíssima (  ) Alta (X) Média (  ) Baixa |
+| --- | --- | --- |
+| **Descrição**: O sistema deve permitir que o jogador redefina as teclas do teclado e os botões do gamepad associados a cada comando. | | |
+
 ## Referência
 
 [1] IBM. *What is requirements management?* Disponível em: <https://www.ibm.com/think/topics/what-is-requirements-management>. Acesso em: 22.mar.2026.

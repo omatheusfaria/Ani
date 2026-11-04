@@ -324,7 +324,7 @@ A tabela a seguir apresenta os controles previstos para a versão de PC.
 | Pausar | Esc | Menu (☰) |
 | Contemplar | Sem botão dedicado; depende de parar e observar | Sem botão dedicado; depende de parar e observar |
 
-*→ Formalizado em RF001 — Movimentar personagem, RF003 — Interagir com objetos, RF005 — Diário de memórias e UC-S001/UC-S002/UC-S005 (docs/requisitos/requisitos-funcionais.md; docs/casos-de-uso/README.md).*
+*→ Formalizado em RF001 — Movimentar personagem, RF003 — Interagir com objetos, RF005 — Diário de memórias, RF021 — Pausar jogo, RF024 — Remapear controles e UC-S001/UC-S002/UC-S005/UC-S006/UC-S010 (docs/requisitos/requisitos-funcionais.md; docs/casos-de-uso/README.md).*
 
 ## 8. Áudio
 
