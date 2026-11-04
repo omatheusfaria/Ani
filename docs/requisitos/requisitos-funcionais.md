@@ -84,6 +84,10 @@ No projeto **Ani**, os requisitos funcionais reúnem as funcionalidades atualmen
 | --- | --- | --- |
 | **Descrição**: O sistema deve contar, no Ato I, as memórias coletadas e liberar a passagem para o ato seguinte quando a contagem atingir o limiar mínimo definido na RN004. | | |
 
+| RF020-Aviso de conteúdo sensível | Categoria: (  ) Oculto (X) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
+| --- | --- | --- |
+| **Descrição**: O sistema deve exibir, antes do início do jogo, um aviso sobre temas sensíveis (ansiedade, sofrimento psíquico). | | |
+
 ## Referência
 
 [1] IBM. *What is requirements management?* Disponível em: <https://www.ibm.com/think/topics/what-is-requirements-management>. Acesso em: 22.mar.2026.

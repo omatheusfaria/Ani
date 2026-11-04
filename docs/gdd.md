@@ -290,6 +290,10 @@ Crises de ansiedade continuam como uma das bases sensoriais do jogo.
 
 *→ Formalizado em RF018 — Crises de ansiedade como elemento sensorial e apoiado por RNF006 — Acessibilidade sensorial e de áudio (docs/requisitos/requisitos-funcionais.md; docs/requisitos/requisitos-nao-funcionais.md).*
 
+Por tratar de ansiedade e sofrimento psíquico, o jogo exibe, antes do início, um aviso sobre esses temas.
+
+*→ Formalizado em RF020 — Aviso de conteúdo sensível (docs/requisitos/requisitos-funcionais.md).*
+
 ## 7. Interface
 
 ### Filosofia de UI

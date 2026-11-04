@@ -350,8 +350,9 @@ O Quadro X apresenta os requisitos funcionais do sistema, organizados por códig
 | RF017 | Dissolução de mecânicas no Ato V | Evidente | Alta | O sistema deve retirar progressivamente, no Ato V, as mecânicas centrais dos atos anteriores até restarem principalmente deslocamento e contemplação. |
 | RF018 | Crises de ansiedade como elemento sensorial | Evidente | Alta | O sistema deve representar crises de ansiedade por distorção visual, fragmentação sonora e intensificação das manifestações, sem depender de um sistema de escolhas morais. |
 | RF019 | Desbloqueio mínimo de memórias no Ato I | Oculto | Alta | O sistema deve contar, no Ato I, as memórias coletadas e liberar a passagem para o ato seguinte quando a contagem atingir o limiar mínimo definido na RN004. |
+| RF020 | Aviso de conteúdo sensível | Evidente | Alta | O sistema deve exibir, antes do início do jogo, um aviso sobre temas sensíveis (ansiedade, sofrimento psíquico). |
 
-Observa-se uma distribuição de 8 requisitos com prioridade Altíssima, 10 com prioridade Alta e 1 com prioridade Média. Pela classificação adotada, há 18 requisitos evidentes e 1 oculto. O bloco RF012 a RF019 concentra as mecânicas filosóficas por ato e, como seus efeitos são percebidos pelo jogador, é quase todo evidente; apenas o RF019 permanece oculto, pois o jogador percebe a abertura da passagem (RF006), mas não a contagem do limiar que a determina.
+Observa-se uma distribuição de 8 requisitos com prioridade Altíssima, 11 com prioridade Alta e 1 com prioridade Média. Pela classificação adotada, há 19 requisitos evidentes e 1 oculto. O bloco RF012 a RF019 concentra as mecânicas filosóficas por ato e, como seus efeitos são percebidos pelo jogador, é quase todo evidente; apenas o RF019 permanece oculto, pois o jogador percebe a abertura da passagem (RF006), mas não a contagem do limiar que a determina.
 
 ## 2.4 Requisitos Não Funcionais
 

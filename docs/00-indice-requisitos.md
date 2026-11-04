@@ -28,6 +28,7 @@ SORT id ASC
 - [RF017](requisitos/funcionais/RF017.md) — Dissolução de mecânicas no Ato V
 - [RF018](requisitos/funcionais/RF018.md) — Crises de ansiedade como elemento sensorial
 - [RF019](requisitos/funcionais/RF019.md) — Desbloqueio mínimo de memórias no Ato I
+- [RF020](requisitos/funcionais/RF020.md) — Aviso de conteúdo sensível
 
 ## Requisitos não funcionais
 
