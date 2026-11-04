@@ -42,7 +42,7 @@ A justificativa do trabalho apoia-se na singularidade dos jogos digitais como me
 
 O projeto é desenvolvido segundo a metodologia Cascata, com fases sequenciais de levantamento de requisitos, modelagem, design de sistemas e implementação. As ferramentas centrais registradas no projeto são Unreal Engine, C++, Aseprite, Photoshop/Illustrator e Audacity/FMOD. A organização deste documento acompanha esse percurso: após a introdução, apresenta-se o Termo de Abertura do Projeto; em seguida, o levantamento de requisitos, com BPMN, requisitos, regras, casos de uso, diagrama de classes e DER; depois, as ferramentas e métodos empregados; por fim, descreve-se o desenvolvimento do protótipo funcional.
 
-# 1.1 Termo de Abertura do Projeto (TAP)
+## 1.1 Termo de Abertura do Projeto (TAP)
 
 O Termo de Abertura do Projeto (TAP) é o documento que formaliza a existência de um projeto e registra seus direcionadores iniciais. No gerenciamento de projetos, sua função é consolidar propósito, escopo preliminar, stakeholders, premissas, restrições e critérios de sucesso, oferecendo uma base de alinhamento entre os envolvidos. Segundo o Project Management Institute, o documento de abertura autoriza formalmente o projeto e define seus elementos estruturantes em nível inicial (PROJECT MANAGEMENT INSTITUTE, 2017).
 
@@ -50,7 +50,7 @@ No contexto acadêmico, o TAP exerce papel equivalente ao de um contrato de proj
 
 No caso de **Ani**, o TAP organiza a proposta de um jogo narrativo contemplativo em termos de gerenciamento, escopo e viabilidade. A seguir, apresenta-se o conteúdo completo do artefato, acrescido da contextualização do produto digital a ser entregue.
 
-## 1. Identificação do Projeto
+### 1.1.1 Identificação do Projeto
 
 | Item | Descrição |
 | --- | --- |
@@ -62,7 +62,7 @@ No caso de **Ani**, o TAP organiza a proposta de um jogo narrativo contemplativo
 | Linguagem principal | C++ |
 | Natureza do projeto | Projeto autoral com finalidade acadêmica e prototipação |
 
-### Ficha do Produto
+#### Ficha do Produto
 
 | Item | Descrição |
 | --- | --- |
@@ -76,15 +76,15 @@ No caso de **Ani**, o TAP organiza a proposta de um jogo narrativo contemplativo
 | Tom | Sombrio, melancólico e contemplativo, com redenção gradual |
 | Duração estimada | 3 a 5 horas por jornada |
 
-## 2. Problema de Pesquisa
+### 1.1.2 Problema de Pesquisa
 
 De que forma o design de um jogo narrativo pode representar eficazmente uma jornada filosófica de transformação interior e a construção da identidade de um personagem?
 
-## 3. Objetivo Geral
+### 1.1.3 Objetivo Geral
 
 Desenvolver um protótipo funcional de jogo narrativo contemplativo que represente, por meio de sistemas, mecânicas e linguagem visual, uma jornada filosófica de transformação interior estruturada em cinco atos, do pessimismo existencial à contemplação, aplicando práticas de engenharia de software no planejamento e na construção do projeto.
 
-## 4. Objetivos Específicos
+### 1.1.4 Objetivos Específicos
 
 - consolidar a direção conceitual e filosófica do jogo por meio do Game Design Document (GDD);
 - levantar, classificar e documentar os requisitos funcionais, não funcionais e regras de negócio do sistema;
@@ -92,7 +92,7 @@ Desenvolver um protótipo funcional de jogo narrativo contemplativo que represen
 - projetar sistemas e mecânicas que traduzam, em interação, cada etapa da jornada filosófica de Ani;
 - implementar um protótipo funcional coerente com a documentação produzida.
 
-## 5. Justificativa
+### 1.1.5 Justificativa
 
 Jogos digitais constituem um meio singular para explorar experiências internas e subjetivas: a interatividade permite que o jogador não apenas observe uma jornada, mas a habite ativamente, vivenciando estados emocionais, percepções e transformações de dentro para fora. Essa capacidade imersiva distingue o jogo de outras mídias narrativas e o torna especialmente adequado para representar processos internos complexos, como identidade, sofrimento e transformação filosófica.
 
@@ -100,7 +100,7 @@ Jogos digitais constituem um meio singular para explorar experiências internas 
 
 O jogo se torna, assim, não um veículo de ensino da filosofia, mas um modo de sentir o que ela descreve.
 
-## 6. Metodologia / Tecnologias
+### 1.1.6 Metodologia / Tecnologias
 
 O projeto é conduzido segundo a metodologia Cascata (Waterfall), com fases sequenciais e dependentes: levantamento de requisitos, modelagem, design de sistemas e implementação.
 
@@ -114,9 +114,9 @@ As tecnologias e ferramentas utilizadas são:
 - Photoshop / Illustrator para ilustrações e texturas;
 - Audacity / FMOD para design sonoro e efeitos de áudio.
 
-## 7. Escopo
+### 1.1.7 Escopo
 
-### Escopo Incluído
+#### Escopo Incluído
 
 - desenvolvimento de um jogo narrativo contemplativo estruturado em cinco atos filosóficos;
 - exploração lateral em ambientes simbólicos e fragmentados;
@@ -126,14 +126,14 @@ As tecnologias e ferramentas utilizadas são:
 - construção de atmosfera visual e sonora coerente com a jornada filosófica de Ani;
 - desenvolvimento de um protótipo funcional para PC.
 
-### Escopo Não Incluído
+#### Escopo Não Incluído
 
 - lançamento comercial do jogo;
 - versão final completa com todo o conteúdo planejado, refinado e polido;
 - portabilidade efetiva para consoles ou outras plataformas;
 - produção final de todos os assets artísticos e sonoros definitivos.
 
-### Principais Características do Produto
+#### Principais Características do Produto
 
 - Side-scroller narrativo contemplativo
 - Progressão em cinco atos filosóficos
@@ -145,7 +145,7 @@ As tecnologias e ferramentas utilizadas são:
 - Interface minimalista e diegética
 - Final único, aberto e interpretativo
 
-## 8. Principais Entregas
+### 1.1.8 Principais Entregas
 
 - conceito consolidado de **Ani** como jogo narrativo contemplativo;
 - documentação funcional e estrutural de apoio ao desenvolvimento;
@@ -153,7 +153,7 @@ As tecnologias e ferramentas utilizadas são:
 - protótipo jogável da experiência central;
 - base técnica e conceitual para evolução futura do projeto.
 
-## 9. Stakeholders
+### 1.1.9 Stakeholders
 
 | Stakeholder | Papel |
 | --- | --- |
@@ -162,7 +162,7 @@ As tecnologias e ferramentas utilizadas são:
 | Banca avaliadora | Responsável pela análise crítica e avaliação da proposta |
 | Jogador final | Público que vivencia a experiência interativa proposta |
 
-## 10. Público-Alvo do Produto
+### 1.1.10 Público-Alvo do Produto
 
 O projeto é direcionado principalmente a pessoas entre 16 e 28 anos interessadas em:
 
@@ -171,7 +171,7 @@ O projeto é direcionado principalmente a pessoas entre 16 e 28 anos interessada
 - temas ligados à filosofia, subjetividade e simbolismo;
 - obras com atmosfera melancólica, reflexiva e interpretativa.
 
-## 11. Premissas
+### 1.1.11 Premissas
 
 - o projeto será desenvolvido inicialmente como experiência para PC;
 - a direção conceitual atual será a principal referência para as próximas etapas;
@@ -179,14 +179,14 @@ O projeto é direcionado principalmente a pessoas entre 16 e 28 anos interessada
 - a proposta visual, sonora e mecânica poderá ser refinada conforme os testes e a maturação do projeto;
 - a implementação buscará traduzir a jornada filosófica em interação jogável e atmosfera sensível.
 
-## 12. Restrições
+### 1.1.12 Restrições
 
 - tempo limitado para desenvolvimento e refinamento do protótipo;
 - escopo sujeito a ajustes conforme viabilidade técnica e maturação da proposta;
 - recursos artísticos e sonoros ainda em fase de definição e produção;
 - necessidade de concentrar esforços na experiência central do jogo antes da expansão de conteúdo.
 
-## 13. Riscos Iniciais
+### 1.1.13 Riscos Iniciais
 
 | Risco | Impacto |
 | --- | --- |
@@ -196,7 +196,7 @@ O projeto é direcionado principalmente a pessoas entre 16 e 28 anos interessada
 | Dificuldade em transformar filosofia em mecânicas claras | Distanciamento entre proposta conceitual e experiência jogável |
 | Excesso de abstração narrativa | Redução da compreensão e do engajamento do jogador |
 
-## 14. Cronograma Macro
+### 1.1.14 Cronograma Macro
 
 1. Consolidação da direção conceitual, filosófica e estética do jogo.
 2. Definição dos sistemas centrais, requisitos e fluxos de interação.
@@ -205,7 +205,7 @@ O projeto é direcionado principalmente a pessoas entre 16 e 28 anos interessada
 5. Integração de atmosfera visual, sonora e narrativa.
 6. Refinamento do protótipo jogável.
 
-## 15. Critério de Sucesso
+### 1.1.15 Critério de Sucesso
 
 O projeto será considerado bem-sucedido se conseguir entregar um protótipo funcional capaz de expressar com clareza a proposta central de **Ani**: uma jornada contemplativa, simbólica e interativa de transformação interior, coerente em suas mecânicas, atmosfera e identidade visual.
 
