@@ -69,6 +69,7 @@ O Quadro 3 sintetiza os principais relacionamentos representados no diagrama.
 | ObjetoRestauravel | Herança / Generalização | ObjetoInterativo | Especialização de `ObjetoInterativo` |
 | ObjetoContemplativo | Herança / Generalização | ObjetoInterativo | Especialização de `ObjetoInterativo` |
 | ObjetoMemoria | Associação | Memoria | `ObjetoMemoria 1` para `Memoria 1` |
+| ObjetoMemoria | Associação | Ato | `ObjetoMemoria 0..*` para `Ato 0..1` |
 | Memoria | Associação | EntradaDiario | `Memoria 1` para `EntradaDiario 1` |
 | Diario | Composição | EntradaDiario | `Diario 1` para `EntradaDiario 0..*` |
 | Ato | Associação | Cenario | `Ato 1` para `Cenario 1..*` |

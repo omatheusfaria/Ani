@@ -758,6 +758,7 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 | ObjetoRestauravel | Herança | ObjetoInterativo | 1 para 1 |
 | ObjetoContemplativo | Herança | ObjetoInterativo | 1 para 1 |
 | ObjetoMemoria | Associação | Memoria | 1 para 1 |
+| ObjetoMemoria | Associação | Ato | 0..* para 0..1 |
 | Memoria | Associação | EntradaDiario | 1 para 1 |
 | Diario | Composição | EntradaDiario | 1 para 0..* |
 | Ato | Associação | Cenario | 1 para 1..* |
