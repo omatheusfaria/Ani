@@ -1153,30 +1153,67 @@ O sistema de áudio adaptativo organiza trilha e efeitos de forma coerente com a
 | IV | Abertura e passagem | Flauta, vento, sino distante, queda de pétalas e pausas longas |
 | V | Imensidão e silêncio | Sustentação mínima, espaço entre notas e sensação de vazio |
 
+### 4.2.13 Sistema de Puzzles Contextuais
+
+O RF007 prevê puzzles contextuais integrados ao ambiente e à narrativa dos atos. O formato desses puzzles, sua relação com as mecânicas de cada ato e o caso de uso que cobre sua resolução ainda não foram definidos. [aguardando decisão sobre puzzles]
+
+- **Classes envolvidas:** [aguardando decisão sobre puzzles]
+- **Requisito funcional correspondente:** RF007
+- **Regra de negócio correspondente:** [aguardando decisão sobre puzzles]
+- **Princípio do projeto que originou o sistema:** integração entre ambiente, narrativa e progressão por atos
+- **Trecho de código relevante:** `[Código 13 — [aguardando decisão sobre puzzles]]`
+- **Captura de tela comentada:** `[Figura 17 – [aguardando decisão sobre puzzles]]`
+
+### 4.2.14 Sistema de Diálogos
+
+O sistema de diálogos apresenta falas textuais e fragmentadas dos personagens de memória (Mãe, Padrasto, Namorada e Primo) e dos arquétipos filosóficos (O Arquiteto, no Ato II; A Ceramista, no Ato III; e A Criança, no Ato IV). Os personagens de memória surgem como ecos do passado, e não como companheiros estáveis, enquanto os arquétipos encarnam a ideia filosófica do ato em que aparecem. O diálogo é iniciado pela interação do jogador, descrita no UC-S003.
+
+- **Classes envolvidas:** `Ani`, `NPC`, `Dialogo`
+- **Requisito funcional correspondente:** RF008
+- **Regra de negócio correspondente:** não se aplica diretamente
+- **Princípio do projeto que originou o sistema:** comunicação prioritariamente textual e personagens como ecos da memória
+- **Trecho de código relevante:** `[Código 14 — início, avanço e encerramento de um diálogo fragmentado a partir da interação com um NPC]`
+- **Captura de tela comentada:** `[Figura 18 – Diálogo textual fragmentado com personagem de memória]`
+
+Na implementação prevista, `NPC.interagir()` identifica o tipo do personagem (`TipoNPC`) e aciona o `Dialogo` associado, que exibe suas `linhas` em sequência por meio de `iniciar()`, `avançar()` e `encerrar()`. O atributo `fragmentado` indica falas apresentadas de forma interrompida ou incompleta, recurso que reforça o caráter de memória dos encontros. Quando aplicável, o conteúdo do diálogo é registrado como memória narrativa ou reforço simbólico do ato atual.
+
+### 4.2.15 Suporte a Gamepad
+
+O suporte a gamepad permite que todo o jogo seja controlado também por um controle no padrão Xbox, sem perda de funções em relação ao teclado. Como a interface não usa HUD permanente, o mapeamento é reduzido aos comandos de movimento, interação, diário de memórias e pausa, conforme a tabela de controles da seção 4.2.11.
+
+- **Classes envolvidas:** `Ani`, com a entrada tratada pelo Enhanced Input da Unreal Engine 5 (fora do escopo do diagrama de classes)
+- **Requisito funcional correspondente:** RF011, com RF001 (movimento por teclado ou gamepad) e RF024 (remapeamento de controles)
+- **Regra de negócio correspondente:** não se aplica diretamente
+- **Princípio do projeto que originou o sistema:** acesso equivalente à experiência por teclado ou gamepad
+- **Trecho de código relevante:** `[Código 15 — Input Mapping Context com as mesmas Input Actions associadas a teclas e a botões do gamepad]`
+- **Captura de tela comentada:** `[Figura 19 – Menu de configuração de controles com o mapeamento do gamepad]`
+
+No Enhanced Input, cada comando é uma *Input Action* única, à qual o *Input Mapping Context* associa tanto a tecla quanto o botão correspondente do gamepad. Dessa forma, `Ani` recebe a mesma ação independentemente do dispositivo, e o remapeamento previsto no UC-S010 altera apenas as associações do contexto, sem mudar a lógica de jogo.
+
 ## 4.3 Capturas de Tela e Funcionalidades
 
-[Figura 17 – Tela inicial / menu]  
+[Figura 20 – Tela inicial / menu]  
 Descrição: a imagem deve mostrar o menu inicial do jogo, evidenciando o início da jornada e a identidade visual contemplativa da interface.
 
-[Figura 18 – Exploração do cenário no Ato I]  
+[Figura 21 – Exploração do cenário no Ato I]  
 Descrição: a imagem deve mostrar Ani explorando o cenário inicial, com destaque para a lentidão do movimento após o contato com memórias, evidenciando RF013.
 
-[Figura 19 – Diário de memórias aberto]  
+[Figura 22 – Diário de memórias aberto]  
 Descrição: a imagem deve mostrar a interface diegética do diário, com entradas registradas e leitura de um fragmento narrativo associado a RF005.
 
-[Figura 20 – Cenário do Ato II em corredor em loop]  
+[Figura 23 – Cenário do Ato II em corredor em loop]  
 Descrição: a imagem deve mostrar um espaço repetitivo e desorientador, evidenciando a mecânica de ecos de decisão e o impasse do Ato II.
 
-[Figura 21 – Mecânica de restauração no Ato III]  
+[Figura 24 – Mecânica de restauração no Ato III]  
 Descrição: a imagem deve mostrar um objeto antes e depois da restauração, preservando rachaduras visíveis, em consonância com RF015.
 
-[Figura 22 – Jardim contemplativo do Ato IV]  
+[Figura 25 – Jardim contemplativo do Ato IV]  
 Descrição: a imagem deve mostrar Ani parada diante de um elemento contemplativo, com liberação de narração ou memória após observação prolongada.
 
-[Figura 23 – Crise de ansiedade com distorção visual]  
+[Figura 26 – Crise de ansiedade com distorção visual]  
 Descrição: a imagem deve mostrar distorções de tela, intensificação de manifestações e atmosfera sonora associada à crise, evidenciando RF018.
 
-[Figura 24 – Cenário do Ato V com dissolução de mecânicas]  
+[Figura 27 – Cenário do Ato V com dissolução de mecânicas]  
 Descrição: a imagem deve mostrar um espaço aberto e indefinido, com redução perceptível de sistemas de interação e predominância de movimento e contemplação.
 
 # Referências
