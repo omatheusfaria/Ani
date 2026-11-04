@@ -32,6 +32,7 @@ O Quadro 1 apresenta o índice dos casos de uso atualmente documentados no proje
 | UC-S010 | Configurar Controles | Jogador |
 | UC-S011 | Sair do Jogo | Jogador |
 | UC-S012 | Salvar Jogo | Jogador |
+| UC-S013 | Continuar Jogo | Jogador |
 
 O Quadro 2 apresenta, como exemplo, a especificação de um dos casos de uso do projeto.
 

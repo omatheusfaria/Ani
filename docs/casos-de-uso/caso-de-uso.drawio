@@ -136,6 +136,14 @@
         <mxCell id="Z5jJkPFQPgrG9oPdX4KQ-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Processo de Interação e Progressão do Jogador" vertex="1">
           <mxGeometry height="30" width="430" x="615" y="-30" as="geometry" />
         </mxCell>
+        <mxCell id="UCS013-uc" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Continuar Jogo" vertex="1">
+          <mxGeometry height="70" width="140" x="380" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="UCS013-assoc" edge="1" parent="1" source="CteaaWE1iwZ1UQ6BI8tY-1" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" target="UCS013-uc">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="140" y="320" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

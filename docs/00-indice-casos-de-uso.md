@@ -19,3 +19,4 @@ SORT id ASC
 - [UC-S010](casos-de-uso/UC-S010.md) — Configurar Controles
 - [UC-S011](casos-de-uso/UC-S011.md) — Sair do Jogo
 - [UC-S012](casos-de-uso/UC-S012.md) — Salvar Jogo
+- [UC-S013](casos-de-uso/UC-S013.md) — Continuar Jogo

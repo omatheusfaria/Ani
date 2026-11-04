@@ -18,6 +18,7 @@
 | UC-S010 | Configurar Controles | Jogador |
 | UC-S011 | Sair do Jogo | Jogador |
 | UC-S012 | Salvar Jogo | Jogador |
+| UC-S013 | Continuar Jogo | Jogador |
 
 **Quadro 4 – Use Case Movimentar Personagem**
 
@@ -184,3 +185,17 @@
 | **Cenário Principal** | 1. Jogador solicita salvar.<br>2. Sistema coleta o estado atual do jogo, incluindo o ato em curso, as memórias registradas, o estado do diário e o estado visual da casa.<br>3. Sistema grava o arquivo de save. |
 | **Pós-condição** | O progresso do jogador é persistido em arquivo local, permitindo a continuidade da sessão em momento posterior. |
 | **Cenário Alternativo** | 3a. Ocorre erro na gravação:<br>3a.1. O sistema notifica o jogador. |
+
+---
+
+**Quadro 16 – Use Case Continuar Jogo**
+
+| Caso de Uso – Continuar Jogo | |
+| --- | --- |
+| **ID** | UC-S013 |
+| **Descrição** | Este caso de uso permite que o jogador retome a jornada a partir do progresso salvo em arquivo local. |
+| **Ator Primário** | Jogador |
+| **Pré-condição** | Menu inicial aberto. |
+| **Cenário Principal** | 1. Jogador seleciona a opção de continuar no menu inicial.<br>2. Sistema lê o arquivo de save.<br>3. Sistema restaura o ato em curso, as memórias registradas, o estado do diário e o estado visual da casa.<br>4. Sistema carrega o cenário correspondente e devolve o controle ao jogador. |
+| **Pós-condição** | A sessão é retomada no ponto em que o progresso foi salvo. |
+| **Cenário Alternativo** | 1a. Não existe arquivo de save:<br>1a.1. A opção de continuar fica indisponível no menu inicial.<br>2a. O arquivo de save não pode ser lido:<br>2a.1. O sistema notifica o jogador e retorna ao menu inicial. |
