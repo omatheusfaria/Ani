@@ -34,8 +34,10 @@ O Quadro 1 apresenta a estrutura de classes, atributos e métodos modelada para 
 | Ato | `id : int32`, `nome : FString`, `descricao : FString`, `concluido : bool`, `limiarMemorias : int32` | `iniciarAto()`, `verificarConclusao()`, `concluirAto()` |
 | ObjetoRestauravel | `estado : EstadoObjeto` | `restaurar()` |
 | ObjetoContemplativo | `tempoMinimoObservacao : float` | `observar()`, `liberarNarracao()` |
+| EcoDecisao | `id : int32`, `tentativas : int32`, `desfecho : FString` | `registrarTentativa()`, `conduzirAoImpasse()` |
+| Save | `idSave : int32`, `dataCriacao : FDateTime`, `dataUltimaAtualizacao : FDateTime` | `salvar()`, `carregar()` |
 
-Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`, `FString`, `TArray<...>`). Os nomes das classes e enumerações do modelo omitem os prefixos da convenção da Unreal (`U` para classes derivadas de `UObject`, `A` para atores, `F` para estruturas e `E` para enumerações), que podem ser aplicados na implementação.
+Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`, `FString`, `FDateTime`, `TArray<...>`). Os nomes das classes e enumerações do modelo omitem os prefixos da convenção da Unreal (`U` para classes derivadas de `UObject`, `A` para atores, `F` para estruturas e `E` para enumerações), que podem ser aplicados na implementação.
 
 O Quadro 2 apresenta as enumerações utilizadas para restringir valores recorrentes da modelagem.
 
@@ -70,6 +72,10 @@ O Quadro 3 sintetiza os principais relacionamentos representados no diagrama.
 | Memoria | Associação | EntradaDiario | `Memoria 1` para `EntradaDiario 1` |
 | Diario | Composição | EntradaDiario | `Diario 1` para `EntradaDiario 0..*` |
 | Ato | Associação | Cenario | `Ato 1` para `Cenario 1..*` |
+| Ato | Associação | EcoDecisao | `Ato 1` para `EcoDecisao 0..*` |
+| Jogo | Associação | Save | `Jogo 1` para `Save 0..*` |
+| Save | Associação | Ato | `Save 0..*` para `Ato 1` |
+| Save | Associação | Diario | `Save 1` para `Diario 1` |
 
 O conjunto dessas classes mostra a separação entre a lógica principal do jogo, a personagem controlada, os elementos narrativos, os objetos de interação e os artefatos de registro da experiência do jogador. Essa organização é relevante para o projeto porque ajuda a distribuir responsabilidades entre os elementos do sistema e favorece uma implementação mais clara, modular e alinhada aos requisitos já definidos.
 

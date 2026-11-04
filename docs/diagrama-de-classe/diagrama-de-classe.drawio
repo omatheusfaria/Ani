@@ -612,6 +612,84 @@
         <mxCell id="qw7C63ifsvzez1ui5nK0-108" parent="qw7C63ifsvzez1ui5nK0-100" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+ encerrar()" vertex="1">
           <mxGeometry height="37.33" width="140" y="202.00333333333333" as="geometry" />
         </mxCell>
+        <mxCell id="ani-save" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Save" vertex="1">
+          <mxGeometry height="164" width="240" x="1960" y="1720" as="geometry" />
+        </mxCell>
+        <mxCell id="ani-save-a1" parent="ani-save" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- idSave: int32" vertex="1">
+          <mxGeometry height="26" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ani-save-a2" parent="ani-save" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- dataCriacao: FDateTime" vertex="1">
+          <mxGeometry height="26" width="240" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="ani-save-a3" parent="ani-save" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- dataUltimaAtualizacao: FDateTime" vertex="1">
+          <mxGeometry height="26" width="240" y="78" as="geometry" />
+        </mxCell>
+        <mxCell id="ani-save-ln" parent="ani-save" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="104" as="geometry" />
+        </mxCell>
+        <mxCell id="ani-save-m4" parent="ani-save" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ salvar()" vertex="1">
+          <mxGeometry height="26" width="240" y="112" as="geometry" />
+        </mxCell>
+        <mxCell id="ani-save-m5" parent="ani-save" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ carregar()" vertex="1">
+          <mxGeometry height="26" width="240" y="138" as="geometry" />
+        </mxCell>
+        <mxCell id="ani-eco" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="EcoDecisao" vertex="1">
+          <mxGeometry height="164" width="200" x="2200" y="1373" as="geometry" />
+        </mxCell>
+        <mxCell id="ani-eco-a1" parent="ani-eco" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- id: int32" vertex="1">
+          <mxGeometry height="26" width="200" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ani-eco-a2" parent="ani-eco" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- tentativas: int32" vertex="1">
+          <mxGeometry height="26" width="200" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="ani-eco-a3" parent="ani-eco" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- desfecho: FString" vertex="1">
+          <mxGeometry height="26" width="200" y="78" as="geometry" />
+        </mxCell>
+        <mxCell id="ani-eco-ln" parent="ani-eco" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="200" y="104" as="geometry" />
+        </mxCell>
+        <mxCell id="ani-eco-m4" parent="ani-eco" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ registrarTentativa()" vertex="1">
+          <mxGeometry height="26" width="200" y="112" as="geometry" />
+        </mxCell>
+        <mxCell id="ani-eco-m5" parent="ani-eco" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ conduzirAoImpasse()" vertex="1">
+          <mxGeometry height="26" width="200" y="138" as="geometry" />
+        </mxCell>
+        <mxCell id="ani-e1" edge="1" parent="1" source="UkP_mdnDtGIdcfxqdIJ_-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="ani-eco">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ani-e1-s" parent="ani-e1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1" vertex="1" connectable="0">
+          <mxGeometry relative="1" x="-0.8" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="ani-e1-t" parent="ani-e1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="0..*" vertex="1" connectable="0">
+          <mxGeometry relative="1" x="0.8" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="ani-e2" edge="1" parent="1" source="ani-save" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="UkP_mdnDtGIdcfxqdIJ_-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ani-e2-s" parent="ani-e2" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="0..*" vertex="1" connectable="0">
+          <mxGeometry relative="1" x="-0.8" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="ani-e2-t" parent="ani-e2" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1" vertex="1" connectable="0">
+          <mxGeometry relative="1" x="0.8" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="ani-e3" edge="1" parent="1" source="ani-save" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="sBSEbnRuXWD3VsB8Pxt4-120">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ani-e3-s" parent="ani-e3" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1" vertex="1" connectable="0">
+          <mxGeometry relative="1" x="-0.8" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="ani-e3-t" parent="ani-e3" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1" vertex="1" connectable="0">
+          <mxGeometry relative="1" x="0.8" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="ani-e4" edge="1" parent="1" source="sBSEbnRuXWD3VsB8Pxt4-80" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="ani-save">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ani-e4-s" parent="ani-e4" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1" vertex="1" connectable="0">
+          <mxGeometry relative="1" x="-0.8" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="ani-e4-t" parent="ani-e4" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="0..*" vertex="1" connectable="0">
+          <mxGeometry relative="1" x="0.8" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

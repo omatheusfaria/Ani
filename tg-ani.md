@@ -573,9 +573,9 @@ Sua importância neste trabalho está em mostrar como a experiência contemplati
 
 [Figura 3 – Diagrama de Classes de Ani]
 
-As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sintetiza os cinco atos filosóficos; `Memoria`, `Diario` e `EntradaDiario` formalizam o sistema de memórias; `ObjetoMemoria` representa o gatilho interativo de revelação de memórias; `ObjetoRestauravel` traduz a lógica de Kintsugi do Ato III; `ObjetoContemplativo` traduz a contemplação ativa do Ato IV; `NPC` e `Dialogo` representam personagens de memória, arquétipos e seus fluxos textuais; e `Ani` constitui a representação sistêmica da protagonista como sujeito da experiência.
+As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sintetiza os cinco atos filosóficos; `Memoria`, `Diario` e `EntradaDiario` formalizam o sistema de memórias; `ObjetoMemoria` representa o gatilho interativo de revelação de memórias; `ObjetoRestauravel` traduz a lógica de Kintsugi do Ato III; `ObjetoContemplativo` traduz a contemplação ativa do Ato IV; `NPC` e `Dialogo` representam personagens de memória, arquétipos e seus fluxos textuais; `Ani` constitui a representação sistêmica da protagonista como sujeito da experiência; `EcoDecisao` registra as tentativas do jogador nos ecos de decisão do Ato II; e `Save` reúne o progresso persistido da partida, como a entidade SAVE do DER.
 
-Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`, `FString`, `TArray<...>`). Os nomes das classes e enumerações do modelo omitem os prefixos da convenção da Unreal (`U` para classes derivadas de `UObject`, `A` para atores, `F` para estruturas e `E` para enumerações), que podem ser aplicados na implementação.
+Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`, `FString`, `FDateTime`, `TArray<...>`). Os nomes das classes e enumerações do modelo omitem os prefixos da convenção da Unreal (`U` para classes derivadas de `UObject`, `A` para atores, `F` para estruturas e `E` para enumerações), que podem ser aplicados na implementação.
 
 ### Classe: Jogo
 **Atributos:**
@@ -712,6 +712,26 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 - `+ observar()`
 - `+ liberarNarracao()`
 
+### Classe: EcoDecisao
+**Atributos:**
+- `- id: int32`
+- `- tentativas: int32`
+- `- desfecho: FString`
+
+**Métodos:**
+- `+ registrarTentativa()`
+- `+ conduzirAoImpasse()`
+
+### Classe: Save
+**Atributos:**
+- `- idSave: int32`
+- `- dataCriacao: FDateTime`
+- `- dataUltimaAtualizacao: FDateTime`
+
+**Métodos:**
+- `+ salvar()`
+- `+ carregar()`
+
 ### Enumerações
 
 | Enumeração | Valores |
@@ -741,6 +761,10 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 | Memoria | Associação | EntradaDiario | 1 para 1 |
 | Diario | Composição | EntradaDiario | 1 para 0..* |
 | Ato | Associação | Cenario | 1 para 1..* |
+| Ato | Associação | EcoDecisao | 1 para 0..* |
+| Jogo | Associação | Save | 1 para 0..* |
+| Save | Associação | Ato | 0..* para 1 |
+| Save | Associação | Diario | 1 para 1 |
 
 ## 2.8 Diagrama Entidade-Relacionamento (DER)
 
@@ -974,7 +998,7 @@ Embora o sistema produza dificuldade sensorial de avanço, ele não configura pu
 
 Os ecos de decisão estruturam situações em que o jogador tenta variar sua ação, mas retorna ao mesmo impasse narrativo. A mecânica traduz a contradição irresolúvel do Ato II e comunica a ideia de vontade que se devora.
 
-- **Classes envolvidas:** `Ani`, `Ato`, `Memoria`
+- **Classes envolvidas:** `Ani`, `Ato`, `EcoDecisao`, `Memoria`
 - **Requisito funcional correspondente:** RF014
 - **Regra de negócio correspondente:** RN006
 - **Princípio do projeto que originou o sistema:** irresolução filosófica do Ato II
@@ -1047,7 +1071,7 @@ Os efeitos esperados incluem distorção visual, fragmentação sonora e intensi
 
 O sistema de save/load é responsável por preservar continuidade da sessão e permitir retomada do progresso sem perda de integridade. Seu escopo inclui persistência do ato atual, memórias registradas, estado do diário e estado visual da casa.
 
-- **Classes envolvidas:** `Jogo`, `Diario`, `Ato`, `Cenario`
+- **Classes envolvidas:** `Jogo`, `Save`, `Diario`, `Ato`, `Cenario`
 - **Requisito funcional correspondente:** RF009
 - **Regra de negócio correspondente:** RN001
 - **Princípio do projeto que originou o sistema:** continuidade estrutural da jornada por atos
