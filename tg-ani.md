@@ -342,12 +342,12 @@ O Quadro X apresenta os requisitos funcionais do sistema, organizados por códig
 | RF009 | Sistema de save/load | Evidente | Altíssima | O sistema deve salvar e carregar o progresso do jogador, incluindo ato atual, memórias registradas, estado do diário e estado visual da casa. |
 | RF010 | Feedback sonoro e musical por ato | Evidente | Alta | O sistema deve adaptar trilha sonora e efeitos sonoros de acordo com o ato filosófico em curso. |
 | RF011 | Suporte a gamepad | Evidente | Média | O sistema deve permitir que o jogo seja controlado também por gamepad. |
-| RF012 | Progressão por atos filosóficos | Evidente | Altíssima | O jogo deve ser estruturado em cinco atos sequenciais, com mudança de atmosfera, paleta, comportamento das manifestações e mecânicas conforme a progressão. |
-| RF013 | Mecânica de peso literal no Ato I | Evidente | Alta | No Ato I, cada memória tocada deve aumentar a sensação de peso no deslocamento de Ani, tornando o avanço mais lento. |
-| RF014 | Mecânica de ecos de decisão no Ato II | Evidente | Alta | No Ato II, o jogador deve poder revisitar situações em que tenta agir de outro modo, mas o resultado permanece preso ao mesmo impasse narrativo. |
-| RF015 | Mecânica de restauração por aceitação no Ato III | Evidente | Alta | No Ato III, o sistema deve permitir a restauração de objetos quebrados sem apagar suas marcas, em linha com a ideia de Kintsugi. |
-| RF016 | Mecânica de contemplação ativa no Ato IV | Evidente | Alta | No Ato IV, o sistema deve revelar fragmentos de narração quando o jogador permanece em observação diante de elementos contemplativos do cenário. |
-| RF017 | Dissolução de mecânicas no Ato V | Evidente | Alta | No Ato V, o sistema deve retirar progressivamente as mecânicas centrais dos atos anteriores até restarem principalmente deslocamento e contemplação. |
+| RF012 | Progressão por atos filosóficos | Evidente | Altíssima | O sistema deve estruturar o jogo em cinco atos sequenciais, com mudança de atmosfera, paleta, comportamento das manifestações e mecânicas conforme a progressão. |
+| RF013 | Mecânica de peso literal no Ato I | Evidente | Alta | O sistema deve aumentar a sensação de peso no deslocamento de Ani a cada memória tocada no Ato I, tornando o avanço mais lento. |
+| RF014 | Mecânica de ecos de decisão no Ato II | Evidente | Alta | O sistema deve permitir que o jogador revisite, no Ato II, situações em que tenta agir de outro modo, mantendo o resultado preso ao mesmo impasse narrativo. |
+| RF015 | Mecânica de restauração por aceitação no Ato III | Evidente | Alta | O sistema deve permitir, no Ato III, a restauração de objetos quebrados sem apagar suas marcas, em linha com a ideia de Kintsugi. |
+| RF016 | Mecânica de contemplação ativa no Ato IV | Evidente | Alta | O sistema deve revelar, no Ato IV, fragmentos de narração quando o jogador permanece em observação diante de elementos contemplativos do cenário. |
+| RF017 | Dissolução de mecânicas no Ato V | Evidente | Alta | O sistema deve retirar progressivamente, no Ato V, as mecânicas centrais dos atos anteriores até restarem principalmente deslocamento e contemplação. |
 | RF018 | Crises de ansiedade como elemento sensorial | Evidente | Alta | O sistema deve representar crises de ansiedade por distorção visual, fragmentação sonora e intensificação das manifestações, sem depender de um sistema de escolhas morais. |
 | RF019 | Desbloqueio mínimo de memórias no Ato I | Oculto | Alta | O sistema deve contar, no Ato I, as memórias coletadas e liberar a passagem para o ato seguinte quando a contagem atingir o limiar mínimo definido na RN004. |
 
@@ -361,15 +361,15 @@ Em **Ani**, os RNFs não se limitam a desempenho técnico. Eles também registra
 
 O Quadro X apresenta os requisitos não funcionais do sistema, indicando os critérios de qualidade e suas respectivas classificações.
 
-| Código | Requisito | Classificação |
-| --- | --- | --- |
-| RNF001 | O sistema deve manter taxa mínima de 60 FPS em hardware equivalente a Intel HD Graphics e 4 GB de RAM. | Obrigatório, permanente |
-| RNF002 | O sistema deve carregar saves locais em menos de 5 segundos e preservar a integridade dos dados de progresso por ato. | Obrigatório, permanente |
-| RNF003 | O sistema deve ser estruturado de forma a permitir adaptação para outras plataformas com alterações mínimas no código e nos assets. | Desejável, permanente |
-| RNF004 | O sistema deve permitir que novos jogadores compreendam as mecânicas básicas sem necessidade de tutorial extenso ou instruções constantes em tela. | Obrigatório, permanente |
-| RNF005 | O sistema deve exibir aviso de conteúdo sensível e permitir ao jogador pular cenas de alta carga emocional sem comprometer a continuidade narrativa. | Obrigatório, permanente |
-| RNF006 | O sistema deve suportar internacionalização por meio de arquivos externos de texto, permitindo tradução para outros idiomas. | Obrigatório, transitório |
-| RNF007 | O sistema deve oferecer recursos de acessibilidade, incluindo controle de intensidade visual, legendas para efeitos sonoros e controle independente de volume por camada de áudio. | Obrigatório, permanente |
+| Código | Nome | Requisito | Tipo | Classificação |
+| --- | --- | --- | --- | --- |
+| RNF001 | Desempenho mínimo | O sistema deve manter taxa mínima de 60 FPS em hardware equivalente a Intel HD Graphics e 4 GB de RAM. | Desempenho | Obrigatório, Permanente |
+| RNF002 | Carregamento e integridade dos saves | O sistema deve carregar saves locais em menos de 5 segundos e preservar a integridade dos dados de progresso por ato. | Confiabilidade | Obrigatório, Permanente |
+| RNF003 | Portabilidade de código e assets | O sistema deve ser estruturado de forma a permitir adaptação para outras plataformas com alterações mínimas no código e nos assets. | Portabilidade | Desejável, Permanente |
+| RNF004 | Jogabilidade autoexplicativa | O sistema deve permitir que novos jogadores compreendam as mecânicas básicas sem necessidade de tutorial extenso ou instruções constantes em tela. | Usabilidade | Obrigatório, Permanente |
+| RNF005 | Aviso de conteúdo e pulo de cenas | O sistema deve exibir aviso de conteúdo sensível e permitir ao jogador pular cenas de alta carga emocional sem comprometer a continuidade narrativa. | Usabilidade | Obrigatório, Permanente |
+| RNF006 | Internacionalização de textos | O sistema deve suportar internacionalização por meio de arquivos externos de texto, permitindo tradução para outros idiomas. | Internacionalização | Obrigatório, Transitório |
+| RNF007 | Acessibilidade sensorial e de áudio | O sistema deve oferecer recursos de acessibilidade, incluindo controle de intensidade visual, legendas para efeitos sonoros e controle independente de volume por camada de áudio. | Acessibilidade | Obrigatório, Permanente |
 
 Os RNFs podem ser agrupados por tema da seguinte forma: desempenho e persistência em RNF001 e RNF002; portabilidade em RNF003; usabilidade em RNF004; saúde mental e conteúdo sensível em RNF005; internacionalização em RNF006; e acessibilidade sensorial e de áudio em RNF007.
 
@@ -384,7 +384,7 @@ O Quadro X apresenta as regras de negócio do sistema, descrevendo as restriçõ
 | Código | Nome | Descrição |
 | --- | --- | --- |
 | RN001 | Registro único de memória | Cada fragmento de memória pode ser registrado apenas uma vez no diário. |
-| RN002 | Progressão fixa entre atos | A progressão entre atos ocorre de forma sequencial, seguindo a ordem definida no projeto, sem possibilidade de retorno ou salto de ordem. |
+| RN002 | Progressão fixa entre atos | A progressão entre atos ocorre de forma sequencial, seguindo a ordem definida no GDD, sem possibilidade de retorno ou salto de ordem. |
 | RN003 | Critério de avanço por conclusão de ato | A progressão para o ato seguinte depende da conclusão dos critérios do ato atual. |
 | RN004 | Avanço parcial no Ato I | No Ato I, o avanço não exige a visualização de todas as memórias, apenas o cumprimento de um limiar mínimo definido. O valor exato do limiar pode ser ajustado durante o refinamento do projeto. |
 | RN005 | Ressignificação de objetos e memórias | Um fragmento pode assumir diferentes interpretações ao longo da progressão do jogo, sem alteração de sua identidade original no diário. |
@@ -455,7 +455,7 @@ Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 r
 | Pré-condição | Ani deve estar próximo de um personagem interativo. |
 | Cenário Principal | 1. Jogador aciona a interação.<br>2. Sistema identifica se a entidade é um personagem de memória ou um arquétipo filosófico.<br>3. Sistema exibe diálogo textual fragmentado.<br>4. Jogador avança o texto.<br>5. Quando aplicável, o conteúdo é registrado como memória narrativa ou reforço simbólico do ato atual. |
 | Pós-condição | O diálogo é concluído e o estado narrativo associado à interação é atualizado pelo sistema. |
-| Cenários Alternativos | - Se o jogador ignorar o NPC, o diálogo não é iniciado. |
+| Cenários Alternativos | - Se o jogador ignorar o personagem, o diálogo não é iniciado. |
 
 ### Caso de Uso: UC-S004 - Consultar Documentos Coletados
 
