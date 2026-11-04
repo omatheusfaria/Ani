@@ -245,7 +245,7 @@ Essa rastreabilidade mostra que os requisitos de **Ani** derivam de uma visão d
 
 ## 2.2 BPMN
 
-A BPMN (*Business Process Model and Notation*) é uma notação padronizada para modelagem de processos, utilizada para representar atividades, decisões, participantes e fluxos de execução de forma compreensível para públicos técnicos e não técnicos. Conforme a Object Management Group, a notação organiza visualmente a dinâmica de um processo e favorece sua comunicação, análise e aperfeiçoamento (OBJECT MANAGEMENT GROUP, 2011).
+A BPMN (*Business Process Model and Notation*) é uma notação padronizada para modelagem de processos, utilizada para representar atividades, decisões, participantes e fluxos de execução de forma compreensível para públicos técnicos e não técnicos. Conforme a Object Management Group, a notação organiza visualmente a dinâmica de um processo e favorece sua comunicação, análise e aperfeiçoamento (OBJECT MANAGEMENT GROUP, 2014).
 
 No contexto de software, a BPMN é útil para explicitar como o sistema responde às ações do usuário e quais validações ou laços condicionais estruturam a experiência. Em **Ani**, sua utilização é pertinente porque o ciclo principal de gameplay não se resume a movimentar a personagem, mas envolve explorar, interagir, classificar objetos, processar memórias, registrar progresso e decidir se a exploração continua ou se a sessão se encerra.
 
@@ -1155,7 +1155,7 @@ IBM. *What is an entity relationship diagram?* Disponível em: <https://www.ibm.
 
 LUCIDCHART. *What is an Entity Relationship Diagram (ERD)?* Disponível em: <https://www.lucidchart.com/pages/er-diagrams/>. Acesso em: 25.mar.2026.
 
-OBJECT MANAGEMENT GROUP. *Business Process Model and Notation (BPMN) Version 2.0*. Needham: OMG, 2011. Disponível em: https://www.omg.org/spec/BPMN/2.0. Acesso em: 2024.
+OBJECT MANAGEMENT GROUP. *Business Process Model and Notation (BPMN), Version 2.0.2*. Needham: OMG, 2014.
 
 PRESSMAN, Roger S.; MAXIM, Bruce R. *Engenharia de Software: uma abordagem profissional*. 8. ed. Porto Alegre: AMGH, 2016.
 
