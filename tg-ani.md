@@ -855,7 +855,7 @@ Além disso, as ferramentas utilizadas apresentam licenças compatíveis com uso
 **Justificativa de escolha:** foi escolhida por oferecer recursos robustos para ambientes 3D estilizados, câmera lateral, iluminação, efeitos visuais e organização modular de sistemas de gameplay, mantendo aderência à proposta de um side-scroller narrativo contemplativo.
 
 ### Ferramenta: C++
-**Versão utilizada:** C++20 (padrão adotado por padrão pela Unreal Engine 5.4)  
+**Versão utilizada:** C++20 (padrão da Unreal Engine 5.4)  
 **Tipo de licença:** norma ISO/IEC 14882, sem licença de uso; o compilador (MSVC) segue a licença do Visual Studio Build Tools  
 **Site oficial:** <https://isocpp.org/>  
 **Função no projeto:** linguagem principal de programação para implementação dos sistemas do jogo.  
