@@ -40,7 +40,7 @@ O objetivo geral do projeto é desenvolver um protótipo funcional de jogo narra
 
 A justificativa do trabalho apoia-se na singularidade dos jogos digitais como meio para representar experiências internas e subjetivas. Em **Ani**, a ausência de combate, de HUD numérico permanente e de moralidade binária não decorre de limitação técnica, mas de aderência ao objeto de pesquisa. Como o foco está na travessia do sofrimento, na observação e na transformação de percepção, a interface minimalista, as pausas, o silêncio e as mecânicas contemplativas tornam-se escolhas metodologicamente coerentes com o que se pretende investigar em software interativo.
 
-O projeto é desenvolvido segundo a metodologia Cascata, com fases sequenciais de levantamento de requisitos, modelagem, design de sistemas e implementação. As ferramentas centrais registradas no projeto são Unreal Engine 5.4.4, C++, Visual Studio Code com Visual Studio Build Tools (MSVC), Aseprite, Photoshop/Illustrator e Audacity/FMOD. A organização deste documento acompanha esse percurso: após a introdução, apresenta-se o Termo de Abertura do Projeto; em seguida, o levantamento de requisitos, com BPMN, requisitos, regras, casos de uso, diagrama de classes e DER; depois, as ferramentas e métodos empregados; por fim, descreve-se o desenvolvimento do protótipo funcional. O Apêndice B apresenta um rascunho de missão, visão e valores do projeto. O Apêndice C traz uma versão resumida do Game Design Document, que reúne a direção criativa da qual os requisitos foram derivados.
+O projeto é desenvolvido segundo a metodologia Cascata, com fases sequenciais de levantamento de requisitos, modelagem, design de sistemas e implementação. As ferramentas centrais registradas no projeto são Unreal Engine 5.4.4, C++, Visual Studio Code com Visual Studio Build Tools (MSVC), Aseprite, Photoshop/Illustrator e Audacity/FMOD. A organização deste documento acompanha esse percurso: após a introdução, apresenta-se o Termo de Abertura do Projeto; em seguida, o levantamento de requisitos, com BPMN, requisitos, regras, casos de uso, diagrama de classes e DER; depois, as ferramentas e métodos empregados; por fim, descreve-se o desenvolvimento do protótipo funcional. O Apêndice B apresenta a missão, a visão e os valores do projeto. O Apêndice C traz uma versão resumida do Game Design Document, que reúne a direção criativa da qual os requisitos foram derivados.
 
 ## 1.1 Termo de Abertura do Projeto (TAP)
 
@@ -1262,9 +1262,7 @@ Os resumos das respostas selecionadas giram em torno dos seguintes temas, que n�
 - centralidade de memórias, diário e simbolismo;
 - preferência por uma experiência reflexiva, interpretativa e emocionalmente significativa.
 
-# Apêndice B - Missão, visão e valores (RASCUNHO)
-
-> **RASCUNHO para revisão do autor.** Texto derivado do TAP e do GDD; não é versão final.
+# Apêndice B - Missão, visão e valores
 
 **Missão:** oferecer ao jogador uma experiência narrativa contemplativa em que atravessar o sofrimento de Ani, por meio da memória, da observação e do silêncio, convide à reflexão sobre consciência e sentido.
 
