@@ -1042,7 +1042,7 @@ No Ato V, o protótipo abandona progressivamente mecânicas dos atos anteriores 
 
 - **Classes envolvidas:** `Ato`, `Jogo`, `Ani`
 - **Requisito funcional correspondente:** RF017
-- **Regra de negócio correspondente:** RN002
+- **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** o mistério que não cabe em palavras
 - **Trecho de código relevante:** `[Código 8 — desativação progressiva de subsistemas conforme avanço do Ato V]`
 - **Captura de tela comentada:** `[Figura 12 – Cenário final com mecânicas reduzidas e predominância de contemplação]`
@@ -1076,7 +1076,7 @@ O sistema de save/load é responsável por preservar continuidade da sessão e p
 
 - **Classes envolvidas:** `Jogo`, `Save`, `Diario`, `Ato`, `Cenario`
 - **Requisito funcional correspondente:** RF009
-- **Regra de negócio correspondente:** RN001
+- **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** continuidade estrutural da jornada por atos
 - **Trecho de código relevante:** `[Código 10 — serialização do estado global do jogo e restauração de progresso]`
 - **Captura de tela comentada:** `[Figura 14 – Continuidade da sessão após carregamento de save local]`
