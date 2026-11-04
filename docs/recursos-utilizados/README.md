@@ -4,7 +4,7 @@ Esta seção apresenta as principais ferramentas e métodos utilizados no projet
 
 ## Ferramentas e Métodos
 
-No projeto **Ani**, as ferramentas adotadas atendem tanto à construção do protótipo quanto à produção dos artefatos de Engenharia de Software. Em conjunto, elas viabilizam a implementação do jogo, a modelagem dos diagramas, a documentação textual e o versionamento do trabalho [1][2][3][4][5].
+No projeto **Ani**, as ferramentas adotadas atendem tanto à construção do protótipo quanto à produção dos artefatos de Engenharia de Software. Em conjunto, elas viabilizam a implementação do jogo, a modelagem dos diagramas, a documentação textual e o versionamento do trabalho [1][2][3][4][5][6][7][8].
 
 O Quadro 1 apresenta as principais ferramentas utilizadas no projeto, com suas versões de referência, tipo de licença e site oficial.
 
@@ -12,8 +12,12 @@ O Quadro 1 apresenta as principais ferramentas utilizadas no projeto, com suas v
 
 | Ferramenta | Versão de referência | Tipo de licença | Finalidade principal | Site oficial |
 | --- | --- | --- | --- | --- |
-| Unreal Engine | Unreal Engine 5 | Proprietária, com uso gratuito conforme condições da Epic Games | Desenvolvimento do protótipo jogável | <https://www.unrealengine.com/> |
-| C++ | Padrão C++ | Linguagem padronizada; toolchains e compiladores possuem licenças próprias | Implementação da lógica do jogo | <https://isocpp.org/> |
+| Unreal Engine | 5.4.4 | Unreal Engine EULA (Epic Games), com uso gratuito até o limite de receita do contrato | Desenvolvimento do protótipo jogável | <https://www.unrealengine.com/> |
+| C++ | C++20 (padrão da Unreal Engine 5.4) | Norma ISO/IEC 14882; o compilador MSVC segue a licença do Visual Studio Build Tools | Implementação da lógica do jogo | <https://isocpp.org/> |
+
+| Visual Studio Code | 1.145.0 | Licença de software da Microsoft (código-fonte Code - OSS sob MIT) | IDE para o código C++ e a documentação | <https://code.visualstudio.com/> |
+
+| Visual Studio Build Tools (MSVC) | [preencher] | Termos de licença do Microsoft Visual Studio Build Tools | Compilador C++ e ferramentas de build da Unreal no Windows | <https://visualstudio.microsoft.com/visual-cpp-build-tools/> |
 | draw.io / diagrams.net | 29.6.5 | Apache 2.0 | Modelagem de diagramas UML, DER e artefatos visuais | <https://www.diagrams.net/> |
 | Markdown | Sintaxe padrão de Markdown | Formato aberto | Redação da documentação técnica do projeto | <https://daringfireball.net/projects/markdown/> |
 | Git | 2.48.1.windows.1 | GPLv2 | Controle de versão local | <https://git-scm.com/> |
@@ -26,6 +30,8 @@ O Quadro 2 apresenta a justificativa de uso de cada ferramenta no contexto do pr
 | Ferramenta | Justificativa |
 | --- | --- |
 | Unreal Engine | Foi escolhida por oferecer um ecossistema consolidado para jogos com ambientes 3D estilizados, câmera lateral, iluminação, efeitos visuais e recursos suficientes para prototipação de interação, cenário, interface e persistência. |
+| Visual Studio Code | Foi adotado como IDE por ser leve e integrar-se aos projetos da Unreal Engine pela geração de arquivos de projeto para VS Code. |
+| Visual Studio Build Tools (MSVC) | Fornece o compilador MSVC que a Unreal Engine exige no Windows, sem a IDE completa do Visual Studio. |
 | C++ | Foi adotada por ser a linguagem principal de programação da Unreal Engine e por permitir uma estruturação modular e orientada a objetos da lógica de gameplay, estados e sistemas do projeto. |
 | draw.io / diagrams.net | Foi utilizada para produzir os diagramas de caso de uso, classes e entidade-relacionamento, facilitando a padronização visual dos artefatos exigidos no TG. |
 | Markdown | Foi utilizado para redigir e organizar a documentação textual do projeto de forma leve, rastreável e compatível com o repositório. |
@@ -56,3 +62,7 @@ Os arquivos-fonte dos diagramas produzidos no projeto podem ser consultados nas 
 [5] SOFTWARE FREEDOM CONSERVANCY. *Git*. Disponível em: <https://git-scm.com/>. Acesso em: 26.mar.2026.
 
 [6] GITHUB. *GitHub*. Disponível em: <https://github.com/>. Acesso em: 26.mar.2026.
+
+[7] MICROSOFT. *Visual Studio Code*. Disponível em: <https://code.visualstudio.com/>. Acesso em: 04.nov.2026.
+
+[8] MICROSOFT. *Microsoft C++ Build Tools*. Disponível em: <https://visualstudio.microsoft.com/visual-cpp-build-tools/>. Acesso em: 04.nov.2026.

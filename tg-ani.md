@@ -848,51 +848,65 @@ A seleção de ferramentas do projeto foi orientada por três critérios centrai
 Além disso, as ferramentas utilizadas apresentam licenças compatíveis com uso acadêmico e estão alinhadas às tecnologias registradas no Termo de Abertura do Projeto. Sempre que os artefatos-fonte não informam versão específica utilizada, essa ausência é explicitada, a fim de preservar a fidelidade documental.
 
 ### Ferramenta: Unreal Engine
-**Versão utilizada:** não especificada nos artefatos-fonte  
-**Tipo de licença:** licença da Epic Games, com uso gratuito conforme condições da Unreal Engine  
-**Site oficial:** não especificado nos artefatos-fonte  
+**Versão utilizada:** 5.4.4  
+**Tipo de licença:** Unreal Engine End User License Agreement (EULA) da Epic Games, com uso gratuito até o limite de receita previsto no contrato  
+**Site oficial:** <https://www.unrealengine.com/>  
 **Função no projeto:** motor de jogo responsável pela implementação do protótipo, gerenciamento de cenas, lógica de gameplay, física, interface e integração audiovisual.  
 **Justificativa de escolha:** foi escolhida por oferecer recursos robustos para ambientes 3D estilizados, câmera lateral, iluminação, efeitos visuais e organização modular de sistemas de gameplay, mantendo aderência à proposta de um side-scroller narrativo contemplativo.
 
 ### Ferramenta: C++
-**Versão utilizada:** não especificada nos artefatos-fonte  
-**Tipo de licença:** não especificada nos artefatos-fonte  
-**Site oficial:** não especificado nos artefatos-fonte  
+**Versão utilizada:** C++20 (padrão adotado por padrão pela Unreal Engine 5.4)  
+**Tipo de licença:** norma ISO/IEC 14882, sem licença de uso; o compilador (MSVC) segue a licença do Visual Studio Build Tools  
+**Site oficial:** <https://isocpp.org/>  
 **Função no projeto:** linguagem principal de programação para implementação dos sistemas do jogo.  
 **Justificativa de escolha:** foi adotada por ser a linguagem principal de programação da Unreal Engine e por favorecer uma modelagem modular e orientada a objetos coerente com o diagrama de classes, especialmente na organização de `Jogo`, `Ato`, `Ani`, `Memoria` e `Diario`.
 
+### Ferramenta: Visual Studio Code
+**Versão utilizada:** 1.145.0  
+**Tipo de licença:** licença de software da Microsoft para a distribuição oficial (o código-fonte Code - OSS é MIT)  
+**Site oficial:** <https://code.visualstudio.com/>  
+**Função no projeto:** ambiente de desenvolvimento (IDE) para edição do código C++ do projeto Unreal e da documentação em Markdown.  
+**Justificativa de escolha:** é leve, integra-se aos projetos da Unreal Engine por meio da geração de arquivos de projeto para VS Code e reúne edição de código, depuração e controle de versão em um só ambiente.
+
+### Ferramenta: Visual Studio Build Tools (MSVC)
+**Versão utilizada:** [preencher]  
+**Tipo de licença:** termos de licença do Microsoft Visual Studio Build Tools  
+**Site oficial:** <https://visualstudio.microsoft.com/visual-cpp-build-tools/>  
+**Função no projeto:** compilador C++ (MSVC) e ferramentas de build usados pela Unreal Engine no Windows.  
+**Justificativa de escolha:** a Unreal Engine exige o toolchain MSVC para compilar projetos C++ no Windows, e o Build Tools fornece esse compilador sem a IDE completa do Visual Studio, que é substituída pelo VS Code.
+
 ### Ferramenta: Aseprite
-**Versão utilizada:** não especificada nos artefatos-fonte  
-**Tipo de licença:** proprietária, paga, uso perpétuo  
-**Site oficial:** não especificado nos artefatos-fonte  
+**Versão utilizada:** [preencher]  
+**Tipo de licença:** proprietária, paga, uso perpétuo (EULA da Igara Studio)  
+**Site oficial:** <https://www.aseprite.org/>  
 **Função no projeto:** produção de sprites e animações 2D.  
 **Justificativa de escolha:** adequa-se à produção visual de sprites com estética de desenho à mão, aquarela e grafite, em conformidade com a direção visual e a textura artesanal previstas para o jogo.
 
 ### Ferramenta: Adobe Photoshop / Adobe Illustrator
-**Versão utilizada:** não especificada nos artefatos-fonte  
-**Tipo de licença:** Creative Cloud, assinatura  
-**Site oficial:** não especificado nos artefatos-fonte  
+**Versão utilizada:** Photoshop 2025 (26.2); Illustrator [preencher]  
+**Tipo de licença:** proprietária, assinatura Adobe Creative Cloud  
+**Site oficial:** <https://www.adobe.com/products/photoshop.html> e <https://www.adobe.com/products/illustrator.html>  
 **Função no projeto:** criação de ilustrações, texturas, paletas e elementos gráficos de interface.  
 **Justificativa de escolha:** essas ferramentas apoiam a produção de assets visuais de maior fidelidade, incluindo as paletas por ato e os elementos do diário de memórias, fundamentais para a progressão visual e para a interface diegética.
 
 ### Ferramenta: Audacity
-**Versão utilizada:** não especificada nos artefatos-fonte  
-**Tipo de licença:** GPL, código aberto  
-**Site oficial:** não especificado nos artefatos-fonte  
+**Versão utilizada:** [preencher]  
+**Tipo de licença:** GPLv3, código aberto  
+**Site oficial:** <https://www.audacityteam.org/>  
 **Função no projeto:** gravação e edição de efeitos sonoros e trilhas de apoio.  
 **Justificativa de escolha:** foi empregado por permitir editar material sonoro alinhado à direção de áudio por ato, incluindo ruídos, ambiências e elementos de crise de ansiedade previstos no projeto.
 
 ### Ferramenta: FMOD
-**Versão utilizada:** não especificada nos artefatos-fonte  
+**Versão utilizada:** [preencher]  
 **Tipo de licença:** FMOD for Education, gratuita para projetos acadêmicos  
-**Site oficial:** não especificado nos artefatos-fonte  
+**Site oficial:** <https://www.fmod.com/>  
 **Função no projeto:** middleware de áudio adaptativo para jogos.  
 **Justificativa de escolha:** permite controlar trilha e camadas sonoras de acordo com estado emocional e ato em curso, sendo especialmente útil para implementar a transição filosófica do áudio ao longo da jornada.
 
 ### Ferramenta: draw.io (diagrams.net)
-**Versão utilizada:** não especificada nos artefatos-fonte  
+**Versão utilizada:** 29.6.5  
 **Tipo de licença:** Apache 2.0, código aberto  
-**Site oficial:** não especificado nos artefatos-fonte  
+**Site oficial:** <https://www.drawio.com/>  
 **Função no projeto:** modelagem de diagramas UML, BPMN e demais artefatos estruturais.  
 **Justificativa de escolha:** foi utilizada para representar visualmente a estrutura do sistema e o fluxo principal de gameplay, fortalecendo a documentação e a rastreabilidade entre modelagem e implementação.
 
@@ -902,7 +916,7 @@ Além disso, as ferramentas utilizadas apresentam licenças compatíveis com uso
 | TAP | Markdown |
 | BPMN | draw.io / diagrams.net |
 | Diagrama de Classes | draw.io / diagrams.net |
-| Código-fonte | Unreal Engine / C++ |
+| Código-fonte | Unreal Engine / C++ / Visual Studio Code / Visual Studio Build Tools (MSVC) |
 | Assets visuais | Aseprite / Photoshop |
 | Assets de áudio | Audacity / FMOD |
 
