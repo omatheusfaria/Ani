@@ -27,7 +27,7 @@
 | **Descrição** | Este caso de uso tem por objetivo permitir a movimentação de Ani pelo cenário durante a exploração lateral. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Jogo iniciado com Ani carregado. |
-| **Cenário Principal** | 1. Jogador pressiona teclas de movimento.<br>2. Sistema captura a entrada.<br>3. Sistema aplica movimento no personagem.<br>4. Sistema verifica colisões.<br>5. Ani é movido corretamente pelo cenário. |
+| **Cenário Principal** | 1. Jogador aciona o comando de movimento (teclado ou gamepad).<br>2. Sistema captura a entrada.<br>3. Sistema aplica movimento no personagem.<br>4. Sistema verifica colisões.<br>5. Ani é movido corretamente pelo cenário. |
 | **Pós-condição** | A posição de Ani é atualizada para uma coordenada válida no cenário, respeitando os limites e obstáculos existentes. |
 | **Cenário Alternativo** | 4a. Colisão detectada:<br>4a.1. O sistema bloqueia o movimento. |
 
@@ -41,7 +41,7 @@
 | **Descrição** | Este caso de uso permite que o jogador interaja com objetos significativos para acessar memórias, fragmentos narrativos ou elementos contemplativos do cenário. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Ani deve estar próximo de um objeto interativo. |
-| **Cenário Principal** | 1. Jogador pressiona a tecla de interação.<br>2. Sistema identifica o tipo de objeto interativo.<br>3. Sistema ativa o conteúdo associado, como memória, fragmento textual, objeto restaurável ou evento contemplativo.<br>4. Quando aplicável, o conteúdo é registrado no diário de Ani. |
+| **Cenário Principal** | 1. Jogador aciona o comando de interação.<br>2. Sistema identifica o tipo de objeto interativo.<br>3. Sistema ativa o conteúdo associado, como memória, fragmento textual, objeto restaurável ou evento contemplativo.<br>4. Quando aplicável, o conteúdo é registrado no diário de Ani. |
 | **Pós-condição** | O conteúdo associado ao objeto é disponibilizado ao jogador e, quando aplicável, registrado no diário de memórias. |
 | **Cenário Alternativo** | 1a. Elemento contemplativo (Ato IV):<br>1a.1. Jogador mantém Ani parada diante do elemento, sem acionar a interação.<br>1a.2. Ao completar o tempo mínimo de observação, o sistema revela o fragmento de narração associado (RF016).<br>1a.3. Se Ani se afastar antes disso, nada é revelado.<br>2a. Objeto não interativo:<br>2a.1. Nada acontece. |
 
@@ -83,7 +83,7 @@
 | **Descrição** | Este caso de uso tem por objetivo permitir que o jogador acesse e navegue pelo diário de memórias de Ani. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Jogo em execução. |
-| **Cenário Principal** | 1. Jogador pressiona a tecla do diário de memórias.<br>2. Sistema abre uma interface estilizada em forma de diário.<br>3. Jogador navega pelas páginas. |
+| **Cenário Principal** | 1. Jogador aciona o comando do diário de memórias.<br>2. Sistema abre uma interface estilizada em forma de diário.<br>3. Jogador navega pelas páginas. |
 | **Pós-condição** | O diário de memórias é disponibilizado para navegação pelo jogador. |
 | **Cenário Alternativo** | 2a. O diário de memórias está vazio:<br>2a.1. O sistema mostra páginas sem conteúdo. |
 
@@ -97,7 +97,7 @@
 | **Descrição** | Este caso de uso permite que o jogador suspenda temporariamente a sessão em andamento. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Sessão em andamento. |
-| **Cenário Principal** | 1. Jogador pressiona a tecla de pausa.<br>2. Sistema suspende o gameplay.<br>3. Exibe o menu de pausa. |
+| **Cenário Principal** | 1. Jogador aciona o comando de pausa.<br>2. Sistema suspende o gameplay.<br>3. Exibe o menu de pausa. |
 | **Pós-condição** | O estado da sessão é atualizado para pausado, mantendo o jogo suspenso até nova ação do jogador. |
 | **Cenário Alternativo** | 3a. Jogador retoma o jogo:<br>3a.1. O jogo volta ao estado normal. |
 
@@ -153,7 +153,7 @@
 | **Descrição** | Este caso de uso tem por objetivo permitir que o jogador personalize teclas e entradas de gamepad. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Menu de configurações aberto. |
-| **Cenário Principal** | 1. Jogador seleciona a opção de controles.<br>2. Sistema permite redefinir teclas.<br>3. Jogador confirma as alterações. |
+| **Cenário Principal** | 1. Jogador seleciona a opção de controles.<br>2. Sistema permite redefinir teclas e botões.<br>3. Jogador confirma as alterações. |
 | **Pós-condição** | As configurações de controle são atualizadas e salvas para uso em sessões futuras. |
 | **Cenário Alternativo** | 3a. Jogador cancela:<br>3a.1. O sistema mantém a configuração anterior. |
 

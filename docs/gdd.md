@@ -312,12 +312,13 @@ A interface deve ser quase invisível. O jogo comunica estado por atmosfera, som
 
 A tabela a seguir apresenta os controles previstos para a versão de PC.
 
-| Ação | Controle |
-| --- | --- |
-| Movimento | WASD ou setas |
-| Interagir | E ou clique esquerdo |
-| Diário de memórias | Tab |
-| Contemplar | Sem botão dedicado; depende de parar e observar |
+| Ação | Teclado e mouse | Gamepad (padrão Xbox) |
+| --- | --- | --- |
+| Movimento | WASD ou setas | Analógico esquerdo ou direcional |
+| Interagir | E ou clique esquerdo | A |
+| Diário de memórias | Tab | Y |
+| Pausar | Esc | Menu (☰) |
+| Contemplar | Sem botão dedicado; depende de parar e observar | Sem botão dedicado; depende de parar e observar |
 
 *→ Formalizado em RF001 — Movimentar personagem, RF003 — Interagir com objetos, RF005 — Diário de memórias e UC-S001/UC-S002/UC-S005 (docs/requisitos/requisitos-funcionais.md; docs/casos-de-uso/README.md).*
 
