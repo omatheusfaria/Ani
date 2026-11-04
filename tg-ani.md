@@ -752,88 +752,70 @@ A modelagem gráfica correspondente é apresentada na Figura 4, e a descrição 
 
 [Figura 4 – Diagrama Entidade-Relacionamento de Ani]
 
-### Entidade: JOGO
-**Atributos:** id (PK), titulo, atoAtual, cenarioAtual
+Ao contrário do diagrama de classes, o DER não representa todas as classes do projeto: ele se concentra no que precisa ser persistido para recuperar a experiência do jogador. Por isso, classes comportamentais como `Jogo`, `Ani`, `NPC` e `Dialogo` não viram entidades, e o progresso salvo é representado pela entidade SAVE. Mesmo com o salvamento feito em arquivo JSON, a estrutura vale como modelo conceitual de persistência.
+
+### Entidade: SAVE
+Representa a unidade de persistência da partida.
+**Atributos:** id_save (PK), data_criacao, data_ultima_atualizacao
 **Relacionamentos:**
-- Relaciona-se com ATO (cardinalidade: 1:N)
-- Relaciona-se com CENARIO (cardinalidade: 1:N)
-**Origem no GDD:** seção 10, Especificações Técnicas
+- estaEm ATO: cada save está em um ato; um ato pode estar associado a vários saves.
+- Possui DIARIO: cada save possui um diário associado.
 
 ### Entidade: ATO
-**Atributos:** id (PK), nome, descricao, concluido, limiarMemorias, referenciaFilosofica, simbolo, paletaCor, climaSonoro
+Representa cada etapa da progressão narrativa do jogo; `limiar_memorias` guarda a quantidade mínima de memórias da RN004.
+**Atributos:** id_ato (PK), nome, descricao, concluido, limiar_memorias
 **Relacionamentos:**
-- Relaciona-se com JOGO (cardinalidade: N:1)
-- Relaciona-se com CENARIO (cardinalidade: 1:N)
-- Relaciona-se com MEMORIA (cardinalidade: 1:N)
-**Origem no GDD:** seções 2, 3 e 4
+- Contem CENARIO: um ato contém um ou vários cenários; cada cenário pertence a um ato.
+- estaEm (com SAVE): um ato pode estar associado a vários saves.
 
 ### Entidade: CENARIO
-**Atributos:** id (PK), nome, desbloqueado, idAto (FK)
+Representa os cenários pertencentes aos atos.
+**Atributos:** id_cenario (PK), nome, descricao, desbloqueado
 **Relacionamentos:**
-- Relaciona-se com ATO (cardinalidade: N:1)
-- Relaciona-se com OBJETO_INTERATIVO (cardinalidade: 1:N)
-**Origem no GDD:** seção 3, Mundo do Jogo
-
-### Entidade: ANI
-**Atributos:** id (PK), posicaoX, posicaoY, sprite, estadoEmocional, idDiario (FK)
-**Relacionamentos:**
-- Relaciona-se com DIARIO (cardinalidade: 1:1)
-- Relaciona-se com OBJETO_INTERATIVO (cardinalidade: 1:N)
-**Origem no GDD:** seções 5 e 6
-
-### Entidade: NPC
-**Atributos:** id (PK), nome, tipo, sprite, idCenario (FK)
-**Relacionamentos:**
-- Relaciona-se com CENARIO (cardinalidade: N:1)
-**Origem no GDD:** seção 5
-
-### Entidade: OBJETO_INTERATIVO
-**Atributos:** id (PK), descricao, idCenario (FK)
-**Relacionamentos:**
-- Relaciona-se com CENARIO (cardinalidade: N:1)
-- Relaciona-se com ANI (cardinalidade: N:1)
-- Possui especializações conceituais em OBJETO_MEMORIA, OBJETO_RESTAURAVEL e OBJETO_CONTEMPLATIVO (cardinalidade: 1:1, quando aplicável)
-**Origem no GDD:** seção 6
-
-### Entidade: OBJETO_MEMORIA
-**Atributos:** id (PK, FK → OBJETO_INTERATIVO), coletada
-**Relacionamentos:**
-- Relaciona-se com OBJETO_INTERATIVO (cardinalidade: 1:1, especialização)
-- Relaciona-se com MEMORIA (cardinalidade: 1:1)
-**Origem no GDD:** seção 6, Exploração e Diário de Memórias
-
-### Entidade: OBJETO_RESTAURAVEL
-**Atributos:** id (PK, FK → OBJETO_INTERATIVO), estado
-**Relacionamentos:**
-- Relaciona-se com OBJETO_INTERATIVO (cardinalidade: 1:1, especialização)
-**Origem no GDD:** seção 6, Ato III
-
-### Entidade: OBJETO_CONTEMPLATIVO
-**Atributos:** id (PK, FK → OBJETO_INTERATIVO), tempoMinimoObservacao
-**Relacionamentos:**
-- Relaciona-se com OBJETO_INTERATIVO (cardinalidade: 1:1, especialização)
-**Origem no GDD:** seção 6, Ato IV
-
-### Entidade: MEMORIA
-**Atributos:** id (PK), titulo, conteudo, coletada, atoOrigem, idObjetoMemoria (FK)
-**Relacionamentos:**
-- Relaciona-se com OBJETO_MEMORIA (cardinalidade: 1:1)
-- Relaciona-se com ENTRADA_DIARIO (cardinalidade: 1:0..1)
-**Origem no GDD:** seção 6, Exploração e Diário de Memórias
+- Contem (com ATO): cada cenário pertence a um ato.
+- Pertence (com OBJETO_INTERATIVO): um cenário pode possuir zero ou vários objetos interativos.
 
 ### Entidade: DIARIO
-**Atributos:** id (PK), idAni (FK)
+Representa o diário associado ao progresso salvo.
+**Atributos:** id_diario (PK), titulo, descricao
 **Relacionamentos:**
-- Relaciona-se com ANI (cardinalidade: 1:1)
-- Relaciona-se com ENTRADA_DIARIO (cardinalidade: 1:N)
-**Origem no GDD:** seção 6, Diário de Memórias
+- Possui (com SAVE): cada diário pertence a um save.
+- Contem ENTRADA_DIARIO: um diário pode conter zero ou várias entradas.
 
 ### Entidade: ENTRADA_DIARIO
-**Atributos:** id (PK), titulo, conteudo, tipo, idDiario (FK), idMemoria (FK)
+Representa cada entrada consultável no diário.
+**Atributos:** id_entrada (PK), titulo, texto, ordem
 **Relacionamentos:**
-- Relaciona-se com DIARIO (cardinalidade: N:1)
-- Relaciona-se com MEMORIA (cardinalidade: N:1)
-**Origem no GDD:** seção 6, Diário de Memórias
+- Contem (com DIARIO): cada entrada pertence a um diário.
+- Referencia MEMORIA: uma entrada pode referenciar uma memória, mantendo o vínculo narrativo no diário.
+
+### Entidade: MEMORIA
+Representa os fragmentos narrativos relacionados ao diário e aos objetos do mundo.
+**Atributos:** id_memoria (PK), titulo, conteudo, ato_origem, coletada
+**Relacionamentos:**
+- Referencia (com ENTRADA_DIARIO): pode ser referenciada por uma entrada do diário.
+- Revela (com OBJETO_MEMORIA): é revelada por um objeto de memória.
+
+### Entidade: OBJETO_INTERATIVO
+Superentidade dos objetos interativos do jogo.
+**Atributos:** id_objeto (PK), nome, descricao
+**Relacionamentos:**
+- Pertence CENARIO: cada objeto interativo pertence a um cenário.
+- Especialização em OBJETO_MEMORIA, OBJETO_RESTAURAVEL e OBJETO_CONTEMPLATIVO.
+
+### Entidade: OBJETO_MEMORIA
+Subtipo que dispara a revelação e o registro de memórias.
+**Atributos:** coletada (herda id_objeto de OBJETO_INTERATIVO)
+**Relacionamentos:**
+- Revela MEMORIA: atua como gatilho para revelar uma memória.
+
+### Entidade: OBJETO_RESTAURAVEL
+Subtipo que guarda o estado de objetos restauráveis do Ato III.
+**Atributos:** estado (herda id_objeto de OBJETO_INTERATIVO)
+
+### Entidade: OBJETO_CONTEMPLATIVO
+Subtipo que controla a contemplação por tempo de observação do Ato IV.
+**Atributos:** tempoMinimoObservacao (herda id_objeto de OBJETO_INTERATIVO)
 
 # 3 Ferramentas e Métodos
 
