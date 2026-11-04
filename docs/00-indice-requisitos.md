@@ -42,6 +42,5 @@ SORT id ASC
 - [RNF002](requisitos/nao-funcionais/RNF002.md) — O sistema deve carregar saves locais em menos de 5 segundos e preservar a integridade dos dados de progresso por ato.
 - [RNF003](requisitos/nao-funcionais/RNF003.md) — O sistema deve ser estruturado de forma a permitir adaptação para outras plataformas com alterações mínimas no código e nos assets.
 - [RNF004](requisitos/nao-funcionais/RNF004.md) — O sistema deve permitir que novos jogadores compreendam as mecânicas básicas sem necessidade de tutorial extenso ou instruções constantes em tela.
-- [RNF005](requisitos/nao-funcionais/RNF005.md) — O sistema deve exibir aviso de conteúdo sensível e permitir ao jogador pular cenas de alta carga emocional sem comprometer a continuidade narrativa.
-- [RNF006](requisitos/nao-funcionais/RNF006.md) — O sistema deve suportar internacionalização por meio de arquivos externos de texto, permitindo tradução para outros idiomas.
-- [RNF007](requisitos/nao-funcionais/RNF007.md) — O sistema deve oferecer recursos de acessibilidade, incluindo controle de intensidade visual, legendas para efeitos sonoros e controle independente de volume por camada de áudio.
+- [RNF005](requisitos/nao-funcionais/RNF005.md) — O sistema deve suportar internacionalização por meio de arquivos externos de texto, permitindo tradução para outros idiomas.
+- [RNF006](requisitos/nao-funcionais/RNF006.md) — O sistema deve oferecer recursos de acessibilidade, incluindo controle de intensidade visual, legendas para efeitos sonoros e controle independente de volume por camada de áudio.

@@ -288,7 +288,7 @@ Crises de ansiedade continuam como uma das bases sensoriais do jogo.
 - As manifestações se multiplicam
 - A respiração de Ani se torna indicador importante do estado emocional
 
-*→ Formalizado em RF018 — Crises de ansiedade como elemento sensorial e apoiado por RNF007 — Acessibilidade sensorial e de áudio (docs/requisitos/requisitos-funcionais.md; docs/requisitos/requisitos-nao-funcionais.md).*
+*→ Formalizado em RF018 — Crises de ansiedade como elemento sensorial e apoiado por RNF006 — Acessibilidade sensorial e de áudio (docs/requisitos/requisitos-funcionais.md; docs/requisitos/requisitos-nao-funcionais.md).*
 
 ## 7. Interface
 
@@ -306,7 +306,7 @@ A interface deve ser quase invisível. O jogo comunica estado por atmosfera, som
 - Diário de memórias acessível como objeto diegético
 - A respiração funciona como indicador sensorial recorrente
 
-*→ Formalizado em RF005 — Diário de memórias e RNF007 — Acessibilidade sensorial e de áudio (docs/requisitos/requisitos-funcionais.md; docs/requisitos/requisitos-nao-funcionais.md).*
+*→ Formalizado em RF005 — Diário de memórias e RNF006 — Acessibilidade sensorial e de áudio (docs/requisitos/requisitos-funcionais.md; docs/requisitos/requisitos-nao-funcionais.md).*
 
 ### Controles no PC
 

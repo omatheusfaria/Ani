@@ -26,7 +26,7 @@ A documentação completa dos requisitos funcionais pode ser consultada em [requ
 
 Requisitos não funcionais descrevem critérios de qualidade e restrições que determinam como o sistema deve operar, considerando aspectos como desempenho, usabilidade, acessibilidade, confiabilidade e experiência de uso. Em vez de descrever funções específicas, eles definem as condições em que essas funções devem ser executadas [1].
 
-No projeto **Ani**, os requisitos não funcionais orientam aspectos fundamentais da qualidade da experiência, como desempenho mínimo, integridade dos saves, portabilidade, acessibilidade, localização, jogabilidade autoexplicativa e cuidado com conteúdo sensível.
+No projeto **Ani**, os requisitos não funcionais orientam aspectos fundamentais da qualidade da experiência, como desempenho mínimo, integridade dos saves, portabilidade, acessibilidade, localização e jogabilidade autoexplicativa.
 
 O Quadro 2 apresenta alguns dos requisitos não funcionais do projeto.
 
@@ -37,8 +37,7 @@ O Quadro 2 apresenta alguns dos requisitos não funcionais do projeto.
 | RNF001 | O sistema deve manter taxa mínima de 60 FPS em hardware equivalente a Intel HD Graphics e 4 GB de RAM. | Obrigatório, Permanente |
 | RNF002 | O sistema deve carregar saves locais em menos de 5 segundos e preservar a integridade dos dados de progresso por ato. | Obrigatório, Permanente |
 | RNF004 | O sistema deve permitir que novos jogadores compreendam as mecânicas básicas sem necessidade de tutorial extenso ou instruções constantes em tela. | Obrigatório, Permanente |
-| RNF005 | O sistema deve exibir aviso de conteúdo sensível e permitir ao jogador pular cenas de alta carga emocional sem comprometer a continuidade narrativa. | Obrigatório, Permanente |
-| RNF007 | O sistema deve oferecer recursos de acessibilidade, incluindo controle de intensidade visual, legendas para efeitos sonoros e controle independente de volume por camada de áudio. | Obrigatório, Permanente |
+| RNF006 | O sistema deve oferecer recursos de acessibilidade, incluindo controle de intensidade visual, legendas para efeitos sonoros e controle independente de volume por camada de áudio. | Obrigatório, Permanente |
 
 A documentação completa dos requisitos não funcionais pode ser consultada em [requisitos-nao-funcionais.md](./requisitos-nao-funcionais.md).
 

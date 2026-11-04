@@ -357,7 +357,7 @@ Observa-se uma distribuição de 8 requisitos com prioridade Altíssima, 10 com 
 
 Requisitos não funcionais expressam restrições de qualidade, desempenho, usabilidade, portabilidade e demais condições que moldam como o sistema deve operar. Segundo Sommerville (2019), eles não descrevem serviços específicos, mas propriedades e limites que influenciam o comportamento global do software. Pressman e Maxim (2016) reforçam que tais requisitos afetam diretamente a aceitabilidade do produto.
 
-Em **Ani**, os RNFs não se limitam a desempenho técnico. Eles também registram compromissos com portabilidade, acessibilidade, localização, jogabilidade autoexplicativa e tratamento responsável de conteúdo sensível. Assim, os requisitos não funcionais delimitam condições de qualidade que ajudam a preservar a proposta contemplativa do jogo.
+Em **Ani**, os RNFs não se limitam a desempenho técnico. Eles também registram compromissos com portabilidade, acessibilidade, localização e jogabilidade autoexplicativa. Assim, os requisitos não funcionais delimitam condições de qualidade que ajudam a preservar a proposta contemplativa do jogo.
 
 O Quadro X apresenta os requisitos não funcionais do sistema, indicando os critérios de qualidade e suas respectivas classificações.
 
@@ -367,11 +367,10 @@ O Quadro X apresenta os requisitos não funcionais do sistema, indicando os crit
 | RNF002 | Carregamento e integridade dos saves | O sistema deve carregar saves locais em menos de 5 segundos e preservar a integridade dos dados de progresso por ato. | Confiabilidade | Obrigatório, Permanente |
 | RNF003 | Portabilidade de código e assets | O sistema deve ser estruturado de forma a permitir adaptação para outras plataformas com alterações mínimas no código e nos assets. | Portabilidade | Desejável, Permanente |
 | RNF004 | Jogabilidade autoexplicativa | O sistema deve permitir que novos jogadores compreendam as mecânicas básicas sem necessidade de tutorial extenso ou instruções constantes em tela. | Usabilidade | Obrigatório, Permanente |
-| RNF005 | Aviso de conteúdo e pulo de cenas | O sistema deve exibir aviso de conteúdo sensível e permitir ao jogador pular cenas de alta carga emocional sem comprometer a continuidade narrativa. | Usabilidade | Obrigatório, Permanente |
-| RNF006 | Internacionalização de textos | O sistema deve suportar internacionalização por meio de arquivos externos de texto, permitindo tradução para outros idiomas. | Internacionalização | Obrigatório, Transitório |
-| RNF007 | Acessibilidade sensorial e de áudio | O sistema deve oferecer recursos de acessibilidade, incluindo controle de intensidade visual, legendas para efeitos sonoros e controle independente de volume por camada de áudio. | Acessibilidade | Obrigatório, Permanente |
+| RNF005 | Internacionalização de textos | O sistema deve suportar internacionalização por meio de arquivos externos de texto, permitindo tradução para outros idiomas. | Internacionalização | Obrigatório, Transitório |
+| RNF006 | Acessibilidade sensorial e de áudio | O sistema deve oferecer recursos de acessibilidade, incluindo controle de intensidade visual, legendas para efeitos sonoros e controle independente de volume por camada de áudio. | Acessibilidade | Obrigatório, Permanente |
 
-Os RNFs podem ser agrupados por tema da seguinte forma: desempenho e persistência em RNF001 e RNF002; portabilidade em RNF003; usabilidade em RNF004; saúde mental e conteúdo sensível em RNF005; internacionalização em RNF006; e acessibilidade sensorial e de áudio em RNF007.
+Os RNFs podem ser agrupados por tema da seguinte forma: desempenho e persistência em RNF001 e RNF002; portabilidade em RNF003; usabilidade em RNF004; internacionalização em RNF005; e acessibilidade sensorial e de áudio em RNF006.
 
 ## 2.5 Regras de Negócio
 

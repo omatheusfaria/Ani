@@ -18,11 +18,8 @@ Este documento descreve os critérios de qualidade, desempenho e experiência de
 | RNF004-Jogabilidade autoexplicativa | O sistema deve permitir que novos jogadores compreendam as mecânicas básicas sem necessidade de tutorial extenso ou instruções constantes em tela. | Usabilidade | (  ) Desejável (X) Obrigatório | (X) Permanente (  ) Transitório |
 | --- | --- | --- | --- | --- |
 
-| RNF005-Aviso de conteúdo e pulo de cenas | O sistema deve exibir aviso de conteúdo sensível e permitir ao jogador pular cenas de alta carga emocional sem comprometer a continuidade narrativa. | Usabilidade | (  ) Desejável (X) Obrigatório | (X) Permanente (  ) Transitório |
+| RNF005-Internacionalização de textos | O sistema deve suportar internacionalização por meio de arquivos externos de texto, permitindo tradução para outros idiomas. | Internacionalização | (  ) Desejável (X) Obrigatório | (  ) Permanente (X) Transitório |
 | --- | --- | --- | --- | --- |
 
-| RNF006-Internacionalização de textos | O sistema deve suportar internacionalização por meio de arquivos externos de texto, permitindo tradução para outros idiomas. | Internacionalização | (  ) Desejável (X) Obrigatório | (  ) Permanente (X) Transitório |
-| --- | --- | --- | --- | --- |
-
-| RNF007-Acessibilidade sensorial e de áudio | O sistema deve oferecer recursos de acessibilidade, incluindo controle de intensidade visual, legendas para efeitos sonoros e controle independente de volume por camada de áudio. | Acessibilidade | (  ) Desejável (X) Obrigatório | (X) Permanente (  ) Transitório |
+| RNF006-Acessibilidade sensorial e de áudio | O sistema deve oferecer recursos de acessibilidade, incluindo controle de intensidade visual, legendas para efeitos sonoros e controle independente de volume por camada de áudio. | Acessibilidade | (  ) Desejável (X) Obrigatório | (X) Permanente (  ) Transitório |
 | --- | --- | --- | --- | --- |
