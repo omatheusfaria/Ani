@@ -69,7 +69,7 @@ O Quadro 3 sintetiza os principais relacionamentos representados no diagrama.
 | ObjetoMemoria | Associação | Memoria | `ObjetoMemoria 1` para `Memoria 1` |
 | Memoria | Associação | EntradaDiario | `Memoria 1` para `EntradaDiario 1` |
 | Diario | Composição | EntradaDiario | `Diario 1` para `EntradaDiario 0..*` |
-| Ato | Associação | Cenario | `Ato 0..1` para `Cenario 0..*` |
+| Ato | Associação | Cenario | `Ato 1` para `Cenario 1..*` |
 
 O conjunto dessas classes mostra a separação entre a lógica principal do jogo, a personagem controlada, os elementos narrativos, os objetos de interação e os artefatos de registro da experiência do jogador. Essa organização é relevante para o projeto porque ajuda a distribuir responsabilidades entre os elementos do sistema e favorece uma implementação mais clara, modular e alinhada aos requisitos já definidos.
 

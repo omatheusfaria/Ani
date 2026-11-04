@@ -324,12 +324,12 @@
             <mxPoint x="1550" y="1410" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="UkP_mdnDtGIdcfxqdIJ_-55" connectable="0" parent="UkP_mdnDtGIdcfxqdIJ_-54" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="0..*" vertex="1">
+        <mxCell id="UkP_mdnDtGIdcfxqdIJ_-55" connectable="0" parent="UkP_mdnDtGIdcfxqdIJ_-54" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1..*" vertex="1">
           <mxGeometry relative="1" x="0.9347" y="-1" as="geometry">
             <mxPoint x="6" y="9" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="UkP_mdnDtGIdcfxqdIJ_-56" connectable="0" parent="UkP_mdnDtGIdcfxqdIJ_-54" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="0..1" vertex="1">
+        <mxCell id="UkP_mdnDtGIdcfxqdIJ_-56" connectable="0" parent="UkP_mdnDtGIdcfxqdIJ_-54" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1" vertex="1">
           <mxGeometry relative="1" x="-0.8182" as="geometry">
             <mxPoint x="19" y="8" as="offset" />
           </mxGeometry>

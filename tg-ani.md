@@ -740,7 +740,7 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 | ObjetoMemoria | Associação | Memoria | 1 para 1 |
 | Memoria | Associação | EntradaDiario | 1 para 1 |
 | Diario | Composição | EntradaDiario | 1 para 0..* |
-| Ato | Associação | Cenario | 0..1 para 0..* |
+| Ato | Associação | Cenario | 1 para 1..* |
 
 ## 2.8 Diagrama Entidade-Relacionamento (DER)
 
