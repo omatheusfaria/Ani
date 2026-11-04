@@ -40,7 +40,7 @@ O objetivo geral do projeto é desenvolver um protótipo funcional de jogo narra
 
 A justificativa do trabalho apoia-se na singularidade dos jogos digitais como meio para representar experiências internas e subjetivas. Em **Ani**, a ausência de combate, de HUD numérico permanente e de moralidade binária não decorre de limitação técnica, mas de aderência ao objeto de pesquisa. Como o foco está na travessia do sofrimento, na observação e na transformação de percepção, a interface minimalista, as pausas, o silêncio e as mecânicas contemplativas tornam-se escolhas metodologicamente coerentes com o que se pretende investigar em software interativo.
 
-O projeto é desenvolvido segundo a metodologia Cascata, com fases sequenciais de levantamento de requisitos, modelagem, design de sistemas e implementação. As ferramentas centrais registradas no projeto são Unreal Engine 5.4.4, C++, Visual Studio Code com Visual Studio Build Tools (MSVC), Aseprite, Photoshop/Illustrator e Audacity/FMOD. A organização deste documento acompanha esse percurso: após a introdução, apresenta-se o Termo de Abertura do Projeto; em seguida, o levantamento de requisitos, com BPMN, requisitos, regras, casos de uso, diagrama de classes e DER; depois, as ferramentas e métodos empregados; por fim, descreve-se o desenvolvimento do protótipo funcional.
+O projeto é desenvolvido segundo a metodologia Cascata, com fases sequenciais de levantamento de requisitos, modelagem, design de sistemas e implementação. As ferramentas centrais registradas no projeto são Unreal Engine 5.4.4, C++, Visual Studio Code com Visual Studio Build Tools (MSVC), Aseprite, Photoshop/Illustrator e Audacity/FMOD. A organização deste documento acompanha esse percurso: após a introdução, apresenta-se o Termo de Abertura do Projeto; em seguida, o levantamento de requisitos, com BPMN, requisitos, regras, casos de uso, diagrama de classes e DER; depois, as ferramentas e métodos empregados; por fim, descreve-se o desenvolvimento do protótipo funcional. O Apêndice C traz uma versão resumida do Game Design Document, que reúne a direção criativa da qual os requisitos foram derivados.
 
 ## 1.1 Termo de Abertura do Projeto (TAP)
 
@@ -1260,3 +1260,45 @@ Os resumos das respostas selecionadas giram em torno dos seguintes temas, que n�
 - importância da exploração com função narrativa;
 - centralidade de memórias, diário e simbolismo;
 - preferência por uma experiência reflexiva, interpretativa e emocionalmente significativa.
+
+# Apêndice C - Game Design Document (versão resumida)
+
+Este apêndice resume o Game Design Document (GDD) de **Ani**, mantido na íntegra no repositório do projeto (`docs/gdd.md`). Ele registra a direção criativa que originou os requisitos apresentados no capítulo 2.
+
+## C.1 Visão e ficha técnica
+
+**Ani** é um side-scroller narrativo contemplativo sobre consciência, sofrimento e a descoberta lenta do sentido. A protagonista é uma mulher comum, de aproximadamente 24 anos, em colapso existencial; seu nome vem do hebraico **אֲנִי**, "eu". O jogo não acompanha escolhas morais, e sim a mudança na forma como Ani percebe a existência.
+
+| Item | Descrição |
+| --- | --- |
+| Gênero | Side-scroller narrativo contemplativo |
+| Plataforma | PC (Windows) |
+| Engine e linguagem | Unreal Engine 5.4.4 e C++ |
+| Câmera | Lateral fixa com zoom narrativo |
+| Público-alvo | 16 a 28 anos, com interesse em filosofia, arte e narrativas reflexivas |
+| Tom | Sombrio, melancólico e contemplativo, com redenção gradual |
+| Duração estimada | 3 a 5 horas |
+
+## C.2 Pilar conceitual e atos
+
+A jornada parte do pessimismo da filosofia ocidental e caminha, em cinco atos de ordem fixa, para filosofias contemplativas japonesas. A transição se manifesta no ambiente, no som, nas mecânicas e no ritmo, sem explicação didática.
+
+| Ato | Referência | Ideia central | Símbolo | Mecânica própria |
+| --- | --- | --- | --- | --- |
+| I - O Peso | Zapffe | A consciência como fardo | Relógio parado | Peso literal: cada memória tocada torna o movimento mais lento |
+| II - O Abismo | Mainländer e Bahnsen | A vontade que se contradiz | Corredor em loop | Ecos de decisão: agir de outro modo leva ao mesmo impasse |
+| III - A Rachadura | Wabi-Sabi | A beleza do que está quebrado | Kintsugi | Restauração por aceitação: o objeto é restaurado sem apagar as marcas |
+| IV - A Passagem | Mono no Aware e Ikigai | Sentir o que passa e achar um fio de sentido | Pétalas de cerejeira | Contemplação ativa: parar e observar libera narração |
+| V - O Limiar | Yugen | O que não cabe em palavras | Estrela solitária | Dissolução: as mecânicas somem até restar caminhar e contemplar |
+
+Princípios de direção: o jogo não é sobre vencer o sofrimento, mas atravessá-lo; não há combate nem moralidade binária; as mecânicas existem para produzir sensação e significado; o silêncio e a observação valem tanto quanto a interação. O final é único, aberto e interpretativo.
+
+## C.3 Mundo, personagens e sistemas
+
+O jogo se passa na mente de Ani. O núcleo é a casa da protagonista, inicialmente cinzenta e incompleta, que ganha luz, textura e novos cômodos conforme os atos avançam. Dela partem cenários de memória: casa de infância, escola, trabalho, ruas, hospital e espaços sociais. A paleta acompanha os atos, do cinza-chumbo do Ato I ao azul quase preto do Ato V, passando pelo ocre com ouro do Ato III e pelo índigo e rosa-cerejeira do Ato IV.
+
+Os personagens se dividem em personagens de memória (Mãe, Padrasto, Namorada e Primo), arquétipos filosóficos (O Arquiteto, A Ceramista e A Criança) e manifestações, figuras sem rosto que refletem Ani e intensificam as crises, sem agir como inimigos.
+
+Os sistemas transversais são a exploração com diário de memórias, em que cartas, bilhetes e fotografias ficam registrados e ganham nova leitura ao longo dos atos, e as crises de ansiedade, representadas por distorção visual, som fragmentado e respiração. A interface é quase invisível: sem HUD permanente nem barras numéricas, com o diário como objeto diegético. O áudio vai do abafado e claustrofóbico ao orgânico e silencioso, com direção própria em cada ato.
+
+Cada ato segue o mesmo ciclo: explorar a casa, encontrar a passagem para uma memória, atravessar a experiência central do ato, registrar o avanço no diário e abrir a passagem para o ato seguinte.
