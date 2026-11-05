@@ -13,9 +13,11 @@ Menu --> Jogando : novo jogo (UC-S014) / iniciar()
 Menu --> Jogando : continuar (UC-S013) / carregarProgresso()
 Jogando --> Pausado : comando de pausa (UC-S006) / pausar()
 Pausado --> Jogando : retomar (UC-S006, 3a) / retomar()
-Jogando --> Crise : Ani.iniciarCrise() notifica Jogo
-Crise --> Jogando : Ani.encerrarCrise() notifica Jogo
+Jogando --> Crise : Ani.iniciarCrise() / Jogo.alterarEstado(Crise)
+Crise --> Jogando : Ani.encerrarCrise() / Jogo.alterarEstado(Jogando)
 Pausado --> Encerrado : saída confirmada (UC-S011) / encerrar()
 Encerrado --> [*]
+
+note "Toda transição atualiza estadoAtual\npor meio de alterarEstado(novoEstado)." as N1
 
 @enduml

@@ -636,6 +636,7 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 - `+ encerrar()`
 - `+ salvarProgresso()`
 - `+ carregarProgresso()`
+- `+ alterarEstado(novoEstado: EstadoJogo)`
 
 ### Classe: Personagem
 **Atributos:**
@@ -847,7 +848,7 @@ Em **Ani**, o diagrama de estados descreve o ciclo de vida da sessão de jogo co
 
 ### Estados da classe Jogo
 
-A Figura 6 apresenta os estados da classe `Jogo`, registrados no atributo `estadoAtual` com os valores da enumeração `EstadoJogo`: Menu, Jogando, Pausado, Crise (crise de ansiedade) e Encerrado. As transições são rotuladas pelo evento que as dispara e pelo método correspondente do diagrama de classes: `iniciar()` para um novo jogo (UC-S014), `carregarProgresso()` para continuar (UC-S013), `pausar()` para a pausa e `retomar()` para a retomada (UC-S006) e `encerrar()` para a saída confirmada (UC-S011). A crise de ansiedade (RF018) começa e termina em `Ani`: `iniciarCrise()` e `encerrarCrise()` alteram o `estadoEmocional` da personagem e notificam `Jogo`, que passa de Jogando para Crise e de volta para Jogando.
+A Figura 6 apresenta os estados da classe `Jogo`, registrados no atributo `estadoAtual` com os valores da enumeração `EstadoJogo`: Menu, Jogando, Pausado, Crise (crise de ansiedade) e Encerrado. As transições são rotuladas pelo evento que as dispara e pelo método correspondente do diagrama de classes: `iniciar()` para um novo jogo (UC-S014), `carregarProgresso()` para continuar (UC-S013), `pausar()` para a pausa e `retomar()` para a retomada (UC-S006) e `encerrar()` para a saída confirmada (UC-S011). Todas as mudanças de estado passam por `Jogo.alterarEstado(novoEstado)`, chamado por esses métodos. A crise de ansiedade (RF018) começa e termina em `Ani`: `iniciarCrise()` e `encerrarCrise()` alteram o `estadoEmocional` da personagem e chamam `Jogo.alterarEstado(Crise)` e `Jogo.alterarEstado(Jogando)`, respectivamente.
 
 [Figura 6 – Diagrama de Estados da classe Jogo]
 
