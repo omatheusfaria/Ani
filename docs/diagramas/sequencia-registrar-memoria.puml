@@ -1,0 +1,42 @@
+@startuml sequencia-registrar-memoria
+title Diagrama de Sequência – Interagir com objeto, registrar memória e consultar o diário (UC-S002 / UC-S005)
+
+actor Jogador
+participant ":Ani" as Ani
+participant ":ObjetoMemoria" as OM
+participant ":Memoria" as Mem
+participant ":Diario" as Diario
+
+== Interagir com objeto e registrar memória (UC-S002) ==
+Jogador -> Ani : interagir()
+activate Ani
+Ani -> OM : ativar()
+activate OM
+note right of OM : ativar() é herdado\nde ObjetoInterativo.
+OM -> OM : exibir()
+OM --> Ani
+deactivate OM
+alt coletada = false (RN001)
+  Ani -> Ani : registrarMemoria()
+  Ani -> OM : registrarNoDiario()
+  activate OM
+  OM -> Mem : registrar()
+  OM --> Ani : memória registrada
+  deactivate OM
+  Ani -> Diario : adicionarEntrada()
+  activate Diario
+  create participant ":EntradaDiario" as Entrada
+  Diario -> Entrada : «create»
+  deactivate Diario
+else coletada = true
+  note over Ani, OM : Nenhuma nova entrada é criada (RN001).
+end
+deactivate Ani
+
+== Consultar o diário (UC-S005) ==
+Jogador -> Diario : abrir()
+activate Diario
+Jogador -> Diario : consultarEntrada()
+Diario --> Jogador : título e conteúdo da entrada
+deactivate Diario
+@enduml
