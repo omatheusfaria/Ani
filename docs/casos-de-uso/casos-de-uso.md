@@ -228,4 +228,4 @@
 | **Pré-condição** | Ani diante de um puzzle disponível no cenário do ato atual. |
 | **Cenário Principal** | 1. Jogador aciona a interação com o puzzle.<br>2. Sistema abre o puzzle e apresenta seus elementos.<br>3. Jogador faz uma tentativa.<br>4. Sistema verifica a tentativa.<br>5. Sistema registra o puzzle como concluído. |
 | **Pós-condição** | O puzzle fica registrado como concluído. |
-| **Cenário Alternativo** | 3a. Jogador decide sair do puzzle antes de concluí-lo:<br>3a.1. Possibilidade de saída e destino do progresso parcial [definir].<br>4a. A tentativa está incorreta:<br>4a.1. Sistema indica que a tentativa não resolveu o puzzle, sem punição sistêmica.<br>4a.2. O fluxo retorna ao passo 3. |
+| **Cenário Alternativo** | 3a. Jogador sai do puzzle a qualquer momento antes de concluí-lo:<br>3a.1. Sistema fecha o puzzle e o devolve ao estado inicial, sem salvar progresso parcial.<br>4a. A tentativa está incorreta:<br>4a.1. Sistema indica que a tentativa não resolveu o puzzle, sem punição sistêmica.<br>4a.2. O fluxo retorna ao passo 3. |

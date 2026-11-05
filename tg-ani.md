@@ -606,7 +606,7 @@ Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 r
 | Pré-condição | Ani diante de um puzzle disponível no cenário do ato atual. |
 | Cenário Principal | 1. Jogador aciona a interação com o puzzle.<br>2. Sistema abre o puzzle e apresenta seus elementos.<br>3. Jogador faz uma tentativa.<br>4. Sistema verifica a tentativa.<br>5. Sistema registra o puzzle como concluído. |
 | Pós-condição | O puzzle fica registrado como concluído. |
-| Cenários Alternativos | 3a. Jogador decide sair do puzzle antes de concluí-lo:<br>3a.1. Possibilidade de saída e destino do progresso parcial [definir].<br>4a. A tentativa está incorreta:<br>4a.1. Sistema indica que a tentativa não resolveu o puzzle, sem punição sistêmica.<br>4a.2. O fluxo retorna ao passo 3. |
+| Cenários Alternativos | 3a. Jogador sai do puzzle a qualquer momento antes de concluí-lo:<br>3a.1. Sistema fecha o puzzle e o devolve ao estado inicial, sem salvar progresso parcial.<br>4a. A tentativa está incorreta:<br>4a.1. Sistema indica que a tentativa não resolveu o puzzle, sem punição sistêmica.<br>4a.2. O fluxo retorna ao passo 3. |
 
 ## 2.7 Diagrama de Classes
 
@@ -1191,7 +1191,7 @@ O RF007 prevê puzzles contextuais integrados ao ambiente e à narrativa dos ato
 - **Trecho de código relevante:** `[Código 13 — abertura do puzzle, verificação da tentativa e registro da conclusão]`
 - **Captura de tela comentada:** `[Figura 17 – Puzzle contextual em andamento no cenário de um ato]`
 
-A quantidade de puzzles e sua distribuição por ato são definidas no level design, durante a implementação. Ainda estão em aberto os tipos de puzzle [definir] e a possibilidade de sair no meio de um puzzle [definir].
+A quantidade de puzzles e sua distribuição por ato são definidas no level design, durante a implementação. O jogador pode sair do puzzle a qualquer momento; nesse caso, o puzzle volta ao estado inicial, sem salvar progresso parcial. Ainda estão em aberto os tipos de puzzle [definir].
 
 ### 4.2.14 Sistema de Diálogos
 
