@@ -20,6 +20,7 @@
 | UC-S012 | Salvar Jogo | Jogador |
 | UC-S013 | Continuar Jogo | Jogador |
 | UC-S014 | Iniciar Novo Jogo | Jogador |
+| UC-S015 | Resolver Puzzle | Jogador |
 
 **Quadro 4 – Use Case Movimentar Personagem**
 
@@ -214,3 +215,17 @@
 | **Cenário Principal** | 1. Jogador seleciona a opção de novo jogo no menu inicial.<br>2. Sistema exibe o aviso sobre temas sensíveis (ansiedade, sofrimento psíquico).<br>3. Jogador prossegue após o aviso.<br>4. Sistema cria um novo estado de jogo e inicia o Ato I.<br>5. Sistema carrega o cenário inicial e entrega o controle ao jogador. |
 | **Pós-condição** | Uma nova sessão é iniciada no Ato I, sem progresso anterior. |
 | **Cenário Alternativo** | 1a. Existe um save anterior:<br>1a.1. Sistema pede confirmação para sobrescrever o progresso salvo.<br>1a.2. Se o jogador confirmar, o fluxo segue no passo 2 e o novo progresso substitui o save anterior.<br>1a.3. Se o jogador recusar, o sistema retorna ao menu inicial sem alterar o save. |
+
+---
+
+**Quadro 18 – Use Case Resolver Puzzle**
+
+| Caso de Uso – Resolver Puzzle | |
+| --- | --- |
+| **ID** | UC-S015 |
+| **Descrição** | Este caso de uso permite que o jogador resolva um puzzle contextual integrado ao ambiente e à narrativa do ato em curso. |
+| **Ator Primário** | Jogador |
+| **Pré-condição** | Ani diante de um puzzle disponível no cenário do ato atual. |
+| **Cenário Principal** | 1. Jogador aciona a interação com o puzzle.<br>2. Sistema abre o puzzle e apresenta seus elementos.<br>3. Jogador faz uma tentativa.<br>4. Sistema verifica a tentativa.<br>5. Sistema registra o puzzle como concluído e aplica o efeito da conclusão [definir]. |
+| **Pós-condição** | O puzzle fica registrado como concluído, e o efeito da conclusão sobre o cenário ou a narrativa é aplicado [definir]. |
+| **Cenário Alternativo** | 3a. Jogador decide sair do puzzle antes de concluí-lo:<br>3a.1. Possibilidade de saída e destino do progresso parcial [definir].<br>4a. A tentativa está incorreta:<br>4a.1. Sistema indica que a tentativa não resolveu o puzzle, sem punição sistêmica.<br>4a.2. Oferta de dica após erro [definir].<br>4a.3. O fluxo retorna ao passo 3. |

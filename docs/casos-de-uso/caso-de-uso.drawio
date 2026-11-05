@@ -152,6 +152,14 @@
             <mxPoint x="140" y="320" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="UCS015-uc" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Resolver Puzzle" vertex="1">
+          <mxGeometry height="70" width="140" x="200" y="990" as="geometry" />
+        </mxCell>
+        <mxCell id="UCS015-assoc" edge="1" parent="1" source="CteaaWE1iwZ1UQ6BI8tY-1" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" target="UCS015-uc">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="140" y="320" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

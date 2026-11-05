@@ -21,3 +21,4 @@ SORT id ASC
 - [UC-S012](casos-de-uso/UC-S012.md) — Salvar Jogo
 - [UC-S013](casos-de-uso/UC-S013.md) — Continuar Jogo
 - [UC-S014](casos-de-uso/UC-S014.md) — Iniciar Novo Jogo
+- [UC-S015](casos-de-uso/UC-S015.md) — Resolver Puzzle

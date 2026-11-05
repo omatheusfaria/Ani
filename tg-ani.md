@@ -422,10 +422,11 @@ O Quadro X apresenta o índice de casos de uso do sistema, enquanto a modelagem 
 | UC-S012 | Salvar Jogo | Jogador |
 | UC-S013 | Continuar Jogo | Jogador |
 | UC-S014 | Iniciar Novo Jogo | Jogador |
+| UC-S015 | Resolver Puzzle | Jogador |
 
 [Figura 2 – Diagrama de Casos de Uso de Ani]
 
-Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 relaciona-se a RF001 e à exploração lateral; UC-S002 conecta-se a RF003, RF004, RF015 e RF016, cobrindo objetos significativos e mecânicas por ato; UC-S003 deriva de RF008 e dos personagens de memória e arquétipos; UC-S004 e UC-S005 conectam-se a RF005 e ao diário de memórias; UC-S006 corresponde a RF021 (pausa); UC-S007, UC-S008 e UC-S009, a RF022 (configurações de vídeo, áudio e controles); UC-S010, a RF024 (remapeamento de controles) e a RF011 (gamepad); UC-S011, a RF023 (saída); UC-S012 e UC-S013 correspondem a RF009, salvando e carregando o progresso conforme a persistência descrita nas especificações técnicas; e UC-S014 corresponde a RF020 (aviso de conteúdo sensível), a RF012 (início no Ato I) e a RF009 (sobrescrita do save anterior).
+Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 relaciona-se a RF001 e à exploração lateral; UC-S002 conecta-se a RF003, RF004, RF015 e RF016, cobrindo objetos significativos e mecânicas por ato; UC-S003 deriva de RF008 e dos personagens de memória e arquétipos; UC-S004 e UC-S005 conectam-se a RF005 e ao diário de memórias; UC-S006 corresponde a RF021 (pausa); UC-S007, UC-S008 e UC-S009, a RF022 (configurações de vídeo, áudio e controles); UC-S010, a RF024 (remapeamento de controles) e a RF011 (gamepad); UC-S011, a RF023 (saída); UC-S012 e UC-S013 correspondem a RF009, salvando e carregando o progresso conforme a persistência descrita nas especificações técnicas; UC-S014 corresponde a RF020 (aviso de conteúdo sensível), a RF012 (início no Ato I) e a RF009 (sobrescrita do save anterior); e UC-S015 corresponde a RF007 (puzzles contextuais).
 
 ### Caso de Uso: UC-S001 - Movimentar Personagem
 
@@ -594,6 +595,18 @@ Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 r
 | Cenário Principal | 1. Jogador seleciona a opção de novo jogo no menu inicial.<br>2. Sistema exibe o aviso sobre temas sensíveis (ansiedade, sofrimento psíquico).<br>3. Jogador prossegue após o aviso.<br>4. Sistema cria um novo estado de jogo e inicia o Ato I.<br>5. Sistema carrega o cenário inicial e entrega o controle ao jogador. |
 | Pós-condição | Uma nova sessão é iniciada no Ato I, sem progresso anterior. |
 | Cenários Alternativos | 1a. Existe um save anterior:<br>1a.1. Sistema pede confirmação para sobrescrever o progresso salvo.<br>1a.2. Se o jogador confirmar, o fluxo segue no passo 2 e o novo progresso substitui o save anterior.<br>1a.3. Se o jogador recusar, o sistema retorna ao menu inicial sem alterar o save. |
+
+### Caso de Uso: UC-S015 - Resolver Puzzle
+
+| Campo | Conteúdo |
+| --- | --- |
+| ID | UC-S015 |
+| Descrição | Este caso de uso permite que o jogador resolva um puzzle contextual integrado ao ambiente e à narrativa do ato em curso. |
+| Ator Primário | Jogador |
+| Pré-condição | Ani diante de um puzzle disponível no cenário do ato atual. |
+| Cenário Principal | 1. Jogador aciona a interação com o puzzle.<br>2. Sistema abre o puzzle e apresenta seus elementos.<br>3. Jogador faz uma tentativa.<br>4. Sistema verifica a tentativa.<br>5. Sistema registra o puzzle como concluído e aplica o efeito da conclusão [definir]. |
+| Pós-condição | O puzzle fica registrado como concluído, e o efeito da conclusão sobre o cenário ou a narrativa é aplicado [definir]. |
+| Cenários Alternativos | 3a. Jogador decide sair do puzzle antes de concluí-lo:<br>3a.1. Possibilidade de saída e destino do progresso parcial [definir].<br>4a. A tentativa está incorreta:<br>4a.1. Sistema indica que a tentativa não resolveu o puzzle, sem punição sistêmica.<br>4a.2. Oferta de dica após erro [definir].<br>4a.3. O fluxo retorna ao passo 3. |
 
 ## 2.7 Diagrama de Classes
 
@@ -1168,14 +1181,17 @@ O sistema de áudio adaptativo organiza trilha e efeitos de forma coerente com a
 
 ### 4.2.13 Sistema de Puzzles Contextuais
 
-O RF007 prevê puzzles contextuais integrados ao ambiente e à narrativa dos atos. O formato desses puzzles, sua relação com as mecânicas de cada ato e o caso de uso que cobre sua resolução ainda não foram definidos. [aguardando decisão sobre puzzles]
+O RF007 prevê puzzles contextuais integrados ao ambiente e à narrativa dos atos. A resolução de um puzzle é descrita no UC-S015 e tem várias etapas: o jogador abre o puzzle, faz uma tentativa, pode errar e tentar de novo, e conclui. Um erro não gera punição sistêmica, em coerência com a ausência de morte ou game over no projeto.
 
-- **Classes envolvidas:** [aguardando decisão sobre puzzles]
+- **Classes envolvidas:** [definir]
 - **Requisito funcional correspondente:** RF007
-- **Regra de negócio correspondente:** [aguardando decisão sobre puzzles]
+- **Caso de uso correspondente:** UC-S015
+- **Regra de negócio correspondente:** [definir]
 - **Princípio do projeto que originou o sistema:** integração entre ambiente, narrativa e progressão por atos
-- **Trecho de código relevante:** `[Código 13 — [aguardando decisão sobre puzzles]]`
-- **Captura de tela comentada:** `[Figura 17 – [aguardando decisão sobre puzzles]]`
+- **Trecho de código relevante:** `[Código 13 — abertura do puzzle, verificação da tentativa e registro da conclusão]`
+- **Captura de tela comentada:** `[Figura 17 – Puzzle contextual em andamento no cenário de um ato]`
+
+Ainda não estão definidos a quantidade de puzzles por ato [definir], os tipos de puzzle [definir], a oferta de dicas após erro [definir], a possibilidade de sair no meio de um puzzle [definir] e o efeito da conclusão sobre o cenário ou a narrativa [definir].
 
 ### 4.2.14 Sistema de Diálogos
 
