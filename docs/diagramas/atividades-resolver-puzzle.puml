@@ -1,0 +1,27 @@
+@startuml atividades-resolver-puzzle
+title Diagrama de Atividades – Resolver Puzzle (UC-S015)
+
+|Jogador|
+start
+:Aciona a interação com o puzzle;
+|Sistema|
+:Abre o puzzle e apresenta seus elementos;
+repeat
+  |Jogador|
+  if (Sai do puzzle?) then (sim)
+    |Sistema|
+    :Fecha o puzzle e o devolve ao estado inicial,
+    sem salvar progresso parcial;
+    stop
+  else (não)
+    |Jogador|
+    :Faz uma tentativa;
+  endif
+  |Sistema|
+  :Verifica a tentativa;
+  backward:Indica que a tentativa não resolveu o puzzle,
+  sem punição sistêmica;
+repeat while (Tentativa correta?) is (não) not (sim)
+:Registra o puzzle como concluído;
+stop
+@enduml
