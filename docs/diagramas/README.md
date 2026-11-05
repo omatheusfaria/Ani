@@ -8,7 +8,7 @@ Para renderizar de novo, com o `plantuml.jar` (versão usada: 1.2025.2):
 java -jar plantuml.jar -tsvg -charset UTF-8 docs/diagramas/*.puml
 ```
 
-Os diagramas usam só classes e métodos do diagrama de classes (`docs/diagrama-de-classe/`). Onde falta um método, o diagrama indica isso em nota ou legenda, sem inventá-lo (correcoes-pendentes.md, item 60).
+Os diagramas usam só classes e métodos do diagrama de classes (`docs/diagrama-de-classe/`). Os métodos que faltavam foram acrescentados ao diagrama de classes por decisão do autor (correcoes-pendentes.md, item 60).
 
 | Diagrama | Fonte | Imagem |
 | --- | --- | --- |

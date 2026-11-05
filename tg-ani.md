@@ -1026,7 +1026,7 @@ Além disso, as ferramentas utilizadas apresentam licenças compatíveis com uso
 
 A arquitetura geral do protótipo é organizada a partir de uma estrutura orientada a objetos compatível com a modelagem apresentada no Diagrama de Classes. O estado global do jogo é centralizado na classe `Jogo`, que mantém referências ao ato atual e ao cenário atual, enquanto a progressão filosófica é controlada pela classe `Ato`. A partir dessa base, o sistema articula exploração, interação, ativação de conteúdo narrativo, persistência e transição entre cenários.
 
-Do ponto de vista operacional, a entrada do jogador é convertida em ações de movimentação, interação, observação e consulta ao diário. Essas ações incidem sobre a classe `Ani`, que por sua vez aciona objetos interativos, registra memórias no diário, observa elementos contemplativos e participa da progressão entre atos. `Cenario`, `Memoria`, `Diario`, `ObjetoRestauravel` e `ObjetoContemplativo` distribuem responsabilidades específicas de carregamento, registro, ressignificação e liberação de conteúdo.
+Do ponto de vista operacional, a entrada do jogador é convertida em ações de movimentação, interação, observação e consulta ao diário. Essas ações incidem sobre a classe `Ani`, que por sua vez aciona objetos interativos, registra memórias no seu `Diario` por meio de `Diario.adicionarEntrada()`, observa elementos contemplativos e participa da progressão entre atos. `Cenario`, `Memoria`, `Diario`, `ObjetoRestauravel` e `ObjetoContemplativo` distribuem responsabilidades específicas de carregamento, registro, ressignificação e liberação de conteúdo.
 
 A entrada é tratada pelo sistema Enhanced Input da Unreal Engine 5: teclas e botões são mapeados em *Input Actions* por um *Input Mapping Context*, e as ações resultantes são encaminhadas a `Ani`, sem uma classe própria de gerenciamento de entrada. Da mesma forma, o papel de gerenciador do jogo fica com as classes de framework da Unreal, em conjunto com a classe `Jogo`: o *GameMode* define as regras da partida, a *GameInstance* permanece ativa durante toda a execução, inclusive entre trocas de nível, e `Jogo` mantém o ato e o cenário atuais.
 
@@ -1037,9 +1037,10 @@ Input (teclado: WASD / E / Tab / Esc; gamepad Xbox: analógico esquerdo / A / Y 
   → Enhanced Input (Input Mapping Context → Input Actions)
     → Ani (mover, interagir, observar, registrarMemoria, iniciarCrise, encerrarCrise)
       → ObjetoInterativo.ativar()
-        → ObjetoMemoria.registrarNoDiario() → Diario.adicionarEntrada()
+        → ObjetoMemoria.registrarNoDiario() → Memoria.registrar()
         → ObjetoRestauravel.restaurar()
         → ObjetoContemplativo.liberarNarracao()
+      → Diario.adicionarEntrada()
 
 GameMode / GameInstance + Jogo
   → Cenario.carregarCenario()
