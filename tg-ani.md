@@ -625,10 +625,12 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 - `- titulo: FString`
 - `- atoAtual: Ato`
 - `- cenarioAtual: Cenario`
+- `- estadoAtual: EstadoJogo`
 
 **Métodos:**
 - `+ iniciar()`
 - `+ pausar()`
+- `+ retomar()`
 - `+ encerrar()`
 - `+ carregarProgresso()`
 
@@ -783,6 +785,7 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 | EstadoEmocional | `Neutro`, `Ansioso`, `Deprimido`, `Contemplativo`, `Sereno`, `Medo` |
 | TipoEntradaDiario | `Memoria`, `Documento`, `Fotografia`, `Objeto`, `Contemplacao` |
 | EstadoObjeto | `Quebrado`, `Restaurado` |
+| EstadoJogo | `Menu`, `Jogando`, `Pausado`, `Crise`, `Encerrado` |
 
 ### Relacionamentos entre Classes
 
@@ -836,7 +839,7 @@ Em **Ani**, o diagrama de estados descreve o ciclo de vida da sessão de jogo co
 
 ### Estados da classe Jogo
 
-A Figura 6 apresenta os estados da classe `Jogo`: Menu, Jogando, Pausado, Crise de ansiedade e Encerrado. As transições são rotuladas pelo evento que as dispara e, quando existe, pelo método correspondente do diagrama de classes: `iniciar()` para um novo jogo (UC-S014), `carregarProgresso()` para continuar (UC-S013), `pausar()` para a pausa (UC-S006) e `encerrar()` para a saída confirmada (UC-S011). As transições de retomada e de início e fim da crise de ansiedade (RF018) aparecem só com o evento, pois o diagrama de classes ainda não tem métodos para elas.
+A Figura 6 apresenta os estados da classe `Jogo`, registrados no atributo `estadoAtual` com os valores da enumeração `EstadoJogo`: Menu, Jogando, Pausado, Crise (crise de ansiedade) e Encerrado. As transições são rotuladas pelo evento que as dispara e pelo método correspondente do diagrama de classes: `iniciar()` para um novo jogo (UC-S014), `carregarProgresso()` para continuar (UC-S013), `pausar()` para a pausa e `retomar()` para a retomada (UC-S006) e `encerrar()` para a saída confirmada (UC-S011). As transições de início e fim da crise de ansiedade (RF018) aparecem só com o evento, pois o diagrama de classes ainda não tem métodos para elas.
 
 [Figura 6 – Diagrama de Estados da classe Jogo]
 

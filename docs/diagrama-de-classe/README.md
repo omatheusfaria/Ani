@@ -20,7 +20,7 @@ O Quadro 1 apresenta a estrutura de classes, atributos e métodos modelada para 
 
 | Classe | Atributos | Métodos |
 | --- | --- | --- |
-| Jogo | `titulo : FString`, `atoAtual : Ato`, `cenarioAtual : Cenario` | `iniciar()`, `pausar()`, `encerrar()`, `carregarProgresso()` |
+| Jogo | `titulo : FString`, `atoAtual : Ato`, `cenarioAtual : Cenario`, `estadoAtual : EstadoJogo` | `iniciar()`, `pausar()`, `retomar()`, `encerrar()`, `carregarProgresso()` |
 | Personagem | `nome : FString`, `posicaoX : float`, `posicaoY : float`, `sprite : FString`, `velocidade : float` | `mover()` |
 | Ani | `estadoEmocional : EstadoEmocional`, `diario : Diario` | `interagir()`, `observar()`, `registrarMemoria()` |
 | NPC | `tipo : TipoNPC` | `falar()`, `interagir()` |
@@ -49,6 +49,7 @@ O Quadro 2 apresenta as enumerações utilizadas para restringir valores recorre
 | EstadoEmocional | `Neutro`, `Ansioso`, `Deprimido`, `Contemplativo`, `Sereno`, `Medo` |
 | TipoEntradaDiario | `Memoria`, `Documento`, `Fotografia`, `Objeto`, `Contemplacao` |
 | EstadoObjeto | `Quebrado`, `Restaurado` |
+| EstadoJogo | `Menu`, `Jogando`, `Pausado`, `Crise`, `Encerrado` |
 
 O Quadro 3 sintetiza os principais relacionamentos representados no diagrama.
 
