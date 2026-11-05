@@ -421,10 +421,11 @@ O Quadro X apresenta o índice de casos de uso do sistema, enquanto a modelagem 
 | UC-S011 | Sair do Jogo | Jogador |
 | UC-S012 | Salvar Jogo | Jogador |
 | UC-S013 | Continuar Jogo | Jogador |
+| UC-S014 | Iniciar Novo Jogo | Jogador |
 
 [Figura 2 – Diagrama de Casos de Uso de Ani]
 
-Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 relaciona-se a RF001 e à exploração lateral; UC-S002 conecta-se a RF003, RF004, RF015 e RF016, cobrindo objetos significativos e mecânicas por ato; UC-S003 deriva de RF008 e dos personagens de memória e arquétipos; UC-S004 e UC-S005 conectam-se a RF005 e ao diário de memórias; UC-S006 corresponde a RF021 (pausa); UC-S007, UC-S008 e UC-S009, a RF022 (configurações de vídeo, áudio e controles); UC-S010, a RF024 (remapeamento de controles) e a RF011 (gamepad); UC-S011, a RF023 (saída); e UC-S012 e UC-S013 correspondem a RF009, salvando e carregando o progresso conforme a persistência descrita nas especificações técnicas.
+Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 relaciona-se a RF001 e à exploração lateral; UC-S002 conecta-se a RF003, RF004, RF015 e RF016, cobrindo objetos significativos e mecânicas por ato; UC-S003 deriva de RF008 e dos personagens de memória e arquétipos; UC-S004 e UC-S005 conectam-se a RF005 e ao diário de memórias; UC-S006 corresponde a RF021 (pausa); UC-S007, UC-S008 e UC-S009, a RF022 (configurações de vídeo, áudio e controles); UC-S010, a RF024 (remapeamento de controles) e a RF011 (gamepad); UC-S011, a RF023 (saída); UC-S012 e UC-S013 correspondem a RF009, salvando e carregando o progresso conforme a persistência descrita nas especificações técnicas; e UC-S014 corresponde a RF020 (aviso de conteúdo sensível), a RF012 (início no Ato I) e a RF009 (sobrescrita do save anterior).
 
 ### Caso de Uso: UC-S001 - Movimentar Personagem
 
@@ -581,6 +582,18 @@ Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 r
 | Cenário Principal | 1. Jogador seleciona a opção de continuar no menu inicial.<br>2. Sistema lê o arquivo de save.<br>3. Sistema restaura o ato em curso, as memórias registradas, o estado do diário e o estado visual da casa.<br>4. Sistema carrega o cenário correspondente e devolve o controle ao jogador. |
 | Pós-condição | A sessão é retomada no ponto em que o progresso foi salvo. |
 | Cenários Alternativos | 1a. Não existe arquivo de save:<br>1a.1. A opção de continuar fica indisponível no menu inicial.<br>2a. O arquivo de save não pode ser lido:<br>2a.1. O sistema notifica o jogador e retorna ao menu inicial. |
+
+### Caso de Uso: UC-S014 - Iniciar Novo Jogo
+
+| Campo | Conteúdo |
+| --- | --- |
+| ID | UC-S014 |
+| Descrição | Este caso de uso permite que o jogador inicie uma nova jornada a partir do Ato I, depois de ver o aviso de conteúdo sensível. |
+| Ator Primário | Jogador |
+| Pré-condição | Menu inicial aberto. |
+| Cenário Principal | 1. Jogador seleciona a opção de novo jogo no menu inicial.<br>2. Sistema exibe o aviso sobre temas sensíveis (ansiedade, sofrimento psíquico).<br>3. Jogador prossegue após o aviso.<br>4. Sistema cria um novo estado de jogo e inicia o Ato I.<br>5. Sistema carrega o cenário inicial e entrega o controle ao jogador. |
+| Pós-condição | Uma nova sessão é iniciada no Ato I, sem progresso anterior. |
+| Cenários Alternativos | 1a. Existe um save anterior:<br>1a.1. Sistema pede confirmação para sobrescrever o progresso salvo.<br>1a.2. Se o jogador confirmar, o fluxo segue no passo 2 e o novo progresso substitui o save anterior.<br>1a.3. Se o jogador recusar, o sistema retorna ao menu inicial sem alterar o save. |
 
 ## 2.7 Diagrama de Classes
 
