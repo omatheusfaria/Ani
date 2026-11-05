@@ -4,6 +4,7 @@ title Diagrama de Sequência – Salvar e continuar jogo (UC-S012 / UC-S013)
 actor Jogador
 participant ":Jogo" as Jogo
 participant ":Save" as Save
+participant ":Diario" as Diario
 participant ":Cenario" as Cen
 
 == Salvar jogo (UC-S012) ==
@@ -27,18 +28,19 @@ end
 deactivate Jogo
 
 == Continuar jogo (UC-S013) ==
-Jogador -> Jogo : carregarProgresso()
+Jogador -> Jogo : comando de continuar
 activate Jogo
+Jogo -> Jogo : carregarProgresso()
 Jogo -> Save : carregar()
 activate Save
 Save --> Jogo : estado salvo ou erro de leitura
 deactivate Save
 alt leitura bem-sucedida
-  note over Jogo
-    Restauração do ato, das memórias, do diário
-    e do estado visual da casa: sem método
-    correspondente no diagrama de classes.
-  end note
+  note over Jogo : Restaura o ato em curso (atoAtual).
+  Jogo -> Diario : restaurar()
+  note right of Diario : Repõe as entradas e as\nmemórias registradas.
+  Jogo -> Cen : restaurarEstado()
+  note right of Cen : Repõe o estado\nvisual da casa.
   Jogo -> Cen : carregarCenario()
   Jogo --> Jogador : controle devolvido no ponto salvo
 else falha na leitura

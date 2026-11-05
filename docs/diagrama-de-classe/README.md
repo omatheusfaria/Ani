@@ -28,9 +28,9 @@ O Quadro 1 apresenta a estrutura de classes, atributos e métodos modelada para 
 | ObjetoInterativo | `id : int32`, `descricao : FString` | `ativar()` |
 | ObjetoMemoria | `coletada : bool` | `exibir()`, `registrarNoDiario()` |
 | Memoria | `id : int32`, `titulo : FString`, `conteudo : FString`, `atoOrigem : int32`, `coletada : bool` | `registrar()`, `atualizarLeitura()` |
-| Diario | `entradas : TArray<EntradaDiario>` | `abrir()`, `adicionarEntrada()`, `consultarEntrada()` |
+| Diario | `entradas : TArray<EntradaDiario>` | `abrir()`, `adicionarEntrada()`, `consultarEntrada()`, `restaurar()` |
 | EntradaDiario | `titulo : FString`, `conteudo : FString`, `tipo : TipoEntradaDiario` | `atualizarLeitura()` |
-| Cenario | `nome : FString`, `desbloqueado : bool` | `carregarCenario()`, `desbloquearArea()` |
+| Cenario | `nome : FString`, `desbloqueado : bool` | `carregarCenario()`, `desbloquearArea()`, `restaurarEstado()` |
 | Ato | `id : int32`, `nome : FString`, `descricao : FString`, `concluido : bool`, `limiarMemorias : int32` | `iniciarAto()`, `verificarConclusao()`, `concluirAto()` |
 | ObjetoRestauravel | `estado : EstadoObjeto` | `restaurar()` |
 | ObjetoContemplativo | `tempoMinimoObservacao : float` | `observar()`, `liberarNarracao()` |
