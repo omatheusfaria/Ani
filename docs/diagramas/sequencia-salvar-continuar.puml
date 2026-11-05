@@ -1,0 +1,44 @@
+@startuml sequencia-salvar-continuar
+title Diagrama de Sequência – Salvar e continuar jogo (UC-S012 / UC-S013)
+
+actor Jogador
+participant ":Jogo" as Jogo
+participant ":Save" as Save
+participant ":Cenario" as Cen
+
+== Salvar jogo (UC-S012) ==
+Jogador -> Save : salvar()
+activate Save
+note right of Save
+  Grava o ato em curso, as memórias registradas,
+  o estado do diário e o estado visual da casa.
+  A coleta desse estado não tem método
+  correspondente no diagrama de classes.
+end note
+alt gravação concluída
+  Save --> Jogador : progresso salvo
+else erro na gravação
+  Save --> Jogador : notificação de erro
+end
+deactivate Save
+
+== Continuar jogo (UC-S013) ==
+Jogador -> Jogo : carregarProgresso()
+activate Jogo
+Jogo -> Save : carregar()
+activate Save
+Save --> Jogo : estado salvo ou erro de leitura
+deactivate Save
+alt leitura bem-sucedida
+  note over Jogo
+    Restauração do ato, das memórias, do diário
+    e do estado visual da casa: sem método
+    correspondente no diagrama de classes.
+  end note
+  Jogo -> Cen : carregarCenario()
+  Jogo --> Jogador : controle devolvido no ponto salvo
+else falha na leitura
+  Jogo --> Jogador : notificação e retorno ao menu inicial
+end
+deactivate Jogo
+@enduml

@@ -852,15 +852,21 @@ A Figura 7 apresenta a interação com um objeto de memória. Ao receber o coman
 
 [Figura 7 – Diagrama de Sequência: Interagir com objeto, registrar memória e consultar o diário]
 
+### Sequência: Salvar e continuar jogo (UC-S012 / UC-S013)
+
+A Figura 8 apresenta a persistência do progresso. Ao salvar (UC-S012), o `Save` grava o ato em curso, as memórias registradas, o estado do diário e o estado visual da casa, e notifica o jogador em caso de erro. Ao continuar (UC-S013), `Jogo.carregarProgresso()` aciona `Save.carregar()`; se a leitura for bem-sucedida, o cenário é carregado e o controle volta ao jogador no ponto salvo, e, se falhar, o jogador é notificado e retorna ao menu inicial. A coleta do estado no salvamento e a restauração do ato, do diário e do estado visual da casa no carregamento aparecem em notas, porque o diagrama de classes ainda não tem métodos para elas.
+
+[Figura 8 – Diagrama de Sequência: Salvar e continuar jogo]
+
 ## 2.11 Diagrama Entidade-Relacionamento (DER)
 
 O Diagrama Entidade-Relacionamento é um modelo conceitual voltado à representação de dados, entidades, atributos e relacionamentos de um domínio. A IBM descreve o DER como uma forma de visualizar entidades e relações em um domínio de dados, enquanto a Lucidchart destaca seu papel na organização lógica das informações e na compreensão das cardinalidades entre entidades (IBM, s.d.d, online; Lucidchart, s.d., online).
 
 No presente projeto, o DER deriva do Diagrama de Classes e das Regras de Negócio para representar aquilo que precisa ser persistido no jogo. Seu foco incide sobre progresso do jogador, memórias coletadas, estado do diário e relações mínimas entre atos, cenários e objetos interativos, especialmente em função de RF009, RN001 e RN005.
 
-A modelagem gráfica correspondente é apresentada na Figura 8, e a descrição textual das entidades é detalhada na sequência.
+A modelagem gráfica correspondente é apresentada na Figura 9, e a descrição textual das entidades é detalhada na sequência.
 
-[Figura 8 – Diagrama Entidade-Relacionamento de Ani]
+[Figura 9 – Diagrama Entidade-Relacionamento de Ani]
 
 Ao contrário do diagrama de classes, o DER não representa todas as classes do projeto: ele se concentra no que precisa ser persistido para recuperar a experiência do jogador. Por isso, classes comportamentais como `Jogo`, `Ani`, `NPC` e `Dialogo` não viram entidades, e o progresso salvo é representado pela entidade SAVE. Mesmo com o salvamento feito em arquivo JSON, a estrutura vale como modelo conceitual de persistência.
 
@@ -1046,7 +1052,7 @@ O sistema de movimentação e colisão constitui a base da exploração lateral 
 - **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** exploração lateral como eixo primário de interação e interface de controles reduzida
 - **Trecho de código relevante:** `[Código 1 — rotina de leitura de input horizontal e validação de colisão do personagem]`
-- **Captura de tela comentada:** `[Figura 9 – Deslocamento de Ani em cenário lateral com bloqueio por obstáculo sólido]`
+- **Captura de tela comentada:** `[Figura 10 – Deslocamento de Ani em cenário lateral com bloqueio por obstáculo sólido]`
 
 A implementação prevista depende da captura de entrada por teclado ou gamepad, via Enhanced Input, aplicação de velocidade ao personagem e verificação de colisão antes da confirmação do deslocamento. Como a proposta do jogo privilegia contemplação e ritmo, esse sistema deve ser estável e responsivo sem competir com a atmosfera geral da experiência.
 
@@ -1059,7 +1065,7 @@ O sistema de memórias e diário conecta exploração, narrativa e persistência
 - **Regra de negócio correspondente:** RN001, RN005
 - **Princípio do projeto que originou o sistema:** exploração e diário de memórias como centro da experiência
 - **Trecho de código relevante:** `[Código 2 — fluxo de ativação de objeto interativo, criação de memória e adição de entrada ao diário]`
-- **Captura de tela comentada:** `[Figura 10 – Registro de fragmento narrativo no diário após interação com objeto de memória]`
+- **Captura de tela comentada:** `[Figura 11 – Registro de fragmento narrativo no diário após interação com objeto de memória]`
 
 Quando o jogador interage com um objeto significativo, o sistema identifica seu tipo, ativa a memória ou evento correspondente e, se cabível, cria ou atualiza uma entrada no diário. RN001 impede duplicidade de registros, RF004 permite ordem variável de descoberta dos fragmentos, e RN005 assegura que o mesmo item possa adquirir nova interpretação sem perder sua identidade base.
 
@@ -1072,7 +1078,7 @@ O sistema de progressão por atos organiza a jornada em cinco etapas sequenciais
 - **Regra de negócio correspondente:** RN002, RN003, RN004
 - **Princípio do projeto que originou o sistema:** jornada filosófica em cinco atos sequenciais
 - **Trecho de código relevante:** `[Código 3 — verificação de conclusão de ato e desbloqueio do cenário seguinte]`
-- **Captura de tela comentada:** `[Figura 11 – Transição de ato com alteração de cenário e atmosfera]`
+- **Captura de tela comentada:** `[Figura 12 – Transição de ato com alteração de cenário e atmosfera]`
 
 O sistema detecta a conclusão de cada etapa pela combinação entre exploração, memórias e eventos centrais do ato corrente. No Ato I, RN004 permite avanço mediante um limiar mínimo de memórias, sem exigir exaustão total do conteúdo disponível.
 
@@ -1093,7 +1099,7 @@ A mecânica de peso literal transforma o contato com memórias em alteração se
 - **Regra de negócio correspondente:** RN004
 - **Princípio do projeto que originou o sistema:** Ato I como experiência do peso da consciência
 - **Trecho de código relevante:** `[Código 4 — ajuste progressivo da velocidade do personagem conforme memórias coletadas]`
-- **Captura de tela comentada:** `[Figura 12 – Redução perceptível da velocidade de Ani após contato com memórias do Ato I]`
+- **Captura de tela comentada:** `[Figura 13 – Redução perceptível da velocidade de Ani após contato com memórias do Ato I]`
 
 Embora o sistema produza dificuldade sensorial de avanço, ele não configura punição explícita. A intenção é que o corpo da mecânica represente a tensão existencial do ato, não que imponha fracasso convencional ao jogador.
 
@@ -1106,7 +1112,7 @@ Os ecos de decisão estruturam situações em que o jogador tenta variar sua aç
 - **Regra de negócio correspondente:** RN006
 - **Princípio do projeto que originou o sistema:** irresolução filosófica do Ato II
 - **Trecho de código relevante:** `[Código 5 — recondução de estados alternativos para um mesmo desfecho narrativo]`
-- **Captura de tela comentada:** `[Figura 13 – Corredor em loop com recorrência de situação decisória convergente]`
+- **Captura de tela comentada:** `[Figura 14 – Corredor em loop com recorrência de situação decisória convergente]`
 
 A implementação exige armazenamento de tentativas, reentrada em eventos e convergência controlada de resultado. Com isso, a mecânica preserva a sensação de tentativa do jogador sem romper a coerência filosófica da etapa.
 
@@ -1119,7 +1125,7 @@ Essa mecânica permite restaurar objetos quebrados sem apagar suas marcas, em co
 - **Regra de negócio correspondente:** RN005
 - **Princípio do projeto que originou o sistema:** beleza do quebrado e aceitação da rachadura
 - **Trecho de código relevante:** `[Código 6 — mudança de estado de objeto restaurável e atualização visual após interação]`
-- **Captura de tela comentada:** `[Figura 14 – Objeto do Ato III antes e depois da restauração, preservando marcas]`
+- **Captura de tela comentada:** `[Figura 15 – Objeto do Ato III antes e depois da restauração, preservando marcas]`
 
 O valor sistêmico da mecânica está menos na reparação utilitária e mais na ressignificação. O objeto deixa de ser apenas quebrado, mas não retorna a uma pureza anterior, reforçando a proposta de aceitação do dano como parte da forma final.
 
@@ -1132,7 +1138,7 @@ A contemplação ativa converte a pausa em forma de interação. Em vez de exigi
 - **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** observação, impermanência e presença
 - **Trecho de código relevante:** `[Código 7 — temporizador de observação e disparo de narração contemplativa]`
-- **Captura de tela comentada:** `[Figura 15 – Jardim do Ato IV com ativação de memória por permanência em observação]`
+- **Captura de tela comentada:** `[Figura 16 – Jardim do Ato IV com ativação de memória por permanência em observação]`
 
 A mecânica é coerente com a filosofia de interface invisível do projeto, pois a ação emerge do ritmo do jogador e não da presença de um botão dedicado. O sistema interpreta a pausa como gesto significativo.
 
@@ -1145,7 +1151,7 @@ No Ato V, o protótipo abandona progressivamente mecânicas dos atos anteriores 
 - **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** o mistério que não cabe em palavras
 - **Trecho de código relevante:** `[Código 8 — desativação progressiva de subsistemas conforme avanço do Ato V]`
-- **Captura de tela comentada:** `[Figura 16 – Cenário final com mecânicas reduzidas e predominância de contemplação]`
+- **Captura de tela comentada:** `[Figura 17 – Cenário final com mecânicas reduzidas e predominância de contemplação]`
 
 A implementação exige controle condicional sobre sistemas previamente ativos, para que desapareçam em sequência coerente com a jornada do jogador. Essa dissolução reconfigura a própria linguagem de interação do jogo no desfecho.
 
@@ -1158,7 +1164,7 @@ O sistema de crises de ansiedade atua no plano sensorial, alterando imagem, som 
 - **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** ansiedade e respiração como base sensorial
 - **Trecho de código relevante:** `[Código 9 — acionamento de distorção visual, fragmentação sonora e aumento de manifestações]`
-- **Captura de tela comentada:** `[Figura 17 – Episódio de crise com distorção visual e reforço atmosférico]`
+- **Captura de tela comentada:** `[Figura 18 – Episódio de crise com distorção visual e reforço atmosférico]`
 
 Os efeitos esperados incluem distorção visual, fragmentação sonora e intensificação das manifestações, com a respiração de Ani funcionando como indicador sensorial. O impacto do sistema é atmosférico e emocional, não quantitativo.
 
@@ -1179,7 +1185,7 @@ O sistema de save/load é responsável por preservar continuidade da sessão e p
 - **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** continuidade estrutural da jornada por atos
 - **Trecho de código relevante:** `[Código 10 — serialização do estado global do jogo e restauração de progresso]`
-- **Captura de tela comentada:** `[Figura 18 – Continuidade da sessão após carregamento de save local]`
+- **Captura de tela comentada:** `[Figura 19 – Continuidade da sessão após carregamento de save local]`
 
 O sistema deve operar em consonância com RNF002, segundo o qual os saves locais devem carregar em menos de cinco segundos e preservar a integridade dos dados persistidos. Isso exige um modelo de dados compatível com a estrutura do diário, dos cenários e dos atos.
 
@@ -1192,7 +1198,7 @@ A interface do projeto segue uma filosofia de quase invisibilidade. Em vez de HU
 - **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** interface mínima, sensorial e integrada ao mundo
 - **Trecho de código relevante:** `[Código 11 — abertura do diário diegético e acionamento de indicadores discretos de interação]`
-- **Captura de tela comentada:** `[Figura 19 – Interface do diário e ausência de HUD permanente durante exploração]`
+- **Captura de tela comentada:** `[Figura 20 – Interface do diário e ausência de HUD permanente durante exploração]`
 
 | Ação | Teclado e mouse | Gamepad (padrão Xbox) |
 | --- | --- | --- |
@@ -1211,7 +1217,7 @@ O sistema de áudio adaptativo organiza trilha e efeitos de forma coerente com a
 - **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** o áudio acompanha a transição filosófica do jogo
 - **Trecho de código relevante:** `[Código 12 — transição de parâmetros e camadas sonoras por ato no middleware de áudio]`
-- **Captura de tela comentada:** `[Figura 20 – Configuração sonora de ato com trilha adaptada ao estado da jornada]`
+- **Captura de tela comentada:** `[Figura 21 – Configuração sonora de ato com trilha adaptada ao estado da jornada]`
 
 | Ato | Clima Sonoro | Elementos |
 | --- | --- | --- |
@@ -1231,7 +1237,7 @@ O RF007 prevê puzzles contextuais integrados ao ambiente e à narrativa dos ato
 - **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** integração entre ambiente, narrativa e progressão por atos
 - **Trecho de código relevante:** `[Código 13 — abertura do puzzle, verificação da tentativa e registro da conclusão]`
-- **Captura de tela comentada:** `[Figura 21 – Puzzle contextual em andamento no cenário de um ato]`
+- **Captura de tela comentada:** `[Figura 22 – Puzzle contextual em andamento no cenário de um ato]`
 
 A quantidade de puzzles e sua distribuição por ato são definidas no level design, durante a implementação. O jogador pode sair do puzzle a qualquer momento; nesse caso, o puzzle volta ao estado inicial, sem salvar progresso parcial. Ainda estão em aberto os tipos de puzzle [definir].
 
@@ -1244,7 +1250,7 @@ O sistema de diálogos apresenta falas textuais e fragmentadas dos personagens d
 - **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** comunicação prioritariamente textual e personagens como ecos da memória
 - **Trecho de código relevante:** `[Código 14 — início, avanço e encerramento de um diálogo fragmentado a partir da interação com um NPC]`
-- **Captura de tela comentada:** `[Figura 22 – Diálogo textual fragmentado com personagem de memória]`
+- **Captura de tela comentada:** `[Figura 23 – Diálogo textual fragmentado com personagem de memória]`
 
 Na implementação prevista, `NPC.interagir()` identifica o tipo do personagem (`TipoNPC`) e aciona o `Dialogo` associado, que exibe suas `linhas` em sequência por meio de `iniciar()`, `avançar()` e `encerrar()`. O atributo `fragmentado` indica falas apresentadas de forma interrompida ou incompleta, recurso que reforça o caráter de memória dos encontros. Quando aplicável, o conteúdo do diálogo é registrado como memória narrativa ou reforço simbólico do ato atual.
 
@@ -1257,34 +1263,34 @@ O suporte a gamepad permite que todo o jogo seja controlado também por um contr
 - **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** acesso equivalente à experiência por teclado ou gamepad
 - **Trecho de código relevante:** `[Código 15 — Input Mapping Context com as mesmas Input Actions associadas a teclas e a botões do gamepad]`
-- **Captura de tela comentada:** `[Figura 23 – Menu de configuração de controles com o mapeamento do gamepad]`
+- **Captura de tela comentada:** `[Figura 24 – Menu de configuração de controles com o mapeamento do gamepad]`
 
 No Enhanced Input, cada comando é uma *Input Action* única, à qual o *Input Mapping Context* associa tanto a tecla quanto o botão correspondente do gamepad. Dessa forma, `Ani` recebe a mesma ação independentemente do dispositivo, e o remapeamento previsto no UC-S010 altera apenas as associações do contexto, sem mudar a lógica de jogo.
 
 ## 4.3 Capturas de Tela e Funcionalidades
 
-[Figura 24 – Tela inicial / menu]  
+[Figura 25 – Tela inicial / menu]  
 Descrição: a imagem deve mostrar o menu inicial do jogo, evidenciando o início da jornada e a identidade visual contemplativa da interface.
 
-[Figura 25 – Exploração do cenário no Ato I]  
+[Figura 26 – Exploração do cenário no Ato I]  
 Descrição: a imagem deve mostrar Ani explorando o cenário inicial, com destaque para a lentidão do movimento após o contato com memórias, evidenciando RF013.
 
-[Figura 26 – Diário de memórias aberto]  
+[Figura 27 – Diário de memórias aberto]  
 Descrição: a imagem deve mostrar a interface diegética do diário, com entradas registradas e leitura de um fragmento narrativo associado a RF005.
 
-[Figura 27 – Cenário do Ato II em corredor em loop]  
+[Figura 28 – Cenário do Ato II em corredor em loop]  
 Descrição: a imagem deve mostrar um espaço repetitivo e desorientador, evidenciando a mecânica de ecos de decisão e o impasse do Ato II.
 
-[Figura 28 – Mecânica de restauração no Ato III]  
+[Figura 29 – Mecânica de restauração no Ato III]  
 Descrição: a imagem deve mostrar um objeto antes e depois da restauração, preservando rachaduras visíveis, em consonância com RF015.
 
-[Figura 29 – Jardim contemplativo do Ato IV]  
+[Figura 30 – Jardim contemplativo do Ato IV]  
 Descrição: a imagem deve mostrar Ani parada diante de um elemento contemplativo, com liberação de narração ou memória após observação prolongada.
 
-[Figura 30 – Crise de ansiedade com distorção visual]  
+[Figura 31 – Crise de ansiedade com distorção visual]  
 Descrição: a imagem deve mostrar distorções de tela, intensificação de manifestações e atmosfera sonora associada à crise, evidenciando RF018.
 
-[Figura 31 – Cenário do Ato V com dissolução de mecânicas]  
+[Figura 32 – Cenário do Ato V com dissolução de mecânicas]  
 Descrição: a imagem deve mostrar um espaço aberto e indefinido, com redução perceptível de sistemas de interação e predominância de movimento e contemplação.
 
 # Referências
