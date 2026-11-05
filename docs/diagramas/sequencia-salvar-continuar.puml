@@ -7,20 +7,24 @@ participant ":Save" as Save
 participant ":Cenario" as Cen
 
 == Salvar jogo (UC-S012) ==
-Jogador -> Save : salvar()
-activate Save
-note right of Save
-  Grava o ato em curso, as memórias registradas,
-  o estado do diário e o estado visual da casa.
-  A coleta desse estado não tem método
-  correspondente no diagrama de classes.
+Jogador -> Jogo : comando de salvar
+activate Jogo
+Jogo -> Jogo : salvarProgresso()
+note right of Jogo
+  Coleta o ato em curso (atoAtual),
+  o estado do diário e o estado visual
+  da casa (cenarioAtual).
 end note
-alt gravação concluída
-  Save --> Jogador : progresso salvo
-else erro na gravação
-  Save --> Jogador : notificação de erro
-end
+Jogo -> Save : salvar()
+activate Save
+Save --> Jogo : gravação concluída ou erro
 deactivate Save
+alt gravação concluída
+  Jogo --> Jogador : progresso salvo
+else erro na gravação
+  Jogo --> Jogador : notificação de erro
+end
+deactivate Jogo
 
 == Continuar jogo (UC-S013) ==
 Jogador -> Jogo : carregarProgresso()

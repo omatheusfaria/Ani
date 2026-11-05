@@ -34,7 +34,7 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="sBSEbnRuXWD3VsB8Pxt4-80" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36.888888888888886;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" value="Jogo" vertex="1">
-                    <mxGeometry height="283.108889" width="151.5" x="1708.5" y="1110" as="geometry"/>
+                    <mxGeometry height="313.108889" width="151.5" x="1708.5" y="1110" as="geometry"/>
                 </mxCell>
                 <mxCell id="UkP_mdnDtGIdcfxqdIJ_-57" parent="sBSEbnRuXWD3VsB8Pxt4-80" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="- titulo: FString" vertex="1">
                     <mxGeometry height="23.11" width="151.5" y="36.888888888888886" as="geometry"/>
@@ -63,8 +63,11 @@
                 <mxCell id="sBSEbnRuXWD3VsB8Pxt4-84" parent="sBSEbnRuXWD3VsB8Pxt4-80" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+ encerrar()" vertex="1">
                     <mxGeometry height="30" width="151.5" y="223.108889" as="geometry"/>
                 </mxCell>
-                <mxCell id="UkP_mdnDtGIdcfxqdIJ_-60" parent="sBSEbnRuXWD3VsB8Pxt4-80" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+ carregarProgresso()" vertex="1">
+                <mxCell id="jogo-salvarProgresso" parent="sBSEbnRuXWD3VsB8Pxt4-80" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+ salvarProgresso()" vertex="1">
                     <mxGeometry height="30" width="151.5" y="253.108889" as="geometry"/>
+                </mxCell>
+                <mxCell id="UkP_mdnDtGIdcfxqdIJ_-60" parent="sBSEbnRuXWD3VsB8Pxt4-80" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+ carregarProgresso()" vertex="1">
+                    <mxGeometry height="30" width="151.5" y="283.108889" as="geometry"/>
                 </mxCell>
                 <mxCell id="sBSEbnRuXWD3VsB8Pxt4-85" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36.8;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;" value="Personagem" vertex="1">
                     <mxGeometry height="185" width="187" x="704" y="1110" as="geometry"/>

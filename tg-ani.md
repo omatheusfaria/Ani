@@ -632,6 +632,7 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 - `+ pausar()`
 - `+ retomar()`
 - `+ encerrar()`
+- `+ salvarProgresso()`
 - `+ carregarProgresso()`
 
 ### Classe: Personagem
@@ -859,7 +860,7 @@ A Figura 7 apresenta a interação com um objeto de memória. Ao receber o coman
 
 ### Sequência: Salvar e continuar jogo (UC-S012 / UC-S013)
 
-A Figura 8 apresenta a persistência do progresso. Ao salvar (UC-S012), o `Save` grava o ato em curso, as memórias registradas, o estado do diário e o estado visual da casa, e notifica o jogador em caso de erro. Ao continuar (UC-S013), `Jogo.carregarProgresso()` aciona `Save.carregar()`; se a leitura for bem-sucedida, o cenário é carregado e o controle volta ao jogador no ponto salvo, e, se falhar, o jogador é notificado e retorna ao menu inicial. A coleta do estado no salvamento e a restauração do ato, do diário e do estado visual da casa no carregamento aparecem em notas, porque o diagrama de classes ainda não tem métodos para elas.
+A Figura 8 apresenta a persistência do progresso. Ao salvar (UC-S012), o jogador aciona o comando e `Jogo.salvarProgresso()` coleta o ato em curso, o estado do diário e o estado visual da casa e chama `Save.salvar()`, que grava o arquivo local; em caso de erro, o jogador é notificado. Ao continuar (UC-S013), `Jogo.carregarProgresso()` aciona `Save.carregar()`; se a leitura for bem-sucedida, o cenário é carregado e o controle volta ao jogador no ponto salvo, e, se falhar, o jogador é notificado e retorna ao menu inicial. A restauração do ato, do diário e do estado visual da casa no carregamento aparece em nota, porque o diagrama de classes ainda não tem métodos para ela.
 
 [Figura 8 – Diagrama de Sequência: Salvar e continuar jogo]
 
@@ -1041,7 +1042,8 @@ Input (teclado: WASD / E / Tab / Esc; gamepad Xbox: analógico esquerdo / A / Y 
 GameMode / GameInstance + Jogo
   → Cenario.carregarCenario()
   → Ato.iniciarAto() / Ato.concluirAto()
-  → Save.salvar() / Jogo.carregarProgresso() → Save.carregar()
+  → Jogo.salvarProgresso() → Save.salvar()
+  → Jogo.carregarProgresso() → Save.carregar()
 ```
 
 Essa organização evidencia que a progressão por atos é controlada por `Ato`, ao passo que `Jogo`, apoiado pelo GameMode e pela GameInstance, concentra o estado global e a continuidade da sessão. Com isso, a arquitetura consegue sustentar uma experiência em que atmosfera, memória e progressão possuem suporte estrutural claro.
