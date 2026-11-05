@@ -604,9 +604,9 @@ Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 r
 | Descrição | Este caso de uso permite que o jogador resolva um puzzle contextual integrado ao ambiente e à narrativa do ato em curso. |
 | Ator Primário | Jogador |
 | Pré-condição | Ani diante de um puzzle disponível no cenário do ato atual. |
-| Cenário Principal | 1. Jogador aciona a interação com o puzzle.<br>2. Sistema abre o puzzle e apresenta seus elementos.<br>3. Jogador faz uma tentativa.<br>4. Sistema verifica a tentativa.<br>5. Sistema registra o puzzle como concluído e aplica o efeito da conclusão [definir]. |
-| Pós-condição | O puzzle fica registrado como concluído, e o efeito da conclusão sobre o cenário ou a narrativa é aplicado [definir]. |
-| Cenários Alternativos | 3a. Jogador decide sair do puzzle antes de concluí-lo:<br>3a.1. Possibilidade de saída e destino do progresso parcial [definir].<br>4a. A tentativa está incorreta:<br>4a.1. Sistema indica que a tentativa não resolveu o puzzle, sem punição sistêmica.<br>4a.2. Oferta de dica após erro [definir].<br>4a.3. O fluxo retorna ao passo 3. |
+| Cenário Principal | 1. Jogador aciona a interação com o puzzle.<br>2. Sistema abre o puzzle e apresenta seus elementos.<br>3. Jogador faz uma tentativa.<br>4. Sistema verifica a tentativa.<br>5. Sistema registra o puzzle como concluído. |
+| Pós-condição | O puzzle fica registrado como concluído. |
+| Cenários Alternativos | 3a. Jogador decide sair do puzzle antes de concluí-lo:<br>3a.1. Possibilidade de saída e destino do progresso parcial [definir].<br>4a. A tentativa está incorreta:<br>4a.1. Sistema indica que a tentativa não resolveu o puzzle, sem punição sistêmica.<br>4a.2. O fluxo retorna ao passo 3. |
 
 ## 2.7 Diagrama de Classes
 
@@ -1183,15 +1183,15 @@ O sistema de áudio adaptativo organiza trilha e efeitos de forma coerente com a
 
 O RF007 prevê puzzles contextuais integrados ao ambiente e à narrativa dos atos. A resolução de um puzzle é descrita no UC-S015 e tem várias etapas: o jogador abre o puzzle, faz uma tentativa, pode errar e tentar de novo, e conclui. Um erro não gera punição sistêmica, em coerência com a ausência de morte ou game over no projeto.
 
-- **Classes envolvidas:** [definir]
+- **Classes envolvidas:** nenhuma classe própria no diagrama de classes atual
 - **Requisito funcional correspondente:** RF007
 - **Caso de uso correspondente:** UC-S015
-- **Regra de negócio correspondente:** [definir]
+- **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** integração entre ambiente, narrativa e progressão por atos
 - **Trecho de código relevante:** `[Código 13 — abertura do puzzle, verificação da tentativa e registro da conclusão]`
 - **Captura de tela comentada:** `[Figura 17 – Puzzle contextual em andamento no cenário de um ato]`
 
-Ainda não estão definidos a quantidade de puzzles por ato [definir], os tipos de puzzle [definir], a oferta de dicas após erro [definir], a possibilidade de sair no meio de um puzzle [definir] e o efeito da conclusão sobre o cenário ou a narrativa [definir].
+A quantidade de puzzles e sua distribuição por ato são definidas no level design, durante a implementação. Ainda estão em aberto os tipos de puzzle [definir] e a possibilidade de sair no meio de um puzzle [definir].
 
 ### 4.2.14 Sistema de Diálogos
 
