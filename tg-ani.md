@@ -618,6 +618,8 @@ Sua importância neste trabalho está em mostrar como a experiência contemplati
 
 As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sintetiza os cinco atos filosóficos; `Memoria`, `Diario` e `EntradaDiario` formalizam o sistema de memórias; `ObjetoMemoria` representa o gatilho interativo de revelação de memórias; `ObjetoRestauravel` traduz a lógica de Kintsugi do Ato III; `ObjetoContemplativo` traduz a contemplação ativa do Ato IV; `NPC` e `Dialogo` representam personagens de memória, arquétipos e seus fluxos textuais; `Ani` constitui a representação sistêmica da protagonista como sujeito da experiência; `EcoDecisao` registra as tentativas do jogador nos ecos de decisão do Ato II; e `Save` reúne o progresso persistido da partida, como a entidade SAVE do DER.
 
+`Jogo` e `Ani` mantêm uma associação bidirecional de multiplicidade 1 : 1: `Jogo` alcança o `Diario` por meio de `Ani`, sem associação direta entre `Jogo` e `Diario`, e `Ani` alcança `Jogo` para notificar o início e o fim das crises de ansiedade.
+
 Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`, `FString`, `FDateTime`, `TArray<...>`). Os nomes das classes e enumerações do modelo omitem os prefixos da convenção da Unreal (`U` para classes derivadas de `UObject`, `A` para atores, `F` para estruturas e `E` para enumerações), que podem ser aplicados na implementação.
 
 ### Classe: Jogo
@@ -801,6 +803,7 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 | Ani | Herança | Personagem | 1 para 1 |
 | NPC | Herança | Personagem | 1 para 1 |
 | Ani | Composição | Diario | 1 para 1 |
+| Jogo | Associação (bidirecional) | Ani | 1 para 1 |
 | Ani | Associação | ObjetoInterativo | 1 para 0..* |
 | NPC | Composição | Dialogo | 1 para 0..* |
 | Cenario | Composição | NPC | 1 para 0..* |
@@ -862,7 +865,7 @@ A Figura 7 apresenta a interação com um objeto de memória. Ao receber o coman
 
 ### Sequência: Salvar e continuar jogo (UC-S012 / UC-S013)
 
-A Figura 8 apresenta a persistência do progresso. Ao salvar (UC-S012), o jogador aciona o comando e `Jogo.salvarProgresso()` coleta o ato em curso, o estado do diário e o estado visual da casa e chama `Save.salvar()`, que grava o arquivo local; em caso de erro, o jogador é notificado. Ao continuar (UC-S013), `Jogo.carregarProgresso()` aciona `Save.carregar()`; se a leitura for bem-sucedida, `Jogo` restaura o ato em curso (`atoAtual`), as memórias registradas e o diário (`Diario.restaurar()`) e o estado visual da casa (`Cenario.restaurarEstado()`), carrega o cenário e devolve o controle ao jogador no ponto salvo; se a leitura falhar, o jogador é notificado e retorna ao menu inicial.
+A Figura 8 apresenta a persistência do progresso. Ao salvar (UC-S012), o jogador aciona o comando e `Jogo.salvarProgresso()` coleta o ato em curso, o estado do diário (alcançado por meio de `Ani`) e o estado visual da casa e chama `Save.salvar()`, que grava o arquivo local; em caso de erro, o jogador é notificado. Ao continuar (UC-S013), `Jogo.carregarProgresso()` aciona `Save.carregar()`; se a leitura for bem-sucedida, `Jogo` restaura o ato em curso (`atoAtual`), as memórias registradas e o diário (`Diario.restaurar()`, alcançado por meio de `Ani`) e o estado visual da casa (`Cenario.restaurarEstado()`), carrega o cenário e devolve o controle ao jogador no ponto salvo; se a leitura falhar, o jogador é notificado e retorna ao menu inicial.
 
 [Figura 8 – Diagrama de Sequência: Salvar e continuar jogo]
 

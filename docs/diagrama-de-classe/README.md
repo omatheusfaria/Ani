@@ -62,6 +62,7 @@ O Quadro 3 sintetiza os principais relacionamentos representados no diagrama.
 | Ani | Herança / Generalização | Personagem | Especialização de `Personagem` |
 | NPC | Herança / Generalização | Personagem | Especialização de `Personagem` |
 | Ani | Composição | Diario | `Ani 1` para `Diario 1` |
+| Jogo | Associação (bidirecional) | Ani | `Jogo 1` para `Ani 1` |
 | Ani | Associação | ObjetoInterativo | `Ani 1` para `ObjetoInterativo 0..*` |
 | NPC | Composição | Dialogo | `NPC 1` para `Dialogo 0..*` |
 | Cenario | Composição | NPC | `Cenario 1` para `NPC 0..*` |

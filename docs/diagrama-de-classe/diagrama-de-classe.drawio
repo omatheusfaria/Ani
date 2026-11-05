@@ -93,6 +93,24 @@
                 <mxCell id="sBSEbnRuXWD3VsB8Pxt4-90" parent="sBSEbnRuXWD3VsB8Pxt4-85" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=1;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;movable=1;resizable=1;deletable=1;editable=1;locked=0;connectable=1;" value="+ mover()" vertex="1">
                     <mxGeometry height="37" width="187" y="148" as="geometry"/>
                 </mxCell>
+                <mxCell id="assoc-jogo-ani" edge="1" parent="1" source="sBSEbnRuXWD3VsB8Pxt4-91" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="sBSEbnRuXWD3VsB8Pxt4-80">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="464" y="1070"/>
+                            <mxPoint x="1784" y="1070"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="assoc-jogo-ani-m1" connectable="0" parent="assoc-jogo-ani" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1" vertex="1">
+                    <mxGeometry relative="1" x="-0.95" as="geometry">
+                        <mxPoint x="10" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="assoc-jogo-ani-m2" connectable="0" parent="assoc-jogo-ani" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1" vertex="1">
+                    <mxGeometry relative="1" x="0.95" as="geometry">
+                        <mxPoint x="10" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
                 <mxCell id="UkP_mdnDtGIdcfxqdIJ_-26" edge="1" parent="1" source="sBSEbnRuXWD3VsB8Pxt4-91" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=block;endFill=0;endSize=16;" target="sBSEbnRuXWD3VsB8Pxt4-85">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>

@@ -13,8 +13,8 @@ activate Jogo
 Jogo -> Jogo : salvarProgresso()
 note right of Jogo
   Coleta o ato em curso (atoAtual),
-  o estado do diário e o estado visual
-  da casa (cenarioAtual).
+  o estado do diário (via Ani) e o estado
+  visual da casa (cenarioAtual).
 end note
 Jogo -> Save : salvar()
 activate Save
@@ -38,7 +38,7 @@ deactivate Save
 alt leitura bem-sucedida
   note over Jogo : Restaura o ato em curso (atoAtual).
   Jogo -> Diario : restaurar()
-  note right of Diario : Repõe as entradas e as\nmemórias registradas.
+  note right of Diario : Alcançado por meio de Ani\n(associação Jogo ↔ Ani).\nRepõe as entradas e as\nmemórias registradas.
   Jogo -> Cen : restaurarEstado()
   note right of Cen : Repõe o estado\nvisual da casa.
   Jogo -> Cen : carregarCenario()
