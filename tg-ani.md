@@ -826,7 +826,7 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 
 O diagrama de atividades da UML representa o fluxo de controle de um processo ou de uma funcionalidade, mostrando as ações executadas, as decisões, os laços e o ponto em que o fluxo termina. Sommerville (2019) destaca que esse diagrama ajuda a mostrar as atividades que compõem um processo e a ordem em que ocorrem, e a IBM o inclui entre os diagramas comportamentais da UML usados para descrever a dinâmica do sistema (IBM, s.d.c, online).
 
-Sua importância neste trabalho está em detalhar, passo a passo, fluxos que os casos de uso descrevem apenas em texto, separando o que cabe ao jogador e o que cabe ao sistema por meio de raias. Assim, decisões e repetições ficam visíveis antes da implementação. Os diagramas foram elaborados em PlantUML e estão em `docs/diagramas/`.
+Sua importância neste trabalho está em detalhar, passo a passo, fluxos que os casos de uso descrevem apenas em texto, separando o que cabe ao jogador e o que cabe ao sistema por meio de raias. Assim, decisões e repetições ficam visíveis antes da implementação. Os diagramas foram elaborados no draw.io e estão em `docs/diagramas/`.
 
 ### Atividade: Resolver Puzzle (UC-S015)
 
