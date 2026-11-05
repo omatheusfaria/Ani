@@ -9,15 +9,18 @@ state "Crise" as Crise : crise de ansiedade (RF018)
 state "Encerrado" as Encerrado
 
 [*] --> Menu
-Menu --> Jogando : novo jogo (UC-S014) / iniciar()
-Menu --> Jogando : continuar (UC-S013) / carregarProgresso()
-Jogando --> Pausado : comando de pausa (UC-S006) / pausar()
-Pausado --> Jogando : retomar (UC-S006, 3a) / retomar()
-Jogando --> Crise : Ani.iniciarCrise() / Jogo.alterarEstado(Crise)
-Crise --> Jogando : Ani.encerrarCrise() / Jogo.alterarEstado(Jogando)
-Pausado --> Encerrado : saída confirmada (UC-S011) / encerrar()
+Menu --> Jogando : novo jogo (UC-S014)\n/ iniciar()
+Menu --> Jogando : continuar (UC-S013)\n[leitura bem-sucedida]\n/ carregarProgresso()
+Jogando --> Pausado : comando de pausa (UC-S006)\n/ pausar()
+Pausado --> Jogando : retomar (UC-S006, 3a)\n/ retomar()
+Jogando --> Crise : início da crise\n(Ani.iniciarCrise())\n/ alterarEstado(Crise)
+Crise --> Jogando : fim da crise\n(Ani.encerrarCrise())\n/ alterarEstado(Jogando)
+Pausado --> Encerrado : saída confirmada (UC-S011)\n/ encerrar()
 Encerrado --> [*]
 
-note "Toda transição atualiza estadoAtual\npor meio de alterarEstado(novoEstado)." as N1
+note right of Menu
+  Toda mudança de estadoAtual
+  passa por alterarEstado(novoEstado).
+end note
 
 @enduml

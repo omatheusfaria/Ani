@@ -1,5 +1,5 @@
 @startuml sequencia-registrar-memoria
-title Diagrama de Sequência – Interagir com objeto, registrar memória e consultar o diário (UC-S002 / UC-S005)
+title Diagrama de Sequência – Interagir com objeto, registrar memória\ne consultar o diário (UC-S002 / UC-S005)
 
 actor Jogador
 participant ":Ani" as Ani
@@ -8,7 +8,9 @@ participant ":Memoria" as Mem
 participant ":Diario" as Diario
 
 == Interagir com objeto e registrar memória (UC-S002) ==
-Jogador -> Ani : interagir()
+Jogador -> Ani : comando de interagir
+activate Ani
+Ani -> Ani : interagir()
 activate Ani
 Ani -> OM : ativar()
 activate OM
@@ -16,8 +18,9 @@ note right of OM : ativar() é herdado\nde ObjetoInterativo.
 OM -> OM : exibir()
 OM --> Ani
 deactivate OM
-alt coletada = false (RN001)
+opt objeto ainda não coletado (RN001)
   Ani -> Ani : registrarMemoria()
+  activate Ani
   Ani -> OM : registrarNoDiario()
   activate OM
   OM -> Mem : registrar()
@@ -27,16 +30,26 @@ alt coletada = false (RN001)
   activate Diario
   create participant ":EntradaDiario" as Entrada
   Diario -> Entrada : «create»
+  Diario --> Ani
   deactivate Diario
-else coletada = true
-  note over Ani, OM : Nenhuma nova entrada é criada (RN001).
+  deactivate Ani
 end
+note over OM, Diario : Se o objeto já foi coletado, nenhuma\nnova entrada é criada (RN001).
+deactivate Ani
 deactivate Ani
 
 == Consultar o diário (UC-S005) ==
-Jogador -> Diario : abrir()
+Jogador -> Ani : comando do diário
+activate Ani
+Ani -> Diario : abrir()
 activate Diario
-Jogador -> Diario : consultarEntrada()
-Diario --> Jogador : título e conteúdo da entrada
+alt diário com entradas
+  Jogador -> Ani : navega até uma entrada
+  Ani -> Diario : consultarEntrada()
+  Diario --> Jogador : título e conteúdo da entrada
+else diário vazio (2a)
+  Diario --> Jogador : páginas sem conteúdo
+end
 deactivate Diario
+deactivate Ani
 @enduml

@@ -8,17 +8,16 @@ start
 :Abre o puzzle e apresenta seus elementos;
 repeat
   |Jogador|
-  if (Sai do puzzle?) then (sim)
+  if (Sai do puzzle?) then (não)
+    :Faz uma tentativa;
+    |Sistema|
+    :Verifica a tentativa;
+  else (sim)
     |Sistema|
     :Fecha o puzzle e o devolve ao estado inicial,
     sem salvar progresso parcial;
     stop
-  else (não)
-    |Jogador|
-    :Faz uma tentativa;
   endif
-  |Sistema|
-  :Verifica a tentativa;
   backward:Indica que a tentativa não resolveu o puzzle,
   sem punição sistêmica;
 repeat while (Tentativa correta?) is (não) not (sim)
