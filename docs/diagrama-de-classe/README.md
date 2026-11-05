@@ -39,6 +39,8 @@ O Quadro 1 apresenta a estrutura de classes, atributos e métodos modelada para 
 
 Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`, `FString`, `FDateTime`, `TArray<...>`). Os nomes das classes e enumerações do modelo omitem os prefixos da convenção da Unreal (`U` para classes derivadas de `UObject`, `A` para atores, `F` para estruturas e `E` para enumerações), que podem ser aplicados na implementação.
 
+Na implementação em Unreal Engine, a notificação de `Ani` para `Jogo` no início e no fim das crises de ansiedade (`Jogo.alterarEstado()`) é feita por um *delegate*.
+
 O Quadro 2 apresenta as enumerações utilizadas para restringir valores recorrentes da modelagem.
 
 ## Quadro 2 - Enumerações do projeto Ani
