@@ -654,6 +654,8 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 - `+ interagir()`
 - `+ observar()`
 - `+ registrarMemoria()`
+- `+ iniciarCrise()`
+- `+ encerrarCrise()`
 
 ### Classe: NPC
 **Atributos:**
@@ -839,7 +841,7 @@ Em **Ani**, o diagrama de estados descreve o ciclo de vida da sessão de jogo co
 
 ### Estados da classe Jogo
 
-A Figura 6 apresenta os estados da classe `Jogo`, registrados no atributo `estadoAtual` com os valores da enumeração `EstadoJogo`: Menu, Jogando, Pausado, Crise (crise de ansiedade) e Encerrado. As transições são rotuladas pelo evento que as dispara e pelo método correspondente do diagrama de classes: `iniciar()` para um novo jogo (UC-S014), `carregarProgresso()` para continuar (UC-S013), `pausar()` para a pausa e `retomar()` para a retomada (UC-S006) e `encerrar()` para a saída confirmada (UC-S011). As transições de início e fim da crise de ansiedade (RF018) aparecem só com o evento, pois o diagrama de classes ainda não tem métodos para elas.
+A Figura 6 apresenta os estados da classe `Jogo`, registrados no atributo `estadoAtual` com os valores da enumeração `EstadoJogo`: Menu, Jogando, Pausado, Crise (crise de ansiedade) e Encerrado. As transições são rotuladas pelo evento que as dispara e pelo método correspondente do diagrama de classes: `iniciar()` para um novo jogo (UC-S014), `carregarProgresso()` para continuar (UC-S013), `pausar()` para a pausa e `retomar()` para a retomada (UC-S006) e `encerrar()` para a saída confirmada (UC-S011). A crise de ansiedade (RF018) começa e termina em `Ani`: `iniciarCrise()` e `encerrarCrise()` alteram o `estadoEmocional` da personagem e notificam `Jogo`, que passa de Jogando para Crise e de volta para Jogando.
 
 [Figura 6 – Diagrama de Estados da classe Jogo]
 
@@ -1030,7 +1032,7 @@ O fluxo principal de dados do protótipo pode ser descrito da seguinte forma:
 ```text
 Input (teclado: WASD / E / Tab / Esc; gamepad Xbox: analógico esquerdo / A / Y / Menu)
   → Enhanced Input (Input Mapping Context → Input Actions)
-    → Ani (mover, interagir, observar, registrarMemoria)
+    → Ani (mover, interagir, observar, registrarMemoria, iniciarCrise, encerrarCrise)
       → ObjetoInterativo.ativar()
         → ObjetoMemoria.registrarNoDiario() → Diario.adicionarEntrada()
         → ObjetoRestauravel.restaurar()

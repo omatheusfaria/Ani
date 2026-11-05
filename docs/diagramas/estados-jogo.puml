@@ -13,12 +13,9 @@ Menu --> Jogando : novo jogo (UC-S014) / iniciar()
 Menu --> Jogando : continuar (UC-S013) / carregarProgresso()
 Jogando --> Pausado : comando de pausa (UC-S006) / pausar()
 Pausado --> Jogando : retomar (UC-S006, 3a) / retomar()
-Jogando --> Crise : início da crise (RF018) *
-Crise --> Jogando : fim da crise (RF018) *
+Jogando --> Crise : Ani.iniciarCrise() notifica Jogo
+Crise --> Jogando : Ani.encerrarCrise() notifica Jogo
 Pausado --> Encerrado : saída confirmada (UC-S011) / encerrar()
 Encerrado --> [*]
 
-legend bottom
-  ~* Transição sem método correspondente no diagrama de classes.
-endlegend
 @enduml

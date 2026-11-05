@@ -22,7 +22,7 @@ O Quadro 1 apresenta a estrutura de classes, atributos e métodos modelada para 
 | --- | --- | --- |
 | Jogo | `titulo : FString`, `atoAtual : Ato`, `cenarioAtual : Cenario`, `estadoAtual : EstadoJogo` | `iniciar()`, `pausar()`, `retomar()`, `encerrar()`, `carregarProgresso()` |
 | Personagem | `nome : FString`, `posicaoX : float`, `posicaoY : float`, `sprite : FString`, `velocidade : float` | `mover()` |
-| Ani | `estadoEmocional : EstadoEmocional`, `diario : Diario` | `interagir()`, `observar()`, `registrarMemoria()` |
+| Ani | `estadoEmocional : EstadoEmocional`, `diario : Diario` | `interagir()`, `observar()`, `registrarMemoria()`, `iniciarCrise()`, `encerrarCrise()` |
 | NPC | `tipo : TipoNPC` | `falar()`, `interagir()` |
 | Dialogo | `id : int32`, `linhas : TArray<FString>`, `fragmentado : bool` | `iniciar()`, `avançar()`, `encerrar()` |
 | ObjetoInterativo | `id : int32`, `descricao : FString` | `ativar()` |
