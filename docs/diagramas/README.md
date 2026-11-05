@@ -10,6 +10,6 @@ Os diagramas usam só classes e métodos do diagrama de classes (`docs/diagrama-
 | --- | --- | --- |
 | Atividades: Resolver Puzzle (UC-S015) | [atividades-resolver-puzzle.drawio](atividades-resolver-puzzle.drawio) | ![](atividades-resolver-puzzle.drawio.svg) |
 | Atividades: Progressão do Ato I até o limiar mínimo (RN004) | [atividades-progressao-ato-i.drawio](atividades-progressao-ato-i.drawio) | ![](atividades-progressao-ato-i.drawio.svg) |
-| Estados: classe Jogo | [estados-jogo.puml](estados-jogo.puml) | ![](estados-jogo.svg) |
+| Estados: classe Jogo | [estados-jogo.drawio](estados-jogo.drawio) | ![](estados-jogo.drawio.svg) |
 | Sequência: Interagir com objeto, registrar memória e consultar o diário (UC-S002 / UC-S005) | [sequencia-registrar-memoria.puml](sequencia-registrar-memoria.puml) | ![](sequencia-registrar-memoria.svg) |
 | Sequência: Salvar e continuar jogo (UC-S012 / UC-S013) | [sequencia-salvar-continuar.puml](sequencia-salvar-continuar.puml) | ![](sequencia-salvar-continuar.svg) |
