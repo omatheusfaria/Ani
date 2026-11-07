@@ -1,0 +1,2 @@
+Coloque aqui os PNGs exportados do Sprite Fusion (personagens, itens, inimigos).
+Veja o README.md na pasta principal para saber como ligar um sprite ao jogo.

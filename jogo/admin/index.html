@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ani · Admin</title>
+  <style>
+    @font-face {
+      font-family: 'Pixelify Sans';
+      src: url('../assets/fonts/pixelify-sans-latin-400-normal.woff2') format('woff2');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'Pixelify Sans';
+      src: url('../assets/fonts/pixelify-sans-latin-700-normal.woff2') format('woff2');
+      font-weight: 700;
+    }
+
+    :root {
+      --ink: #05060c;
+      --panel: #0d0f1a;
+      --line: rgba(207, 230, 255, 0.16);
+      --ice: #cfe6ff;
+      --dim: #7d8fb0;
+      --accent: #8fb8ff;
+      --danger: #ff6b86;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      min-height: 100%;
+      background: radial-gradient(ellipse at 70% 0%, #141a33 0%, var(--ink) 60%);
+      color: var(--ice);
+      font-family: 'Pixelify Sans', monospace;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      padding: 48px 16px;
+    }
+
+    .wrap { width: min(760px, 100%); }
+
+    h1 {
+      font-size: 28px;
+      letter-spacing: 0.4em;
+      margin-bottom: 4px;
+    }
+
+    .sub {
+      color: var(--dim);
+      letter-spacing: 0.15em;
+      font-size: 13px;
+      margin-bottom: 32px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 2px solid var(--line);
+      padding: 24px;
+    }
+
+    /* Login */
+    #login { max-width: 360px; }
+    label { display: block; font-size: 13px; letter-spacing: 0.15em; color: var(--dim); margin: 14px 0 6px; }
+    input {
+      width: 100%;
+      font: inherit;
+      font-size: 17px;
+      padding: 10px 12px;
+      color: var(--ice);
+      background: var(--ink);
+      border: 2px solid var(--line);
+      outline: none;
+    }
+    input:focus { border-color: var(--accent); }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      color: var(--ink);
+      background: var(--ice);
+      border: 0;
+      padding: 10px 18px;
+      font-size: 15px;
+      letter-spacing: 0.15em;
+      transition: transform 0.12s ease, background 0.12s ease;
+    }
+    button:hover { background: #fff; transform: translateY(-1px); }
+    button:active { transform: translateY(1px); }
+    button.ghost { background: transparent; color: var(--dim); border: 2px solid var(--line); }
+    button.ghost:hover { color: var(--ice); border-color: var(--ice); }
+    #login button { width: 100%; margin-top: 20px; }
+
+    .error { color: var(--danger); font-size: 14px; margin-top: 12px; min-height: 1.2em; }
+    .shake { animation: shake 0.3s steps(3); }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 33% { transform: translateX(-6px); } 66% { transform: translateX(6px); } }
+
+    /* Painel */
+    #panel { display: none; }
+    .top { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+    .group { margin-bottom: 28px; }
+    .group h2 {
+      font-size: 13px;
+      letter-spacing: 0.3em;
+      color: var(--dim);
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+    .jumps { display: grid; gap: 8px; }
+    .jump {
+      display: grid;
+      grid-template-columns: 34px 1fr auto;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      background: var(--panel);
+      border: 2px solid var(--line);
+      color: var(--ice);
+      text-decoration: none;
+      transition: border-color 0.12s ease, transform 0.12s ease, background 0.12s ease;
+    }
+    .jump:hover { border-color: var(--accent); background: #121630; transform: translateX(4px); }
+    .num {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      background: var(--ice);
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .jump b { display: block; font-size: 17px; letter-spacing: 0.05em; }
+    .jump span { display: block; font-size: 13px; color: var(--dim); margin-top: 3px; }
+    .go { color: var(--accent); letter-spacing: 0.15em; font-size: 13px; }
+    .tools { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .note { color: var(--dim); font-size: 13px; margin-top: 10px; min-height: 1.2em; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>ANI</h1>
+    <div class="sub">PAINEL DE DESENVOLVIMENTO</div>
+
+    <form id="login" class="card" autocomplete="off">
+      <label for="user">USUÁRIO</label>
+      <input id="user" name="user" autocomplete="username" required>
+      <label for="pass">SENHA</label>
+      <input id="pass" name="pass" type="password" autocomplete="current-password" required>
+      <button type="submit">ENTRAR</button>
+      <div class="error" id="error"></div>
+    </form>
+
+    <div id="panel">
+      <div class="top">
+        <div class="sub" style="margin:0">ESCOLHA ONDE COMEÇAR</div>
+        <div class="tools">
+          <button class="ghost" id="clear">APAGAR SAVE</button>
+          <button class="ghost" id="logout">SAIR</button>
+        </div>
+      </div>
+      <div id="groups"></div>
+      <div class="note" id="note"></div>
+    </div>
+  </div>
+
+  <script>
+    // Hash SHA-256 de "usuário:senha". (Proteção só de fachada: o jogo roda inteiro no navegador.)
+    const HASH = '098094eba959788d3256f30c8413a8327ae6e9c3d50f5f8f272b26a1cb16e51e';
+    const KEY = 'ani:admin';
+
+    const PARTS = [
+      {
+        title: 'MENU',
+        items: [{ id: 'menu', name: 'Menu principal', desc: 'O olho abrindo, opções na íris' }],
+      },
+      {
+        title: 'CENA 1 · O QUARTO, 23:47',
+        items: [
+          { id: 'celular', name: 'Celular', desc: 'Começo: tela de bloqueio e notificação da Malu' },
+          { id: 'perfil', name: 'Perfil da Malu', desc: 'Já dentro do Pixgram, livre para rolar e curtir' },
+          { id: 'bateria', name: 'Bateria acabando', desc: 'Aviso de 1% e o celular apagando' },
+          { id: 'levantar', name: 'Levantando da cama', desc: 'Cutscene em primeira pessoa, no escuro' },
+          { id: 'escuro', name: 'Quarto no escuro', desc: 'Visão lateral, procurando o interruptor' },
+          { id: 'luz', name: 'Quarto com a luz acesa', desc: 'Procurando o carregador pelo quarto' },
+          { id: 'gaveta', name: 'Gaveta da escrivaninha', desc: 'Carregador, tirinha de fotos e o zoom' },
+          { id: 'capitulo', name: 'Capítulo 1', desc: 'A foto em tela cheia: "um ano antes"' },
+        ],
+      },
+      {
+        title: 'QUARTO · DETALHES',
+        items: [
+          { id: 'estante', name: 'Estante', desc: 'Primeira pessoa: passe o mouse nos livros' },
+          { id: 'criado', name: 'Criado-mudo', desc: 'Primeira pessoa: os raios do plasma seguem o mouse' },
+          { id: 'mochila', name: 'Mochila', desc: 'Primeira pessoa: o que tem dentro' },
+          { id: 'papeis', name: 'Papéis no chão', desc: 'Plano zenital: pegue os ingressos, o recibo e o bilhete' },
+          { id: 'travesseiro', name: 'Travesseiro', desc: 'Ela levanta o travesseiro da cama' },
+          { id: 'cortina', name: 'Cortina', desc: 'Fecha a cortina (E de novo abre)' },
+        ],
+      },
+    ];
+
+    const $ = (s) => document.querySelector(s);
+    const store = {
+      get: () => { try { return sessionStorage.getItem(KEY) === '1'; } catch { return false; } },
+      set: (v) => { try { v ? sessionStorage.setItem(KEY, '1') : sessionStorage.removeItem(KEY); } catch {} },
+    };
+
+    async function sha256(text) {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+      return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    function showPanel() {
+      $('#login').style.display = 'none';
+      $('#panel').style.display = 'block';
+      let n = 0;
+      $('#groups').innerHTML = PARTS.map((g) => `
+        <div class="group">
+          <h2>${g.title}</h2>
+          <div class="jumps">
+            ${g.items.map((it) => `
+              <a class="jump" href="../index.html?pular=${it.id}">
+                <div class="num">${++n}</div>
+                <div><b>${it.name}</b><span>${it.desc}</span></div>
+                <div class="go">IR ›</div>
+              </a>`).join('')}
+          </div>
+        </div>`).join('');
+    }
+
+    $('#login').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const user = $('#user').value.trim();
+      const pass = $('#pass').value;
+      let ok = false;
+      try {
+        ok = (await sha256(`${user}:${pass}`)) === HASH;
+      } catch {
+        $('#error').textContent = 'Abra pelo localhost (iniciar-servidor.bat).';
+        return;
+      }
+      if (ok) {
+        store.set(true);
+        showPanel();
+      } else {
+        $('#error').textContent = 'Usuário ou senha incorretos.';
+        const f = $('#login');
+        f.classList.remove('shake');
+        void f.offsetWidth;
+        f.classList.add('shake');
+      }
+    });
+
+    $('#logout').addEventListener('click', () => {
+      store.set(false);
+      location.reload();
+    });
+
+    $('#clear').addEventListener('click', () => {
+      try { localStorage.removeItem('ani:save'); } catch {}
+      $('#note').textContent = 'Save apagado: o CONTINUAR do menu volta a ficar bloqueado.';
+    });
+
+    if (store.get()) showPanel();
+    else $('#user').focus();
+  </script>
+</body>
+</html>
