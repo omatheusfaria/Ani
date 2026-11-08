@@ -35,8 +35,10 @@ function crease(ctx, w, h, x, color = 'rgba(0,0,0,0.12)') {
   ctx.fillRect(x + 1, 0, 1, h);
 }
 
+// Ingresso de um show de MARÇO (uns 8 meses atrás): papel amarelado, tinta
+// desbotada, dobrado e com marca de copo. Os canhotos estão inteiros: ninguém usou.
 function ticket(seat, seed) {
-  return paperCanvas(200, 80, ['#f2e6c8', '#e8dab8', '#f7eed6'], seed, (ctx, w, h, r) => {
+  return paperCanvas(200, 80, ['#eadbb4', '#dfcea4', '#f0e3c0', '#d8c69a'], seed, (ctx, w, h, r) => {
     // canhoto rosa com picote
     ctx.fillStyle = '#ff6b9a';
     ctx.fillRect(0, 0, 44, h);
@@ -55,8 +57,8 @@ function ticket(seat, seed) {
     drawText(ctx, 'TOUR 2026', 140, 13, { font: 'tiny', size: 8, color: '#7a3a5a' });
     ctx.fillStyle = '#2a1a2a';
     ctx.fillRect(54, 36, 138, 1);
-    drawText(ctx, 'SÁB · 07 NOV · 22H', 54, 41, { font: 'tiny', size: 8, color: '#2a1a2a' });
-    drawText(ctx, 'PISTA · R$ 120,00', 54, 52, { font: 'tiny', size: 8, color: '#2a1a2a' });
+    drawText(ctx, 'SÁB · 14 MAR · 22H', 54, 41, { font: 'tiny', size: 8, color: '#3a2a34' });
+    drawText(ctx, 'PISTA · R$ 120,00', 54, 52, { font: 'tiny', size: 8, color: '#3a2a34' });
     // código de barras
     for (let x = 150; x < 194; x++) if (r() < 0.55) {
       ctx.fillStyle = '#2a1a2a';
@@ -66,15 +68,30 @@ function ticket(seat, seed) {
     ctx.fillStyle = '#7a3a5a';
     for (const [x, y] of [[178, 6], [180, 7], [182, 6], [179, 8], [181, 8], [180, 9]]) ctx.fillRect(x, y, 2, 2);
     crease(ctx, w, h, 122);
+    crease(ctx, w, h, 86, 'rgba(0,0,0,0.08)');
+    // tempo: tinta descascando nas dobras, cantos encardidos e marca de copo
+    for (let i = 0; i < 140; i++) {
+      ctx.fillStyle = r() < 0.5 ? '#e4d4ac' : '#d6c398';
+      const x = r() < 0.5 ? 120 + Math.floor(r() * 5) : 84 + Math.floor(r() * 5);
+      ctx.fillRect(x, Math.floor(r() * h), 1, 1);
+    }
+    ctx.fillStyle = 'rgba(120, 90, 40, 0.18)';
+    for (const [cx, cy] of [[0, 0], [w, 0], [0, h], [w, h]]) for (let i = 0; i < 40; i++) ctx.fillRect(cx + (cx ? -1 : 1) * Math.floor(r() * 8), cy + (cy ? -1 : 1) * Math.floor(r() * 6), 1, 1);
+    ctx.strokeStyle = 'rgba(110, 70, 30, 0.22)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(96 + seed * 3, 30, 16, 0.3, Math.PI * 1.7);
+    ctx.stroke();
   });
 }
 
+// Recibo da cabine de fotos: outubro do ano passado (papel térmico já amarelando)
 function receipt() {
-  return paperCanvas(96, 190, ['#f4f2ee', '#e9e6e0', '#fbfaf7'], 91, (ctx, w, h) => {
+  return paperCanvas(96, 190, ['#efe8d6', '#e6ddc6', '#f4eedf'], 91, (ctx, w, h) => {
     // bordas serrilhadas
     ctx.clearRect(0, 0, w, 3);
     ctx.clearRect(0, h - 3, w, 3);
-    ctx.fillStyle = '#f4f2ee';
+    ctx.fillStyle = '#efe8d6';
     for (let x = 0; x < w; x += 4) {
       ctx.fillRect(x, 1, 2, 2);
       ctx.fillRect(x + 2, h - 3, 2, 2);
@@ -89,7 +106,7 @@ function receipt() {
     line('CABINE FOTO', { align: 'center' });
     line('SHOPPING NORTE', { align: 'center', color: faded });
     y += 4;
-    line('12/10/25   19:42', { color: faded });
+    line('12/10/2025  19:42', { color: faded });
     line('------------------', { color: faded });
     line('4 FOTOS');
     line('     R$ 15,00');
@@ -101,7 +118,7 @@ function receipt() {
     line('VOLTE SEMPRE', { align: 'center', color: faded });
     // tinta térmica apagando
     for (let i = 0; i < 260; i++) {
-      ctx.fillStyle = '#f4f2ee';
+      ctx.fillStyle = '#efe8d6';
       ctx.fillRect(Math.floor(Math.random() * w), 60 + Math.floor(Math.random() * 60), 1, 1);
     }
     ctx.fillStyle = 'rgba(0,0,0,0.08)';
@@ -174,11 +191,11 @@ function sheet(canvas, w, h, curl = 0.006) {
 export function makePapers() {
   const list = [
     { id: 'ingresso1', label: 'Ingresso', canvas: ticket('0412', 5), w: 0.2, h: 0.08, pos: [0.62, -0.62], rot: 0.45,
-      line: 'O show é sábado.' },
+      line: 'Show do Moth. Março. Já faz tanto tempo.' },
     { id: 'ingresso2', label: 'Outro ingresso', canvas: ticket('0413', 9), w: 0.2, h: 0.08, pos: [0.82, -0.78], rot: -0.3,
-      line: 'Dois. Eu comprei dois.' },
+      line: 'Dois. Eu comprei dois. Nenhum foi usado.' },
     { id: 'recibo', label: 'Recibo', canvas: receipt(), w: 0.075, h: 0.148, pos: [0.42, -0.5], rot: 1.2,
-      line: 'Guardei até o recibo.' },
+      line: 'Outubro do ano passado. Guardei até o recibo.' },
     { id: 'bilhete', label: 'Bilhete', canvas: note(), w: 0.13, h: 0.12, pos: [0.95, -0.48], rot: -0.8,
       line: 'A letra dela.' },
   ];

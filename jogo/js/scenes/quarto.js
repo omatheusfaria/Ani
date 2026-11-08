@@ -7,7 +7,9 @@ import { PhoneApp, W as SW, H as SH } from '../phone/app.js';
 import { POST_THOUGHTS } from '../phone/posts.js';
 import { makeHands } from '../phone/hands.js';
 import { AniSprite, AniTop } from '../chars/ani.js';
-import { setGlow } from './furniture.js';
+import { setGlow, squash } from './furniture.js';
+import { createCinema } from './cinema.js';
+import { PixelRenderer } from '../engine/renderer.js';
 
 // ===============================================================
 // CENA 1: o quarto, 23:47.
@@ -26,6 +28,13 @@ const SCREEN_W = 0.285;
 const SCREEN_H = 0.596;
 const FP_FOV = 50;
 const WALK_SPEED = 1.7;
+const DEPTH_SPEED = 0.75; // andar para frente/trás é um pouco mais lento (a câmera vê de lado)
+const Z_MIN = -1.6; // o mais fundo que ela vai (perto dos móveis do fundo)
+const Z_MAX = 0.0; // o mais perto da câmera (sem sair de baixo da caixa de diálogo)
+const RIM_GAIN = 0.16;
+const FILL_DARK = new THREE.Color('#5a6aa8');
+const FILL_LIT = new THREE.Color('#f0d9cf');
+const HAZE = new THREE.Color();
 
 function loadImage(src) {
   return new Promise((resolve, reject) => {
@@ -37,7 +46,7 @@ function loadImage(src) {
 }
 
 const HINT_PHONE = '<b>CLIQUE</b> TOCAR &nbsp; <b>RODA / ARRASTAR</b> ROLAR &nbsp; <b>2× CLIQUE</b> CURTIR &nbsp; <b>ESC</b> VOLTAR';
-const HINT_SIDE = '<b>A D</b> / <b>← →</b> ANDAR &nbsp; <b>E</b> INTERAGIR &nbsp; <b>ESC</b> PAUSA';
+const HINT_SIDE = '<b>W A S D</b> / <b>SETAS</b> ANDAR &nbsp; <b>E</b> INTERAGIR &nbsp; <b>ESC</b> PAUSA';
 const HINT_INSPECT = '<b>MOUSE</b> OLHAR &nbsp; <b>CLIQUE</b> EXAMINAR &nbsp; <b>E</b> / <b>ESC</b> VOLTAR';
 const HINT_ZEN = '<b>CLIQUE</b> PEGAR UM PAPEL &nbsp; <b>E</b> / <b>ESC</b> LEVANTAR';
 const HINT_PAPER = '<b>MOUSE</b> INCLINAR &nbsp; <b>CLIQUE</b> / <b>ESC</b> DEVOLVER';
@@ -63,7 +72,7 @@ const LINES = {
   cama: 'Nem embaixo do travesseiro.',
   mochila: 'Caderno, fone quebrado... e só.',
   criado: 'Só a luminária e o despertador.',
-  ingressos: 'Dois ingressos. ...O show é sábado.',
+  ingressos: 'Dois ingressos de março. Nunca usados.',
   roupas: 'Isso é muita roupa preta.',
   armario: 'Não tá no guarda-roupa.',
 };
@@ -76,6 +85,40 @@ const isAncestor = (a, o) => {
 
 // Gira suavemente um ângulo em direção a outro
 const dampAngle = (a, b, l, dt) => a + Math.atan2(Math.sin(b - a), Math.cos(b - a)) * (1 - Math.exp(-l * dt));
+
+// Controle: próximo item na direção (dx, dy) entre pontos de tela {x, y} (pixels, y para baixo).
+// Prefere o que está mais alinhado com a direção; -1 se não há nada para lá.
+function spatialPick(list, cur, dx, dy) {
+  const p = list[cur];
+  let best = -1, bs = Infinity;
+  list.forEach((q, i) => {
+    if (i === cur) return;
+    const vx = q.x - p.x, vy = q.y - p.y;
+    const along = vx * dx + vy * dy;
+    if (along <= 4) return;
+    const perp = Math.abs(vx * dy - vy * dx);
+    const s = along + perp * 2.2;
+    if (s < bs) {
+      bs = s;
+      best = i;
+    }
+  });
+  return best;
+}
+
+// item mais perto do centro da tela (para começar a seleção)
+function centerPick(list) {
+  const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+  let best = 0, bd = Infinity;
+  list.forEach((q, i) => {
+    const d = Math.hypot(q.x - cx, q.y - cy);
+    if (d < bd) {
+      bd = d;
+      best = i;
+    }
+  });
+  return best;
+}
 
 export class QuartoScene {
   constructor(game) {
@@ -128,6 +171,12 @@ export class QuartoScene {
 
     this.ani = new AniSprite();
     this.scene.add(this.ani.mesh, this.ani.shadow);
+    // iluminação cinematográfica: feixes de luar, recorte da janela, poeira
+    this.cinema = createCinema(this.room, this.ani);
+    this.scene.userData.lightPass = this.cinema.pass;
+    this.scene.add(this.cinema.motes);
+    this.room.cine.patch.visible = false;
+    this.eyeAdapt = 1; // o olho dela se acostumando com a luz (exposição)
     this.aniTop = new AniTop();
     this.scene.add(this.aniTop.mesh, this.aniTop.shadow);
   }
@@ -150,6 +199,14 @@ export class QuartoScene {
     );
     this.screen.position.z = 0.0185;
     phone.add(this.screen);
+    // A interface do app é nítida (padrão de app de verdade): a tela é desenhada de novo
+    // num passe em resolução cheia (camada 1). A tela pixelada só marca onde ele entra
+    // (e continua valendo para o brilho e a luz no quarto).
+    PixelRenderer.markHD(this.screen.material);
+    this.screenHD = new THREE.Mesh(this.screen.geometry, new THREE.MeshBasicMaterial({ map: this.app.texture, toneMapped: false }));
+    this.screenHD.position.copy(this.screen.position);
+    this.screenHD.layers.set(1);
+    phone.add(this.screenHD);
 
     const hands = makeHands();
     phone.add(hands.back, hands.thumb);
@@ -185,6 +242,7 @@ export class QuartoScene {
     this.batteryClock = 0;
     this.idleClock = 0;
     this.batteryStage = 0;
+    this.likedByAccident = null;
     this.searches = 0;
     this.busy = false;
     this.keys.clear();
@@ -198,6 +256,7 @@ export class QuartoScene {
     ui.pause(null);
     ui.chapter(null);
     ui.interact(null);
+    ui.setHintScope('quarto'); // as dicas de botões só aparecem aqui, como tutorial
 
     Object.assign(renderer.fx, { fade: 1, glitch: 0, vignette: 0.6, grain: 0.07, bloom: 1.0, aberration: 0.0018 });
     renderer.fx.tint.set(1, 1, 1);
@@ -289,6 +348,7 @@ export class QuartoScene {
     renderer.fx.tint.set(1, 1, 1);
     renderer.fx.shakeX = renderer.fx.shakeY = 0;
     ui.hint(null);
+    ui.setHintScope(null);
     ui.clearSay();
     ui.pause(null);
     ui.layout(null);
@@ -359,6 +419,19 @@ export class QuartoScene {
     this.game.ui.say(text, opts);
   }
 
+  // Fala em balão em cima da cabeça (conversa entre personagens).
+  // who = mesh do personagem (padrão: a Ani). Ex.: await this.speak('Oi!', { who: malu.mesh, id: 'malu' })
+  speak(text, { who = this.ani.mesh, id = 'ani', ...opts } = {}) {
+    return this.game.ui.bubbleWait(text, { id, ...opts, anchor: () => this.headScreen(who) });
+  }
+
+  // topo da cabeça de um personagem, em pixels da janela
+  headScreen(obj, lift = 0.04) {
+    const box = new THREE.Box3().setFromObject(obj);
+    const p = new THREE.Vector3((box.min.x + box.max.x) / 2, box.max.y + lift, (box.min.z + box.max.z) / 2);
+    return this.toScreen(p, this.camera);
+  }
+
   onAppEvent(name, data) {
     const { sfx } = this.game;
     switch (name) {
@@ -389,6 +462,12 @@ export class QuartoScene {
         sfx.back();
         break;
       case 'scroll-tick':
+        sfx.scrollTick();
+        break;
+      case 'focus': // controle trocou o item escolhido
+        sfx.hover();
+        break;
+      case 'focus-edge':
         sfx.scrollTick();
         break;
       case 'deep':
@@ -436,21 +515,47 @@ export class QuartoScene {
     }
   }
 
+  // Curtiu sem querer: a bateria (que já estava no fim) acaba ali mesmo.
+  // O celular trava na hora, então não dá tempo de descurtir.
   onLike(post) {
+    if (this.mode !== 'phone') return;
     const { sfx, ui, renderer } = this.game;
     sfx.like();
     sfx.impact();
     this.panic = 1;
-    this.buzz = 0.4;
+    this.buzz = 0.5;
     renderer.fx.glitch = 0.9;
-    let msg = 'NÃO! Eu curti?! Descurte, descurte!';
-    if (post.weeks >= 40) msg = `NÃO. NÃO NÃO NÃO. Curti uma foto de ${post.weeks} semanas atrás.`;
-    else if (post.weeks === 0) msg = 'NÃO! Ela postou AGORA. Ela vai ver na hora!';
-    ui.say(msg, { panic: true, hold: 3.2 });
-    ui.hint('<b>CLIQUE NO CORAÇÃO</b> PARA DESCURTIR. RÁPIDO.');
+    // trava a tela (todas as entradas do celular só funcionam no modo 'phone')
+    this.mode = 'dying';
+    this.batteryStage = 2;
+    this.app.locked = true;
+    this.app.cancelPointer();
+    this.app.hoverHit = null;
+    this.game.canvas.style.cursor = 'default';
+    ui.hint(null);
+    let msg = 'NÃO! Eu curti?! Descurte, descur—';
+    if (post.weeks >= 40) msg = `NÃO. Uma foto de ${post.weeks} semanas atrás. Descur—`;
+    else if (post.weeks === 0) msg = 'NÃO! Ela postou AGORA. Ela vai v—';
+    ui.say(msg, { panic: true, hold: 3 });
+    const tok = this.token;
+    const tw = this.tweens;
+    // a tela engasga, o dedo vai até o coração... e apaga um instante antes
+    tw.wait(0.45).then(() => {
+      if (tok !== this.token) return;
+      this.app.battery = 1;
+      renderer.fx.glitch = 1;
+      sfx.warn();
+    });
+    tw.wait(0.75).then(() => {
+      if (tok !== this.token) return;
+      this.press = 1;
+      sfx.tap();
+    });
+    tw.wait(0.82).then(() => tok === this.token && this.phoneDies(post));
   }
 
   onUnlike() {
+    if (this.mode !== 'phone') return;
     const { sfx, ui } = this.game;
     sfx.back();
     this.panic = Math.min(this.panic, 0.4);
@@ -482,7 +587,8 @@ export class QuartoScene {
     }
   }
 
-  async phoneDies() {
+  // likedPost: o post que ela curtiu sem querer (o celular morreu com a curtida lá)
+  async phoneDies(likedPost = null) {
     const { ui, sfx } = this.game;
     const tok = ++this.token;
     this.mode = 'dying';
@@ -490,6 +596,23 @@ export class QuartoScene {
     sfx.powerDown();
     ui.hint(null);
     this.tweens.to({ duration: 0.4, onUpdate: (k) => (this.screenLight.intensity = 0.35 * (1 - k)) });
+    if (likedPost) {
+      this.likedByAccident = likedPost;
+      await this.tweens.wait(1.6);
+      if (tok !== this.token) return;
+      this.panic = Math.max(this.panic, 0.7);
+      await ui.sayWait('Não... não, não, não.', { hold: 1.1, panic: true });
+      if (tok !== this.token) return;
+      await ui.sayWait('Ficou curtido.', { hold: 1.4 });
+      if (tok !== this.token) return;
+      const line = likedPost.weeks >= 40 ? 'Ela vai saber que eu tava fuçando o perfil dela.' : likedPost.weeks === 0 ? 'Ela vai ver agora. Agora.' : 'Ela vai ver. Ela vai saber que fui eu.';
+      await ui.sayWait(line, { hold: 1.8 });
+      if (tok !== this.token) return;
+      await ui.sayWait('Preciso carregar isso. AGORA.', { hold: 1.4 });
+      if (tok !== this.token) return;
+      this.standUp();
+      return;
+    }
     await this.tweens.wait(2.4);
     if (tok !== this.token) return;
     await ui.sayWait('Não. Agora não.', { hold: 1.2 });
@@ -574,7 +697,10 @@ export class QuartoScene {
     const { lane } = this.room;
     this.x = -0.85;
     this.vel = 0;
+    this.velZ = 0;
     this.camX = this.x + 0.4;
+    this.camZ = 0;
+    this.obstacles ??= this.findObstacles();
     this.ani.mesh.visible = true;
     this.ani.shadow.visible = true;
     this.ani.facing = 1;
@@ -617,11 +743,79 @@ export class QuartoScene {
     this.camera = this.fpCam;
   }
 
+  // Móveis no chão viram retângulos (vistos de cima) que ela contorna.
+  // Coisas chatas (tapete, papéis) e paredes ficam de fora.
+  findObstacles() {
+    const out = [];
+    const v = new THREE.Vector3();
+    this.room.group.updateMatrixWorld(true);
+    for (const c of this.room.group.children) {
+      const min = new THREE.Vector3(Infinity, Infinity, Infinity), max = min.clone().negate();
+      c.traverse((o) => {
+        if (!o.isMesh) return;
+        if (!o.geometry.boundingBox) o.geometry.computeBoundingBox();
+        const bb = o.geometry.boundingBox;
+        for (let i = 0; i < 8; i++) {
+          v.set(i & 1 ? bb.max.x : bb.min.x, i & 2 ? bb.max.y : bb.min.y, i & 4 ? bb.max.z : bb.min.z).applyMatrix4(o.matrixWorld);
+          min.min(v);
+          max.max(v);
+        }
+      });
+      if (!isFinite(min.x)) continue;
+      const tall = max.y - min.y, w = max.x - min.x, d = max.z - min.z;
+      if (min.y > 0.1 || tall < 0.12 || w > 2.9 || d > 2.9) continue;
+      // folga: meia largura dela de lado, quase nada na profundidade (é uma placa)
+      out.push({ x0: min.x - 0.2, x1: max.x + 0.2, z0: min.z - 0.07, z1: max.z + 0.07 });
+    }
+    return out;
+  }
+
+  blocked(x, z) {
+    return this.obstacles.some((o) => x > o.x0 && x < o.x1 && z > o.z0 && z < o.z1);
+  }
+
+  // Luz de contorno: soma as lâmpadas acesas, pesando as que estão do lado e atrás dela
+  updateRim() {
+    const P = new THREE.Vector3(this.x, 1.0, this.z);
+    const col = new THREE.Color(0, 0, 0), c = new THREE.Color();
+    let wSum = 0, xSum = 0;
+    const L = new THREE.Vector3();
+    this.room.group.traverse((o) => {
+      if (!o.isLight || !o.visible || o.intensity <= 0 || o.isHemisphereLight || o.isAmbientLight) return;
+      let w, lx;
+      if (o.isDirectionalLight) {
+        L.copy(o.position).sub(o.target.position).normalize();
+        w = o.intensity * 0.6 * (0.3 + Math.max(0, -L.z) * 0.5 + Math.abs(L.x) * 0.6);
+        lx = P.x + L.x * 3;
+      } else {
+        o.getWorldPosition(L);
+        const d2 = Math.max(0.3, L.distanceToSquared(P));
+        L.sub(P).normalize();
+        w = (o.intensity / d2) * (0.25 + Math.max(0, -L.z) * 0.6 + Math.abs(L.x) * 0.5);
+        lx = P.x + L.x;
+      }
+      col.add(c.copy(o.color).multiplyScalar(w));
+      xSum += lx * w;
+      wSum += w;
+    });
+    col.multiplyScalar(RIM_GAIN);
+    const m = Math.max(col.r, col.g, col.b);
+    if (m > 0.6) col.multiplyScalar(0.6 / m);
+    this.ani.setRim(col, wSum > 0 ? xSum / wSum : this.x + 1);
+    // preenchimento: quente com a luz acesa, azul da lua no escuro
+    const k = this.room.light;
+    this.ani.setFill(FILL_DARK.clone().lerp(FILL_LIT, k), lerp(0.62, 0.5, k));
+  }
+
   nearestInteractable() {
     let best = null;
-    let bestD = 0.34;
+    let bestD = 1;
+    const laneZ = this.room.lane.z;
     for (const it of this.room.interactables) {
-      const d = Math.abs(it.x - this.x);
+      // na frente da faixa dos móveis conta mais (ela tem que chegar perto);
+      // ir para o fundo, em direção ao móvel, não atrapalha
+      const dz = Math.max(0, this.z - (it.z ?? laneZ)) / 0.55 + Math.max(0, (it.z ?? laneZ) - 0.35 - this.z) / 0.55;
+      const d = Math.hypot((it.x - this.x) / 0.34, dz);
       if (d < bestD) {
         bestD = d;
         best = it;
@@ -752,7 +946,7 @@ export class QuartoScene {
     sfx.rustle();
     await tw.wait(0.16);
     if (tok !== this.token) return;
-    const hold = new THREE.Vector3(spot.x - 0.36, 1.33, spot.z - 0.04);
+    const hold = new THREE.Vector3(spot.x - 0.2, 0.9, spot.z + 0.05); // abraçado contra o peito
     const qHold = new THREE.Quaternion().setFromEuler(new THREE.Euler(0.5, 0.25, 0.3));
     this.pillowQ = qHold;
     const p0 = home.pos.clone();
@@ -895,7 +1089,10 @@ export class QuartoScene {
     probe.position.set(...cfg.pos);
     probe.lookAt(...cfg.look);
     sfx.whooshSoft();
-    if (id === 'mochila') sfx.zipper();
+    if (id === 'mochila') {
+      sfx.zipper();
+      this.room.backpack.nudgeClosed();
+    }
     let swapped = false;
     await this.flyCam({ pos: probe.position, quat: probe.quaternion, fov: cfg.fov }, 1.0, (k) => {
       const show = k < 0.42;
@@ -904,6 +1101,8 @@ export class QuartoScene {
         swapped = true;
         this.room.backpack.closed.visible = false;
         this.room.backpack.open.visible = true;
+        this.room.backpack.pop();
+        sfx.thump();
       }
     });
     if (tok !== this.token) return;
@@ -915,9 +1114,35 @@ export class QuartoScene {
       look: new THREE.Vector2(),
       targets: this.inspectTargets(id),
       hover: null,
+      hoverHold: 0,
       plasma: false,
       settle: 1,
+      sel: 0, // item escolhido pelo controle
+      plasmaPad: null, // controle guiando os raios do plasma
     };
+    {
+      // pontos de tela de cada item, com a câmera parada (não "foge" quando a câmera vira)
+      const ins = this.inspect;
+      const probeCam = cam.clone();
+      probeCam.position.set(...cfg.pos);
+      probeCam.quaternion.copy(ins.baseQuat);
+      probeCam.updateMatrixWorld(true);
+      const c = new THREE.Vector3();
+      ins.opts = ins.targets.map((tg) => {
+        new THREE.Box3().setFromObject(tg.obj).getCenter(c);
+        const [x, y] = this.toScreen(c, probeCam);
+        return { tg, x, y };
+      });
+      if (id === 'criado') {
+        const [x, y] = this.toScreen(this.room.plasma.sprite.position, probeCam);
+        ins.opts.push({ plasma: true, x, y });
+      }
+      for (const o of ins.opts) {
+        o.nx = (o.x / window.innerWidth) * 2 - 1;
+        o.ny = 1 - (o.y / window.innerHeight) * 2;
+      }
+      ins.sel = centerPick(ins.opts);
+    }
     ui.hint(HINT_INSPECT);
     ui.caption(cfg.title, 2.2);
     sfx.pop();
@@ -938,6 +1163,8 @@ export class QuartoScene {
       setGlow(tg.obj, 0);
       tg.obj.position.copy(tg.base);
       if (tg.rot) tg.obj.rotation.copy(tg.rot);
+      tg.obj.scale.set(1, 1, 1);
+      tg.obj.userData.reset?.();
     }
     sfx.whooshSoft();
     if (ins.id === 'mochila') sfx.zipper();
@@ -951,6 +1178,7 @@ export class QuartoScene {
         swapped = true;
         this.room.backpack.closed.visible = true;
         this.room.backpack.open.visible = false;
+        this.room.backpack.nudgeClosed();
       }
     });
     if (tok !== this.token) return;
@@ -967,24 +1195,80 @@ export class QuartoScene {
     const ins = this.inspect;
     const { mouse, ui } = this.game;
     const cam = this.closeCam;
-    // olhar com o mouse (com folga, como mexer a cabeça)
-    ins.look.x = damp(ins.look.x, mouse.x, 5, dt);
-    ins.look.y = damp(ins.look.y, mouse.y, 5, dt);
+    const pad = this.game.inputMode === 'pad';
+    const opt = ins.opts[ins.sel];
+    // olhar com o mouse (com folga, como mexer a cabeça).
+    // No controle: a cabeça vira de leve para o item escolhido, mais o analógico direito.
+    let lx = mouse.x, ly = mouse.y;
+    if (pad) {
+      const free = ins.plasmaPad ? 0 : 0.6;
+      lx = clamp(opt.nx * 0.55 + mouse.x * free, -1, 1);
+      ly = clamp(opt.ny * 0.55 + mouse.y * free, -1, 1);
+    }
+    ins.look.x = damp(ins.look.x, lx, pad ? 3.5 : 5, dt);
+    ins.look.y = damp(ins.look.y, ly, pad ? 3.5 : 5, dt);
     const off = new THREE.Quaternion().setFromEuler(new THREE.Euler(ins.look.y * ins.cfg.pan[1], -ins.look.x * ins.cfg.pan[0], 0, 'YXZ'));
     cam.quaternion.copy(ins.baseQuat).multiply(off);
     cam.position.set(...ins.cfg.pos);
     cam.position.y += Math.sin(t * 1.2) * 0.003; // respiração
     cam.updateMatrixWorld(true);
 
-    // o que está embaixo do mouse
-    this.raycaster.setFromCamera(mouse, cam);
     let hover = null;
-    const hits = this.raycaster.intersectObjects(ins.targets.map((tg) => tg.obj), true);
-    if (hits.length) hover = ins.targets.find((tg) => isAncestor(tg.obj, hits[0].object)) || null;
-
-    // luminária de plasma: os raios seguem o mouse
+    let hits = [];
     let plasmaHit = null;
-    if (ins.id === 'criado') {
+    if (pad) {
+      // controle: o item escolhido é o destacado
+      hover = opt.tg || null;
+    } else {
+      // o que está embaixo do mouse
+      this.raycaster.setFromCamera(mouse, cam);
+      // Testa o mouse com cada item na pose de repouso (antes de subir/girar/amassar).
+      // Assim o item não "foge" de baixo do mouse ao reagir — era isso que fazia tremer.
+      hits = this.pickAtRest(ins.targets);
+      if (hits.length) hover = ins.targets.find((tg) => isAncestor(tg.obj, hits[0].object)) || null;
+      // pequena tolerância ao sair (evita piscar na borda)
+      if (!hover && ins.hover && ins.hoverHold > 0) {
+        ins.hoverHold -= dt;
+        hover = ins.hover;
+      } else if (hover) ins.hoverHold = 0.08;
+    }
+
+    // luminária de plasma: os raios seguem o mouse (no controle: A e o analógico)
+    if (ins.id === 'criado' && pad) {
+      const pp = ins.plasmaPad;
+      if (pp) {
+        // o dedo segue o analógico dentro da esfera; solto, descansa na última direção
+        const m = Math.hypot(mouse.x, mouse.y);
+        let tx, ty;
+        if (m > 0.15) {
+          const k = Math.min(1, m) / m;
+          tx = mouse.x * k * 0.92;
+          ty = mouse.y * k * 0.92;
+          pp.lx = mouse.x / m;
+          pp.ly = mouse.y / m;
+        } else {
+          tx = pp.lx * 0.5;
+          ty = pp.ly * 0.5;
+        }
+        pp.x = damp(pp.x, tx, 14, dt);
+        pp.y = damp(pp.y, ty, 14, dt);
+        const S = this.room.plasma.sprite;
+        const uv = new THREE.Vector2(0.5 + pp.x * 0.4, 0.5 + pp.y * 0.4);
+        const R = S.scale.x * 0.4;
+        const world = S.position.clone()
+          .addScaledVector(new THREE.Vector3(1, 0, 0).applyQuaternion(cam.quaternion), pp.x * R)
+          .addScaledVector(new THREE.Vector3(0, 1, 0).applyQuaternion(cam.quaternion), pp.y * R);
+        this.room.setPlasmaTouch(uv, world);
+        plasmaHit = { pad: true };
+      } else this.room.setPlasmaTouch(null);
+      const touching = this.room.plasma.touching;
+      if (touching && !ins.plasma) {
+        this.game.sfx.zap();
+        this.thought('plasma', 'Os raios vêm atrás do dedo. Sempre achei isso bonito.', { hold: 2.2 });
+      }
+      if (touching && Math.random() < dt * 6) this.game.sfx.zap();
+      ins.plasma = touching;
+    } else if (ins.id === 'criado') {
       const ph = this.raycaster.intersectObject(this.room.plasma.sprite);
       if (ph.length && (!hits.length || ph[0].distance < hits[0].distance)) {
         plasmaHit = ph[0];
@@ -1013,15 +1297,25 @@ export class QuartoScene {
         tg.obj.position.x = tg.base.x + tg.h * 0.045 + tg.pick * 0.09;
         tg.obj.position.y = tg.base.y + tg.pick * 0.02 + j * 0.03;
         tg.obj.rotation.z = tg.pick * 0.12;
-      } else {
+      } else if (!tg.obj.userData.custom) {
         const lift = tg.kind === 'bag' ? 0.035 : 0.012;
         tg.obj.position.y = tg.base.y + tg.h * lift + j * 0.05;
         tg.obj.rotation.y = tg.rot.y + tg.h * Math.sin(t * 3) * 0.08 + j * 0.6;
+        if (tg.kind === 'bag') {
+          // inclina de leve na direção do mouse e amassa/estica ao clicar
+          tg.obj.rotation.z = tg.rot.z + tg.h * ins.look.x * -0.12;
+          squash(tg.obj, tg.jump);
+        }
       }
+      tg.obj.userData.tick?.(dt, t, tg.h);
       setGlow(tg.obj, tg.h * (0.32 + Math.sin(t * 5) * 0.06));
     }
 
-    if (plasmaHit) {
+    if (pad && ins.plasmaPad) {
+      ui.interact('Soltar', ...this.toScreen(this.room.plasma.sprite.position, cam, 0.16), 'ESC');
+    } else if (pad && opt.plasma) {
+      ui.interact('Luminária de plasma', ...this.toScreen(this.room.plasma.sprite.position, cam, 0.16), 'CLIQUE');
+    } else if (plasmaHit) {
       ui.interact('Luminária de plasma', ...this.toScreen(this.room.plasma.sprite.position, cam, 0.16), null);
       this.game.canvas.style.cursor = 'crosshair';
     } else if (hover) {
@@ -1033,6 +1327,25 @@ export class QuartoScene {
       ui.interact(null);
       this.game.canvas.style.cursor = 'default';
     }
+  }
+
+  pickAtRest(targets) {
+    const saved = targets.map(({ obj }) => [obj.position.clone(), obj.rotation.clone(), obj.scale.clone()]);
+    for (const tg of targets) {
+      tg.obj.position.copy(tg.base);
+      if (tg.rot) tg.obj.rotation.copy(tg.rot);
+      else if (tg.kind === 'book') tg.obj.rotation.z = 0;
+      tg.obj.scale.set(1, 1, 1);
+      tg.obj.updateMatrixWorld(true);
+    }
+    const hits = this.raycaster.intersectObjects(targets.map((tg) => tg.obj), true);
+    targets.forEach((tg, i) => {
+      tg.obj.position.copy(saved[i][0]);
+      tg.obj.rotation.copy(saved[i][1]);
+      tg.obj.scale.copy(saved[i][2]);
+      tg.obj.updateMatrixWorld(true);
+    });
+    return hits;
   }
 
   inspectClick() {
@@ -1047,8 +1360,11 @@ export class QuartoScene {
       sfx.page();
       if (tg.picked) ui.say(tg.line, { hold: 2.2 });
     } else {
-      if (tg.kind === 'bag') sfx.rustle();
+      const snd = tg.obj.userData.sound;
+      if (snd && sfx[snd]) sfx[snd]();
+      else if (tg.kind === 'bag') sfx.rustle();
       else sfx.tap();
+      tg.obj.userData.poke?.();
       sfx.pop();
       ui.say(tg.line, { hold: 2.2 });
     }
@@ -1120,6 +1436,13 @@ export class QuartoScene {
       center: c, base: cam.quaternion.clone(), pos: end.clone(), look: new THREE.Vector2(),
       hover: null, held: null, busy: false, read: new Set(), yaw: 0,
     };
+    // controle: pontos de tela de cada papel (a câmera fica parada no teto)
+    cam.updateMatrixWorld(true);
+    this.zen.opts = this.room.papers.map((p) => {
+      const [x, y] = this.toScreen(p.mesh.position, cam);
+      return { p, x, y };
+    });
+    this.zen.sel = centerPick(this.zen.opts);
     ui.hint(HINT_ZEN);
     this.thought('zen', 'As coisas do show... Tá tudo jogado aqui.', { hold: 1.8 });
   }
@@ -1255,10 +1578,16 @@ export class QuartoScene {
       return;
     }
 
-    this.raycaster.setFromCamera(mouse, cam);
     const papers = this.room.papers;
-    const hits = z.busy ? [] : this.raycaster.intersectObjects(papers.map((p) => p.mesh), false);
-    const hover = hits.length ? papers.find((p) => p.mesh === hits[0].object) : null;
+    let hover = null;
+    if (this.game.inputMode === 'pad') {
+      // controle: o papel escolhido é o destacado
+      hover = z.busy ? null : z.opts[z.sel].p;
+    } else {
+      this.raycaster.setFromCamera(mouse, cam);
+      const hits = z.busy ? [] : this.raycaster.intersectObjects(papers.map((p) => p.mesh), false);
+      hover = hits.length ? papers.find((p) => p.mesh === hits[0].object) : null;
+    }
     if (hover !== z.hover) {
       if (hover) this.game.sfx.hover();
       z.hover = hover;
@@ -1297,6 +1626,9 @@ export class QuartoScene {
     this.ani.reach(1.2);
     ui.interact(null);
     ui.hint(null);
+    // tira o brilho roxo de "dá para interagir": a gaveta abre com a madeira de verdade
+    if (this.glowObj) setGlow(this.glowObj, 0);
+    this.glowObj = null;
     const cam = this.drawerCam;
     const pos = new THREE.Vector3(1.35, 1.52, -1.02);
     const look = new THREE.Vector3(1.35, 0.62, -1.72);
@@ -1327,6 +1659,10 @@ export class QuartoScene {
     await tw.wait(0.5);
     await ui.sayWait('Achei.', { hold: 0.9 });
     if (tok !== this.token) return;
+    if (this.likedByAccident) {
+      await ui.sayWait('Tomara que ela ainda não tenha visto.', { hold: 1.4 });
+      if (tok !== this.token) return;
+    }
 
     // o olhar desce para a tirinha de fotos
     const strip = this.room.drawer.stripMesh;
@@ -1384,16 +1720,19 @@ export class QuartoScene {
     });
     if (tok !== this.token) return;
 
-    // 6. Começa o capítulo
+    // 6. O flash: a foto "acontece" de novo e o jogo vai para aquela noite
     this.mode = 'photo';
     this.timeScale = 1;
-    await tw.wait(1.4);
+    await tw.wait(1.1);
     if (tok !== this.token) return;
-    sfx.shimmer();
-    ui.chapter('CAPÍTULO 1', 'UM ANO ANTES');
-    await tw.wait(3.5);
+    sfx.flashCharge();
+    // a foto respira um pouco mais clara enquanto o flash carrega
+    await tw.to({ duration: 0.55, ease: ease.inQuad, onUpdate: (k) => (fx.flash = k * 0.16) });
     if (tok !== this.token) return;
-    ui.hint('<b>ESC</b> MENU PRINCIPAL');
+    sfx.flash();
+    fx.flash = 1;
+    fx.bars = 1;
+    this.game.goTo('parque', { flash: true });
   }
 
   // -------------------------------------------------------------
@@ -1451,7 +1790,9 @@ export class QuartoScene {
   }
 
   onWheel(e) {
-    if (this.mode === 'phone') this.app.wheel(e.deltaY);
+    if (this.mode !== 'phone') return;
+    if (e.pad) this.app.padLoose = true; // rolou com o analógico: a seleção acompanha
+    this.app.wheel(e.deltaY);
   }
 
   onKey(e) {
@@ -1470,6 +1811,7 @@ export class QuartoScene {
       return;
     }
     if (ui.pauseOpen) return;
+    if (e.pad && this.padKey(e)) return;
     if (this.mode === 'phone') {
       if (e.code === 'ArrowDown' || e.code === 'KeyS') this.app.wheel(70);
       if (e.code === 'ArrowUp' || e.code === 'KeyW') this.app.wheel(-70);
@@ -1481,6 +1823,122 @@ export class QuartoScene {
 
   onKeyUp(e) {
     this.keys.delete(e.code);
+  }
+
+  // Falas: clique em qualquer lugar acelera/pula, menos onde o clique já tem uso
+  dialogClick() {
+    return !['phone', 'inspect', 'zen'].includes(this.mode);
+  }
+
+  // Enter/Espaço/A aceleram falas em cena ou durante uma interação (andando livre, E interage)
+  dialogKey() {
+    if (['phone', 'inspect', 'zen'].includes(this.mode)) return false;
+    return this.mode !== 'side' || this.busy;
+  }
+
+  // Controle (ver engine/gamepad.js): como o analógico funciona em cada parte da cena.
+  // Nas telas de escolher não tem cursor: o direcional/analógico troca o item, como no menu.
+  padMode() {
+    switch (this.mode) {
+      case 'side':
+        return 'walk';
+      case 'phone':
+        return this.raise >= 0.8 && !this.app.locked ? 'select' : 'look';
+      case 'inspect':
+        return this.inspect?.plasmaPad ? 'look' : 'look-rs';
+      case 'zen':
+        return this.zen?.held ? 'look' : 'look-rs';
+      case 'dying':
+      case 'standup':
+        return 'look';
+      default:
+        return null;
+    }
+  }
+
+  // setas e Enter vindos do controle (e.pad): trocar e usar o item escolhido
+  padKey(e) {
+    const dir = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0] }[e.code];
+    const ok = e.code === 'Enter' && !e.repeat;
+    if (this.mode === 'phone') {
+      if (dir) this.app.padNav(dir[0], dir[1]);
+      else if (ok) this.app.padPress();
+      return !!dir || ok;
+    }
+    if (this.mode === 'inspect' && this.inspect) {
+      const ins = this.inspect;
+      if (ins.plasmaPad) return !!dir; // guiando os raios: as setas não trocam de item
+      if (dir) {
+        const i = spatialPick(ins.opts, ins.sel, dir[0], dir[1]);
+        if (i >= 0) {
+          ins.sel = i;
+          if (ins.opts[i].plasma) this.game.sfx.hover(); // os outros já tocam ao destacar
+        } else this.game.sfx.scrollTick(); // não tem nada para lá
+        return true;
+      }
+      if (ok) {
+        if (ins.opts[ins.sel].plasma) this.plasmaGrab(true);
+        else this.inspectClick();
+        return true;
+      }
+    }
+    if (this.mode === 'zen' && this.zen && !this.zen.held) {
+      const z = this.zen;
+      if (dir) {
+        const i = spatialPick(z.opts, z.sel, dir[0], dir[1]);
+        if (i >= 0) z.sel = i;
+        else this.game.sfx.scrollTick();
+        return true;
+      }
+      if (ok && !z.busy) {
+        this.pickPaper(z.opts[z.sel].p);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // plasma no controle: A pega (os raios seguem o analógico), B ou A solta
+  plasmaGrab(on) {
+    const ins = this.inspect;
+    if (!ins) return;
+    const { sfx } = this.game;
+    if (on) {
+      ins.plasmaPad = { x: 0.35, y: 0.25, lx: 0.8, ly: 0.6 };
+      this.game.mouse.set(0, 0);
+      sfx.pop();
+      sfx.zap();
+    } else {
+      ins.plasmaPad = null;
+      this.room.setPlasmaTouch(null);
+      sfx.back();
+    }
+  }
+
+  onPad(btn) {
+    if (this.game.ui.pauseOpen) return false;
+    // guiando o plasma: A ou B soltam
+    if ((btn === 'A' || btn === 'B') && this.mode === 'inspect' && this.inspect?.plasmaPad) {
+      this.plasmaGrab(false);
+      return true;
+    }
+    if (btn === 'B') {
+      // B volta: no app, nas vistas de perto e nos papéis
+      if (this.mode === 'phone') {
+        this.app.back();
+        return true;
+      }
+      if (this.mode === 'inspect' || this.mode === 'zen') {
+        this.onKey({ code: 'KeyE', repeat: false });
+        return true;
+      }
+    }
+    // A com o papel na mão devolve (o analógico está inclinando o papel)
+    if (btn === 'A' && this.mode === 'zen' && this.zen?.held) {
+      this.dropPaper();
+      return true;
+    }
+    return false;
   }
 
   openPause() {
@@ -1504,6 +1962,34 @@ export class QuartoScene {
 
   // -------------------------------------------------------------
   // Atualização por quadro
+  // Luz de cinema: gradação de cor por estado e o olho se adaptando.
+  // Escuro: só luar, sombras índigo, prata-azulado nas luzes, feixes fortes.
+  // Aceso: âmbar nas luzes, sombras violeta quentes, névoa dourada.
+  updateCinema(dt, t) {
+    const fx = this.game.renderer.fx;
+    const k = this.room.light * (this.room.flicker ?? 1);
+    this.cinema.update(dt, t, { rows: this.game.renderer.h });
+    // olho: ao acender estoura e assenta; ao apagar escurece tudo e vai abrindo
+    const L = 0.14 + 0.86 * k;
+    this.eyeAdapt += (L - this.eyeAdapt) * Math.min(1, dt * (L > this.eyeAdapt ? 1.5 : 0.55));
+    fx.exposure = clamp(Math.pow(L / this.eyeAdapt, 0.65), 0.42, 2.3) * lerp(1.0, 1.15, k);
+    // sombras: índigo no escuro, verde-azulado quente com a luz (como filme)
+    fx.lift.setRGB(lerp(0.003, 0.006, k), lerp(0.005, 0.011, k), lerp(0.016, 0.014, k));
+    // luzes: prata-azulado no escuro, âmbar com a luz
+    fx.gain.setRGB(lerp(0.92, 1.12, k), lerp(0.98, 1.02, k), lerp(1.1, 0.8, k));
+    fx.saturation = lerp(0.85, 0.98, k);
+    fx.contrast = lerp(1.06, 1.1, k);
+    fx.glow = lerp(0.6, 0.4, k);
+    fx.glowThreshold = lerp(0.5, 1.3, k);
+    HAZE.setRGB(lerp(0.0012, 0.0062, k), lerp(0.0018, 0.0042, k), lerp(0.0045, 0.0022, k));
+    this.cinema.haze = HAZE;
+    // em primeira pessoa o feixe passa colado na câmera: bem mais sutil
+    this.fpVolK = damp(this.fpVolK ?? 1, this.camera === this.fpCam ? 0.3 : 1, 3, dt);
+    this.cinema.uniforms.uVol.value = lerp(0.78, 0.16, k) * this.fpVolK;
+    this.cinema.uniforms.uCookie.value = lerp(1.0, 0.18, k);
+    this.cinema.uniforms.uLampVol.value = 0.32; // cone quente embaixo do lustre (no ar)
+  }
+
   // -------------------------------------------------------------
 
   update(dt, t) {
@@ -1513,8 +1999,13 @@ export class QuartoScene {
     const { renderer, mouse, sfx, ui } = this.game;
     const fx = renderer.fx;
     const phoneModes = this.mode === 'phone' || this.mode === 'dying' || this.mode === 'standup';
+    this.updateCinema(dt, t);
 
+    // passe nítido da tela do celular só em primeira pessoa com o celular na mão
+    this.scene.userData.hd = this.hdState || (this.hdState = { layer: 1, active: false });
+    this.hdState.active = phoneModes && this.camera === this.fpCam && this.phoneRig.visible;
     if (phoneModes) {
+      this.app.padOn = this.mode === 'phone' && this.game.inputMode === 'pad';
       this.app.update(dt);
       if (this.mode === 'phone') this.updateBattery(dt);
 
@@ -1581,7 +2072,18 @@ export class QuartoScene {
       const { lane } = this.room;
       const left = this.keys.has('KeyA') || this.keys.has('ArrowLeft');
       const right = this.keys.has('KeyD') || this.keys.has('ArrowRight');
-      const dir = (right ? 1 : 0) - (left ? 1 : 0);
+      const fwd = this.keys.has('KeyW') || this.keys.has('ArrowUp');
+      const back = this.keys.has('KeyS') || this.keys.has('ArrowDown');
+      let dir = (right ? 1 : 0) - (left ? 1 : 0);
+      let dirZ = (back ? 1 : 0) - (fwd ? 1 : 0); // W = para o fundo, S = para a câmera
+      if (!dir && !dirZ) {
+        // analógico do controle: inclinar pouco = passo lento
+        const st = this.game.pad?.move();
+        if (st) {
+          dir = st.x;
+          dirZ = st.y;
+        }
+      }
       let animSpeed;
       if (this.script) {
         // andando sozinha (cutscene curtinha, ex.: ir até a cama)
@@ -1591,15 +2093,23 @@ export class QuartoScene {
         this.z = this.script.z;
         this.vel = 0;
       } else {
-        this.vel = damp(this.vel, this.busy ? 0 : dir * WALK_SPEED, 10, dt);
+        // na diagonal não anda mais rápido
+        const n = Math.hypot(dir, dirZ * DEPTH_SPEED) > 1 ? 1 / Math.hypot(dir, dirZ * DEPTH_SPEED) : 1;
+        this.vel = damp(this.vel, this.busy ? 0 : dir * WALK_SPEED * n, 10, dt);
+        this.velZ = damp(this.velZ, this.busy ? 0 : dirZ * WALK_SPEED * DEPTH_SPEED * n, 10, dt);
         if (Math.abs(this.vel) < 0.02 && !dir) this.vel = 0;
-        this.x += this.vel * dt;
-        if (this.x < lane.minX || this.x > lane.maxX) {
-          this.x = clamp(this.x, lane.minX, lane.maxX);
-          this.vel = 0;
-        }
-        this.z = lane.z;
-        animSpeed = this.vel;
+        if (Math.abs(this.velZ) < 0.02 && !dirZ) this.velZ = 0;
+        // anda em x e em z separado: encostando num móvel ela desliza pela lateral
+        // (se uma cena a deixou dentro de um móvel, ela pode sair andando)
+        const stuck = this.blocked(this.x, this.z);
+        const nx = clamp(this.x + this.vel * dt, lane.minX, lane.maxX);
+        if (nx === this.x + this.vel * dt && (stuck || !this.blocked(nx, this.z))) this.x = nx;
+        else this.vel = 0;
+        const nz = clamp(this.z + this.velZ * dt, Z_MIN, Z_MAX);
+        if (nz === this.z + this.velZ * dt && (stuck || !this.blocked(this.x, nz))) this.z = nz;
+        else this.velZ = 0;
+        const sp = Math.hypot(this.vel, this.velZ);
+        animSpeed = sp > 0.05 ? sp * (Math.abs(this.vel) > 0.05 ? Math.sign(this.vel) : this.ani.facing) : 0;
       }
       this.ani.mesh.position.set(this.x, 0, this.z);
       if (this.ani.update(dt, this.ani.held != null ? 0 : animSpeed)) sfx.step();
@@ -1613,16 +2123,18 @@ export class QuartoScene {
         const wob = ph.t > 0.5 && ph.t < 0.9 ? Math.sin(ph.t * 34) * 0.06 : 0;
         P.quaternion.copy(this.pillowQ).multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(0, 0, wob)));
       }
-      // no escuro ela é quase só uma silhueta
-      this.ani.material.color.setScalar(lerp(0.32, 1, this.room.light));
+      // iluminada pelas luzes do quarto (no escuro vira quase silhueta sozinha)
+      this.updateRim();
       fx.vignette = lerp(0.85, 0.55, this.room.light);
 
       // câmera lateral acompanha com um pouco de folga à frente
       // (a câmera fica do lado de fora da parede da frente, como num diorama)
       const target = clamp(this.x + this.ani.facing * 0.45, -1.15, 1.15);
       this.camX = damp(this.camX, target, 3, dt);
-      this.sideCam.position.set(this.camX, 1.5 + Math.sin(t * 0.6) * 0.008, 3.35);
-      this.sideCam.lookAt(this.camX, 0.98, -1.2);
+      // recua um pouco quando ela vem para a frente (o tamanho dela muda menos e os pés não somem)
+      this.camZ = damp(this.camZ, (this.z - lane.z) * 0.45, 2.5, dt);
+      this.sideCam.position.set(this.camX, 1.5 + Math.sin(t * 0.6) * 0.008, 3.35 + this.camZ);
+      this.sideCam.lookAt(this.camX, 0.98 - this.camZ * 0.15, -1.2 + this.camZ);
 
       // balão de interação + brilho pulsando no objeto mais perto
       const it = this.busy ? null : this.nearestInteractable();

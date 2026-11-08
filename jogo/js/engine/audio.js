@@ -39,14 +39,21 @@ export class Sfx {
     return g;
   }
 
-  tone(freq, { type = 'square', dur = 0.06, vol = 0.06, slide = 0, delay = 0, attack = 0.004 } = {}) {
+  tone(freq, { type = 'square', dur = 0.06, vol = 0.06, slide = 0, delay = 0, attack = 0.004, pan = 0 } = {}) {
     if (!this.ctx) return;
     const t = this.ctx.currentTime + delay;
     const o = this.ctx.createOscillator();
     o.type = type;
     o.frequency.setValueAtTime(freq, t);
     if (slide) o.frequency.exponentialRampToValueAtTime(Math.max(20, freq + slide), t + dur);
-    this._env(o, t, attack, vol, dur).connect(this.master);
+    let out = this._env(o, t, attack, vol, dur);
+    if (pan && this.ctx.createStereoPanner) {
+      const p = this.ctx.createStereoPanner();
+      p.pan.value = pan;
+      out.connect(p);
+      out = p;
+    }
+    out.connect(this.master);
     o.start(t);
     o.stop(t + attack + dur + 0.05);
   }
@@ -150,12 +157,70 @@ export class Sfx {
     for (let i = 0; i < 14; i++) this.noise({ dur: 0.025, vol: 0.05, from: 3500, to: 2500, q: 3, delay: i * 0.035 });
   }
   pop() { this.tone(660, { type: 'sine', dur: 0.06, vol: 0.05, slide: 420 }); }
+  // chaveiro: argola e correntinha tilintando
+  jingle() {
+    for (let i = 0; i < 7; i++) {
+      const f = 3200 + Math.random() * 2600;
+      this.tone(f, { type: 'triangle', dur: 0.05 + Math.random() * 0.06, vol: 0.022, delay: i * 0.045 + Math.random() * 0.03 });
+    }
+    this.noise({ dur: 0.12, vol: 0.02, from: 7000, to: 5000, q: 6 });
+  }
+  // zíper curtinho (estojo)
+  zipShort() {
+    for (let i = 0; i < 6; i++) this.noise({ dur: 0.02, vol: 0.045, from: 4200, to: 3000, q: 3, delay: i * 0.028 });
+    this.tone(1900, { type: 'sine', dur: 0.03, vol: 0.02, delay: 0.17 });
+  }
+  // fone: plástico batendo + musiquinha saindo só de um lado (o esquerdo)
+  earbud() {
+    this.tone(2100, { type: 'sine', dur: 0.015, vol: 0.04 });
+    [784, 988, 1175, 988].forEach((f, i) => this.tone(f, { type: 'square', dur: 0.07, vol: 0.012, delay: 0.12 + i * 0.09, pan: -0.95 }));
+  }
   whooshSoft() { this.noise({ dur: 0.5, vol: 0.05, from: 300, to: 1800, q: 0.7, attack: 0.12 }); }
   zap() {
     this.noise({ dur: 0.08, vol: 0.03, from: 6000, to: 3000, q: 4 });
     this.tone(180 + Math.random() * 80, { type: 'sawtooth', dur: 0.06, vol: 0.01 });
   }
   thump() { this.tone(60, { type: 'sine', dur: 0.2, vol: 0.2, slide: -20 }); }
+  // --- Parque ---
+  // flash da cabine: carga subindo, obturador e o estouro da lâmpada
+  flashCharge() { this.tone(700, { type: 'sine', dur: 0.55, vol: 0.018, slide: 3400, attack: 0.45 }); }
+  flash() {
+    this.tone(1900, { type: 'square', dur: 0.012, vol: 0.06 });
+    this.noise({ dur: 0.05, vol: 0.14, from: 7000, to: 2500, q: 1.2 });
+    this.noise({ dur: 1.1, vol: 0.07, from: 9000, to: 500, q: 0.4, delay: 0.02, attack: 0.005 });
+    this.tone(3600, { type: 'sine', dur: 0.9, vol: 0.018, slide: -3000, delay: 0.03 });
+    this.tone(70, { type: 'sine', dur: 0.4, vol: 0.18, slide: -30 });
+  }
+  // motorzinho da cabine empurrando a tirinha
+  printer() {
+    this.tone(110, { type: 'sawtooth', dur: 2.3, vol: 0.012, attack: 0.1 });
+    for (let i = 0; i < 14; i++) this.noise({ dur: 0.06, vol: 0.04, from: 1800, to: 900, q: 4, delay: i * 0.17 });
+  }
+  balloonPop(v = 1) {
+    this.noise({ dur: 0.09, vol: 0.22 * v, from: 3500, to: 300, q: 0.6 });
+    this.tone(160, { type: 'sine', dur: 0.07, vol: 0.08 * v, slide: -70 });
+  }
+  // parque: moeda no balcão, mordida, dardo, bola, lata, água
+  coin() {
+    this.tone(1800, { type: 'square', dur: 0.05, vol: 0.03 });
+    this.tone(2700, { type: 'square', dur: 0.12, vol: 0.025, delay: 0.05 });
+  }
+  munch() {
+    this.noise({ dur: 0.08, vol: 0.05, from: 900, to: 400, q: 1.2 });
+    this.noise({ dur: 0.07, vol: 0.04, from: 700, to: 300, q: 1.2, delay: 0.12 });
+  }
+  dart() { this.noise({ dur: 0.18, vol: 0.05, from: 2200, to: 600, q: 2, attack: 0.02 }); }
+  thunk() { this.tone(180, { type: 'triangle', dur: 0.08, vol: 0.08, slide: -60 }); this.noise({ dur: 0.05, vol: 0.04, from: 1200, to: 500 }); }
+  throwBall() { this.noise({ dur: 0.25, vol: 0.05, from: 500, to: 1600, q: 0.8, attack: 0.05 }); }
+  can(v = 1) {
+    this.tone(900 + Math.random() * 500, { type: 'square', dur: 0.06, vol: 0.035 * v, slide: -300 });
+    this.noise({ dur: 0.12, vol: 0.05 * v, from: 3000, to: 1200, q: 3 });
+  }
+  splash(v = 1) { this.noise({ dur: 0.35, vol: 0.06 * v, from: 2400, to: 400, q: 0.7, attack: 0.01 }); }
+  reel() { this.tone(1200, { type: 'square', dur: 0.015, vol: 0.02 }); }
+  win() {
+    [0, 4, 7, 12].forEach((n, i) => this.tone(523 * Math.pow(2, n / 12), { type: 'square', dur: 0.12, vol: 0.04, delay: i * 0.09 }));
+  }
   shimmer() {
     [523, 659, 784, 1046].forEach((f, i) => this.tone(f, { type: 'sine', dur: 1.4, vol: 0.025, delay: i * 0.18, attack: 0.3 }));
   }
@@ -215,6 +280,67 @@ export class Sfx {
       noise(2600, 0.6, 0.006, 'bandpass'); // chiado leve
       osc(50, 'sine', 0.012); // zumbido elétrico
       osc(73.4, 'sine', 0.02);
+    }
+    if (kind === 'parque') {
+      noise(520, 0.5, 0.05, 'bandpass'); // gente conversando
+      const chatter = noise(1300, 0.9, 0.012, 'bandpass');
+      const lfo = ctx.createOscillator();
+      lfo.frequency.value = 0.23;
+      const lg = ctx.createGain();
+      lg.gain.value = 0.009;
+      lfo.connect(lg).connect(chatter.gain);
+      lfo.start();
+      nodes.push(lfo);
+      noise(160, 0.5, 0.03); // gerador e o ronco da cidade
+      // valsa do carrossel ao longe (realejo), abafada
+      const lp = ctx.createBiquadFilter();
+      lp.type = 'lowpass';
+      lp.frequency.value = 1500;
+      const mg = ctx.createGain();
+      mg.gain.value = 0.55;
+      lp.connect(mg).connect(out);
+      const midi = (m) => 440 * Math.pow(2, (m - 69) / 12);
+      const note = (m, t0, dur, vol, type = 'triangle', detune = 0) => {
+        const o = ctx.createOscillator();
+        o.type = type;
+        o.frequency.value = midi(m);
+        o.detune.value = detune;
+        const g = ctx.createGain();
+        g.gain.setValueAtTime(0.0001, t0);
+        g.gain.exponentialRampToValueAtTime(vol, t0 + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+        o.connect(g).connect(lp);
+        o.start(t0);
+        o.stop(t0 + dur + 0.05);
+      };
+      const MEL = [[[76, 2], [79, 1]], [[84, 2], [83, 1]], [[81, 2], [79, 1]], [[74, 3]], [[74, 2], [77, 1]], [[83, 2], [81, 1]], [[79, 2], [76, 1]], [[72, 3]],
+        [[77, 2], [81, 1]], [[84, 2], [81, 1]], [[79, 2], [76, 1]], [[72, 1], [76, 1], [79, 1]], [[81, 2], [79, 1]], [[77, 1], [76, 1], [74, 1]], [[72, 3]], [[0, 3]]];
+      const CH = { C: [48, [60, 64, 67]], G: [43, [59, 62, 65]], F: [41, [60, 65, 69]] };
+      const PROG = 'CCGGGGCCFFCCGGCC';
+      const beat = 0.4;
+      let bar = 0, next = ctx.currentTime + 0.3;
+      const tick = () => {
+        while (next < ctx.currentTime + 0.6) {
+          const [root, chord] = CH[PROG[bar % 16]];
+          note(root, next, beat * 0.9, 0.05, 'triangle');
+          for (let b = 1; b < 3; b++) chord.forEach((m) => note(m, next + b * beat, beat * 0.5, 0.012, 'square'));
+          let tt = next;
+          for (const [m, beats] of MEL[bar % 16]) {
+            if (m) {
+              note(m, tt, beats * beat * 0.95, 0.03, 'triangle');
+              note(m, tt, beats * beat * 0.95, 0.012, 'sine', 7); // segundo tubo levemente desafinado
+            }
+            tt += beats * beat;
+          }
+          // sininho de alguma barraca de vez em quando
+          if (Math.random() < 0.18) [1568, 2093, 2637].forEach((f, i) => this.tone(f, { type: 'triangle', dur: 0.25, vol: 0.006, delay: next - ctx.currentTime + 0.5 + i * 0.09, pan: Math.random() * 1.6 - 0.8 }));
+          next += beat * 3;
+          bar++;
+        }
+      };
+      tick();
+      const id = setInterval(tick, 120);
+      nodes.push({ stop: () => clearInterval(id) });
     }
     this.ambientNodes = { out, nodes };
   }

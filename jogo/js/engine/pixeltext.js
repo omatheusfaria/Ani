@@ -14,6 +14,7 @@ export async function loadFonts() {
         document.fonts.load(`400 10px ${FONT}`),
         document.fonts.load(`700 10px ${FONT}`),
         document.fonts.load(`400 8px ${FONTS.tiny}`),
+        document.fonts.load(`400 20px "Patrick Hand"`),
       ]),
       new Promise((r) => setTimeout(r, 3000)),
     ]);

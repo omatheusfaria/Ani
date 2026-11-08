@@ -873,8 +873,8 @@ export function buildRoom({ posts, strip }) {
 
   // --- Mochila (no chão, encostada na cama) ---
   const bag = buildBackpack();
-  bag.closed.position.set(-0.62, 0.19, -1.02);
-  bag.closed.rotation.set(-0.12, 0.4, 0);
+  bag.closed.position.set(-0.62, 0, -1.02);
+  bag.closed.rotation.set(-0.1, 0.4, 0);
   bag.open.position.set(-0.62, 0, -1.02);
   bag.open.rotation.set(-0.08, 0.4, 0);
   group.add(bag.closed, bag.open);
@@ -951,7 +951,8 @@ export function buildRoom({ posts, strip }) {
   const hemi = new THREE.HemisphereLight('#2c2552', '#07060c', 0.08);
   group.add(hemi);
   const moon = new THREE.DirectionalLight('#7f9cff', 0.75);
-  moon.position.set(1.4, 3.4, -4.6);
+  // lua baixa e de lado: os feixes atravessam o quarto na diagonal (cinema)
+  moon.position.set(4.0, 2.82, -3.79);
   moon.target.position.set(0.6, 0, 0.3);
   moon.castShadow = true;
   moon.shadow.mapSize.set(1024, 1024);
@@ -982,8 +983,27 @@ export function buildRoom({ posts, strip }) {
   let flicker = 1;
   let plasmaTouch = 0;
 
+  // dados para a iluminação cinematográfica (cinema.js)
+  const cineOpen = new THREE.Vector2();
+  const cine = {
+    win: new THREE.Vector4(WX - 0.6, WX + 0.6, WY - 0.5, WY + 0.5),
+    winZ: -2.46,
+    mull: new THREE.Vector2(WX, WY + 0.12),
+    lamp: LAMP.clone().add(new THREE.Vector3(0, -0.02, 0)),
+    moon,
+    ceiling,
+    beamGain: 3.2,
+    patch,
+    // faixa da janela que as cortinas deixam aberta
+    get open() {
+      const [L, R] = curtains;
+      return cineOpen.set(L.anchorX + lerpN(L.openW, L.closedW, L.k), R.anchorX - lerpN(R.openW, R.closedW, R.k));
+    },
+  };
+
   return {
     group,
+    cine,
     lane: { z: -0.72, minX: -2.45, maxX: 2.72 },
     interactables,
     bed,
@@ -1006,6 +1026,9 @@ export function buildRoom({ posts, strip }) {
     sticker,
     get light() {
       return light;
+    },
+    get flicker() {
+      return flicker;
     },
     setLight(k, f = 1) {
       light = k;
@@ -1041,6 +1064,7 @@ export function buildRoom({ posts, strip }) {
       plasmaLight.position.lerp(plasmaTarget, Math.min(1, dt * 10));
       ledRing.material.color.setRGB(0.77, 0.42, 1).multiplyScalar(light > 0.5 ? 1.4 + plasmaTouch : 0.25);
       plasma.update(dt, light > 0.5);
+      bag.update(t, dt);
       sticker.visible = light < 0.5;
       toggle.position.y = SWITCH.y + (light > 0.5 ? -0.012 : 0.012);
       for (const bulbM of bulbs) {
@@ -1056,7 +1080,9 @@ export function buildRoom({ posts, strip }) {
           r.position.x = c.anchorX + c.dir * (j / 6) * w;
         });
       });
-      moon.intensity = 0.75 * (1 - 0.82 * curtainK);
+      // nuvens passando na frente da lua: o luar respira devagar
+      const cloud = 0.8 + 0.2 * (0.5 + 0.5 * Math.sin(t * 0.13) * Math.sin(t * 0.071 + 1.3));
+      moon.intensity = 0.75 * (1 - 0.82 * curtainK) * cloud;
       patch.material.opacity = 0.32 * (1 - 0.92 * curtainK);
     },
   };

@@ -21,7 +21,7 @@ Opções: Iniciar, Continuar, Configurações (som, tamanho dos pixels, tela che
    (clique duplo → pânico), perfil vazio da Ani.
 2. **Bateria acaba:** depois das primeiras interações e das falas, aparece o aviso de 1% e o celular apaga.
 3. **Levantando da cama:** cutscene em primeira pessoa, no escuro.
-4. **Visão lateral (estilo Until Then):** a Ani anda pelo quarto escuro (`A D` / setas), acha o
+4. **Visão lateral (estilo Until Then):** a Ani anda pelo quarto escuro (`W A S D` / setas: para os lados e para frente e para trás), acha o
    interruptor (tem uma figurinha que brilha no escuro) e acende a luz (`E`). Aí dá para ver o quarto todo:
    pôsteres de bandas, estante de livros, luminária de plasma, guarda-roupa, ingressos no chão,
    discos, mochila, roupas... Cada coisa tem uma fala quando ela procura o carregador.
@@ -36,9 +36,32 @@ Opções: Iniciar, Continuar, Configurações (som, tamanho dos pixels, tela che
    - Chegando perto de um objeto, ele brilha de leve.
 5. **Gaveta (primeira pessoa):** a gaveta da escrivaninha abre, ela acha o carregador e a tirinha de
    fotos de cabine dela com a Malu. A câmera dá um zoom contínuo até a última foto ocupar a tela.
-6. **Capítulo 1 — um ano antes:** é daqui que o jogo continua.
+6. **O flash:** com a foto em tela cheia, o flash da cabine carrega e estoura a tela de branco —
+   e o jogo vai para a noite em que a foto foi tirada.
+
+**Capítulo 1: o parque, um ano antes (`js/scenes/parque.js`)**
+1. **Saindo da cabine:** o branco do flash assenta e vira a noite do parque (domingo, 12 de outubro, 19:42).
+   Cartão do capítulo, faixas de cinema, a câmera recua e revela o parque. A máquina imprime a tirinha,
+   a cortina abre e a Malu e a Ani saem. A conversa é em **balões pretos em cima da cabeça**; termina
+   com a narração "Eu guardei." na caixa de baixo.
+2. **Rua das barracas (livre):** pipoca, algodão-doce, pescaria (patinhos girando), cabine de fotos, argola,
+   estoure o balão (os balões estouram sozinhos de vez em quando), derrube as latas, churros & maçã do amor e
+   a bilheteria da roda-gigante. Ao fundo: carrossel girando, lona de circo, quiosques, gente passando,
+   a roda-gigante com lâmpadas em onda, árvores, a cidade, estrelas e a lua. A Malu acompanha a Ani e
+   comenta algumas barracas.
+3. **Bilheteria:** a câmera sobe até a roda-gigante e o capítulo "continua".
+
+Luz do parque (`js/scenes/parkfx.js`): halo de cada lâmpada na névoa calculado de forma exata (liso, sem
+serrilhado), névoa de profundidade, desfoque no fundo (as lâmpadas longe viram bolinhas) e partículas
+(mariposas nas lâmpadas, poeira, vapor das barracas). Som: murmúrio de gente e uma valsa de realejo ao longe.
 
 `Esc` volta no app ou abre a pausa.
+
+**Controle de Xbox:** funciona em tudo, sem configurar. Analógico esquerdo anda (pouco inclinado = passo lento),
+`A` interage/confirma, `B` volta, `Menu` pausa. Não tem cursor: no celular, na estante, no criado-mudo, na mochila
+e nos papéis o direcional (ou o analógico) troca o item escolhido, como no menu; `A` usa (2× `A` curte) e o
+analógico direito rola o feed. No plasma, `A` faz os raios seguirem o analógico. As dicas de botões aparecem só
+no quarto, uma vez, como tutorial. Tela cheia pelo controle: o navegador exige um clique ou `F11`.
 
 ## Estrutura
 
@@ -56,10 +79,14 @@ js/scenes/quarto.js     cena do quarto + celular
 js/scenes/room.js       o quarto: monta tudo, luzes, luminária de plasma, gaveta, interações
 js/scenes/furniture.js  móveis (cama, criado-mudo, escrivaninha, guarda-roupa, estante, cortina, mochila)
 js/scenes/papers.js     ingressos, recibo e bilhete (papéis texturizados)
+js/scenes/cinema.js     luz de cinema do quarto (feixes de luar, cone do lustre, poeira)
+js/scenes/parque.js     Capítulo 1: o parque (cutscene da cabine, conversa, andar livre, final)
+js/scenes/park.js       o parque: barracas, jogos, roda-gigante, carrossel, céu, gente, lâmpadas
+js/scenes/parkfx.js     luz de cinema do parque (halos na névoa, profundidade de campo, partículas)
 js/phone/app.js         o app de rede social
 js/phone/posts.js       fotos dos posts (pixel art procedural), legendas e pensamentos
 js/phone/hands.js       mãos segurando o celular (com o anel de trevo)
-js/chars/ani.js         a Ani de lado, andando (pixel art feita por código)
+js/chars/ani.js         Ani e Malu andando (ani-andando.png / malu-andando.png, feitos de ani-direita.png e malu-direita.png) + Ani vista de cima
 js/scenes/photostrip.js tirinha de fotos de cabine
 assets/sprites/         sprites gerados no Sprite Fusion (tag "ani-game"); o jogo usa
                         protagonista_retrato.png e malu_retrato.png
@@ -84,8 +111,46 @@ gaveta ou o Capítulo 1. Também dá para cair direto em cada detalhe do quarto:
 mochila, papéis no chão, travesseiro e cortina. Também tem um botão para apagar o save.
 O login dura até fechar a aba. Obs.: é uma proteção simples, só para organizar; o jogo roda todo no navegador.
 
+## Iluminação de cinema (quarto)
+
+Em `js/scenes/cinema.js` e no `js/engine/renderer.js`:
+
+- **Feixes de luar volumétricos** entrando pela janela na diagonal, com os caixilhos, as cortinas
+  (fechar a cortina corta o feixe), estrias de raio e poeira se mexendo no ar.
+- **Recorte da janela** projetado no chão, no tapete e nela.
+- **A Ani faz sombra de verdade**: a silhueta do sprite bloqueia o luar (no chão e dentro do feixe)
+  e a luz do lustre (a sombra gira conforme ela anda).
+- **Cone de luz quente** do lustre quando a luz está acesa, e grãos de poeira que só brilham dentro
+  da luz e abrem caminho quando ela passa.
+- **Bloom largo**, **gradação de cor** por estado (escuro: índigo/prata; aceso: âmbar) e o
+  **olho se adaptando**: ao acender a imagem estoura e assenta; ao apagar escurece e vai abrindo.
+- As nuvens passam na frente da lua (o luar "respira" devagar).
+
+Ajustes rápidos em `QuartoScene.updateCinema()` (quarto.js) e `beamGain` em `room.js`.
+
+## Diálogos (estilo Until Then)
+
+- **Caixa embaixo**, para interação com cenário/objetos e pensamentos: `ui.say('Texto', { hold: 2 })`
+  (ou `await ui.sayWait(...)` para encadear falas).
+- **Balão em cima da cabeça**, para conversa entre personagens. Na cena do quarto:
+  `await this.speak('Texto')` fala pela Ani; para outro personagem passe o mesh dele:
+  `await this.speak('Oi!', { who: malu.mesh, id: 'malu' })`. Cada `id` tem o próprio balão,
+  que acompanha o personagem na tela.
+- Letra: Patrick Hand (licença OFL, em `assets/fonts/`).
+
 ## Dicas de teste
 
 No console do navegador (F12), `game.goTo('quarto')` pula direto para o celular.
 Pular direto para a visão lateral: `const q = game.scenes.quarto; q.token++; q.tweens.clear(); q.phoneRig.visible = false; game.renderer.fx.fade = 0; q.enterSide()`.
 Para apagar o save: `localStorage.removeItem('ani:save')`.
+
+## Novidades do parque (Capítulo 1)
+
+- **Comprar e comer:** algodão-doce (a Malu paga), pipoca e churros/maçã do amor. O item vai para a mão
+  de cada uma e acaba aos poucos, mordida a mordida.
+- **Minigames:** *Estoure o balão* (dardos, a mira balança; a Malu joga depois), *Derrube as latas*
+  (segure para dar força e solte na faixa verde) e *Pescaria* (desça o anzol quando a argolinha passar).
+  Mouse, teclado ou controle.
+- **Final:** a volta na roda-gigante, com closes, a roda parando no alto e a cidade inteira acesa.
+- **Falas:** clique para completar o texto; clique de novo para pular.
+- **Celular:** a interface do app é nítida como um app de verdade; só as fotos são pixeladas.

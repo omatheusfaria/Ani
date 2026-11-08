@@ -3,8 +3,10 @@ import { PixelRenderer } from './engine/renderer.js';
 import { Sfx } from './engine/audio.js';
 import { UI } from './engine/ui.js';
 import { loadFonts } from './engine/pixeltext.js';
+import { GamepadInput } from './engine/gamepad.js';
 import { MenuScene } from './scenes/menu.js';
 import { QuartoScene } from './scenes/quarto.js';
+import { ParkScene } from './scenes/parque.js';
 
 // ---------------------------------------------------------------
 // Configurações e save (guardados no navegador)
@@ -48,7 +50,8 @@ const game = {
   ui,
   canvas,
   settings,
-  mouse: new THREE.Vector2(0, 0), // posição do mouse de -1 a 1
+  mouse: new THREE.Vector2(0, 0), // posição do mouse de -1 a 1 (o cursor do controle também mexe aqui)
+  inputMode: 'kb', // 'kb' (teclado/mouse) ou 'pad' (controle)
   scenes: {},
   current: null,
   saveSettings() {
@@ -76,23 +79,67 @@ await loadFonts();
 
 game.scenes.menu = new MenuScene(game);
 game.scenes.quarto = new QuartoScene(game);
+game.scenes.parque = new ParkScene(game);
 
 // ---------------------------------------------------------------
-// Entrada (mouse, roda, teclado)
+// Entrada (mouse, roda, teclado e controle)
 // ---------------------------------------------------------------
+
+const pad = new GamepadInput(game);
+game.pad = pad;
 
 function toNdc(e) {
   game.mouse.set((e.clientX / window.innerWidth) * 2 - 1, -(e.clientY / window.innerHeight) * 2 + 1);
 }
 
+// Teclas: o teclado de verdade e o controle (eventos falsos) passam por aqui
+game.keyDown = (e) => {
+  sfx.unlock();
+  if (game.onAnyPress?.()) return;
+  // Enter/Espaço (A no controle) aceleram e pulam falas, quando a cena deixa
+  if (!ui.pauseOpen && !e.repeat && ['Enter', 'Space'].includes(e.code) && game.current?.dialogKey?.() && ui.advance()) return;
+  // menu de pausa: setas escolhem, Enter confirma (Esc continua indo para a cena, que fecha)
+  if (ui.pauseOpen && e.code !== 'Escape') {
+    if (['ArrowUp', 'KeyW'].includes(e.code)) ui.pauseMove(-1);
+    else if (['ArrowDown', 'KeyS'].includes(e.code)) ui.pauseMove(1);
+    else if (['Enter', 'Space', 'KeyE'].includes(e.code) && !e.repeat) ui.pauseActivate();
+    return;
+  }
+  game.current?.onKey?.(e);
+};
+game.keyUp = (e) => game.current?.onKeyUp?.(e);
+
+// mouse de verdade: só volta para o modo teclado/mouse se andar de fato (não por tremidinha)
+let mouseTravel = 0;
 window.addEventListener('pointermove', (e) => {
+  if (game.inputMode === 'pad') {
+    mouseTravel += Math.abs(e.movementX || 0) + Math.abs(e.movementY || 0);
+    if (mouseTravel < 12) return;
+    pad.useKeyboard();
+  }
+  mouseTravel = 0;
   toNdc(e);
   game.current?.onPointerMove?.(e);
 });
+// tela cheia pedida pelo controle: entra no próximo clique ou tecla de verdade
+function pendingFullscreen() {
+  if (!game.wantFullscreen) return;
+  game.wantFullscreen = false;
+  if (!document.fullscreenElement) document.documentElement.requestFullscreen?.().catch(() => {});
+}
+
 window.addEventListener('pointerdown', (e) => {
   sfx.unlock();
+  pendingFullscreen();
+  pad.useKeyboard();
   toNdc(e);
   if (ui.pauseOpen) return;
+  // clique na fala: 1º completa o texto, 2º pula. Na caixa/balão sempre; no resto
+  // da tela só quando o clique não tem outro uso (no celular o clique toca na tela)
+  if (e.button === 0) {
+    const onDlg = e.target?.closest?.('#subtitle, .bubble');
+    if ((onDlg || game.current?.dialogClick?.()) && ui.advance()) return;
+  }
   game.current?.onPointerDown?.(e);
 });
 window.addEventListener('pointerup', (e) => {
@@ -105,12 +152,16 @@ window.addEventListener('wheel', (e) => {
   game.current?.onWheel?.(e);
 }, { passive: true });
 window.addEventListener('keydown', (e) => {
-  sfx.unlock();
+  if (e.code !== 'F11') pendingFullscreen();
+  pad.useKeyboard();
   if (['ArrowUp', 'ArrowDown', 'Space'].includes(e.code)) e.preventDefault();
-  game.current?.onKey?.(e);
+  game.keyDown(e);
 });
-window.addEventListener('keyup', (e) => game.current?.onKeyUp?.(e));
-window.addEventListener('blur', () => game.current?.onKeyUp?.({ code: '*' }) || game.current?.keys?.clear?.());
+window.addEventListener('keyup', (e) => game.keyUp(e));
+window.addEventListener('blur', () => {
+  pad.release();
+  game.current?.onKeyUp?.({ code: '*' }) || game.current?.keys?.clear?.();
+});
 window.addEventListener('contextmenu', (e) => e.preventDefault());
 
 // ---------------------------------------------------------------
@@ -124,6 +175,7 @@ function frame(now) {
   const dt = Math.min(0.05, (now - last) / 1000);
   last = now;
   time += dt;
+  pad.update(dt);
   const scene = game.current;
   if (scene) {
     scene.update(dt, time);
@@ -147,14 +199,21 @@ if (pendingJump && adminOk) {
   const start = () => {
     window.removeEventListener('pointerdown', start, true);
     window.removeEventListener('keydown', start, true);
+    game.onAnyPress = null;
     sfx.unlock();
     ui.prompt(null);
     if (pendingJump === 'menu') game.goTo('menu');
+    else if (pendingJump.startsWith('parque')) game.goTo('parque', { jump: pendingJump });
     else game.goTo('quarto', { jump: pendingJump });
     pendingJump = null;
   };
   window.addEventListener('pointerdown', start, true);
   window.addEventListener('keydown', start, true);
+  // botão do controle também começa
+  game.onAnyPress = () => {
+    start();
+    return true;
+  };
 } else {
   game.goTo('menu');
 }

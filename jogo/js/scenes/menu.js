@@ -513,12 +513,29 @@ export class MenuScene {
         this.refreshLabels();
         break;
       }
-      case 'tela':
+      case 'tela': {
         sfx.toggle();
         this.kick(0.5);
-        if (document.fullscreenElement) document.exitFullscreen?.();
-        else document.documentElement.requestFullscreen?.().catch(() => {});
+        if (document.fullscreenElement) {
+          document.exitFullscreen?.();
+          break;
+        }
+        // O navegador só aceita tela cheia logo depois de um clique ou tecla.
+        // Botão de controle quase nunca conta: aí avisamos e o próximo clique/tecla entra.
+        const fail = () => {
+          if (this.menu !== 'config') return;
+          sfx.deny();
+          this.shake = 1;
+          it.label = 'USE F11 OU CLIQUE';
+          this.game.wantFullscreen = true;
+          clearTimeout(this.fsTimer);
+          this.fsTimer = setTimeout(() => this.menu === 'config' && this.refreshLabels(), 2200);
+        };
+        const req = document.documentElement.requestFullscreen?.();
+        if (req?.catch) req.catch(fail);
+        else if (!req) fail();
         break;
+      }
       default:
         break;
     }
@@ -642,6 +659,12 @@ export class MenuScene {
 
   onWheel(e) {
     if (this.state === 'menu') this.move(e.deltaY > 0 ? 1 : -1);
+  }
+
+  // Controle (ver engine/gamepad.js): o analógico direito mexe o olho,
+  // o esquerdo e o direcional navegam como as setas
+  padMode() {
+    return 'look-rs';
   }
 
   onKey(e) {
