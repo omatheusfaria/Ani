@@ -6,7 +6,21 @@
 //   ui.bubble(texto, {anchor}) balão em cima da cabeça: conversa entre personagens
 //                              anchor = () => [x, y] em pixels (a ponta do balão)
 
-import { padHint, padKey, padPrompt, padIcon } from './glyphs.js';
+import { padHint, padKey, padPrompt, padIcon, glyph } from './glyphs.js';
+
+// Ícones do menu no celular (24×24, preenchidos)
+const PH_ICONS = {
+  play: '<path d="M8.5 5.8v12.4c0 .6.7 1 1.2.6l9.4-6.2c.5-.3.5-1 0-1.3L9.7 5.2c-.5-.4-1.2 0-1.2.6z"/>',
+  sound: '<path d="M4 9.3h3.3L11.6 5.6c.5-.4 1.2 0 1.2.6v11.6c0 .6-.7 1-1.2.6l-4.3-3.7H4z"/><path d="M15.6 9.2a4 4 0 0 1 0 5.6M18.2 6.6a7.6 7.6 0 0 1 0 10.8" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>',
+  grid: '<path d="M5 5h5.6v5.6H5zM13.4 5H19v5.6h-5.6zM5 13.4h5.6V19H5zM13.4 13.4H19V19h-5.6z"/>',
+  expand: '<path d="M4.5 9.5v-5h5M19.5 9.5v-5h-5M4.5 14.5v5h5M19.5 14.5v5h-5" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>',
+  home: '<path d="M3.8 11.2 12 4.3l8.2 6.9c.3.3.1.8-.3.8H18.6v7.2c0 .4-.3.8-.8.8h-3.6v-5h-4.4v5H6.2c-.4 0-.8-.3-.8-.8V12H4.1c-.4 0-.6-.5-.3-.8z"/>',
+  right: '<path d="M9.3 5.6 15.7 12l-6.4 6.4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
+  left: '<path d="M14.7 5.6 8.3 12l6.4 6.4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
+  pin: '<path d="M12 2.8a6.6 6.6 0 0 0-6.6 6.6c0 4.6 5.6 10.8 6.1 11.4.3.3.7.3 1 0 .5-.6 6.1-6.8 6.1-11.4A6.6 6.6 0 0 0 12 2.8zm0 9.1a2.6 2.6 0 1 1 0-5.2 2.6 2.6 0 0 1 0 5.2z"/>',
+  signal: '<path d="M2 17h3v3H2zM7 13.5h3V20H7zM12 10h3v10h-3zM17 6h3v14h-3z"/>',
+  wifi: '<path d="M12 19.6 9.4 17a3.7 3.7 0 0 1 5.2 0zM6.6 14.2a7.6 7.6 0 0 1 10.8 0l-1.9 1.9a5 5 0 0 0-7 0zM3.4 11a12.2 12.2 0 0 1 17.2 0l-1.9 1.9a9.5 9.5 0 0 0-13.4 0z"/>',
+};
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -107,18 +121,24 @@ export class UI {
     return tokOk();
   }
 
-  // espera que um clique pode encurtar
+  // espera que um clique pode encurtar. Com o jogo pausado, a fala espera a pausa fechar
+  // (não digita nem passa para a próxima por trás do menu)
   nap(ms, ctl) {
-    if (!ctl) return sleep(ms);
     return new Promise((r) => {
+      const fin = () => this.afterPause(r);
+      if (!ctl) return void setTimeout(fin, ms);
       const t = setTimeout(done, ms);
       function done() {
         clearTimeout(t);
         ctl.wake = null;
-        r();
+        fin();
       }
       ctl.wake = done;
     });
+  }
+  afterPause(fn) {
+    if (this.pauseOpen) (this.pauseWaiters ??= []).push(fn);
+    else fn();
   }
 
   // Clique (ou A/Enter em cena): 1º completa o texto que está sendo digitado,
@@ -345,7 +365,7 @@ export class UI {
 
   async bubbleWait(text, opts) {
     await this.bubble(text, opts);
-    await sleep(250);
+    await this.nap(250);
   }
 
   clearBubbles() {
@@ -360,7 +380,7 @@ export class UI {
   // Fala e espera terminar (para encadear falas)
   async sayWait(text, opts) {
     await this.say(text, opts);
-    await sleep(250);
+    await this.nap(250);
   }
 
   clearSay() {
@@ -372,16 +392,42 @@ export class UI {
 
   // Menu de pausa. options: [{ label, action }]
   // Mouse (passar e clicar), setas + Enter, ou direcional + A.
-  pause(options) {
+  // opts.phone: o menu aparece na tela do celular da Ani, à esquerda, como o app de
+  //   Ajustes: { clock, owner, avatar, chapter, place }. Cada opção pode ter:
+  //   group (abre um grupo; '' = grupo sem título), note (rodapé do grupo), icon, color, tone: 'danger' e
+  //   kind: 'link' (padrão: confirma e roda action), 'toggle' (get() → bool, action
+  //   alterna), 'slider' (get() → 0..1, set(v)) ou 'choice' (get() → texto, step(±1)).
+  pause(options, opts = {}) {
     const el = this.el.pause;
+    clearTimeout(this.pauseT);
     if (!options) {
-      el.classList.remove('show');
-      el.innerHTML = '';
       this.pauseOpen = false;
       this.pauseBtns = null;
+      this.pauseRefresh = null;
+      this.pauseOpts = null;
+      this.pauseCursor = null;
+      if (el.classList.contains('phone') && el.classList.contains('show')) {
+        // sai deslizando; o conteúdo some depois da animação
+        el.classList.remove('show');
+        el.classList.add('closing');
+        this.pauseT = setTimeout(() => {
+          el.classList.remove('phone', 'closing');
+          el.innerHTML = '';
+        }, 320);
+      } else {
+        el.classList.remove('show', 'phone', 'closing');
+        el.innerHTML = '';
+      }
+      const w = this.pauseWaiters || [];
+      this.pauseWaiters = [];
+      for (const fn of w) fn();
       return;
     }
     this.pauseOpen = true;
+    this.pauseSent = false;
+    el.classList.remove('closing');
+    if (opts.phone) return this.phonePause(options, opts.phone);
+    el.classList.remove('phone');
     el.innerHTML = '<div class="pause-box"><div class="pause-title">PAUSA</div></div>';
     const box = el.querySelector('.pause-box');
     this.pauseBtns = options.map((o, i) => {
@@ -401,11 +447,214 @@ export class UI {
     el.classList.add('show');
   }
 
+  phonePause(options, ph) {
+    const el = this.el.pause;
+    const esc = (t) => String(t ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+    const svg = (d, cls = '') => `<svg class="${cls}" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">${d}</svg>`;
+    const chev = (dir) => svg(dir < 0 ? PH_ICONS.left : PH_ICONS.right, 'ph-chev');
+
+    // linhas agrupadas em cartões, como no app de Ajustes
+    let list = '';
+    let note = '';
+    const close = () => {
+      list += '</div>' + (note ? `<div class="ph-note" style="--i:${options.length}">${esc(note)}</div>` : '');
+      note = '';
+    };
+    options.forEach((o, i) => {
+      if (i === 0 || o.group !== undefined) {
+        if (i) close();
+        note = o.note || '';
+        list += o.group ? `<div class="ph-gl" style="--i:${i}">${esc(o.group)}</div>` : '';
+        list += `<div class="ph-group" style="--i:${i}">`;
+      }
+      const kind = o.kind || 'link';
+      let val = '';
+      if (kind === 'link') val = chev(1);
+      else if (kind === 'toggle') val = '<span class="ph-sw"><i></i></span>';
+      else if (kind === 'slider')
+        val = '<span class="ph-sl"><span class="ph-tr"><i class="ph-fill"></i><b class="ph-knob"></b></span><em class="ph-pc"></em></span>';
+      else if (kind === 'choice')
+        val = `<span class="ph-ch"><span class="ph-step" data-d="-1">${chev(-1)}</span><em></em><span class="ph-step" data-d="1">${chev(1)}</span></span>`;
+      list += `<button class="ph-row k-${kind}${o.tone ? ' ' + o.tone : ''}" style="--i:${i}">
+          <span class="ph-ic" style="--c:${o.color || '#8e8e93'}">${svg(PH_ICONS[o.icon] || '')}</span>
+          <span class="ph-lb">${esc(o.label)}</span><span class="ph-val">${val}</span></button>`;
+    });
+    close();
+
+    const kb = (k) => `<kbd>${k}</kbd>`;
+    el.innerHTML = `
+      <div class="ph-shade"></div>
+      <div class="ph-dev"><div class="ph-float"><div class="ph-body">
+        <div class="ph-screen">
+          <div class="ph-bar">
+            <span class="ph-clock">${esc(ph.clock)}</span><span class="ph-island"></span>
+            <span class="ph-sys">${svg(PH_ICONS.signal)}${svg(PH_ICONS.wifi)}<span class="ph-batt"><i></i></span></span>
+          </div>
+          <div class="ph-scroll">
+            <h2 class="ph-title">Ajustes</h2>
+            <div class="ph-me">
+              <div class="ph-av" style="background-image:url('${ph.avatar}')"></div>
+              <div class="ph-who"><b>${esc(ph.owner)}</b><span>${esc(ph.chapter)}</span><span class="ph-place">${svg(PH_ICONS.pin)}${esc(ph.place)}</span></div>
+            </div>
+            <div class="ph-list"><div class="ph-cursor"></div>${list}</div>
+          </div>
+          <div class="ph-help">
+            <span class="ph-kb">${kb('↑')}${kb('↓')} escolher</span><span class="ph-kb">${kb('←')}${kb('→')} ajustar</span><span class="ph-kb">${kb('Enter')} ok</span><span class="ph-kb">${kb('Esc')} voltar</span>
+            <span class="ph-pad">${glyph('dpad')} escolher</span><span class="ph-pad">${glyph('a')} ok</span><span class="ph-pad">${glyph('b')} voltar</span>
+          </div>
+          <div class="ph-home"></div>
+          <div class="ph-glass"></div>
+        </div>
+      </div></div></div>`;
+
+    const listEl = el.querySelector('.ph-list');
+    const cursor = el.querySelector('.ph-cursor');
+    this.pauseOpts = options;
+    this.pauseBtns = [...el.querySelectorAll('.ph-row')];
+    this.pauseRefresh = () => {
+      this.pauseBtns?.forEach((b, i) => {
+        const o = options[i];
+        if (o.kind === 'toggle') b.classList.toggle('on', !!o.get());
+        else if (o.kind === 'slider') {
+          const v = Math.max(0, Math.min(1, o.get()));
+          b.style.setProperty('--v', v);
+          b.querySelector('.ph-pc').textContent = `${Math.round(v * 100)}%`;
+          b.classList.toggle('mute', v === 0);
+        } else if (o.kind === 'choice') b.querySelector('.ph-ch em').textContent = o.get();
+      });
+    };
+    // o destaque desliza até a linha escolhida (com uma molinha no fim)
+    this.pauseCursor = (i, snap) => {
+      const b = this.pauseBtns?.[i];
+      if (!b) return;
+      cursor.classList.toggle('snap', !!snap);
+      // soma os deslocamentos até a lista (o grupo animado também vira referência)
+      let y = 0;
+      for (let n = b; n && n !== listEl; n = n.offsetParent) y += n.offsetTop;
+      cursor.style.transform = `translateY(${y}px)`;
+      cursor.style.height = `${b.offsetHeight}px`;
+      cursor.classList.toggle('danger', b.classList.contains('danger'));
+    };
+    this.pauseBtns.forEach((b, i) => {
+      const o = options[i];
+      b.addEventListener('mouseenter', () => this.pauseSelect(i));
+      b.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.pauseSelect(i, true);
+        this.phoneActivate(i);
+      });
+      if (o.kind === 'choice')
+        b.querySelectorAll('.ph-step').forEach((s) =>
+          s.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.pauseSelect(i, true);
+            this.pauseAdjust(+s.dataset.d);
+          })
+        );
+      if (o.kind === 'slider') {
+        // arrastar na barra
+        const tr = b.querySelector('.ph-tr');
+        const at = (e) => {
+          const r = tr.getBoundingClientRect();
+          const v = Math.round(Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)) * 20) / 20;
+          if (v !== o.get()) {
+            o.set(v);
+            this.sfx.hover();
+            this.pauseRefresh();
+          }
+        };
+        tr.addEventListener('pointerdown', (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          this.pauseSelect(i, true);
+          tr.setPointerCapture?.(e.pointerId);
+          b.classList.add('drag');
+          at(e);
+          const move = (ev) => at(ev);
+          const up = () => {
+            b.classList.remove('drag');
+            tr.removeEventListener('pointermove', move);
+            tr.removeEventListener('pointerup', up);
+            tr.removeEventListener('pointercancel', up);
+          };
+          tr.addEventListener('pointermove', move);
+          tr.addEventListener('pointerup', up);
+          tr.addEventListener('pointercancel', up);
+        });
+        tr.addEventListener('click', (e) => e.stopPropagation());
+      }
+    });
+    if (!this.fsHooked) {
+      this.fsHooked = true;
+      document.addEventListener('fullscreenchange', () => this.pauseRefresh?.());
+    }
+    this.pauseRefresh();
+    el.classList.add('phone');
+    this.pauseSel = -1;
+    this.pauseSelect(0, true);
+    this.pauseCursor(0, true);
+    void el.offsetWidth; // reinicia as animações de entrada
+    el.classList.add('show');
+  }
+
+  // Enter / clique numa linha do celular
+  phoneActivate(i) {
+    if (this.pauseSent) return;
+    const o = this.pauseOpts?.[i];
+    const b = this.pauseBtns?.[i];
+    if (!o || !b) return;
+    b.classList.remove('press');
+    void b.offsetWidth;
+    b.classList.add('press');
+    const kind = o.kind || 'link';
+    if (kind === 'toggle') {
+      this.sfx.toggle();
+      b.classList.toggle('on', !o.get()); // já mostra o novo estado; o real confirma depois
+      o.action();
+      setTimeout(() => this.pauseRefresh?.(), 500);
+    } else if (kind === 'choice') {
+      this.pauseAdjust(1);
+    } else if (kind === 'slider') {
+      this.sfx.hover();
+    } else {
+      // confirma: a linha "afunda", e só então a ação acontece
+      this.pauseSent = true;
+      this.sfx.select();
+      this.pauseT = setTimeout(() => o.action(), 170);
+    }
+  }
+
+  // ← → no celular: barra de volume, escolhas e chaves
+  pauseAdjust(d) {
+    const o = this.pauseOpts?.[this.pauseSel];
+    if (!o || this.pauseSent) return;
+    const b = this.pauseBtns[this.pauseSel];
+    if (o.kind === 'slider') {
+      const v = Math.max(0, Math.min(1, Math.round((o.get() + d * 0.1) * 10) / 10));
+      if (v === o.get()) return;
+      o.set(v);
+      this.sfx.hover();
+    } else if (o.kind === 'choice') {
+      o.step(d);
+      this.sfx.toggle();
+      const em = b.querySelector('.ph-ch em');
+      em.style.setProperty('--d', d);
+      em.classList.remove('flip');
+      void em.offsetWidth;
+      em.classList.add('flip');
+    } else if (o.kind === 'toggle') {
+      if (d > 0 !== !!o.get()) this.phoneActivate(this.pauseSel);
+      return;
+    } else return;
+    this.pauseRefresh?.();
+  }
+
   pauseSelect(i, silent = false) {
-    if (!this.pauseBtns || i === this.pauseSel) return;
+    if (!this.pauseBtns || i === this.pauseSel || this.pauseSent) return;
     this.pauseSel = i;
     this.pauseBtns.forEach((b, j) => b.classList.toggle('sel', j === i));
     if (!silent) this.sfx.hover();
+    this.pauseCursor?.(i);
   }
 
   pauseMove(d) {

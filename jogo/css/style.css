@@ -331,6 +331,435 @@ body {
   animation: next-blink 0.9s steps(2) infinite;
 }
 
+/* Pausa no celular (parque): a Ani pega o celular e o menu abre na tela dele, à
+   esquerda, como o app de Ajustes. Interface nítida de celular de verdade (fonte do
+   sistema); só a foto de perfil é pixelada. Tudo escala pela altura do aparelho (--u). */
+#pause.phone {
+  background: none;
+  justify-content: flex-start;
+  align-items: center;
+  --ph-h: min(84vh, 800px, calc((100vw - 32px) * 2.05));
+  --u: calc(var(--ph-h) / 100);
+  --ph-blue: #2f8bff;
+  --ph-ease: cubic-bezier(0.2, 0.9, 0.25, 1);
+  --ph-spring: cubic-bezier(0.3, 1.32, 0.5, 1);
+}
+
+.ph-shade {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: min(60vw, 820px);
+  background:
+    radial-gradient(ellipse 46% 60% at 22% 50%, rgba(70, 90, 190, 0.16), transparent 70%),
+    linear-gradient(90deg, rgba(5, 5, 13, 0.84) 0%, rgba(5, 5, 13, 0.7) 42%, rgba(5, 5, 13, 0.28) 76%, rgba(5, 5, 13, 0) 100%);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+/* o aparelho: entra subindo de baixo (como se viesse da mão) e assenta */
+.ph-dev {
+  position: relative;
+  margin-left: clamp(16px, 7vw, 120px);
+  width: calc(var(--ph-h) * 0.474);
+  height: var(--ph-h);
+  opacity: 0;
+  transform: translate(-2%, 16%) rotate(-5deg) scale(0.94);
+  transform-origin: 50% 100%;
+  transition: opacity 0.3s ease, transform 0.62s var(--ph-ease);
+}
+#pause.phone.show .ph-shade { opacity: 1; }
+#pause.phone.show .ph-dev { opacity: 1; transform: none; transition-delay: 0.06s; }
+#pause.phone.closing .ph-dev {
+  opacity: 0;
+  transform: translate(-3%, 12%) rotate(-4deg) scale(0.95);
+  transition: opacity 0.22s ease 0.04s, transform 0.3s cubic-bezier(0.5, 0, 0.75, 0.4);
+}
+
+/* respiração da mão: o celular flutua bem de leve enquanto está aberto */
+.ph-float { width: 100%; height: 100%; }
+#pause.phone.show .ph-float { animation: ph-float 5.2s ease-in-out 0.7s infinite; }
+
+.ph-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: calc(var(--u) * 1.15);
+  border-radius: calc(var(--u) * 7.4);
+  background: linear-gradient(150deg, #2b2b35 0%, #121218 40%, #0b0b10 70%, #23232c 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+    inset 0 0 0 calc(var(--u) * 0.45) #050508,
+    0 calc(var(--u) * 3) calc(var(--u) * 7) rgba(0, 0, 0, 0.55),
+    0 0 calc(var(--u) * 14) rgba(110, 130, 255, 0.16);
+}
+/* botões laterais */
+.ph-body::before,
+.ph-body::after {
+  content: '';
+  position: absolute;
+  width: calc(var(--u) * 0.5);
+  border-radius: 2px;
+  background: linear-gradient(90deg, #3a3a46, #16161c);
+}
+.ph-body::before { left: calc(var(--u) * -0.42); top: 21%; height: 11%; box-shadow: 0 calc(var(--u) * 14) 0 #22222a; }
+.ph-body::after { right: calc(var(--u) * -0.42); top: 26%; height: 15%; }
+
+.ph-screen {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: calc(var(--u) * 6.3);
+  padding: 0 calc(var(--u) * 2.1);
+  background:
+    radial-gradient(ellipse 120% 50% at 50% -8%, rgba(92, 82, 170, 0.34), transparent 70%),
+    linear-gradient(180deg, #0e0d18 0%, #08080e 100%);
+  font-family: -apple-system, 'SF Pro Text', 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', Arial, sans-serif;
+  color: #f2f2f7;
+  -webkit-font-smoothing: antialiased;
+}
+/* a tela "acorda": o conteúdo acende depois que o aparelho chega */
+.ph-screen > * { opacity: 0; transition: opacity 0.3s ease; }
+#pause.phone.show .ph-screen > * { opacity: 1; transition-delay: 0.24s; }
+#pause.phone.show .ph-screen > .ph-glass { opacity: 1; }
+
+/* reflexo do vidro */
+.ph-glass {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(118deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.015) 32%, transparent 33%, transparent 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+/* barra de status */
+.ph-bar {
+  position: relative;
+  flex: none;
+  height: calc(var(--u) * 6.4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 calc(var(--u) * 1.6);
+  font-size: calc(var(--u) * 1.75);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.ph-island {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--u) * 1.5);
+  width: calc(var(--u) * 11.5);
+  height: calc(var(--u) * 3.3);
+  border-radius: 99px;
+  background: #000;
+  transform: translateX(-50%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+.ph-island::after {
+  content: '';
+  position: absolute;
+  right: 18%;
+  top: 50%;
+  width: calc(var(--u) * 1.1);
+  height: calc(var(--u) * 1.1);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #2a3550, #07080c 70%);
+  transform: translateY(-50%);
+}
+.ph-sys { display: flex; align-items: center; gap: calc(var(--u) * 0.6); }
+.ph-sys svg { width: calc(var(--u) * 2); height: calc(var(--u) * 2); }
+.ph-batt {
+  position: relative;
+  width: calc(var(--u) * 3);
+  height: calc(var(--u) * 1.45);
+  padding: 1.5px;
+  margin-right: 3px;
+  border-radius: calc(var(--u) * 0.45);
+  border: 1px solid rgba(242, 242, 247, 0.45);
+}
+.ph-batt::after {
+  content: '';
+  position: absolute;
+  right: -3.5px;
+  top: 30%;
+  width: 2px;
+  height: 40%;
+  border-radius: 0 2px 2px 0;
+  background: rgba(242, 242, 247, 0.45);
+}
+.ph-batt i { display: block; height: 100%; width: 64%; border-radius: 1.5px; background: #f2f2f7; }
+
+.ph-scroll { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+
+.ph-title {
+  margin: calc(var(--u) * 2) 0 calc(var(--u) * 2.2) calc(var(--u) * 0.4);
+  font-size: calc(var(--u) * 4.7);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* cartão de perfil (a dona do celular e onde ela está) */
+.ph-me {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 1.8);
+  padding: calc(var(--u) * 1.7) calc(var(--u) * 1.8);
+  border-radius: calc(var(--u) * 1.8);
+  background: rgba(255, 255, 255, 0.075);
+  animation: ph-in 0.5s var(--ph-ease) 0.3s both;
+}
+.ph-av {
+  flex: none;
+  width: calc(var(--u) * 8.2);
+  height: calc(var(--u) * 8.2);
+  border-radius: 50%;
+  background: #1c1b26 center / cover no-repeat;
+  image-rendering: pixelated;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+.ph-who { display: flex; flex-direction: column; gap: calc(var(--u) * 0.35); min-width: 0; }
+.ph-who b { font-size: calc(var(--u) * 2.7); font-weight: 650; }
+.ph-who span { font-size: calc(var(--u) * 1.75); color: rgba(235, 235, 245, 0.62); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ph-who .ph-place { display: flex; align-items: center; gap: calc(var(--u) * 0.4); color: rgba(235, 235, 245, 0.45); }
+.ph-place svg { flex: none; width: calc(var(--u) * 1.7); height: calc(var(--u) * 1.7); }
+
+/* lista de opções */
+.ph-list { position: relative; margin-top: calc(var(--u) * 1.2); }
+.ph-gl {
+  margin: calc(var(--u) * 3) 0 calc(var(--u) * 1) calc(var(--u) * 1.8);
+  font-size: calc(var(--u) * 1.5);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(235, 235, 245, 0.42);
+  animation: ph-in 0.5s var(--ph-ease) both;
+  animation-delay: calc(0.34s + var(--i) * 0.045s);
+}
+.ph-group {
+  margin-top: calc(var(--u) * 2.6);
+  border-radius: calc(var(--u) * 1.8);
+  background: rgba(255, 255, 255, 0.075);
+  animation: ph-in 0.5s var(--ph-ease) both;
+  animation-delay: calc(0.34s + var(--i) * 0.045s);
+}
+.ph-gl + .ph-group { margin-top: 0; }
+.ph-note {
+  margin: calc(var(--u) * 1) calc(var(--u) * 1.8) 0;
+  font-size: calc(var(--u) * 1.5);
+  color: rgba(235, 235, 245, 0.38);
+  animation: ph-in 0.5s var(--ph-ease) both;
+  animation-delay: calc(0.34s + var(--i) * 0.045s);
+}
+
+/* o destaque que desliza entre as linhas */
+.ph-cursor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  border-radius: calc(var(--u) * 1.8);
+  background: linear-gradient(90deg, rgba(120, 150, 255, 0.2), rgba(120, 150, 255, 0.1));
+  box-shadow: inset 0 0 0 1.5px rgba(150, 175, 255, 0.55), 0 0 calc(var(--u) * 2.4) rgba(100, 130, 255, 0.28);
+  transition: transform 0.34s var(--ph-spring), height 0.26s var(--ph-ease), background 0.2s ease, box-shadow 0.2s ease;
+  pointer-events: none;
+  animation: ph-fade 0.45s ease 0.4s both; /* só opacidade: o transform é a posição */
+}
+.ph-cursor.snap { transition: none; }
+.ph-cursor.danger {
+  background: linear-gradient(90deg, rgba(255, 80, 90, 0.2), rgba(255, 80, 90, 0.08));
+  box-shadow: inset 0 0 0 1.5px rgba(255, 120, 125, 0.55), 0 0 calc(var(--u) * 2.4) rgba(255, 80, 90, 0.24);
+}
+
+.ph-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 1.5);
+  width: 100%;
+  height: calc(var(--u) * 7.3);
+  padding: 0 calc(var(--u) * 1.5) 0 calc(var(--u) * 1.4);
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: calc(var(--u) * 2.4);
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.18s var(--ph-ease);
+}
+/* separador entre linhas do mesmo grupo (some perto do destaque) */
+.ph-row + .ph-row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: calc(var(--u) * 7.3);
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  transition: opacity 0.2s ease;
+}
+.ph-row.sel::before,
+.ph-row.sel + .ph-row::before { opacity: 0; }
+.ph-row.press { animation: ph-press 0.24s var(--ph-ease); }
+
+.ph-ic {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: calc(var(--u) * 4.2);
+  height: calc(var(--u) * 4.2);
+  border-radius: calc(var(--u) * 1.1);
+  color: #fff;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--c) 82%, #fff), var(--c));
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+  transition: transform 0.3s var(--ph-spring), box-shadow 0.3s ease;
+}
+.ph-ic svg { width: 62%; height: 62%; }
+.ph-row.sel .ph-ic {
+  transform: scale(1.1);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.18), 0 0 calc(var(--u) * 1.6) color-mix(in srgb, var(--c) 60%, transparent);
+}
+.ph-lb { flex: 1; white-space: nowrap; }
+.ph-row.danger .ph-lb { color: #ff6b70; }
+.ph-val { display: flex; align-items: center; color: rgba(235, 235, 245, 0.42); }
+.ph-chev { width: calc(var(--u) * 2.3); height: calc(var(--u) * 2.3); transition: transform 0.25s var(--ph-spring), color 0.2s ease; }
+.ph-row.sel .ph-val > .ph-chev { transform: translateX(3px); color: rgba(235, 235, 245, 0.8); }
+
+/* chave liga/desliga */
+.ph-sw {
+  position: relative;
+  width: calc(var(--u) * 5.6);
+  height: calc(var(--u) * 3.3);
+  border-radius: 99px;
+  background: rgba(120, 120, 128, 0.36);
+  transition: background 0.25s ease;
+}
+.ph-sw i {
+  position: absolute;
+  top: calc(var(--u) * 0.3);
+  left: calc(var(--u) * 0.3);
+  width: calc(var(--u) * 2.7);
+  height: calc(var(--u) * 2.7);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.32s var(--ph-spring), width 0.2s ease;
+}
+.ph-row.on .ph-sw { background: #30c95e; }
+.ph-row.on .ph-sw i { transform: translateX(calc(var(--u) * 2.3)); }
+.ph-row.press .ph-sw i { width: calc(var(--u) * 3.2); }
+.ph-row.on.press .ph-sw i { transform: translateX(calc(var(--u) * 1.8)); }
+
+/* barra de volume */
+.ph-sl { display: flex; align-items: center; gap: calc(var(--u) * 2); }
+.ph-tr {
+  position: relative;
+  width: calc(var(--u) * 12.5);
+  height: calc(var(--u) * 3.4);
+  cursor: grab;
+  touch-action: none;
+}
+.ph-tr::before,
+.ph-fill {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: calc(var(--u) * 0.6);
+  border-radius: 99px;
+  transform: translateY(-50%);
+}
+.ph-tr::before { right: 0; background: rgba(120, 120, 128, 0.4); }
+.ph-fill { width: calc(var(--v, 1) * 100%); background: #f2f2f7; transition: width 0.18s var(--ph-ease); }
+.ph-knob {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--v, 1) * 100%);
+  width: calc(var(--u) * 2.5);
+  height: calc(var(--u) * 2.5);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+  transform: translate(-50%, -50%);
+  transition: left 0.18s var(--ph-ease), transform 0.25s var(--ph-spring);
+}
+.ph-row.sel .ph-knob { transform: translate(-50%, -50%) scale(1.12); }
+.ph-row.drag .ph-knob { transform: translate(-50%, -50%) scale(1.25); }
+.ph-row.drag .ph-fill,
+.ph-row.drag .ph-knob { transition: none; }
+.ph-pc { width: calc(var(--u) * 4.6); text-align: right; font-style: normal; font-variant-numeric: tabular-nums; font-size: calc(var(--u) * 2); }
+.ph-row.mute .ph-ic { --c: #6b6b76; }
+
+/* escolha com setas (‹ Médios ›) */
+.ph-ch { display: flex; align-items: center; gap: calc(var(--u) * 0.4); }
+.ph-ch em {
+  display: inline-block;
+  min-width: calc(var(--u) * 9.5);
+  text-align: center;
+  font-style: normal;
+  font-size: calc(var(--u) * 2.2);
+  color: rgba(235, 235, 245, 0.75);
+}
+.ph-ch em.flip { animation: ph-flip 0.26s var(--ph-ease); }
+.ph-step { display: grid; place-items: center; padding: calc(var(--u) * 0.4); border-radius: 50%; transition: background 0.15s ease, color 0.15s ease; }
+.ph-step .ph-chev { width: calc(var(--u) * 2); height: calc(var(--u) * 2); }
+.ph-step:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+.ph-row:not(.sel) .ph-step { opacity: 0.35; }
+
+/* dicas de controle no rodapé da tela */
+.ph-help {
+  flex: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: calc(var(--u) * 0.6) calc(var(--u) * 1.15);
+  margin-top: auto;
+  padding: calc(var(--u) * 1.6) 0 calc(var(--u) * 1);
+  font-size: calc(var(--u) * 1.42);
+  color: rgba(235, 235, 245, 0.45);
+}
+.ph-help > span { display: inline-flex; align-items: center; gap: calc(var(--u) * 0.3); white-space: nowrap; }
+.ph-help kbd {
+  display: inline-grid;
+  place-items: center;
+  min-width: calc(var(--u) * 2.4);
+  height: calc(var(--u) * 2.4);
+  padding: 0 calc(var(--u) * 0.45);
+  border-radius: calc(var(--u) * 0.5);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+  font: inherit;
+  font-size: calc(var(--u) * 1.3);
+  color: rgba(235, 235, 245, 0.75);
+}
+.ph-pad { display: none !important; }
+body.pad .ph-kb { display: none !important; }
+body.pad .ph-pad { display: inline-flex !important; }
+#ui .ph-help b.pad { transform: scale(0.82); }
+
+.ph-home {
+  flex: none;
+  align-self: center;
+  width: 36%;
+  height: calc(var(--u) * 0.55);
+  margin: calc(var(--u) * 0.4) 0 calc(var(--u) * 1.1);
+  border-radius: 99px;
+  background: rgba(242, 242, 247, 0.75);
+}
+
+#ui:has(#pause.phone.show) #chapter,
+#ui:has(#pause.phone.show) #hint { opacity: 0 !important; transition: opacity 0.2s ease; }
+
+@keyframes ph-fade { from { opacity: 0; } }
+@keyframes ph-in { from { opacity: 0; transform: translateY(calc(var(--u) * 1.4)); } }
+@keyframes ph-float { 50% { transform: translateY(calc(var(--u) * -0.45)) rotate(-0.25deg); } }
+@keyframes ph-press { 40% { transform: scale(0.97); } }
+@keyframes ph-flip { from { opacity: 0; transform: translateX(calc(var(--d, 1) * var(--u) * 1.4)); } }
+
 /* No modo celular a caixa fica ao lado do aparelho, para não cobrir a tela */
 #ui.phone #subtitle {
   left: 4vw;

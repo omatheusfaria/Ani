@@ -98,10 +98,12 @@ game.keyDown = (e) => {
   if (game.onAnyPress?.()) return;
   // Enter/Espaço (A no controle) aceleram e pulam falas, quando a cena deixa
   if (!ui.pauseOpen && !e.repeat && ['Enter', 'Space'].includes(e.code) && game.current?.dialogKey?.() && ui.advance()) return;
-  // menu de pausa: setas escolhem, Enter confirma (Esc continua indo para a cena, que fecha)
+  // menu de pausa: ↑↓ escolhem, ←→ ajustam (no celular), Enter confirma (Esc continua indo para a cena, que fecha)
   if (ui.pauseOpen && e.code !== 'Escape') {
     if (['ArrowUp', 'KeyW'].includes(e.code)) ui.pauseMove(-1);
     else if (['ArrowDown', 'KeyS'].includes(e.code)) ui.pauseMove(1);
+    else if (['ArrowLeft', 'KeyA'].includes(e.code)) ui.pauseAdjust(-1);
+    else if (['ArrowRight', 'KeyD'].includes(e.code)) ui.pauseAdjust(1);
     else if (['Enter', 'Space', 'KeyE'].includes(e.code) && !e.repeat) ui.pauseActivate();
     return;
   }

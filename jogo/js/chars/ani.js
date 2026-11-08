@@ -24,7 +24,38 @@ export const ANI_SPRITE = {
   FW: 168, FH: 246, FOOT_PAD: 6, COUNT: 13,
   WALK: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], IDLE: 10, HALF: 11, BLINK: 12,
   TEXEL: 1.62 / 234, // a Ani tem 234 px de altura na folha → 1,62 m
+  PX: 234,
+  LEG_OFF: -4, // pernas 4 px à esquerda do centro da célula
   STRIDE: 1.2, // metros por ciclo de caminhada (dois passos)
+};
+// Animações extras da Ani (folhas separadas, mesma célula 168×246, alinhadas pelos pés).
+// Geradas com tools/recortar-folha.py a partir das folhas do Sprite Fusion (6×4).
+//   interruptor: assets/sprites/ani-interruptor.png → ani-interruptor-quadros.png (24 quadros)
+//     0–3 parada · 4–5 o braço sobe · 6–8 estica até a parede · 9–10 aperta (corpo vai junto)
+//     11 solta · 12–13 braço ainda esticado · 14–17 o braço desce · 18–23 parada
+export const ANI_CLIPS = {
+  interruptor: {
+    url: new URL('../../assets/sprites/ani-interruptor-quadros.png', import.meta.url).href,
+    COUNT: 24,
+    // [quadro, segundos]; 'press' = o dedo encosta no botão (o jogo troca a luz aqui)
+    seq: [[4, 0.07], [5, 0.07], [6, 0.06], [7, 0.06], [8, 0.07], [10, 0.12, 'press'], [11, 0.09], [12, 0.12], [13, 0.1], [14, 0.07], [15, 0.07], [16, 0.07], [17, 0.08], [18, 0.1]],
+  },
+  //   celular: assets/sprites/ani-celular.png → ani-celular-quadros.png + ani-celular-brilho.png
+  //     (tools/separar-brilho.py tira o cone de luz da tela do corpo; no jogo ele é uma camada aditiva)
+  //     0 parada · 1–4 a mão vai ao bolso · 5–6 tira o celular · 7–8 levanta (a tela acende)
+  //     9–11 leva ao rosto · 12–23 olhando e rolando a tela
+  celular: {
+    url: new URL('../../assets/sprites/ani-celular-quadros.png', import.meta.url).href,
+    glowUrl: new URL('../../assets/sprites/ani-celular-brilho.png', import.meta.url).href,
+    glowFrom: 7, // quadros com a tela acesa (a luz da tela no rosto acompanha)
+    COUNT: 24,
+    seq: [[1, 0.07], [2, 0.06], [3, 0.06], [4, 0.08], [5, 0.08], [6, 0.08], [7, 0.07, 'tela'], [8, 0.07], [9, 0.08], [10, 0.09], [11, 0.1]],
+    // repete até release(): vai e volta (sem salto), segurando mais em alguns quadros, como quem lê
+    loop: [[12, 0.18], [13, 0.14], [14, 0.14], [15, 0.2], [16, 0.14], [17, 0.14], [18, 0.22], [19, 0.14], [20, 0.14], [21, 0.18], [22, 0.14], [23, 0.26],
+      [22, 0.14], [21, 0.14], [20, 0.16], [19, 0.14], [18, 0.14], [17, 0.2], [16, 0.14], [15, 0.14], [14, 0.14], [13, 0.18]],
+    // guardando: o mesmo caminho de volta, mais rápido
+    out: [[11, 0.05], [10, 0.05], [9, 0.05], [8, 0.05], [7, 0.05], [6, 0.06], [5, 0.06], [4, 0.06], [3, 0.05], [2, 0.05], [1, 0.06]],
+  },
 };
 // Malu: assets/sprites/malu-direita.png → malu-andando.png (mesmo processo)
 export const MALU_SPRITE = {
@@ -32,11 +63,54 @@ export const MALU_SPRITE = {
   FW: 172, FH: 252, FOOT_PAD: 6, COUNT: 13,
   WALK: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], IDLE: 10, HALF: 11, BLINK: 12,
   TEXEL: 1.66 / 240, // um pouquinho mais alta que a Ani
+  PX: 240,
+  LEG_OFF: -2,
   STRIDE: 1.25,
 };
+
+// ---------------------------------------------------------------
+// Comida na mão (parque). Folhas do Sprite Fusion recortadas com tools/recortar-comida.py:
+// grade 6×4, célula própria de cada folha (FW×FH, larga o bastante para o braço esticado),
+// H = altura da personagem na folha (o jogo iguala a escala com a folha de caminhada).
+//   pegando: 10–11 parada olhando o balcão · 12–14 estica o braço · 15 recebe · 16–17 traz
+//            para perto · 18–23 contente, segurando
+//   parada / andando: 4 linhas = 4 estágios da comida acabando (cheia → só o palito/copo);
+//            em cada linha ela dá uma mordida (parada) ou belisca durante o passo (andando).
+//            O estágio é o mesmo nas duas folhas: parar ou andar continua de onde estava.
+// ---------------------------------------------------------------
+const SPR = (f) => new URL(`../../assets/sprites/${f}`, import.meta.url).href;
+export const GRAB_SEQ = [[10, 0.08], [11, 0.22], [12, 0.08], [13, 0.08], [14, 0.16], [15, 0.12, 'pega'], [16, 0.09], [17, 0.12], [18, 0.12], [19, 0.11], [20, 0.14], [21, 0.1], [22, 0.1], [23, 0.16]];
+const food = (who, item, grab, idle, walk) => ({
+  grab: { url: SPR(`${who}-pegando-${item}-quadros.png`), ...grab },
+  idle: { url: SPR(`${who}-parada-${item}-quadros.png`), ...idle },
+  walk: { url: SPR(`${who}-andando-${item}-quadros.png`), ...walk },
+});
+export const ANI_FOOD = {
+  pipoca: food('ani', 'pipoca', { FW: 178, FH: 252, H: 236 }, { FW: 176, FH: 251, H: 240 }, { FW: 192, FH: 253, H: 240 }),
+  algodao: food('ani', 'algodao', { FW: 192, FH: 253, H: 236 }, { FW: 150, FH: 250, H: 238 }, { FW: 164, FH: 249, H: 235 }),
+  maca: food('ani', 'maca', { FW: 192, FH: 255, H: 240 }, { FW: 146, FH: 263, H: 247 }, { FW: 160, FH: 255, H: 239 }),
+};
+export const MALU_FOOD = {
+  algodao2: food('malu', 'algodao', { FW: 196, FH: 254, H: 243 }, { FW: 170, FH: 258, H: 247 }, { FW: 190, FH: 257, H: 246 }),
+  churros: food('malu', 'churros', { FW: 194, FH: 256, H: 244 }, { FW: 158, FH: 257, H: 247 }, { FW: 176, FH: 256, H: 244 }),
+};
+const EAT_LEVELS = 4;
+// mordida parada: segundos por quadro da linha (o 4º é a mordida em si)
+const EAT_SEQ = [0.11, 0.12, 0.14, 0.24, 0.16, 0.22];
+const eatLen = () => 3.4 + Math.random() * 1.4; // tempo em cada estágio (parada ou andando)
 export const FW = ANI_SPRITE.FW;
 export const FH = ANI_SPRITE.FH;
 export const TEXEL = ANI_SPRITE.TEXEL;
+
+function loadSheet(url) {
+  const tex = new THREE.TextureLoader().load(url);
+  tex.magFilter = THREE.NearestFilter;
+  tex.minFilter = THREE.LinearMipmapLinearFilter;
+  tex.generateMipmaps = true;
+  tex.anisotropy = 4;
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
 
 // cores (usadas na vista de cima)
 const C = {
@@ -144,6 +218,8 @@ export class WalkSprite {
         );
     };
     this.mesh = new THREE.Mesh(geo, this.material);
+    this.baseGeo = geo;
+    this.sheet = null; // folha extra em uso (null = a de caminhada)
     // medidas usadas pela luz (a silhueta dela faz sombra)
     this.cellW = FW * TEXEL;
     this.cellH = FH * TEXEL;
@@ -171,12 +247,270 @@ export class WalkSprite {
     this.leanV = 0;
     this.squash = 0; // amassada de peso (passo, parada)
     this.bend = 0; // agachar / esticar (poses sem quadro próprio)
+    this.clips = {};
+    this.anim = null; // animação extra tocando agora
+    this.glowK = 0; // luz da tela do celular (0–1, suavizada; a cena usa para acender uma luz)
+    this.glowMesh = null;
+    this.foods = null; // comidas que ela sabe segurar (addFoods)
+    this.food = null; // comendo agora: { kind, level, ... }
+    this.eatBusy = false; // em cena: segura a comida sem morder
     this.setFrame(cfg.IDLE);
   }
 
   setFrame(i) {
     this.frame = i;
     this.tex.offset.set(i / this.cfg.COUNT, 0);
+  }
+
+  // Carrega uma animação extra (folha separada no mesmo formato de célula)
+  addClip(name, clip) {
+    const tex = loadSheet(clip.url);
+    tex.repeat.set(1 / clip.COUNT, 1);
+    this.clips[name] = { ...clip, tex, glowTex: clip.glowUrl ? loadSheet(clip.glowUrl) : null };
+    if (this.clips[name].glowTex) this.clips[name].glowTex.repeat.set(1 / clip.COUNT, 1);
+  }
+
+  // Folha com célula própria (grade 6×4): a placa ganha o tamanho da célula, na mesma
+  // escala da folha de caminhada (H = altura da personagem nela) e com a sola no mesmo lugar
+  sheetClip(def) {
+    const tex = loadSheet(def.url);
+    tex.repeat.set(1 / 6, 1 / 4);
+    const T = (this.cfg.TEXEL * this.cfg.PX) / def.H;
+    const geo = new THREE.PlaneGeometry(def.FW * T, def.FH * T);
+    geo.translate(this.cfg.LEG_OFF * (this.cfg.TEXEL - T), (def.FH * T) / 2 - this.cfg.FOOT_PAD * T, 0);
+    return { ...def, tex, geo, COLS: 6, ROWS: 4, COUNT: 24, texel: [1 / (def.FW * 6), 1 / (def.FH * 4)] };
+  }
+
+  // Comidas do parque: animação de pegar no balcão + folhas parada/andando comendo
+  addFoods(foods) {
+    this.foods = this.foods || {};
+    for (const [kind, f] of Object.entries(foods)) {
+      this.clips[`pegar-${kind}`] = { ...this.sheetClip(f.grab), seq: GRAB_SEQ };
+      this.foods[kind] = { grab: `pegar-${kind}`, idle: this.sheetClip(f.idle), walk: this.sheetClip(f.walk) };
+    }
+  }
+
+  // troca a folha desenhada (textura, tamanho da placa e passo de 1 pixel do contorno)
+  useSheet(clip) {
+    const want = clip || null;
+    if (this.sheet === want) return;
+    this.sheet = want;
+    const tex = want ? want.tex : this.tex;
+    this.material.map = tex;
+    this.material.emissiveMap = tex;
+    const geo = want?.geo || this.baseGeo;
+    this.mesh.geometry = geo;
+    if (this.glowMesh) this.glowMesh.geometry = geo;
+    if (want?.texel) this.uniforms.uTexel.value.set(...want.texel);
+    else this.uniforms.uTexel.value.set(1 / (this.cfg.FW * (want ? want.COUNT : this.cfg.COUNT)), 1 / this.cfg.FH);
+  }
+
+  // mostra o quadro f de uma folha extra (tira horizontal ou grade)
+  sheetFrame(clip, f, tex = clip.tex) {
+    if (clip.COLS) tex.offset.set((f % clip.COLS) / clip.COLS, 1 - (Math.floor(f / clip.COLS) + 1) / clip.ROWS);
+    else tex.offset.set(f / clip.COUNT, 0);
+  }
+
+  // Começa a segurar uma comida (kind de foods) ou larga (null). Devolve false se ela
+  // não tem folhas dessa comida. onChomp: a cada mordida; onFinish: quando acaba.
+  carry(kind, { onChomp, onFinish } = {}) {
+    const set = kind && this.foods?.[kind];
+    if (!set) {
+      this.food = null;
+      return false;
+    }
+    this.food = { ...set, kind, level: 0, bit: false, biting: false, chomped: false, bt: 0, col: 0, t: 0, len: eatLen(), wait: 0.6, pending: false, onChomp, onFinish };
+    return true;
+  }
+
+  // a comida pula um estágio sem ela morder (a Malu roubou um pedaço)
+  skipBite() {
+    if (!this.food) return false;
+    this.nextLevel();
+    return true;
+  }
+
+  nextLevel() {
+    const F = this.food;
+    F.level++;
+    F.bit = F.biting = F.chomped = F.pending = false;
+    F.t = 0;
+    F.len = eatLen();
+    F.wait = 0.5;
+    if (F.level >= EAT_LEVELS) {
+      this.food = null;
+      this.squash = Math.max(this.squash, 0.4);
+      F.onFinish?.();
+    }
+  }
+
+  chomp() {
+    this.food.chomped = true;
+    this.squash = Math.max(this.squash, 0.35);
+    this.food.onChomp?.();
+  }
+
+  // um quadro comendo: parada (mordida e pausa) ou andando (belisca no passo).
+  // O estágio (linha) é o mesmo nas duas folhas; o tempo de cada estágio é comum às duas.
+  updateFood(dt, moving, speed) {
+    const F = this.food;
+    let step = false;
+    if (!this.eatBusy) {
+      F.t += dt;
+      F.wait -= dt;
+    }
+    if (F.t >= F.len && F.bit) F.pending = true;
+    let sheet, col;
+    if (moving) {
+      F.biting = false;
+      const before = this.walkT;
+      this.walkT += (dt * Math.abs(speed)) / this.cfg.STRIDE;
+      if (Math.floor(this.walkT * 2) !== Math.floor(before * 2)) step = true;
+      col = Math.floor((this.walkT % 1) * 6) % 6;
+      // troca de estágio só na virada do ciclo do passo (a folha segue em ordem)
+      if (F.pending && col < F.col) {
+        this.nextLevel();
+        if (!this.food) return { step, done: true };
+      }
+      if (col >= 3 && F.col < 3 && !F.bit) {
+        F.bit = true;
+        this.chomp();
+      }
+      sheet = F.walk;
+    } else {
+      if (F.pending && !F.biting) {
+        this.nextLevel();
+        if (!this.food) return { step, done: true };
+      }
+      if (!F.biting && !F.bit && !this.eatBusy && F.wait <= 0) {
+        F.biting = true;
+        F.bt = 0;
+        F.chomped = false;
+      }
+      col = F.bit ? 5 : 0;
+      if (F.biting) {
+        F.bt += dt;
+        let acc = 0, i = 0;
+        while (i < EAT_SEQ.length && F.bt >= acc + EAT_SEQ[i]) acc += EAT_SEQ[i++];
+        if (i >= EAT_SEQ.length) {
+          F.biting = false;
+          F.bit = true;
+          col = 5;
+        } else {
+          col = i;
+          if (i >= 3 && !F.chomped) this.chomp();
+        }
+      }
+      sheet = F.idle;
+    }
+    F.col = col;
+    this.useSheet(sheet);
+    this.sheetFrame(sheet, F.level * 6 + col);
+    return { step, done: false };
+  }
+
+  // camada aditiva por cima do corpo (o brilho da tela): mesma placa, mesmo quadro
+  ensureGlow(tex) {
+    if (!this.glowMesh) {
+      this.glowMesh = new THREE.Mesh(
+        this.mesh.geometry,
+        new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false, color: '#9eaeff' })
+      );
+      this.glowMesh.position.z = 0.004;
+      this.glowMesh.renderOrder = 2;
+      this.mesh.add(this.glowMesh);
+    }
+    this.glowMesh.material.map = tex;
+    this.glowMesh.material.needsUpdate = true;
+  }
+
+  // Toca uma animação extra. onEvent(nome) nos quadros marcados ('press', 'tela')
+  // e 'loop' quando entra na parte que repete. Com loop, fica repetindo até release().
+  // Devolve uma promessa que resolve quando termina (o sprite volta à folha normal).
+  play(name, { onEvent } = {}) {
+    const clip = this.clips[name];
+    if (!clip) return Promise.resolve();
+    this.anim?.resolve?.();
+    return new Promise((resolve) => {
+      this.anim = { clip, list: clip.seq, phase: 'seq', t: 0, i: -1, onEvent, resolve };
+      this.useSheet(clip);
+      if (clip.glowTex) this.ensureGlow(clip.glowTex);
+    });
+  }
+
+  // sai da repetição: toca o "out" a partir do quadro em que está (ou para, se não tiver)
+  release() {
+    const a = this.anim;
+    if (!a || a.phase === 'out') return;
+    const out = a.clip.out;
+    if (!out) return this.stopClip();
+    const cur = a.list[Math.max(0, a.i)]?.[0];
+    const from = Math.max(0, out.findIndex((e) => e[0] === cur));
+    a.phase = 'out';
+    a.list = out.slice(from);
+    a.t = 0;
+    a.i = -1;
+  }
+
+  get clipPhase() {
+    return this.anim?.phase ?? null;
+  }
+
+  stopClip() {
+    const a = this.anim;
+    if (!a) return;
+    this.anim = null;
+    this.useSheet(null);
+    this.setFrame(this.cfg.IDLE);
+    this.glowK = 0;
+    if (this.glowMesh) this.glowMesh.material.opacity = 0;
+    a.resolve();
+  }
+
+  // avança a animação extra; true enquanto ela estiver tocando
+  updateClip(dt) {
+    const a = this.anim;
+    if (!a) return false;
+    a.t += dt;
+    let list = a.list;
+    let acc = 0, i = 0;
+    while (i < list.length && a.t >= acc + list[i][1]) acc += list[i++][1];
+    if (i >= list.length) {
+      if (a.phase === 'seq' && a.clip.loop) {
+        // entra na repetição
+        a.phase = 'loop';
+        a.list = list = a.clip.loop;
+        a.t -= acc;
+        a.i = -1;
+        i = 0;
+        a.onEvent?.('loop');
+      } else if (a.phase === 'loop') {
+        a.t -= acc;
+        a.i = -1;
+        i = 0;
+      } else {
+        this.stopClip();
+        return false;
+      }
+    }
+    if (i !== a.i) {
+      // entrou num quadro novo (dispara os eventos dos quadros pulados também)
+      for (let k = a.i + 1; k <= i; k++) if (list[k][2]) a.onEvent?.(list[k][2]);
+      a.i = i;
+      const f = list[i][0];
+      this.sheetFrame(a.clip, f);
+      if (a.clip.glowTex) this.sheetFrame(a.clip, f, a.clip.glowTex);
+      if (list[i][2] === 'press') this.squash = Math.max(this.squash, 0.35); // peso do aperto
+    }
+    // luz da tela: acende rápido, apaga um pouco mais devagar
+    if (a.clip.glowTex) {
+      const on = list[i][0] >= a.clip.glowFrom ? 1 : 0;
+      this.glowK += (on - this.glowK) * Math.min(1, dt * (on ? 14 : 9));
+      // pisca bem de leve (tela rolando)
+      const flick = 1 + Math.sin(this.time * 7.3) * 0.04 + Math.sin(this.time * 17.1) * 0.025;
+      this.glowMesh.material.opacity = this.glowK * 0.2 * flick;
+    }
+    return true;
   }
 
   // Luz de preenchimento: cor e força (o jogo passa conforme a luz do quarto)
@@ -228,13 +562,25 @@ export class WalkSprite {
     this.moving = moving;
 
     let frame = eye;
-    if (moving && this.held == null && this.reaching <= 0) {
+    const clipOn = this.updateClip(dt);
+    let foodOn = false;
+    if (clipOn) frame = this.frame; // a animação extra cuida do quadro
+    else if (this.food) {
+      // comendo: a folha da comida cuida do quadro (parada ou andando)
+      const r = this.updateFood(dt, moving, speed);
+      step = r.step;
+      foodOn = !r.done;
+    }
+    if (!clipOn && !foodOn && moving && this.held == null && this.reaching <= 0) {
       const before = this.walkT;
       this.walkT += (dt * Math.abs(speed)) / STRIDE;
       if (Math.floor(this.walkT * 2) !== Math.floor(before * 2)) step = true; // contato: quadros 0 e 5
       frame = WALK[Math.floor((this.walkT % 1) * WALK.length) % WALK.length];
     }
-    this.setFrame(frame);
+    if (!clipOn && !foodOn) {
+      this.useSheet(null);
+      this.setFrame(frame);
+    }
 
     // poses sem quadro próprio: o corpo dobra/estica a partir dos pés
     let bendTarget = 0, leanExtra = 0;
@@ -287,6 +633,7 @@ export class WalkSprite {
 export class AniSprite extends WalkSprite {
   constructor() {
     super(ANI_SPRITE);
+    for (const [name, clip] of Object.entries(ANI_CLIPS)) this.addClip(name, clip);
   }
 }
 
@@ -389,6 +736,8 @@ export class AniTop {
     const geo = new THREE.PlaneGeometry(TOP_PX * TOP_TEXEL, TOP_PX * TOP_TEXEL);
     geo.rotateX(-Math.PI / 2);
     this.mesh = new THREE.Mesh(geo, this.material);
+    this.baseGeo = geo;
+    this.sheet = null; // folha extra em uso (null = a de caminhada)
     this.shadow = new THREE.Mesh(
       new THREE.CircleGeometry(0.3, 20),
       new THREE.MeshBasicMaterial({ color: '#000000', transparent: true, opacity: 0.4, depthWrite: false })

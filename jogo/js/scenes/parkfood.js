@@ -3,9 +3,10 @@ import { damp, clamp, ease, lerp } from '../engine/tween.js';
 
 // ===============================================================
 // Comidas do parque: algodão-doce, pipoca, churros e maçã do amor.
-// Cada uma é um modelinho 3D que fica na mão de quem comprou e vai
-// acabando a cada mordida (o item sobe até a boca, a pessoa amassa
-// de leve, farelos caem e o item encolhe um estágio).
+// Quem tem a comida desenhada no sprite (sprite.foods: folhas parada/andando
+// comendo) segura e come pelo sprite; o modelinho 3D só voa do balcão.
+// Sem folha própria, o modelinho 3D fica na mão e vai acabando a cada
+// mordida (sobe até a boca, a pessoa amassa de leve, farelos caem).
 // ===============================================================
 
 const V3 = THREE.Vector3;
@@ -138,6 +139,24 @@ export class Snacks {
   // começa a segurar (o item já pode ter vindo voando do balcão)
   give(actor, kind, mesh = null) {
     this.drop(actor);
+    // comida desenhada no sprite: o modelinho some e o sprite segura e come
+    const ok = actor.sprite.carry?.(kind, {
+      onChomp: () => {
+        this.sfx.munch?.();
+        this.crumbsAt(this.mouth(actor), kind, kind === 'pipoca' ? 8 : 5);
+      },
+      onFinish: () => {
+        this.crumbsAt(actor.hand(new V3()), kind, 10);
+        this.sfx.pop?.();
+        this.held.delete(actor);
+        this.onFinish?.(actor, kind);
+      },
+    });
+    if (ok) {
+      if (mesh?.parent) mesh.parent.remove(mesh);
+      this.held.set(actor, { mesh: null, kind, sprite: true });
+      return null;
+    }
     const m = mesh || makeFood(kind);
     if (!m.parent) this.scene.add(m);
     this.held.set(actor, { mesh: m, kind, stage: 0, timer: 2.5 + Math.random() * 1.5, bite: null, pos: m.position.clone(), lag: new V3() });
@@ -148,6 +167,15 @@ export class Snacks {
   stealBite(from, by) {
     const h = this.held.get(from);
     if (!h) return false;
+    if (h.sprite) {
+      // na folha: a comida dela pula um estágio
+      const at = this.mouth(from);
+      from.sprite.skipBite();
+      by.sprite.squash = 0.9;
+      this.sfx.munch?.();
+      this.crumbsAt(at, h.kind, 6);
+      return true;
+    }
     h.stage = Math.min(h.stage + 1, h.mesh.userData.stages - 1);
     h.mesh.userData.bite?.(h.stage / h.mesh.userData.stages);
     by.sprite.squash = 0.9;
@@ -157,7 +185,7 @@ export class Snacks {
   }
 
   setVisible(on) {
-    for (const h of this.held.values()) h.mesh.visible = on;
+    for (const h of this.held.values()) if (h.mesh) h.mesh.visible = on;
   }
 
   holding(actor) {
@@ -167,7 +195,8 @@ export class Snacks {
   drop(actor) {
     const h = this.held.get(actor);
     if (!h) return;
-    this.scene.remove(h.mesh);
+    if (h.sprite) actor.sprite.carry(null);
+    else this.scene.remove(h.mesh);
     this.held.delete(actor);
   }
 
@@ -223,6 +252,10 @@ export class Snacks {
     }
     for (const [actor, h] of this.held) {
       const s = actor.sprite;
+      if (h.sprite) {
+        s.eatBusy = busy; // em cena ela segura sem morder
+        continue;
+      }
       // mão: na frente do corpo, um pouco para o lado em que ela olha, balança ao andar
       const hand = actor.hand(new V3());
       const walk = Math.abs(actor.v || Math.hypot(actor.vx || 0, actor.vz || 0));

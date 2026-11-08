@@ -23,7 +23,7 @@ const MH = 120;
 const LINE_H = 17;
 const FONT_SIZE = 12;
 
-const PIXEL_OPTIONS = [
+export const PIXEL_OPTIONS = [
   { rows: 270, label: 'GRANDES' },
   { rows: 360, label: 'MÉDIOS' },
   { rows: 480, label: 'PEQUENOS' },

@@ -1,12 +1,13 @@
 import * as THREE from 'three';
 import { Tweens, ease, damp, lerp, clamp } from '../engine/tween.js';
-import { WalkSprite, ANI_SPRITE, MALU_SPRITE } from '../chars/ani.js';
+import { WalkSprite, AniSprite, MALU_SPRITE, ANI_FOOD, MALU_FOOD } from '../chars/ani.js';
 import { makePhotoStrip } from './photostrip.js';
 import { buildPark, LANE } from './park.js';
 import { createParkFx } from './parkfx.js';
 import { Snacks, makeFood } from './parkfood.js';
 import { Minigames } from './minigames.js';
 import { WheelRide } from './wheelride.js';
+import { PIXEL_OPTIONS } from './menu.js';
 
 // Comprar nas barracas de comida: quem paga, o que cada uma ganha e as falas
 const FOOD = {
@@ -73,6 +74,15 @@ const DEPTH_SPEED = 0.75;
 const FILL = new THREE.Color('#c0a6dc');
 const RIM = new THREE.Color();
 const V3 = THREE.Vector3;
+
+// Pausa no celular: o menu abre no app de Ajustes do celular da Ani
+const PHONE_INFO = {
+  clock: '20:13',
+  owner: 'Ani',
+  avatar: 'assets/sprites/protagonista_retrato.png',
+  chapter: 'Capítulo 1 · Um ano antes',
+  place: 'Parque de diversões',
+};
 
 function loadImage(src) {
   return new Promise((resolve, reject) => {
@@ -172,8 +182,11 @@ export class ParkScene {
     this.scene.add(this.hemi, this.moon, this.moon.target);
 
     // as duas
-    this.ani = new WalkSprite(ANI_SPRITE);
+    this.ani = new AniSprite(); // com as animações extras (celular na pausa)
     this.malu = new WalkSprite(MALU_SPRITE);
+    // comidas desenhadas nos sprites: pegar no balcão e comer (parada/andando)
+    this.ani.addFoods(ANI_FOOD);
+    this.malu.addFoods(MALU_FOOD);
     for (const s of [this.ani, this.malu]) {
       this.scene.add(s.mesh, s.shadow);
       s.shadow.material.opacity = 0.5;
@@ -184,6 +197,12 @@ export class ParkScene {
     // luz de frente, quente e baixa, que acompanha as duas (o "rebatedor" do cinema)
     this.key = new THREE.PointLight('#ffcfb8', 1.4, 6, 1.4);
     this.scene.add(this.key);
+    // luz fria da tela do celular no rosto dela (pausa); acompanha o brilho do sprite
+    this.phoneLight = new THREE.PointLight('#a7b4ff', 0, 2.4, 2);
+    this.scene.add(this.phoneLight);
+    this.pauseK = 0;
+    this.phonePose = false;
+    this.dofBase = { dof: this.fx.uniforms.uDof.value, near: this.fx.uniforms.uFocus.value.x, far: this.fx.uniforms.uFocus.value.y };
     this.A = new Actor(this.ani, 0, LANE.z);
     this.M = new Actor(this.malu, -0.6, LANE.z);
     // comidas na mão e minigames das barracas
@@ -210,6 +229,9 @@ export class ParkScene {
     this.snacks?.clear();
     this.ride?.cleanup();
     this.bought = new Set();
+    this.phonePose = false;
+    this.pauseK = 0;
+    this.ani.stopClip();
     ui.hint(null);
     ui.pause(null);
     ui.chapter(null);
@@ -257,6 +279,10 @@ export class ParkScene {
 
   exit() {
     const { renderer, ui } = this.game;
+    this.phonePose = false;
+    this.pauseK = 0;
+    this.applyPauseLook();
+    this.ani.stopClip();
     this.tweens.clear();
     this.token++;
     this.mg.stop();
@@ -329,7 +355,15 @@ export class ParkScene {
   }
   updateCamera(dt, t) {
     this.updateRigFollow(dt);
-    const L = this.rig.lambda;
+    let L = this.rig.lambda;
+    if (this.phonePose) {
+      // pausa: plano médio, ela no terço da direita (o app ocupa a esquerda), chegando devagar
+      const a = this.A;
+      this.rig.pos.set(a.x - 1.06, 1.45, a.z + 4.6);
+      this.rig.look.set(a.x - 1.06, 1.02, a.z - 1.2);
+      this.rig.fov = 36;
+      L = 2.2;
+    }
     this.camPos.x = damp(this.camPos.x, this.rig.pos.x, L, dt);
     this.camPos.y = damp(this.camPos.y, this.rig.pos.y, L, dt);
     this.camPos.z = damp(this.camPos.z, this.rig.pos.z, L, dt);
@@ -659,6 +693,24 @@ export class ParkScene {
     const go = (actor, sprite, kind, delay) => tw.wait(delay).then(async () => {
       if (!kind || !ok()) return;
       const m = makeFood(kind);
+      const art = sprite.foods?.[kind];
+      if (art) {
+        // pega com a animação própria: estica o braço, o pedido voa do balcão até a mão
+        // aberta e, quando ela fecha a mão ('pega'), o sprite já segura a comida
+        let caught;
+        const got = new Promise((r) => (caught = r));
+        const done = sprite.play(art.grab, { onEvent: (e) => e === 'pega' && caught() });
+        await tw.wait(0.14);
+        if (!ok()) return;
+        const palm = () => new V3(actor.x + sprite.shown * 0.36, 1.0, actor.z + 0.05);
+        const flight = this.snacks.fly(m, from.clone().add(new V3((Math.random() - 0.5) * 0.3, 0, 0)), palm, 0.48);
+        await Promise.all([got, flight]);
+        if (!ok()) return;
+        this.snacks.give(actor, kind, m);
+        sfx.pop();
+        await done;
+        return;
+      }
       sprite.reach(0.5);
       await this.snacks.fly(m, from.clone().add(new V3((Math.random() - 0.5) * 0.3, 0, 0)), () => actor.hand(new V3()).add(new V3(sprite.shown * 0.02, 0, 0.03)));
       if (!ok()) return;
@@ -788,7 +840,7 @@ export class ParkScene {
       return;
     }
     if (e.code === 'Escape') {
-      if (ui.pauseOpen) return ui.pause(null);
+      if (ui.pauseOpen) return this.closePause();
       if (this.mode === 'end') return this.toMenu();
       this.openPause();
       return;
@@ -825,15 +877,94 @@ export class ParkScene {
     if (this.mode === 'game') return 'aim';
     return this.mode === 'free' ? 'walk' : null;
   }
+  // Pausa: andando livre, a Ani tira o celular do bolso e fica mexendo nele; o menu abre
+  // na tela do celular, à esquerda, como o app de Ajustes. Em cena, só o celular.
+  // O roteiro, as personagens e os minigames congelam; o parque continua vivo ao fundo.
   openPause() {
     const { ui, sfx } = this.game;
+    if (ui.pauseOpen || this.mode === 'leaving') return;
     sfx.back();
     this.keys.clear();
-    ui.pause([
-      { label: 'CONTINUAR', action: () => ui.pause(null) },
-      { label: 'MENU PRINCIPAL', action: () => { ui.pause(null); this.toMenu(); } },
-    ]);
+    this.phonePose = this.mode === 'free' && !this.busy;
+    if (this.phonePose) {
+      this.A.vx = this.A.vz = 0;
+      this.A.target = null;
+      this.pauseFacing = this.ani.facing; // volta para esse lado quando guardar o celular
+      this.ani.facing = -1; // de frente para o app (que fica à esquerda)
+      // a comida na mão some enquanto ela segura o celular
+      this.pauseSnack = this.snacks.held.get(this.A)?.mesh || null;
+      if (this.pauseSnack) this.pauseSnack.visible = false;
+      this.ani.play('celular', { onEvent: (e) => e === 'tela' && sfx.tap() });
+    }
+    const { settings, renderer } = this.game;
+    const pxNow = () => PIXEL_OPTIONS.find((p) => p.rows === settings.rows) || PIXEL_OPTIONS[1];
+    const cap = (t) => t.charAt(0) + t.slice(1).toLowerCase();
+    ui.pause(
+      [
+        { label: 'Continuar', icon: 'play', color: '#30c95e', action: () => this.closePause() },
+        {
+          group: 'Som e tela', note: 'Os ajustes valem para o jogo todo.', label: 'Som', icon: 'sound', color: '#ff3b6b', kind: 'slider',
+          get: () => settings.volume,
+          set: (v) => {
+            settings.volume = v;
+            sfx.setVolume(v);
+            this.game.saveSettings();
+          },
+        },
+        {
+          label: 'Pixels', icon: 'grid', color: '#7a5cff', kind: 'choice',
+          get: () => cap(pxNow().label),
+          step: (d) => {
+            const n = PIXEL_OPTIONS.length;
+            settings.rows = PIXEL_OPTIONS[(PIXEL_OPTIONS.indexOf(pxNow()) + d + n) % n].rows;
+            renderer.setRows(settings.rows);
+            this.game.saveSettings();
+          },
+        },
+        {
+          label: 'Tela cheia', icon: 'expand', color: '#1e8bff', kind: 'toggle',
+          get: () => !!document.fullscreenElement,
+          action: () => this.toggleFullscreen(),
+        },
+        { group: '', label: 'Menu principal', icon: 'home', color: '#8a8a96', tone: 'danger', action: () => { this.closePause(); this.toMenu(); } },
+      ],
+      { phone: PHONE_INFO }
+    );
   }
+  closePause() {
+    const { ui, sfx } = this.game;
+    if (!ui.pauseOpen && !this.phonePose) return;
+    if (ui.pauseOpen) sfx.back();
+    ui.pause(null);
+    if (this.phonePose) {
+      this.phonePose = false;
+      this.ani.release(); // guarda o celular (o andar interrompe, se ela sair andando)
+    }
+  }
+  toggleFullscreen() {
+    const { ui } = this.game;
+    if (document.fullscreenElement) return void document.exitFullscreen?.();
+    // o navegador só aceita logo depois de clique/tecla; pelo controle, avisa e o próximo clique entra
+    const fail = () => {
+      ui.toast('USE F11 OU CLIQUE PARA TELA CHEIA');
+      this.game.wantFullscreen = true;
+    };
+    const req = document.documentElement.requestFullscreen?.();
+    if (req?.catch) req.catch(fail);
+    else if (!req) fail();
+  }
+  // enquadramento e luz da pausa (k = 0 jogo, 1 celular na mão)
+  applyPauseLook() {
+    const k = ease.inOutSine(clamp(this.pauseK));
+    const u = this.fx?.uniforms;
+    if (u && this.dofBase) {
+      // o fundo desfoca: só ela fica nítida
+      u.uDof.value = lerp(this.dofBase.dof, 2.6, k);
+      u.uFocus.value.set(lerp(this.dofBase.near, 3.4, k), lerp(this.dofBase.far, 9, k));
+    }
+    if (this.game.renderer) this.game.renderer.fx.vignette = lerp(0.5, 0.68, k);
+  }
+
   async toMenu() {
     const { renderer, ui } = this.game;
     this.mode = 'leaving';
@@ -852,7 +983,8 @@ export class ParkScene {
   update(dt, t) {
     if (!this.park) return;
     const { sfx, ui, renderer } = this.game;
-    const frozen = this.mode === 'game' && ui.pauseOpen; // pausa de verdade no minigame
+    // pausa de verdade: roteiro, personagens e minigame param (o parque segue vivo ao fundo)
+    const frozen = ui.pauseOpen;
     if (!frozen) this.tweens.update(dt);
     this.park.update(t, dt);
     if (!frozen) this.mg.update(dt, t);
@@ -888,7 +1020,7 @@ export class ParkScene {
 
     // a Malu acompanha (um pouco atrás e mais para o fundo), sem grudar
     if (this.mode === 'free' && (!M.target || M.target.follow)) {
-      const side = -this.ani.facing;
+      const side = -(this.pauseFacing || this.ani.facing); // (guardando o celular: o lado de antes)
       const gx = clamp(A.x + side * 1.05, LANE.minX, LANE.maxX);
       const gz = clamp(A.z - 0.28, LANE.minZ, LANE.maxZ);
       const d = Math.hypot(gx - M.x, gz - M.z);
@@ -902,9 +1034,36 @@ export class ParkScene {
         M.target.follow = true;
       } else if (Math.abs(A.x - M.x) > 0.2) M.face(Math.sign(A.x - M.x));
     }
-    if (A.update(dt)) sfx.step();
-    if (M.update(dt)) sfx.step();
-    this.snacks.update(dt, t, { busy: this.mode !== 'free' });
+    // guardando o celular: se o jogador já sai andando, ela guarda na hora
+    if (this.ani.anim && !this.phonePose && (A.vx || A.vz || A.target)) this.ani.stopClip();
+    if (frozen) {
+      // só respiram/piscam (e a Ani mexe no celular; a Malu olha para ela); ninguém morde
+      if (this.phonePose && Math.abs(A.x - M.x) > 0.2) this.malu.facing = Math.sign(A.x - M.x);
+      this.ani.eatBusy = this.malu.eatBusy = true;
+      this.ani.update(dt, 0);
+      this.malu.update(dt, 0);
+    } else {
+      if (A.update(dt)) sfx.step();
+      if (M.update(dt)) sfx.step();
+      this.snacks.update(dt, t, { busy: this.mode !== 'free' });
+    }
+    if (!this.ani.anim && !this.phonePose) {
+      if (this.pauseSnack) this.pauseSnack.visible = true;
+      this.pauseSnack = null;
+      // guardou o celular parada: volta a olhar para onde olhava (a Malu não troca de lado)
+      if (this.pauseFacing && !A.vx && !A.vz && !A.target) this.ani.facing = this.pauseFacing;
+      this.pauseFacing = 0;
+    }
+    // pausa no celular: câmera chega perto e abre espaço para o app; luz da tela no rosto
+    const wantPause = this.phonePose ? 1 : 0;
+    this.pauseK = clamp(this.pauseK + (wantPause ? dt / 0.9 : -dt / 0.7), 0, 1);
+    if (this.pauseK > 0 || wantPause) this.applyPauseLook();
+    this.phoneLight.intensity = this.ani.glowK * 0.32;
+    if (this.ani.glowK > 0.01) {
+      const m = this.ani.mesh.position;
+      // um pouco à frente da placa: luz macia no rosto e nas mãos, sem ponto estourado
+      this.phoneLight.position.set(m.x + this.ani.shown * 0.32, 1.3, m.z + 0.65);
+    }
 
     // tirinha na mão de quem está segurando
     const S = this.park.booth.strip;
@@ -934,7 +1093,10 @@ export class ParkScene {
     }
 
     // balão de interação
-    if (this.mode === 'free' && !this.busy) {
+    if (frozen) {
+      ui.interact(null);
+      this.lastIt = null;
+    } else if (this.mode === 'free' && !this.busy) {
       const it = this.nearestInteractable();
       if (it !== this.lastIt) {
         this.lastIt = it;
@@ -956,7 +1118,7 @@ export class ParkScene {
     const kx = this.rig.follow === 'ani' || !this.rig.follow ? A.x : (A.x + M.x) / 2;
     this.key.position.set(kx + 0.6, 2.2, Math.max(A.z, M.z) + 2.0);
     // na roda-gigante: personagens dentro da gôndola, câmera presa nela
-    this.ride.update(dt, t);
+    if (!frozen) this.ride.update(dt, t);
 
     this.updateCamera(dt, t);
   }

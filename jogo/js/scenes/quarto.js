@@ -84,6 +84,8 @@ const isAncestor = (a, o) => {
 };
 
 // Gira suavemente um ângulo em direção a outro
+// onde a Ani fica para a mão alcançar o interruptor (parede da direita, x 2,98)
+const SWITCH_SPOT = { x: 2.385, z: -0.3 }; // ponta do dedo (quadro do aperto) encosta na tecla
 const dampAngle = (a, b, l, dt) => a + Math.atan2(Math.sin(b - a), Math.cos(b - a)) * (1 - Math.exp(-l * dt));
 
 // Controle: próximo item na direção (dx, dy) entre pontos de tela {x, y} (pixels, y para baixo).
@@ -248,6 +250,9 @@ export class QuartoScene {
     this.keys.clear();
     this.app.reset();
     this.room.setLight(0);
+    this.room.setSwitch(false, true);
+    this.ani.stopClip?.();
+    this.lightCount = 0;
     this.room.drawer.setOpen(0);
     this.resetRoomState();
     this.ani.mesh.visible = false;
@@ -309,6 +314,7 @@ export class QuartoScene {
       case 'luz':
         side();
         this.room.setLight(1);
+        this.room.setSwitch(true, true);
         break;
       case 'estante':
       case 'criado':
@@ -318,6 +324,7 @@ export class QuartoScene {
       case 'cortina': {
         side();
         this.room.setLight(1);
+        this.room.setSwitch(true, true);
         const map = { papeis: 'ingressos', travesseiro: 'cama' };
         const it = this.room.interactables.find((o) => o.id === (map[id] || id));
         this.x = it.x;
@@ -330,6 +337,7 @@ export class QuartoScene {
       case 'capitulo':
         side();
         this.room.setLight(1);
+        this.room.setSwitch(true, true);
         this.x = 1.35;
         this.camX = 1.15;
         if (id === 'capitulo') this.timeScale = 25; // passa a cena da gaveta bem rápido
@@ -829,16 +837,11 @@ export class QuartoScene {
     const { ui, sfx } = this.game;
     const dark = this.room.light < 0.5;
     this.busy = true;
+    if (it.id === 'interruptor') return this.useSwitch(it);
     this.ani.reach(0.45);
     this.ani.facing = Math.sign(it.x - this.x) || this.ani.facing;
 
-    if (it.id === 'interruptor') {
-      if (dark) await this.lightsOn();
-      else {
-        sfx.click();
-        ui.say('Melhor deixar acesa.', { hold: 1.2 });
-      }
-    } else if (dark) {
+    if (dark) {
       sfx.deny();
       this.thought('escuro', 'Tá escuro demais pra achar qualquer coisa.', { hold: 1.6 });
     } else if (it.id === 'gaveta') {
@@ -873,9 +876,55 @@ export class QuartoScene {
     if (this.searches === 2) this.thoughtLater('dica', 'Talvez... na gaveta da escrivaninha.', 3.2);
   }
 
+  // Interruptor: ela vai até a parede, estica o braço (animação ani-interruptor)
+  // e no quadro em que o dedo encosta a tecla vira e a luz acende ou apaga.
+  async useSwitch(it) {
+    const { ui } = this.game;
+    const tok = this.token;
+    const tw = this.tweens;
+    ui.interact(null);
+    // anda até o ponto em que a mão alcança a tecla (de frente para a parede da direita)
+    const spot = { x: SWITCH_SPOT.x, z: SWITCH_SPOT.z };
+    const from = { x: this.x, z: this.z };
+    const dist = Math.hypot(spot.x - from.x, (spot.z - from.z) * 2);
+    if (dist > 0.03) {
+      this.script = { x: this.x, z: this.z };
+      await tw.to({
+        duration: clamp(dist / 1.1, 0.25, 1.2), ease: ease.inOutSine,
+        onUpdate: (k) => {
+          this.script.x = lerp(from.x, spot.x, k);
+          this.script.z = lerp(from.z, spot.z, k);
+        },
+      });
+      this.script = null;
+      if (tok !== this.token) return;
+    }
+    this.vel = this.velZ = 0;
+    this.ani.facing = 1;
+    const turnOn = this.room.light < 0.5;
+    let pressed = null;
+    const press = new Promise((r) => (pressed = r));
+    const anim = this.ani.play('interruptor', {
+      onEvent: (e) => {
+        if (e !== 'press' || tok !== this.token) return;
+        this.room.setSwitch(turnOn);
+        pressed();
+      },
+    });
+    await press;
+    if (tok !== this.token) return;
+    if (turnOn) await this.lightsOn();
+    else await this.lightsOff();
+    await anim;
+    if (tok !== this.token) return;
+    await tw.wait(0.15);
+    this.busy = false;
+  }
+
   async lightsOn() {
     const { sfx, ui } = this.game;
     sfx.click();
+    this.lightCount++;
     // a lâmpada pisca antes de firmar
     for (const [f, s] of [[0.5, 0.06], [0, 0.1], [0.9, 0.05], [0.15, 0.12], [1, 0]]) {
       this.room.setLight(1, f);
@@ -883,8 +932,26 @@ export class QuartoScene {
       if (s) await this.tweens.wait(s);
     }
     this.game.renderer.fx.aberration = 0.006;
-    await this.tweens.wait(0.7);
-    ui.say('Pronto. Agora... o carregador.', { hold: 1.6 });
+    if (this.lightCount === 1) {
+      await this.tweens.wait(0.7);
+      ui.say('Pronto. Agora... o carregador.', { hold: 1.6 });
+    }
+  }
+
+  // apagar: clique, a lâmpada morre num instante (o filamento ainda brilha um tiquinho)
+  async lightsOff() {
+    const { sfx, ui } = this.game;
+    sfx.click();
+    for (const [f, s] of [[0.35, 0.05], [0.12, 0.06], [0.04, 0.07]]) {
+      this.room.setLight(1, f);
+      await this.tweens.wait(s);
+    }
+    this.room.setLight(0);
+    this.game.renderer.fx.aberration = 0.004;
+    if (!this.thoughtsShown.has('apagou')) {
+      this.thoughtsShown.add('apagou');
+      this.tweens.wait(0.5).then(() => this.room.light < 0.5 && ui.say('Breu de novo.', { hold: 1.3 }));
+    }
   }
 
   // -------------------------------------------------------------
@@ -2148,6 +2215,7 @@ export class QuartoScene {
       if (glowObj) setGlow(glowObj, 0.16 + Math.sin(t * 4) * 0.07);
       if (it) {
         if (it.id === 'cortina') it.label = this.room.curtain > 0.5 ? 'Abrir cortina' : 'Fechar cortina';
+        if (it.id === 'interruptor') it.label = dark ? 'Acender a luz' : 'Apagar a luz';
         const label = dark && it.id !== 'interruptor' ? '???' : it.label;
         const p = it.anchor.clone().project(this.sideCam);
         ui.interact(label, ((p.x + 1) / 2) * window.innerWidth, ((1 - p.y) / 2) * window.innerHeight);

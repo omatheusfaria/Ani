@@ -88,12 +88,23 @@ js/chars/ani.js         WalkSprite(cfg) genérico
                           MALU_SPRITE: malu-andando.png, 13 quadros = 10 de passo + parada, meio-piscar, piscar
                         setFill / setRim / reach / pose(13|14)
                         vira seco (sem animação de virada)
+                        Animações extras (ANI_CLIPS): addClip / play(nome, {onEvent}) → Promise / stopClip.
+                          Troca a textura do material só enquanto toca; eventos marcados na seq ('press').
+                          interruptor: ani-interruptor-quadros.png (24 quadros, mesma célula 168×246)
+                          celular: ani-celular-quadros.png + ani-celular-brilho.png (o cone de luz da
+                            tela separado por tools/separar-brilho.py, desenhado como camada aditiva)
+                          Clip com loop/out: seq → 'loop' (repete) → release() toca o 'out'.
+                          Folhas novas do Sprite Fusion (6×4 de 256 px): tools/recortar-folha.py
+                          entrada.png saida.png [previa.png] → binariza o alfa e alinha pelos pés
 js/phone/app.js         app "Pixgram". Interface NÍTIDA de app de verdade (canvas 4×, fonte do sistema, ícones
                         vetoriais); só as fotos (posts, avatares, papel de parede) são pixeladas. Coordenadas e
                         hits continuam em 132×276. Celular desligado: reflexo do rosto da Ani (makeReflection)
 js/scenes/quarto.js     Cena 1 (23:47), em etapas:
                           celular → bateria → levantar → visão lateral (WASD) → gaveta → zoom na foto
                           → FLASH → goTo('parque')
+                        Interruptor: useSwitch() anda até SWITCH_SPOT (2.385, −0.3), toca o clip e, no quadro
+                          'press', vira a tecla (room.setSwitch) e acende/apaga (lightsOn/lightsOff). Dá para
+                          apagar de novo; a fala do carregador só sai na 1ª vez. A tecla é basculante com mola.
                         em 1ª pessoa o feixe de luar é atenuado (fpVolK)
 js/scenes/cinema.js     luz do quarto: luar volumétrico em meia resolução + blur, cone do lustre,
                         sombra da Ani (sprite), poeira
@@ -106,6 +117,16 @@ js/scenes/parque.js     Capítulo 1 (ParkScene)
                         Actor (walkTo com arrive/aceleração)
                         rig de câmera: follow 'ani' | 'duas' | 'close', ou alvo livre com lambda
                         "rebatedor" (PointLight que segue as duas)
+                        Pausa (ESC / MENU): pausa de verdade em qualquer modo (tweens, personagens,
+                          minigame e roda congelam; o parque segue vivo ao fundo). Andando livre, a Ani
+                          vira para a esquerda e toca o clip 'celular' (tira do bolso → fica rolando a tela
+                          em loop → release() guarda); câmera em plano médio com ela no terço da direita,
+                          fundo desfocado (uDof/uFocus) e phoneLight fria no rosto (segue ani.glowK).
+                          O menu abre na tela do celular, à esquerda, como o app de Ajustes:
+                          ui.pause(opções, { phone: PHONE_INFO }). Opções com kind 'link' | 'toggle' |
+                          'slider' | 'choice' (Continuar, Som, Pixels, Tela cheia, Menu principal);
+                          ←→ ajustam (ui.pauseAdjust), destaque desliza entre as linhas (.ph-cursor).
+                          PIXEL_OPTIONS vem de menu.js (mesmos valores das Configurações).
 js/scenes/park.js       monta o parque
                           Kit: geometria estática fundida com cor por vértice; 1 malha acesa + 1 que brilha
                             + grupos por material (o.mat): madeira com veio (woodMat/boardMat, kit.tbox com UV
@@ -119,8 +140,16 @@ js/scenes/park.js       monta o parque
                                         · balões 6.9 · latas 10.2 · churros 13.4 · bilheteria 16.4
                         fundo: carrossel (-6.6, -9.2) · circo (3.4, -13) · roda-gigante (12.6, hub y 8.6, z -17.5)
                                · árvores z -38 · cidade z -95 · céu em shader (estrelas, nuvens, lua)
-js/scenes/parkfood.js   comidas (algodão-doce, pipoca, churros, maçã do amor): modelo 3D na mão, mordidas com
-                        farelos até acabar (Snacks); a Malu rouba um pedaço do algodão da Ani
+js/scenes/parkfood.js   comidas (algodão-doce, pipoca, churros, maçã do amor). Quem tem a comida desenhada
+                        (ANI_FOOD / MALU_FOOD em ani.js) pega no balcão com a folha x-pegando-x (o modelo 3D só
+                        voa até a mão e some no quadro 'pega') e come pelo sprite: folhas x-parada-x / x-andando-x,
+                        4 linhas = 4 estágios. O estágio é comum às duas folhas (WalkSprite.food.level): parada
+                        ela morde e segura; andando belisca no passo; o tempo de cada estágio vale nas duas.
+                        Sem folha: modelo 3D na mão com mordidas (Snacks). A Malu rouba um pedaço do algodão
+                        da Ani (skipBite pula um estágio). Em cena/pausa: eatBusy segura sem morder.
+                        Folhas recortadas com tools/recortar-comida.py (grade 6×4, célula própria, H = altura).
+                        Maçã da Ani: depois de recortar, rodar tools/ajustar-rosto-maca.py (tira o sorrisão:
+                        cabeça do quadro neutro, olhos fechados num traço como na pipoca).
 js/scenes/minigames.js  3 minigames com HUD próprio (retratos com placar, munição, força, tempo, miras):
                           baloes (dardos, mira que balança, Malu joga depois), latas (força + física),
                           pescaria (anzol na hora em que a argolinha passa, 25 s). padMode 'aim' no controle
@@ -155,6 +184,7 @@ admin/index.html        atalhos; grupo "CAPÍTULO 1 · O PARQUE" (parque, parque
   - reduzir lâmpadas (Bulbs) e as amostras do DOF;
   - reduzir o número de glows (MAX_GLOWS = 24; hoje usa 23).
 - Falas: clique (ou Enter/A em cena) completa o texto; segundo clique pula para a próxima.
+- Com a pausa aberta as falas esperam (ui.nap respeita ui.pauseOpen), também no quarto.
 - O save e o "Continuar" do menu ainda não levam ao parque.
 - Os balões ancoram no topo da placa do sprite (Box3), não exatamente na cabeça.
 - A cutscene do parque não tem um botão de pular a cena inteira (só as falas).

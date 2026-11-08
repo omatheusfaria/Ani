@@ -835,7 +835,21 @@ export function buildRoom({ posts, strip }) {
   rb(0.05, 0.07, 1.01, frame, 2.975, 2.1, 0.85, 0.015);
   const SWITCH = new THREE.Vector3(2.98, 1.15, -0.35);
   rb(0.02, 0.12, 0.08, std({ color: '#d8d2e0', roughness: 0.4 }), SWITCH.x, SWITCH.y, SWITCH.z, 0.008);
-  const toggle = box(group, 0.02, 0.035, 0.025, lam({ color: '#f2eef8' }), SWITCH.x - 0.012, SWITCH.y + 0.012, SWITCH.z, { cast: false });
+  // tecla basculante: gira no meio; acesa = parte de cima afundada, apagada = parte de baixo
+  const toggle = new THREE.Group();
+  toggle.position.set(SWITCH.x - 0.012, SWITCH.y, SWITCH.z);
+  group.add(toggle);
+  const keyMat = std({ color: '#f4f0f8', roughness: 0.35 });
+  const key = new THREE.Mesh(new RoundedBoxGeometry(0.014, 0.07, 0.042, 2, 0.005), keyMat);
+  key.castShadow = false;
+  key.receiveShadow = true;
+  toggle.add(key);
+  // frisinho na metade de baixo (onde o dedo aperta para apagar) e o vão da moldura
+  const ridge = new THREE.Mesh(new THREE.BoxGeometry(0.002, 0.004, 0.03), std({ color: '#c9c2d4', roughness: 0.5 }));
+  ridge.position.set(-0.0075, -0.022, 0);
+  toggle.add(ridge);
+  rb(0.004, 0.08, 0.05, std({ color: '#bfb8ca', roughness: 0.6 }), SWITCH.x - 0.008, SWITCH.y, SWITCH.z, 0.001);
+  let switchOn = 0, switchK = 0, switchV = 0; // estado, posição (0 apagada → 1 acesa) e velocidade da mola
   const sticker = new THREE.Mesh(new THREE.PlaneGeometry(0.03, 0.03), new THREE.MeshBasicMaterial({ color: new THREE.Color(0.6, 2.2, 1.0), toneMapped: false }));
   sticker.position.set(2.968, 1.27, -0.35);
   sticker.rotation.y = -Math.PI / 2;
@@ -1024,6 +1038,17 @@ export function buildRoom({ posts, strip }) {
     },
     toggle,
     sticker,
+    // tecla do interruptor (só a peça 3D; a luz é setLight). snap = sem animar
+    setSwitch(on, snap = false) {
+      switchOn = on ? 1 : 0;
+      if (snap) {
+        switchK = switchOn;
+        switchV = 0;
+      }
+    },
+    get switchOn() {
+      return switchOn === 1;
+    },
     get light() {
       return light;
     },
@@ -1066,7 +1091,10 @@ export function buildRoom({ posts, strip }) {
       plasma.update(dt, light > 0.5);
       bag.update(t, dt);
       sticker.visible = light < 0.5;
-      toggle.position.y = SWITCH.y + (light > 0.5 ? -0.012 : 0.012);
+      // tecla: mola rígida com um tiquinho de passada (clique físico)
+      switchV += ((switchOn - switchK) * 900 - switchV * 30) * dt;
+      switchK += switchV * dt;
+      toggle.rotation.z = lerpN(0.22, -0.22, switchK); // + = topo para fora (apagada)
       for (const bulbM of bulbs) {
         const { base, phase, speed } = bulbM.userData;
         const tw = 0.75 + 0.25 * Math.sin(t * speed + phase);
