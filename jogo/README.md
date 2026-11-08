@@ -4,8 +4,10 @@ Pixel art + cenários 3D (Three.js), em HTML, CSS e JavaScript puro.
 
 ## Como rodar
 
-Dê dois cliques em `iniciar-servidor.bat`. Ele abre http://localhost:5500.
-Deixe a janela preta aberta enquanto joga. Depois de qualquer mudança no código, é só apertar **F5**.
+- **Windows:** dois cliques em `iniciar-servidor.bat`.
+- **Linux (Ubuntu) / macOS:** no terminal, dentro da pasta do jogo, rode `./iniciar-servidor.sh`.
+
+Ele abre http://localhost:5500. Deixe a janela do servidor aberta enquanto joga. Depois de qualquer mudança no código, é só apertar **F5**.
 
 ## O que já existe
 
