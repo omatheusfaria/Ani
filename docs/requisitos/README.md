@@ -57,7 +57,7 @@ O Quadro 3 apresenta algumas das regras de negócio do projeto.
 | --- | --- | --- |
 | RN001 | Registro único de memória | Cada fragmento de memória pode ser registrado apenas uma vez no diário. |
 | RN002 | Progressão fixa entre atos | A progressão entre atos ocorre de forma sequencial, seguindo a ordem definida no GDD, sem possibilidade de retorno ou salto de ordem. |
-| RN004 | Avanço parcial no Ato I | No Ato I, o avanço não exige a visualização de todas as memórias, apenas o cumprimento de um limiar mínimo definido. O valor exato do limiar pode ser ajustado durante o refinamento do projeto. |
+| RN004 | Sequência linear de memórias no Ato I | No Ato I, as memórias são percorridas em uma sequência fixa, definida pela narrativa: cada memória só fica disponível depois que a anterior é registrada, e a passagem para o ato seguinte é liberada quando a última memória da sequência é registrada. |
 | RN005 | Ressignificação de objetos e memórias | Um fragmento pode assumir diferentes interpretações ao longo da progressão do jogo, sem alteração de sua identidade original no diário. |
 | RN006 | Convergência dos ecos de decisão | Nos momentos de eco de decisão no Ato II, diferentes interações do jogador levam ao mesmo impasse narrativo. |
 

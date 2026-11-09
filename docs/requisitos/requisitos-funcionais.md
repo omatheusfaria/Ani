@@ -30,7 +30,7 @@ No projeto **Ani**, os requisitos funcionais reúnem as funcionalidades atualmen
 
 | RF006-Desbloqueio progressivo do cenário | Categoria: (  ) Oculto (X) Evidente | Prioridade: (X) Altíssima (  ) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |
-| **Descrição**: O sistema deve desbloquear cômodos, passagens, portas e escadas conforme o jogador atravessa memórias e conclui o ciclo de progressão de cada ato, segundo a regra de conclusão de ato (RN003) e, no Ato I, a de avanço parcial (RN004). | | |
+| **Descrição**: O sistema deve desbloquear cômodos, passagens, portas e escadas conforme o jogador atravessa memórias e conclui o ciclo de progressão de cada ato, segundo a regra de conclusão de ato (RN003) e, no Ato I, a da sequência linear de memórias (RN004). | | |
 
 | RF007-Sistema de puzzles | Categoria: (  ) Oculto (X) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |
@@ -80,9 +80,9 @@ No projeto **Ani**, os requisitos funcionais reúnem as funcionalidades atualmen
 | --- | --- | --- |
 | **Descrição**: O sistema deve representar crises de ansiedade por distorção visual, fragmentação sonora e intensificação das manifestações, sem depender de um sistema de escolhas morais. | | |
 
-| RF019-Desbloqueio mínimo de memórias no Ato I | Categoria: (X) Oculto (  ) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
+| RF019-Conclusão da sequência de memórias no Ato I | Categoria: (X) Oculto (  ) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |
-| **Descrição**: O sistema deve contar, no Ato I, as memórias coletadas e liberar a passagem para o ato seguinte quando a contagem atingir o limiar mínimo definido na RN004. | | |
+| **Descrição**: O sistema deve acompanhar, no Ato I, a posição do jogador na sequência de memórias e liberar a passagem para o ato seguinte quando a última memória da sequência for registrada, conforme a RN004. | | |
 
 | RF020-Aviso de conteúdo sensível | Categoria: (  ) Oculto (X) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |

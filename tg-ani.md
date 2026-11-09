@@ -353,7 +353,7 @@ O Quadro X apresenta os requisitos funcionais do sistema, organizados por códig
 | RF003 | Interagir com objetos | Evidente | Altíssima | O sistema deve permitir interação com objetos significativos para acessar memórias, fragmentos narrativos e elementos contemplativos do cenário. |
 | RF004 | Sistema de memórias | Evidente | Altíssima | O sistema deve apresentar memórias como fragmentos narrativos, como cartas, bilhetes, fotografias e diários, acessíveis por meio da interação com o ambiente. Os fragmentos são encontrados em ordem linear, definida pela narrativa de cada ato. |
 | RF005 | Diário de memórias | Evidente | Altíssima | O sistema deve registrar os fragmentos coletados em um diário estilizado acessível ao jogador. Os itens podem ganhar nova leitura visual ou contextual conforme os atos avançam. |
-| RF006 | Desbloqueio progressivo do cenário | Evidente | Altíssima | O sistema deve desbloquear cômodos, passagens, portas e escadas conforme o jogador atravessa memórias e conclui o ciclo de progressão de cada ato, segundo a regra de conclusão de ato (RN003) e, no Ato I, a de avanço parcial (RN004). |
+| RF006 | Desbloqueio progressivo do cenário | Evidente | Altíssima | O sistema deve desbloquear cômodos, passagens, portas e escadas conforme o jogador atravessa memórias e conclui o ciclo de progressão de cada ato, segundo a regra de conclusão de ato (RN003) e, no Ato I, a da sequência linear de memórias (RN004). |
 | RF007 | Sistema de puzzles | Evidente | Alta | O sistema deve incluir puzzles contextuais integrados ao ambiente e à narrativa dos atos. |
 | RF008 | Diálogos com personagens de memória | Evidente | Alta | O sistema deve apresentar diálogos textuais fragmentados para personagens de memória, como Mãe, Padrasto, Pretendente e Primo. |
 | RF009 | Sistema de save/load | Evidente | Altíssima | O sistema deve salvar e carregar o progresso do jogador, incluindo ato atual, memórias registradas, estado do diário e estado visual da casa. |
@@ -366,7 +366,7 @@ O Quadro X apresenta os requisitos funcionais do sistema, organizados por códig
 | RF016 | Mecânica de contemplação ativa no Ato IV | Evidente | Alta | O sistema deve revelar, no Ato IV, fragmentos de narração quando o jogador permanece em observação diante de elementos contemplativos do cenário. |
 | RF017 | Dissolução de mecânicas no Ato V | Evidente | Alta | O sistema deve retirar progressivamente, no Ato V, as mecânicas centrais dos atos anteriores até restarem principalmente deslocamento e contemplação. |
 | RF018 | Crises de ansiedade como elemento sensorial | Evidente | Alta | O sistema deve representar crises de ansiedade por distorção visual, fragmentação sonora e intensificação das manifestações, sem depender de um sistema de escolhas morais. |
-| RF019 | Desbloqueio mínimo de memórias no Ato I | Oculto | Alta | O sistema deve contar, no Ato I, as memórias coletadas e liberar a passagem para o ato seguinte quando a contagem atingir o limiar mínimo definido na RN004. |
+| RF019 | Conclusão da sequência de memórias no Ato I | Oculto | Alta | O sistema deve acompanhar, no Ato I, a posição do jogador na sequência de memórias e liberar a passagem para o ato seguinte quando a última memória da sequência for registrada, conforme a RN004. |
 | RF020 | Aviso de conteúdo sensível | Evidente | Alta | O sistema deve exibir, antes do início do jogo, um aviso sobre temas sensíveis (ansiedade, sofrimento psíquico), com indicação de onde buscar apoio. |
 | RF021 | Pausar jogo | Evidente | Alta | O sistema deve permitir que o jogador pause a sessão em andamento, suspendendo o gameplay e exibindo o menu de pausa, e retome o jogo do mesmo ponto. |
 | RF022 | Configurar vídeo e áudio | Evidente | Média | O sistema deve permitir que o jogador ajuste opções de vídeo e áudio a partir do menu inicial ou do menu de pausa. |
@@ -380,7 +380,7 @@ O Quadro X apresenta os requisitos funcionais do sistema, organizados por códig
 | RF030 | Personagem acompanhante | Evidente | Média | O sistema deve fazer com que personagens de memória acompanhem Ani pelo cenário em determinadas fases, seguindo-a e comentando os lugares e as ações do jogador. |
 | RF031 | Salvamento automático | Oculto | Alta | O sistema deve salvar o progresso automaticamente ao atingir pontos de salvamento definidos pela narrativa, sem ação do jogador. |
 
-Observa-se uma distribuição de 9 requisitos com prioridade Altíssima, 16 com prioridade Alta e 6 com prioridade Média. Pela classificação adotada, há 29 requisitos evidentes e 2 ocultos. O bloco RF012 a RF019 concentra as mecânicas filosóficas por ato e, como seus efeitos são percebidos pelo jogador, é quase todo evidente; apenas o RF019 permanece oculto, pois o jogador percebe a abertura da passagem (RF006), mas não a contagem do limiar que a determina. O RF031 também é oculto, porque o salvamento automático acontece em segundo plano. Os requisitos RF024 a RF031 descrevem as mecânicas do início do Ato I: o celular, a iluminação dos cômodos, a inspeção de objetos, a passagem para as memórias, as comidas, os minigames e o personagem acompanhante.
+Observa-se uma distribuição de 9 requisitos com prioridade Altíssima, 16 com prioridade Alta e 6 com prioridade Média. Pela classificação adotada, há 29 requisitos evidentes e 2 ocultos. O bloco RF012 a RF019 concentra as mecânicas filosóficas por ato e, como seus efeitos são percebidos pelo jogador, é quase todo evidente; apenas o RF019 permanece oculto, pois o jogador percebe a abertura da passagem (RF006), mas não o acompanhamento da sequência de memórias que a determina. O RF031 também é oculto, porque o salvamento automático acontece em segundo plano. Os requisitos RF024 a RF031 descrevem as mecânicas do início do Ato I: o celular, a iluminação dos cômodos, a inspeção de objetos, a passagem para as memórias, as comidas, os minigames e o personagem acompanhante.
 
 ## 2.4 Requisitos Não Funcionais
 
@@ -414,7 +414,7 @@ O Quadro X apresenta as regras de negócio do sistema, descrevendo as restriçõ
 | RN001 | Registro único de memória | Cada fragmento de memória pode ser registrado apenas uma vez no diário. |
 | RN002 | Progressão fixa entre atos | A progressão entre atos ocorre de forma sequencial, seguindo a ordem definida no GDD, sem possibilidade de retorno ou salto de ordem. |
 | RN003 | Critério de avanço por conclusão de ato | A progressão para o ato seguinte depende da conclusão dos critérios do ato atual. |
-| RN004 | Avanço parcial no Ato I | No Ato I, o avanço não exige a visualização de todas as memórias, apenas o cumprimento de um limiar mínimo definido. O valor exato do limiar pode ser ajustado durante o refinamento do projeto. |
+| RN004 | Sequência linear de memórias no Ato I | No Ato I, as memórias são percorridas em uma sequência fixa, definida pela narrativa: cada memória só fica disponível depois que a anterior é registrada, e a passagem para o ato seguinte é liberada quando a última memória da sequência é registrada. |
 | RN005 | Ressignificação de objetos e memórias | Um fragmento pode assumir diferentes interpretações ao longo da progressão do jogo, sem alteração de sua identidade original no diário. |
 | RN006 | Convergência dos ecos de decisão | Nos momentos de eco de decisão no Ato II, diferentes interações do jogador levam ao mesmo impasse narrativo. |
 | RN007 | Interação no escuro | Com a luz do cômodo apagada, Ani não consegue examinar objetos: somente interruptores e fontes de luz próprias, como luminárias, podem ser acionados; nos demais casos, Ani informa que precisa acender a luz. |
@@ -670,7 +670,7 @@ Sua importância neste trabalho está em mostrar como a experiência contemplati
 
 [Figura 3 – Diagrama de Classes de Ani]
 
-As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sintetiza os cinco atos filosóficos; `Memoria`, `Diario` e `EntradaDiario` formalizam o sistema de memórias; `ObjetoMemoria` representa o gatilho interativo de revelação de memórias; `ObjetoRestauravel` traduz a lógica de Kintsugi do Ato III; `ObjetoContemplativo` traduz a contemplação ativa do Ato IV; `NPC` e `Dialogo` representam personagens de memória e seus fluxos textuais; `Ani` constitui a representação sistêmica da protagonista como sujeito da experiência; `EcoDecisao` registra as tentativas do jogador nos ecos de decisão do Ato II; e `Save` reúne o progresso persistido da partida, como a entidade SAVE do DER.
+As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sintetiza os cinco atos filosóficos; `Memoria`, `Diario` e `EntradaDiario` formalizam o sistema de memórias; `ObjetoMemoria` representa o gatilho interativo de revelação de memórias; `ObjetoRestauravel` traduz a lógica de Kintsugi do Ato III; `ObjetoContemplativo` traduz a contemplação ativa do Ato IV; `NPC` e `Dialogo` representam personagens de memória e seus fluxos textuais; `Ani` constitui a representação sistêmica da protagonista como sujeito da experiência; `EcoDecisao` registra as tentativas do jogador nos ecos de decisão do Ato II; e `Save` reúne o progresso persistido da partida, como a entidade SAVE do DER. As mecânicas do início do Ato I acrescentam `Celular` e `Publicacao`, que representam o celular em primeira pessoa e o feed (RF024); `Interruptor` e `FonteDeLuz`, que controlam a iluminação dos cômodos (RF025, RN007), com o atributo `iluminado` de `Cenario`; `ObjetoInspecionavel`, para a inspeção de objetos em primeira pessoa (RF026); `Barraca`, `Comida` e `Minigame`, para as barracas do parque (RF028, RF029, RN008); e `Configuracao`, que guarda as opções de vídeo e áudio (RF022). `ObjetoMemoria` leva Ani ao `Cenario` da memória (RF027), `Memoria.ordem` indica a posição da memória na sequência linear do ato (RN004), `Ato.totalMemorias` guarda o tamanho dessa sequência e `NPC.acompanhando` indica a personagem que segue Ani pelo cenário (RF030).
 
 `Jogo` e `Ani` mantêm uma associação bidirecional de multiplicidade 1 : 1: `Jogo` alcança o `Diario` por meio de `Ani`, sem associação direta entre `Jogo` e `Diario`, e `Ani` alcança `Jogo` para notificar o início e o fim das crises de ansiedade por meio de `Jogo.alterarEstado()`. Na implementação em Unreal Engine, essa notificação de `Ani` para `Jogo` é feita por um *delegate*: `Ani` dispara o evento, e `Jogo`, inscrito nele, altera o estado da sessão, o que evita que a personagem dependa diretamente da classe de jogo.
 
@@ -697,6 +697,7 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 - `- nome: FString`
 - `- posicaoX: float`
 - `- posicaoY: float`
+- `- posicaoZ: float`
 - `- sprite: FString`
 - `- velocidade: float`
 
@@ -718,10 +719,12 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 ### Classe: NPC
 **Atributos:**
 - `- tipo: TipoNPC`
+- `- acompanhando: bool`
 
 **Métodos:**
 - `+ falar()`
 - `+ interagir()`
+- `+ seguir()`
 
 ### Classe: Dialogo
 **Atributos:**
@@ -749,6 +752,7 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 **Métodos:**
 - `+ exibir()`
 - `+ registrarNoDiario()`
+- `+ abrirMemoria()`
 
 ### Classe: Memoria
 **Atributos:**
@@ -756,6 +760,7 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 - `- titulo: FString`
 - `- conteudo: FString`
 - `- atoOrigem: int32`
+- `- ordem: int32`
 - `- coletada: bool`
 
 **Métodos:**
@@ -785,6 +790,7 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 **Atributos:**
 - `- nome: FString`
 - `- desbloqueado: bool`
+- `- iluminado: bool`
 
 **Métodos:**
 - `+ carregarCenario()`
@@ -797,7 +803,7 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 - `- nome: FString`
 - `- descricao: FString`
 - `- concluido: bool`
-- `- limiarMemorias: int32`
+- `- totalMemorias: int32`
 
 **Métodos:**
 - `+ iniciarAto()`
@@ -839,6 +845,83 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 - `+ salvar()`
 - `+ carregar()`
 
+### Classe: Celular
+**Atributos:**
+- `- bateria: int32`
+- `- ligado: bool`
+
+**Métodos:**
+- `+ ligar()`
+- `+ desligar()`
+- `+ rolarFeed()`
+
+### Classe: Publicacao
+**Atributos:**
+- `- autor: FString`
+- `- legenda: FString`
+- `- curtida: bool`
+
+**Métodos:**
+- `+ curtir()`
+
+### Classe: Interruptor
+**Atributos:**
+- `- cenario: Cenario`
+
+**Métodos:**
+- `+ alternarIluminacao()`
+
+### Classe: FonteDeLuz
+**Atributos:**
+- `- acesa: bool`
+
+**Métodos:**
+- `+ acender()`
+- `+ apagar()`
+
+### Classe: ObjetoInspecionavel
+**Atributos:**
+- `- itens: TArray<FString>`
+
+**Métodos:**
+- `+ inspecionar()`
+
+### Classe: Barraca
+**Atributos:**
+- `- nome: FString`
+
+**Métodos:**
+- `+ venderComida()`
+- `+ abrirMinigame()`
+
+### Classe: Comida
+**Atributos:**
+- `- nome: FString`
+- `- estagio: int32`
+
+**Métodos:**
+- `+ consumir()`
+
+### Classe: Minigame
+**Atributos:**
+- `- nome: FString`
+- `- placar: int32`
+
+**Métodos:**
+- `+ iniciar()`
+- `+ registrarJogada()`
+- `+ encerrar()`
+
+### Classe: Configuracao
+**Atributos:**
+- `- volume: float`
+- `- resolucao: FString`
+- `- telaCheia: bool`
+
+**Métodos:**
+- `+ aplicar()`
+- `+ restaurarPadrao()`
+
 ### Enumerações
 
 O Quadro 29 lista as enumerações usadas como tipos de atributos.
@@ -879,6 +962,16 @@ O Quadro 30 resume os relacionamentos entre as classes e suas multiplicidades.
 | Jogo | Associação | Save | 1 para 0..* |
 | Save | Associação | Ato | 0..* para 1 |
 | Save | Associação | Diario | 1 para 1 |
+| Ani | Associação | Celular | 1 para 1 |
+| Celular | Composição | Publicacao | 1 para 0..* |
+| Jogo | Composição | Configuracao | 1 para 1 |
+| Interruptor | Herança | ObjetoInterativo | 1 para 1 |
+| FonteDeLuz | Herança | ObjetoInterativo | 1 para 1 |
+| ObjetoInspecionavel | Herança | ObjetoInterativo | 1 para 1 |
+| Barraca | Herança | ObjetoInterativo | 1 para 1 |
+| Barraca | Associação | Comida | 1 para 0..* |
+| Barraca | Associação | Minigame | 1 para 0..1 |
+| ObjetoMemoria | Associação | Cenario | 0..* para 1 |
 
 ## 2.8 Diagramas de Atividades
 
@@ -892,11 +985,11 @@ A Figura 4 apresenta o fluxo de resolução de um puzzle descrito no UC-S014. O 
 
 [Figura 4 – Diagrama de Atividades: Resolver Puzzle]
 
-### Atividade: Progressão do Ato I até o limiar mínimo (RN004)
+### Atividade: Progressão do Ato I pela sequência de memórias (RN004)
 
-A Figura 5 apresenta o ciclo de progressão do Ato I. A cada objeto de memória ainda não registrado (RN001), o sistema registra a memória no diário (RF005), aumenta o peso no deslocamento de Ani (RF013) e atualiza a contagem de memórias do ato (RF019). Quando a contagem atinge o limiar mínimo definido na RN004, a passagem para o ato seguinte é liberada (RF006), sem que seja preciso visualizar todas as memórias disponíveis.
+A Figura 5 apresenta o ciclo de progressão do Ato I. A cada objeto de memória ainda não registrado (RN001), o sistema registra a memória no diário (RF005), aumenta o peso no deslocamento de Ani (RF013) e avança para a próxima memória da sequência do ato (RF019). Quando a memória registrada é a última da sequência definida na RN004, a passagem para o ato seguinte é liberada (RF006).
 
-[Figura 5 – Diagrama de Atividades: Progressão do Ato I até o limiar mínimo]
+[Figura 5 – Diagrama de Atividades: Progressão do Ato I pela sequência de memórias]
 
 ## 2.9 Diagrama de Estados
 
@@ -945,11 +1038,12 @@ Representa a unidade de persistência da partida.
 **Atributos:** id_save (PK), data_criacao, data_ultima_atualizacao
 **Relacionamentos:**
 - estaEm ATO: cada save está em um ato; um ato pode estar associado a vários saves.
+- estaEm CENARIO: cada save está em um cenário, onde o jogo continua ao ser carregado.
 - Possui DIARIO: cada save possui um diário associado.
 
 ### Entidade: ATO
-Representa cada etapa da progressão narrativa do jogo; `limiar_memorias` guarda a quantidade mínima de memórias da RN004.
-**Atributos:** id_ato (PK), nome, descricao, concluido, limiar_memorias
+Representa cada etapa da progressão narrativa do jogo; `total_memorias` guarda a quantidade de memórias da sequência linear do ato (RN004).
+**Atributos:** id_ato (PK), nome, descricao, concluido, total_memorias
 **Relacionamentos:**
 - Contem CENARIO: um ato contém um ou vários cenários; cada cenário pertence a um ato.
 - estaEm (com SAVE): um ato pode estar associado a vários saves.
@@ -960,6 +1054,7 @@ Representa os cenários pertencentes aos atos.
 **Relacionamentos:**
 - Contem (com ATO): cada cenário pertence a um ato.
 - Pertence (com OBJETO_INTERATIVO): um cenário pode possuir zero ou vários objetos interativos.
+- estaEm (com SAVE): um cenário pode estar associado a vários saves.
 
 ### Entidade: DIARIO
 Representa o diário associado ao progresso salvo.
@@ -977,7 +1072,7 @@ Representa cada entrada consultável no diário.
 
 ### Entidade: MEMORIA
 Representa os fragmentos narrativos relacionados ao diário e aos objetos do mundo.
-**Atributos:** id_memoria (PK), titulo, conteudo, ato_origem, coletada
+**Atributos:** id_memoria (PK), titulo, conteudo, ato_origem, ordem, coletada
 **Relacionamentos:**
 - Referencia (com ENTRADA_DIARIO): pode ser referenciada por uma entrada do diário.
 - Revela (com OBJETO_MEMORIA): é revelada por um objeto de memória.
@@ -1002,6 +1097,10 @@ Subtipo que guarda o estado de objetos restauráveis do Ato III.
 ### Entidade: OBJETO_CONTEMPLATIVO
 Subtipo que controla a contemplação por tempo de observação do Ato IV.
 **Atributos:** tempoMinimoObservacao (herda id_objeto de OBJETO_INTERATIVO)
+
+### Entidade: CONFIGURACAO
+Representa as opções de vídeo e áudio escolhidas pelo jogador (RF022). É salva à parte do progresso e, por isso, não se relaciona com SAVE: as opções continuam valendo quando o jogador inicia um novo jogo.
+**Atributos:** id_configuracao (PK), volume, resolucao, tela_cheia
 
 # 3 Ferramentas e Métodos
 
@@ -1156,7 +1255,7 @@ O sistema de progressão por atos organiza a jornada em cinco etapas sequenciais
 - **Trecho de código relevante:** `[Código 3 — verificação de conclusão de ato e desbloqueio do cenário seguinte]`
 - **Captura de tela comentada:** `[Figura 12 – Transição de ato com alteração de cenário e atmosfera]`
 
-O sistema detecta a conclusão de cada etapa pela combinação entre exploração, memórias e eventos centrais do ato corrente. No Ato I, RN004 permite avanço mediante um limiar mínimo de memórias, sem exigir exaustão total do conteúdo disponível. O Quadro 32 retoma a referência filosófica, o tom e o símbolo de cada ato.
+O sistema detecta a conclusão de cada etapa pela combinação entre exploração, memórias e eventos centrais do ato corrente. No Ato I, a RN004 define que as memórias são percorridas em sequência linear e que a passagem para o ato seguinte se abre quando a última memória da sequência é registrada. O Quadro 32 retoma a referência filosófica, o tom e o símbolo de cada ato.
 
 | Ato | Referência Filosófica | Tom | Símbolo |
 | --- | --- | --- | --- |

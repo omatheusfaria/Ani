@@ -12,7 +12,7 @@ A Figura 1 apresenta o diagrama entidade-relacionamento do projeto **Ani**, elab
 
 ![Figura 1 - Diagrama Entidade-Relacionamento do projeto Ani](./diagrama-entidade-relacionamento.drawio.svg)
 
-O diagrama evidencia a estrutura dos dados persistidos do jogo e mostra como o progresso do jogador se relaciona com atos, cenários, diário, memórias e objetos interativos.
+O diagrama evidencia a estrutura dos dados persistidos do jogo e mostra como o progresso do jogador se relaciona com atos, cenários, diário, memórias e objetos interativos, além das configurações salvas à parte.
 
 O Quadro 1 apresenta as entidades, atributos e especializações modeladas no DER.
 
@@ -21,15 +21,16 @@ O Quadro 1 apresenta as entidades, atributos e especializações modeladas no DE
 | Entidade | Atributos | Observação |
 | --- | --- | --- |
 | `Save` | `id_save`, `data_criacao`, `data_ultima_atualizacao` | Representa o estado geral salvo da partida. |
-| `Ato` | `id_ato`, `nome`, `descricao`, `concluido`, `limiar_memorias` | Representa cada etapa narrativa e filosófica do jogo. |
+| `Ato` | `id_ato`, `nome`, `descricao`, `concluido`, `total_memorias` | Representa cada etapa narrativa e filosófica do jogo. |
 | `Cenario` | `id_cenario`, `nome`, `descricao`, `desbloqueado` | Representa os cenários vinculados aos atos. |
 | `Diario` | `id_diario`, `titulo`, `descricao` | Representa o diário associado ao progresso do jogador. |
 | `EntradaDiario` | `id_entrada`, `titulo`, `texto`, `ordem` | Representa cada registro exibido dentro do diário. |
-| `Memoria` | `id_memoria`, `titulo`, `conteudo`, `ato_origem`, `coletada` | Representa os fragmentos narrativos acessados ao longo da experiência. |
+| `Memoria` | `id_memoria`, `titulo`, `conteudo`, `ato_origem`, `ordem`, `coletada` | Representa os fragmentos narrativos acessados ao longo da experiência. |
 | `ObjetoInterativo` | `id_objeto`, `nome`, `descricao` | Entidade genérica para objetos com interação e impacto narrativo. |
 | `ObjetoMemoria` | `coletada` | Especialização de `ObjetoInterativo` voltada a revelar e registrar memórias. |
 | `ObjetoRestauravel` | `estado` | Especialização de `ObjetoInterativo` voltada à restauração de objetos. |
 | `ObjetoContemplativo` | `tempoMinimoObservacao` | Especialização de `ObjetoInterativo` voltada a eventos contemplativos. |
+| `Configuracao` | `id_configuracao`, `volume`, `resolucao`, `tela_cheia` | Representa as opções de vídeo e áudio, salvas à parte do progresso. |
 
 O Quadro 2 apresenta os relacionamentos e as cardinalidades observadas no diagrama.
 
@@ -38,6 +39,7 @@ O Quadro 2 apresenta os relacionamentos e as cardinalidades observadas no diagra
 | Relacionamento | Entidades envolvidas | Cardinalidade interpretada |
 | --- | --- | --- |
 | `estaEm` | `Save` e `Ato` | Cada save está em um ato; um ato pode estar associado a vários saves. |
+| `estaEm` | `Save` e `Cenario` | Cada save está em um cenário, onde o jogo continua; um cenário pode estar associado a vários saves. |
 | `Contem` | `Ato` e `Cenario` | Um ato contém um ou vários cenários; cada cenário pertence a um ato. |
 | `Pertence` | `ObjetoInterativo` e `Cenario` | Cada objeto interativo pertence a um cenário; um cenário pode possuir zero ou vários objetos interativos. |
 | `Possui` | `Save` e `Diario` | Cada save possui um diário associado. |

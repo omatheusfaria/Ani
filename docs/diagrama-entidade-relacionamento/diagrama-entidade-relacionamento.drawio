@@ -164,13 +164,13 @@
                 <mxCell id="wwZcM128F-zASK2OONn3-67" parent="1" style="html=1;dashed=0;whiteSpace=wrap;" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;ObjetoContemplativo&lt;/font&gt;" vertex="1">
                     <mxGeometry height="50" width="100" x="1040" y="870" as="geometry"/>
                 </mxCell>
-                <mxCell id="wwZcM128F-zASK2OONn3-72" parent="1" style="shape=partialRectangle;fillColor=none;align=left;verticalAlign=middle;strokeColor=none;spacingLeft=34;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;dropTarget=0;" value="id_memoria&#xa;titulo&#xa;conteudo&#xa;ato_origem&#xa;coletada" vertex="1">
-                    <mxGeometry height="72" width="90" x="350" y="798" as="geometry"/>
+                <mxCell id="wwZcM128F-zASK2OONn3-72" parent="1" style="shape=partialRectangle;fillColor=none;align=left;verticalAlign=middle;strokeColor=none;spacingLeft=34;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;dropTarget=0;" value="id_memoria&#xa;titulo&#xa;conteudo&#xa;ato_origem&#xa;ordem&#xa;coletada" vertex="1">
+                    <mxGeometry height="86" width="90" x="350" y="784" as="geometry"/>
                 </mxCell>
                 <mxCell id="wwZcM128F-zASK2OONn3-73" connectable="0" parent="wwZcM128F-zASK2OONn3-72" style="shape=partialRectangle;top=0;left=0;bottom=0;fillColor=none;stokeWidth=1;dashed=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;part=1;" value="" vertex="1">
-                    <mxGeometry height="58" width="30" as="geometry"/>
+                    <mxGeometry height="72" width="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="wwZcM128F-zASK2OONn3-74" parent="1" style="shape=partialRectangle;fillColor=none;align=left;verticalAlign=middle;strokeColor=none;spacingLeft=34;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;dropTarget=0;" value="id_ato&#xa;nome&#xa;descricao&#xa;concluido&#xa;limiar_memorias" vertex="1">
+                <mxCell id="wwZcM128F-zASK2OONn3-74" parent="1" style="shape=partialRectangle;fillColor=none;align=left;verticalAlign=middle;strokeColor=none;spacingLeft=34;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;dropTarget=0;" value="id_ato&#xa;nome&#xa;descricao&#xa;concluido&#xa;total_memorias" vertex="1">
                     <mxGeometry height="80" width="90" x="510" y="200" as="geometry"/>
                 </mxCell>
                 <mxCell id="wwZcM128F-zASK2OONn3-75" connectable="0" parent="wwZcM128F-zASK2OONn3-74" style="shape=partialRectangle;top=0;left=0;bottom=0;fillColor=none;stokeWidth=1;dashed=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;part=1;" value="" vertex="1">
@@ -228,7 +228,7 @@
                         <mxPoint x="-11" y="-7" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="wwZcM128F-zASK2OONn3-104" edge="1" parent="1" source="wwZcM128F-zASK2OONn3-92" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="wwZcM128F-zASK2OONn3-103">
+                <mxCell id="wwZcM128F-zASK2OONn3-104" edge="1" parent="1" source="wwZcM128F-zASK2OONn3-92" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="wwZcM128F-zASK2OONn3-103">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="wwZcM128F-zASK2OONn3-107" connectable="0" parent="wwZcM128F-zASK2OONn3-104" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="(1,1)" vertex="1">
@@ -268,6 +268,42 @@
                 </mxCell>
                 <mxCell id="wwZcM128F-zASK2OONn3-103" parent="1" style="shape=rhombus;html=1;dashed=0;whiteSpace=wrap;perimeter=rhombusPerimeter;" value="Possui" vertex="1">
                     <mxGeometry height="50" width="100" x="-300" y="535" as="geometry"/>
+                </mxCell>
+                <mxCell id="der-estaem-cen" parent="1" style="shape=rhombus;html=1;dashed=0;whiteSpace=wrap;perimeter=rhombusPerimeter;" value="estaEm" vertex="1">
+                    <mxGeometry height="50" width="100" x="560" y="355" as="geometry"/>
+                </mxCell>
+                <mxCell id="der-e-save-estaem2" edge="1" parent="1" source="wwZcM128F-zASK2OONn3-92" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.8;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="der-estaem-cen">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="120" y="380"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="der-e-save-estaem2-l" connectable="0" parent="der-e-save-estaem2" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="(0,N)" vertex="1">
+                    <mxGeometry relative="1" x="-0.6" as="geometry">
+                        <mxPoint x="0" y="-10" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="der-e-estaem2-cen" edge="1" parent="1" source="der-estaem-cen" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.2;entryY=1;entryDx=0;entryDy=0;" target="wwZcM128F-zASK2OONn3-7">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="900" y="380"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="der-e-estaem2-cen-l" connectable="0" parent="der-e-estaem2-cen" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="(1,1)" vertex="1">
+                    <mxGeometry relative="1" x="0.6" as="geometry">
+                        <mxPoint x="0" y="-10" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="der-config" parent="1" style="html=1;dashed=0;whiteSpace=wrap;" value="Configuracao" vertex="1">
+                    <mxGeometry height="50" width="100" x="1120" y="420" as="geometry"/>
+                </mxCell>
+                <mxCell id="der-config-attr" parent="1" style="shape=partialRectangle;fillColor=none;align=left;verticalAlign=middle;strokeColor=none;spacingLeft=34;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;dropTarget=0;" value="id_configuracao&#xa;volume&#xa;resolucao&#xa;tela_cheia" vertex="1">
+                    <mxGeometry height="51" width="110" x="1090" y="369" as="geometry"/>
+                </mxCell>
+                <mxCell id="der-config-attr-b" connectable="0" parent="der-config-attr" style="shape=partialRectangle;top=0;left=0;bottom=0;fillColor=none;stokeWidth=1;dashed=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;part=1;" value="" vertex="1">
+                    <mxGeometry height="51" width="30" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

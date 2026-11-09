@@ -22,7 +22,7 @@ Representa cada etapa da progressão narrativa do jogo.
 | `nome` | Nome do ato. |
 | `descricao` | Descrição do ato. |
 | `concluido` | Indica se o ato foi concluído. |
-| `limiar_memorias` | Quantidade mínima de memórias considerada para conclusão ou avanço do ato. |
+| `total_memorias` | Quantidade de memórias da sequência linear do ato; o ato termina quando a última é registrada (RN004). |
 
 ### Cenario
 
@@ -66,6 +66,7 @@ Representa os fragmentos narrativos relacionados ao diário e aos objetos do mun
 | `titulo` | Título da memória. |
 | `conteudo` | Conteúdo da memória. |
 | `ato_origem` | Ato ao qual a memória está vinculada. |
+| `ordem` | Posição da memória na sequência linear do ato (RN004). |
 | `coletada` | Indica se a memória já foi registrada na experiência do jogador. |
 
 ### ObjetoInterativo
@@ -77,6 +78,17 @@ Representa a superentidade dos objetos interativos do jogo.
 | `id_objeto` | Identificador do objeto. |
 | `nome` | Nome do objeto. |
 | `descricao` | Descrição do objeto. |
+
+### Configuracao
+
+Representa as opções de vídeo e áudio escolhidas pelo jogador. É salva à parte do progresso, por isso não se liga a `Save`: as opções continuam valendo quando o jogador começa um novo jogo.
+
+| Campo | Descrição |
+| --- | --- |
+| `id_configuracao` | Identificador da configuração. |
+| `volume` | Volume geral do som. |
+| `resolucao` | Resolução de tela escolhida. |
+| `tela_cheia` | Indica se o jogo roda em tela cheia. |
 
 ## Especializações
 
@@ -93,6 +105,7 @@ O diagrama mostra uma especialização de `ObjetoInterativo` em três subtipos:
 | Relacionamento | Descrição |
 | --- | --- |
 | `Save` `estaEm` `Ato` | Define em qual ato o save se encontra. |
+| `Save` `estaEm` `Cenario` | Define em qual cenário o jogo continua ao carregar o save. |
 | `Ato` `Contem` `Cenario` | Liga cada ato aos cenários que o compõem. |
 | `ObjetoInterativo` `Pertence` `Cenario` | Define que cada objeto interativo pertence a um cenário. |
 | `Save` `Possui` `Diario` | Associa o save ao diário do jogador. |
@@ -104,7 +117,8 @@ O diagrama mostra uma especialização de `ObjetoInterativo` em três subtipos:
 
 Esse DER ficou coerente com o projeto porque:
 
-- representa o progresso salvo do jogador por meio de `Save`;
+- representa o progresso salvo do jogador por meio de `Save`, com o ato e o cenário em que o jogo continua;
+- guarda as opções de vídeo e áudio em `Configuracao`, separadas do progresso;
 - organiza a progressão narrativa com `Ato` e `Cenario`;
 - preserva o papel central do `Diario` e das `Memoria`;
 - modela objetos interativos com herança, sem perder as diferenças entre tipos de objeto;

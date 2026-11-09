@@ -9,7 +9,7 @@ Os diagramas usam só classes e métodos do diagrama de classes (`docs/diagrama-
 | Diagrama | Fonte | Imagem |
 | --- | --- | --- |
 | Atividades: Resolver Puzzle (UC-S014) | [atividades-resolver-puzzle.drawio](atividades-resolver-puzzle.drawio) | ![](atividades-resolver-puzzle.drawio.svg) |
-| Atividades: Progressão do Ato I até o limiar mínimo (RN004) | [atividades-progressao-ato-i.drawio](atividades-progressao-ato-i.drawio) | ![](atividades-progressao-ato-i.drawio.svg) |
+| Atividades: Progressão do Ato I pela sequência de memórias (RN004) | [atividades-progressao-ato-i.drawio](atividades-progressao-ato-i.drawio) | ![](atividades-progressao-ato-i.drawio.svg) |
 | Estados: classe Jogo | [estados-jogo.drawio](estados-jogo.drawio) | ![](estados-jogo.drawio.svg) |
 | Sequência: Interagir com objeto, registrar memória e consultar o diário (UC-S002 / UC-S005) | [sequencia-registrar-memoria.drawio](sequencia-registrar-memoria.drawio) | ![](sequencia-registrar-memoria.drawio.svg) |
 | Sequência: Salvar e continuar jogo (UC-S011 / UC-S012) | [sequencia-salvar-continuar.drawio](sequencia-salvar-continuar.drawio) | ![](sequencia-salvar-continuar.drawio.svg) |

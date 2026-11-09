@@ -138,7 +138,7 @@ O ato começa no presente: às 23:47, Ani está na cama, no quarto escuro, olhan
 
 *→ Formalizado em RF024 — Celular em primeira pessoa, RF025 — Iluminação do ambiente, RF026 — Inspeção de objetos em primeira pessoa, RF027 — Acesso a memórias por objeto-portal, RF028 — Compra e consumo de comidas, RF029 — Minigames, RF030 — Personagem acompanhante, RN007 — Interação no escuro e RN008 — Minigames sem efeito na progressão (docs/requisitos/requisitos-funcionais.md; docs/requisitos/regras-de-negocio.md).*
 
-*→ Formalizado em RF013 — Mecânica de peso literal no Ato I e RF019 — Desbloqueio mínimo de memórias no Ato I (docs/requisitos/requisitos-funcionais.md).*
+*→ Formalizado em RF013 — Mecânica de peso literal no Ato I e RF019 — Conclusão da sequência de memórias no Ato I (docs/requisitos/requisitos-funcionais.md).*
 
 O encerramento do ato acontece quando Ani encontra uma porta que não conduz à libertação, mas a uma descida ainda mais profunda.
 
@@ -226,7 +226,7 @@ A única exceção são os minigames das barracas do parque, no Ato I: como repr
 
 Cada memória tocada adiciona peso ao movimento de Ani. Ignorar o passado parece mais confortável, mas impede o avanço.
 
-*→ Formalizado em RF013 — Mecânica de peso literal no Ato I e RN004 — Avanço parcial no Ato I (docs/requisitos/requisitos-funcionais.md; docs/requisitos/regras-de-negocio.md).*
+*→ Formalizado em RF013 — Mecânica de peso literal no Ato I e RN004 — Sequência linear de memórias no Ato I (docs/requisitos/requisitos-funcionais.md; docs/requisitos/regras-de-negocio.md).*
 
 #### Ato II: Ecos de Decisão
 

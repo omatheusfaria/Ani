@@ -27,7 +27,7 @@ SORT id ASC
 - [RF016](requisitos/funcionais/RF016.md) — Mecânica de contemplação ativa no Ato IV
 - [RF017](requisitos/funcionais/RF017.md) — Dissolução de mecânicas no Ato V
 - [RF018](requisitos/funcionais/RF018.md) — Crises de ansiedade como elemento sensorial
-- [RF019](requisitos/funcionais/RF019.md) — Desbloqueio mínimo de memórias no Ato I
+- [RF019](requisitos/funcionais/RF019.md) — Conclusão da sequência de memórias no Ato I
 - [RF020](requisitos/funcionais/RF020.md) — Aviso de conteúdo sensível
 - [RF021](requisitos/funcionais/RF021.md) — Pausar jogo
 - [RF022](requisitos/funcionais/RF022.md) — Configurar vídeo e áudio

@@ -18,9 +18,9 @@ Este documento descreve as regras e restrições de comportamento atualmente ali
 | --- |
 | **Descrição**: A progressão para o ato seguinte depende da conclusão dos critérios do ato atual. |
 
-| RN004 - Avanço parcial no Ato I |
+| RN004 - Sequência linear de memórias no Ato I |
 | --- |
-| **Descrição**: No Ato I, o avanço não exige a visualização de todas as memórias, apenas o cumprimento de um limiar mínimo definido. O valor exato do limiar pode ser ajustado durante o refinamento do projeto. |
+| **Descrição**: No Ato I, as memórias são percorridas em uma sequência fixa, definida pela narrativa: cada memória só fica disponível depois que a anterior é registrada, e a passagem para o ato seguinte é liberada quando a última memória da sequência é registrada. |
 
 | RN005 - Ressignificação de objetos e memórias |
 | --- |
