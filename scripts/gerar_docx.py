@@ -82,6 +82,15 @@ TITULOS_QUADROS = [
     "Correspondência entre o Modelo de Classes e o Protótipo",  # 30 4.1
     "Mapeamento de Controles",                     # 31 4.2.16
     "Atendimento dos Requisitos no Protótipo",     # 32 4.4
+    "Recursos do Navegador Usados pelo Protótipo",  # 33 5.1
+    "Testes de Portabilidade do Protótipo",        # 34 5.1
+    "Peso dos Atores",                             # 35 5.2
+    "Classificação dos Casos de Uso",              # 36 5.2
+    "Fatores Técnicos",                            # 37 5.2
+    "Fatores Ambientais",                          # 38 5.2
+    "Cálculo dos Pontos de Caso de Uso",           # 39 5.2
+    "Investimento Previsto",                       # 40 5.3
+    "Cronograma de Produção",                      # 41 5.3
     "Ficha Técnica do Jogo",                       # 34 Apêndice C
     "Atos do Jogo",                                # 35 Apêndice C
 ]
@@ -120,7 +129,7 @@ IMAGENS_FIGURAS = {
 PAISAGEM = {1, 3, 9}  # BPMN, classes e DER: largos demais para retrato
 
 # Capítulos que ainda não existem no tg-ani.md; entram antes das Referências.
-CAPITULOS_PENDENTES = ["5 Resultados e Discussão", "6 Considerações Finais"]
+CAPITULOS_PENDENTES = ["6 Considerações Finais"]
 
 HEBRAICO = re.compile(r"([\u0590-\u05FF\uFB1D-\uFB4F]+(?:\s+[\u0590-\u05FF\uFB1D-\uFB4F]+)*)")
 INLINE = re.compile(r"(\*\*.+?\*\*|`[^`]+`|(?<![\w*])\*[^*\s][^*]*?\*(?![\w*]))")

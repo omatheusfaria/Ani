@@ -1949,24 +1949,206 @@ O Quadro 34 mostra a situação de cada requisito no protótipo: atendido, atend
 | RF029 Minigames | Atendido | Estoure o Balão, Derrube as Latas e Pescaria (4.2.11) |
 | RF030 Personagem acompanhante | Atendido | A Malu no parque (4.2.9) |
 | RF031 Salvamento automático | Parcial | Um ponto de salvamento, no início do quarto (4.2.14) |
-| RNF001 Desempenho mínimo | A avaliar | Medição prevista no capítulo 5 |
+| RNF001 Desempenho mínimo | A avaliar | Medição nos testes da seção 5.1 |
 | RNF002 Carregamento e integridade dos saves | Atendido | O save local é lido no início, sem espera perceptível |
-| RNF003 Portabilidade de código e assets | A avaliar | Análise de portabilidade prevista no capítulo 5 |
+| RNF003 Portabilidade de código e assets | Parcial | Roda em navegadores com WebGL 2, sem instalação; depende de rede e não tem controle por toque (5.1) |
 | RNF004 Jogabilidade autoexplicativa | Atendido | Dicas de botões só no quarto, uma vez, e rótulos de interação junto aos objetos |
 | RNF005 Internacionalização de textos | Fora do protótipo | Os textos ainda ficam no código |
 | RNF006 Acessibilidade sensorial e de áudio | Fora do protótipo | Por decisão do autor, vale para o jogo final |
 
 Dos 31 requisitos funcionais, 14 são atendidos pelo protótipo, 7 de forma parcial e 10 ficam fora dele. Os atendidos concentram-se nas mecânicas do início do Ato I (RF024 a RF030), na movimentação e na interação, e na estrutura de sessão (aviso, pausa, configurações e gamepad). Os requisitos fora do protótipo são, na maior parte, os das mecânicas dos demais atos, que não fazem parte do escopo definido no TAP.
 
+# 5 Resultados e Discussão
+
+Este capítulo apresenta os resultados do projeto em três partes, como pede o modelo do trabalho: a análise de portabilidade do protótipo, o cálculo das métricas de tamanho e esforço do jogo completo e a proposta comercial para financiar a sua produção.
+
+## 5.1 Análise de Portabilidade
+
+A portabilidade é a facilidade com que um software pode ser transferido de um ambiente de hardware, software ou uso para outro. A norma ISO/IEC 25010 a trata como uma característica de qualidade dividida em adaptabilidade, capacidade de ser instalado e capacidade de substituir outro produto com o mesmo fim (ISO/IEC, 2011). Em **Ani**, ela aparece no RNF003, que pede uma estrutura de código e de assets adaptável a outras plataformas com alterações mínimas.
+
+O protótipo roda no navegador e não precisa de instalação: basta abrir o endereço publicado no GitHub Pages. Por isso, a sua portabilidade depende das interfaces do navegador que o código usa. O Quadro 35 relaciona essas interfaces e o que acontece quando alguma falta.
+
+| Recurso usado | Para quê | Sem o recurso |
+| --- | --- | --- |
+| WebGL 2 (por meio do Three.js 0.170) | Desenhar os cenários 3D e o pós-processamento | O jogo não abre; o Three.js deixou de suportar o WebGL 1 a partir da versão 0.163 |
+| Módulos JavaScript e *import map* | Carregar o código e o Three.js sem etapa de compilação | O jogo não abre |
+| Web Audio API | Sintetizar todos os sons | O jogo roda em silêncio (o código verifica se a API existe) |
+| Gamepad API | Controle no padrão Xbox | Só teclado e mouse |
+| Fullscreen API | Tela cheia | O jogo roda em janela |
+| `localStorage` | Save e configurações | O jogo roda sem salvar (leituras e gravações protegidas, Código 15) |
+| Eventos de teclado, mouse e roda | Todos os comandos | Sem controle por toque, o jogo não é jogável em celulares e tablets |
+| Rede, na primeira carga | Baixar o Three.js de uma CDN (jsDelivr) | O jogo não abre sem internet, mesmo rodando localmente |
+
+Pela análise do código, três pontos limitam a portabilidade do protótipo. O primeiro é a dependência de rede: o Three.js vem de uma CDN, e não do próprio repositório, então o jogo não abre sem internet nem quando é servido localmente pelo `iniciar-servidor.bat`. Copiar a biblioteca para a pasta do jogo resolve esse ponto sem mudar o código. O segundo é a falta de controle por toque, que deixa celulares e tablets fora do alcance mesmo quando o navegador do aparelho tem WebGL 2. O terceiro é o desempenho: a pós-produção de imagem (*bloom*, feixes de luz, profundidade de campo) exige uma placa de vídeo, e sem aceleração por hardware a taxa de quadros cai muito. Num teste feito com renderização só por software, sem placa de vídeo, o quarto e o parque rodaram a cerca de 3 quadros por segundo, embora todas as funções tenham funcionado.
+
+Para verificar o comportamento real, o protótipo foi testado nos navegadores e sistemas do Quadro 36, seguindo o mesmo roteiro em todos: menu e aviso de conteúdo, celular, quarto no escuro e com luz, inspeções, objeto-portal, parque (acompanhante, comidas e minigame), pausa e configurações, Continuar depois de recarregar a página e controle do Xbox. Em cada ambiente, a taxa de quadros foi medida no quarto com a luz acesa e no parque.
+
+| Ambiente (sistema, navegador e versão) | Hardware | Funções | FPS no quarto | FPS no parque | Observações |
+| --- | --- | --- | --- | --- | --- |
+| Linux, Chromium (renderização por software, sem placa de vídeo) | Máquina virtual sem GPU | Todas funcionaram | cerca de 3 | cerca de 3 | Teste automatizado; a taxa reflete a ausência de placa de vídeo |
+| [preencher] | [preencher] | [preencher] | [preencher] | [preencher] | [preencher] |
+
+[preencher: análise dos resultados dos testes, a ser escrita com os dados do Quadro 36, e conclusão sobre o RNF001]
+
+No jogo completo, a portabilidade muda de natureza. A Unreal Engine 5.4.4 compila o mesmo projeto para Windows, macOS, Linux, consoles e dispositivos móveis, a partir do mesmo código C++ e dos mesmos assets; o que muda de uma plataforma para outra são os ajustes de desempenho, os controles e, nos consoles, os kits e as licenças de desenvolvimento de cada fabricante. Por isso, o RNF003 é atendido pela escolha da engine, e a portabilidade efetiva para consoles e celulares continua fora do escopo deste trabalho, como registrado no TAP.
+
+## 5.2 Cálculo das Métricas
+
+Métricas de software permitem estimar o tamanho de um sistema e, a partir dele, o esforço, o prazo e o custo do desenvolvimento. Neste trabalho foi usado o método de Pontos de Caso de Uso (*Use Case Points*), proposto por Karner (1993), que mede o tamanho a partir dos atores e dos casos de uso já especificados e o ajusta por fatores técnicos e ambientais (Clemmons, 2006). O método foi escolhido porque os casos de uso de **Ani** já descrevem as funções do jogo completo (seção 2.6), enquanto métodos baseados em dados persistidos, como a Análise de Pontos de Função, rendem pouco num jogo, que guarda poucos dados.
+
+O cálculo segue cinco etapas: o peso dos atores (UAW), o peso dos casos de uso (UUCW), os pontos não ajustados (UUCP = UAW + UUCW), os fatores de ajuste técnico (TCF) e ambiental (ECF) e, por fim, os pontos ajustados (UCP = UUCP × TCF × ECF), que multiplicados pelo fator de produtividade dão o esforço em horas.
+
+### Peso dos atores
+
+Os atores são classificados em simples (outro sistema acessado por uma interface de programação, peso 1), médios (outro sistema acessado por um protocolo, peso 2) e complexos (uma pessoa que usa uma interface gráfica, peso 3). **Ani** tem um único ator, o Jogador, que interage pela interface do jogo, como mostra o Quadro 37.
+
+| Ator | Classificação | Peso |
+| --- | --- | --- |
+| Jogador | Complexo: pessoa que usa uma interface gráfica | 3 |
+| **UAW** | | **3** |
+
+### Peso dos casos de uso
+
+Cada caso de uso é classificado pela quantidade de passos dos seus cenários, contando o cenário principal e os alternativos (Clemmons, 2006): até três passos, simples (peso 5); de quatro a sete, médio (peso 10); mais de sete, complexo (peso 15). Foram contados os passos numerados do cenário principal e os subpassos de cada cenário alternativo (por exemplo, 4a.1), sem contar a linha que apenas nomeia a condição do cenário alternativo. O Quadro 38 apresenta a classificação dos 17 casos de uso.
+
+| Caso de uso | Passos (principal + alternativos) | Classificação | Peso |
+| --- | --- | --- | --- |
+| UC-S001 Movimentar Personagem | 5 + 1 = 6 | Médio | 10 |
+| UC-S002 Interagir com Objetos | 4 + 9 = 13 | Complexo | 15 |
+| UC-S003 Dialogar com Personagens | 5 + 3 = 8 | Complexo | 15 |
+| UC-S004 Consultar Documentos Coletados | 3 + 1 = 4 | Médio | 10 |
+| UC-S005 Acessar Diário de Memórias | 3 + 1 = 4 | Médio | 10 |
+| UC-S006 Pausar Jogo | 3 + 2 = 5 | Médio | 10 |
+| UC-S007 Configurar Jogo | 3 + 1 = 4 | Médio | 10 |
+| UC-S008 Ajustar Configurações de Vídeo | 3 + 1 = 4 | Médio | 10 |
+| UC-S009 Ajustar Configurações de Áudio | 3 + 1 = 4 | Médio | 10 |
+| UC-S010 Sair do Jogo | 3 + 1 = 4 | Médio | 10 |
+| UC-S011 Salvar Jogo | 3 + 2 = 5 | Médio | 10 |
+| UC-S012 Continuar Jogo | 4 + 2 = 6 | Médio | 10 |
+| UC-S013 Iniciar Novo Jogo | 5 + 3 = 8 | Complexo | 15 |
+| UC-S014 Resolver Puzzle | 5 + 3 = 8 | Complexo | 15 |
+| UC-S015 Usar Celular | 4 + 2 = 6 | Médio | 10 |
+| UC-S016 Comprar e Consumir Comida | 4 + 1 = 5 | Médio | 10 |
+| UC-S017 Jogar Minigame | 5 + 1 = 6 | Médio | 10 |
+| **UUCW** (4 complexos e 13 médios) | | | **190** |
+
+Com isso, os pontos de caso de uso não ajustados são UUCP = 3 + 190 = 193.
+
+### Fatores técnicos
+
+Os 13 fatores técnicos recebem notas de 0 (sem influência) a 5 (influência forte), que são multiplicadas pelos pesos do método; o fator de complexidade técnica é TCF = 0,6 + 0,01 × soma (Clemmons, 2006). As notas do Quadro 39 consideram o jogo completo, em Unreal Engine, para PC e sem modo multijogador.
+
+| Fator técnico | Peso | Nota | Resultado | Justificativa |
+| --- | --- | --- | --- | --- |
+| T1 Sistema distribuído | 2 | 0 | 0 | Jogo para um jogador, sem servidor |
+| T2 Desempenho | 1 | 4 | 4 | Meta de 60 FPS em hardware modesto (RNF001) |
+| T3 Eficiência para o usuário final | 1 | 3 | 3 | Controles responsivos, sem exigência além do normal |
+| T4 Processamento interno complexo | 1 | 4 | 4 | Iluminação, pós-processamento, animações e mecânicas por ato |
+| T5 Código reutilizável | 1 | 2 | 2 | Pouca reutilização prevista fora do próprio jogo |
+| T6 Facilidade de instalação | 0,5 | 2 | 1 | Instalação comum pela loja de jogos |
+| T7 Facilidade de uso | 0,5 | 4 | 2 | Jogo sem tutorial extenso (RNF004) |
+| T8 Portabilidade | 2 | 2 | 4 | PC primeiro; outras plataformas são desejáveis (RNF003) |
+| T9 Facilidade de mudança | 1 | 3 | 3 | Atos e fases acrescentados aos poucos; textos traduzíveis (RNF005) |
+| T10 Concorrência | 1 | 0 | 0 | Sem acesso simultâneo |
+| T11 Recursos de segurança | 1 | 0 | 0 | Sem dados pessoais nem contas |
+| T12 Acesso direto de terceiros | 1 | 0 | 0 | Sem integração com outros sistemas |
+| T13 Treinamento especial dos usuários | 1 | 0 | 0 | Nenhum treinamento necessário |
+| **Soma** | | | **23** | **TCF = 0,6 + 0,01 × 23 = 0,83** |
+
+### Fatores ambientais
+
+Os oito fatores ambientais descrevem a equipe e o contexto do projeto, também com notas de 0 a 5; o fator ambiental é ECF = 1,4 − 0,03 × soma (Clemmons, 2006). As notas do Quadro 40 consideram a produção proposta na seção 5.3, com equipe dedicada em tempo integral.
+
+| Fator ambiental | Peso | Nota | Resultado | Justificativa |
+| --- | --- | --- | --- | --- |
+| E1 Familiaridade com o processo e a UML | 1,5 | 3 | 4,5 | Cascata e UML usados em todo este trabalho |
+| E2 Experiência na aplicação | 0,5 | 2 | 1 | Primeiro jogo completo; o protótipo foi feito em outra tecnologia |
+| E3 Experiência em orientação a objetos | 1 | 3 | 3 | Experiência média |
+| E4 Capacidade do analista líder | 0,5 | 3 | 1,5 | Capacidade média |
+| E5 Motivação | 1 | 5 | 5 | Projeto autoral, com motivação alta |
+| E6 Requisitos estáveis | 2 | 3 | 6 | Requisitos revistos durante o protótipo, mas agora consolidados |
+| E7 Trabalhadores em tempo parcial | −1 | 0 | 0 | Equipe dedicada em tempo integral |
+| E8 Dificuldade da linguagem de programação | −1 | 4 | −4 | C++ na Unreal Engine |
+| **Soma** | | | **17** | **ECF = 1,4 − 0,03 × 17 = 0,89** |
+
+### Pontos ajustados e esforço
+
+O Quadro 41 resume o cálculo. Para converter os pontos em horas, foi usado o fator de produtividade de 20 horas por ponto de caso de uso proposto por Karner (1993), indicado para equipes sem histórico de projetos anteriores (Clemmons, 2006); Ribu (2001) registra variação entre 15 e 30 horas por ponto, conforme a experiência da equipe.
+
+| Etapa | Cálculo | Resultado |
+| --- | --- | --- |
+| Peso dos atores (UAW) | 1 ator complexo × 3 | 3 |
+| Peso dos casos de uso (UUCW) | 4 × 15 + 13 × 10 | 190 |
+| Pontos não ajustados (UUCP) | 3 + 190 | 193 |
+| Fator técnico (TCF) | 0,6 + 0,01 × 23 | 0,83 |
+| Fator ambiental (ECF) | 1,4 − 0,03 × 17 | 0,89 |
+| Pontos de caso de uso (UCP) | 193 × 0,83 × 0,89 | 142,57 |
+| Esforço | 142,57 × 20 horas | 2.851 horas |
+
+O esforço de 2.851 horas corresponde à engenharia de software do jogo completo: análise, projeto, programação e testes das funções descritas nos casos de uso. Ele não inclui a produção de conteúdo, como arte, animação, trilha sonora e roteiro, que não depende da quantidade de casos de uso e é tratada à parte na proposta comercial. Como referência, uma pessoa trabalhando 42 horas por semana (cerca de 182 horas por mês) levaria quase 16 meses; duas pessoas, cerca de 8 meses.
+
+## 5.3 Proposta Comercial
+
+A proposta a seguir é dirigida a uma publicadora, investidor ou edital de fomento a jogos e pede o financiamento da produção do jogo completo. Ela usa o esforço calculado na seção 5.2 para o custo de desenvolvimento.
+
+### Apresentação e objeto
+
+**Ani** é uma aventura narrativa contemplativa em 2.5D sobre ansiedade, solidão e a descoberta lenta do sentido, para PC. O protótipo apresentado neste trabalho cobre o início do Ato I, com cerca de dez minutos de jogo, e demonstra o estilo visual, as mecânicas de exploração e o tom da obra. O objeto da proposta é a produção do jogo completo em Unreal Engine 5.4.4 com C++, com os cinco atos, para Windows, pronto para publicação em lojas digitais.
+
+### Escopo
+
+O escopo é o definido no capítulo 2: os requisitos funcionais RF001 a RF031, os requisitos não funcionais RNF001 a RNF006 e os casos de uso UC-S001 a UC-S017. Ficam fora da proposta a versão para consoles e dispositivos móveis, a dublagem e a tradução para outros idiomas além do português, que podem ser negociadas depois.
+
+### Investimento
+
+O valor-hora de desenvolvimento parte do salário médio da ocupação de desenvolvedor de multimídia (CBO 3171-20, que inclui o desenvolvedor de jogos), de R$ 5.722,00 por mês para 42 horas semanais, segundo dados do Novo CAGED (Salário.com.br, s.d., online). Sobre ele foram somados os encargos de uma contratação pelo regime CLT numa empresa do Simples Nacional (FGTS, 13º salário, férias e um terço de férias), de 27,44% (ValorFinal, 2026, online), e o custo mensal foi dividido por 182 horas: R$ 5.722,00 × 1,2744 ÷ 182 = R$ 40,07 por hora. O Quadro 42 apresenta o investimento previsto.
+
+| Item | Base de cálculo | Valor |
+| --- | --- | --- |
+| Engenharia de software (análise, programação e testes) | 2.851 horas × R$ 40,07 | R$ 114.239,57 |
+| Arte 2D e 3D (sprites, cenários e animações) | [preencher] | [preencher] |
+| Trilha sonora e efeitos sonoros | [preencher] | [preencher] |
+| Roteiro e direção narrativa | [preencher] | [preencher] |
+| Licença da Unreal Engine | Gratuita até US$ 1 milhão de receita bruta; 5% acima disso, com vendas na Epic Games Store isentas (Epic Games, s.d., online) | R$ 0,00 |
+| Publicação na Steam | Taxa do Steam Direct por jogo, recuperável depois de US$ 1.000 em receita (Valve, s.d., online) | US$ 100,00 |
+| **Total** | | [preencher] |
+
+### Cronograma
+
+O prazo considera dois desenvolvedores em tempo integral para a engenharia de software, com a produção de conteúdo em paralelo, e segue a Cascata adotada no trabalho. O Quadro 43 apresenta as etapas e os marcos de entrega.
+
+| Etapa | Meses | Entrega (marco) |
+| --- | --- | --- |
+| Projeto técnico na Unreal Engine | 1 | Arquitetura e protótipo técnico do Ato I na engine |
+| Base do jogo | 2 a 3 | Movimento, interação, câmera, diálogos, save, menus e gamepad |
+| Atos I e II | 4 a 5 | Ato I completo, com peso literal e sequência de memórias; ecos de decisão do Ato II |
+| Atos III a V | 6 a 7 | Restauração, contemplação ativa, dissolução das mecânicas e crises de ansiedade |
+| Testes e publicação | 8 | Versão final testada com jogadores e publicada na loja |
+
+### Condições
+
+- **Pagamento:** em cinco parcelas de 20%, na assinatura e na aprovação de cada marco do Quadro 43.
+- **Acompanhamento:** a cada marco, o financiador recebe uma versão jogável para avaliação.
+- **Propriedade intelectual:** a obra continua do autor; direitos de publicação e participação na receita são definidos em contrato.
+- **Validade da proposta:** 60 dias.
+
 # Referências
+
+CLEMMONS, Roy K. Project estimation with use case points. *CrossTalk: The Journal of Defense Software Engineering*, v. 19, n. 2, fev. 2006.
+
+EPIC GAMES. *Unreal Engine licensing options*. Disponível em: <https://www.unrealengine.com/en-US/license>. Acesso em: 09.nov.2026.
 
 IBM. *Creating use-case diagrams*. Disponível em: <https://www.ibm.com/docs/en/dma?topic=diagrams-creating-use-case>. Acesso em: 22.mar.2026.
 
-IBM. *Use case view*. Disponível em: <https://www.ibm.com/docs/en/systems-engineering/1.5.0?topic=views-use-case-view>. Acesso em: 22.mar.2026.
-
 IBM. *UML diagrams*. Disponível em: <https://www.ibm.com/docs/en/radfws/9.6.1?topic=diagrams-uml>. Acesso em: 22.mar.2026.
 
+IBM. *Use case view*. Disponível em: <https://www.ibm.com/docs/en/systems-engineering/1.5.0?topic=views-use-case-view>. Acesso em: 22.mar.2026.
+
 IBM. *What is an entity relationship diagram?* Disponível em: <https://www.ibm.com/think/topics/entity-relationship-diagram>. Acesso em: 25.mar.2026.
+
+ISO/IEC. *ISO/IEC 25010:2011: Systems and software engineering – Systems and software Quality Requirements and Evaluation (SQuaRE) – System and software quality models*. Genebra: ISO, 2011.
+
+KARNER, Gustav. *Resource estimation for Objectory projects*. Estocolmo: Objective Systems SF AB, 1993.
 
 LUCIDCHART. *What is an Entity Relationship Diagram (ERD)?* Disponível em: <https://www.lucidchart.com/pages/er-diagrams/>. Acesso em: 25.mar.2026.
 
@@ -1976,7 +2158,15 @@ PRESSMAN, Roger S.; MAXIM, Bruce R. *Engenharia de Software: uma abordagem profi
 
 PROJECT MANAGEMENT INSTITUTE. *Um Guia do Conhecimento em Gerenciamento de Projetos (Guia PMBOK)*. 6. ed. Newtown Square: PMI, 2017.
 
+RIBU, Kirsten. *Estimating object-oriented software projects with use cases*. 2001. Dissertação (Master of Science in Informatics) – University of Oslo, Oslo, 2001.
+
+SALÁRIO.COM.BR. *Cargos da ocupação CBO 3171-20: desenvolvedor de multimídia*. Disponível em: <https://www.salario.com.br/ocupacao/cargos/cbo-317120-cargos/>. Acesso em: 09.nov.2026.
+
 SOMMERVILLE, Ian. *Engenharia de Software*. 10. ed. São Paulo: Pearson, 2019.
+
+VALORFINAL. *Custo do funcionário CLT: encargos, provisões e quanto custa de verdade (2026)*. 2026. Disponível em: <https://valorfinal.com.br/guia/custo-funcionario>. Acesso em: 09.nov.2026.
+
+VALVE. *Steam Direct fee*. Disponível em: <https://partner.steamgames.com/doc/gettingstarted/appfee>. Acesso em: 09.nov.2026.
 
 VISUAL PARADIGM. *What is Class Diagram?* Disponível em: <https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-class-diagram/>. Acesso em: 22.mar.2026.
 
@@ -2078,7 +2268,7 @@ Este apêndice resume o Game Design Document (GDD) de **Ani**, mantido na ínteg
 
 ## C.1 Visão e ficha técnica
 
-**Ani** é uma aventura narrativa contemplativa em 2.5D sobre consciência, sofrimento e a descoberta lenta do sentido. A protagonista é uma mulher comum, de aproximadamente 24 anos, em colapso existencial; seu nome vem do hebraico **אֲנִי**, "eu". O jogo não acompanha escolhas morais, e sim a mudança na forma como Ani percebe a existência. O Quadro 35 reúne a ficha técnica do jogo.
+**Ani** é uma aventura narrativa contemplativa em 2.5D sobre consciência, sofrimento e a descoberta lenta do sentido. A protagonista é uma mulher comum, de aproximadamente 24 anos, em colapso existencial; seu nome vem do hebraico **אֲנִי**, "eu". O jogo não acompanha escolhas morais, e sim a mudança na forma como Ani percebe a existência. O Quadro 44 reúne a ficha técnica do jogo.
 
 | Item | Descrição |
 | --- | --- |
@@ -2092,7 +2282,7 @@ Este apêndice resume o Game Design Document (GDD) de **Ani**, mantido na ínteg
 
 ## C.2 Pilar conceitual e atos
 
-A jornada parte do pessimismo da filosofia ocidental e caminha, em cinco atos de ordem fixa, para filosofias contemplativas japonesas. A transição se manifesta no ambiente, no som, nas mecânicas e no ritmo, sem explicação didática. O Quadro 36 resume os cinco atos.
+A jornada parte do pessimismo da filosofia ocidental e caminha, em cinco atos de ordem fixa, para filosofias contemplativas japonesas. A transição se manifesta no ambiente, no som, nas mecânicas e no ritmo, sem explicação didática. O Quadro 45 resume os cinco atos.
 
 | Ato | Referência | Ideia central | Símbolo | Mecânica própria |
 | --- | --- | --- | --- | --- |
