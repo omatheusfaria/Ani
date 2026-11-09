@@ -1472,3 +1472,56 @@ body.pad #game {
   20% { opacity: 1; transform: translate(-50%, -70%) scale(1.15); }
   100% { opacity: 0; transform: translate(-50%, -180%) scale(1); }
 }
+
+/* ---------------------------------------------------------------
+   Aviso de classificação indicativa e de conteúdo (RF020)
+   --------------------------------------------------------------- */
+#aviso {
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(5, 6, 12, 0.94);
+  z-index: 50;
+}
+#aviso.show { pointer-events: auto; }
+#aviso:empty { display: none; }
+#aviso .av-card {
+  width: min(560px, 100%);
+  padding: clamp(20px, 3vw, 32px);
+  border: 1px solid rgba(207, 230, 255, 0.18);
+  border-radius: 10px;
+  background: #0b0d18;
+  color: var(--ice);
+  font-family: -apple-system, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.5;
+}
+#aviso .av-kicker {
+  margin: 0 0 12px;
+  font-family: var(--font);
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  color: var(--ice-dim);
+}
+#aviso .av-classif { display: flex; align-items: center; gap: 16px; }
+#aviso .av-simbolo { width: 72px; height: 72px; flex: none; border: 2px solid #fff; border-radius: 8px; }
+#aviso .av-faixa { margin: 0; font-weight: 700; font-size: clamp(15px, 1.6vw, 18px); }
+#aviso .av-desc { margin: 4px 0 0; font-size: 14px; }
+#aviso .av-auto { margin: 2px 0 0; font-size: 12px; color: var(--ice-dim); }
+#aviso hr { border: 0; border-top: 1px solid rgba(207, 230, 255, 0.14); margin: 20px 0; }
+#aviso .av-texto { margin: 0 0 12px; font-size: 15px; }
+#aviso .av-texto b { color: #fff; }
+#aviso .av-ok {
+  margin-top: 8px;
+  padding: 10px 18px;
+  border: 1px solid var(--ice);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ice);
+  font-family: var(--font);
+  font-size: 15px;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+}
+#aviso .av-ok:hover, #aviso .av-ok:focus-visible { background: var(--ice); color: var(--ink); outline: none; }
+#aviso .av-ok span { margin-left: 10px; font-size: 11px; opacity: 0.65; }

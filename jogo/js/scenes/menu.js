@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { Tweens, ease, damp, lerp, clamp, rand } from '../engine/tween.js';
 import { drawText, measure } from '../engine/pixeltext.js';
+import { showContentNotice } from '../engine/aviso.js';
 
 // ===============================================================
 // MENU PRINCIPAL: um olho em 3D que abre, recebe a luz de uma tela
@@ -614,6 +615,12 @@ export class MenuScene {
     await tw.to({ duration: 0.11, ease: ease.inQuad, onUpdate: (k) => (this.blink = k) });
     renderer.fx.fade = 1;
     sfx.stopAmbient(0.4);
+    // classificação indicativa e aviso de conteúdo (RF020): antes de o jogo começar,
+    // uma vez a cada acesso (vale para Iniciar e Continuar)
+    if (!this.game.avisoVisto) {
+      await showContentNotice(this.game);
+      this.game.avisoVisto = true;
+    }
     this.game.goTo('quarto');
   }
 
