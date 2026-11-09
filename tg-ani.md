@@ -528,7 +528,7 @@ Os Quadros 12 a 28 detalham cada caso de uso, com pré-condição, cenário prin
 | Pré-condição | Sessão em andamento. |
 | Cenário Principal | 1. Jogador aciona o comando de pausa.<br>2. Sistema suspende o gameplay.<br>3. Exibe o menu de pausa. |
 | Pós-condição | O estado da sessão é atualizado para pausado, mantendo o jogo suspenso até nova ação do jogador. |
-| Cenários Alternativos | 3a. Jogador retoma o jogo:<br>3a.1. O jogo volta ao estado normal. |
+| Cenários Alternativos | 3a. Jogador retoma o jogo:<br>3a.1. O jogo volta ao estado normal.<br>3b. Jogador escolhe voltar ao menu principal:<br>3b.1. Sistema fecha o menu de pausa, deixa a cena em curso e exibe o menu principal. |
 
 ### Caso de Uso: UC-S007 - Configurar Jogo
 
@@ -999,7 +999,7 @@ Em **Ani**, o diagrama de estados descreve o ciclo de vida da sessão de jogo co
 
 ### Estados da classe Jogo
 
-A Figura 6 apresenta os estados da classe `Jogo`, registrados no atributo `estadoAtual` com os valores da enumeração `EstadoJogo`: Menu, Jogando, Pausado, Crise (crise de ansiedade) e Encerrado. As transições são rotuladas pelo evento que as dispara e pelo método correspondente do diagrama de classes: `iniciar()` para um novo jogo (UC-S013), `carregarProgresso()` para continuar (UC-S012), com a condição de guarda [leitura bem-sucedida], já que uma falha na leitura mantém o jogo no menu, `pausar()` para a pausa e `retomar()` para a retomada (UC-S006) e `encerrar()` para a saída confirmada (UC-S010). Todas as mudanças de estado passam por `Jogo.alterarEstado(novoEstado)`, chamado por esses métodos. A crise de ansiedade (RF018) começa e termina em `Ani`: `iniciarCrise()` e `encerrarCrise()` alteram o `estadoEmocional` da personagem e chamam `Jogo.alterarEstado(Crise)` e `Jogo.alterarEstado(Jogando)`, respectivamente; por isso, no diagrama, essas transições têm como evento o início e o fim da crise e como ação `alterarEstado()`.
+A Figura 6 apresenta os estados da classe `Jogo`, registrados no atributo `estadoAtual` com os valores da enumeração `EstadoJogo`: Menu, Jogando, Pausado, Crise (crise de ansiedade) e Encerrado. As transições são rotuladas pelo evento que as dispara e pelo método correspondente do diagrama de classes: `iniciar()` para um novo jogo (UC-S013), `carregarProgresso()` para continuar (UC-S012), com a condição de guarda [leitura bem-sucedida], já que uma falha na leitura mantém o jogo no menu, `pausar()` para a pausa e `retomar()` para a retomada (UC-S006), `alterarEstado(Menu)` para a volta ao menu principal a partir da pausa (UC-S006, 3b) e `encerrar()` para a saída confirmada (UC-S010). Todas as mudanças de estado passam por `Jogo.alterarEstado(novoEstado)`, chamado por esses métodos. A crise de ansiedade (RF018) começa e termina em `Ani`: `iniciarCrise()` e `encerrarCrise()` alteram o `estadoEmocional` da personagem e chamam `Jogo.alterarEstado(Crise)` e `Jogo.alterarEstado(Jogando)`, respectivamente; por isso, no diagrama, essas transições têm como evento o início e o fim da crise e como ação `alterarEstado()`.
 
 [Figura 6 – Diagrama de Estados da classe Jogo]
 
@@ -1017,7 +1017,7 @@ A Figura 7 apresenta a interação com um objeto de memória. O jogador aciona o
 
 ### Sequência: Salvar e continuar jogo (UC-S011 / UC-S012)
 
-A Figura 8 apresenta a persistência do progresso. Ao salvar (UC-S011), o jogador aciona o comando e `Jogo.salvarProgresso()` coleta o ato em curso, o estado do diário (alcançado por meio de `Ani`) e o estado visual da casa e chama `Save.salvar()`, que grava o arquivo local; em caso de erro, o jogador é notificado. Ao continuar (UC-S012), `Jogo.carregarProgresso()` aciona `Save.carregar()`; se a leitura for bem-sucedida, `Jogo` restaura o ato em curso (`atoAtual`), as memórias registradas e o diário (`Diario.restaurar()`, alcançado por meio de `Ani`) e o estado visual da casa (`Cenario.restaurarEstado()`), carrega o cenário, passa o estado para Jogando (`alterarEstado(Jogando)`) e devolve o controle ao jogador no ponto salvo; se a leitura falhar, o jogador é notificado e retorna ao menu inicial.
+A Figura 8 apresenta a persistência do progresso. Ao salvar (UC-S011), o jogador aciona o comando e `Jogo.salvarProgresso()` coleta o ato em curso, o estado do diário (alcançado por meio de `Ani`) e o estado visual da casa e chama `Save.salvar()`, que grava o arquivo local; em caso de erro, o jogador é notificado. Uma nota no diagrama registra que o salvamento também acontece de forma automática nos pontos de salvamento da narrativa (RF031; UC-S011, 1a); nesse caso, a sequência começa em `salvarProgresso()`, sem o comando do jogador. Ao continuar (UC-S012), `Jogo.carregarProgresso()` aciona `Save.carregar()`; se a leitura for bem-sucedida, `Jogo` restaura o ato em curso (`atoAtual`), as memórias registradas e o diário (`Diario.restaurar()`, alcançado por meio de `Ani`) e o estado visual da casa (`Cenario.restaurarEstado()`), carrega o cenário, passa o estado para Jogando (`alterarEstado(Jogando)`) e devolve o controle ao jogador no ponto salvo; se a leitura falhar, o jogador é notificado e retorna ao menu inicial.
 
 [Figura 8 – Diagrama de Sequência: Salvar e continuar jogo]
 

@@ -94,6 +94,15 @@
                 <mxCell id="e-20" edge="1" parent="1" source="v-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;labelBackgroundColor=default;" target="v-10" value="">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
+                <mxCell id="e-21" edge="1" parent="1" source="v-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;labelBackgroundColor=default;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" target="v-3" value="voltar ao menu principal (UC-S006, 3b)&lt;br&gt;/ alterarEstado(Menu)">
+                    <mxGeometry relative="1" x="0.53" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="30" y="565"/>
+                            <mxPoint x="30" y="100"/>
+                            <mxPoint x="375" y="100"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
             </root>
         </mxGraphModel>
     </diagram>

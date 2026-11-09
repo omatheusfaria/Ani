@@ -104,7 +104,7 @@
 | **Pré-condição** | Sessão em andamento. |
 | **Cenário Principal** | 1. Jogador aciona o comando de pausa.<br>2. Sistema suspende o gameplay.<br>3. Exibe o menu de pausa. |
 | **Pós-condição** | O estado da sessão é atualizado para pausado, mantendo o jogo suspenso até nova ação do jogador. |
-| **Cenário Alternativo** | 3a. Jogador retoma o jogo:<br>3a.1. O jogo volta ao estado normal. |
+| **Cenário Alternativo** | 3a. Jogador retoma o jogo:<br>3a.1. O jogo volta ao estado normal.<br>3b. Jogador escolhe voltar ao menu principal:<br>3b.1. Sistema fecha o menu de pausa, deixa a cena em curso e exibe o menu principal. |
 
 ---
 

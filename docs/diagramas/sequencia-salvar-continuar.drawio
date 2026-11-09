@@ -145,6 +145,9 @@
                 <mxCell id="v-29" parent="1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;dashed=1;" value="" vertex="1">
                     <mxGeometry height="8" width="700" x="10" y="1134" as="geometry"/>
                 </mxCell>
+                <mxCell id="v-30" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;align=left;spacingLeft=6;" value="O salvamento também acontece de forma automática nos pontos de salvamento da narrativa (RF031; UC-S011, 1a): a sequência começa em salvarProgresso(), sem o comando do jogador." vertex="1">
+                    <mxGeometry height="62" width="300" x="400" y="174" as="geometry"/>
+                </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
