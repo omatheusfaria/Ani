@@ -47,7 +47,7 @@ O Quadro 2 apresenta as enumerações utilizadas para restringir valores recorre
 
 | Enumeração | Valores |
 | --- | --- |
-| TipoNPC | `NpcMemoria`, `Arquetipo`, `Aparicao` |
+| TipoNPC | `NpcMemoria`, `Aparicao` |
 | EstadoEmocional | `Neutro`, `Ansioso`, `Deprimido`, `Contemplativo`, `Sereno`, `Medo` |
 | TipoEntradaDiario | `Memoria`, `Documento`, `Fotografia`, `Objeto`, `Contemplacao` |
 | EstadoObjeto | `Quebrado`, `Restaurado` |

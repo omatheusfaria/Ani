@@ -43,7 +43,7 @@
                 <mxCell id="e-12" edge="1" parent="1" source="v-4" style="endArrow=none;dashed=1;html=1;rounded=0;" target="v-3" value="">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="e-13" edge="1" parent="1" source="v-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;labelBackgroundColor=default;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" target="v-5" value="novo jogo (UC-S014)&lt;br&gt;/ iniciar()">
+                <mxCell id="e-13" edge="1" parent="1" source="v-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;labelBackgroundColor=default;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" target="v-5" value="novo jogo (UC-S013)&lt;br&gt;/ iniciar()">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="260" y="155"/>
@@ -51,7 +51,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="e-14" edge="1" parent="1" source="v-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;labelBackgroundColor=default;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.3;entryDx=0;entryDy=0;" target="v-5" value="continuar (UC-S013)&lt;br&gt;[leitura bem-sucedida]&lt;br&gt;/ carregarProgresso()">
+                <mxCell id="e-14" edge="1" parent="1" source="v-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;labelBackgroundColor=default;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.3;entryDx=0;entryDy=0;" target="v-5" value="continuar (UC-S012)&lt;br&gt;[leitura bem-sucedida]&lt;br&gt;/ carregarProgresso()">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="560" y="155"/>
@@ -88,7 +88,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="e-19" edge="1" parent="1" source="v-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;labelBackgroundColor=default;" target="v-9" value="saída confirmada (UC-S011)&lt;br&gt;/ encerrar()">
+                <mxCell id="e-19" edge="1" parent="1" source="v-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;labelBackgroundColor=default;" target="v-9" value="saída confirmada (UC-S010)&lt;br&gt;/ encerrar()">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="e-20" edge="1" parent="1" source="v-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;labelBackgroundColor=default;" target="v-10" value="">

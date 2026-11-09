@@ -16,7 +16,7 @@ SORT id ASC
 - [RF005](requisitos/funcionais/RF005.md) — Diário de memórias
 - [RF006](requisitos/funcionais/RF006.md) — Desbloqueio progressivo do cenário
 - [RF007](requisitos/funcionais/RF007.md) — Sistema de puzzles
-- [RF008](requisitos/funcionais/RF008.md) — Diálogos com personagens de memória e arquétipos
+- [RF008](requisitos/funcionais/RF008.md) — Diálogos com personagens de memória
 - [RF009](requisitos/funcionais/RF009.md) — Sistema de save/load
 - [RF010](requisitos/funcionais/RF010.md) — Feedback sonoro e musical por ato
 - [RF011](requisitos/funcionais/RF011.md) — Suporte a gamepad
@@ -30,9 +30,16 @@ SORT id ASC
 - [RF019](requisitos/funcionais/RF019.md) — Desbloqueio mínimo de memórias no Ato I
 - [RF020](requisitos/funcionais/RF020.md) — Aviso de conteúdo sensível
 - [RF021](requisitos/funcionais/RF021.md) — Pausar jogo
-- [RF022](requisitos/funcionais/RF022.md) — Configurar vídeo, áudio e controles
+- [RF022](requisitos/funcionais/RF022.md) — Configurar vídeo e áudio
 - [RF023](requisitos/funcionais/RF023.md) — Sair do jogo
-- [RF024](requisitos/funcionais/RF024.md) — Remapear controles
+- [RF024](requisitos/funcionais/RF024.md) — Celular em primeira pessoa
+- [RF025](requisitos/funcionais/RF025.md) — Iluminação do ambiente
+- [RF026](requisitos/funcionais/RF026.md) — Inspeção de objetos em primeira pessoa
+- [RF027](requisitos/funcionais/RF027.md) — Acesso a memórias por objeto-portal
+- [RF028](requisitos/funcionais/RF028.md) — Compra e consumo de comidas
+- [RF029](requisitos/funcionais/RF029.md) — Minigames
+- [RF030](requisitos/funcionais/RF030.md) — Personagem acompanhante
+- [RF031](requisitos/funcionais/RF031.md) — Salvamento automático
 
 ## Requisitos não funcionais
 

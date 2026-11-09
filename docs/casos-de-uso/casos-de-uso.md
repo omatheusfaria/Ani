@@ -15,19 +15,21 @@
 | UC-S007 | Configurar Jogo | Jogador |
 | UC-S008 | Ajustar Configurações de Vídeo | Jogador |
 | UC-S009 | Ajustar Configurações de Áudio | Jogador |
-| UC-S010 | Configurar Controles | Jogador |
-| UC-S011 | Sair do Jogo | Jogador |
-| UC-S012 | Salvar Jogo | Jogador |
-| UC-S013 | Continuar Jogo | Jogador |
-| UC-S014 | Iniciar Novo Jogo | Jogador |
-| UC-S015 | Resolver Puzzle | Jogador |
+| UC-S010 | Sair do Jogo | Jogador |
+| UC-S011 | Salvar Jogo | Jogador |
+| UC-S012 | Continuar Jogo | Jogador |
+| UC-S013 | Iniciar Novo Jogo | Jogador |
+| UC-S014 | Resolver Puzzle | Jogador |
+| UC-S015 | Usar Celular | Jogador |
+| UC-S016 | Comprar e Consumir Comida | Jogador |
+| UC-S017 | Jogar Minigame | Jogador |
 
 **Quadro 4 – Use Case Movimentar Personagem**
 
 | Caso de Uso – Movimentar Personagem | |
 | --- | --- |
 | **ID** | UC-S001 |
-| **Descrição** | Este caso de uso tem por objetivo permitir a movimentação de Ani pelo cenário durante a exploração lateral. |
+| **Descrição** | Este caso de uso tem por objetivo permitir a movimentação de Ani pelo cenário em visão lateral, para os lados e em profundidade. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Jogo iniciado com Ani carregado. |
 | **Cenário Principal** | 1. Jogador aciona o comando de movimento (teclado ou gamepad).<br>2. Sistema captura a entrada.<br>3. Sistema aplica movimento no personagem.<br>4. Sistema verifica colisões.<br>5. Ani é movido corretamente pelo cenário. |
@@ -44,9 +46,9 @@
 | **Descrição** | Este caso de uso permite que o jogador interaja com objetos significativos para acessar memórias, fragmentos narrativos ou elementos contemplativos do cenário. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Ani deve estar próximo de um objeto interativo. |
-| **Cenário Principal** | 1. Jogador aciona o comando de interação.<br>2. Sistema identifica o tipo de objeto interativo.<br>3. Sistema ativa o conteúdo associado, como memória, fragmento textual, objeto restaurável ou evento contemplativo.<br>4. Quando aplicável, o conteúdo é registrado no diário de Ani. |
+| **Cenário Principal** | 1. Jogador aciona o comando de interação.<br>2. Sistema identifica o tipo de objeto interativo.<br>3. Sistema ativa o conteúdo associado, como um pensamento de Ani, a inspeção do objeto em primeira pessoa, a passagem para uma memória, um fragmento textual, um objeto restaurável ou um evento contemplativo.<br>4. Quando aplicável, o conteúdo é registrado no diário de Ani. |
 | **Pós-condição** | O conteúdo associado ao objeto é disponibilizado ao jogador e, quando aplicável, registrado no diário de memórias. |
-| **Cenário Alternativo** | 1a. Elemento contemplativo (Ato IV):<br>1a.1. Jogador mantém Ani parada diante do elemento, sem acionar a interação.<br>1a.2. Ao completar o tempo mínimo de observação, o sistema revela o fragmento de narração associado (RF016).<br>1a.3. Se Ani se afastar antes disso, nada é revelado.<br>2a. Objeto não interativo:<br>2a.1. Nada acontece. |
+| **Cenário Alternativo** | 1a. Elemento contemplativo (Ato IV):<br>1a.1. Jogador mantém Ani parada diante do elemento, sem acionar a interação.<br>1a.2. Ao completar o tempo mínimo de observação, o sistema revela o fragmento de narração associado (RF016).<br>1a.3. Se Ani se afastar antes disso, nada é revelado.<br>1b. O cômodo está escuro (RN007):<br>1b.1. Se o objeto for um interruptor ou uma fonte de luz própria, o sistema acende ou apaga a luz.<br>1b.2. Caso contrário, o sistema exibe a fala de que Ani não consegue enxergar e precisa acender a luz, sem ativar o conteúdo.<br>2a. Objeto não interativo:<br>2a.1. Nada acontece.<br>3a. Inspeção em primeira pessoa:<br>3a.1. Jogador escolhe um item do conjunto e o sistema exibe sua descrição.<br>3a.2. Jogador aciona o comando de voltar e o sistema retorna à visão lateral.<br>3b. Objeto-portal:<br>3b.1. O sistema leva Ani do presente para a memória ligada ao objeto. |
 
 ---
 
@@ -55,12 +57,12 @@
 | Caso de Uso – Dialogar com Personagens | |
 | --- | --- |
 | **ID** | UC-S003 |
-| **Descrição** | Este caso de uso tem por objetivo permitir a interação narrativa com personagens de memória e arquétipos filosóficos. |
+| **Descrição** | Este caso de uso tem por objetivo permitir a interação narrativa com personagens de memória. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Ani deve estar próximo de um personagem interativo. |
-| **Cenário Principal** | 1. Jogador aciona a interação.<br>2. Sistema identifica se a entidade é um personagem de memória ou um arquétipo filosófico.<br>3. Sistema exibe diálogo textual fragmentado.<br>4. Jogador avança o texto.<br>5. Quando aplicável, o conteúdo é registrado como memória narrativa ou reforço simbólico do ato atual. |
+| **Cenário Principal** | 1. Jogador aciona a interação.<br>2. Sistema identifica o personagem de memória.<br>3. Sistema exibe diálogo textual fragmentado.<br>4. Jogador avança o texto.<br>5. Quando aplicável, o conteúdo é registrado como memória narrativa ou reforço simbólico do ato atual. |
 | **Pós-condição** | O diálogo é concluído e o estado narrativo associado à interação é atualizado pelo sistema. |
-| **Cenário Alternativo** | 1a. Jogador ignora o personagem:<br>1a.1. O diálogo não é iniciado. |
+| **Cenário Alternativo** | 1a. Jogador ignora o personagem:<br>1a.1. O diálogo não é iniciado.<br>1b. Diálogo iniciado pela cena:<br>1b.1. Ao chegar a um ponto da narrativa, o sistema inicia o diálogo sem acionamento do jogador, e o fluxo segue no passo 3.<br>1c. Personagem acompanhante (RF030):<br>1c.1. Quando Ani interage com um lugar, o personagem que a acompanha responde com uma fala, e o fluxo segue no passo 3. |
 
 ---
 
@@ -114,9 +116,9 @@
 | **Descrição** | Este caso de uso tem por objetivo permitir que o jogador ajuste opções gerais da experiência de jogo. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Menu de pausa ou inicial aberto. |
-| **Cenário Principal** | 1. Jogador acessa o menu de configurações.<br>2. Sistema exibe opções de vídeo, áudio e controles.<br>3. Jogador altera os valores. |
+| **Cenário Principal** | 1. Jogador acessa o menu de configurações.<br>2. Sistema exibe opções de vídeo e áudio.<br>3. Jogador altera os valores. |
 | **Pós-condição** | As configurações selecionadas são aplicadas conforme as opções alteradas pelo jogador. |
-| **Cenário Alternativo** | 3a. Jogador cancela:<br>3a.1. As alterações não são salvas. |
+| **Cenário Alternativo** | 3a. Jogador volta ao menu anterior:<br>3a.1. As alterações feitas já estão aplicadas e salvas. |
 
 ---
 
@@ -148,25 +150,11 @@
 
 ---
 
-**Quadro 13 – Use Case Configurar Controles**
-
-| Caso de Uso – Configurar Controles | |
-| --- | --- |
-| **ID** | UC-S010 |
-| **Descrição** | Este caso de uso tem por objetivo permitir que o jogador personalize teclas e entradas de gamepad. |
-| **Ator Primário** | Jogador |
-| **Pré-condição** | Menu de configurações aberto. |
-| **Cenário Principal** | 1. Jogador seleciona a opção de controles.<br>2. Sistema permite redefinir teclas e botões.<br>3. Jogador confirma as alterações. |
-| **Pós-condição** | As configurações de controle são atualizadas e salvas para uso em sessões futuras. |
-| **Cenário Alternativo** | 3a. Jogador cancela:<br>3a.1. O sistema mantém a configuração anterior. |
-
----
-
-**Quadro 14 – Use Case Sair do Jogo**
+**Quadro 13 – Use Case Sair do Jogo**
 
 | Caso de Uso – Sair do Jogo | |
 | --- | --- |
-| **ID** | UC-S011 |
+| **ID** | UC-S010 |
 | **Descrição** | Este caso de uso permite que o jogador encerre a sessão de jogo. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Jogo em execução. |
@@ -176,39 +164,39 @@
 
 ---
 
-**Quadro 15 – Use Case Salvar Jogo**
+**Quadro 14 – Use Case Salvar Jogo**
 
 | Caso de Uso – Salvar Jogo | |
 | --- | --- |
-| **ID** | UC-S012 |
-| **Descrição** | Este caso de uso tem por objetivo registrar o progresso do jogador em arquivo local para continuidade futura. |
+| **ID** | UC-S011 |
+| **Descrição** | Este caso de uso tem por objetivo registrar o progresso do jogador em armazenamento local para continuidade futura. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Sessão em andamento. |
-| **Cenário Principal** | 1. Jogador solicita salvar.<br>2. Sistema coleta o estado atual do jogo, incluindo o ato em curso, as memórias registradas, o estado do diário e o estado visual da casa.<br>3. Sistema grava o arquivo de save. |
-| **Pós-condição** | O progresso do jogador é persistido em arquivo local, permitindo a continuidade da sessão em momento posterior. |
-| **Cenário Alternativo** | 3a. Ocorre erro na gravação:<br>3a.1. O sistema notifica o jogador. |
+| **Cenário Principal** | 1. Jogador solicita salvar.<br>2. Sistema coleta o estado atual do jogo, incluindo o ato e a cena em curso e, quando houver, as memórias registradas, o estado do diário e o estado visual da casa.<br>3. Sistema grava o progresso no armazenamento local. |
+| **Pós-condição** | O progresso do jogador é persistido localmente, permitindo a continuidade da sessão em momento posterior. |
+| **Cenário Alternativo** | 1a. Salvamento automático (RF031):<br>1a.1. Ao atingir um ponto de salvamento da narrativa, o sistema executa os passos 2 e 3 sem ação do jogador.<br>3a. Ocorre erro na gravação:<br>3a.1. O sistema notifica o jogador. |
 
 ---
 
-**Quadro 16 – Use Case Continuar Jogo**
+**Quadro 15 – Use Case Continuar Jogo**
 
 | Caso de Uso – Continuar Jogo | |
 | --- | --- |
-| **ID** | UC-S013 |
-| **Descrição** | Este caso de uso permite que o jogador retome a jornada a partir do progresso salvo em arquivo local. |
+| **ID** | UC-S012 |
+| **Descrição** | Este caso de uso permite que o jogador retome a jornada a partir do progresso salvo localmente. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Menu inicial aberto. |
-| **Cenário Principal** | 1. Jogador seleciona a opção de continuar no menu inicial; se ainda não viu o aviso nesse acesso, o Sistema exibe o aviso sobre temas sensíveis, e o Jogador confirma.<br>2. Sistema lê o arquivo de save.<br>3. Sistema restaura o ato em curso, as memórias registradas, o estado do diário e o estado visual da casa.<br>4. Sistema carrega o cenário correspondente e devolve o controle ao jogador. |
+| **Cenário Principal** | 1. Jogador seleciona a opção de continuar no menu inicial; se ainda não viu o aviso nesse acesso, o Sistema exibe o aviso sobre temas sensíveis, e o Jogador confirma.<br>2. Sistema lê o progresso salvo.<br>3. Sistema restaura o ato e a cena em curso e, quando houver, as memórias registradas, o estado do diário e o estado visual da casa.<br>4. Sistema carrega o cenário correspondente e devolve o controle ao jogador. |
 | **Pós-condição** | A sessão é retomada no ponto em que o progresso foi salvo. |
-| **Cenário Alternativo** | 1a. Não existe arquivo de save:<br>1a.1. A opção de continuar fica indisponível no menu inicial.<br>2a. O arquivo de save não pode ser lido:<br>2a.1. O sistema notifica o jogador e retorna ao menu inicial. |
+| **Cenário Alternativo** | 1a. Não existe progresso salvo:<br>1a.1. A opção de continuar fica indisponível no menu inicial.<br>2a. O progresso salvo não pode ser lido:<br>2a.1. O sistema notifica o jogador e retorna ao menu inicial. |
 
 ---
 
-**Quadro 17 – Use Case Iniciar Novo Jogo**
+**Quadro 16 – Use Case Iniciar Novo Jogo**
 
 | Caso de Uso – Iniciar Novo Jogo | |
 | --- | --- |
-| **ID** | UC-S014 |
+| **ID** | UC-S013 |
 | **Descrição** | Este caso de uso permite que o jogador inicie uma nova jornada a partir do Ato I, depois de ver o aviso de conteúdo sensível. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Menu inicial aberto. |
@@ -218,14 +206,56 @@
 
 ---
 
-**Quadro 18 – Use Case Resolver Puzzle**
+**Quadro 17 – Use Case Resolver Puzzle**
 
 | Caso de Uso – Resolver Puzzle | |
 | --- | --- |
-| **ID** | UC-S015 |
+| **ID** | UC-S014 |
 | **Descrição** | Este caso de uso permite que o jogador resolva um puzzle contextual integrado ao ambiente e à narrativa do ato em curso. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Ani diante de um puzzle disponível no cenário do ato atual. |
 | **Cenário Principal** | 1. Jogador aciona a interação com o puzzle.<br>2. Sistema abre o puzzle e apresenta seus elementos.<br>3. Jogador faz uma tentativa.<br>4. Sistema verifica a tentativa.<br>5. Sistema registra o puzzle como concluído. |
 | **Pós-condição** | O puzzle fica registrado como concluído. |
 | **Cenário Alternativo** | 3a. Jogador sai do puzzle a qualquer momento antes de concluí-lo:<br>3a.1. Sistema fecha o puzzle e o devolve ao estado inicial, sem salvar progresso parcial.<br>4a. A tentativa está incorreta:<br>4a.1. Sistema indica que a tentativa não resolveu o puzzle, sem punição sistêmica.<br>4a.2. O fluxo retorna ao passo 3. |
+
+---
+
+**Quadro 18 – Use Case Usar Celular**
+
+| Caso de Uso – Usar Celular | |
+| --- | --- |
+| **ID** | UC-S015 |
+| **Descrição** | Este caso de uso permite que o jogador use o celular de Ani em primeira pessoa e navegue pelo aplicativo de rede social. |
+| **Ator Primário** | Jogador |
+| **Pré-condição** | Cena em que Ani está com o celular em mãos. |
+| **Cenário Principal** | 1. Jogador navega pelo feed e pelos perfis do aplicativo.<br>2. Sistema exibe as publicações e os pensamentos de Ani sobre elas.<br>3. Jogador interage com uma publicação, como abrir ou curtir.<br>4. Sistema atualiza a tela e, quando aplicável, mostra a reação de Ani. |
+| **Pós-condição** | O estado do aplicativo e da cena é atualizado conforme as ações do jogador. |
+| **Cenário Alternativo** | 3a. Curtida sem querer (toque duplo):<br>3a.1. Sistema registra a curtida e mostra o momento de pânico de Ani, com distorção na tela (RF018).<br>4a. A bateria do celular acaba:<br>4a.1. Sistema exibe o aviso de bateria fraca, desliga o celular e encerra a cena. |
+
+---
+
+**Quadro 19 – Use Case Comprar e Consumir Comida**
+
+| Caso de Uso – Comprar e Consumir Comida | |
+| --- | --- |
+| **ID** | UC-S016 |
+| **Descrição** | Este caso de uso permite que o jogador compre comidas nas barracas das memórias e que as personagens as consumam. |
+| **Ator Primário** | Jogador |
+| **Pré-condição** | Ani próxima de uma barraca de comida, dentro de uma memória. |
+| **Cenário Principal** | 1. Jogador aciona a interação com a barraca.<br>2. Sistema mostra a personagem pegando a comida no balcão.<br>3. A personagem consome a comida aos poucos, parada ou andando.<br>4. Sistema avança o estágio da comida a cada mordida, até ela acabar. |
+| **Pós-condição** | A comida é consumida por completo e a personagem fica com as mãos livres. |
+| **Cenário Alternativo** | 3a. A personagem acompanhante divide a comida:<br>3a.1. Sistema avança um estágio da comida de Ani, e o fluxo segue no passo 3. |
+
+---
+
+**Quadro 20 – Use Case Jogar Minigame**
+
+| Caso de Uso – Jogar Minigame | |
+| --- | --- |
+| **ID** | UC-S017 |
+| **Descrição** | Este caso de uso permite que o jogador jogue os minigames das barracas do parque de diversões. |
+| **Ator Primário** | Jogador |
+| **Pré-condição** | Ani diante de uma barraca de minigame, na memória do parque. |
+| **Cenário Principal** | 1. Jogador aciona a interação com a barraca.<br>2. Sistema abre o minigame, com placar e interface próprios.<br>3. Jogador realiza as jogadas.<br>4. Sistema atualiza o placar a cada jogada.<br>5. Ao fim da partida, o sistema exibe o resultado e devolve Ani ao parque. |
+| **Pós-condição** | Ani volta ao parque; o resultado do minigame não altera a progressão (RN008). |
+| **Cenário Alternativo** | 3a. A personagem acompanhante também joga:<br>3a.1. Sistema alterna a vez com a personagem acompanhante e compara os placares, e o fluxo segue no passo 5. |

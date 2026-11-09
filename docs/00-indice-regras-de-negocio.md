@@ -13,3 +13,5 @@ SORT id ASC
 - [RN004](regras-de-negocio/RN004.md) — Avanço parcial no Ato I
 - [RN005](regras-de-negocio/RN005.md) — Ressignificação de objetos e memórias
 - [RN006](regras-de-negocio/RN006.md) — Convergência dos ecos de decisão
+- [RN007](regras-de-negocio/RN007.md) — Interação no escuro
+- [RN008](regras-de-negocio/RN008.md) — Minigames sem efeito na progressão

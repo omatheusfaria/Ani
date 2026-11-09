@@ -16,9 +16,11 @@ SORT id ASC
 - [UC-S007](casos-de-uso/UC-S007.md) — Configurar Jogo
 - [UC-S008](casos-de-uso/UC-S008.md) — Ajustar Configurações de Vídeo
 - [UC-S009](casos-de-uso/UC-S009.md) — Ajustar Configurações de Áudio
-- [UC-S010](casos-de-uso/UC-S010.md) — Configurar Controles
-- [UC-S011](casos-de-uso/UC-S011.md) — Sair do Jogo
-- [UC-S012](casos-de-uso/UC-S012.md) — Salvar Jogo
-- [UC-S013](casos-de-uso/UC-S013.md) — Continuar Jogo
-- [UC-S014](casos-de-uso/UC-S014.md) — Iniciar Novo Jogo
-- [UC-S015](casos-de-uso/UC-S015.md) — Resolver Puzzle
+- [UC-S010](casos-de-uso/UC-S010.md) — Sair do Jogo
+- [UC-S011](casos-de-uso/UC-S011.md) — Salvar Jogo
+- [UC-S012](casos-de-uso/UC-S012.md) — Continuar Jogo
+- [UC-S013](casos-de-uso/UC-S013.md) — Iniciar Novo Jogo
+- [UC-S014](casos-de-uso/UC-S014.md) — Resolver Puzzle
+- [UC-S015](casos-de-uso/UC-S015.md) — Usar Celular
+- [UC-S016](casos-de-uso/UC-S016.md) — Comprar e Consumir Comida
+- [UC-S017](casos-de-uso/UC-S017.md) — Jogar Minigame

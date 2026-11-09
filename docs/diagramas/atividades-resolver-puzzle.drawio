@@ -7,7 +7,7 @@
                 <mxCell id="MJ2XkcB558rXOadNqTt6-13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
                     <mxGeometry height="1000" width="1150" x="-140" y="-95" as="geometry"/>
                 </mxCell>
-                <mxCell id="v-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1;" value="Diagrama de Atividades – Resolver Puzzle (UC-S015)" vertex="1">
+                <mxCell id="v-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1;" value="Diagrama de Atividades – Resolver Puzzle (UC-S014)" vertex="1">
                     <mxGeometry height="30" width="900" as="geometry"/>
                 </mxCell>
                 <mxCell id="v-2" parent="1" style="swimlane;html=1;startSize=30;horizontal=1;whiteSpace=wrap;collapsible=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" value="Jogador" vertex="1">

@@ -111,17 +111,9 @@ As memórias aparecem como extensões da casa e como portais para fragmentos do 
 
 Esses cenários são exemplos: o jogo terá vários outros cenários de memória além dos citados.
 
-### Progressão Visual por Ato
+### Identidade Visual ao Longo dos Atos
 
-O presente e as memórias têm paletas próprias. A tabela a seguir apresenta a progressão visual planejada para o presente e para os espaços mentais de cada ato. As memórias seguem o tom emocional da lembrança: memórias felizes, como o parque de diversões do Ato I, são quentes, coloridas e iluminadas; memórias traumáticas são frias, abafadas e escuras, como o som descrito na seção 8.
-
-| Ato | Paleta | Atmosfera |
-| --- | --- | --- |
-| I | Índigo do luar e preto profundo no escuro; âmbar quando a luz acende | Claustrofobia, quarto no escuro, relógios parados |
-| II | Cinza-azulado e sombras densas | Labirinto, repetição e desorientação |
-| III | Ocre, marrom e ouro nas rachaduras | Quietude, musgo, frestas de luz |
-| IV | Azul-índigo, rosa-cerejeira e dourado | Abertura, respiro, contemplação |
-| V | Azul muito escuro, quase preto | Imensidão, vazio e coexistência simbólica |
+Os atos marcam etapas narrativas da jornada, e não grandes mudanças visuais. A identidade visual (pixel art sobre cenários 3D, com iluminação cinematográfica) se mantém ao longo de todo o jogo; a luz e a atmosfera variam apenas para servir a cada momento da narrativa, como o quarto no escuro, iluminado só pelo luar, e a luz âmbar quando Ani acende a luz. As memórias seguem o tom emocional da lembrança: memórias felizes, como o parque de diversões do Ato I, são quentes, coloridas e iluminadas; memórias traumáticas são frias, abafadas e escuras, como o som descrito na seção 8.
 
 *→ Relacionado a RF012 — Progressão por atos filosóficos; a direção visual permanece definida neste GDD (docs/requisitos/requisitos-funcionais.md).*
 
@@ -144,6 +136,8 @@ Ani desperta em um apartamento escuro, apertado e opressivo. Tudo parece minimam
 
 O ato começa no presente: às 23:47, Ani está na cama, no quarto escuro, olhando o perfil de Malu no celular, até a bateria acabar. Sem luz, ela procura o carregador pelo quarto e, na gaveta da escrivaninha, encontra uma tirinha de fotos de cabine das duas. A foto a leva para a memória de uma noite num parque de diversões, um ano antes. O parque é uma das fases do ato; as demais fases ainda serão desenvolvidas.
 
+*→ Formalizado em RF024 — Celular em primeira pessoa, RF025 — Iluminação do ambiente, RF026 — Inspeção de objetos em primeira pessoa, RF027 — Acesso a memórias por objeto-portal, RF028 — Compra e consumo de comidas, RF029 — Minigames, RF030 — Personagem acompanhante, RN007 — Interação no escuro e RN008 — Minigames sem efeito na progressão (docs/requisitos/requisitos-funcionais.md; docs/requisitos/regras-de-negocio.md).*
+
 *→ Formalizado em RF013 — Mecânica de peso literal no Ato I e RF019 — Desbloqueio mínimo de memórias no Ato I (docs/requisitos/requisitos-funcionais.md).*
 
 O encerramento do ato acontece quando Ani encontra uma porta que não conduz à libertação, mas a uma descida ainda mais profunda.
@@ -158,10 +152,6 @@ O encerramento do ato acontece quando Ani encontra uma porta que não conduz à 
 Ani atravessa ruínas subterrâneas e espaços em loop. Figuras sem rosto não atacam, apenas refletem e distorcem sua presença. O labirinto é propositalmente contraditório. O jogador se perde porque a própria estrutura do ato comunica irresolução.
 
 *→ Formalizado em RF014 — Mecânica de ecos de decisão no Ato II e RN006 — Convergência dos ecos de decisão (docs/requisitos/requisitos-funcionais.md; docs/requisitos/regras-de-negocio.md).*
-
-O centro simbólico desse trecho é **O Arquiteto**, figura que constrói estruturas que desabam assim que terminam.
-
-*→ Formalizado em RF008 — Diálogos com personagens de memória e arquétipos (docs/requisitos/requisitos-funcionais.md).*
 
 ### Ato III: A Rachadura
 
@@ -182,10 +172,6 @@ O principal símbolo do ato é o **Kintsugi**, a cerâmica remontada com ouro.
 Pela primeira vez, Ani alcança um espaço aberto: um jardim noturno com cerejeiras e lanternas. As manifestações deixam de ser apenas ameaçadoras e passam a existir como presenças do passado. O jogo convida o jogador a parar, observar e aceitar o que não pode ser retido.
 
 *→ Formalizado em RF016 — Mecânica de contemplação ativa no Ato IV (docs/requisitos/requisitos-funcionais.md).*
-
-Nesse ato surge **A Criança**, figura associada à atenção plena e ao gesto simples.
-
-*→ Formalizado em RF008 — Diálogos com personagens de memória e arquétipos (docs/requisitos/requisitos-funcionais.md).*
 
 ### Ato V: O Limiar
 
@@ -211,7 +197,7 @@ O encerramento é deliberadamente aberto. O jogo não explica tudo, não fecha t
 
 Esses personagens aparecem principalmente como ecos do passado e não como companheiros estáveis no presente narrativo.
 
-*→ Formalizado em RF008 — Diálogos com personagens de memória e arquétipos (docs/requisitos/requisitos-funcionais.md).*
+*→ Formalizado em RF008 — Diálogos com personagens de memória (docs/requisitos/requisitos-funcionais.md).*
 
 | Personagem | Tipo | Papel Narrativo |
 | --- | --- | --- |
@@ -219,18 +205,6 @@ Esses personagens aparecem principalmente como ecos do passado e não como compa
 | Padrasto | Família / memória | Presença pesada, associada à distorção e à opressão |
 | Pretendente (Malu) | Relação afetiva / memória | Memória mais recente, ligada à fragilidade afetiva; é com ela a memória do parque, no Ato I |
 | Primo | Família / memória | Presença leve em contraste com os momentos mais densos |
-
-### Arquétipos
-
-A tabela a seguir apresenta os arquétipos filosóficos que acompanham a jornada simbólica de Ani.
-
-| Personagem | Papel |
-| --- | --- |
-| O Arquiteto | Manifestação da contradição irresolúvel do Ato II |
-| A Ceramista | Manifestação do Wabi-Sabi e da aceitação das fendas |
-| A Criança | Manifestação do Ikigai, da atenção e da presença |
-
-*→ Formalizado em RF008 — Diálogos com personagens de memória e arquétipos (docs/requisitos/requisitos-funcionais.md).*
 
 ### Manifestações
 
@@ -341,7 +315,7 @@ A tabela a seguir apresenta os controles previstos para a versão de PC.
 | Pausar | Esc | Menu (☰) |
 | Contemplar | Sem botão dedicado; depende de parar e observar | Sem botão dedicado; depende de parar e observar |
 
-*→ Formalizado em RF001 — Movimentar personagem, RF003 — Interagir com objetos, RF005 — Diário de memórias, RF021 — Pausar jogo, RF024 — Remapear controles e UC-S001/UC-S002/UC-S005/UC-S006/UC-S010 (docs/requisitos/requisitos-funcionais.md; docs/casos-de-uso/README.md).*
+*→ Formalizado em RF001 — Movimentar personagem, RF003 — Interagir com objetos, RF005 — Diário de memórias, RF021 — Pausar jogo e UC-S001/UC-S002/UC-S005/UC-S006 (docs/requisitos/requisitos-funcionais.md; docs/casos-de-uso/README.md).*
 
 ## 8. Áudio
 
@@ -373,7 +347,7 @@ A tabela a seguir apresenta a direção sonora associada a cada ato do jogo.
 - Memórias traumáticas usam abafamento, ruído e silêncio súbito
 - Interações materiais devem soar táteis, íntimas e físicas
 
-*→ Formalizado em RF008 — Diálogos com personagens de memória e arquétipos e RF018 — Crises de ansiedade como elemento sensorial (docs/requisitos/requisitos-funcionais.md).*
+*→ Formalizado em RF008 — Diálogos com personagens de memória e RF018 — Crises de ansiedade como elemento sensorial (docs/requisitos/requisitos-funcionais.md).*
 
 ## 9. Principais Características
 
@@ -401,7 +375,7 @@ A tabela a seguir apresenta a base técnica atualmente definida para o projeto.
 | Estrutura visual | Visão lateral em 2.5D, com cenários 3D estilizados e momentos em primeira pessoa |
 | Câmera | Lateral, com planos em primeira pessoa e de cima nos momentos de inspeção |
 | Texturas | Pixel art nas personagens e objetos, sobre cenários 3D estilizados com iluminação cinematográfica |
-| Efeitos visuais | Distorção emocional, vinheta dinâmica e transições de cor por ato |
+| Efeitos visuais | Distorção emocional, vinheta dinâmica e variações de luz conforme a narrativa |
 
 *→ Formalizado em RNF001 — Desempenho mínimo e RNF003 — Portabilidade de código e assets (docs/requisitos/requisitos-nao-funcionais.md).*
 
@@ -417,7 +391,7 @@ Cada ato segue um ciclo estrutural simples:
 4. Retornar à casa e registrar o avanço no diário.
 5. Abrir passagem para o ato seguinte.
 
-*→ Interações representadas em UC-S002 — Interagir com Objetos, UC-S004 — Consultar Documentos Coletados e UC-S012 — Salvar Jogo (docs/casos-de-uso/README.md).*
+*→ Interações representadas em UC-S002 — Interagir com Objetos, UC-S004 — Consultar Documentos Coletados e UC-S011 — Salvar Jogo (docs/casos-de-uso/README.md).*
 
 ## 11. Encerramento
 

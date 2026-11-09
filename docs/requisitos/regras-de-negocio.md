@@ -29,3 +29,11 @@ Este documento descreve as regras e restrições de comportamento atualmente ali
 | RN006 - Convergência dos ecos de decisão |
 | --- |
 | **Descrição**: Nos momentos de eco de decisão no Ato II, diferentes interações do jogador levam ao mesmo impasse narrativo. |
+
+| RN007 - Interação no escuro |
+| --- |
+| **Descrição**: Com a luz do cômodo apagada, Ani não consegue examinar objetos: somente interruptores e fontes de luz próprias, como luminárias, podem ser acionados; nos demais casos, Ani informa que precisa acender a luz. |
+
+| RN008 - Minigames sem efeito na progressão |
+| --- |
+| **Descrição**: O resultado dos minigames não altera a progressão da narrativa nem é exigido para avançar. |

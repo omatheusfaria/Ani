@@ -351,15 +351,15 @@ O Quadro X apresenta os requisitos funcionais do sistema, organizados por códig
 | RF001 | Movimentar personagem | Evidente | Altíssima | O sistema deve permitir que o jogador mova Ani pelo cenário, para os lados e em profundidade, por teclado ou gamepad. |
 | RF002 | Colisão com cenário e objetos | Evidente | Altíssima | O sistema deve impedir que Ani ultrapasse paredes, pisos e objetos sólidos. |
 | RF003 | Interagir com objetos | Evidente | Altíssima | O sistema deve permitir interação com objetos significativos para acessar memórias, fragmentos narrativos e elementos contemplativos do cenário. |
-| RF004 | Sistema de memórias | Evidente | Altíssima | O sistema deve apresentar memórias como fragmentos narrativos, como cartas, bilhetes, fotografias e diários, acessíveis por meio da interação com o ambiente. Como o jogador pode interagir com diferentes objetos de memória, a ordem de descoberta desses fragmentos pode variar entre sessões e trajetórias dentro de um mesmo ato. |
+| RF004 | Sistema de memórias | Evidente | Altíssima | O sistema deve apresentar memórias como fragmentos narrativos, como cartas, bilhetes, fotografias e diários, acessíveis por meio da interação com o ambiente. Os fragmentos são encontrados em ordem linear, definida pela narrativa de cada ato. |
 | RF005 | Diário de memórias | Evidente | Altíssima | O sistema deve registrar os fragmentos coletados em um diário estilizado acessível ao jogador. Os itens podem ganhar nova leitura visual ou contextual conforme os atos avançam. |
 | RF006 | Desbloqueio progressivo do cenário | Evidente | Altíssima | O sistema deve desbloquear cômodos, passagens, portas e escadas conforme o jogador atravessa memórias e conclui o ciclo de progressão de cada ato, segundo a regra de conclusão de ato (RN003) e, no Ato I, a de avanço parcial (RN004). |
 | RF007 | Sistema de puzzles | Evidente | Alta | O sistema deve incluir puzzles contextuais integrados ao ambiente e à narrativa dos atos. |
-| RF008 | Diálogos com personagens de memória e arquétipos | Evidente | Alta | O sistema deve apresentar diálogos textuais fragmentados para personagens de memória, como Mãe, Padrasto, Pretendente e Primo, e para arquétipos filosóficos, como O Arquiteto, A Ceramista e A Criança. |
+| RF008 | Diálogos com personagens de memória | Evidente | Alta | O sistema deve apresentar diálogos textuais fragmentados para personagens de memória, como Mãe, Padrasto, Pretendente e Primo. |
 | RF009 | Sistema de save/load | Evidente | Altíssima | O sistema deve salvar e carregar o progresso do jogador, incluindo ato atual, memórias registradas, estado do diário e estado visual da casa. |
 | RF010 | Feedback sonoro e musical por ato | Evidente | Alta | O sistema deve adaptar trilha sonora e efeitos sonoros de acordo com o ato filosófico em curso. |
 | RF011 | Suporte a gamepad | Evidente | Média | O sistema deve permitir que o jogo seja controlado também por gamepad. |
-| RF012 | Progressão por atos filosóficos | Evidente | Altíssima | O sistema deve estruturar o jogo em cinco atos sequenciais, com mudança de atmosfera, paleta, comportamento das manifestações e mecânicas conforme a progressão. |
+| RF012 | Progressão por atos filosóficos | Evidente | Altíssima | O sistema deve estruturar o jogo em cinco atos sequenciais, em que a progressão marca as etapas narrativas da jornada de Ani, mantendo a mesma identidade visual ao longo dos atos. |
 | RF013 | Mecânica de peso literal no Ato I | Evidente | Alta | O sistema deve aumentar a sensação de peso no deslocamento de Ani a cada memória tocada no Ato I, tornando o avanço mais lento. |
 | RF014 | Mecânica de ecos de decisão no Ato II | Evidente | Alta | O sistema deve permitir que o jogador revisite, no Ato II, situações em que tenta agir de outro modo, mantendo o resultado preso ao mesmo impasse narrativo. |
 | RF015 | Mecânica de restauração por aceitação no Ato III | Evidente | Alta | O sistema deve permitir, no Ato III, a restauração de objetos quebrados sem apagar suas marcas, em linha com a ideia de Kintsugi. |
@@ -369,11 +369,18 @@ O Quadro X apresenta os requisitos funcionais do sistema, organizados por códig
 | RF019 | Desbloqueio mínimo de memórias no Ato I | Oculto | Alta | O sistema deve contar, no Ato I, as memórias coletadas e liberar a passagem para o ato seguinte quando a contagem atingir o limiar mínimo definido na RN004. |
 | RF020 | Aviso de conteúdo sensível | Evidente | Alta | O sistema deve exibir, antes do início do jogo, um aviso sobre temas sensíveis (ansiedade, sofrimento psíquico), com indicação de onde buscar apoio. |
 | RF021 | Pausar jogo | Evidente | Alta | O sistema deve permitir que o jogador pause a sessão em andamento, suspendendo o gameplay e exibindo o menu de pausa, e retome o jogo do mesmo ponto. |
-| RF022 | Configurar vídeo, áudio e controles | Evidente | Média | O sistema deve permitir que o jogador ajuste opções de vídeo, áudio e controles a partir do menu inicial ou do menu de pausa. |
+| RF022 | Configurar vídeo e áudio | Evidente | Média | O sistema deve permitir que o jogador ajuste opções de vídeo e áudio a partir do menu inicial ou do menu de pausa. |
 | RF023 | Sair do jogo | Evidente | Alta | O sistema deve permitir que o jogador encerre a aplicação, pedindo confirmação antes de sair. |
-| RF024 | Remapear controles | Evidente | Média | O sistema deve permitir que o jogador redefina as teclas do teclado e os botões do gamepad associados a cada comando. |
+| RF024 | Celular em primeira pessoa | Evidente | Alta | O sistema deve permitir que o jogador use o celular de Ani em primeira pessoa, navegando por um aplicativo de rede social com feed, perfis e publicações, e interagindo com elas, como abrir e curtir. |
+| RF025 | Iluminação do ambiente | Evidente | Alta | O sistema deve permitir que o jogador acenda e apague a luz dos cômodos por meio de interruptores e ligue fontes de luz próprias, como luminárias, aplicando a regra de interação no escuro (RN007). |
+| RF026 | Inspeção de objetos em primeira pessoa | Evidente | Média | O sistema deve permitir que o jogador examine de perto conjuntos de objetos do cenário, como estantes, móveis e mochilas, em visão de primeira pessoa ou vista de cima, selecionando cada item para ver sua descrição. |
+| RF027 | Acesso a memórias por objeto-portal | Evidente | Altíssima | O sistema deve levar Ani do presente para uma memória quando o jogador interage com um objeto ligado a ela, como uma fotografia. |
+| RF028 | Compra e consumo de comidas | Evidente | Média | O sistema deve permitir que o jogador compre comidas nas barracas das memórias e que as personagens as consumam aos poucos, em estágios visíveis, paradas ou andando. |
+| RF029 | Minigames | Evidente | Média | O sistema deve oferecer minigames nas barracas do parque de diversões, com placar e interface próprios durante a partida, aplicando a regra de minigames sem efeito na progressão (RN008). |
+| RF030 | Personagem acompanhante | Evidente | Média | O sistema deve fazer com que personagens de memória acompanhem Ani pelo cenário em determinadas fases, seguindo-a e comentando os lugares e as ações do jogador. |
+| RF031 | Salvamento automático | Oculto | Alta | O sistema deve salvar o progresso automaticamente ao atingir pontos de salvamento definidos pela narrativa, sem ação do jogador. |
 
-Observa-se uma distribuição de 8 requisitos com prioridade Altíssima, 13 com prioridade Alta e 3 com prioridade Média. Pela classificação adotada, há 23 requisitos evidentes e 1 oculto. O bloco RF012 a RF019 concentra as mecânicas filosóficas por ato e, como seus efeitos são percebidos pelo jogador, é quase todo evidente; apenas o RF019 permanece oculto, pois o jogador percebe a abertura da passagem (RF006), mas não a contagem do limiar que a determina.
+Observa-se uma distribuição de 9 requisitos com prioridade Altíssima, 16 com prioridade Alta e 6 com prioridade Média. Pela classificação adotada, há 29 requisitos evidentes e 2 ocultos. O bloco RF012 a RF019 concentra as mecânicas filosóficas por ato e, como seus efeitos são percebidos pelo jogador, é quase todo evidente; apenas o RF019 permanece oculto, pois o jogador percebe a abertura da passagem (RF006), mas não a contagem do limiar que a determina. O RF031 também é oculto, porque o salvamento automático acontece em segundo plano. Os requisitos RF024 a RF031 descrevem as mecânicas do início do Ato I: o celular, a iluminação dos cômodos, a inspeção de objetos, a passagem para as memórias, as comidas, os minigames e o personagem acompanhante.
 
 ## 2.4 Requisitos Não Funcionais
 
@@ -410,8 +417,10 @@ O Quadro X apresenta as regras de negócio do sistema, descrevendo as restriçõ
 | RN004 | Avanço parcial no Ato I | No Ato I, o avanço não exige a visualização de todas as memórias, apenas o cumprimento de um limiar mínimo definido. O valor exato do limiar pode ser ajustado durante o refinamento do projeto. |
 | RN005 | Ressignificação de objetos e memórias | Um fragmento pode assumir diferentes interpretações ao longo da progressão do jogo, sem alteração de sua identidade original no diário. |
 | RN006 | Convergência dos ecos de decisão | Nos momentos de eco de decisão no Ato II, diferentes interações do jogador levam ao mesmo impasse narrativo. |
+| RN007 | Interação no escuro | Com a luz do cômodo apagada, Ani não consegue examinar objetos: somente interruptores e fontes de luz próprias, como luminárias, podem ser acionados; nos demais casos, Ani informa que precisa acender a luz. |
+| RN008 | Minigames sem efeito na progressão | O resultado dos minigames não altera a progressão da narrativa nem é exigido para avançar. |
 
-Em termos de rastreabilidade, RN001 origina-se da seção de exploração e diário; RN002 decorre da estrutura narrativa em cinco atos; RN003 decorre da conclusão de cada ato; RN004 deriva do Ato I e da mecânica de peso literal; RN005 origina-se da exploração, do diário e da ressignificação de objetos; e RN006 vem diretamente do Ato II e dos ecos de decisão.
+Em termos de rastreabilidade, RN001 origina-se da seção de exploração e diário; RN002 decorre da estrutura narrativa em cinco atos; RN003 decorre da conclusão de cada ato; RN004 deriva do Ato I e da mecânica de peso literal; RN005 origina-se da exploração, do diário e da ressignificação de objetos; RN006 vem diretamente do Ato II e dos ecos de decisão; RN007 decorre da iluminação dos cômodos (RF025); e RN008, dos minigames do parque (RF029).
 
 ## 2.6 Casos de Uso
 
@@ -434,25 +443,27 @@ O Quadro X apresenta o índice de casos de uso do sistema, enquanto a modelagem 
 | UC-S007 | Configurar Jogo | Jogador |
 | UC-S008 | Ajustar Configurações de Vídeo | Jogador |
 | UC-S009 | Ajustar Configurações de Áudio | Jogador |
-| UC-S010 | Configurar Controles | Jogador |
-| UC-S011 | Sair do Jogo | Jogador |
-| UC-S012 | Salvar Jogo | Jogador |
-| UC-S013 | Continuar Jogo | Jogador |
-| UC-S014 | Iniciar Novo Jogo | Jogador |
-| UC-S015 | Resolver Puzzle | Jogador |
+| UC-S010 | Sair do Jogo | Jogador |
+| UC-S011 | Salvar Jogo | Jogador |
+| UC-S012 | Continuar Jogo | Jogador |
+| UC-S013 | Iniciar Novo Jogo | Jogador |
+| UC-S014 | Resolver Puzzle | Jogador |
+| UC-S015 | Usar Celular | Jogador |
+| UC-S016 | Comprar e Consumir Comida | Jogador |
+| UC-S017 | Jogar Minigame | Jogador |
 
 [Figura 2 – Diagrama de Casos de Uso de Ani]
 
-Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 relaciona-se a RF001 e à exploração lateral; UC-S002 conecta-se a RF003, RF004, RF015 e RF016, cobrindo objetos significativos e mecânicas por ato; UC-S003 deriva de RF008 e dos personagens de memória e arquétipos; UC-S004 e UC-S005 conectam-se a RF005 e ao diário de memórias; UC-S006 corresponde a RF021 (pausa); UC-S007, UC-S008 e UC-S009, a RF022 (configurações de vídeo, áudio e controles); UC-S010, a RF024 (remapeamento de controles) e a RF011 (gamepad); UC-S011, a RF023 (saída); UC-S012 e UC-S013 correspondem a RF009, salvando e carregando o progresso conforme a persistência descrita nas especificações técnicas; UC-S014 corresponde a RF020 (aviso de conteúdo sensível), a RF012 (início no Ato I) e a RF009 (sobrescrita do save anterior); e UC-S015 corresponde a RF007 (puzzles contextuais).
+Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 relaciona-se a RF001, RF002 e RF011 e à exploração em visão lateral; UC-S002 conecta-se a RF003, RF004, RF015 e RF016, cobrindo objetos significativos e mecânicas por ato, além da iluminação dos cômodos (RF025 e RN007), da inspeção em primeira pessoa (RF026) e do objeto que leva às memórias (RF027); UC-S003 deriva de RF008 e dos personagens de memória, incluindo o personagem acompanhante (RF030); UC-S004 e UC-S005 conectam-se a RF005 e ao diário de memórias; UC-S006 corresponde a RF021 (pausa); UC-S007, UC-S008 e UC-S009, a RF022 (configurações de vídeo e áudio); UC-S010, a RF023 (saída); UC-S011 e UC-S012 correspondem a RF009, salvando e carregando o progresso, com o salvamento automático (RF031) no UC-S011; UC-S013 corresponde a RF020 (aviso de conteúdo sensível), a RF012 (início no Ato I) e a RF009 (sobrescrita do save anterior); UC-S014 corresponde a RF007 (puzzles contextuais); UC-S015, a RF024 (celular) e a RF018 (o momento de pânico); UC-S016, a RF028 (comidas); e UC-S017, a RF029 (minigames) e à RN008.
 
-Os Quadros 12 a 26 detalham cada caso de uso, com pré-condição, cenário principal, pós-condição e cenários alternativos.
+Os Quadros 12 a 28 detalham cada caso de uso, com pré-condição, cenário principal, pós-condição e cenários alternativos.
 
 ### Caso de Uso: UC-S001 - Movimentar Personagem
 
 | Campo | Conteúdo |
 | --- | --- |
 | ID | UC-S001 |
-| Descrição | Este caso de uso tem por objetivo permitir a movimentação de Ani pelo cenário durante a exploração lateral. |
+| Descrição | Este caso de uso tem por objetivo permitir a movimentação de Ani pelo cenário em visão lateral, para os lados e em profundidade. |
 | Ator Primário | Jogador |
 | Pré-condição | Jogo iniciado com Ani carregado. |
 | Cenário Principal | 1. Jogador aciona o comando de movimento (teclado ou gamepad).<br>2. Sistema captura a entrada.<br>3. Sistema aplica movimento no personagem.<br>4. Sistema verifica colisões.<br>5. Ani é movido corretamente pelo cenário. |
@@ -467,21 +478,21 @@ Os Quadros 12 a 26 detalham cada caso de uso, com pré-condição, cenário prin
 | Descrição | Este caso de uso permite que o jogador interaja com objetos significativos para acessar memórias, fragmentos narrativos ou elementos contemplativos do cenário. |
 | Ator Primário | Jogador |
 | Pré-condição | Ani deve estar próximo de um objeto interativo. |
-| Cenário Principal | 1. Jogador aciona o comando de interação.<br>2. Sistema identifica o tipo de objeto interativo.<br>3. Sistema ativa o conteúdo associado, como memória, fragmento textual, objeto restaurável ou evento contemplativo.<br>4. Quando aplicável, o conteúdo é registrado no diário de Ani. |
+| Cenário Principal | 1. Jogador aciona o comando de interação.<br>2. Sistema identifica o tipo de objeto interativo.<br>3. Sistema ativa o conteúdo associado, como um pensamento de Ani, a inspeção do objeto em primeira pessoa, a passagem para uma memória, um fragmento textual, um objeto restaurável ou um evento contemplativo.<br>4. Quando aplicável, o conteúdo é registrado no diário de Ani. |
 | Pós-condição | O conteúdo associado ao objeto é disponibilizado ao jogador e, quando aplicável, registrado no diário de memórias. |
-| Cenários Alternativos | 1a. Elemento contemplativo (Ato IV):<br>1a.1. Jogador mantém Ani parada diante do elemento, sem acionar a interação.<br>1a.2. Ao completar o tempo mínimo de observação, o sistema revela o fragmento de narração associado (RF016).<br>1a.3. Se Ani se afastar antes disso, nada é revelado.<br>2a. Objeto não interativo:<br>2a.1. Nada acontece. |
+| Cenários Alternativos | 1a. Elemento contemplativo (Ato IV):<br>1a.1. Jogador mantém Ani parada diante do elemento, sem acionar a interação.<br>1a.2. Ao completar o tempo mínimo de observação, o sistema revela o fragmento de narração associado (RF016).<br>1a.3. Se Ani se afastar antes disso, nada é revelado.<br>1b. O cômodo está escuro (RN007):<br>1b.1. Se o objeto for um interruptor ou uma fonte de luz própria, o sistema acende ou apaga a luz.<br>1b.2. Caso contrário, o sistema exibe a fala de que Ani não consegue enxergar e precisa acender a luz, sem ativar o conteúdo.<br>2a. Objeto não interativo:<br>2a.1. Nada acontece.<br>3a. Inspeção em primeira pessoa:<br>3a.1. Jogador escolhe um item do conjunto e o sistema exibe sua descrição.<br>3a.2. Jogador aciona o comando de voltar e o sistema retorna à visão lateral.<br>3b. Objeto-portal:<br>3b.1. O sistema leva Ani do presente para a memória ligada ao objeto. |
 
 ### Caso de Uso: UC-S003 - Dialogar com Personagens
 
 | Campo | Conteúdo |
 | --- | --- |
 | ID | UC-S003 |
-| Descrição | Este caso de uso tem por objetivo permitir a interação narrativa com personagens de memória e arquétipos filosóficos. |
+| Descrição | Este caso de uso tem por objetivo permitir a interação narrativa com personagens de memória. |
 | Ator Primário | Jogador |
 | Pré-condição | Ani deve estar próximo de um personagem interativo. |
-| Cenário Principal | 1. Jogador aciona a interação.<br>2. Sistema identifica se a entidade é um personagem de memória ou um arquétipo filosófico.<br>3. Sistema exibe diálogo textual fragmentado.<br>4. Jogador avança o texto.<br>5. Quando aplicável, o conteúdo é registrado como memória narrativa ou reforço simbólico do ato atual. |
+| Cenário Principal | 1. Jogador aciona a interação.<br>2. Sistema identifica o personagem de memória.<br>3. Sistema exibe diálogo textual fragmentado.<br>4. Jogador avança o texto.<br>5. Quando aplicável, o conteúdo é registrado como memória narrativa ou reforço simbólico do ato atual. |
 | Pós-condição | O diálogo é concluído e o estado narrativo associado à interação é atualizado pelo sistema. |
-| Cenários Alternativos | 1a. Jogador ignora o personagem:<br>1a.1. O diálogo não é iniciado. |
+| Cenários Alternativos | 1a. Jogador ignora o personagem:<br>1a.1. O diálogo não é iniciado.<br>1b. Diálogo iniciado pela cena:<br>1b.1. Ao chegar a um ponto da narrativa, o sistema inicia o diálogo sem acionamento do jogador, e o fluxo segue no passo 3.<br>1c. Personagem acompanhante (RF030):<br>1c.1. Quando Ani interage com um lugar, o personagem que a acompanha responde com uma fala, e o fluxo segue no passo 3. |
 
 ### Caso de Uso: UC-S004 - Consultar Documentos Coletados
 
@@ -527,9 +538,9 @@ Os Quadros 12 a 26 detalham cada caso de uso, com pré-condição, cenário prin
 | Descrição | Este caso de uso tem por objetivo permitir que o jogador ajuste opções gerais da experiência de jogo. |
 | Ator Primário | Jogador |
 | Pré-condição | Menu de pausa ou inicial aberto. |
-| Cenário Principal | 1. Jogador acessa o menu de configurações.<br>2. Sistema exibe opções de vídeo, áudio e controles.<br>3. Jogador altera os valores. |
+| Cenário Principal | 1. Jogador acessa o menu de configurações.<br>2. Sistema exibe opções de vídeo e áudio.<br>3. Jogador altera os valores. |
 | Pós-condição | As configurações selecionadas são aplicadas conforme as opções alteradas pelo jogador. |
-| Cenários Alternativos | 3a. Jogador cancela:<br>3a.1. As alterações não são salvas. |
+| Cenários Alternativos | 3a. Jogador volta ao menu anterior:<br>3a.1. As alterações feitas já estão aplicadas e salvas. |
 
 ### Caso de Uso: UC-S008 - Ajustar Configurações de Vídeo
 
@@ -555,23 +566,11 @@ Os Quadros 12 a 26 detalham cada caso de uso, com pré-condição, cenário prin
 | Pós-condição | O estado de configuração de áudio é atualizado conforme as preferências definidas pelo jogador. |
 | Cenários Alternativos | 2a. A alteração é inválida:<br>2a.1. O sistema restaura os valores padrão. |
 
-### Caso de Uso: UC-S010 - Configurar Controles
+### Caso de Uso: UC-S010 - Sair do Jogo
 
 | Campo | Conteúdo |
 | --- | --- |
 | ID | UC-S010 |
-| Descrição | Este caso de uso tem por objetivo permitir que o jogador personalize teclas e entradas de gamepad. |
-| Ator Primário | Jogador |
-| Pré-condição | Menu de configurações aberto. |
-| Cenário Principal | 1. Jogador seleciona a opção de controles.<br>2. Sistema permite redefinir teclas e botões.<br>3. Jogador confirma as alterações. |
-| Pós-condição | As configurações de controle são atualizadas e salvas para uso em sessões futuras. |
-| Cenários Alternativos | 3a. Jogador cancela:<br>3a.1. O sistema mantém a configuração anterior. |
-
-### Caso de Uso: UC-S011 - Sair do Jogo
-
-| Campo | Conteúdo |
-| --- | --- |
-| ID | UC-S011 |
 | Descrição | Este caso de uso permite que o jogador encerre a sessão de jogo. |
 | Ator Primário | Jogador |
 | Pré-condição | Jogo em execução. |
@@ -579,53 +578,89 @@ Os Quadros 12 a 26 detalham cada caso de uso, com pré-condição, cenário prin
 | Pós-condição | A sessão de jogo é finalizada e o estado de execução da aplicação é encerrado. |
 | Cenários Alternativos | 3a. Jogador cancela a confirmação:<br>3a.1. A sessão continua. |
 
-### Caso de Uso: UC-S012 - Salvar Jogo
+### Caso de Uso: UC-S011 - Salvar Jogo
+
+| Campo | Conteúdo |
+| --- | --- |
+| ID | UC-S011 |
+| Descrição | Este caso de uso tem por objetivo registrar o progresso do jogador em armazenamento local para continuidade futura. |
+| Ator Primário | Jogador |
+| Pré-condição | Sessão em andamento. |
+| Cenário Principal | 1. Jogador solicita salvar.<br>2. Sistema coleta o estado atual do jogo, incluindo o ato e a cena em curso e, quando houver, as memórias registradas, o estado do diário e o estado visual da casa.<br>3. Sistema grava o progresso no armazenamento local. |
+| Pós-condição | O progresso do jogador é persistido localmente, permitindo a continuidade da sessão em momento posterior. |
+| Cenários Alternativos | 1a. Salvamento automático (RF031):<br>1a.1. Ao atingir um ponto de salvamento da narrativa, o sistema executa os passos 2 e 3 sem ação do jogador.<br>3a. Ocorre erro na gravação:<br>3a.1. O sistema notifica o jogador. |
+
+### Caso de Uso: UC-S012 - Continuar Jogo
 
 | Campo | Conteúdo |
 | --- | --- |
 | ID | UC-S012 |
-| Descrição | Este caso de uso tem por objetivo registrar o progresso do jogador em arquivo local para continuidade futura. |
+| Descrição | Este caso de uso permite que o jogador retome a jornada a partir do progresso salvo localmente. |
 | Ator Primário | Jogador |
-| Pré-condição | Sessão em andamento. |
-| Cenário Principal | 1. Jogador solicita salvar.<br>2. Sistema coleta o estado atual do jogo, incluindo o ato em curso, as memórias registradas, o estado do diário e o estado visual da casa.<br>3. Sistema grava o arquivo de save. |
-| Pós-condição | O progresso do jogador é persistido em arquivo local, permitindo a continuidade da sessão em momento posterior. |
-| Cenários Alternativos | 3a. Ocorre erro na gravação:<br>3a.1. O sistema notifica o jogador. |
+| Pré-condição | Menu inicial aberto. |
+| Cenário Principal | 1. Jogador seleciona a opção de continuar no menu inicial; se ainda não viu o aviso nesse acesso, o Sistema exibe o aviso sobre temas sensíveis, e o Jogador confirma.<br>2. Sistema lê o progresso salvo.<br>3. Sistema restaura o ato e a cena em curso e, quando houver, as memórias registradas, o estado do diário e o estado visual da casa.<br>4. Sistema carrega o cenário correspondente e devolve o controle ao jogador. |
+| Pós-condição | A sessão é retomada no ponto em que o progresso foi salvo. |
+| Cenários Alternativos | 1a. Não existe progresso salvo:<br>1a.1. A opção de continuar fica indisponível no menu inicial.<br>2a. O progresso salvo não pode ser lido:<br>2a.1. O sistema notifica o jogador e retorna ao menu inicial. |
 
-### Caso de Uso: UC-S013 - Continuar Jogo
+### Caso de Uso: UC-S013 - Iniciar Novo Jogo
 
 | Campo | Conteúdo |
 | --- | --- |
 | ID | UC-S013 |
-| Descrição | Este caso de uso permite que o jogador retome a jornada a partir do progresso salvo em arquivo local. |
-| Ator Primário | Jogador |
-| Pré-condição | Menu inicial aberto. |
-| Cenário Principal | 1. Jogador seleciona a opção de continuar no menu inicial; se ainda não viu o aviso nesse acesso, o Sistema exibe o aviso sobre temas sensíveis, e o Jogador confirma.<br>2. Sistema lê o arquivo de save.<br>3. Sistema restaura o ato em curso, as memórias registradas, o estado do diário e o estado visual da casa.<br>4. Sistema carrega o cenário correspondente e devolve o controle ao jogador. |
-| Pós-condição | A sessão é retomada no ponto em que o progresso foi salvo. |
-| Cenários Alternativos | 1a. Não existe arquivo de save:<br>1a.1. A opção de continuar fica indisponível no menu inicial.<br>2a. O arquivo de save não pode ser lido:<br>2a.1. O sistema notifica o jogador e retorna ao menu inicial. |
-
-### Caso de Uso: UC-S014 - Iniciar Novo Jogo
-
-| Campo | Conteúdo |
-| --- | --- |
-| ID | UC-S014 |
-| Descrição | Este caso de uso permite que o jogador inicie uma nova jornada a partir do Ato I, depois de ver a classificação indicativa e o aviso de conteúdo sensível. |
+| Descrição | Este caso de uso permite que o jogador inicie uma nova jornada a partir do Ato I, depois de ver o aviso de conteúdo sensível. |
 | Ator Primário | Jogador |
 | Pré-condição | Menu inicial aberto. |
 | Cenário Principal | 1. Jogador seleciona a opção de novo jogo no menu inicial.<br>2. Sistema exibe o aviso sobre temas sensíveis (ansiedade, sofrimento psíquico), com indicação de onde buscar apoio.<br>3. Jogador confirma e prossegue após o aviso.<br>4. Sistema cria um novo estado de jogo e inicia o Ato I.<br>5. Sistema carrega o cenário inicial e entrega o controle ao jogador. |
 | Pós-condição | Uma nova sessão é iniciada no Ato I, sem progresso anterior. |
 | Cenários Alternativos | 1a. Existe um save anterior:<br>1a.1. Sistema pede confirmação para sobrescrever o progresso salvo.<br>1a.2. Se o jogador confirmar, o fluxo segue no passo 2 e o novo progresso substitui o save anterior.<br>1a.3. Se o jogador recusar, o sistema retorna ao menu inicial sem alterar o save. |
 
-### Caso de Uso: UC-S015 - Resolver Puzzle
+### Caso de Uso: UC-S014 - Resolver Puzzle
 
 | Campo | Conteúdo |
 | --- | --- |
-| ID | UC-S015 |
+| ID | UC-S014 |
 | Descrição | Este caso de uso permite que o jogador resolva um puzzle contextual integrado ao ambiente e à narrativa do ato em curso. |
 | Ator Primário | Jogador |
 | Pré-condição | Ani diante de um puzzle disponível no cenário do ato atual. |
 | Cenário Principal | 1. Jogador aciona a interação com o puzzle.<br>2. Sistema abre o puzzle e apresenta seus elementos.<br>3. Jogador faz uma tentativa.<br>4. Sistema verifica a tentativa.<br>5. Sistema registra o puzzle como concluído. |
 | Pós-condição | O puzzle fica registrado como concluído. |
 | Cenários Alternativos | 3a. Jogador sai do puzzle a qualquer momento antes de concluí-lo:<br>3a.1. Sistema fecha o puzzle e o devolve ao estado inicial, sem salvar progresso parcial.<br>4a. A tentativa está incorreta:<br>4a.1. Sistema indica que a tentativa não resolveu o puzzle, sem punição sistêmica.<br>4a.2. O fluxo retorna ao passo 3. |
+
+### Caso de Uso: UC-S015 - Usar Celular
+
+| Campo | Conteúdo |
+| --- | --- |
+| ID | UC-S015 |
+| Descrição | Este caso de uso permite que o jogador use o celular de Ani em primeira pessoa e navegue pelo aplicativo de rede social. |
+| Ator Primário | Jogador |
+| Pré-condição | Cena em que Ani está com o celular em mãos. |
+| Cenário Principal | 1. Jogador navega pelo feed e pelos perfis do aplicativo.<br>2. Sistema exibe as publicações e os pensamentos de Ani sobre elas.<br>3. Jogador interage com uma publicação, como abrir ou curtir.<br>4. Sistema atualiza a tela e, quando aplicável, mostra a reação de Ani. |
+| Pós-condição | O estado do aplicativo e da cena é atualizado conforme as ações do jogador. |
+| Cenários Alternativos | 3a. Curtida sem querer (toque duplo):<br>3a.1. Sistema registra a curtida e mostra o momento de pânico de Ani, com distorção na tela (RF018).<br>4a. A bateria do celular acaba:<br>4a.1. Sistema exibe o aviso de bateria fraca, desliga o celular e encerra a cena. |
+
+### Caso de Uso: UC-S016 - Comprar e Consumir Comida
+
+| Campo | Conteúdo |
+| --- | --- |
+| ID | UC-S016 |
+| Descrição | Este caso de uso permite que o jogador compre comidas nas barracas das memórias e que as personagens as consumam. |
+| Ator Primário | Jogador |
+| Pré-condição | Ani próxima de uma barraca de comida, dentro de uma memória. |
+| Cenário Principal | 1. Jogador aciona a interação com a barraca.<br>2. Sistema mostra a personagem pegando a comida no balcão.<br>3. A personagem consome a comida aos poucos, parada ou andando.<br>4. Sistema avança o estágio da comida a cada mordida, até ela acabar. |
+| Pós-condição | A comida é consumida por completo e a personagem fica com as mãos livres. |
+| Cenários Alternativos | 3a. A personagem acompanhante divide a comida:<br>3a.1. Sistema avança um estágio da comida de Ani, e o fluxo segue no passo 3. |
+
+### Caso de Uso: UC-S017 - Jogar Minigame
+
+| Campo | Conteúdo |
+| --- | --- |
+| ID | UC-S017 |
+| Descrição | Este caso de uso permite que o jogador jogue os minigames das barracas do parque de diversões. |
+| Ator Primário | Jogador |
+| Pré-condição | Ani diante de uma barraca de minigame, na memória do parque. |
+| Cenário Principal | 1. Jogador aciona a interação com a barraca.<br>2. Sistema abre o minigame, com placar e interface próprios.<br>3. Jogador realiza as jogadas.<br>4. Sistema atualiza o placar a cada jogada.<br>5. Ao fim da partida, o sistema exibe o resultado e devolve Ani ao parque. |
+| Pós-condição | Ani volta ao parque; o resultado do minigame não altera a progressão (RN008). |
+| Cenários Alternativos | 3a. A personagem acompanhante também joga:<br>3a.1. Sistema alterna a vez com a personagem acompanhante e compara os placares, e o fluxo segue no passo 5. |
 
 ## 2.7 Diagrama de Classes
 
@@ -635,7 +670,7 @@ Sua importância neste trabalho está em mostrar como a experiência contemplati
 
 [Figura 3 – Diagrama de Classes de Ani]
 
-As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sintetiza os cinco atos filosóficos; `Memoria`, `Diario` e `EntradaDiario` formalizam o sistema de memórias; `ObjetoMemoria` representa o gatilho interativo de revelação de memórias; `ObjetoRestauravel` traduz a lógica de Kintsugi do Ato III; `ObjetoContemplativo` traduz a contemplação ativa do Ato IV; `NPC` e `Dialogo` representam personagens de memória, arquétipos e seus fluxos textuais; `Ani` constitui a representação sistêmica da protagonista como sujeito da experiência; `EcoDecisao` registra as tentativas do jogador nos ecos de decisão do Ato II; e `Save` reúne o progresso persistido da partida, como a entidade SAVE do DER.
+As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sintetiza os cinco atos filosóficos; `Memoria`, `Diario` e `EntradaDiario` formalizam o sistema de memórias; `ObjetoMemoria` representa o gatilho interativo de revelação de memórias; `ObjetoRestauravel` traduz a lógica de Kintsugi do Ato III; `ObjetoContemplativo` traduz a contemplação ativa do Ato IV; `NPC` e `Dialogo` representam personagens de memória e seus fluxos textuais; `Ani` constitui a representação sistêmica da protagonista como sujeito da experiência; `EcoDecisao` registra as tentativas do jogador nos ecos de decisão do Ato II; e `Save` reúne o progresso persistido da partida, como a entidade SAVE do DER.
 
 `Jogo` e `Ani` mantêm uma associação bidirecional de multiplicidade 1 : 1: `Jogo` alcança o `Diario` por meio de `Ani`, sem associação direta entre `Jogo` e `Diario`, e `Ani` alcança `Jogo` para notificar o início e o fim das crises de ansiedade por meio de `Jogo.alterarEstado()`. Na implementação em Unreal Engine, essa notificação de `Ani` para `Jogo` é feita por um *delegate*: `Ani` dispara o evento, e `Jogo`, inscrito nele, altera o estado da sessão, o que evita que a personagem dependa diretamente da classe de jogo.
 
@@ -806,11 +841,11 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 
 ### Enumerações
 
-O Quadro 27 lista as enumerações usadas como tipos de atributos.
+O Quadro 29 lista as enumerações usadas como tipos de atributos.
 
 | Enumeração | Valores |
 | --- | --- |
-| TipoNPC | `NpcMemoria`, `Arquetipo`, `Aparicao` |
+| TipoNPC | `NpcMemoria`, `Aparicao` |
 | EstadoEmocional | `Neutro`, `Ansioso`, `Deprimido`, `Contemplativo`, `Sereno`, `Medo` |
 | TipoEntradaDiario | `Memoria`, `Documento`, `Fotografia`, `Objeto`, `Contemplacao` |
 | EstadoObjeto | `Quebrado`, `Restaurado` |
@@ -818,7 +853,7 @@ O Quadro 27 lista as enumerações usadas como tipos de atributos.
 
 ### Relacionamentos entre Classes
 
-O Quadro 28 resume os relacionamentos entre as classes e suas multiplicidades.
+O Quadro 30 resume os relacionamentos entre as classes e suas multiplicidades.
 
 | Classe Origem | Tipo de Relacionamento | Classe Destino | Multiplicidade |
 | --- | --- | --- | --- |
@@ -851,9 +886,9 @@ O diagrama de atividades da UML representa o fluxo de controle de um processo ou
 
 Sua importância neste trabalho está em detalhar, passo a passo, fluxos que os casos de uso descrevem apenas em texto, separando o que cabe ao jogador e o que cabe ao sistema por meio de raias. Assim, decisões e repetições ficam visíveis antes da implementação. Os diagramas foram elaborados no draw.io e estão em `docs/diagramas/`.
 
-### Atividade: Resolver Puzzle (UC-S015)
+### Atividade: Resolver Puzzle (UC-S014)
 
-A Figura 4 apresenta o fluxo de resolução de um puzzle descrito no UC-S015. O jogador abre o puzzle e faz tentativas até acertar; uma tentativa errada não gera punição sistêmica e devolve o fluxo à próxima tentativa. A qualquer momento antes da conclusão, o jogador pode sair do puzzle, que volta ao estado inicial sem salvar progresso parcial.
+A Figura 4 apresenta o fluxo de resolução de um puzzle descrito no UC-S014. O jogador abre o puzzle e faz tentativas até acertar; uma tentativa errada não gera punição sistêmica e devolve o fluxo à próxima tentativa. A qualquer momento antes da conclusão, o jogador pode sair do puzzle, que volta ao estado inicial sem salvar progresso parcial.
 
 [Figura 4 – Diagrama de Atividades: Resolver Puzzle]
 
@@ -871,7 +906,7 @@ Em **Ani**, o diagrama de estados descreve o ciclo de vida da sessão de jogo co
 
 ### Estados da classe Jogo
 
-A Figura 6 apresenta os estados da classe `Jogo`, registrados no atributo `estadoAtual` com os valores da enumeração `EstadoJogo`: Menu, Jogando, Pausado, Crise (crise de ansiedade) e Encerrado. As transições são rotuladas pelo evento que as dispara e pelo método correspondente do diagrama de classes: `iniciar()` para um novo jogo (UC-S014), `carregarProgresso()` para continuar (UC-S013), com a condição de guarda [leitura bem-sucedida], já que uma falha na leitura mantém o jogo no menu, `pausar()` para a pausa e `retomar()` para a retomada (UC-S006) e `encerrar()` para a saída confirmada (UC-S011). Todas as mudanças de estado passam por `Jogo.alterarEstado(novoEstado)`, chamado por esses métodos. A crise de ansiedade (RF018) começa e termina em `Ani`: `iniciarCrise()` e `encerrarCrise()` alteram o `estadoEmocional` da personagem e chamam `Jogo.alterarEstado(Crise)` e `Jogo.alterarEstado(Jogando)`, respectivamente; por isso, no diagrama, essas transições têm como evento o início e o fim da crise e como ação `alterarEstado()`.
+A Figura 6 apresenta os estados da classe `Jogo`, registrados no atributo `estadoAtual` com os valores da enumeração `EstadoJogo`: Menu, Jogando, Pausado, Crise (crise de ansiedade) e Encerrado. As transições são rotuladas pelo evento que as dispara e pelo método correspondente do diagrama de classes: `iniciar()` para um novo jogo (UC-S013), `carregarProgresso()` para continuar (UC-S012), com a condição de guarda [leitura bem-sucedida], já que uma falha na leitura mantém o jogo no menu, `pausar()` para a pausa e `retomar()` para a retomada (UC-S006) e `encerrar()` para a saída confirmada (UC-S010). Todas as mudanças de estado passam por `Jogo.alterarEstado(novoEstado)`, chamado por esses métodos. A crise de ansiedade (RF018) começa e termina em `Ani`: `iniciarCrise()` e `encerrarCrise()` alteram o `estadoEmocional` da personagem e chamam `Jogo.alterarEstado(Crise)` e `Jogo.alterarEstado(Jogando)`, respectivamente; por isso, no diagrama, essas transições têm como evento o início e o fim da crise e como ação `alterarEstado()`.
 
 [Figura 6 – Diagrama de Estados da classe Jogo]
 
@@ -887,9 +922,9 @@ A Figura 7 apresenta a interação com um objeto de memória. O jogador aciona o
 
 [Figura 7 – Diagrama de Sequência: Interagir com objeto, registrar memória e consultar o diário]
 
-### Sequência: Salvar e continuar jogo (UC-S012 / UC-S013)
+### Sequência: Salvar e continuar jogo (UC-S011 / UC-S012)
 
-A Figura 8 apresenta a persistência do progresso. Ao salvar (UC-S012), o jogador aciona o comando e `Jogo.salvarProgresso()` coleta o ato em curso, o estado do diário (alcançado por meio de `Ani`) e o estado visual da casa e chama `Save.salvar()`, que grava o arquivo local; em caso de erro, o jogador é notificado. Ao continuar (UC-S013), `Jogo.carregarProgresso()` aciona `Save.carregar()`; se a leitura for bem-sucedida, `Jogo` restaura o ato em curso (`atoAtual`), as memórias registradas e o diário (`Diario.restaurar()`, alcançado por meio de `Ani`) e o estado visual da casa (`Cenario.restaurarEstado()`), carrega o cenário, passa o estado para Jogando (`alterarEstado(Jogando)`) e devolve o controle ao jogador no ponto salvo; se a leitura falhar, o jogador é notificado e retorna ao menu inicial.
+A Figura 8 apresenta a persistência do progresso. Ao salvar (UC-S011), o jogador aciona o comando e `Jogo.salvarProgresso()` coleta o ato em curso, o estado do diário (alcançado por meio de `Ani`) e o estado visual da casa e chama `Save.salvar()`, que grava o arquivo local; em caso de erro, o jogador é notificado. Ao continuar (UC-S012), `Jogo.carregarProgresso()` aciona `Save.carregar()`; se a leitura for bem-sucedida, `Jogo` restaura o ato em curso (`atoAtual`), as memórias registradas e o diário (`Diario.restaurar()`, alcançado por meio de `Ani`) e o estado visual da casa (`Cenario.restaurarEstado()`), carrega o cenário, passa o estado para Jogando (`alterarEstado(Jogando)`) e devolve o controle ao jogador no ponto salvo; se a leitura falhar, o jogador é notificado e retorna ao menu inicial.
 
 [Figura 8 – Diagrama de Sequência: Salvar e continuar jogo]
 
@@ -1037,7 +1072,7 @@ Além disso, as ferramentas utilizadas apresentam licenças compatíveis com uso
 **Função no projeto:** controle de versão do código e da documentação; o GitHub Actions confere a sintaxe dos arquivos JavaScript e Python a cada envio, e o GitHub Pages publica o protótipo jogável na web.  
 **Justificativa de escolha:** mantêm o histórico de alterações e permitem que cada versão do protótipo fique disponível para teste no navegador, sem instalação.
 
-O Quadro 29 relaciona cada artefato do projeto à ferramenta ou ao meio de produção utilizado.
+O Quadro 31 relaciona cada artefato do projeto à ferramenta ou ao meio de produção utilizado.
 
 | Artefato | Ferramenta / Meio de produção |
 | --- | --- |
@@ -1121,7 +1156,7 @@ O sistema de progressão por atos organiza a jornada em cinco etapas sequenciais
 - **Trecho de código relevante:** `[Código 3 — verificação de conclusão de ato e desbloqueio do cenário seguinte]`
 - **Captura de tela comentada:** `[Figura 12 – Transição de ato com alteração de cenário e atmosfera]`
 
-O sistema detecta a conclusão de cada etapa pela combinação entre exploração, memórias e eventos centrais do ato corrente. No Ato I, RN004 permite avanço mediante um limiar mínimo de memórias, sem exigir exaustão total do conteúdo disponível. O Quadro 30 retoma a referência filosófica, o tom e o símbolo de cada ato.
+O sistema detecta a conclusão de cada etapa pela combinação entre exploração, memórias e eventos centrais do ato corrente. No Ato I, RN004 permite avanço mediante um limiar mínimo de memórias, sem exigir exaustão total do conteúdo disponível. O Quadro 32 retoma a referência filosófica, o tom e o símbolo de cada ato.
 
 | Ato | Referência Filosófica | Tom | Símbolo |
 | --- | --- | --- | --- |
@@ -1207,7 +1242,7 @@ O sistema de crises de ansiedade atua no plano sensorial, alterando imagem, som 
 - **Trecho de código relevante:** `[Código 9 — acionamento de distorção visual, fragmentação sonora e aumento de manifestações]`
 - **Captura de tela comentada:** `[Figura 18 – Episódio de crise com distorção visual e reforço atmosférico]`
 
-Os efeitos esperados incluem distorção visual, fragmentação sonora e intensificação das manifestações, com a respiração de Ani funcionando como indicador sensorial. O impacto do sistema é atmosférico e emocional, não quantitativo. O Quadro 31 apresenta a direção sonora associada a cada elemento.
+Os efeitos esperados incluem distorção visual, fragmentação sonora e intensificação das manifestações, com a respiração de Ani funcionando como indicador sensorial. O impacto do sistema é atmosférico e emocional, não quantitativo. O Quadro 33 apresenta a direção sonora associada a cada elemento.
 
 | Elemento | Direção sonora e funcional |
 | --- | --- |
@@ -1235,13 +1270,13 @@ O sistema deve operar em consonância com RNF002, segundo o qual os saves locais
 A interface do projeto segue uma filosofia de quase invisibilidade. Em vez de HUD permanente e barras numéricas, o estado do jogo é comunicado por atmosfera, distorção, respiração, ícones discretos e pelo próprio diário de memórias como objeto diegético.
 
 - **Classes envolvidas:** `Jogo`, `Diario`
-- **Requisitos correspondentes:** RF005, RF021, RF024, RNF004
+- **Requisitos correspondentes:** RF005, RF021, RNF004
 - **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** interface mínima, sensorial e integrada ao mundo
 - **Trecho de código relevante:** `[Código 11 — abertura do diário diegético e acionamento de indicadores discretos de interação]`
 - **Captura de tela comentada:** `[Figura 20 – Interface do diário e ausência de HUD permanente durante exploração]`
 
-O Quadro 32 apresenta o mapeamento dos controles no teclado e no gamepad.
+O Quadro 34 apresenta o mapeamento dos controles no teclado e no gamepad.
 
 | Ação | Teclado e mouse | Gamepad (padrão Xbox) |
 | --- | --- | --- |
@@ -1265,7 +1300,7 @@ O sistema de áudio adaptativo organiza trilha e efeitos de forma coerente com a
 - **Trecho de código relevante:** `[Código 12 — transição de parâmetros e camadas sonoras por ato no middleware de áudio]`
 - **Captura de tela comentada:** `[Figura 21 – Configuração sonora de ato com trilha adaptada ao estado da jornada]`
 
-O Quadro 33 apresenta o clima sonoro e os elementos previstos para cada ato.
+O Quadro 35 apresenta o clima sonoro e os elementos previstos para cada ato.
 
 | Ato | Clima Sonoro | Elementos |
 | --- | --- | --- |
@@ -1277,11 +1312,11 @@ O Quadro 33 apresenta o clima sonoro e os elementos previstos para cada ato.
 
 ### 4.2.13 Sistema de Puzzles Contextuais
 
-O RF007 prevê puzzles contextuais integrados ao ambiente e à narrativa dos atos. A resolução de um puzzle é descrita no UC-S015 e tem várias etapas: o jogador abre o puzzle, faz uma tentativa, pode errar e tentar de novo, e conclui. Um erro não gera punição sistêmica, em coerência com a ausência de morte ou game over no projeto.
+O RF007 prevê puzzles contextuais integrados ao ambiente e à narrativa dos atos. A resolução de um puzzle é descrita no UC-S014 e tem várias etapas: o jogador abre o puzzle, faz uma tentativa, pode errar e tentar de novo, e conclui. Um erro não gera punição sistêmica, em coerência com a ausência de morte ou game over no projeto.
 
 - **Classes envolvidas:** nenhuma classe própria no diagrama de classes atual
 - **Requisito funcional correspondente:** RF007
-- **Caso de uso correspondente:** UC-S015
+- **Caso de uso correspondente:** UC-S014
 - **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** integração entre ambiente, narrativa e progressão por atos
 - **Trecho de código relevante:** `[Código 13 — abertura do puzzle, verificação da tentativa e registro da conclusão]`
@@ -1291,7 +1326,7 @@ A quantidade de puzzles e sua distribuição por ato são definidas no level des
 
 ### 4.2.14 Sistema de Diálogos
 
-O sistema de diálogos apresenta falas textuais e fragmentadas dos personagens de memória (Mãe, Padrasto, Pretendente e Primo) e dos arquétipos filosóficos (O Arquiteto, no Ato II; A Ceramista, no Ato III; e A Criança, no Ato IV). Os personagens de memória surgem como ecos do passado, e não como companheiros estáveis, enquanto os arquétipos encarnam a ideia filosófica do ato em que aparecem. O diálogo é iniciado pela interação do jogador, descrita no UC-S003.
+O sistema de diálogos apresenta falas textuais e fragmentadas dos personagens de memória (Mãe, Padrasto, Pretendente e Primo). Eles surgem como ecos do passado, e não como companheiros estáveis. O diálogo é iniciado pela interação do jogador, descrita no UC-S003.
 
 - **Classes envolvidas:** `Ani`, `NPC`, `Dialogo`
 - **Requisito funcional correspondente:** RF008
@@ -1304,16 +1339,16 @@ Na implementação prevista, `NPC.interagir()` identifica o tipo do personagem (
 
 ### 4.2.15 Suporte a Gamepad
 
-O suporte a gamepad permite que todo o jogo seja controlado também por um controle no padrão Xbox, sem perda de funções em relação ao teclado. Como a interface não usa HUD permanente, o mapeamento é reduzido aos comandos de movimento, interação, diário de memórias e pausa, conforme o Quadro 32, na seção 4.2.11.
+O suporte a gamepad permite que todo o jogo seja controlado também por um controle no padrão Xbox, sem perda de funções em relação ao teclado. Como a interface não usa HUD permanente, o mapeamento é reduzido aos comandos de movimento, interação, diário de memórias e pausa, conforme o Quadro 34, na seção 4.2.11.
 
 - **Classes envolvidas:** `Ani`, com a entrada tratada pelo Enhanced Input da Unreal Engine 5 (fora do escopo do diagrama de classes)
-- **Requisito funcional correspondente:** RF011, com RF001 (movimento por teclado ou gamepad) e RF024 (remapeamento de controles)
+- **Requisito funcional correspondente:** RF011, com RF001 (movimento por teclado ou gamepad)
 - **Regra de negócio correspondente:** não se aplica diretamente
 - **Princípio do projeto que originou o sistema:** acesso equivalente à experiência por teclado ou gamepad
 - **Trecho de código relevante:** `[Código 15 — Input Mapping Context com as mesmas Input Actions associadas a teclas e a botões do gamepad]`
-- **Captura de tela comentada:** `[Figura 24 – Menu de configuração de controles com o mapeamento do gamepad]`
+- **Captura de tela comentada:** `[Figura 24 – Dicas de botões do gamepad durante a exploração]`
 
-No Enhanced Input, cada comando é uma *Input Action* única, à qual o *Input Mapping Context* associa tanto a tecla quanto o botão correspondente do gamepad. Dessa forma, `Ani` recebe a mesma ação independentemente do dispositivo, e o remapeamento previsto no UC-S010 altera apenas as associações do contexto, sem mudar a lógica de jogo.
+No Enhanced Input, cada comando é uma *Input Action* única, à qual o *Input Mapping Context* associa tanto a tecla quanto o botão correspondente do gamepad. Dessa forma, `Ani` recebe a mesma ação independentemente do dispositivo, sem mudar a lógica de jogo.
 
 ## 4.3 Capturas de Tela e Funcionalidades
 
@@ -1463,7 +1498,7 @@ Este apêndice resume o Game Design Document (GDD) de **Ani**, mantido na ínteg
 
 ## C.1 Visão e ficha técnica
 
-**Ani** é uma aventura narrativa contemplativa em 2.5D sobre consciência, sofrimento e a descoberta lenta do sentido. A protagonista é uma mulher comum, de aproximadamente 24 anos, em colapso existencial; seu nome vem do hebraico **אֲנִי**, "eu". O jogo não acompanha escolhas morais, e sim a mudança na forma como Ani percebe a existência. O Quadro 34 reúne a ficha técnica do jogo.
+**Ani** é uma aventura narrativa contemplativa em 2.5D sobre consciência, sofrimento e a descoberta lenta do sentido. A protagonista é uma mulher comum, de aproximadamente 24 anos, em colapso existencial; seu nome vem do hebraico **אֲנִי**, "eu". O jogo não acompanha escolhas morais, e sim a mudança na forma como Ani percebe a existência. O Quadro 36 reúne a ficha técnica do jogo.
 
 | Item | Descrição |
 | --- | --- |
@@ -1477,7 +1512,7 @@ Este apêndice resume o Game Design Document (GDD) de **Ani**, mantido na ínteg
 
 ## C.2 Pilar conceitual e atos
 
-A jornada parte do pessimismo da filosofia ocidental e caminha, em cinco atos de ordem fixa, para filosofias contemplativas japonesas. A transição se manifesta no ambiente, no som, nas mecânicas e no ritmo, sem explicação didática. O Quadro 35 resume os cinco atos.
+A jornada parte do pessimismo da filosofia ocidental e caminha, em cinco atos de ordem fixa, para filosofias contemplativas japonesas. A transição se manifesta no ambiente, no som, nas mecânicas e no ritmo, sem explicação didática. O Quadro 37 resume os cinco atos.
 
 | Ato | Referência | Ideia central | Símbolo | Mecânica própria |
 | --- | --- | --- | --- | --- |
@@ -1491,9 +1526,9 @@ Princípios de direção: o jogo não é sobre vencer o sofrimento, mas atravess
 
 ## C.3 Mundo, personagens e sistemas
 
-O jogo parte do presente, no quarto de Ani, e se aprofunda na mente dela: objetos do quarto funcionam como portais para memórias vividas dentro da própria cabeça. O núcleo é a casa da protagonista, a começar pelo quarto, um espaço vivido e cheio de marcas de quem ela é, que ganha novos cômodos e passagens conforme os atos avançam. Dela partem cenários de memória, como a casa de infância, a escola, o trabalho, as ruas, o hospital, os espaços sociais e o parque de diversões do Ato I, entre outros. A paleta acompanha os atos, do índigo e preto do Ato I ao azul quase preto do Ato V, passando pelo ocre com ouro do Ato III e pelo índigo e rosa-cerejeira do Ato IV; as memórias felizes, como o parque, têm cores quentes e iluminadas.
+O jogo parte do presente, no quarto de Ani, e se aprofunda na mente dela: objetos do quarto funcionam como portais para memórias vividas dentro da própria cabeça. O núcleo é a casa da protagonista, a começar pelo quarto, um espaço vivido e cheio de marcas de quem ela é, que ganha novos cômodos e passagens conforme os atos avançam. Dela partem cenários de memória, como a casa de infância, a escola, o trabalho, as ruas, o hospital, os espaços sociais e o parque de diversões do Ato I, entre outros. A identidade visual se mantém ao longo dos atos, que marcam etapas narrativas; a luz e a atmosfera variam para servir à narrativa, e as memórias felizes, como o parque, têm cores quentes e iluminadas.
 
-Os personagens se dividem em personagens de memória (Mãe, Padrasto, Pretendente e Primo), arquétipos filosóficos (O Arquiteto, A Ceramista e A Criança) e manifestações, figuras sem rosto que refletem Ani e intensificam as crises, sem agir como inimigos.
+Os personagens se dividem em personagens de memória (Mãe, Padrasto, Pretendente e Primo) e manifestações, figuras sem rosto que refletem Ani e intensificam as crises, sem agir como inimigos.
 
 Os sistemas transversais são a exploração com diário de memórias, em que cartas, bilhetes e fotografias ficam registrados e ganham nova leitura ao longo dos atos, e as crises de ansiedade, representadas por distorção visual, som fragmentado e respiração. A interface é quase invisível: sem HUD permanente nem barras numéricas (exceto nos minigames do parque), com menus diegéticos, como a pausa aberta na tela do celular de Ani, e o diário como objeto diegético. O áudio vai do abafado e claustrofóbico ao orgânico e silencioso, com direção própria em cada ato.
 

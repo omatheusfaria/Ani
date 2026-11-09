@@ -29,12 +29,14 @@ O Quadro 1 apresenta o índice dos casos de uso atualmente documentados no proje
 | UC-S007 | Configurar Jogo | Jogador |
 | UC-S008 | Ajustar Configurações de Vídeo | Jogador |
 | UC-S009 | Ajustar Configurações de Áudio | Jogador |
-| UC-S010 | Configurar Controles | Jogador |
-| UC-S011 | Sair do Jogo | Jogador |
-| UC-S012 | Salvar Jogo | Jogador |
-| UC-S013 | Continuar Jogo | Jogador |
-| UC-S014 | Iniciar Novo Jogo | Jogador |
-| UC-S015 | Resolver Puzzle | Jogador |
+| UC-S010 | Sair do Jogo | Jogador |
+| UC-S011 | Salvar Jogo | Jogador |
+| UC-S012 | Continuar Jogo | Jogador |
+| UC-S013 | Iniciar Novo Jogo | Jogador |
+| UC-S014 | Resolver Puzzle | Jogador |
+| UC-S015 | Usar Celular | Jogador |
+| UC-S016 | Comprar e Consumir Comida | Jogador |
+| UC-S017 | Jogar Minigame | Jogador |
 
 O Quadro 2 apresenta, como exemplo, a especificação de um dos casos de uso do projeto.
 

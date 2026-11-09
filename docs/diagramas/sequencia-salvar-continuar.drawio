@@ -7,7 +7,7 @@
                 <mxCell id="nDtHR-l_Gd-dku44J6Xb-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
                     <mxGeometry height="1310" width="780" as="geometry"/>
                 </mxCell>
-                <mxCell id="titulo" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1;" value="Diagrama de Sequência – Salvar e continuar jogo (UC-S012 / UC-S013)" vertex="1">
+                <mxCell id="titulo" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1;" value="Diagrama de Sequência – Salvar e continuar jogo (UC-S011 / UC-S012)" vertex="1">
                     <mxGeometry height="40" width="680" x="20" y="10" as="geometry"/>
                 </mxCell>
                 <mxCell id="ll-Jogador" parent="1" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;portConstraint=eastwest;size=40;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="Jogador" vertex="1">
@@ -43,7 +43,7 @@
                 <mxCell id="ll-Cen" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value=":Cenario" vertex="1">
                     <mxGeometry height="1198" width="100" x="590" y="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="v-1" parent="1" style="text;html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=1;strokeColor=default;fillColor=default;rounded=0;" value="Salvar jogo (UC-S012)" vertex="1">
+                <mxCell id="v-1" parent="1" style="text;html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=1;strokeColor=default;fillColor=default;rounded=0;" value="Salvar jogo (UC-S011)" vertex="1">
                     <mxGeometry height="26" width="680" x="20" y="140" as="geometry"/>
                 </mxCell>
                 <mxCell id="e-2" edge="1" parent="1" source="ll-Jogador" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=136;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=-5;entryDy=136;entryPerimeter=0;" target="ll-Jogo" value="comando de salvar">
@@ -78,13 +78,13 @@
                 <mxCell id="v-10" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;" value="[gravação concluída]" vertex="1">
                     <mxGeometry height="20" width="320" x="66" y="424" as="geometry"/>
                 </mxCell>
-                <mxCell id="v-11" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;" value="[erro na gravação (UC-S012, 3a)]" vertex="1">
+                <mxCell id="v-11" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;" value="[erro na gravação (UC-S011, 3a)]" vertex="1">
                     <mxGeometry height="20" width="320" x="16" y="494" as="geometry"/>
                 </mxCell>
                 <mxCell id="v-12" parent="1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;dashed=1;" value="" vertex="1">
                     <mxGeometry height="8" width="700" x="10" y="488" as="geometry"/>
                 </mxCell>
-                <mxCell id="v-13" parent="1" style="text;html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=1;strokeColor=default;fillColor=default;rounded=0;" value="Continuar jogo (UC-S013)" vertex="1">
+                <mxCell id="v-13" parent="1" style="text;html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=1;strokeColor=default;fillColor=default;rounded=0;" value="Continuar jogo (UC-S012)" vertex="1">
                     <mxGeometry height="26" width="680" x="20" y="592" as="geometry"/>
                 </mxCell>
                 <mxCell id="e-14" edge="1" parent="1" source="ll-Jogador" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=588;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=-5;entryDy=588;entryPerimeter=0;" target="ll-Jogo" value="comando de continuar">
@@ -139,7 +139,7 @@
                 <mxCell id="v-27" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;" value="[leitura bem-sucedida]" vertex="1">
                     <mxGeometry height="20" width="320" x="66" y="810" as="geometry"/>
                 </mxCell>
-                <mxCell id="v-28" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;" value="[falha na leitura (UC-S013, 2a)]" vertex="1">
+                <mxCell id="v-28" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;" value="[falha na leitura (UC-S012, 2a)]" vertex="1">
                     <mxGeometry height="20" width="320" x="16" y="1140" as="geometry"/>
                 </mxCell>
                 <mxCell id="v-29" parent="1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;dashed=1;" value="" vertex="1">
