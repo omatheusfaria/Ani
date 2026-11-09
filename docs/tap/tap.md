@@ -47,11 +47,11 @@ As tecnologias e ferramentas utilizadas são:
 - HTML, CSS e JavaScript (módulos ES, sem etapa de build) para a estrutura, a interface e a lógica do jogo;
 - Three.js para a renderização 3D dos cenários sobre WebGL, com pós-processamento próprio para a estética de pixel art;
 - Web Audio API para os sons, sintetizados em tempo de execução;
-- Sprite Fusion para a geração das folhas de sprites e scripts em Python (NumPy e Pillow) para o recorte e o ajuste dessas folhas;
-- Aseprite e Photoshop / Illustrator para ilustrações e ajustes de sprites;
+- Sprite Fusion e GPT-6 para a geração das folhas de sprites e scripts em Python (NumPy e Pillow) para o recorte e o ajuste dessas folhas;
+- Claude Opus 5.5 para a modelagem 3D dos cenários em Three.js;
 - GitHub Actions e GitHub Pages para a verificação e a publicação do protótipo.
 
-Na fase de implementação, a tecnologia prevista inicialmente para o protótipo (Unreal Engine com C++) foi substituída por essa base web. [preencher: motivo da troca]
+Na fase de implementação, a tecnologia prevista inicialmente para o protótipo (Unreal Engine com C++) foi substituída por essa base web. O principal motivo foi o tempo disponível para o desenvolvimento: após análise, concluiu-se que, no prazo do projeto, o Three.js era a tecnologia mais adequada.
 
 ## 7. Escopo
 

@@ -28,7 +28,7 @@ O objetivo geral do projeto é desenvolver um protótipo funcional de jogo narra
 
 A justificativa do trabalho apoia-se na singularidade dos jogos digitais como meio para representar experiências internas e subjetivas. Em **Ani**, a ausência de combate, de HUD numérico permanente e de moralidade binária não decorre de limitação técnica, mas de aderência ao objeto de pesquisa. Como o foco está na travessia do sofrimento, na observação e na transformação de percepção, a interface minimalista, as pausas, o silêncio e as mecânicas contemplativas tornam-se escolhas metodologicamente coerentes com o que se pretende investigar em software interativo.
 
-O projeto é desenvolvido segundo a metodologia Cascata, com fases sequenciais de levantamento de requisitos, modelagem, design de sistemas e implementação. As ferramentas centrais registradas no projeto são HTML, CSS e JavaScript com a biblioteca Three.js, executados no navegador, o Visual Studio Code, o Sprite Fusion e scripts em Python (NumPy e Pillow) para a produção dos sprites, além de Aseprite e Photoshop/Illustrator. A organização deste documento acompanha esse percurso: após a introdução, apresenta-se o Termo de Abertura do Projeto; em seguida, o levantamento de requisitos, com BPMN, requisitos, regras, casos de uso, diagrama de classes e DER; depois, as ferramentas e métodos empregados; por fim, descreve-se o desenvolvimento do protótipo funcional. O Apêndice B apresenta a missão, a visão e os valores do projeto. O Apêndice C traz uma versão resumida do Game Design Document, que reúne a direção criativa da qual os requisitos foram derivados.
+O projeto é desenvolvido segundo a metodologia Cascata, com fases sequenciais de levantamento de requisitos, modelagem, design de sistemas e implementação. As ferramentas centrais registradas no projeto são HTML, CSS e JavaScript com a biblioteca Three.js, executados no navegador, o Visual Studio Code, o Sprite Fusion e o GPT-6 para a geração dos sprites, scripts em Python (NumPy e Pillow) para o tratamento deles e o Claude Opus 5.5 para a modelagem 3D dos cenários em Three.js. A organização deste documento acompanha esse percurso: após a introdução, apresenta-se o Termo de Abertura do Projeto; em seguida, o levantamento de requisitos, com BPMN, requisitos, regras, casos de uso, diagrama de classes e DER; depois, as ferramentas e métodos empregados; por fim, descreve-se o desenvolvimento do protótipo funcional. O Apêndice B apresenta a missão, a visão e os valores do projeto. O Apêndice C traz uma versão resumida do Game Design Document, que reúne a direção criativa da qual os requisitos foram derivados.
 
 ## 1.1 Termo de Abertura do Projeto (TAP)
 
@@ -103,11 +103,11 @@ As tecnologias e ferramentas utilizadas são:
 - HTML, CSS e JavaScript (módulos ES, sem etapa de build) para a estrutura, a interface e a lógica do jogo;
 - Three.js para a renderização 3D dos cenários sobre WebGL, com pós-processamento próprio para a estética de pixel art;
 - Web Audio API para os sons, sintetizados em tempo de execução;
-- Sprite Fusion para a geração das folhas de sprites e scripts em Python (NumPy e Pillow) para o recorte e o ajuste dessas folhas;
-- Aseprite e Photoshop / Illustrator para ilustrações e ajustes de sprites;
+- Sprite Fusion e GPT-6 para a geração das folhas de sprites e scripts em Python (NumPy e Pillow) para o recorte e o ajuste dessas folhas;
+- Claude Opus 5.5 para a modelagem 3D dos cenários em Three.js;
 - GitHub Actions e GitHub Pages para a verificação e a publicação do protótipo.
 
-Na fase de implementação, a tecnologia prevista inicialmente para o protótipo (Unreal Engine com C++) foi substituída por essa base web. [preencher: motivo da troca]
+Na fase de implementação, a tecnologia prevista inicialmente para o protótipo (Unreal Engine com C++) foi substituída por essa base web. O principal motivo foi o tempo disponível para o desenvolvimento: após análise, concluiu-se que, no prazo do projeto, o Three.js era a tecnologia mais adequada.
 
 ### 1.1.7 Escopo
 
@@ -993,19 +993,19 @@ Além disso, as ferramentas utilizadas apresentam licenças compatíveis com uso
 **Função no projeto:** scripts da pasta `tools/` que recortam as folhas de sprites, alinham os quadros pelos pés, separam camadas de brilho e ajustam detalhes das personagens.  
 **Justificativa de escolha:** automatizam tarefas repetitivas de tratamento de imagem com precisão de pixel, o que garante que todas as folhas cheguem ao jogo no mesmo formato.
 
-### Ferramenta: Aseprite
-**Versão utilizada:** [preencher]  
-**Tipo de licença:** proprietária, paga, uso perpétuo (EULA da Igara Studio)  
-**Site oficial:** <https://www.aseprite.org/>  
-**Função no projeto:** edição e ajuste de sprites e animações em pixel art.  
-**Justificativa de escolha:** é um editor dedicado a pixel art, adequado para corrigir quadros e detalhes das folhas de sprites sem perder a grade de pixels.
+### Ferramenta: GPT-6
+**Versão utilizada:** GPT-6  
+**Tipo de licença:** proprietária, acesso por assinatura ou API (OpenAI)  
+**Site oficial:** <https://openai.com/>  
+**Função no projeto:** geração de imagens de referência e de folhas de sprites das personagens, de objetos e de animações de cena.  
+**Justificativa de escolha:** complementa o Sprite Fusion na produção dos sprites, gerando a partir de descrições em texto as poses e cenas específicas que o jogo precisava, no mesmo estilo de pixel art.
 
-### Ferramenta: Adobe Photoshop / Adobe Illustrator
-**Versão utilizada:** Photoshop 2025 (26.2); Illustrator [preencher]  
-**Tipo de licença:** proprietária, assinatura Adobe Creative Cloud  
-**Site oficial:** <https://www.adobe.com/products/photoshop.html> e <https://www.adobe.com/products/illustrator.html>  
-**Função no projeto:** criação de ilustrações, texturas, paletas e elementos gráficos de interface.  
-**Justificativa de escolha:** essas ferramentas apoiam a produção de assets visuais de maior fidelidade, incluindo as paletas por ato e os elementos gráficos de interface.
+### Ferramenta: Claude Opus 5.5
+**Versão utilizada:** Claude Opus 5.5  
+**Tipo de licença:** proprietária, acesso por assinatura ou API (Anthropic)  
+**Site oficial:** <https://www.anthropic.com/claude>  
+**Função no projeto:** modelagem 3D dos cenários em Three.js, como o quarto de Ani e o parque de diversões, escritos diretamente em código.  
+**Justificativa de escolha:** como o Three.js monta os cenários por código, um assistente capaz de escrever esse código permitiu construir os ambientes 3D dentro do prazo, o que se alinha ao motivo da troca de tecnologia.
 
 ### Ferramenta: draw.io (diagrams.net)
 **Versão utilizada:** 29.6.5  
@@ -1030,7 +1030,8 @@ O Quadro 29 relaciona cada artefato do projeto à ferramenta ou ao meio de produ
 | BPMN | draw.io / diagrams.net |
 | Diagrama de Classes | draw.io / diagrams.net |
 | Código-fonte | HTML / CSS / JavaScript / Three.js / Visual Studio Code |
-| Assets visuais | Sprite Fusion / Python (NumPy, Pillow) / Aseprite / Photoshop |
+| Assets visuais | Sprite Fusion / GPT-6 / Python (NumPy, Pillow) |
+| Modelagem 3D dos cenários | Claude Opus 5.5 / Three.js |
 | Assets de áudio | Web Audio API (sons sintetizados no código) |
 | Publicação do protótipo | GitHub Actions / GitHub Pages |
 
