@@ -81,6 +81,10 @@ Feito (falta o usuário aprovar no jogo):
    direita/frio à esquerda). wheelride.js: BACK_IDLE (0–1–2–1) → na hora de encostar BACK_LEAN (4 vira,
    6 olha a Ani, 7–10 inclina, 12–16 se aninha) → BACK_REST (18–22, respirando). Quadros 5, 11, 17 e 23
    vêm cortados na borda direita da folha original: não usar (ou pedir a folha de novo).
+11. **GitHub Actions → GitHub Pages** (`.github/workflows/publicar.yml`): a cada push no main confere a
+   sintaxe dos .js (node --check) e das ferramentas Python e publica index.html, admin/, css/, js/ e
+   assets/ no Pages. Precisa uma vez: Settings → Pages → Source: "GitHub Actions". O link fica
+   https://omatheusfaria.github.io/Ani-Game/ (o /admin funciona: o login é só no navegador).
 
 Pendências:
 - Travesseiro: feito pela leitura "pegar da cama" (o usuário não respondeu a encenação; se ele quiser

@@ -1,0 +1,61 @@
+# Publica o jogo no GitHub Pages a cada push no main (ou na mão, em Actions → "Publicar o jogo").
+# O jogo é HTML/JS puro (sem build): o workflow confere a sintaxe dos .js e publica só o que o
+# navegador precisa (index.html, admin/, css/, js/, assets/). tools/, servidor e notas ficam de fora.
+# Antes da primeira vez: no GitHub, Settings → Pages → Source: "GitHub Actions".
+name: Publicar o jogo
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# um deploy por vez; um push novo cancela o que ainda estava na fila
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  conferir:
+    name: Conferir o código
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Sintaxe dos .js
+        run: |
+          set -e
+          for f in $(find js -name '*.js'); do
+            node --check "$f"
+          done
+          echo "Todos os .js passaram."
+      - name: Sintaxe das ferramentas (Python)
+        run: python3 -m py_compile tools/*.py servidor.py
+
+  publicar:
+    name: Publicar no GitHub Pages
+    needs: conferir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Montar o site
+        run: |
+          mkdir _site
+          cp -r index.html admin css js assets _site/
+          touch _site/.nojekyll
+          du -sh _site
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v4
