@@ -301,7 +301,7 @@ A primeira aparição desse sistema está no início do Ato I: quando Ani curte 
 
 *→ Formalizado em RF018 — Crises de ansiedade como elemento sensorial e apoiado por RNF006 — Acessibilidade sensorial e de áudio (docs/requisitos/requisitos-funcionais.md; docs/requisitos/requisitos-nao-funcionais.md).*
 
-Por tratar de ansiedade e sofrimento psíquico, o jogo exibe, antes do início e a cada acesso, a classificação indicativa autoatribuída pelos critérios do Guia Prático de Classificação Indicativa (no protótipo: não recomendado para menores de 10 anos, com o descritor "Temas sensíveis") e um aviso sobre esses temas, com a indicação do CVV (188) como apoio.
+Por tratar de ansiedade e sofrimento psíquico, o jogo exibe, antes do início e a cada acesso, um aviso sobre esses temas, com a indicação do CVV (188) como apoio. A classificação indicativa ainda não é exibida, porque o protótipo não é comercializado; se o jogo for distribuído, ela será autoatribuída pelos critérios do Guia Prático de Classificação Indicativa.
 
 *→ Formalizado em RF020 — Aviso de conteúdo sensível (docs/requisitos/requisitos-funcionais.md).*
 
