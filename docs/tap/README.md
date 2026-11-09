@@ -26,7 +26,7 @@ De que forma o design de um jogo narrativo pode representar eficazmente uma jorn
 
 ## 3. Objetivo Geral
 
-Desenvolver um protótipo funcional de jogo narrativo contemplativo que represente, por meio de sistemas, mecânicas e linguagem visual, uma jornada filosófica de transformação interior estruturada em cinco atos, do pessimismo existencial à contemplação, aplicando práticas de engenharia de software no planejamento e na construção do projeto.
+Conceber um jogo narrativo contemplativo que represente, por meio de sistemas, mecânicas e linguagem visual, uma jornada filosófica de transformação interior estruturada em cinco atos, do pessimismo existencial à contemplação, e desenvolver um protótipo funcional do início do Ato I, com cerca de dez minutos de jogo, que demonstre parte do design e das mecânicas propostos, aplicando práticas de engenharia de software no planejamento e na construção do projeto.
 
 ## 4. Objetivos Específicos
 
@@ -34,7 +34,7 @@ Desenvolver um protótipo funcional de jogo narrativo contemplativo que represen
 - levantar, classificar e documentar os requisitos funcionais, não funcionais e regras de negócio do sistema;
 - modelar os fluxos principais do jogo utilizando BPMN e casos de uso;
 - projetar sistemas e mecânicas que traduzam, em interação, cada etapa da jornada filosófica de Ani;
-- implementar um protótipo funcional coerente com a documentação produzida.
+- implementar um protótipo funcional do início do Ato I, com cerca de dez minutos de jogo, coerente com a documentação produzida.
 
 ## 5. Justificativa
 

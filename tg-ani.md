@@ -2,7 +2,7 @@
 
 Os jogos digitais narrativos constituem um campo relevante de investigação em software porque articulam sistemas computacionais, linguagem audiovisual, interação e modelagem de experiência. Diferentemente de mídias puramente lineares, o jogo permite que o sujeito não apenas acompanhe uma trajetória, mas a vivencie por meio de ações, ritmos, interrupções e respostas sistêmicas. No caso de experiências contemplativas, essa característica amplia a capacidade do software de representar estados subjetivos, sofrimento, memória e transformação interior, convertendo temas abstratos em situações interativas sensíveis.
 
-Nesse contexto, o projeto **Ani אֲנִי** propõe um side-scroller narrativo contemplativo centrado em consciência, sofrimento e descoberta gradual de sentido. A logline do projeto o define como “um side-scroller narrativo contemplativo sobre consciência, sofrimento e a descoberta lenta do sentido”. Sua sinopse apresenta Ani despertando em um espaço que parece sua própria mente, ao mesmo tempo familiar e deformado, no qual memórias, silêncio e ruínas emocionais substituem objetivos tradicionais, combate ou tutoriais extensos. O nome **אֲנִי** significa “eu” em hebraico e sintetiza a intenção de aproximar jogador e protagonista, de modo que a experiência não seja observada à distância, mas habitada desde dentro. As características gerais do produto estão reunidas na Ficha do Produto (Quadro 3), na seção 1.1.1.
+Nesse contexto, o projeto **Ani אֲנִי** propõe um side-scroller narrativo contemplativo centrado em consciência, sofrimento e descoberta gradual de sentido. A logline do projeto o define como “um side-scroller narrativo contemplativo sobre consciência, sofrimento e a descoberta lenta do sentido”. Sua sinopse apresenta Ani em seu quarto, às 23:47, presa à tela do celular, acompanhando o perfil de Malu numa rede social. Quando a bateria acaba e o quarto mergulha no escuro, ela se levanta e o explora em busca do carregador, e os objetos que encontra a levam para dentro das próprias memórias, um espaço ao mesmo tempo familiar e deformado, no qual memórias, silêncio e ruínas emocionais substituem objetivos tradicionais, combate ou tutoriais extensos. O nome **אֲנִי** significa “eu” em hebraico e sintetiza a intenção de aproximar jogador e protagonista, de modo que a experiência não seja observada à distância, mas habitada desde dentro. As características gerais do produto estão reunidas na Ficha do Produto (Quadro 3), na seção 1.1.1.
 
 A originalidade do projeto reside no fato de que sua espinha dorsal não é uma estrutura de moralidade binária, mas uma jornada de percepção organizada em cinco atos filosóficos. O percurso parte do pessimismo ocidental, associado a Zapffe, Mainländer e Bahnsen, e avança em direção a filosofias contemplativas japonesas, como Wabi-Sabi, Mono no Aware, Ikigai e Yugen. Essa transição não é tratada como exposição teórica, mas como mudança de atmosfera, espaço, ritmo, mecânica e linguagem sensorial (Quadro 1).
 
@@ -24,9 +24,9 @@ Os princípios que orientam a direção do projeto reforçam essa identidade con
 
 A questão-problema que conduz o trabalho é a seguinte: “De que forma o design de um jogo narrativo pode representar eficazmente uma jornada filosófica de transformação interior e a construção da identidade de um personagem?”. A hipótese adotada sustenta que, quando articuladas de forma coerente, mecânicas, progressão visual, direção sonora e organização espacial podem traduzir filosofia em experiência sensível, dispensando a necessidade de mediação teórica explícita para que o jogador perceba a transformação proposta.
 
-O objetivo geral do projeto é desenvolver um protótipo funcional de jogo narrativo contemplativo que represente, por meio de sistemas, mecânicas e linguagem visual, uma jornada filosófica de transformação interior estruturada em cinco atos, do pessimismo existencial à contemplação, aplicando práticas de engenharia de software no planejamento e na construção do projeto. Como objetivos específicos, destacam-se a consolidação da direção conceitual e filosófica do jogo, o levantamento e a classificação de requisitos, a modelagem dos fluxos principais por BPMN e casos de uso, o projeto de sistemas capazes de traduzir cada ato em interação e a implementação de um protótipo coerente com a documentação produzida.
+O objetivo geral do projeto é conceber um jogo narrativo contemplativo que represente, por meio de sistemas, mecânicas e linguagem visual, uma jornada filosófica de transformação interior estruturada em cinco atos, do pessimismo existencial à contemplação, e desenvolver um protótipo funcional do início do Ato I, com cerca de dez minutos de jogo, que demonstre parte do design e das mecânicas propostos, aplicando práticas de engenharia de software no planejamento e na construção do projeto. Como objetivos específicos, destacam-se a consolidação da direção conceitual e filosófica do jogo, o levantamento e a classificação de requisitos, a modelagem dos fluxos principais por BPMN e casos de uso, o projeto de sistemas capazes de traduzir cada ato em interação e a implementação de um protótipo do início do Ato I coerente com a documentação produzida.
 
-A justificativa do trabalho apoia-se na singularidade dos jogos digitais como meio para representar experiências internas e subjetivas. Em **Ani**, a ausência de combate, de HUD numérico permanente e de moralidade binária não decorre de limitação técnica, mas de aderência ao objeto de pesquisa. Como o foco está na travessia do sofrimento, na observação e na transformação de percepção, a interface minimalista, as pausas, o silêncio e as mecânicas contemplativas tornam-se escolhas metodologicamente coerentes com o que se pretende investigar em software interativo.
+A justificativa do trabalho apoia-se na singularidade dos jogos digitais como meio para representar experiências internas e subjetivas. Em **Ani**, a ausência de combate, de HUD numérico permanente e de moralidade binária não decorre de limitação técnica, mas de aderência ao objeto de pesquisa. A única exceção são os minigames das barracas do parque, no Ato I: como reproduzem jogos de parque de diversões, exibem placar e interface própria enquanto duram, sem efeito sobre a progressão. Como o foco está na travessia do sofrimento, na observação e na transformação de percepção, a interface minimalista, as pausas, o silêncio e as mecânicas contemplativas tornam-se escolhas metodologicamente coerentes com o que se pretende investigar em software interativo.
 
 O projeto é desenvolvido segundo a metodologia Cascata, com fases sequenciais de levantamento de requisitos, modelagem, design de sistemas e implementação. As ferramentas centrais registradas no projeto são HTML, CSS e JavaScript com a biblioteca Three.js, executados no navegador, o Visual Studio Code, o Sprite Fusion e o GPT-6 para a geração dos sprites, scripts em Python (NumPy e Pillow) para o tratamento deles e o Claude Opus 5.5 para a modelagem 3D dos cenários em Three.js. A organização deste documento acompanha esse percurso: após a introdução, apresenta-se o Termo de Abertura do Projeto; em seguida, o levantamento de requisitos, com BPMN, requisitos, regras, casos de uso, diagrama de classes e DER; depois, as ferramentas e métodos empregados; por fim, descreve-se o desenvolvimento do protótipo funcional. O Apêndice B apresenta a missão, a visão e os valores do projeto. O Apêndice C traz uma versão resumida do Game Design Document, que reúne a direção criativa da qual os requisitos foram derivados.
 
@@ -74,7 +74,7 @@ De que forma o design de um jogo narrativo pode representar eficazmente uma jorn
 
 ### 1.1.3 Objetivo Geral
 
-Desenvolver um protótipo funcional de jogo narrativo contemplativo que represente, por meio de sistemas, mecânicas e linguagem visual, uma jornada filosófica de transformação interior estruturada em cinco atos, do pessimismo existencial à contemplação, aplicando práticas de engenharia de software no planejamento e na construção do projeto.
+Conceber um jogo narrativo contemplativo que represente, por meio de sistemas, mecânicas e linguagem visual, uma jornada filosófica de transformação interior estruturada em cinco atos, do pessimismo existencial à contemplação, e desenvolver um protótipo funcional do início do Ato I, com cerca de dez minutos de jogo, que demonstre parte do design e das mecânicas propostos, aplicando práticas de engenharia de software no planejamento e na construção do projeto.
 
 ### 1.1.4 Objetivos Específicos
 
@@ -82,7 +82,7 @@ Desenvolver um protótipo funcional de jogo narrativo contemplativo que represen
 - levantar, classificar e documentar os requisitos funcionais, não funcionais e regras de negócio do sistema;
 - modelar os fluxos principais do jogo utilizando BPMN e casos de uso;
 - projetar sistemas e mecânicas que traduzam, em interação, cada etapa da jornada filosófica de Ani;
-- implementar um protótipo funcional coerente com a documentação produzida.
+- implementar um protótipo funcional do início do Ato I, com cerca de dez minutos de jogo, coerente com a documentação produzida.
 
 ### 1.1.5 Justificativa
 
@@ -113,18 +113,29 @@ Na fase de implementação, a tecnologia prevista inicialmente para o protótipo
 
 #### Escopo Incluído
 
-- desenvolvimento de um jogo narrativo contemplativo estruturado em cinco atos filosóficos;
-- exploração lateral em ambientes simbólicos e fragmentados;
+- concepção de um jogo narrativo contemplativo estruturado em cinco atos filosóficos;
+- exploração lateral do quarto de Ani e de ambientes de memória, simbólicos e fragmentados;
 - interação com objetos de memória, fragmentos narrativos e elementos contemplativos;
 - diário de memórias como sistema central de registro e leitura;
-- implementação das mecânicas principais por ato, como peso literal, ecos de decisão, restauração por aceitação e contemplação ativa;
+- mecânicas principais por ato, como peso literal, ecos de decisão, restauração por aceitação e contemplação ativa;
 - construção de atmosfera visual e sonora coerente com a jornada filosófica de Ani;
-- desenvolvimento de um protótipo funcional para PC.
+- desenvolvimento de um protótipo funcional para PC, executado no navegador, com o início do Ato I (cerca de dez minutos de jogo).
+
+#### Conteúdo do Protótipo
+
+O protótipo demonstra parte do design e das mecânicas do jogo por meio do início do Ato I:
+
+- o celular de Ani em primeira pessoa, com um aplicativo de rede social em que ela acompanha o perfil de Malu;
+- a exploração do quarto em visão lateral, com luz e escuro, interruptor, luminária de plasma, inspeção de objetos em primeira pessoa e a gaveta onde está a tirinha de fotos;
+- a memória do parque de diversões, um ano antes, ao lado de Malu, com conversas, barracas e a volta na roda-gigante;
+- minigames nas barracas do parque (estoure o balão, derrube as latas e pescaria), únicos momentos do jogo com placar e interface própria;
+- comidas compradas nas barracas (algodão-doce, pipoca, churros e maçã do amor), que acabam aos poucos, mordida a mordida.
 
 #### Escopo Não Incluído
 
 - lançamento comercial do jogo;
 - versão final completa com todo o conteúdo planejado, refinado e polido;
+- no protótipo, o diário de memórias, as mecânicas por ato e os Atos II a V, que permanecem na concepção do jogo;
 - portabilidade efetiva para consoles ou outras plataformas;
 - produção final de todos os assets artísticos e sonoros definitivos.
 

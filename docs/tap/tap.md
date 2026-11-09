@@ -18,7 +18,7 @@ De que forma o design de um jogo narrativo pode representar eficazmente uma jorn
 
 ## 3. Objetivo Geral
 
-Desenvolver um protótipo funcional de jogo narrativo contemplativo que represente, por meio de sistemas, mecânicas e linguagem visual, uma jornada filosófica de transformação interior estruturada em cinco atos, do pessimismo existencial à contemplação, aplicando práticas de engenharia de software no planejamento e na construção do projeto.
+Conceber um jogo narrativo contemplativo que represente, por meio de sistemas, mecânicas e linguagem visual, uma jornada filosófica de transformação interior estruturada em cinco atos, do pessimismo existencial à contemplação, e desenvolver um protótipo funcional do início do Ato I, com cerca de dez minutos de jogo, que demonstre parte do design e das mecânicas propostos, aplicando práticas de engenharia de software no planejamento e na construção do projeto.
 
 ## 4. Objetivos Específicos
 
@@ -26,7 +26,7 @@ Desenvolver um protótipo funcional de jogo narrativo contemplativo que represen
 - levantar, classificar e documentar os requisitos funcionais, não funcionais e regras de negócio do sistema;
 - modelar os fluxos principais do jogo utilizando BPMN e casos de uso;
 - projetar sistemas e mecânicas que traduzam, em interação, cada etapa da jornada filosófica de Ani;
-- implementar um protótipo funcional coerente com a documentação produzida.
+- implementar um protótipo funcional do início do Ato I, com cerca de dez minutos de jogo, coerente com a documentação produzida.
 
 ## 5. Justificativa
 
@@ -57,18 +57,29 @@ Na fase de implementação, a tecnologia prevista inicialmente para o protótipo
 
 ### Escopo Incluído
 
-- desenvolvimento de um jogo narrativo contemplativo estruturado em cinco atos filosóficos;
-- exploração lateral em ambientes simbólicos e fragmentados;
+- concepção de um jogo narrativo contemplativo estruturado em cinco atos filosóficos;
+- exploração lateral do quarto de Ani e de ambientes de memória, simbólicos e fragmentados;
 - interação com objetos de memória, fragmentos narrativos e elementos contemplativos;
 - diário de memórias como sistema central de registro e leitura;
-- implementação das mecânicas principais por ato, como peso literal, ecos de decisão, restauração por aceitação e contemplação ativa;
+- mecânicas principais por ato, como peso literal, ecos de decisão, restauração por aceitação e contemplação ativa;
 - construção de atmosfera visual e sonora coerente com a jornada filosófica de Ani;
-- desenvolvimento de um protótipo funcional para PC.
+- desenvolvimento de um protótipo funcional para PC, executado no navegador, com o início do Ato I (cerca de dez minutos de jogo).
+
+### Conteúdo do Protótipo
+
+O protótipo demonstra parte do design e das mecânicas do jogo por meio do início do Ato I:
+
+- o celular de Ani em primeira pessoa, com um aplicativo de rede social em que ela acompanha o perfil de Malu;
+- a exploração do quarto em visão lateral, com luz e escuro, interruptor, luminária de plasma, inspeção de objetos em primeira pessoa e a gaveta onde está a tirinha de fotos;
+- a memória do parque de diversões, um ano antes, ao lado de Malu, com conversas, barracas e a volta na roda-gigante;
+- minigames nas barracas do parque (estoure o balão, derrube as latas e pescaria), únicos momentos do jogo com placar e interface própria;
+- comidas compradas nas barracas (algodão-doce, pipoca, churros e maçã do amor), que acabam aos poucos, mordida a mordida.
 
 ### Escopo Não Incluído
 
 - lançamento comercial do jogo;
 - versão final completa com todo o conteúdo planejado, refinado e polido;
+- no protótipo, o diário de memórias, as mecânicas por ato e os Atos II a V, que permanecem na concepção do jogo;
 - portabilidade efetiva para consoles ou outras plataformas;
 - produção final de todos os assets artísticos e sonoros definitivos.
 

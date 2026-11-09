@@ -29,7 +29,7 @@ Um side-scroller narrativo contemplativo sobre consciência, sofrimento e a desc
 
 ### Sinopse
 
-Ani acorda em um lugar que parece sua própria mente: familiar, mas deformado; íntimo, mas opressivo. Não há mapa, não há tutorial explícito e não há inimigos no sentido tradicional. O que existe são memórias, silêncio, ruínas emocionais e o peso de existir com consciência demais.
+A jornada começa no quarto de Ani, às 23:47. Deitada no escuro, ela rola o perfil de Malu numa rede social até a bateria do celular acabar. Sem luz, Ani se levanta e explora o quarto em busca do carregador, e os objetos que encontra a levam para dentro da própria mente: um lugar familiar, mas deformado; íntimo, mas opressivo. Não há mapa, não há tutorial explícito e não há inimigos no sentido tradicional. O que existe são memórias, silêncio, ruínas emocionais e o peso de existir com consciência demais.
 
 *→ Formalizado em RNF004 — Jogabilidade autoexplicativa (docs/requisitos/requisitos-nao-funcionais.md).*
 
