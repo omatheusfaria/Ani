@@ -45,10 +45,10 @@ A tabela a seguir apresenta a ficha técnica base do projeto **Ani**.
 | --- | --- |
 | Título | Ani |
 | Gênero | Side-scroller narrativo contemplativo |
-| Plataforma principal | PC (Windows) |
-| Engine | Unreal Engine |
-| Linguagem | C++ |
-| Câmera | Lateral fixa com zoom narrativo |
+| Plataforma principal | PC, executado no navegador (Windows, Linux e macOS) |
+| Engine | Three.js (biblioteca 3D sobre WebGL) |
+| Linguagem | JavaScript, com HTML e CSS |
+| Câmera | Lateral, com planos em primeira pessoa e de cima nos momentos de inspeção |
 | Público-alvo | 16 a 28 anos, com interesse em filosofia, arte e narrativas reflexivas |
 | Tom | Sombrio, melancólico e contemplativo, com redenção gradual |
 | Duração estimada | 3 a 5 horas por jornada |
@@ -89,7 +89,7 @@ A tabela a seguir apresenta o eixo filosófico que orienta cada ato da jornada d
 
 ### Estrutura Geral
 
-O jogo se passa inteiramente na mente de Ani, representada como um espaço arquitetônico impossível: apartamentos que se repetem, corredores alagados, ruínas em loop, jardins noturnos e cenários familiares ligeiramente errados.
+O jogo parte do presente, no quarto de Ani, e se aprofunda na mente dela. Objetos do quarto funcionam como portais: ao interagir com eles, Ani é levada para memórias vividas dentro da própria cabeça. Essa mente é representada como um espaço arquitetônico impossível: apartamentos que se repetem, corredores alagados, ruínas em loop, jardins noturnos e cenários familiares ligeiramente errados.
 
 O núcleo central é a casa de Ani, inicialmente cinzenta, incompleta e sufocante. Conforme os atos avançam, ela ganha textura, luz e reorganização espacial. Novos cômodos, passagens, portas e escadas surgem à medida que a jornada se aprofunda.
 
@@ -128,6 +128,8 @@ A tabela a seguir apresenta a progressão visual planejada para cada ato do jogo
 
 A narrativa de **Ani** é organizada em cinco atos. Cada ato corresponde a uma transformação filosófica e emocional, com linguagem visual, sonora e mecânica próprias.
 
+No jogo, cada ato é apresentado como um capítulo (o Ato I aparece como "Capítulo 1") e se divide em fases, que podem se passar no presente ou dentro de uma memória.
+
 *→ Formalizado em RF012 — Progressão por atos filosóficos e RN002 — Progressão fixa entre atos (docs/requisitos/requisitos-funcionais.md; docs/requisitos/regras-de-negocio.md).*
 
 ### Ato I: O Peso
@@ -136,6 +138,8 @@ A narrativa de **Ani** é organizada em cinco atos. Cada ato corresponde a uma t
 **Ideia central:** a consciência como fardo
 
 Ani desperta em um apartamento escuro, apertado e opressivo. Tudo parece minimamente familiar, mas deslocado. O mundo pesa. Os objetos da memória aparecem espalhados, e lembrar exige esforço.
+
+O ato começa no presente: às 23:47, Ani está na cama, no quarto escuro, olhando o perfil de Malu no celular, até a bateria acabar. Sem luz, ela procura o carregador pelo quarto e, na gaveta da escrivaninha, encontra uma tirinha de fotos de cabine das duas. A foto a leva para a memória de uma noite num parque de diversões, um ano antes. O parque é uma das fases do ato; as demais fases ainda serão desenvolvidas.
 
 *→ Formalizado em RF013 — Mecânica de peso literal no Ato I e RF019 — Desbloqueio mínimo de memórias no Ato I (docs/requisitos/requisitos-funcionais.md).*
 
@@ -210,7 +214,7 @@ Esses personagens aparecem principalmente como ecos do passado e não como compa
 | --- | --- | --- |
 | Mãe | Família / memória | Âncora emocional importante, ligada à proteção e ao sufocamento |
 | Padrasto | Família / memória | Presença pesada, associada à distorção e à opressão |
-| Namorada | Família / memória | Memória mais recente, ligada à fragilidade afetiva |
+| Pretendente (Malu) | Relação afetiva / memória | Memória mais recente, ligada à fragilidade afetiva; é com ela a memória do parque, no Ato I |
 | Primo | Família / memória | Presença leve em contraste com os momentos mais densos |
 
 ### Arquétipos
@@ -236,6 +240,8 @@ As manifestações são figuras sem rosto que refletem Ani. Elas não funcionam 
 ### Princípio Central
 
 **Ani** não possui sistema de combate, sistema de moralidade, pontuação ou árvore de escolhas com múltiplos finais baseados em bom ou mau comportamento. As mecânicas existem para dar corpo às ideias do jogo.
+
+A única exceção são os minigames das barracas do parque, no Ato I: como reproduzem jogos de parque de diversões, eles têm placar e interface própria enquanto duram, sem efeito sobre a progressão.
 
 ### Mecânicas por Ato
 
@@ -306,6 +312,7 @@ A interface deve ser quase invisível. O jogo comunica estado por atmosfera, som
 
 - Sem HUD permanente
 - Sem barras numéricas
+- Exceção: os minigames do parque (Ato I) exibem placar, munição e medidores enquanto estão em andamento
 - Ícones discretos e rabiscados
 - Diário de memórias acessível como objeto diegético
 - A respiração funciona como indicador sensorial recorrente
@@ -378,12 +385,12 @@ A tabela a seguir apresenta a base técnica atualmente definida para o projeto.
 
 | Item | Direção Atual |
 | --- | --- |
-| Engine | Unreal Engine |
-| Linguagem | C++ |
-| Plataforma inicial | PC (Windows) |
+| Engine | Three.js (biblioteca 3D sobre WebGL) |
+| Linguagem | JavaScript, com HTML e CSS |
+| Plataforma inicial | PC, executado no navegador (Windows, Linux e macOS) |
 | Estrutura visual | Side-scroller lateral com elementos 3D estilizados |
-| Câmera | Lateral fixa com zoom narrativo |
-| Texturas | Estética de desenho à mão, aquarela e grafite |
+| Câmera | Lateral, com planos em primeira pessoa e de cima nos momentos de inspeção |
+| Texturas | Pixel art nas personagens e objetos, sobre cenários 3D estilizados com iluminação cinematográfica |
 | Efeitos visuais | Distorção emocional, vinheta dinâmica e transições de cor por ato |
 
 *→ Formalizado em RNF001 — Desempenho mínimo e RNF003 — Portabilidade de código e assets (docs/requisitos/requisitos-nao-funcionais.md).*

@@ -38,7 +38,7 @@ No projeto **Ani**, os requisitos funcionais reúnem as funcionalidades atualmen
 
 | RF008-Diálogos com personagens de memória e arquétipos | Categoria: (  ) Oculto (X) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |
-| **Descrição**: O sistema deve apresentar diálogos textuais fragmentados para personagens de memória, como Mãe, Padrasto, Namorada e Primo, e para arquétipos filosóficos, como O Arquiteto, A Ceramista e A Criança. | | |
+| **Descrição**: O sistema deve apresentar diálogos textuais fragmentados para personagens de memória, como Mãe, Padrasto, Pretendente e Primo, e para arquétipos filosóficos, como O Arquiteto, A Ceramista e A Criança. | | |
 
 | RF009-Sistema de save/load | Categoria: (  ) Oculto (X) Evidente | Prioridade: (X) Altíssima (  ) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |

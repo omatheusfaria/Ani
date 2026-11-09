@@ -28,7 +28,7 @@ O objetivo geral do projeto é desenvolver um protótipo funcional de jogo narra
 
 A justificativa do trabalho apoia-se na singularidade dos jogos digitais como meio para representar experiências internas e subjetivas. Em **Ani**, a ausência de combate, de HUD numérico permanente e de moralidade binária não decorre de limitação técnica, mas de aderência ao objeto de pesquisa. Como o foco está na travessia do sofrimento, na observação e na transformação de percepção, a interface minimalista, as pausas, o silêncio e as mecânicas contemplativas tornam-se escolhas metodologicamente coerentes com o que se pretende investigar em software interativo.
 
-O projeto é desenvolvido segundo a metodologia Cascata, com fases sequenciais de levantamento de requisitos, modelagem, design de sistemas e implementação. As ferramentas centrais registradas no projeto são Unreal Engine 5.4.4, C++, Visual Studio Code com Visual Studio Build Tools (MSVC), Aseprite, Photoshop/Illustrator e Audacity/FMOD. A organização deste documento acompanha esse percurso: após a introdução, apresenta-se o Termo de Abertura do Projeto; em seguida, o levantamento de requisitos, com BPMN, requisitos, regras, casos de uso, diagrama de classes e DER; depois, as ferramentas e métodos empregados; por fim, descreve-se o desenvolvimento do protótipo funcional. O Apêndice B apresenta a missão, a visão e os valores do projeto. O Apêndice C traz uma versão resumida do Game Design Document, que reúne a direção criativa da qual os requisitos foram derivados.
+O projeto é desenvolvido segundo a metodologia Cascata, com fases sequenciais de levantamento de requisitos, modelagem, design de sistemas e implementação. As ferramentas centrais registradas no projeto são HTML, CSS e JavaScript com a biblioteca Three.js, executados no navegador, o Visual Studio Code, o Sprite Fusion e scripts em Python (NumPy e Pillow) para a produção dos sprites, além de Aseprite e Photoshop/Illustrator. A organização deste documento acompanha esse percurso: após a introdução, apresenta-se o Termo de Abertura do Projeto; em seguida, o levantamento de requisitos, com BPMN, requisitos, regras, casos de uso, diagrama de classes e DER; depois, as ferramentas e métodos empregados; por fim, descreve-se o desenvolvimento do protótipo funcional. O Apêndice B apresenta a missão, a visão e os valores do projeto. O Apêndice C traz uma versão resumida do Game Design Document, que reúne a direção criativa da qual os requisitos foram derivados.
 
 ## 1.1 Termo de Abertura do Projeto (TAP)
 
@@ -47,9 +47,9 @@ A identificação do projeto é apresentada no Quadro 2.
 | Nome do projeto | Ani אֲנִי |
 | Tipo | Jogo digital narrativo contemplativo |
 | Área | Desenvolvimento de software e jogos digitais |
-| Plataforma inicial | PC (Windows) |
-| Motor de jogo | Unreal Engine |
-| Linguagem principal | C++ |
+| Plataforma inicial | PC, executado no navegador (Windows, Linux e macOS) |
+| Motor de jogo | Three.js (biblioteca 3D sobre WebGL) |
+| Linguagem principal | JavaScript, com HTML e CSS |
 | Natureza do projeto | Projeto autoral com finalidade acadêmica e prototipação |
 
 #### Ficha do Produto
@@ -60,10 +60,10 @@ As características do produto estão resumidas no Quadro 3.
 | --- | --- |
 | Título | Ani |
 | Gênero | Side-scroller narrativo contemplativo |
-| Plataforma principal | PC (Windows) |
-| Engine | Unreal Engine |
-| Linguagem | C++ |
-| Câmera | Lateral fixa com zoom narrativo |
+| Plataforma principal | PC, executado no navegador (Windows, Linux e macOS) |
+| Engine | Three.js (biblioteca 3D sobre WebGL) |
+| Linguagem | JavaScript, com HTML e CSS |
+| Câmera | Lateral, com planos em primeira pessoa e de cima nos momentos de inspeção |
 | Público-alvo | 16 a 28 anos, com interesse em filosofia, arte e narrativas reflexivas |
 | Tom | Sombrio, melancólico e contemplativo, com redenção gradual |
 | Duração estimada | 3 a 5 horas por jornada |
@@ -100,11 +100,14 @@ A modelagem utiliza BPMN para representação dos fluxos de gameplay e UML para 
 
 As tecnologias e ferramentas utilizadas são:
 
-- Unreal Engine como motor de jogo;
-- C++ como linguagem de programação;
-- Aseprite para sprites e animações;
-- Photoshop / Illustrator para ilustrações e texturas;
-- Audacity / FMOD para design sonoro e efeitos de áudio.
+- HTML, CSS e JavaScript (módulos ES, sem etapa de build) para a estrutura, a interface e a lógica do jogo;
+- Three.js para a renderização 3D dos cenários sobre WebGL, com pós-processamento próprio para a estética de pixel art;
+- Web Audio API para os sons, sintetizados em tempo de execução;
+- Sprite Fusion para a geração das folhas de sprites e scripts em Python (NumPy e Pillow) para o recorte e o ajuste dessas folhas;
+- Aseprite e Photoshop / Illustrator para ilustrações e ajustes de sprites;
+- GitHub Actions e GitHub Pages para a verificação e a publicação do protótipo.
+
+Na fase de implementação, a tecnologia prevista inicialmente para o protótipo (Unreal Engine com C++) foi substituída por essa base web. [preencher: motivo da troca]
 
 ### 1.1.7 Escopo
 
@@ -215,7 +218,7 @@ No presente projeto, foi aplicado por formulário um questionário exploratório
 
 Por esse baixo aproveitamento, a elicitação foi conduzida principalmente por análise documental e refinamento iterativo. A documentação já existente do jogo funcionou como base primária para transformar intenções conceituais em exigências formais de software. Em especial, o documento de direção do projeto exerceu o papel de fonte de requisitos de produto, registrando narrativa, mecânicas, mundo, interface, áudio e especificações técnicas que depois foram convertidos em artefatos de engenharia.
 
-Além da análise documental, o refinamento ocorreu pelo confronto entre intenção de design e viabilidade de implementação na Unreal Engine. Isso permitiu distinguir funcionalidades centrais do protótipo, desdobrar mecânicas em regras verificáveis e traduzir elementos atmosféricos em restrições não funcionais e comportamentos do sistema. Tal processo foi particularmente importante porque **Ani** não depende apenas de ações visíveis, mas também de transformações internas, progressão sensorial e mudanças de leitura ao longo dos atos.
+Além da análise documental, o refinamento ocorreu pelo confronto entre intenção de design e viabilidade de implementação do protótipo. Isso permitiu distinguir funcionalidades centrais do protótipo, desdobrar mecânicas em regras verificáveis e traduzir elementos atmosféricos em restrições não funcionais e comportamentos do sistema. Tal processo foi particularmente importante porque **Ani** não depende apenas de ações visíveis, mas também de transformações internas, progressão sensorial e mudanças de leitura ao longo dos atos.
 
 Quanto à classificação, adotou-se a distinção entre requisitos **evidentes**, cujo efeito é percebido pelo jogador, e requisitos **ocultos**, que ocorrem sem que o jogador perceba, independentemente de serem acionados por ele. Também se utilizou priorização por níveis, com destaque para Altíssima, Alta e Média, permitindo identificar o núcleo funcional indispensável do protótipo.
 
@@ -336,7 +339,7 @@ O Quadro X apresenta os requisitos funcionais do sistema, organizados por códig
 | RF005 | Diário de memórias | Evidente | Altíssima | O sistema deve registrar os fragmentos coletados em um diário estilizado acessível ao jogador. Os itens podem ganhar nova leitura visual ou contextual conforme os atos avançam. |
 | RF006 | Desbloqueio progressivo do cenário | Evidente | Altíssima | O sistema deve desbloquear cômodos, passagens, portas e escadas conforme o jogador atravessa memórias e conclui o ciclo de progressão de cada ato, segundo a regra de conclusão de ato (RN003) e, no Ato I, a de avanço parcial (RN004). |
 | RF007 | Sistema de puzzles | Evidente | Alta | O sistema deve incluir puzzles contextuais integrados ao ambiente e à narrativa dos atos. |
-| RF008 | Diálogos com personagens de memória e arquétipos | Evidente | Alta | O sistema deve apresentar diálogos textuais fragmentados para personagens de memória, como Mãe, Padrasto, Namorada e Primo, e para arquétipos filosóficos, como O Arquiteto, A Ceramista e A Criança. |
+| RF008 | Diálogos com personagens de memória e arquétipos | Evidente | Alta | O sistema deve apresentar diálogos textuais fragmentados para personagens de memória, como Mãe, Padrasto, Pretendente e Primo, e para arquétipos filosóficos, como O Arquiteto, A Ceramista e A Criança. |
 | RF009 | Sistema de save/load | Evidente | Altíssima | O sistema deve salvar e carregar o progresso do jogador, incluindo ato atual, memórias registradas, estado do diário e estado visual da casa. |
 | RF010 | Feedback sonoro e musical por ato | Evidente | Alta | O sistema deve adaptar trilha sonora e efeitos sonoros de acordo com o ato filosófico em curso. |
 | RF011 | Suporte a gamepad | Evidente | Média | O sistema deve permitir que o jogo seja controlado também por gamepad. |
@@ -618,13 +621,13 @@ Sua importância neste trabalho está em mostrar como a experiência contemplati
 
 As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sintetiza os cinco atos filosóficos; `Memoria`, `Diario` e `EntradaDiario` formalizam o sistema de memórias; `ObjetoMemoria` representa o gatilho interativo de revelação de memórias; `ObjetoRestauravel` traduz a lógica de Kintsugi do Ato III; `ObjetoContemplativo` traduz a contemplação ativa do Ato IV; `NPC` e `Dialogo` representam personagens de memória, arquétipos e seus fluxos textuais; `Ani` constitui a representação sistêmica da protagonista como sujeito da experiência; `EcoDecisao` registra as tentativas do jogador nos ecos de decisão do Ato II; e `Save` reúne o progresso persistido da partida, como a entidade SAVE do DER.
 
-`Jogo` e `Ani` mantêm uma associação bidirecional de multiplicidade 1 : 1: `Jogo` alcança o `Diario` por meio de `Ani`, sem associação direta entre `Jogo` e `Diario`, e `Ani` alcança `Jogo` para notificar o início e o fim das crises de ansiedade por meio de `Jogo.alterarEstado()`. Na implementação em Unreal Engine, essa notificação de `Ani` para `Jogo` é feita por um *delegate*: `Ani` dispara o evento, e `Jogo`, inscrito nele, altera o estado da sessão, o que evita que a personagem dependa diretamente da classe de jogo.
+`Jogo` e `Ani` mantêm uma associação bidirecional de multiplicidade 1 : 1: `Jogo` alcança o `Diario` por meio de `Ani`, sem associação direta entre `Jogo` e `Diario`, e `Ani` alcança `Jogo` para notificar o início e o fim das crises de ansiedade por meio de `Jogo.alterarEstado()`. Na implementação, essa notificação de `Ani` para `Jogo` é feita por evento: `Ani` dispara o evento, e `Jogo`, inscrito nele, altera o estado da sessão, o que evita que a personagem dependa diretamente da classe de jogo.
 
-Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`, `FString`, `FDateTime`, `TArray<...>`). Os nomes das classes e enumerações do modelo omitem os prefixos da convenção da Unreal (`U` para classes derivadas de `UObject`, `A` para atores, `F` para estruturas e `E` para enumerações), que podem ser aplicados na implementação.
+Os tipos dos atributos seguem o JavaScript, linguagem da implementação (`boolean`, `number`, `string`, `Date`, `Array<...>`).
 
 ### Classe: Jogo
 **Atributos:**
-- `- titulo: FString`
+- `- titulo: string`
 - `- atoAtual: Ato`
 - `- cenarioAtual: Cenario`
 - `- estadoAtual: EstadoJogo`
@@ -640,11 +643,11 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 
 ### Classe: Personagem
 **Atributos:**
-- `- nome: FString`
-- `- posicaoX: float`
-- `- posicaoY: float`
-- `- sprite: FString`
-- `- velocidade: float`
+- `- nome: string`
+- `- posicaoX: number`
+- `- posicaoY: number`
+- `- sprite: string`
+- `- velocidade: number`
 
 **Métodos:**
 - `+ mover()`
@@ -671,9 +674,9 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 
 ### Classe: Dialogo
 **Atributos:**
-- `- id: int32`
-- `- linhas: TArray<FString>`
-- `- fragmentado: bool`
+- `- id: number`
+- `- linhas: Array<string>`
+- `- fragmentado: boolean`
 
 **Métodos:**
 - `+ iniciar()`
@@ -682,15 +685,15 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 
 ### Classe: ObjetoInterativo
 **Atributos:**
-- `- id: int32`
-- `- descricao: FString`
+- `- id: number`
+- `- descricao: string`
 
 **Métodos:**
 - `+ ativar()`
 
 ### Classe: ObjetoMemoria
 **Atributos:**
-- `- coletada: bool`
+- `- coletada: boolean`
 
 **Métodos:**
 - `+ exibir()`
@@ -698,11 +701,11 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 
 ### Classe: Memoria
 **Atributos:**
-- `- id: int32`
-- `- titulo: FString`
-- `- conteudo: FString`
-- `- atoOrigem: int32`
-- `- coletada: bool`
+- `- id: number`
+- `- titulo: string`
+- `- conteudo: string`
+- `- atoOrigem: number`
+- `- coletada: boolean`
 
 **Métodos:**
 - `+ registrar()`
@@ -710,7 +713,7 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 
 ### Classe: Diario
 **Atributos:**
-- `- entradas: TArray<EntradaDiario>`
+- `- entradas: Array<EntradaDiario>`
 
 **Métodos:**
 - `+ abrir()`
@@ -720,8 +723,8 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 
 ### Classe: EntradaDiario
 **Atributos:**
-- `- titulo: FString`
-- `- conteudo: FString`
+- `- titulo: string`
+- `- conteudo: string`
 - `- tipo: TipoEntradaDiario`
 
 **Métodos:**
@@ -729,8 +732,8 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 
 ### Classe: Cenario
 **Atributos:**
-- `- nome: FString`
-- `- desbloqueado: bool`
+- `- nome: string`
+- `- desbloqueado: boolean`
 
 **Métodos:**
 - `+ carregarCenario()`
@@ -739,11 +742,11 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 
 ### Classe: Ato
 **Atributos:**
-- `- id: int32`
-- `- nome: FString`
-- `- descricao: FString`
-- `- concluido: bool`
-- `- limiarMemorias: int32`
+- `- id: number`
+- `- nome: string`
+- `- descricao: string`
+- `- concluido: boolean`
+- `- limiarMemorias: number`
 
 **Métodos:**
 - `+ iniciarAto()`
@@ -759,7 +762,7 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 
 ### Classe: ObjetoContemplativo
 **Atributos:**
-- `- tempoMinimoObservacao: float`
+- `- tempoMinimoObservacao: number`
 
 **Métodos:**
 - `+ observar()`
@@ -767,9 +770,9 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 
 ### Classe: EcoDecisao
 **Atributos:**
-- `- id: int32`
-- `- tentativas: int32`
-- `- desfecho: FString`
+- `- id: number`
+- `- tentativas: number`
+- `- desfecho: string`
 
 **Métodos:**
 - `+ registrarTentativa()`
@@ -777,9 +780,9 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 
 ### Classe: Save
 **Atributos:**
-- `- idSave: int32`
-- `- dataCriacao: FDateTime`
-- `- dataUltimaAtualizacao: FDateTime`
+- `- idSave: number`
+- `- dataCriacao: Date`
+- `- dataUltimaAtualizacao: Date`
 
 **Métodos:**
 - `+ salvar()`
@@ -955,61 +958,54 @@ A seleção de ferramentas do projeto foi orientada por três critérios centrai
 
 Além disso, as ferramentas utilizadas apresentam licenças compatíveis com uso acadêmico e estão alinhadas às tecnologias registradas no Termo de Abertura do Projeto. Sempre que os artefatos-fonte não informam versão específica utilizada, essa ausência é explicitada, a fim de preservar a fidelidade documental.
 
-### Ferramenta: Unreal Engine
-**Versão utilizada:** 5.4.4  
-**Tipo de licença:** Unreal Engine End User License Agreement (EULA) da Epic Games, com uso gratuito até o limite de receita previsto no contrato  
-**Site oficial:** <https://www.unrealengine.com/>  
-**Função no projeto:** motor de jogo responsável pela implementação do protótipo, gerenciamento de cenas, lógica de gameplay, física, interface e integração audiovisual.  
-**Justificativa de escolha:** foi escolhida por oferecer recursos robustos para ambientes 3D estilizados, câmera lateral, iluminação, efeitos visuais e organização modular de sistemas de gameplay, mantendo aderência à proposta de um side-scroller narrativo contemplativo.
+### Ferramenta: Three.js
+**Versão utilizada:** 0.170.0  
+**Tipo de licença:** MIT, código aberto  
+**Site oficial:** <https://threejs.org/>  
+**Função no projeto:** biblioteca de renderização 3D sobre WebGL, responsável pelos cenários, câmeras, luzes e pelo pós-processamento que dá ao protótipo a estética de pixel art.  
+**Justificativa de escolha:** roda diretamente no navegador, sem instalação nem etapa de build, e oferece controle fino sobre iluminação, câmera e pós-processamento, o que permitiu combinar cenários 3D estilizados com personagens em pixel art.
 
-### Ferramenta: C++
-**Versão utilizada:** C++20 (padrão da Unreal Engine 5.4)  
-**Tipo de licença:** norma ISO/IEC 14882, sem licença de uso; o compilador (MSVC) segue a licença do Visual Studio Build Tools  
-**Site oficial:** <https://isocpp.org/>  
-**Função no projeto:** linguagem principal de programação para implementação dos sistemas do jogo.  
-**Justificativa de escolha:** foi adotada por ser a linguagem principal de programação da Unreal Engine e por favorecer uma modelagem modular e orientada a objetos coerente com o diagrama de classes, especialmente na organização de `Jogo`, `Ato`, `Ani`, `Memoria` e `Diario`.
+### Ferramenta: JavaScript, HTML e CSS
+**Versão utilizada:** ECMAScript 2022 (módulos ES); HTML e CSS nos padrões atuais dos navegadores  
+**Tipo de licença:** padrões abertos (Ecma International, WHATWG e W3C), sem licença de uso  
+**Site oficial:** <https://tc39.es/ecma262/>, <https://html.spec.whatwg.org/> e <https://www.w3.org/Style/CSS/>  
+**Função no projeto:** JavaScript implementa a lógica do jogo (cenas, interação, diálogos, minigames e salvamento); HTML e CSS estruturam e estilizam a interface sobreposta ao jogo.  
+**Justificativa de escolha:** executam nativamente em qualquer navegador moderno, sem compilação, e dão acesso direto às APIs usadas pelo protótipo: WebGL para a imagem, Web Audio para os sons sintetizados, Gamepad para o controle e armazenamento local para o salvamento.
 
 ### Ferramenta: Visual Studio Code
 **Versão utilizada:** 1.145.0  
 **Tipo de licença:** licença de software da Microsoft para a distribuição oficial (o código-fonte Code - OSS é MIT)  
 **Site oficial:** <https://code.visualstudio.com/>  
-**Função no projeto:** ambiente de desenvolvimento (IDE) para edição do código C++ do projeto Unreal e da documentação em Markdown.  
-**Justificativa de escolha:** é leve, integra-se aos projetos da Unreal Engine por meio da geração de arquivos de projeto para VS Code e reúne edição de código, depuração e controle de versão em um só ambiente.
+**Função no projeto:** editor do código JavaScript do jogo, dos scripts em Python e da documentação em Markdown.  
+**Justificativa de escolha:** é leve, tem suporte nativo a JavaScript e reúne edição de código, terminal e controle de versão em um só ambiente.
 
-### Ferramenta: Visual Studio Build Tools (MSVC)
+### Ferramenta: Sprite Fusion
+**Versão utilizada:** não se aplica (serviço web)  
+**Tipo de licença:** proprietária, por assinatura  
+**Site oficial:** <https://www.spritefusion.com/>  
+**Função no projeto:** geração das folhas de sprites em pixel art das personagens, das animações de cena e de objetos.  
+**Justificativa de escolha:** é um gerador voltado especificamente a pixel art, com grade de pixels e paleta consistentes, o que permitiu produzir folhas de animação das personagens mantendo o mesmo estilo visual.
+
+### Ferramenta: Python, NumPy e Pillow
 **Versão utilizada:** [preencher]  
-**Tipo de licença:** termos de licença do Microsoft Visual Studio Build Tools  
-**Site oficial:** <https://visualstudio.microsoft.com/visual-cpp-build-tools/>  
-**Função no projeto:** compilador C++ (MSVC) e ferramentas de build usados pela Unreal Engine no Windows.  
-**Justificativa de escolha:** a Unreal Engine exige o toolchain MSVC para compilar projetos C++ no Windows, e o Build Tools fornece esse compilador sem a IDE completa do Visual Studio, que é substituída pelo VS Code.
+**Tipo de licença:** Python Software Foundation License (Python), BSD (NumPy) e MIT-CMU (Pillow), todas de código aberto  
+**Site oficial:** <https://www.python.org/>, <https://numpy.org/> e <https://python-pillow.org/>  
+**Função no projeto:** scripts da pasta `tools/` que recortam as folhas de sprites, alinham os quadros pelos pés, separam camadas de brilho e ajustam detalhes das personagens.  
+**Justificativa de escolha:** automatizam tarefas repetitivas de tratamento de imagem com precisão de pixel, o que garante que todas as folhas cheguem ao jogo no mesmo formato.
 
 ### Ferramenta: Aseprite
 **Versão utilizada:** [preencher]  
 **Tipo de licença:** proprietária, paga, uso perpétuo (EULA da Igara Studio)  
 **Site oficial:** <https://www.aseprite.org/>  
-**Função no projeto:** produção de sprites e animações 2D.  
-**Justificativa de escolha:** adequa-se à produção visual de sprites com estética de desenho à mão, aquarela e grafite, em conformidade com a direção visual e a textura artesanal previstas para o jogo.
+**Função no projeto:** edição e ajuste de sprites e animações em pixel art.  
+**Justificativa de escolha:** é um editor dedicado a pixel art, adequado para corrigir quadros e detalhes das folhas de sprites sem perder a grade de pixels.
 
 ### Ferramenta: Adobe Photoshop / Adobe Illustrator
 **Versão utilizada:** Photoshop 2025 (26.2); Illustrator [preencher]  
 **Tipo de licença:** proprietária, assinatura Adobe Creative Cloud  
 **Site oficial:** <https://www.adobe.com/products/photoshop.html> e <https://www.adobe.com/products/illustrator.html>  
 **Função no projeto:** criação de ilustrações, texturas, paletas e elementos gráficos de interface.  
-**Justificativa de escolha:** essas ferramentas apoiam a produção de assets visuais de maior fidelidade, incluindo as paletas por ato e os elementos do diário de memórias, fundamentais para a progressão visual e para a interface diegética.
-
-### Ferramenta: Audacity
-**Versão utilizada:** [preencher]  
-**Tipo de licença:** GPLv3, código aberto  
-**Site oficial:** <https://www.audacityteam.org/>  
-**Função no projeto:** gravação e edição de efeitos sonoros e trilhas de apoio.  
-**Justificativa de escolha:** foi empregado por permitir editar material sonoro alinhado à direção de áudio por ato, incluindo ruídos, ambiências e elementos de crise de ansiedade previstos no projeto.
-
-### Ferramenta: FMOD
-**Versão utilizada:** [preencher]  
-**Tipo de licença:** FMOD for Education, gratuita para projetos acadêmicos  
-**Site oficial:** <https://www.fmod.com/>  
-**Função no projeto:** middleware de áudio adaptativo para jogos.  
-**Justificativa de escolha:** permite controlar trilha e camadas sonoras de acordo com estado emocional e ato em curso, sendo especialmente útil para implementar a transição filosófica do áudio ao longo da jornada.
+**Justificativa de escolha:** essas ferramentas apoiam a produção de assets visuais de maior fidelidade, incluindo as paletas por ato e os elementos gráficos de interface.
 
 ### Ferramenta: draw.io (diagrams.net)
 **Versão utilizada:** 29.6.5  
@@ -1017,6 +1013,13 @@ Além disso, as ferramentas utilizadas apresentam licenças compatíveis com uso
 **Site oficial:** <https://www.drawio.com/>  
 **Função no projeto:** modelagem de diagramas UML, BPMN e demais artefatos estruturais.  
 **Justificativa de escolha:** foi utilizada para representar visualmente a estrutura do sistema e o fluxo principal de gameplay, fortalecendo a documentação e a rastreabilidade entre modelagem e implementação.
+
+### Ferramenta: Git e GitHub
+**Versão utilizada:** Git 2.48.1.windows.1; GitHub não se aplica (plataforma web)  
+**Tipo de licença:** GPLv2 (Git); proprietária, com uso gratuito e pago (GitHub)  
+**Site oficial:** <https://git-scm.com/> e <https://github.com/>  
+**Função no projeto:** controle de versão do código e da documentação; o GitHub Actions confere a sintaxe dos arquivos JavaScript e Python a cada envio, e o GitHub Pages publica o protótipo jogável na web.  
+**Justificativa de escolha:** mantêm o histórico de alterações e permitem que cada versão do protótipo fique disponível para teste no navegador, sem instalação.
 
 O Quadro 29 relaciona cada artefato do projeto à ferramenta ou ao meio de produção utilizado.
 
@@ -1026,9 +1029,10 @@ O Quadro 29 relaciona cada artefato do projeto à ferramenta ou ao meio de produ
 | TAP | Markdown |
 | BPMN | draw.io / diagrams.net |
 | Diagrama de Classes | draw.io / diagrams.net |
-| Código-fonte | Unreal Engine / C++ / Visual Studio Code / Visual Studio Build Tools (MSVC) |
-| Assets visuais | Aseprite / Photoshop |
-| Assets de áudio | Audacity / FMOD |
+| Código-fonte | HTML / CSS / JavaScript / Three.js / Visual Studio Code |
+| Assets visuais | Sprite Fusion / Python (NumPy, Pillow) / Aseprite / Photoshop |
+| Assets de áudio | Web Audio API (sons sintetizados no código) |
+| Publicação do protótipo | GitHub Actions / GitHub Pages |
 
 # 4 Desenvolvimento
 
@@ -1267,7 +1271,7 @@ A quantidade de puzzles e sua distribuição por ato são definidas no level des
 
 ### 4.2.14 Sistema de Diálogos
 
-O sistema de diálogos apresenta falas textuais e fragmentadas dos personagens de memória (Mãe, Padrasto, Namorada e Primo) e dos arquétipos filosóficos (O Arquiteto, no Ato II; A Ceramista, no Ato III; e A Criança, no Ato IV). Os personagens de memória surgem como ecos do passado, e não como companheiros estáveis, enquanto os arquétipos encarnam a ideia filosófica do ato em que aparecem. O diálogo é iniciado pela interação do jogador, descrita no UC-S003.
+O sistema de diálogos apresenta falas textuais e fragmentadas dos personagens de memória (Mãe, Padrasto, Pretendente e Primo) e dos arquétipos filosóficos (O Arquiteto, no Ato II; A Ceramista, no Ato III; e A Criança, no Ato IV). Os personagens de memória surgem como ecos do passado, e não como companheiros estáveis, enquanto os arquétipos encarnam a ideia filosófica do ato em que aparecem. O diálogo é iniciado pela interação do jogador, descrita no UC-S003.
 
 - **Classes envolvidas:** `Ani`, `NPC`, `Dialogo`
 - **Requisito funcional correspondente:** RF008
@@ -1444,9 +1448,9 @@ Este apêndice resume o Game Design Document (GDD) de **Ani**, mantido na ínteg
 | Item | Descrição |
 | --- | --- |
 | Gênero | Side-scroller narrativo contemplativo |
-| Plataforma | PC (Windows) |
-| Engine e linguagem | Unreal Engine 5.4.4 e C++ |
-| Câmera | Lateral fixa com zoom narrativo |
+| Plataforma | PC, executado no navegador (Windows, Linux e macOS) |
+| Engine e linguagem | Three.js (WebGL) e JavaScript |
+| Câmera | Lateral, com planos em primeira pessoa e de cima nos momentos de inspeção |
 | Público-alvo | 16 a 28 anos, com interesse em filosofia, arte e narrativas reflexivas |
 | Tom | Sombrio, melancólico e contemplativo, com redenção gradual |
 | Duração estimada | 3 a 5 horas |
@@ -1467,9 +1471,9 @@ Princípios de direção: o jogo não é sobre vencer o sofrimento, mas atravess
 
 ## C.3 Mundo, personagens e sistemas
 
-O jogo se passa na mente de Ani. O núcleo é a casa da protagonista, inicialmente cinzenta e incompleta, que ganha luz, textura e novos cômodos conforme os atos avançam. Dela partem cenários de memória: casa de infância, escola, trabalho, ruas, hospital e espaços sociais. A paleta acompanha os atos, do cinza-chumbo do Ato I ao azul quase preto do Ato V, passando pelo ocre com ouro do Ato III e pelo índigo e rosa-cerejeira do Ato IV.
+O jogo parte do presente, no quarto de Ani, e se aprofunda na mente dela: objetos do quarto funcionam como portais para memórias vividas dentro da própria cabeça. O núcleo é a casa da protagonista, inicialmente cinzenta e incompleta, que ganha luz, textura e novos cômodos conforme os atos avançam. Dela partem cenários de memória: casa de infância, escola, trabalho, ruas, hospital e espaços sociais. A paleta acompanha os atos, do cinza-chumbo do Ato I ao azul quase preto do Ato V, passando pelo ocre com ouro do Ato III e pelo índigo e rosa-cerejeira do Ato IV.
 
-Os personagens se dividem em personagens de memória (Mãe, Padrasto, Namorada e Primo), arquétipos filosóficos (O Arquiteto, A Ceramista e A Criança) e manifestações, figuras sem rosto que refletem Ani e intensificam as crises, sem agir como inimigos.
+Os personagens se dividem em personagens de memória (Mãe, Padrasto, Pretendente e Primo), arquétipos filosóficos (O Arquiteto, A Ceramista e A Criança) e manifestações, figuras sem rosto que refletem Ani e intensificam as crises, sem agir como inimigos.
 
 Os sistemas transversais são a exploração com diário de memórias, em que cartas, bilhetes e fotografias ficam registrados e ganham nova leitura ao longo dos atos, e as crises de ansiedade, representadas por distorção visual, som fragmentado e respiração. A interface é quase invisível: sem HUD permanente nem barras numéricas, com o diário como objeto diegético. O áudio vai do abafado e claustrofóbico ao orgânico e silencioso, com direção própria em cada ato.
 

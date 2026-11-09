@@ -15,9 +15,9 @@ O Quadro 1 apresenta o Termo de Abertura do Projeto **Ani**. A versão editável
 | Nome do projeto | Ani |
 | Tipo | Jogo digital narrativo contemplativo |
 | Área | Desenvolvimento de software e jogos digitais |
-| Plataforma inicial | PC (Windows) |
-| Motor de jogo | Unreal Engine |
-| Linguagem principal | C++ |
+| Plataforma inicial | PC, executado no navegador (Windows, Linux e macOS) |
+| Motor de jogo | Three.js (biblioteca 3D sobre WebGL) |
+| Linguagem principal | JavaScript, com HTML e CSS |
 | Natureza do projeto | Projeto autoral com finalidade acadêmica e prototipação |
 
 ## 2. Problema de Pesquisa
@@ -52,11 +52,14 @@ A modelagem utiliza BPMN para representação dos fluxos de *gameplay* e UML par
 
 As tecnologias e ferramentas utilizadas são:
 
-- Unreal Engine como motor de jogo;
-- C++ como linguagem de programação;
-- Aseprite para sprites e animações;
-- Photoshop / Illustrator para ilustrações e texturas;
-- Audacity / FMOD para design sonoro e efeitos de áudio.
+- HTML, CSS e JavaScript (módulos ES, sem etapa de build) para a estrutura, a interface e a lógica do jogo;
+- Three.js para a renderização 3D dos cenários sobre WebGL, com pós-processamento próprio para a estética de pixel art;
+- Web Audio API para os sons, sintetizados em tempo de execução;
+- Sprite Fusion para a geração das folhas de sprites e scripts em Python (NumPy e Pillow) para o recorte e o ajuste dessas folhas;
+- Aseprite e Photoshop / Illustrator para ilustrações e ajustes de sprites;
+- GitHub Actions e GitHub Pages para a verificação e a publicação do protótipo.
+
+Na fase de implementação, a tecnologia prevista inicialmente para o protótipo (Unreal Engine com C++) foi substituída por essa base web. [preencher: motivo da troca]
 
 O documento completo do TAP está disponível em [tap.md](./tap.md).
 
