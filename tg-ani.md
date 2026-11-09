@@ -2,21 +2,9 @@
 
 Os jogos digitais narrativos constituem um campo relevante de investigação em software porque articulam sistemas computacionais, linguagem audiovisual, interação e modelagem de experiência. Diferentemente de mídias puramente lineares, o jogo permite que o sujeito não apenas acompanhe uma trajetória, mas a vivencie por meio de ações, ritmos, interrupções e respostas sistêmicas. No caso de experiências contemplativas, essa característica amplia a capacidade do software de representar estados subjetivos, sofrimento, memória e transformação interior, convertendo temas abstratos em situações interativas sensíveis.
 
-Nesse contexto, o projeto **Ani אֲנִי** propõe um side-scroller narrativo contemplativo centrado em consciência, sofrimento e descoberta gradual de sentido. A logline do projeto o define como “um side-scroller narrativo contemplativo sobre consciência, sofrimento e a descoberta lenta do sentido”. Sua sinopse apresenta Ani despertando em um espaço que parece sua própria mente, ao mesmo tempo familiar e deformado, no qual memórias, silêncio e ruínas emocionais substituem objetivos tradicionais, combate ou tutoriais extensos. O nome **אֲנִי** significa “eu” em hebraico e sintetiza a intenção de aproximar jogador e protagonista, de modo que a experiência não seja observada à distância, mas habitada desde dentro.
+Nesse contexto, o projeto **Ani אֲנִי** propõe um side-scroller narrativo contemplativo centrado em consciência, sofrimento e descoberta gradual de sentido. A logline do projeto o define como “um side-scroller narrativo contemplativo sobre consciência, sofrimento e a descoberta lenta do sentido”. Sua sinopse apresenta Ani despertando em um espaço que parece sua própria mente, ao mesmo tempo familiar e deformado, no qual memórias, silêncio e ruínas emocionais substituem objetivos tradicionais, combate ou tutoriais extensos. O nome **אֲנִי** significa “eu” em hebraico e sintetiza a intenção de aproximar jogador e protagonista, de modo que a experiência não seja observada à distância, mas habitada desde dentro. As características gerais do produto estão reunidas na Ficha do Produto (Quadro 3), na seção 1.1.1.
 
-| Item | Descrição |
-| --- | --- |
-| Título | Ani |
-| Gênero | Side-scroller narrativo contemplativo |
-| Plataforma principal | PC (Windows) |
-| Engine | Unreal Engine |
-| Linguagem | C++ |
-| Câmera | Lateral fixa com zoom narrativo |
-| Público-alvo | 16 a 28 anos, com interesse em filosofia, arte e narrativas reflexivas |
-| Tom | Sombrio, melancólico e contemplativo, com redenção gradual |
-| Duração estimada | 3 a 5 horas por jornada |
-
-A originalidade do projeto reside no fato de que sua espinha dorsal não é uma estrutura de moralidade binária, mas uma jornada de percepção organizada em cinco atos filosóficos. O percurso parte do pessimismo ocidental, associado a Zapffe, Mainländer e Bahnsen, e avança em direção a filosofias contemplativas japonesas, como Wabi-Sabi, Mono no Aware, Ikigai e Yugen. Essa transição não é tratada como exposição teórica, mas como mudança de atmosfera, espaço, ritmo, mecânica e linguagem sensorial.
+A originalidade do projeto reside no fato de que sua espinha dorsal não é uma estrutura de moralidade binária, mas uma jornada de percepção organizada em cinco atos filosóficos. O percurso parte do pessimismo ocidental, associado a Zapffe, Mainländer e Bahnsen, e avança em direção a filosofias contemplativas japonesas, como Wabi-Sabi, Mono no Aware, Ikigai e Yugen. Essa transição não é tratada como exposição teórica, mas como mudança de atmosfera, espaço, ritmo, mecânica e linguagem sensorial (Quadro 1).
 
 | Ato | Referência Filosófica | Tom | Símbolo |
 | --- | --- | --- | --- |
@@ -52,6 +40,8 @@ No caso de **Ani**, o TAP organiza a proposta de um jogo narrativo contemplativo
 
 ### 1.1.1 Identificação do Projeto
 
+A identificação do projeto é apresentada no Quadro 2.
+
 | Item | Descrição |
 | --- | --- |
 | Nome do projeto | Ani אֲנִי |
@@ -63,6 +53,8 @@ No caso de **Ani**, o TAP organiza a proposta de um jogo narrativo contemplativo
 | Natureza do projeto | Projeto autoral com finalidade acadêmica e prototipação |
 
 #### Ficha do Produto
+
+As características do produto estão resumidas no Quadro 3.
 
 | Item | Descrição |
 | --- | --- |
@@ -155,6 +147,8 @@ As tecnologias e ferramentas utilizadas são:
 
 ### 1.1.9 Stakeholders
 
+Os stakeholders do projeto e seus papéis são apresentados no Quadro 4.
+
 | Stakeholder | Papel |
 | --- | --- |
 | Autor do projeto | Responsável pela concepção, direção criativa e desenvolvimento |
@@ -187,6 +181,8 @@ O projeto é direcionado principalmente a pessoas entre 16 e 28 anos interessada
 - necessidade de concentrar esforços na experiência central do jogo antes da expansão de conteúdo.
 
 ### 1.1.13 Riscos Iniciais
+
+Os riscos iniciais e seus impactos estão listados no Quadro 5.
 
 | Risco | Impacto |
 | --- | --- |
@@ -227,6 +223,8 @@ O conjunto de mecânicas e diretrizes do projeto orientou diretamente a geraçã
 
 Essa rastreabilidade mostra que os requisitos de **Ani** derivam de uma visão de produto em que atmosfera, percepção, tempo e transformação são tão importantes quanto comandos, colisão e persistência. Assim, a elicitação não apenas identificou funcionalidades, mas formalizou em linguagem de software a proposta filosófica, estética e interativa do projeto.
 
+Os Quadros 6 e 7 sintetizam, respectivamente, a progressão visual e o clima sonoro previstos para cada ato, elementos atmosféricos que a elicitação traduziu em requisitos.
+
 | Ato | Paleta | Atmosfera |
 | --- | --- | --- |
 | I | Cinza-chumbo e preto profundo | Claustrofobia, tetos baixos, relógios parados |
@@ -249,7 +247,7 @@ A BPMN (*Business Process Model and Notation*) é uma notação padronizada para
 
 No contexto de software, a BPMN é útil para explicitar como o sistema responde às ações do usuário e quais validações ou laços condicionais estruturam a experiência. Em **Ani**, sua utilização é pertinente porque o ciclo principal de gameplay não se resume a movimentar a personagem, mas envolve explorar, interagir, classificar objetos, processar memórias, registrar progresso e decidir se a exploração continua ou se a sessão se encerra.
 
-O loop de progressão documentado no projeto estabelece que cada ato segue cinco passos: explorar a casa e perceber mudanças; encontrar a passagem para uma memória ou região mental; atravessar a experiência central do ato; retornar à casa e registrar o avanço no diário; e abrir passagem para o ato seguinte. Esse ciclo é a origem conceitual do BPMN do projeto, pois transforma a progressão simbólica da experiência em um fluxo operacional observável e modelável.
+O loop de progressão documentado no projeto estabelece que cada ato segue cinco passos: explorar a casa e perceber mudanças; encontrar a passagem para uma memória ou região mental; atravessar a experiência central do ato; retornar à casa e registrar o avanço no diário; e abrir passagem para o ato seguinte. Esse ciclo é a origem conceitual do BPMN do projeto, pois transforma a progressão simbólica da experiência em um fluxo operacional observável e modelável, representado na Figura 1.
 
 [Figura 1 – Diagrama BPMN do ciclo principal de gameplay de Ani]
 
@@ -427,6 +425,8 @@ O Quadro X apresenta o índice de casos de uso do sistema, enquanto a modelagem 
 [Figura 2 – Diagrama de Casos de Uso de Ani]
 
 Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 relaciona-se a RF001 e à exploração lateral; UC-S002 conecta-se a RF003, RF004, RF015 e RF016, cobrindo objetos significativos e mecânicas por ato; UC-S003 deriva de RF008 e dos personagens de memória e arquétipos; UC-S004 e UC-S005 conectam-se a RF005 e ao diário de memórias; UC-S006 corresponde a RF021 (pausa); UC-S007, UC-S008 e UC-S009, a RF022 (configurações de vídeo, áudio e controles); UC-S010, a RF024 (remapeamento de controles) e a RF011 (gamepad); UC-S011, a RF023 (saída); UC-S012 e UC-S013 correspondem a RF009, salvando e carregando o progresso conforme a persistência descrita nas especificações técnicas; UC-S014 corresponde a RF020 (aviso de conteúdo sensível), a RF012 (início no Ato I) e a RF009 (sobrescrita do save anterior); e UC-S015 corresponde a RF007 (puzzles contextuais).
+
+Os Quadros 12 a 26 detalham cada caso de uso, com pré-condição, cenário principal, pós-condição e cenários alternativos.
 
 ### Caso de Uso: UC-S001 - Movimentar Personagem
 
@@ -787,6 +787,8 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 
 ### Enumerações
 
+O Quadro 27 lista as enumerações usadas como tipos de atributos.
+
 | Enumeração | Valores |
 | --- | --- |
 | TipoNPC | `NpcMemoria`, `Arquetipo`, `Aparicao` |
@@ -796,6 +798,8 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 | EstadoJogo | `Menu`, `Jogando`, `Pausado`, `Crise`, `Encerrado` |
 
 ### Relacionamentos entre Classes
+
+O Quadro 28 resume os relacionamentos entre as classes e suas multiplicidades.
 
 | Classe Origem | Tipo de Relacionamento | Classe Destino | Multiplicidade |
 | --- | --- | --- | --- |
@@ -1014,6 +1018,8 @@ Além disso, as ferramentas utilizadas apresentam licenças compatíveis com uso
 **Função no projeto:** modelagem de diagramas UML, BPMN e demais artefatos estruturais.  
 **Justificativa de escolha:** foi utilizada para representar visualmente a estrutura do sistema e o fluxo principal de gameplay, fortalecendo a documentação e a rastreabilidade entre modelagem e implementação.
 
+O Quadro 29 relaciona cada artefato do projeto à ferramenta ou ao meio de produção utilizado.
+
 | Artefato | Ferramenta / Meio de produção |
 | --- | --- |
 | GDD | Markdown |
@@ -1094,7 +1100,7 @@ O sistema de progressão por atos organiza a jornada em cinco etapas sequenciais
 - **Trecho de código relevante:** `[Código 3 — verificação de conclusão de ato e desbloqueio do cenário seguinte]`
 - **Captura de tela comentada:** `[Figura 12 – Transição de ato com alteração de cenário e atmosfera]`
 
-O sistema detecta a conclusão de cada etapa pela combinação entre exploração, memórias e eventos centrais do ato corrente. No Ato I, RN004 permite avanço mediante um limiar mínimo de memórias, sem exigir exaustão total do conteúdo disponível.
+O sistema detecta a conclusão de cada etapa pela combinação entre exploração, memórias e eventos centrais do ato corrente. No Ato I, RN004 permite avanço mediante um limiar mínimo de memórias, sem exigir exaustão total do conteúdo disponível. O Quadro 30 retoma a referência filosófica, o tom e o símbolo de cada ato.
 
 | Ato | Referência Filosófica | Tom | Símbolo |
 | --- | --- | --- | --- |
@@ -1180,7 +1186,7 @@ O sistema de crises de ansiedade atua no plano sensorial, alterando imagem, som 
 - **Trecho de código relevante:** `[Código 9 — acionamento de distorção visual, fragmentação sonora e aumento de manifestações]`
 - **Captura de tela comentada:** `[Figura 18 – Episódio de crise com distorção visual e reforço atmosférico]`
 
-Os efeitos esperados incluem distorção visual, fragmentação sonora e intensificação das manifestações, com a respiração de Ani funcionando como indicador sensorial. O impacto do sistema é atmosférico e emocional, não quantitativo.
+Os efeitos esperados incluem distorção visual, fragmentação sonora e intensificação das manifestações, com a respiração de Ani funcionando como indicador sensorial. O impacto do sistema é atmosférico e emocional, não quantitativo. O Quadro 31 apresenta a direção sonora associada a cada elemento.
 
 | Elemento | Direção sonora e funcional |
 | --- | --- |
@@ -1214,6 +1220,8 @@ A interface do projeto segue uma filosofia de quase invisibilidade. Em vez de HU
 - **Trecho de código relevante:** `[Código 11 — abertura do diário diegético e acionamento de indicadores discretos de interação]`
 - **Captura de tela comentada:** `[Figura 20 – Interface do diário e ausência de HUD permanente durante exploração]`
 
+O Quadro 32 apresenta o mapeamento dos controles no teclado e no gamepad.
+
 | Ação | Teclado e mouse | Gamepad (padrão Xbox) |
 | --- | --- | --- |
 | Movimento | WASD ou setas | Analógico esquerdo ou direcional |
@@ -1232,6 +1240,8 @@ O sistema de áudio adaptativo organiza trilha e efeitos de forma coerente com a
 - **Princípio do projeto que originou o sistema:** o áudio acompanha a transição filosófica do jogo
 - **Trecho de código relevante:** `[Código 12 — transição de parâmetros e camadas sonoras por ato no middleware de áudio]`
 - **Captura de tela comentada:** `[Figura 21 – Configuração sonora de ato com trilha adaptada ao estado da jornada]`
+
+O Quadro 33 apresenta o clima sonoro e os elementos previstos para cada ato.
 
 | Ato | Clima Sonoro | Elementos |
 | --- | --- | --- |
@@ -1270,7 +1280,7 @@ Na implementação prevista, `NPC.interagir()` identifica o tipo do personagem (
 
 ### 4.2.15 Suporte a Gamepad
 
-O suporte a gamepad permite que todo o jogo seja controlado também por um controle no padrão Xbox, sem perda de funções em relação ao teclado. Como a interface não usa HUD permanente, o mapeamento é reduzido aos comandos de movimento, interação, diário de memórias e pausa, conforme a tabela de controles da seção 4.2.11.
+O suporte a gamepad permite que todo o jogo seja controlado também por um controle no padrão Xbox, sem perda de funções em relação ao teclado. Como a interface não usa HUD permanente, o mapeamento é reduzido aos comandos de movimento, interação, diário de memórias e pausa, conforme o Quadro 32, na seção 4.2.11.
 
 - **Classes envolvidas:** `Ani`, com a entrada tratada pelo Enhanced Input da Unreal Engine 5 (fora do escopo do diagrama de classes)
 - **Requisito funcional correspondente:** RF011, com RF001 (movimento por teclado ou gamepad) e RF024 (remapeamento de controles)
@@ -1282,6 +1292,8 @@ O suporte a gamepad permite que todo o jogo seja controlado também por um contr
 No Enhanced Input, cada comando é uma *Input Action* única, à qual o *Input Mapping Context* associa tanto a tecla quanto o botão correspondente do gamepad. Dessa forma, `Ani` recebe a mesma ação independentemente do dispositivo, e o remapeamento previsto no UC-S010 altera apenas as associações do contexto, sem mudar a lógica de jogo.
 
 ## 4.3 Capturas de Tela e Funcionalidades
+
+As Figuras 25 a 32 indicam as capturas de tela previstas para as principais funcionalidades do protótipo.
 
 [Figura 25 – Tela inicial / menu]  
 Descrição: a imagem deve mostrar o menu inicial do jogo, evidenciando o início da jornada e a identidade visual contemplativa da interface.
@@ -1427,7 +1439,7 @@ Este apêndice resume o Game Design Document (GDD) de **Ani**, mantido na ínteg
 
 ## C.1 Visão e ficha técnica
 
-**Ani** é um side-scroller narrativo contemplativo sobre consciência, sofrimento e a descoberta lenta do sentido. A protagonista é uma mulher comum, de aproximadamente 24 anos, em colapso existencial; seu nome vem do hebraico **אֲנִי**, "eu". O jogo não acompanha escolhas morais, e sim a mudança na forma como Ani percebe a existência.
+**Ani** é um side-scroller narrativo contemplativo sobre consciência, sofrimento e a descoberta lenta do sentido. A protagonista é uma mulher comum, de aproximadamente 24 anos, em colapso existencial; seu nome vem do hebraico **אֲנִי**, "eu". O jogo não acompanha escolhas morais, e sim a mudança na forma como Ani percebe a existência. O Quadro 34 reúne a ficha técnica do jogo.
 
 | Item | Descrição |
 | --- | --- |
@@ -1441,7 +1453,7 @@ Este apêndice resume o Game Design Document (GDD) de **Ani**, mantido na ínteg
 
 ## C.2 Pilar conceitual e atos
 
-A jornada parte do pessimismo da filosofia ocidental e caminha, em cinco atos de ordem fixa, para filosofias contemplativas japonesas. A transição se manifesta no ambiente, no som, nas mecânicas e no ritmo, sem explicação didática.
+A jornada parte do pessimismo da filosofia ocidental e caminha, em cinco atos de ordem fixa, para filosofias contemplativas japonesas. A transição se manifesta no ambiente, no som, nas mecânicas e no ritmo, sem explicação didática. O Quadro 35 resume os cinco atos.
 
 | Ato | Referência | Ideia central | Símbolo | Mecânica própria |
 | --- | --- | --- | --- | --- |
