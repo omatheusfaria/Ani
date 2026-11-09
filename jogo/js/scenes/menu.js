@@ -615,7 +615,7 @@ export class MenuScene {
     await tw.to({ duration: 0.11, ease: ease.inQuad, onUpdate: (k) => (this.blink = k) });
     renderer.fx.fade = 1;
     sfx.stopAmbient(0.4);
-    // classificação indicativa e aviso de conteúdo (RF020): antes de o jogo começar,
+    // aviso de conteúdo (RF020): antes de o jogo começar,
     // uma vez a cada acesso (vale para Iniciar e Continuar)
     if (!this.game.avisoVisto) {
       await showContentNotice(this.game);

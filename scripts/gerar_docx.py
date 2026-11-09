@@ -45,6 +45,7 @@ BASE = RAIZ / "TG_Matheus_Ani_modelo.docx"
 FONTE_MD = RAIZ / "tg-ani.md"
 SAIDA = RAIZ / "entrega" / "TG-Ani.docx"
 FIGURAS = RAIZ / "entrega" / "figuras"
+CAPTURAS = RAIZ / "docs" / "capturas"  # capturas de tela do protótipo (versionadas)
 
 # Último parágrafo mantido do modelo (bloco título/autor antes do Resumo).
 IDX_ULTIMO_MANTIDO = 31
@@ -78,10 +79,9 @@ TITULOS_QUADROS = [
     "Enumerações do Diagrama de Classes",          # 27 2.7
     "Relacionamentos entre Classes",               # 28 2.7
     "Artefatos e Ferramentas de Produção",         # 29 3
-    "Eixo Filosófico por Ato do Projeto",          # 30 4.2.3
-    "Direção Sonora por Elemento",                 # 31 4.2.9
-    "Mapeamento de Controles",                     # 32 4.2.11
-    "Clima Sonoro por Ato",                        # 33 4.2.12
+    "Correspondência entre o Modelo de Classes e o Protótipo",  # 30 4.1
+    "Mapeamento de Controles",                     # 31 4.2.16
+    "Atendimento dos Requisitos no Protótipo",     # 32 4.4
     "Ficha Técnica do Jogo",                       # 34 Apêndice C
     "Atos do Jogo",                                # 35 Apêndice C
 ]
@@ -97,6 +97,25 @@ IMAGENS_FIGURAS = {
     7: FIGURAS / "fig07-sequencia-memoria.png",
     8: FIGURAS / "fig08-sequencia-save.png",
     9: FIGURAS / "fig09-der.png",
+    # capturas de tela do protótipo (capítulo 4)
+    **{n: CAPTURAS / nome for n, nome in {
+        10: "fig10-quarto-luz.png",
+        11: "fig11-celular-perfil.png",
+        12: "fig12-panico.png",
+        13: "fig13-quarto-escuro-luminaria.png",
+        14: "fig14-interacao-escuro.png",
+        15: "fig15-inspecao-estante.png",
+        16: "fig16-papeis-zenital.png",
+        17: "fig17-gaveta-tirinha.png",
+        18: "fig18-capitulo-1.png",
+        19: "fig19-conversa-baloes.png",
+        20: "fig20-parque-acompanhante.png",
+        21: "fig21-comida.png",
+        22: "fig22-minigame.png",
+        23: "fig23-menu.png",
+        24: "fig24-aviso.png",
+        25: "fig25-pausa-parque.png",
+    }.items()},
 }
 PAISAGEM = {1, 3, 9}  # BPMN, classes e DER: largos demais para retrato
 
@@ -106,6 +125,7 @@ CAPITULOS_PENDENTES = ["5 Resultados e Discussão", "6 Considerações Finais"]
 HEBRAICO = re.compile(r"([\u0590-\u05FF\uFB1D-\uFB4F]+(?:\s+[\u0590-\u05FF\uFB1D-\uFB4F]+)*)")
 INLINE = re.compile(r"(\*\*.+?\*\*|`[^`]+`|(?<![\w*])\*[^*\s][^*]*?\*(?![\w*]))")
 FIGURA_LINHA = re.compile(r"\[(Figura (\d+)) – ([^\]]+)\]")
+CODIGO_LINHA = re.compile(r"\[(Código (\d+)) – (.+)\]")
 
 
 # ---------------------------------------------------------------- XML helpers
@@ -249,7 +269,7 @@ def hifenizar(texto, largura, negrito=False):
 def ler_blocos(md: str, ate: str | None):
     linhas = md.splitlines()
     blocos, i = [], 0
-    inicio_bloco = re.compile(r"^(#|\||-\s|\d+\.\s|\[Figura|```)")
+    inicio_bloco = re.compile(r"^(#|\||-\s|\d+\.\s|\[Figura|\[Código|```)")
     while i < len(linhas):
         ln = linhas[i]
         if ate and ln.strip().startswith(ate):
@@ -280,6 +300,11 @@ def ler_blocos(md: str, ate: str | None):
                     tab.append(cel)
                 i += 1
             blocos.append(("tabela", tab))
+            continue
+        m = CODIGO_LINHA.fullmatch(s)
+        if m:
+            blocos.append(("legenda_codigo", int(m.group(2)), m.group(3)))
+            i += 1
             continue
         m = FIGURA_LINHA.fullmatch(s)
         if m:
@@ -322,6 +347,8 @@ class Gerador:
         self.doc = doc
         self.n_quadro = 0
         self.n_figura = 0
+        self.n_codigo = 0
+        self.fonte_codigo_pendente = False  # trecho de código legendado: "Fonte: Autor" depois dele
         self.titulos_quadros = iter(TITULOS_QUADROS)
         self.titulos_usados = 0
         self.caso_de_uso = None  # nome do caso de uso cujo quadro vem a seguir
@@ -384,6 +411,14 @@ class Gerador:
             for m in FIGURA_LINHA.finditer(item):
                 self.figura(int(m.group(2)), m.group(3), None)
 
+    def legenda_codigo(self, numero, titulo):
+        self.n_codigo += 1
+        if numero != self.n_codigo:
+            print(f"AVISO: Código {numero} fora de sequência (esperado {self.n_codigo})",
+                  file=sys.stderr)
+        self.legenda(f"Código {self.n_codigo}", titulo)
+        self.fonte_codigo_pendente = True
+
     def codigo(self, linhas):
         for k, ln in enumerate(linhas):
             p = self.doc.add_paragraph(style="Normal")
@@ -392,6 +427,9 @@ class Gerador:
                                depois=240 if k == len(linhas) - 1 else 0,
                                manter_com_proximo=k < len(linhas) - 1)
             _run(p, ln, tamanho=10)
+        if self.fonte_codigo_pendente:
+            self.fonte_codigo_pendente = False
+            self.fonte()
 
     # ---- legendas (padrão dos quadros de exemplo do modelo)
     def legenda(self, rotulo, titulo):
@@ -717,6 +755,8 @@ def main():
             g.tabela(b[1])
         elif tipo == "figura":
             g.figura(b[1], b[2], b[3])
+        elif tipo == "legenda_codigo":
+            g.legenda_codigo(b[1], b[2])
         elif tipo == "codigo":
             g.codigo(b[1])
 

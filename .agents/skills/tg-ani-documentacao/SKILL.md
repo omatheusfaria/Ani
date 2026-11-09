@@ -34,7 +34,7 @@ O BPMN é mantido como está por decisão do autor. Não edite os arquivos do BP
 ## Decisões fixas (canon)
 - Nome: **Ani אֲנִי** (com niqqud na primeira menção de cada documento). A classe da protagonista no diagrama também se chama `Ani` (nunca `Player`).
 - Protagonista: Mulher Cis de aproximadamente 24 anos. Use os pronomes correspondentes em todos os arquivos.
-- Engine e linguagem: separe sempre o jogo completo (Unreal Engine 5.4.4 e C++, software para PC; é ele que o diagrama de classes e os demais diagramas UML modelam) do protótipo (Three.js 0.170 e JavaScript, com HTML e CSS, no navegador). As ferramentas listadas no TAP, nos recursos utilizados e no capítulo 3 são as do protótipo. Enhanced Input, GameMode, GameInstance e delegate valem para o jogo completo; o capítulo 4 descreve o protótipo e será reescrito a partir do código real em `jogo/`.
+- Engine e linguagem: separe sempre o jogo completo (Unreal Engine 5.4.4 e C++, software para PC; é ele que o diagrama de classes e os demais diagramas UML modelam) do protótipo (Three.js 0.170 e JavaScript, com HTML e CSS, no navegador). As ferramentas listadas no TAP, nos recursos utilizados e no capítulo 3 são as do protótipo. Enhanced Input, GameMode, GameInstance e delegate valem para o jogo completo; o capítulo 4 descreve o protótipo a partir do código real em `jogo/` (trechos comentados, capturas em `docs/capturas/` e o Quadro 34, de atendimento dos requisitos), e só cita a Unreal na seção 4.3, de sistemas previstos.
 - IA generativa: a produção do protótipo teve apoio de GPT-6 (sprites, com o Sprite Fusion) e Claude Opus 5.5 (modelagem 3D em Three.js); isso é declarado no TAP.
 - Casa: o núcleo é a casa de Ani, a começar pelo quarto, um espaço vivido (pôsteres, estante, discos, luminária de plasma). Nunca descreva a casa como "cinzenta, incompleta".
 - Atos e visual: os atos marcam etapas narrativas, sem grandes mudanças de paleta; a identidade visual se mantém (RF012). Só a luz e a atmosfera variam com a narrativa, e as memórias seguem o tom da lembrança (felizes, como o parque, são quentes e iluminadas).
@@ -94,7 +94,7 @@ O modelo marca as opções com caixas de seleção, por exemplo `( ) Oculto (X) 
 - **Viabilidade: não entra** (confirmado com o orientador). Por isso a numeração abaixo começa em 2.
 - **2 Levantamento de Requisitos**: elicitação, BPMN, RF, RNF, regras de negócio, casos de uso, 2.7 diagrama de classes, 2.8 atividades, 2.9 estados, 2.10 sequência, 2.11 DER. A Matriz de Rastreabilidade foi **omitida por decisão do autor**.
 - **3 Ferramentas e Métodos**: cada ferramenta com versão, tipo de licença, site oficial e justificativa. Nunca preencha uma versão sem confirmação: use "[preencher]".
-- **4 Desenvolvimento**: processo, trechos de código comentados e capturas de tela.
+- **4 Desenvolvimento**: processo, trechos de código comentados e capturas de tela. Trechos de código têm legenda própria na linha anterior ao bloco: `[Código N – título (`arquivo`)]`; o `gerar_docx.py` numera e põe "Fonte: Autor" depois. Ao mexer no código do protótipo, confira se os trechos citados continuam iguais.
 - **5 Resultados e Discussão**: Análise de Portabilidade, Cálculo das Métricas e Proposta Comercial.
 - Considerações Finais e Referências.
 - Apêndices: A = perguntas do questionário e resumos das respostas; B = missão, visão e valores (aprovados); C = GDD resumido (pode ser removido depois). Confirmar com o orientador se A e B ficam como Apêndice ou Anexo.

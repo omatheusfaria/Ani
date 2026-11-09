@@ -1187,295 +1187,776 @@ O Quadro 31 relaciona cada artefato do projeto à ferramenta ou ao meio de produ
 
 # 4 Desenvolvimento
 
-## 4.1 Arquitetura do Sistema
+Este capítulo descreve a implementação do protótipo de **Ani**, que cobre o início do Ato I, com cerca de dez minutos de jogo: o quarto de Ani no presente, o celular, a busca pelo carregador no escuro e a passagem, pela tirinha de fotos, para a memória do parque de diversões. Como registrado no TAP (1.1.6), o protótipo foi feito em HTML, CSS e JavaScript com Three.js 0.170 e roda no navegador; o jogo completo segue planejado em Unreal Engine 5.4.4 com C++, e é ele que os diagramas UML do capítulo 2 modelam.
 
-A arquitetura geral do protótipo é organizada a partir de uma estrutura orientada a objetos compatível com a modelagem apresentada no Diagrama de Classes. O estado global do jogo é centralizado na classe `Jogo`, que mantém referências ao ato atual e ao cenário atual, enquanto a progressão filosófica é controlada pela classe `Ato`. A partir dessa base, o sistema articula exploração, interação, ativação de conteúdo narrativo, persistência e transição entre cenários.
+Seguindo a Cascata, a implementação começou depois da especificação de requisitos e do design. O protótipo foi construído cena a cena, na ordem em que o jogador as percorre (menu, quarto, parque), e cada mecânica foi testada no navegador assim que ficou pronta. O código é versionado no Git, no mesmo repositório da documentação (pasta `jogo/`), e publicado no GitHub Pages por um fluxo do GitHub Actions a cada envio para a ramificação principal. O protótipo não tem etapa de compilação: o navegador carrega os módulos JavaScript diretamente.
 
-Do ponto de vista operacional, a entrada do jogador é convertida em ações de movimentação, interação, observação e consulta ao diário. Essas ações incidem sobre a classe `Ani`, que por sua vez aciona objetos interativos, registra memórias no seu `Diario` por meio de `Diario.adicionarEntrada()`, observa elementos contemplativos e participa da progressão entre atos. `Cenario`, `Memoria`, `Diario`, `ObjetoRestauravel` e `ObjetoContemplativo` distribuem responsabilidades específicas de carregamento, registro, ressignificação e liberação de conteúdo.
+## 4.1 Arquitetura do Protótipo
 
-A entrada é tratada pelo sistema Enhanced Input da Unreal Engine 5: teclas e botões são mapeados em *Input Actions* por um *Input Mapping Context*, e as ações resultantes são encaminhadas a `Ani`, sem uma classe própria de gerenciamento de entrada. Da mesma forma, o papel de gerenciador do jogo fica com as classes de framework da Unreal, em conjunto com a classe `Jogo`: o *GameMode* define as regras da partida, a *GameInstance* permanece ativa durante toda a execução, inclusive entre trocas de nível, e `Jogo` mantém o ato e o cenário atuais.
-
-O fluxo principal de dados do protótipo pode ser descrito da seguinte forma:
+O protótipo é organizado em módulos JavaScript (ES Modules), carregados a partir do `index.html`. O Three.js é importado por um *import map*, sem gerenciador de pacotes. A estrutura de pastas separa o motor do jogo (renderização, áudio, interface e entrada) das cenas e dos personagens:
 
 ```text
-Input (teclado: WASD / E / Tab / Esc; gamepad Xbox: analógico esquerdo / A / Y / Menu)
-  → Enhanced Input (Input Mapping Context → Input Actions)
-    → Ani (mover, interagir, observar, registrarMemoria, iniciarCrise, encerrarCrise)
-      → ObjetoInterativo.ativar()
-        → ObjetoMemoria.registrarNoDiario() → Memoria.registrar()
-        → ObjetoRestauravel.restaurar()
-        → ObjetoContemplativo.liberarNarracao()
-      → Diario.adicionarEntrada()
-
-GameMode / GameInstance + Jogo
-  → Cenario.carregarCenario()
-  → Ato.iniciarAto() / Ato.concluirAto()
-  → Jogo.salvarProgresso() → Save.salvar()
-  → Jogo.carregarProgresso() → Save.carregar(), Diario.restaurar(), Cenario.restaurarEstado()
+jogo/
+  index.html            página, import map e camadas de interface em HTML
+  css/style.css         caixas de fala, balões, pausa, aviso e HUD dos minigames
+  js/main.js            objeto game, entrada (mouse, teclado, controle), loop e save
+  js/engine/            renderer.js, audio.js, ui.js, gamepad.js, tween.js, aviso.js
+  js/scenes/            menu.js, quarto.js (+ room.js, furniture.js, papers.js, cinema.js),
+                        parque.js (+ park.js, parkfx.js, parkfood.js, minigames.js,
+                        wheelride.js, photostrip.js)
+  js/phone/             app.js (aplicativo de rede social) e posts.js
+  js/chars/ani.js       sprites de Ani e Malu e suas animações
+  assets/               sprites (PNG) e fontes
+  tools/                scripts Python que recortam e alinham as folhas de sprites
 ```
 
-Essa organização evidencia que a progressão por atos é controlada por `Ato`, ao passo que `Jogo`, apoiado pelo GameMode e pela GameInstance, concentra o estado global e a continuidade da sessão. Com isso, a arquitetura consegue sustentar uma experiência em que atmosfera, memória e progressão possuem suporte estrutural claro.
+O centro da arquitetura é o objeto `game`, criado em `main.js`. Ele reúne o renderizador, o áudio, a interface, as configurações e o save, e guarda a cena atual. Cada cena (`MenuScene`, `QuartoScene` e `ParkScene`) segue o mesmo contrato: `enter()` e `exit()` na troca de cena, `update(dt, t)` a cada quadro e métodos de entrada (`onKey`, `onPointerDown`, `onWheel`) que `main.js` repassa. O Código 1 mostra esse objeto, a troca de cenas e o laço principal.
+
+[Código 1 – Objeto `game`, troca de cenas e laço principal (`js/main.js`)]
+
+```js
+const game = {
+  renderer, sfx, ui, canvas, settings,
+  // ... (mouse, modo de entrada, saveSettings)
+  scenes: {},
+  current: null,
+  save: {
+    get: () => { /* lê 'ani:save' do localStorage */ },
+    set: (data) => writeJSON(SAVE_KEY, data),
+  },
+  goTo(name, opts = {}) {
+    this.current?.exit?.();          // a cena atual se desmonta
+    this.current = this.scenes[name];
+    this.current.enter(opts);        // a nova cena começa
+  },
+};
+
+function frame(now) {
+  const dt = Math.min(0.05, (now - last) / 1000); // passo limitado: sem saltos após travadas
+  last = now;
+  time += dt;
+  pad.update(dt);                                  // lê o controle
+  const scene = game.current;
+  if (scene) {
+    scene.update(dt, time);                        // lógica da cena
+    renderer.render(scene.scene, scene.camera, time);
+  }
+  requestAnimationFrame(frame);
+}
+```
+
+O limite de 0,05 s no passo de tempo evita que uma queda de desempenho faça os personagens atravessarem móveis ou que as animações pulem etapas. Todas as cenas recebem o mesmo `dt`, e as animações de câmera, falas e transições usam um gerenciador de interpolações (`Tweens`, em `tween.js`) atualizado com ele.
+
+O diagrama de classes da seção 2.7 modela o jogo completo, em Unreal Engine. O protótipo não reproduz essas classes uma a uma: em JavaScript, várias responsabilidades ficam em funções e objetos das cenas. O Quadro 32 relaciona cada classe do modelo ao elemento do protótipo que cumpre o seu papel.
+
+| Classe do modelo | Elemento no protótipo | Arquivo |
+| --- | --- | --- |
+| `Jogo` | Objeto `game`: cena atual, troca de cenas, save e configurações | `js/main.js` |
+| `Cenario` | Cenas `MenuScene`, `QuartoScene` e `ParkScene`; o quarto é montado em `room.js` e o parque em `park.js` | `js/scenes/` |
+| `Personagem`, `Ani` | `WalkSprite` e `AniSprite` (sprite e animações); a posição em x e z fica com a cena | `js/chars/ani.js` |
+| `NPC` | Malu: `WalkSprite` com a folha da Malu, movida pela classe `Actor` | `js/chars/ani.js`, `js/scenes/parque.js` |
+| `Dialogo` | `ui.say()` (caixa embaixo) e `ui.bubble()` (balão sobre a cabeça) | `js/engine/ui.js` |
+| `Celular`, `Publicacao` | `PhoneApp` (aplicativo "Pixgram") e a lista de publicações | `js/phone/app.js`, `js/phone/posts.js` |
+| `ObjetoInterativo` | Lista `interactables` do quarto e do parque | `js/scenes/room.js`, `js/scenes/park.js` |
+| `Interruptor`, `FonteDeLuz` | `room.setSwitch()` e `room.setPlasma()` | `js/scenes/room.js`, `js/scenes/quarto.js` |
+| `ObjetoInspecionavel` | `enterInspect()` e `enterZenital()` (estante, criado-mudo, mochila e papéis) | `js/scenes/quarto.js` |
+| `ObjetoMemoria` | Gaveta e tirinha de fotos (`openDrawer()`, `makePhotoStrip()`) | `js/scenes/quarto.js`, `js/scenes/photostrip.js` |
+| `Barraca`, `Comida` | Barracas do parque, `Snacks` e `makeFood()` | `js/scenes/park.js`, `js/scenes/parkfood.js` |
+| `Minigame` | `Minigames`, com `Balloons`, `Cans` e `Fishing` | `js/scenes/minigames.js` |
+| `Configuracao` | Objeto `settings`, salvo em `ani:config` | `js/main.js`, `js/scenes/menu.js` |
+| `Save` | `game.save`, salvo em `ani:save` | `js/main.js` |
+| `Memoria`, `Diario`, `EntradaDiario`, `Ato`, `EcoDecisao`, `ObjetoRestauravel`, `ObjetoContemplativo` | Sem correspondente no protótipo (previstos; ver seção 4.3) | – |
+
+O fluxo de dados do protótipo pode ser resumido assim:
+
+```text
+Entrada (teclado e mouse, ou controle Xbox convertido em teclas por gamepad.js)
+  → main.js (game.keyDown, pointerdown, wheel)
+    → cena atual (onKey, onPointerDown, onWheel)
+      → interact(it): interruptor, luminária, inspeção, gaveta, barraca, minigame
+        → ui.say() / ui.bubble()      falas
+        → sfx.*()                     sons sintetizados
+        → game.goTo('parque')         objeto-portal
+  → loop: cena.update(dt) → renderer.render(cena, câmera)
+  → game.save.set({ cena })           salvamento automático
+  → game.settings / saveSettings()    volume, pixels e tela cheia
+```
 
 ## 4.2 Sistemas Implementados
 
-### 4.2.1 Sistema de Movimentação e Colisão
+As seções a seguir descrevem cada sistema do protótipo, com os requisitos e as regras que ele atende, as classes do modelo a que corresponde, um trecho de código comentado e, quando possível, uma captura de tela.
 
-O sistema de movimentação e colisão constitui a base da exploração lateral do jogo. Seu papel é permitir deslocamento contínuo e legível da personagem pelo cenário, ao mesmo tempo em que impede a travessia de paredes, objetos sólidos e limites físicos do espaço jogável.
+### 4.2.1 Renderização em Pixel Art sobre Cenários 3D
 
-- **Classes envolvidas:** `Ani`, `Personagem`
-- **Requisito funcional correspondente:** RF001, RF002
-- **Regra de negócio correspondente:** não se aplica diretamente
-- **Princípio do projeto que originou o sistema:** exploração lateral como eixo primário de interação e interface de controles reduzida
-- **Trecho de código relevante:** `[Código 1 — rotina de leitura de input horizontal e validação de colisão do personagem]`
-- **Captura de tela comentada:** `[Figura 10 – Deslocamento de Ani em cenário lateral com bloqueio por obstáculo sólido]`
+O visual de **Ani** combina personagens em pixel art com cenários modelados em 3D. Para que os dois convivam, o renderizador desenha a cena 3D numa resolução baixa, que o CSS amplia sem suavização, e aplica um pós-processamento com brilho (*bloom*), gradação de cor, vinheta, granulado, aberração cromática, *glitch* e *dithering*. Os feixes de luar, a névoa e a profundidade de campo são calculados num passe de luz próprio, em meia resolução.
 
-A implementação prevista depende da captura de entrada por teclado ou gamepad, via Enhanced Input, aplicação de velocidade ao personagem e verificação de colisão antes da confirmação do deslocamento. Como a proposta do jogo privilegia contemplação e ritmo, esse sistema deve ser estável e responsivo sem competir com a atmosfera geral da experiência.
+- **Arquivos:** `js/engine/renderer.js`, `js/scenes/cinema.js`, `js/scenes/parkfx.js`
+- **Requisitos correspondentes:** RF012 (mesma identidade visual ao longo dos atos), RNF001
+- **Classes do modelo:** `Cenario`
+- **Trecho de código:** Código 2
+- **Captura de tela:** Figura 10
 
-### 4.2.2 Sistema de Memórias e Diário
+O tamanho do pixel é definido pela quantidade de linhas da imagem, escolhida pelo jogador no menu (pixels grandes, médios ou pequenos). O Código 2 mostra como o renderizador calcula a resolução interna a partir dessa escolha.
 
-O sistema de memórias e diário conecta exploração, narrativa e persistência. Objetos interativos funcionam como gatilhos de fragmentos narrativos e, quando aplicável, registram conteúdo no diário de memórias de Ani. Esse sistema também sustenta a possibilidade de releitura de itens já conhecidos conforme o avanço do jogo.
+[Código 2 – Resolução interna da pixel art (`js/engine/renderer.js`)]
 
-- **Classes envolvidas:** `ObjetoInterativo`, `Memoria`, `Diario`, `EntradaDiario`
-- **Requisito funcional correspondente:** RF003, RF004, RF005
-- **Regra de negócio correspondente:** RN001, RN005
-- **Princípio do projeto que originou o sistema:** exploração e diário de memórias como centro da experiência
-- **Trecho de código relevante:** `[Código 2 — fluxo de ativação de objeto interativo, criação de memória e adição de entrada ao diário]`
-- **Captura de tela comentada:** `[Figura 11 – Registro de fragmento narrativo no diário após interação com objeto de memória]`
+```js
+setRows(rows) {
+  this.targetRows = rows;           // 270, 360 ou 480 linhas (menu > Pixels)
+  this.resize();
+}
 
-Quando o jogador interage com um objeto significativo, o sistema identifica seu tipo, ativa a memória ou evento correspondente e, se cabível, cria ou atualiza uma entrada no diário. RN001 impede duplicidade de registros, RF004 permite ordem variável de descoberta dos fragmentos, e RN005 assegura que o mesmo item possa adquirir nova interpretação sem perder sua identidade base.
+resize() {
+  // cada pixel do jogo ocupa s × s pixels da tela
+  const s = Math.max(1, Math.round(window.innerHeight / this.targetRows));
+  this.scale = s;
+  this.w = Math.max(1, Math.floor(window.innerWidth / s));
+  this.h = Math.max(1, Math.floor(window.innerHeight / s));
+  // ... (com o passe nítido do celular ligado, o canvas fica em resolução cheia)
+  this.gl.setPixelRatio(1);
+  this.gl.setSize(this.w, this.h, false);  // o canvas é ampliado pelo CSS sem suavização
+  this.rt.setSize(this.w, this.h);         // cena 3D (cor HDR + profundidade)
+  this.rtLit.setSize(this.w, this.h);      // cena + passe de luz
+  // ...
+}
+```
 
-### 4.2.3 Sistema de Progressão por Atos
+Como o fator de escala é sempre inteiro, cada pixel do jogo vira um bloco quadrado de pixels da tela, sem distorção. A Figura 10 mostra o resultado no quarto com a luz acesa: o cone de luz do lustre, os feixes de luar entrando pela janela e a sombra de Ani projetada pelo próprio sprite.
 
-O sistema de progressão por atos organiza a jornada em cinco etapas sequenciais, cada qual associada a atmosfera, visual, mecânicas e estados narrativos próprios. Ele controla desbloqueio de cenários, mudança de ato e verificação dos critérios mínimos de avanço.
+[Figura 10 – Quarto de Ani com a luz acesa, em pixel art sobre o cenário 3D]
 
-- **Classes envolvidas:** `Ato`, `Jogo`, `Cenario`
-- **Requisito funcional correspondente:** RF006, RF012, RF019
-- **Regra de negócio correspondente:** RN002, RN003, RN004
-- **Princípio do projeto que originou o sistema:** jornada filosófica em cinco atos sequenciais
-- **Trecho de código relevante:** `[Código 3 — verificação de conclusão de ato e desbloqueio do cenário seguinte]`
-- **Captura de tela comentada:** `[Figura 12 – Transição de ato com alteração de cenário e atmosfera]`
+A tela do celular é a exceção: como precisa ser legível, ela é desenhada numa segunda passada em resolução cheia, por cima da pixel art, enquanto o dedo de Ani, que passa na frente da tela, continua pixelado.
 
-O sistema detecta a conclusão de cada etapa pela combinação entre exploração, memórias e eventos centrais do ato corrente. No Ato I, a RN004 define que as memórias são percorridas em sequência linear e que a passagem para o ato seguinte se abre quando a última memória da sequência é registrada. O Quadro 32 retoma a referência filosófica, o tom e o símbolo de cada ato.
+### 4.2.2 Personagens em Sprites
 
-| Ato | Referência Filosófica | Tom | Símbolo |
-| --- | --- | --- | --- |
-| I | Zapffe | O peso da consciência | Relógio parado |
-| II | Mainländer e Bahnsen | A vontade que se devora e o loop irresolúvel | Corredor em loop |
-| III | Wabi-Sabi | Beleza no quebrado | Kintsugi |
-| IV | Mono no Aware e Ikigai | Sentir o que passa e encontrar um fio de sentido | Pétalas de cerejeira |
-| V | Yugen | O que não cabe em palavras | Estrela solitária |
+Ani e Malu são sprites 2D colocados no mundo 3D. As folhas de sprites foram geradas com o Sprite Fusion e o GPT-6, em grades de 6 × 4 quadros, e depois recortadas e alinhadas por scripts Python (pasta `tools/`), que igualam a altura dos quadros e alinham cada um pelos pés e pelo rosto. No jogo, cada folha é descrita por uma configuração que diz o tamanho da célula, os quadros de cada animação e a escala em metros.
 
-### 4.2.4 Mecânica de Peso Literal (Ato I)
+- **Arquivos:** `js/chars/ani.js`, `tools/*.py`
+- **Requisitos correspondentes:** RF001, RF008, RF028
+- **Classes do modelo:** `Personagem`, `Ani`, `NPC`
+- **Trecho de código:** Código 3
 
-A mecânica de peso literal transforma o contato com memórias em alteração sensível do deslocamento da personagem. Cada lembrança tocada aumenta a sensação de peso, tornando o movimento mais lento e comunicando, por software, a ideia de consciência como fardo.
+[Código 3 – Configuração da folha de caminhada de Ani (`js/chars/ani.js`)]
 
-- **Classes envolvidas:** `Ani`, `Ato`, `Memoria`
-- **Requisito funcional correspondente:** RF013
-- **Regra de negócio correspondente:** RN004
-- **Princípio do projeto que originou o sistema:** Ato I como experiência do peso da consciência
-- **Trecho de código relevante:** `[Código 4 — ajuste progressivo da velocidade do personagem conforme memórias coletadas]`
-- **Captura de tela comentada:** `[Figura 13 – Redução perceptível da velocidade de Ani após contato com memórias do Ato I]`
+```js
+export const ANI_SPRITE = {
+  url: new URL('../../assets/sprites/ani-andando.png', import.meta.url).href,
+  FW: 168, FH: 246, FOOT_PAD: 6, COUNT: 13,     // célula de 168 × 246 px, 13 quadros
+  WALK: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],         // caminhada: dois passos
+  IDLE: 10, HALF: 11, BLINK: 12,                // parada e piscando
+  TEXEL: 1.62 / 234,  // Ani tem 234 px de altura na folha → 1,62 m no mundo
+  PX: 234,
+  LEG_OFF: -4,
+  STRIDE: 1.2,        // metros por ciclo de caminhada: os pés não "patinam"
+};
+```
 
-Embora o sistema produza dificuldade sensorial de avanço, ele não configura punição explícita. A intenção é que o corpo da mecânica represente a tensão existencial do ato, não que imponha fracasso convencional ao jogador.
+A classe `WalkSprite` escolhe o quadro pela velocidade do personagem, faz Ani piscar em intervalos aleatórios e toca animações extras com eventos em quadros específicos, como o quadro em que o dedo encosta no interruptor e a luz muda. A Malu usa a mesma classe, com a sua folha. As duas também têm folhas para falar, comer e para as cenas da cabine de fotos.
 
-### 4.2.5 Mecânica de Ecos de Decisão (Ato II)
+### 4.2.3 Movimentação e Colisão em 2.5D
 
-Os ecos de decisão estruturam situações em que o jogador tenta variar sua ação, mas retorna ao mesmo impasse narrativo. A mecânica traduz a contradição irresolúvel do Ato II e comunica a ideia de vontade que se devora.
+No quarto e no parque, a câmera acompanha Ani de lado, e o jogador a move para os lados e em profundidade, para frente e para o fundo do cenário. Os móveis do quarto viram retângulos no chão, vistos de cima, que ela contorna; tapetes e papéis, por serem baixos, ficam de fora.
 
-- **Classes envolvidas:** `Ani`, `Ato`, `EcoDecisao`, `Memoria`
-- **Requisito funcional correspondente:** RF014
-- **Regra de negócio correspondente:** RN006
-- **Princípio do projeto que originou o sistema:** irresolução filosófica do Ato II
-- **Trecho de código relevante:** `[Código 5 — recondução de estados alternativos para um mesmo desfecho narrativo]`
-- **Captura de tela comentada:** `[Figura 14 – Corredor em loop com recorrência de situação decisória convergente]`
+- **Arquivos:** `js/scenes/quarto.js`, `js/scenes/parque.js`
+- **Requisitos correspondentes:** RF001, RF002, RF011
+- **Casos de uso:** UC-S001
+- **Classes do modelo:** `Ani`, `Personagem`
+- **Trecho de código:** Código 4
 
-A implementação exige armazenamento de tentativas, reentrada em eventos e convergência controlada de resultado. Com isso, a mecânica preserva a sensação de tentativa do jogador sem romper a coerência filosófica da etapa.
+[Código 4 – Movimento em x e z com colisão (`js/scenes/quarto.js`)]
 
-### 4.2.6 Mecânica de Restauração por Aceitação (Ato III)
+```js
+// direção pelo teclado; sem tecla, o analógico do controle (inclinar pouco = passo lento)
+let dir = (right ? 1 : 0) - (left ? 1 : 0);
+let dirZ = (back ? 1 : 0) - (fwd ? 1 : 0);
+if (!dir && !dirZ) { const st = this.game.pad?.move(); if (st) { dir = st.x; dirZ = st.y; } }
 
-Essa mecânica permite restaurar objetos quebrados sem apagar suas marcas, em consonância com o símbolo do Kintsugi. O sistema precisa distinguir visual e logicamente estado quebrado, restaurado com marcas e referência original, quando aplicável.
+// na diagonal não anda mais rápido; a velocidade começa e para com peso (damp)
+const n = Math.hypot(dir, dirZ * DEPTH_SPEED) > 1 ? 1 / Math.hypot(dir, dirZ * DEPTH_SPEED) : 1;
+this.vel = damp(this.vel, this.busy ? 0 : dir * WALK_SPEED * n, 10, dt);
+this.velZ = damp(this.velZ, this.busy ? 0 : dirZ * WALK_SPEED * DEPTH_SPEED * n, 10, dt);
 
-- **Classes envolvidas:** `ObjetoRestauravel`, `ObjetoInterativo`
-- **Requisito funcional correspondente:** RF015
-- **Regra de negócio correspondente:** RN005
-- **Princípio do projeto que originou o sistema:** beleza do quebrado e aceitação da rachadura
-- **Trecho de código relevante:** `[Código 6 — mudança de estado de objeto restaurável e atualização visual após interação]`
-- **Captura de tela comentada:** `[Figura 15 – Objeto do Ato III antes e depois da restauração, preservando marcas]`
+// x e z separados: encostando num móvel, ela desliza pela lateral dele
+const nx = clamp(this.x + this.vel * dt, lane.minX, lane.maxX);
+if (nx === this.x + this.vel * dt && (stuck || !this.blocked(nx, this.z))) this.x = nx;
+else this.vel = 0;
+const nz = clamp(this.z + this.velZ * dt, Z_MIN, Z_MAX);
+if (nz === this.z + this.velZ * dt && (stuck || !this.blocked(this.x, nz))) this.z = nz;
+else this.velZ = 0;
 
-O valor sistêmico da mecânica está menos na reparação utilitária e mais na ressignificação. O objeto deixa de ser apenas quebrado, mas não retorna a uma pureza anterior, reforçando a proposta de aceitação do dano como parte da forma final.
+// blocked(x, z): o ponto está dentro de algum retângulo de móvel?
+blocked(x, z) {
+  return this.obstacles.some((o) => x > o.x0 && x < o.x1 && z > o.z0 && z < o.z1);
+}
+```
 
-### 4.2.7 Mecânica de Contemplação Ativa (Ato IV)
+Testar o movimento em x e em z separadamente faz Ani deslizar ao longo de um móvel em vez de parar de vez quando o jogador anda na diagonal. Os limites da faixa (`lane`) e de profundidade (`Z_MIN`, `Z_MAX`) funcionam como as paredes. A câmera lateral segue Ani com uma folga à frente, na direção em que ela olha, e recua um pouco quando ela vem para a frente do cenário.
 
-A contemplação ativa converte a pausa em forma de interação. Em vez de exigir comando explícito, o sistema detecta permanência da personagem diante de elementos específicos por um tempo mínimo e, então, libera memória, narração ou efeito simbólico.
+### 4.2.4 Celular em Primeira Pessoa
 
-- **Classes envolvidas:** `ObjetoContemplativo`, `Ani`
-- **Requisito funcional correspondente:** RF016
-- **Regra de negócio correspondente:** não se aplica diretamente
-- **Princípio do projeto que originou o sistema:** observação, impermanência e presença
-- **Trecho de código relevante:** `[Código 7 — temporizador de observação e disparo de narração contemplativa]`
-- **Captura de tela comentada:** `[Figura 16 – Jardim do Ato IV com ativação de memória por permanência em observação]`
+O jogo começa com Ani deitada no escuro, às 23:47, olhando o celular. O celular é um modelo 3D segurado pela mão de Ani, em sprite, e a tela mostra o "Pixgram", uma rede social fictícia desenhada num *canvas* e aplicada como textura. O jogador vê a notificação da Malu, abre o perfil dela, rola o feed, abre publicações e pode curtir com um toque duplo.
 
-A mecânica é coerente com a filosofia de interface invisível do projeto, pois a ação emerge do ritmo do jogador e não da presença de um botão dedicado. O sistema interpreta a pausa como gesto significativo.
+- **Arquivos:** `js/phone/app.js`, `js/phone/posts.js`, `js/scenes/quarto.js`
+- **Requisitos correspondentes:** RF024
+- **Casos de uso:** UC-S015
+- **Classes do modelo:** `Celular`, `Publicacao`
+- **Trecho de código:** Código 5
+- **Captura de tela:** Figura 11
 
-### 4.2.8 Dissolução de Mecânicas (Ato V)
+[Figura 11 – Celular em primeira pessoa com o perfil da Malu no aplicativo Pixgram]
 
-No Ato V, o protótipo abandona progressivamente mecânicas dos atos anteriores até restarem principalmente caminhar, observar e ouvir. A retirada de sistemas não é ausência de design, mas parte do design da etapa final.
+A bateria acaba sozinha, mas só depois que o jogador se envolve com o aplicativo e quando nenhuma fala está na tela, para não cortar um momento no meio. O Código 5 mostra essa regra.
 
-- **Classes envolvidas:** `Ato`, `Jogo`, `Ani`
-- **Requisito funcional correspondente:** RF017
-- **Regra de negócio correspondente:** não se aplica diretamente
-- **Princípio do projeto que originou o sistema:** o mistério que não cabe em palavras
-- **Trecho de código relevante:** `[Código 8 — desativação progressiva de subsistemas conforme avanço do Ato V]`
-- **Captura de tela comentada:** `[Figura 17 – Cenário final com mecânicas reduzidas e predominância de contemplação]`
+[Código 5 – A bateria acaba depois do envolvimento com o aplicativo (`js/scenes/quarto.js`)]
 
-A implementação exige controle condicional sobre sistemas previamente ativos, para que desapareçam em sequência coerente com a jornada do jogador. Essa dissolução reconfigura a própria linguagem de interação do jogo no desfecho.
+```js
+updateBattery(dt) {
+  const { ui } = this.game;
+  const e = this.engage;
+  if (e.profile) this.idleClock += dt;
+  // só depois de ver o perfil e abrir um post, ir mais fundo, ver o próprio perfil
+  // ou ficar 35 s parado no perfil
+  const engaged = e.profile && (e.posts >= 1 || e.deep || e.me || this.idleClock > 35);
+  const calm = !ui.speaking && this.panic < 0.15 && !this.app.trans;
+  if (!engaged || !calm) return;
+  this.batteryClock += dt;
+  if (this.batteryStage === 0 && this.batteryClock > 2.5) {
+    this.batteryStage = 1;
+    this.app.lowBattery();               // aviso de 1% na tela
+    this.game.sfx.warn();
+    this.buzz = 0.5;                     // o celular vibra na mão
+    ui.say('1%? Não, não, não...', { hold: 1.8 });
+  } else if (this.batteryStage === 1 && this.batteryClock > 7.5) {
+    this.batteryStage = 2;
+    this.phoneDies();                    // a tela apaga e o quarto fica no escuro
+  }
+}
+```
 
-### 4.2.9 Sistema de Crises de Ansiedade
+Quando o celular apaga, uma cena em primeira pessoa mostra Ani se levantando da cama, e o jogo passa para a visão lateral, no quarto escuro.
 
-O sistema de crises de ansiedade atua no plano sensorial, alterando imagem, som e presença das manifestações sem impor punição sistêmica explícita. Trata-se de um conjunto de efeitos voltado a expressar estados emocionais intensificados.
+### 4.2.5 Momento de Pânico
 
-- **Classes envolvidas:** `Ani`, `Cenario`
-- **Requisito funcional correspondente:** RF018
-- **Regra de negócio correspondente:** não se aplica diretamente
-- **Princípio do projeto que originou o sistema:** ansiedade e respiração como base sensorial
-- **Trecho de código relevante:** `[Código 9 — acionamento de distorção visual, fragmentação sonora e aumento de manifestações]`
-- **Captura de tela comentada:** `[Figura 18 – Episódio de crise com distorção visual e reforço atmosférico]`
+Se o jogador curte sem querer uma publicação antiga da Malu, Ani entra em pânico. É a primeira aparição, ainda breve, da crise de ansiedade descrita no RF018: a tela treme, fica avermelhada, sofre distorções (*glitch* e aberração cromática) e o coração dispara, com batimentos que aceleram conforme a intensidade.
 
-Os efeitos esperados incluem distorção visual, fragmentação sonora e intensificação das manifestações, com a respiração de Ani funcionando como indicador sensorial. O impacto do sistema é atmosférico e emocional, não quantitativo. O Quadro 33 apresenta a direção sonora associada a cada elemento.
+- **Arquivos:** `js/scenes/quarto.js`, `js/engine/renderer.js`, `js/engine/audio.js`
+- **Requisitos correspondentes:** RF018 (parcial)
+- **Classes do modelo:** `Ani` (`iniciarCrise()`, `encerrarCrise()`)
+- **Trecho de código:** Código 6
+- **Captura de tela:** Figura 12
 
-| Elemento | Direção sonora e funcional |
-| --- | --- |
-| NPCs | Comunicação prioritariamente textual |
-| Crises de ansiedade | Sussurros humanos distorcidos |
-| Memórias felizes | Sons urbanos suaves e papel sendo folheado |
-| Memórias traumáticas | Abafamento, ruído e silêncio súbito |
-| Interações materiais | Sons táteis, íntimos e físicos |
+[Código 6 – Efeitos do pânico na imagem e no som (`js/scenes/quarto.js`)]
 
-### 4.2.10 Sistema de Save/Load
+```js
+// this.panic vai de 0 a 1 e cai devagar sozinho
+this.panic = Math.max(0, this.panic - dt * 0.12);
+if (this.panic > 0.12 && t > this.nextBeat) {
+  sfx.heartbeat(clamp(this.panic + 0.3));                 // batimento sintetizado
+  this.nextBeat = t + lerp(1.1, 0.45, this.panic);        // mais pânico, coração mais rápido
+}
+fx.glitch = damp(fx.glitch, this.panic * 0.25, 5, dt);
+fx.aberration = 0.0018 + this.panic * 0.008;
+fx.tint.setRGB(1 + this.panic * 0.25, 1 - this.panic * 0.22, 1 - this.panic * 0.2); // avermelha
+fx.shakeX = (Math.random() - 0.5) * this.panic * 4;       // tremor da tela
+fx.shakeY = (Math.random() - 0.5) * this.panic * 3;
+fx.vignette = 0.6 + this.panic * 0.35;                    // a visão se fecha
+```
 
-O sistema de save/load é responsável por preservar continuidade da sessão e permitir retomada do progresso sem perda de integridade. Seu escopo inclui persistência do ato atual, memórias registradas, estado do diário e estado visual da casa.
+Todos os efeitos saem de um único valor, `panic`, que sobe no susto e cai sozinho com o tempo; assim, a crise se acalma de forma gradual, sem punição nem perda de progresso. O aviso de conteúdo, apresentado na seção 4.2.12, cita esse momento. A Figura 12 mostra a tela durante o pânico.
 
-- **Classes envolvidas:** `Jogo`, `Save`, `Diario`, `Ato`, `Cenario`
-- **Requisito funcional correspondente:** RF009
-- **Regra de negócio correspondente:** não se aplica diretamente
-- **Princípio do projeto que originou o sistema:** continuidade estrutural da jornada por atos
-- **Trecho de código relevante:** `[Código 10 — serialização do estado global do jogo e restauração de progresso]`
-- **Captura de tela comentada:** `[Figura 19 – Continuidade da sessão após carregamento de save local]`
+[Figura 12 – Momento de pânico: tela avermelhada, distorção e tremor]
 
-O sistema deve operar em consonância com RNF002, segundo o qual os saves locais devem carregar em menos de cinco segundos e preservar a integridade dos dados persistidos. Isso exige um modelo de dados compatível com a estrutura do diário, dos cenários e dos atos.
+### 4.2.6 Iluminação e Interação no Escuro
 
-### 4.2.11 Interface e Controles
+Sem a luz do celular, o quarto fica no escuro, iluminado só pelo luar. Ani precisa achar o interruptor, que tem uma figurinha que brilha no escuro, para acender a luz e procurar o carregador. Enquanto o quarto está escuro, qualquer interação mostra uma fala de que não dá para ver, e os objetos aparecem com o rótulo "???"; a única exceção é a luminária de plasma, que pode ser ligada e continua acesa mesmo com a luz apagada.
 
-A interface do projeto segue uma filosofia de quase invisibilidade. Em vez de HUD permanente e barras numéricas, o estado do jogo é comunicado por atmosfera, distorção, respiração, ícones discretos e pelo próprio diário de memórias como objeto diegético.
+- **Arquivos:** `js/scenes/quarto.js`, `js/scenes/room.js`, `js/scenes/cinema.js`
+- **Requisitos correspondentes:** RF025, RF003
+- **Regras de negócio:** RN007
+- **Casos de uso:** UC-S002
+- **Classes do modelo:** `Interruptor`, `FonteDeLuz`, `Cenario` (`iluminado`)
+- **Trecho de código:** Código 7
+- **Captura de tela:** Figuras 13 e 14
 
-- **Classes envolvidas:** `Jogo`, `Diario`
-- **Requisitos correspondentes:** RF005, RF021, RNF004
-- **Regra de negócio correspondente:** não se aplica diretamente
-- **Princípio do projeto que originou o sistema:** interface mínima, sensorial e integrada ao mundo
-- **Trecho de código relevante:** `[Código 11 — abertura do diário diegético e acionamento de indicadores discretos de interação]`
-- **Captura de tela comentada:** `[Figura 20 – Interface do diário e ausência de HUD permanente durante exploração]`
+[Código 7 – Interação no escuro e luminária de plasma (`js/scenes/quarto.js`)]
 
-O Quadro 34 apresenta o mapeamento dos controles no teclado e no gamepad.
+```js
+async interact(it) {
+  if (this.busy || !it) return;
+  const dark = this.room.light < 0.5;          // RN007: o quarto está escuro?
+  this.busy = true;
+  if (it.id === 'interruptor') return this.useSwitch(it);  // acende ou apaga
+  // ... (Ani estica o braço e se vira para o objeto)
+  if (dark && it.id === 'criado') {
+    this.togglePlasma();                        // a única coisa que funciona no escuro
+  } else if (dark) {
+    sfx.deny();                                 // falas que se revezam a cada tentativa
+    ui.say(DARK_LINES[this.darkTries++ % DARK_LINES.length], { hold: 1.8 });
+  } else if (it.id === 'gaveta') {
+    // ... com a luz acesa, cada objeto tem a sua interação
+  }
+}
+
+togglePlasma() {
+  const on = !this.room.plasmaOn;
+  sfx.click();
+  this.room.setPlasma(on);      // fica acesa mesmo com o quarto escuro
+  if (on) sfx.hum();
+}
+```
+
+Ao usar o interruptor, Ani anda até a parede e toca a animação de apertar; a luz muda no quadro em que o dedo encosta na tecla. Acender a luz também muda a gradação de cor da cena, de índigo e prata no escuro para âmbar com a luz acesa, e simula o olho se adaptando: a imagem estoura e depois assenta. A Figura 13 mostra o quarto escuro com a luminária ligada e a Figura 14, a fala que aparece ao tentar interagir com um objeto no escuro.
+
+[Figura 13 – Quarto no escuro com a luminária de plasma ligada]
+
+[Figura 14 – Interação no escuro: o objeto aparece como "???" e Ani diz que não consegue ver]
+
+### 4.2.7 Inspeção de Objetos
+
+Com a luz acesa, cada objeto do quarto tem uma interação própria. Na estante, no criado-mudo e na mochila, a câmera voa da visão lateral para a primeira pessoa: o mouse move a cabeça de Ani, passar sobre um item o destaca e clicar o examina, com uma fala. Os papéis no chão são vistos de cima, com Ani agachada, e o papel escolhido vem até a tela como um papel de verdade. A cortina abre e fecha, e na cama Ani levanta o travesseiro.
+
+- **Arquivos:** `js/scenes/quarto.js`, `js/scenes/furniture.js`, `js/scenes/papers.js`
+- **Requisitos correspondentes:** RF026, RF003
+- **Casos de uso:** UC-S002
+- **Classes do modelo:** `ObjetoInspecionavel`, `ObjetoInterativo`
+- **Trecho de código:** Código 8
+- **Captura de tela:** Figuras 15 e 16
+
+[Código 8 – Examinar o item escolhido na inspeção (`js/scenes/quarto.js`)]
+
+```js
+inspectClick() {
+  const ins = this.inspect;
+  if (!ins?.hover) return;               // item sob o mouse (ou escolhido pelo controle)
+  const tg = ins.hover;
+  tg.jump = 1;                           // o item dá um pulinho
+  if (tg.kind === 'book') {
+    for (const o of ins.targets) if (o !== tg) o.picked = false;
+    tg.picked = !tg.picked;              // o livro sai da estante ou volta
+    sfx.page();
+    if (tg.picked) ui.say(tg.line, { hold: 2.2 });
+  } else {
+    const snd = tg.obj.userData.sound;   // cada objeto pode ter o seu som
+    if (snd && sfx[snd]) sfx[snd]();
+    else if (tg.kind === 'bag') sfx.rustle();
+    else sfx.tap();
+    tg.obj.userData.poke?.();            // e uma reação própria
+    ui.say(tg.line, { hold: 2.2 });
+  }
+}
+```
+
+Nos objetos que Ani revista procurando o carregador, uma contagem guarda os lugares já vistos; depois de dois, ela lembra da gaveta da escrivaninha. Essa dica conduz o jogador ao objeto-portal sem instruções na tela, em linha com o RNF004. As Figuras 15 e 16 mostram a inspeção da estante e os papéis vistos de cima.
+
+[Figura 15 – Inspeção da estante em primeira pessoa]
+
+[Figura 16 – Papéis no chão vistos de cima]
+
+### 4.2.8 Objeto-Portal: da Gaveta à Memória do Parque
+
+Na gaveta da escrivaninha, Ani acha o carregador e uma tirinha de fotos de cabine dela com a Malu. A câmera se aproxima até a última foto ocupar a tela inteira; então o flash da cabine carrega, estoura a tela de branco e o jogo passa para a noite em que a foto foi tirada, um ano antes, no parque de diversões. A tirinha é o objeto ligado à memória, e o flash é a passagem do presente para a lembrança.
+
+- **Arquivos:** `js/scenes/quarto.js`, `js/scenes/photostrip.js`, `js/scenes/parque.js`
+- **Requisitos correspondentes:** RF027, RF004 (parcial)
+- **Casos de uso:** UC-S002
+- **Classes do modelo:** `ObjetoMemoria` (`abrirMemoria()`), `Cenario`
+- **Trecho de código:** Código 9
+- **Captura de tela:** Figuras 17 e 18
+
+[Código 9 – O flash da foto leva à memória do parque (`js/scenes/quarto.js`)]
+
+```js
+// zoom contínuo até a última foto da tirinha ocupar a tela (4,2 s)
+await tw.to({
+  duration: 4.2, ease: ease.inOutCubic,
+  onUpdate: (k) => {
+    cam.position.lerpVectors(start, endPos, k);
+    cam.quaternion.slerpQuaternions(q0, q1, ease.inOutSine(k));
+  },
+});
+// o flash: a foto "acontece" de novo
+this.mode = 'photo';
+await tw.wait(1.1);
+sfx.flashCharge();                                  // o flash carrega
+await tw.to({ duration: 0.55, ease: ease.inQuad, onUpdate: (k) => (fx.flash = k * 0.16) });
+sfx.flash();
+fx.flash = 1;                                       // tela branca
+fx.bars = 1;                                        // faixas de cinema
+this.game.goTo('parque', { flash: true });          // a memória começa no mesmo branco
+```
+
+A cena do parque começa no mesmo branco do flash, que assenta e revela a noite: as duas saem da cabine, a Malu pega a tirinha na máquina, ri das fotos e a entrega para Ani, que diz "Eu guardei.". A Figura 17 mostra a tirinha na gaveta, pouco antes do zoom, e a Figura 18, o cartão do Capítulo 1 que abre a memória do parque.
+
+[Figura 17 – A tirinha de fotos na gaveta da escrivaninha, objeto-portal para a memória do parque]
+
+[Figura 18 – Início da memória: o cartão do Capítulo 1 sobre a noite do parque]
+
+### 4.2.9 Diálogos e Personagem Acompanhante
+
+O protótipo usa dois tipos de fala, como em jogos narrativos do mesmo estilo. A caixa embaixo da tela é usada para pensamentos e para a interação com objetos; o balão sobre a cabeça, para a conversa entre personagens, e acompanha o personagem na tela. O texto aparece letra a letra; um clique completa a fala e outro a pula. Enquanto o balão é escrito, a boca do sprite abre e fecha no ritmo das letras.
+
+No parque, a Malu acompanha Ani pela rua das barracas, um pouco atrás e mais para o fundo, comenta algumas barracas quando está perto e participa das compras e dos minigames.
+
+- **Arquivos:** `js/engine/ui.js`, `js/scenes/parque.js`
+- **Requisitos correspondentes:** RF008, RF030
+- **Casos de uso:** UC-S003
+- **Classes do modelo:** `NPC` (`acompanhando`, `seguir()`), `Dialogo`
+- **Trecho de código:** Código 10
+- **Captura de tela:** Figuras 19 e 20
+
+[Código 10 – A Malu acompanha Ani sem grudar (`js/scenes/parque.js`)]
+
+```js
+if (this.mode === 'free' && (!M.target || M.target.follow)) {
+  // ponto de destino: do lado oposto ao que Ani olha, um pouco mais para o fundo
+  const side = -(this.pauseFacing || this.ani.facing);
+  const gx = clamp(A.x + side * 1.05, LANE.minX, LANE.maxX);
+  const gz = clamp(A.z - 0.28, LANE.minZ, LANE.maxZ);
+  const d = Math.hypot(gx - M.x, gz - M.z);
+  const speed = Math.min(2.3, 1.15 + d * 0.6);    // mais longe, anda mais rápido
+  if (M.target) {                                 // já está indo: atualiza o destino
+    M.target.x = gx; M.target.z = gz; M.target.speed = speed;
+  } else if (d > 0.9) {                           // só sai do lugar se ficou para trás
+    M.walkTo(gx, gz, speed);
+    M.target.follow = true;
+  } else if (Math.abs(A.x - M.x) > 0.2) M.face(Math.sign(A.x - M.x)); // parada, olha para Ani
+}
+```
+
+A zona de tolerância de 0,9 m evita que a Malu se mexa a cada passo de Ani, o que pareceria mecânico. A classe `Actor` faz a chegada desacelerando e a saída acelerando, para que o movimento tenha peso. A Figura 19 mostra a conversa em balões na saída da cabine de fotos e a Figura 20, as duas na rua das barracas.
+
+[Figura 19 – Conversa em balões entre Ani e Malu na saída da cabine de fotos]
+
+[Figura 20 – Ani e Malu na rua das barracas do parque]
+
+### 4.2.10 Compra e Consumo de Comidas
+
+Nas barracas de algodão-doce, pipoca e churros com maçã do amor, as duas vão até o balcão, conversam, quem paga estende a mão e os pedidos voam do balcão até a mão de cada uma. Depois, cada uma come aos poucos, parada ou andando, e a comida diminui em estágios visíveis até acabar. Se a Malu terminar o algodão-doce antes, ela rouba um pedaço do de Ani.
+
+- **Arquivos:** `js/scenes/parque.js`, `js/scenes/parkfood.js`, `js/chars/ani.js`
+- **Requisitos correspondentes:** RF028
+- **Casos de uso:** UC-S016
+- **Classes do modelo:** `Barraca`, `Comida` (`estagio`, `consumir()`)
+- **Trecho de código:** Código 11
+- **Captura de tela:** Figura 21
+
+[Código 11 – Cada mordida avança um estágio da comida (`js/scenes/parkfood.js`)]
+
+```js
+// Snacks.update(): para cada personagem com comida na mão (h), a cada quadro
+if (h.bite) {
+  // mordida: a mão sobe até a boca, segura e volta
+  const b = h.bite;
+  b.t += dt;
+  const up = 0.32, hold = 0.38, down = 0.4;
+  let k;
+  if (b.t < up) k = ease.outCubic(b.t / up);                 // subindo
+  else if (b.t < up + hold) {
+    k = 1;                                                   // na boca
+    if (!b.chomp) {
+      b.chomp = true;
+      h.stage++;                                               // próximo estágio
+      h.mesh.userData.bite?.(h.stage / h.mesh.userData.stages); // a comida encolhe
+      this.sfx.munch?.();
+      this.crumbsAt(this.mouth(actor), h.kind, h.kind === 'pipoca' ? 9 : 6); // farelos
+    }
+  } else k = 1 - ease.inOutSine(clamp((b.t - up - hold) / down)); // descendo
+  target = hand.clone().lerp(this.mouth(actor), k);
+  if (b.t > up + hold + down) {
+    h.bite = null;
+    h.timer = 3 + Math.random() * 2.5;                       // próxima mordida em 3 a 5,5 s
+    if (h.stage >= h.mesh.userData.stages) {                 // acabou
+      this.drop(actor);
+      this.onFinish?.(actor, h.kind);
+    }
+  }
+} else if (!busy) {
+  h.timer -= dt;
+  if (h.timer <= 0) h.bite = { t: 0 };                       // hora da próxima mordida
+}
+```
+
+Quando a comida tem folha de sprite própria, como acontece com Ani e Malu, o sprite cuida dos quadros de comer, com quatro estágios contínuos entre parada e andando; o modelo 3D do Código 11 é usado quando não há folha. A Figura 21 mostra as duas comendo algodão-doce.
+
+[Figura 21 – Ani e Malu com algodão-doce comprado na barraca]
+
+### 4.2.11 Minigames
+
+Três barracas têm minigames: Estoure o Balão (dardos, com uma mira que balança como uma mão nervosa), Derrube as Latas (mira e força: segurar e soltar na faixa certa) e Pescaria (descer o anzol quando a argolinha do patinho passar). A câmera assume o olhar de Ani, Ani joga primeiro e a Malu depois, e o placar compara as duas. Os minigames são a exceção registrada à ausência de HUD e de pontuação: o placar e a interface existem só enquanto a partida dura, e o resultado muda apenas o comentário das duas, nunca a progressão.
+
+- **Arquivos:** `js/scenes/minigames.js`, `js/scenes/parque.js`
+- **Requisitos correspondentes:** RF029
+- **Regras de negócio:** RN008
+- **Casos de uso:** UC-S017
+- **Classes do modelo:** `Minigame` (`placar`, `iniciar()`, `registrarJogada()`, `encerrar()`), `Barraca`
+- **Trecho de código:** Código 12
+- **Captura de tela:** Figura 22
+
+[Código 12 – O resultado do minigame só escolhe as falas (`js/scenes/parque.js`)]
+
+```js
+async playGame(it) {
+  const L = GAMES[it.id];                          // falas antes e depois, por resultado
+  this.busy = true;
+  // ... (as duas andam até a barraca e a câmera enquadra as duas)
+  await Promise.all([this.A.walkTo(it.x - 0.2, LANE.minZ, 1.4),
+                     this.M.walkTo(it.x - 1.1, LANE.minZ + 0.08, 1.5)]);
+  if (!this.talked.has(it.id)) { this.talked.add(it.id); await this.sayAll(L.pre); }
+  this.mode = 'game';
+  const r = await this.mg.play(it.id);             // { res: 'win' | 'lose' | 'tie', ani, malu }
+  this.mode = 'cut';
+  await this.sayAll(L[r.res] || L.tie);            // RN008: o placar só muda o comentário
+  this.mode = 'free';                              // e o jogador volta a andar livre
+  this.busy = false;
+  // ...
+}
+```
+
+Os três minigames aceitam mouse, teclado e controle. A Figura 22 mostra a partida de Estoure o Balão, com o placar das duas.
+
+[Figura 22 – Minigame Estoure o Balão, com placar e interface próprios durante a partida]
+
+### 4.2.12 Menu Principal, Aviso de Conteúdo e Configurações
+
+O menu principal é um olho em 3D, fechado no começo. Ao apertar qualquer tecla, ele acorda, uma tela acende na frente dele e as opções aparecem refletidas na íris; o olho segue o mouse e pisca sozinho. As opções são Iniciar, Continuar, Configurações (som, tamanho dos pixels e tela cheia) e Créditos. As configurações também ficam no menu de pausa do parque e são salvas no navegador.
+
+Ao escolher Iniciar ou Continuar, o jogo mostra o aviso de conteúdo sensível antes de começar, uma vez a cada acesso. O aviso cita a ansiedade, a solidão e o sofrimento psíquico abordados no jogo, inclusive o momento de crise com tremor e distorção na tela, e indica o CVV (Centro de Valorização da Vida), pelo telefone 188 ou pelo chat. Ele só fecha quando o jogador confirma, e só aceita a confirmação depois de 1,2 s, para não ser pulado sem leitura.
+
+- **Arquivos:** `js/scenes/menu.js`, `js/engine/aviso.js`, `js/main.js`
+- **Requisitos correspondentes:** RF020, RF022
+- **Casos de uso:** UC-S007, UC-S013, UC-S012
+- **Classes do modelo:** `Configuracao`, `Jogo`
+- **Trecho de código:** Código 13
+- **Captura de tela:** Figuras 23 e 24
+
+[Código 13 – O aviso de conteúdo antes de o jogo começar (`js/scenes/menu.js` e `js/engine/aviso.js`)]
+
+```js
+// menu.js: Iniciar e Continuar passam por aqui
+if (!this.game.avisoVisto) {
+  await showContentNotice(this.game);   // espera o jogador confirmar
+  this.game.avisoVisto = true;          // uma vez a cada acesso
+}
+this.game.goTo('quarto');
+
+// aviso.js: a confirmação só vale depois de TEMPO_MINIMO (1,2 s)
+const pronto = () => (performance.now() - t0) / 1000 >= TEMPO_MINIMO;
+const fechar = () => {
+  if (fechado || !pronto()) return;
+  fechado = true;
+  // ... (som de confirmação)
+  window.removeEventListener('keydown', onKey, true);
+  game.onAnyPress = null;               // as entradas voltam para o jogo
+  el.classList.remove('show');
+  setTimeout(() => { el.innerHTML = ''; resolve(); }, 450);
+};
+```
+
+A Figura 23 mostra o menu principal e a Figura 24, o aviso de conteúdo.
+
+[Figura 23 – Menu principal: as opções refletidas na íris do olho]
+
+[Figura 24 – Aviso de conteúdo sensível, com a indicação do CVV]
+
+### 4.2.13 Pausa
+
+A tecla Esc, ou o botão Menu do controle, pausa o jogo. No quarto, o menu de pausa oferece Continuar e Menu principal. No parque, a pausa é diegética: Ani tira o celular do bolso, a câmera se aproxima e o menu abre na tela do celular, no estilo de um aplicativo de ajustes, com Continuar, Som, Pixels, Tela cheia e Menu principal. A pausa congela o roteiro, as falas, os minigames e a roda-gigante.
+
+- **Arquivos:** `js/engine/ui.js`, `js/scenes/quarto.js`, `js/scenes/parque.js`
+- **Requisitos correspondentes:** RF021, RF022
+- **Casos de uso:** UC-S006, UC-S007
+- **Classes do modelo:** `Jogo` (`pausar()`, `retomar()`, `alterarEstado()`)
+- **Trecho de código:** Código 14
+- **Captura de tela:** Figura 25
+
+[Código 14 – Menu de pausa do quarto (`js/scenes/quarto.js`)]
+
+```js
+openPause() {
+  const { ui, sfx } = this.game;
+  sfx.back();
+  this.keys.clear();                      // solta as teclas: Ani não sai andando sozinha
+  ui.pause([
+    { label: 'CONTINUAR', action: () => ui.pause(null) },
+    { label: 'MENU PRINCIPAL', action: () => { ui.pause(null); this.toMenu(); } },
+  ]);
+}
+```
+
+Enquanto `ui.pauseOpen` é verdadeiro, `main.js` desvia as teclas para o menu de pausa e não as repassa à cena, o que suspende o jogo sem desmontá-lo; ao continuar, tudo segue do mesmo ponto. A Figura 25 mostra a pausa no parque.
+
+[Figura 25 – Pausa no parque: o menu abre na tela do celular de Ani]
+
+### 4.2.14 Salvamento
+
+O progresso e as configurações ficam no armazenamento local do navegador (`localStorage`), em duas chaves: `ani:save`, com o ponto do jogo, e `ani:config`, com o volume e o tamanho dos pixels. No protótipo, o salvamento é automático e acontece no início do quarto, quando o celular aparece; a opção Continuar do menu só fica disponível depois disso.
+
+- **Arquivos:** `js/main.js`, `js/scenes/quarto.js`, `js/scenes/menu.js`
+- **Requisitos correspondentes:** RF009 (parcial), RF031 (parcial), RNF002
+- **Casos de uso:** UC-S011, UC-S012
+- **Classes do modelo:** `Save`, `Configuracao`, `Jogo` (`salvarProgresso()`, `carregarProgresso()`)
+- **Trecho de código:** Código 15
+
+[Código 15 – Leitura e gravação no armazenamento local (`js/main.js`)]
+
+```js
+function readJSON(key, fallback) {
+  try {
+    const v = localStorage.getItem(key);
+    return v ? { ...fallback, ...JSON.parse(v) } : { ...fallback };
+  } catch {
+    return { ...fallback };    // navegador sem armazenamento: valores padrão
+  }
+}
+function writeJSON(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch {
+    /* navegador sem armazenamento: segue sem salvar */
+  }
+}
+const settings = readJSON(SETTINGS_KEY, { volume: 1, rows: 360 });
+
+// quarto.js, enterPhone(): ponto de salvamento automático (RF031)
+save.set({ cena: 'quarto' });
+```
+
+As leituras e gravações ficam dentro de `try/catch` porque o armazenamento pode estar bloqueado, por exemplo numa janela anônima; nesse caso o jogo continua, só que sem salvar. A estrutura completa do save, com ato, memórias, diário e estado da casa, depende dos sistemas previstos na seção 4.3.
+
+### 4.2.15 Áudio Sintetizado
+
+O protótipo não usa arquivos de som: todos os efeitos e ambientes são sintetizados em tempo real com a Web Audio API, a partir de osciladores e de ruído filtrado. Cada cena tem o seu ambiente sonoro: o menu, um zumbido grave; o quarto, o ruído baixo da cidade ao longe e um zumbido elétrico; o parque, o murmúrio das pessoas e uma valsa de realejo ao longe. Como os navegadores só liberam o áudio depois de um gesto do jogador, o contexto de áudio é criado no primeiro clique ou tecla.
+
+- **Arquivos:** `js/engine/audio.js`
+- **Requisitos correspondentes:** RF010 (parcial)
+- **Trecho de código:** Código 16
+
+[Código 16 – Um tom sintetizado com envelope (`js/engine/audio.js`)]
+
+```js
+tone(freq, { type = 'square', dur = 0.06, vol = 0.06, slide = 0, delay = 0, attack = 0.004, pan = 0 } = {}) {
+  if (!this.ctx) return;                       // áudio ainda não liberado pelo navegador
+  const t = this.ctx.currentTime + delay;
+  const o = this.ctx.createOscillator();
+  o.type = type;                               // 'sine', 'square', 'sawtooth', 'triangle'
+  o.frequency.setValueAtTime(freq, t);
+  if (slide) o.frequency.exponentialRampToValueAtTime(Math.max(20, freq + slide), t + dur);
+  let out = this._env(o, t, attack, vol, dur); // envelope: sobe em attack, cai em dur
+  // ... (posição no estéreo, quando pedida)
+  out.connect(this.master);                    // volume geral (menu > Som)
+  o.start(t);
+  o.stop(t + attack + dur + 0.05);
+}
+
+// exemplos: cada som do jogo é uma combinação de tons e ruídos
+tap() { this.tone(2400, { type: 'sine', dur: 0.018, vol: 0.05 }); }
+pop() { this.tone(660, { type: 'sine', dur: 0.06, vol: 0.05, slide: 420 }); }
+```
+
+Sintetizar os sons dispensou a busca e o licenciamento de arquivos de áudio e deixa cada efeito ajustável no código, como o batimento do pânico, cuja velocidade acompanha a intensidade (Código 6).
+
+### 4.2.16 Suporte a Gamepad e Mapeamento de Controles
+
+Todo o protótipo pode ser jogado com um controle no padrão Xbox, sem configuração. Para não duplicar a lógica das cenas, o módulo `gamepad.js` converte os botões em eventos de tecla (A vira Enter, B vira Backspace, Menu vira Esc) e o analógico esquerdo em velocidade analógica, de modo que inclinar pouco faz Ani andar devagar. Não há cursor: no celular, na estante, no criado-mudo, na mochila e nos papéis, o direcional troca o item escolhido, como num menu. Alguns sons importantes também fazem o controle vibrar.
+
+- **Arquivos:** `js/engine/gamepad.js`, `js/engine/glyphs.js`
+- **Requisitos correspondentes:** RF011, RF001, RNF004
+- **Trecho de código:** Código 17
+
+[Código 17 – Botões do controle convertidos nas teclas que as cenas já entendem (`js/engine/gamepad.js`)]
+
+```js
+press(i) {
+  const { ui, sfx } = this.game;
+  const scene = this.game.current;
+  const name = NAMES[i];                         // 'A', 'B', 'MENU'...
+  sfx.unlock();                                  // nem todo navegador libera o som pelo controle
+  if (this.game.onAnyPress?.()) return;          // "aperte para começar" e aviso de conteúdo
+  const mode = scene?.padMode?.() ?? null;       // a cena diz como quer o controle
+  if (ui.pauseOpen) {
+    if (name === 'A') this.key('Enter', true);
+    else if (name === 'B' || name === 'MENU' || name === 'VIEW') this.key('Escape', true);
+    return;
+  }
+  if (name === 'MENU' || name === 'VIEW') return this.key('Escape', true); // pausa
+  if (scene?.onPad?.(name, mode)) return;        // a cena pode tratar o botão do seu jeito
+  if (name === 'A') this.key('Enter', true);     // interagir / confirmar
+  else if (name === 'B') this.key('Backspace', true); // voltar
+}
+```
+
+As dicas de botões aparecem só no quarto, uma vez, como tutorial, e mudam entre teclado e controle conforme o dispositivo que o jogador está usando. O Quadro 33 apresenta o mapeamento dos controles.
 
 | Ação | Teclado e mouse | Gamepad (padrão Xbox) |
 | --- | --- | --- |
 | Movimento (para os lados e em profundidade) | WASD ou setas | Analógico esquerdo ou direcional |
-| Interagir | E ou clique esquerdo | A |
+| Interagir e confirmar | E, Enter ou clique esquerdo | A |
 | Voltar | Esc ou botão direito | B |
 | Olhar e escolher itens em primeira pessoa | Mouse | Analógico direito ou direcional |
 | Rolar o feed do celular | Roda do mouse | Analógico direito |
-| Diário de memórias (previsto; fora do protótipo) | Tab | Y |
 | Pausar | Esc | Menu (☰) |
-| Contemplar | Sem botão dedicado; depende de parar e observar | Sem botão dedicado; depende de parar e observar |
+| Diário de memórias (previsto; fora do protótipo) | Tab | Y |
 
-### 4.2.12 Sistema de Áudio Adaptativo
+## 4.3 Sistemas Previstos para o Jogo Completo
 
-O sistema de áudio adaptativo organiza trilha e efeitos de forma coerente com a mudança filosófica entre os atos. Seu papel é garantir que o som não apenas acompanhe a cena, mas participe da construção de sentido da jornada.
+Os sistemas a seguir constam dos requisitos e dos diagramas do capítulo 2, mas ficam fora do protótipo, que cobre apenas o início do Ato I. Eles serão implementados no jogo completo, em Unreal Engine 5.4.4 com C++.
 
-- **Classes envolvidas:** integração sistêmica com `Jogo`, `Ato` e eventos do cenário
-- **Requisito funcional correspondente:** RF010
-- **Regra de negócio correspondente:** não se aplica diretamente
-- **Princípio do projeto que originou o sistema:** o áudio acompanha a transição filosófica do jogo
-- **Trecho de código relevante:** `[Código 12 — transição de parâmetros e camadas sonoras por ato no middleware de áudio]`
-- **Captura de tela comentada:** `[Figura 21 – Configuração sonora de ato com trilha adaptada ao estado da jornada]`
+- **Diário de memórias** (RF005, RN001, RN005): registro único de cada fragmento coletado, consulta pelo diário e releitura dos itens ao longo dos atos, com as classes `Memoria`, `Diario` e `EntradaDiario`.
+- **Progressão por atos e sequência de memórias** (RF006, RF012, RF019, RN002 a RN004): os cinco atos em ordem fixa, a sequência linear de memórias de cada ato e o desbloqueio de cômodos, passagens e escadas da casa, com as classes `Ato` e `Cenario`.
+- **Mecânicas filosóficas dos atos** (RF013 a RF017): o peso literal do Ato I, os ecos de decisão do Ato II (`EcoDecisao`, RN006), a restauração por aceitação do Ato III (`ObjetoRestauravel`), a contemplação ativa do Ato IV (`ObjetoContemplativo`) e a dissolução das mecânicas no Ato V.
+- **Crises de ansiedade completas** (RF018): além do momento de pânico do protótipo, as manifestações, a respiração de Ani e o som fragmentado, com o estado Crise da classe `Jogo`.
+- **Puzzles contextuais** (RF007, UC-S014): puzzles de várias etapas, sem punição pelo erro e com saída a qualquer momento.
+- **Trilha e efeitos por ato** (RF010): a direção sonora de cada ato, descrita no GDD.
+- **Save completo** (RF009, RNF002): ato atual, memórias registradas, estado do diário e estado visual da casa.
+- **Sair do jogo** (RF023): no navegador, a sessão termina ao fechar a aba; a opção de sair, com confirmação, é do software para PC.
 
-O Quadro 35 apresenta o clima sonoro e os elementos previstos para cada ato.
+Na Unreal Engine, a arquitetura segue os diagramas do capítulo 2. A entrada será tratada pelo Enhanced Input, que associa a mesma *Input Action* à tecla e ao botão do controle, papel que no protótipo é do `gamepad.js`. O *GameMode* e a *GameInstance*, junto com a classe `Jogo`, guardarão o estado da sessão entre trocas de nível, e a notificação de `Ani` para `Jogo` no início e no fim das crises será feita por um *delegate*.
 
-| Ato | Clima Sonoro | Elementos |
+## 4.4 Atendimento dos Requisitos no Protótipo
+
+O Quadro 34 mostra a situação de cada requisito no protótipo: atendido, atendido em parte ou fora do protótipo, quando o requisito depende de partes do jogo que ainda não foram construídas.
+
+| Requisito | Situação no protótipo | Observação |
 | --- | --- | --- |
-| I | Peso e clausura | Silêncio pesado, rangidos, passos ecoados, relógios que não andam |
-| II | Loop e distorção | Repetições ligeiramente erradas, batimentos, ecos codificados |
-| III | Textura e imperfeição | Cordas imperfeitas, cerâmica, madeira, presença tátil dos sons |
-| IV | Abertura e passagem | Flauta, vento, sino distante, queda de pétalas e pausas longas |
-| V | Imensidão e silêncio | Sustentação mínima, espaço entre notas e sensação de vazio |
+| RF001 Movimentar personagem | Atendido | No quarto e no parque, para os lados e em profundidade, por teclado ou controle (4.2.3) |
+| RF002 Colisão com cenário e objetos | Atendido | Móveis como retângulos no chão e limites da faixa (4.2.3) |
+| RF003 Interagir com objetos | Atendido | Objetos do quarto e barracas do parque (4.2.6 e 4.2.7) |
+| RF004 Sistema de memórias | Parcial | A tirinha de fotos leva à memória do parque; a sequência de fragmentos ainda não existe |
+| RF005 Diário de memórias | Fora do protótipo | Previsto (4.3) |
+| RF006 Desbloqueio progressivo do cenário | Fora do protótipo | A passagem para o parque é feita pelo objeto-portal (RF027) |
+| RF007 Sistema de puzzles | Fora do protótipo | Previsto (4.3) |
+| RF008 Diálogos com personagens de memória | Parcial | Conversas com a Malu (Pretendente); os demais personagens de memória ficam para o jogo completo |
+| RF009 Sistema de save/load | Parcial | Salva o ponto do jogo no navegador; ato, memórias, diário e casa ainda não (4.2.14) |
+| RF010 Feedback sonoro e musical por ato | Parcial | Ambiente sonoro por cena, sintetizado; a variação por ato depende dos demais atos (4.2.15) |
+| RF011 Suporte a gamepad | Atendido | Controle no padrão Xbox em todo o protótipo (4.2.16) |
+| RF012 Progressão por atos filosóficos | Parcial | Só o início do Ato I; a identidade visual é a mesma em todas as cenas |
+| RF013 Mecânica de peso literal no Ato I | Fora do protótipo | Previsto (4.3) |
+| RF014 Ecos de decisão no Ato II | Fora do protótipo | Previsto (4.3) |
+| RF015 Restauração por aceitação no Ato III | Fora do protótipo | Previsto (4.3) |
+| RF016 Contemplação ativa no Ato IV | Fora do protótipo | Previsto (4.3) |
+| RF017 Dissolução de mecânicas no Ato V | Fora do protótipo | Previsto (4.3) |
+| RF018 Crises de ansiedade como elemento sensorial | Parcial | Momento de pânico com tremor, distorção e batimentos (4.2.5) |
+| RF019 Conclusão da sequência de memórias no Ato I | Fora do protótipo | Depende da sequência de memórias (4.3) |
+| RF020 Aviso de conteúdo sensível | Atendido | Antes de o jogo começar, com o CVV (4.2.12) |
+| RF021 Pausar jogo | Atendido | No quarto e no parque (4.2.13) |
+| RF022 Configurar vídeo e áudio | Atendido | Som, pixels e tela cheia no menu inicial e na pausa do parque (4.2.12 e 4.2.13) |
+| RF023 Sair do jogo | Fora do protótipo | No navegador, a sessão termina ao fechar a aba |
+| RF024 Celular em primeira pessoa | Atendido | Aplicativo Pixgram (4.2.4) |
+| RF025 Iluminação do ambiente | Atendido | Interruptor e luminária de plasma (4.2.6) |
+| RF026 Inspeção de objetos em primeira pessoa | Atendido | Estante, criado-mudo, mochila e papéis (4.2.7) |
+| RF027 Acesso a memórias por objeto-portal | Atendido | Tirinha de fotos e flash da cabine (4.2.8) |
+| RF028 Compra e consumo de comidas | Atendido | Algodão-doce, pipoca, churros e maçã do amor (4.2.10) |
+| RF029 Minigames | Atendido | Estoure o Balão, Derrube as Latas e Pescaria (4.2.11) |
+| RF030 Personagem acompanhante | Atendido | A Malu no parque (4.2.9) |
+| RF031 Salvamento automático | Parcial | Um ponto de salvamento, no início do quarto (4.2.14) |
+| RNF001 Desempenho mínimo | A avaliar | Medição prevista no capítulo 5 |
+| RNF002 Carregamento e integridade dos saves | Atendido | O save local é lido no início, sem espera perceptível |
+| RNF003 Portabilidade de código e assets | A avaliar | Análise de portabilidade prevista no capítulo 5 |
+| RNF004 Jogabilidade autoexplicativa | Atendido | Dicas de botões só no quarto, uma vez, e rótulos de interação junto aos objetos |
+| RNF005 Internacionalização de textos | Fora do protótipo | Os textos ainda ficam no código |
+| RNF006 Acessibilidade sensorial e de áudio | Fora do protótipo | Por decisão do autor, vale para o jogo final |
 
-### 4.2.13 Sistema de Puzzles Contextuais
-
-O RF007 prevê puzzles contextuais integrados ao ambiente e à narrativa dos atos. A resolução de um puzzle é descrita no UC-S014 e tem várias etapas: o jogador abre o puzzle, faz uma tentativa, pode errar e tentar de novo, e conclui. Um erro não gera punição sistêmica, em coerência com a ausência de morte ou game over no projeto.
-
-- **Classes envolvidas:** nenhuma classe própria no diagrama de classes atual
-- **Requisito funcional correspondente:** RF007
-- **Caso de uso correspondente:** UC-S014
-- **Regra de negócio correspondente:** não se aplica diretamente
-- **Princípio do projeto que originou o sistema:** integração entre ambiente, narrativa e progressão por atos
-- **Trecho de código relevante:** `[Código 13 — abertura do puzzle, verificação da tentativa e registro da conclusão]`
-- **Captura de tela comentada:** `[Figura 22 – Puzzle contextual em andamento no cenário de um ato]`
-
-A quantidade de puzzles e sua distribuição por ato são definidas no level design, durante a implementação. O jogador pode sair do puzzle a qualquer momento; nesse caso, o puzzle volta ao estado inicial, sem salvar progresso parcial. Ainda estão em aberto os tipos de puzzle [definir].
-
-### 4.2.14 Sistema de Diálogos
-
-O sistema de diálogos apresenta falas textuais e fragmentadas dos personagens de memória (Mãe, Padrasto, Pretendente e Primo). Eles surgem como ecos do passado, e não como companheiros estáveis. O diálogo é iniciado pela interação do jogador, descrita no UC-S003.
-
-- **Classes envolvidas:** `Ani`, `NPC`, `Dialogo`
-- **Requisito funcional correspondente:** RF008
-- **Regra de negócio correspondente:** não se aplica diretamente
-- **Princípio do projeto que originou o sistema:** comunicação prioritariamente textual e personagens como ecos da memória
-- **Trecho de código relevante:** `[Código 14 — início, avanço e encerramento de um diálogo fragmentado a partir da interação com um NPC]`
-- **Captura de tela comentada:** `[Figura 23 – Diálogo textual fragmentado com personagem de memória]`
-
-Na implementação prevista, `NPC.interagir()` identifica o tipo do personagem (`TipoNPC`) e aciona o `Dialogo` associado, que exibe suas `linhas` em sequência por meio de `iniciar()`, `avançar()` e `encerrar()`. O atributo `fragmentado` indica falas apresentadas de forma interrompida ou incompleta, recurso que reforça o caráter de memória dos encontros. Quando aplicável, o conteúdo do diálogo é registrado como memória narrativa ou reforço simbólico do ato atual.
-
-### 4.2.15 Suporte a Gamepad
-
-O suporte a gamepad permite que todo o jogo seja controlado também por um controle no padrão Xbox, sem perda de funções em relação ao teclado. Como a interface não usa HUD permanente, o mapeamento é reduzido aos comandos de movimento, interação, diário de memórias e pausa, conforme o Quadro 34, na seção 4.2.11.
-
-- **Classes envolvidas:** `Ani`, com a entrada tratada pelo Enhanced Input da Unreal Engine 5 (fora do escopo do diagrama de classes)
-- **Requisito funcional correspondente:** RF011, com RF001 (movimento por teclado ou gamepad)
-- **Regra de negócio correspondente:** não se aplica diretamente
-- **Princípio do projeto que originou o sistema:** acesso equivalente à experiência por teclado ou gamepad
-- **Trecho de código relevante:** `[Código 15 — Input Mapping Context com as mesmas Input Actions associadas a teclas e a botões do gamepad]`
-- **Captura de tela comentada:** `[Figura 24 – Dicas de botões do gamepad durante a exploração]`
-
-No Enhanced Input, cada comando é uma *Input Action* única, à qual o *Input Mapping Context* associa tanto a tecla quanto o botão correspondente do gamepad. Dessa forma, `Ani` recebe a mesma ação independentemente do dispositivo, sem mudar a lógica de jogo.
-
-## 4.3 Capturas de Tela e Funcionalidades
-
-As Figuras 25 a 32 indicam as capturas de tela previstas para as principais funcionalidades do protótipo.
-
-[Figura 25 – Tela inicial / menu]  
-Descrição: a imagem deve mostrar o menu inicial do jogo, evidenciando o início da jornada e a identidade visual contemplativa da interface.
-
-[Figura 26 – Exploração do cenário no Ato I]  
-Descrição: a imagem deve mostrar Ani explorando o cenário inicial, com destaque para a lentidão do movimento após o contato com memórias, evidenciando RF013.
-
-[Figura 27 – Diário de memórias aberto]  
-Descrição: a imagem deve mostrar a interface diegética do diário, com entradas registradas e leitura de um fragmento narrativo associado a RF005.
-
-[Figura 28 – Cenário do Ato II em corredor em loop]  
-Descrição: a imagem deve mostrar um espaço repetitivo e desorientador, evidenciando a mecânica de ecos de decisão e o impasse do Ato II.
-
-[Figura 29 – Mecânica de restauração no Ato III]  
-Descrição: a imagem deve mostrar um objeto antes e depois da restauração, preservando rachaduras visíveis, em consonância com RF015.
-
-[Figura 30 – Jardim contemplativo do Ato IV]  
-Descrição: a imagem deve mostrar Ani parada diante de um elemento contemplativo, com liberação de narração ou memória após observação prolongada.
-
-[Figura 31 – Crise de ansiedade com distorção visual]  
-Descrição: a imagem deve mostrar distorções de tela, intensificação de manifestações e atmosfera sonora associada à crise, evidenciando RF018.
-
-[Figura 32 – Cenário do Ato V com dissolução de mecânicas]  
-Descrição: a imagem deve mostrar um espaço aberto e indefinido, com redução perceptível de sistemas de interação e predominância de movimento e contemplação.
+Dos 31 requisitos funcionais, 14 são atendidos pelo protótipo, 7 de forma parcial e 10 ficam fora dele. Os atendidos concentram-se nas mecânicas do início do Ato I (RF024 a RF030), na movimentação e na interação, e na estrutura de sessão (aviso, pausa, configurações e gamepad). Os requisitos fora do protótipo são, na maior parte, os das mecânicas dos demais atos, que não fazem parte do escopo definido no TAP.
 
 # Referências
 
@@ -1597,7 +2078,7 @@ Este apêndice resume o Game Design Document (GDD) de **Ani**, mantido na ínteg
 
 ## C.1 Visão e ficha técnica
 
-**Ani** é uma aventura narrativa contemplativa em 2.5D sobre consciência, sofrimento e a descoberta lenta do sentido. A protagonista é uma mulher comum, de aproximadamente 24 anos, em colapso existencial; seu nome vem do hebraico **אֲנִי**, "eu". O jogo não acompanha escolhas morais, e sim a mudança na forma como Ani percebe a existência. O Quadro 36 reúne a ficha técnica do jogo.
+**Ani** é uma aventura narrativa contemplativa em 2.5D sobre consciência, sofrimento e a descoberta lenta do sentido. A protagonista é uma mulher comum, de aproximadamente 24 anos, em colapso existencial; seu nome vem do hebraico **אֲנִי**, "eu". O jogo não acompanha escolhas morais, e sim a mudança na forma como Ani percebe a existência. O Quadro 35 reúne a ficha técnica do jogo.
 
 | Item | Descrição |
 | --- | --- |
@@ -1611,7 +2092,7 @@ Este apêndice resume o Game Design Document (GDD) de **Ani**, mantido na ínteg
 
 ## C.2 Pilar conceitual e atos
 
-A jornada parte do pessimismo da filosofia ocidental e caminha, em cinco atos de ordem fixa, para filosofias contemplativas japonesas. A transição se manifesta no ambiente, no som, nas mecânicas e no ritmo, sem explicação didática. O Quadro 37 resume os cinco atos.
+A jornada parte do pessimismo da filosofia ocidental e caminha, em cinco atos de ordem fixa, para filosofias contemplativas japonesas. A transição se manifesta no ambiente, no som, nas mecânicas e no ritmo, sem explicação didática. O Quadro 36 resume os cinco atos.
 
 | Ato | Referência | Ideia central | Símbolo | Mecânica própria |
 | --- | --- | --- | --- | --- |
