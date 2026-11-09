@@ -7,10 +7,10 @@
 | Nome do projeto | Ani אֲנִי |
 | Tipo | Jogo digital narrativo contemplativo |
 | Área | Desenvolvimento de software e jogos digitais |
-| Plataforma inicial | PC, executado no navegador (Windows, Linux e macOS) |
-| Motor de jogo | Three.js (biblioteca 3D sobre WebGL) |
-| Linguagem principal | JavaScript, com HTML e CSS |
-| Natureza do projeto | Projeto autoral com finalidade acadêmica e prototipação |
+| Plataforma inicial | PC (Windows), como software instalado; o protótipo é executado no navegador |
+| Motor de jogo | Jogo completo: [preencher]; protótipo: Three.js (biblioteca 3D sobre WebGL) |
+| Linguagem principal | Jogo completo: [preencher]; protótipo: JavaScript, com HTML e CSS |
+| Natureza do projeto | Projeto autoral com finalidade acadêmica e prototipação, com apoio de ferramentas de IA generativa na produção dos sprites e na modelagem 3D do protótipo |
 
 ## 2. Problema de Pesquisa
 
@@ -42,7 +42,7 @@ O projeto é conduzido segundo a metodologia Cascata (Waterfall), com fases sequ
 
 A modelagem utiliza BPMN para representação dos fluxos de gameplay e UML para casos de uso e estrutura do sistema, garantindo rastreabilidade entre as decisões conceituais do GDD e as decisões técnicas do protótipo.
 
-As tecnologias e ferramentas utilizadas são:
+As tecnologias e ferramentas utilizadas no protótipo são:
 
 - HTML, CSS e JavaScript (módulos ES, sem etapa de build) para a estrutura, a interface e a lógica do jogo;
 - Three.js para a renderização 3D dos cenários sobre WebGL, com pós-processamento próprio para a estética de pixel art;
@@ -51,7 +51,7 @@ As tecnologias e ferramentas utilizadas são:
 - Claude Opus 5.5 para a modelagem 3D dos cenários em Three.js;
 - GitHub Actions e GitHub Pages para a verificação e a publicação do protótipo.
 
-Na fase de implementação, a tecnologia prevista inicialmente para o protótipo (Unreal Engine com C++) foi substituída por essa base web. O principal motivo foi o tempo disponível para o desenvolvimento: após análise, concluiu-se que, no prazo do projeto, o Three.js era a tecnologia mais adequada.
+O jogo completo será desenvolvido em uma engine de jogos, como software para PC. Para o protótipo, a tecnologia prevista inicialmente (Unreal Engine com C++) foi substituída por essa base web, executada no navegador, que também torna a apresentação mais simples. O principal motivo foi o tempo disponível para o desenvolvimento: após análise, concluiu-se que, no prazo do projeto, o Three.js era a tecnologia mais adequada para o protótipo. A produção do protótipo contou com apoio de IA generativa: o GPT-6, ao lado do Sprite Fusion, na geração dos sprites, e o Claude Opus 5.5 na modelagem 3D dos cenários.
 
 ## 7. Escopo
 
@@ -80,7 +80,7 @@ O protótipo demonstra parte do design e das mecânicas do jogo por meio do iní
 - lançamento comercial do jogo;
 - versão final completa com todo o conteúdo planejado, refinado e polido;
 - no protótipo, o diário de memórias, as mecânicas por ato e os Atos II a V, que permanecem na concepção do jogo;
-- portabilidade efetiva para consoles ou outras plataformas;
+- portabilidade efetiva para consoles e dispositivos móveis;
 - produção final de todos os assets artísticos e sonoros definitivos.
 
 ## 8. Principais Entregas
@@ -88,7 +88,7 @@ O protótipo demonstra parte do design e das mecânicas do jogo por meio do iní
 - conceito consolidado de **Ani** como jogo narrativo contemplativo;
 - documentação funcional e estrutural de apoio ao desenvolvimento;
 - modelagem dos principais fluxos e interações do sistema;
-- protótipo jogável da experiência central;
+- protótipo jogável do início do Ato I (cerca de dez minutos de jogo), executado no navegador e publicado no GitHub Pages;
 - base técnica e conceitual para evolução futura do projeto.
 
 ## 9. Stakeholders
@@ -119,7 +119,7 @@ O projeto é direcionado principalmente a pessoas entre 16 e 28 anos interessada
 
 ## 12. Restrições
 
-- tempo limitado para desenvolvimento e refinamento do protótipo;
+- tempo limitado para desenvolvimento e refinamento do protótipo, que levou à adoção de uma base web (Three.js) para o protótipo, mais rápida de produzir e de apresentar;
 - escopo sujeito a ajustes conforme viabilidade técnica e maturação da proposta;
 - recursos artísticos e sonoros ainda em fase de definição e produção;
 - necessidade de concentrar esforços na experiência central do jogo antes da expansão de conteúdo.
@@ -133,6 +133,11 @@ O projeto é direcionado principalmente a pessoas entre 16 e 28 anos interessada
 | Dependência de assets visuais e sonoros ainda não finalizados | Atraso na consolidação da atmosfera desejada |
 | Dificuldade em transformar filosofia em mecânicas claras | Distanciamento entre proposta conceitual e experiência jogável |
 | Excesso de abstração narrativa | Redução da compreensão e do engajamento do jogador |
+| Necessidade de trocar de tecnologia por falta de tempo | Retrabalho na base técnica do protótipo e na documentação |
+| Dependência de IA generativa na produção dos sprites | Inconsistências entre quadros e personagens, que exigem correção por scripts próprios |
+| Desempenho do protótipo no navegador em placas de vídeo modestas | Queda de quadros por segundo e perda da atmosfera pretendida |
+| Limitações impostas pelo navegador (tela cheia só após um clique, suporte variável a controles) | Experiência menos imersiva ou controles indisponíveis em alguns navegadores |
+| Progresso salvo no armazenamento do navegador | Perda do progresso se o jogador limpar os dados do navegador |
 
 ## 14. Cronograma Macro
 

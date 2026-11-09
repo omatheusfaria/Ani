@@ -29,7 +29,7 @@ Um side-scroller narrativo contemplativo sobre consciência, sofrimento e a desc
 
 ### Sinopse
 
-A jornada começa no quarto de Ani, às 23:47. Deitada no escuro, ela rola o perfil de Malu numa rede social até a bateria do celular acabar. Sem luz, Ani se levanta e explora o quarto em busca do carregador, e os objetos que encontra a levam para dentro da própria mente: um lugar familiar, mas deformado; íntimo, mas opressivo. Não há mapa, não há tutorial explícito e não há inimigos no sentido tradicional. O que existe são memórias, silêncio, ruínas emocionais e o peso de existir com consciência demais.
+A jornada começa no quarto de Ani, às 23:47. Deitada no escuro, ela rola o perfil de Malu numa rede social até a bateria do celular acabar. Sem luz, Ani se levanta e explora o quarto em busca do carregador, e os objetos que encontra a levam para dentro da própria mente: um lugar familiar, mas deformado; íntimo, mas opressivo. Não há mapa nem tutorial extenso (as dicas de botões aparecem uma única vez, no quarto, e somem sozinhas), e não há inimigos no sentido tradicional. O que existe são memórias, silêncio, ruínas emocionais e o peso de existir com consciência demais.
 
 *→ Formalizado em RNF004 — Jogabilidade autoexplicativa (docs/requisitos/requisitos-nao-funcionais.md).*
 
@@ -45,9 +45,9 @@ A tabela a seguir apresenta a ficha técnica base do projeto **Ani**.
 | --- | --- |
 | Título | Ani |
 | Gênero | Side-scroller narrativo contemplativo |
-| Plataforma principal | PC, executado no navegador (Windows, Linux e macOS) |
-| Engine | Three.js (biblioteca 3D sobre WebGL) |
-| Linguagem | JavaScript, com HTML e CSS |
+| Plataforma principal | PC (Windows), como software instalado; o protótipo é executado no navegador |
+| Engine | Jogo completo: [preencher]; protótipo: Three.js (biblioteca 3D sobre WebGL) |
+| Linguagem | Jogo completo: [preencher]; protótipo: JavaScript, com HTML e CSS |
 | Câmera | Lateral, com planos em primeira pessoa e de cima nos momentos de inspeção |
 | Público-alvo | 16 a 28 anos, com interesse em filosofia, arte e narrativas reflexivas |
 | Tom | Sombrio, melancólico e contemplativo, com redenção gradual |
@@ -91,7 +91,7 @@ A tabela a seguir apresenta o eixo filosófico que orienta cada ato da jornada d
 
 O jogo parte do presente, no quarto de Ani, e se aprofunda na mente dela. Objetos do quarto funcionam como portais: ao interagir com eles, Ani é levada para memórias vividas dentro da própria cabeça. Essa mente é representada como um espaço arquitetônico impossível: apartamentos que se repetem, corredores alagados, ruínas em loop, jardins noturnos e cenários familiares ligeiramente errados.
 
-O núcleo central é a casa de Ani, inicialmente cinzenta, incompleta e sufocante. Conforme os atos avançam, ela ganha textura, luz e reorganização espacial. Novos cômodos, passagens, portas e escadas surgem à medida que a jornada se aprofunda.
+O núcleo central é a casa de Ani, a começar pelo quarto: um espaço vivido, cheio de marcas de quem ela é, com pôsteres de bandas, estante de livros, discos, roupas espalhadas e a luminária de plasma no criado-mudo. Conforme os atos avançam, novos cômodos, passagens, portas e escadas surgem, e a forma como Ani percebe a casa muda junto com ela.
 
 *→ Formalizado em RF006 — Desbloqueio progressivo do cenário (docs/requisitos/requisitos-funcionais.md).*
 
@@ -107,14 +107,17 @@ As memórias aparecem como extensões da casa e como portais para fragmentos do 
 - Ruas familiares, porém deslocadas
 - Hospital com atmosfera branca e opressiva
 - Bares e espaços sociais, onde a ansiedade se intensifica
+- Parque de diversões, com barracas, minigames e a roda-gigante (a memória com Malu, no Ato I)
+
+Esses cenários são exemplos: o jogo terá vários outros cenários de memória além dos citados.
 
 ### Progressão Visual por Ato
 
-A tabela a seguir apresenta a progressão visual planejada para cada ato do jogo.
+O presente e as memórias têm paletas próprias. A tabela a seguir apresenta a progressão visual planejada para o presente e para os espaços mentais de cada ato. As memórias seguem o tom emocional da lembrança: memórias felizes, como o parque de diversões do Ato I, são quentes, coloridas e iluminadas; memórias traumáticas são frias, abafadas e escuras, como o som descrito na seção 8.
 
 | Ato | Paleta | Atmosfera |
 | --- | --- | --- |
-| I | Cinza-chumbo e preto profundo | Claustrofobia, tetos baixos, relógios parados |
+| I | Índigo do luar e preto profundo no escuro; âmbar quando a luz acende | Claustrofobia, quarto no escuro, relógios parados |
 | II | Cinza-azulado e sombras densas | Labirinto, repetição e desorientação |
 | III | Ocre, marrom e ouro nas rachaduras | Quietude, musgo, frestas de luz |
 | IV | Azul-índigo, rosa-cerejeira e dourado | Abertura, respiro, contemplação |
@@ -294,6 +297,8 @@ Crises de ansiedade continuam como uma das bases sensoriais do jogo.
 - As manifestações se multiplicam
 - A respiração de Ani se torna indicador importante do estado emocional
 
+A primeira aparição desse sistema está no início do Ato I: quando Ani curte sem querer uma foto de Malu no celular, entra em pânico. A tela sofre glitch, a imagem treme e as falas surgem no ritmo da aflição dela.
+
 *→ Formalizado em RF018 — Crises de ansiedade como elemento sensorial e apoiado por RNF006 — Acessibilidade sensorial e de áudio (docs/requisitos/requisitos-funcionais.md; docs/requisitos/requisitos-nao-funcionais.md).*
 
 Por tratar de ansiedade e sofrimento psíquico, o jogo exibe, antes do início, um aviso sobre esses temas.
@@ -313,7 +318,9 @@ A interface deve ser quase invisível. O jogo comunica estado por atmosfera, som
 - Sem HUD permanente
 - Sem barras numéricas
 - Exceção: os minigames do parque (Ato I) exibem placar, munição e medidores enquanto estão em andamento
-- Ícones discretos e rabiscados
+- Indicações de interação discretas: balões em pixel art com o botão correspondente, que só aparecem perto dos objetos
+- Menus diegéticos: o menu de pausa abre na tela do celular de Ani, como um aplicativo de ajustes, e os demais menus seguem a mesma ideia
+- Cartões de capítulo e faixas de cinema marcam as transições narrativas
 - Diário de memórias acessível como objeto diegético
 - A respiração funciona como indicador sensorial recorrente
 
@@ -325,9 +332,12 @@ A tabela a seguir apresenta os controles previstos para a versão de PC.
 
 | Ação | Teclado e mouse | Gamepad (padrão Xbox) |
 | --- | --- | --- |
-| Movimento | WASD ou setas | Analógico esquerdo ou direcional |
+| Movimento (para os lados e em profundidade) | WASD ou setas | Analógico esquerdo ou direcional |
 | Interagir | E ou clique esquerdo | A |
-| Diário de memórias | Tab | Y |
+| Voltar | Esc ou botão direito | B |
+| Olhar e escolher itens em primeira pessoa | Mouse | Analógico direito ou direcional |
+| Rolar o feed do celular | Roda do mouse | Analógico direito |
+| Diário de memórias (previsto; fora do protótipo) | Tab | Y |
 | Pausar | Esc | Menu (☰) |
 | Contemplar | Sem botão dedicado; depende de parar e observar | Sem botão dedicado; depende de parar e observar |
 
@@ -385,9 +395,9 @@ A tabela a seguir apresenta a base técnica atualmente definida para o projeto.
 
 | Item | Direção Atual |
 | --- | --- |
-| Engine | Three.js (biblioteca 3D sobre WebGL) |
-| Linguagem | JavaScript, com HTML e CSS |
-| Plataforma inicial | PC, executado no navegador (Windows, Linux e macOS) |
+| Engine | Jogo completo: [preencher]; protótipo: Three.js (biblioteca 3D sobre WebGL) |
+| Linguagem | Jogo completo: [preencher]; protótipo: JavaScript, com HTML e CSS |
+| Plataforma inicial | PC (Windows), como software instalado; o protótipo é executado no navegador |
 | Estrutura visual | Side-scroller lateral com elementos 3D estilizados |
 | Câmera | Lateral, com planos em primeira pessoa e de cima nos momentos de inspeção |
 | Texturas | Pixel art nas personagens e objetos, sobre cenários 3D estilizados com iluminação cinematográfica |

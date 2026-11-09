@@ -28,7 +28,7 @@ O objetivo geral do projeto é conceber um jogo narrativo contemplativo que repr
 
 A justificativa do trabalho apoia-se na singularidade dos jogos digitais como meio para representar experiências internas e subjetivas. Em **Ani**, a ausência de combate, de HUD numérico permanente e de moralidade binária não decorre de limitação técnica, mas de aderência ao objeto de pesquisa. A única exceção são os minigames das barracas do parque, no Ato I: como reproduzem jogos de parque de diversões, exibem placar e interface própria enquanto duram, sem efeito sobre a progressão. Como o foco está na travessia do sofrimento, na observação e na transformação de percepção, a interface minimalista, as pausas, o silêncio e as mecânicas contemplativas tornam-se escolhas metodologicamente coerentes com o que se pretende investigar em software interativo.
 
-O projeto é desenvolvido segundo a metodologia Cascata, com fases sequenciais de levantamento de requisitos, modelagem, design de sistemas e implementação. As ferramentas centrais registradas no projeto são HTML, CSS e JavaScript com a biblioteca Three.js, executados no navegador, o Visual Studio Code, o Sprite Fusion e o GPT-6 para a geração dos sprites, scripts em Python (NumPy e Pillow) para o tratamento deles e o Claude Opus 5.5 para a modelagem 3D dos cenários em Three.js. A organização deste documento acompanha esse percurso: após a introdução, apresenta-se o Termo de Abertura do Projeto; em seguida, o levantamento de requisitos, com BPMN, requisitos, regras, casos de uso, diagrama de classes e DER; depois, as ferramentas e métodos empregados; por fim, descreve-se o desenvolvimento do protótipo funcional. O Apêndice B apresenta a missão, a visão e os valores do projeto. O Apêndice C traz uma versão resumida do Game Design Document, que reúne a direção criativa da qual os requisitos foram derivados.
+O projeto é desenvolvido segundo a metodologia Cascata, com fases sequenciais de levantamento de requisitos, modelagem, design de sistemas e implementação. As ferramentas centrais do protótipo são HTML, CSS e JavaScript com a biblioteca Three.js, executados no navegador, o Visual Studio Code, o Sprite Fusion e o GPT-6 para a geração dos sprites, scripts em Python (NumPy e Pillow) para o tratamento deles e o Claude Opus 5.5 para a modelagem 3D dos cenários em Three.js. A organização deste documento acompanha esse percurso: após a introdução, apresenta-se o Termo de Abertura do Projeto; em seguida, o levantamento de requisitos, com BPMN, requisitos, regras, casos de uso, diagrama de classes e DER; depois, as ferramentas e métodos empregados; por fim, descreve-se o desenvolvimento do protótipo funcional. O Apêndice B apresenta a missão, a visão e os valores do projeto. O Apêndice C traz uma versão resumida do Game Design Document, que reúne a direção criativa da qual os requisitos foram derivados.
 
 ## 1.1 Termo de Abertura do Projeto (TAP)
 
@@ -47,10 +47,10 @@ A identificação do projeto é apresentada no Quadro 2.
 | Nome do projeto | Ani אֲנִי |
 | Tipo | Jogo digital narrativo contemplativo |
 | Área | Desenvolvimento de software e jogos digitais |
-| Plataforma inicial | PC, executado no navegador (Windows, Linux e macOS) |
-| Motor de jogo | Three.js (biblioteca 3D sobre WebGL) |
-| Linguagem principal | JavaScript, com HTML e CSS |
-| Natureza do projeto | Projeto autoral com finalidade acadêmica e prototipação |
+| Plataforma inicial | PC (Windows), como software instalado; o protótipo é executado no navegador |
+| Motor de jogo | Jogo completo: [preencher]; protótipo: Three.js (biblioteca 3D sobre WebGL) |
+| Linguagem principal | Jogo completo: [preencher]; protótipo: JavaScript, com HTML e CSS |
+| Natureza do projeto | Projeto autoral com finalidade acadêmica e prototipação, com apoio de ferramentas de IA generativa na produção dos sprites e na modelagem 3D do protótipo |
 
 #### Ficha do Produto
 
@@ -60,9 +60,9 @@ As características do produto estão resumidas no Quadro 3.
 | --- | --- |
 | Título | Ani |
 | Gênero | Side-scroller narrativo contemplativo |
-| Plataforma principal | PC, executado no navegador (Windows, Linux e macOS) |
-| Engine | Three.js (biblioteca 3D sobre WebGL) |
-| Linguagem | JavaScript, com HTML e CSS |
+| Plataforma principal | PC (Windows), como software instalado; o protótipo é executado no navegador |
+| Engine | Jogo completo: [preencher]; protótipo: Three.js (biblioteca 3D sobre WebGL) |
+| Linguagem | Jogo completo: [preencher]; protótipo: JavaScript, com HTML e CSS |
 | Câmera | Lateral, com planos em primeira pessoa e de cima nos momentos de inspeção |
 | Público-alvo | 16 a 28 anos, com interesse em filosofia, arte e narrativas reflexivas |
 | Tom | Sombrio, melancólico e contemplativo, com redenção gradual |
@@ -98,7 +98,7 @@ O projeto é conduzido segundo a metodologia Cascata (Waterfall), com fases sequ
 
 A modelagem utiliza BPMN para representação dos fluxos de gameplay e UML para casos de uso e estrutura do sistema, garantindo rastreabilidade entre as decisões conceituais do projeto e as decisões técnicas do protótipo.
 
-As tecnologias e ferramentas utilizadas são:
+As tecnologias e ferramentas utilizadas no protótipo são:
 
 - HTML, CSS e JavaScript (módulos ES, sem etapa de build) para a estrutura, a interface e a lógica do jogo;
 - Three.js para a renderização 3D dos cenários sobre WebGL, com pós-processamento próprio para a estética de pixel art;
@@ -107,7 +107,7 @@ As tecnologias e ferramentas utilizadas são:
 - Claude Opus 5.5 para a modelagem 3D dos cenários em Three.js;
 - GitHub Actions e GitHub Pages para a verificação e a publicação do protótipo.
 
-Na fase de implementação, a tecnologia prevista inicialmente para o protótipo (Unreal Engine com C++) foi substituída por essa base web. O principal motivo foi o tempo disponível para o desenvolvimento: após análise, concluiu-se que, no prazo do projeto, o Three.js era a tecnologia mais adequada.
+O jogo completo será desenvolvido em uma engine de jogos, como software para PC. Para o protótipo, a tecnologia prevista inicialmente (Unreal Engine com C++) foi substituída por essa base web, executada no navegador, que também torna a apresentação mais simples. O principal motivo foi o tempo disponível para o desenvolvimento: após análise, concluiu-se que, no prazo do projeto, o Three.js era a tecnologia mais adequada para o protótipo. A produção do protótipo contou com apoio de IA generativa: o GPT-6, ao lado do Sprite Fusion, na geração dos sprites, e o Claude Opus 5.5 na modelagem 3D dos cenários.
 
 ### 1.1.7 Escopo
 
@@ -136,7 +136,7 @@ O protótipo demonstra parte do design e das mecânicas do jogo por meio do iní
 - lançamento comercial do jogo;
 - versão final completa com todo o conteúdo planejado, refinado e polido;
 - no protótipo, o diário de memórias, as mecânicas por ato e os Atos II a V, que permanecem na concepção do jogo;
-- portabilidade efetiva para consoles ou outras plataformas;
+- portabilidade efetiva para consoles e dispositivos móveis;
 - produção final de todos os assets artísticos e sonoros definitivos.
 
 #### Principais Características do Produto
@@ -156,7 +156,7 @@ O protótipo demonstra parte do design e das mecânicas do jogo por meio do iní
 - conceito consolidado de **Ani** como jogo narrativo contemplativo;
 - documentação funcional e estrutural de apoio ao desenvolvimento;
 - modelagem dos principais fluxos e interações do sistema;
-- protótipo jogável da experiência central;
+- protótipo jogável do início do Ato I (cerca de dez minutos de jogo), executado no navegador e publicado no GitHub Pages;
 - base técnica e conceitual para evolução futura do projeto.
 
 ### 1.1.9 Stakeholders
@@ -189,7 +189,7 @@ O projeto é direcionado principalmente a pessoas entre 16 e 28 anos interessada
 
 ### 1.1.12 Restrições
 
-- tempo limitado para desenvolvimento e refinamento do protótipo;
+- tempo limitado para desenvolvimento e refinamento do protótipo, que levou à adoção de uma base web (Three.js) para o protótipo, mais rápida de produzir e de apresentar;
 - escopo sujeito a ajustes conforme viabilidade técnica e maturação da proposta;
 - recursos artísticos e sonoros ainda em fase de definição e produção;
 - necessidade de concentrar esforços na experiência central do jogo antes da expansão de conteúdo.
@@ -205,6 +205,11 @@ Os riscos iniciais e seus impactos estão listados no Quadro 5.
 | Dependência de assets visuais e sonoros ainda não finalizados | Atraso na consolidação da atmosfera desejada |
 | Dificuldade em transformar filosofia em mecânicas claras | Distanciamento entre proposta conceitual e experiência jogável |
 | Excesso de abstração narrativa | Redução da compreensão e do engajamento do jogador |
+| Necessidade de trocar de tecnologia por falta de tempo | Retrabalho na base técnica do protótipo e na documentação |
+| Dependência de IA generativa na produção dos sprites | Inconsistências entre quadros e personagens, que exigem correção por scripts próprios |
+| Desempenho do protótipo no navegador em placas de vídeo modestas | Queda de quadros por segundo e perda da atmosfera pretendida |
+| Limitações impostas pelo navegador (tela cheia só após um clique, suporte variável a controles) | Experiência menos imersiva ou controles indisponíveis em alguns navegadores |
+| Progresso salvo no armazenamento do navegador | Perda do progresso se o jogador limpar os dados do navegador |
 
 ### 1.1.14 Cronograma Macro
 
@@ -1240,9 +1245,12 @@ O Quadro 32 apresenta o mapeamento dos controles no teclado e no gamepad.
 
 | Ação | Teclado e mouse | Gamepad (padrão Xbox) |
 | --- | --- | --- |
-| Movimento | WASD ou setas | Analógico esquerdo ou direcional |
+| Movimento (para os lados e em profundidade) | WASD ou setas | Analógico esquerdo ou direcional |
 | Interagir | E ou clique esquerdo | A |
-| Diário de memórias | Tab | Y |
+| Voltar | Esc ou botão direito | B |
+| Olhar e escolher itens em primeira pessoa | Mouse | Analógico direito ou direcional |
+| Rolar o feed do celular | Roda do mouse | Analógico direito |
+| Diário de memórias (previsto; fora do protótipo) | Tab | Y |
 | Pausar | Esc | Menu (☰) |
 | Contemplar | Sem botão dedicado; depende de parar e observar | Sem botão dedicado; depende de parar e observar |
 
@@ -1460,8 +1468,8 @@ Este apêndice resume o Game Design Document (GDD) de **Ani**, mantido na ínteg
 | Item | Descrição |
 | --- | --- |
 | Gênero | Side-scroller narrativo contemplativo |
-| Plataforma | PC, executado no navegador (Windows, Linux e macOS) |
-| Engine e linguagem | Three.js (WebGL) e JavaScript |
+| Plataforma | PC (Windows); o protótipo é executado no navegador |
+| Engine e linguagem | Jogo completo: [preencher]; protótipo: Three.js (WebGL) e JavaScript |
 | Câmera | Lateral, com planos em primeira pessoa e de cima nos momentos de inspeção |
 | Público-alvo | 16 a 28 anos, com interesse em filosofia, arte e narrativas reflexivas |
 | Tom | Sombrio, melancólico e contemplativo, com redenção gradual |
@@ -1483,10 +1491,10 @@ Princípios de direção: o jogo não é sobre vencer o sofrimento, mas atravess
 
 ## C.3 Mundo, personagens e sistemas
 
-O jogo parte do presente, no quarto de Ani, e se aprofunda na mente dela: objetos do quarto funcionam como portais para memórias vividas dentro da própria cabeça. O núcleo é a casa da protagonista, inicialmente cinzenta e incompleta, que ganha luz, textura e novos cômodos conforme os atos avançam. Dela partem cenários de memória: casa de infância, escola, trabalho, ruas, hospital e espaços sociais. A paleta acompanha os atos, do cinza-chumbo do Ato I ao azul quase preto do Ato V, passando pelo ocre com ouro do Ato III e pelo índigo e rosa-cerejeira do Ato IV.
+O jogo parte do presente, no quarto de Ani, e se aprofunda na mente dela: objetos do quarto funcionam como portais para memórias vividas dentro da própria cabeça. O núcleo é a casa da protagonista, a começar pelo quarto, um espaço vivido e cheio de marcas de quem ela é, que ganha novos cômodos e passagens conforme os atos avançam. Dela partem cenários de memória, como a casa de infância, a escola, o trabalho, as ruas, o hospital, os espaços sociais e o parque de diversões do Ato I, entre outros. A paleta acompanha os atos, do índigo e preto do Ato I ao azul quase preto do Ato V, passando pelo ocre com ouro do Ato III e pelo índigo e rosa-cerejeira do Ato IV; as memórias felizes, como o parque, têm cores quentes e iluminadas.
 
 Os personagens se dividem em personagens de memória (Mãe, Padrasto, Pretendente e Primo), arquétipos filosóficos (O Arquiteto, A Ceramista e A Criança) e manifestações, figuras sem rosto que refletem Ani e intensificam as crises, sem agir como inimigos.
 
-Os sistemas transversais são a exploração com diário de memórias, em que cartas, bilhetes e fotografias ficam registrados e ganham nova leitura ao longo dos atos, e as crises de ansiedade, representadas por distorção visual, som fragmentado e respiração. A interface é quase invisível: sem HUD permanente nem barras numéricas, com o diário como objeto diegético. O áudio vai do abafado e claustrofóbico ao orgânico e silencioso, com direção própria em cada ato.
+Os sistemas transversais são a exploração com diário de memórias, em que cartas, bilhetes e fotografias ficam registrados e ganham nova leitura ao longo dos atos, e as crises de ansiedade, representadas por distorção visual, som fragmentado e respiração. A interface é quase invisível: sem HUD permanente nem barras numéricas (exceto nos minigames do parque), com menus diegéticos, como a pausa aberta na tela do celular de Ani, e o diário como objeto diegético. O áudio vai do abafado e claustrofóbico ao orgânico e silencioso, com direção própria em cada ato.
 
 Cada ato segue o mesmo ciclo: explorar a casa, encontrar a passagem para uma memória, atravessar a experiência central do ato, registrar o avanço no diário e abrir a passagem para o ato seguinte.

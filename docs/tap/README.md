@@ -15,10 +15,10 @@ O Quadro 1 apresenta o Termo de Abertura do Projeto **Ani**. A versão editável
 | Nome do projeto | Ani |
 | Tipo | Jogo digital narrativo contemplativo |
 | Área | Desenvolvimento de software e jogos digitais |
-| Plataforma inicial | PC, executado no navegador (Windows, Linux e macOS) |
-| Motor de jogo | Three.js (biblioteca 3D sobre WebGL) |
-| Linguagem principal | JavaScript, com HTML e CSS |
-| Natureza do projeto | Projeto autoral com finalidade acadêmica e prototipação |
+| Plataforma inicial | PC (Windows), como software instalado; o protótipo é executado no navegador |
+| Motor de jogo | Jogo completo: [preencher]; protótipo: Three.js (biblioteca 3D sobre WebGL) |
+| Linguagem principal | Jogo completo: [preencher]; protótipo: JavaScript, com HTML e CSS |
+| Natureza do projeto | Projeto autoral com finalidade acadêmica e prototipação, com apoio de ferramentas de IA generativa na produção dos sprites e na modelagem 3D do protótipo |
 
 ## 2. Problema de Pesquisa
 
@@ -50,7 +50,7 @@ O projeto é conduzido segundo a metodologia Cascata (*Waterfall*), com fases se
 
 A modelagem utiliza BPMN para representação dos fluxos de *gameplay* e UML para casos de uso e estrutura do sistema, garantindo rastreabilidade entre as decisões conceituais do GDD e as decisões técnicas do protótipo.
 
-As tecnologias e ferramentas utilizadas são:
+As tecnologias e ferramentas utilizadas no protótipo são:
 
 - HTML, CSS e JavaScript (módulos ES, sem etapa de build) para a estrutura, a interface e a lógica do jogo;
 - Three.js para a renderização 3D dos cenários sobre WebGL, com pós-processamento próprio para a estética de pixel art;
@@ -59,7 +59,7 @@ As tecnologias e ferramentas utilizadas são:
 - Claude Opus 5.5 para a modelagem 3D dos cenários em Three.js;
 - GitHub Actions e GitHub Pages para a verificação e a publicação do protótipo.
 
-Na fase de implementação, a tecnologia prevista inicialmente para o protótipo (Unreal Engine com C++) foi substituída por essa base web. O principal motivo foi o tempo disponível para o desenvolvimento: após análise, concluiu-se que, no prazo do projeto, o Three.js era a tecnologia mais adequada.
+O jogo completo será desenvolvido em uma engine de jogos, como software para PC. Para o protótipo, a tecnologia prevista inicialmente (Unreal Engine com C++) foi substituída por essa base web, executada no navegador, que também torna a apresentação mais simples. O principal motivo foi o tempo disponível para o desenvolvimento: após análise, concluiu-se que, no prazo do projeto, o Three.js era a tecnologia mais adequada para o protótipo. A produção do protótipo contou com apoio de IA generativa: o GPT-6, ao lado do Sprite Fusion, na geração dos sprites, e o Claude Opus 5.5 na modelagem 3D dos cenários.
 
 O documento completo do TAP está disponível em [tap.md](./tap.md).
 
