@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { Tweens, ease, damp, lerp, clamp } from '../engine/tween.js';
-import { WalkSprite, AniSprite, MALU_SPRITE, ANI_FOOD, MALU_FOOD } from '../chars/ani.js';
+import { WalkSprite, AniSprite, MALU_SPRITE, ANI_FOOD, MALU_FOOD, ANI_CABINE, MALU_CABINE, ANI_TALK, MALU_TALK } from '../chars/ani.js';
 import { makePhotoStrip } from './photostrip.js';
 import { buildPark, LANE } from './park.js';
 import { createParkFx } from './parkfx.js';
@@ -103,6 +103,7 @@ class Actor {
     this.target = null;
     this.vx = 0;
     this.vz = 0;
+    this.lock = 0; // ≠ 0: anda virada para esse lado, seja qual for a direção (cena)
   }
   walkTo(x, z, speed = 1.4) {
     if (this.target) this.target.resolve();
@@ -131,7 +132,7 @@ class Actor {
       } else {
         this.x += (dx / d) * step;
         this.z += (dz / d) * step;
-        anim = this.v * (Math.abs(dx) > 0.03 ? Math.sign(dx) : this.sprite.facing);
+        anim = this.v * (this.lock || (Math.abs(dx) > 0.03 ? Math.sign(dx) : this.sprite.facing));
       }
     } else if (this.vx || this.vz) {
       const sp = Math.hypot(this.vx, this.vz);
@@ -187,6 +188,12 @@ export class ParkScene {
     // comidas desenhadas nos sprites: pegar no balcão e comer (parada/andando)
     this.ani.addFoods(ANI_FOOD);
     this.malu.addFoods(MALU_FOOD);
+    // a cena da tirinha (as duas saindo da cabine; a Malu pega e entrega a tirinha)
+    this.ani.addSheetClip('cabine', ANI_CABINE);
+    this.malu.addSheetClip('cabine', MALU_CABINE);
+    // conversa: a boca acompanha o texto dos balões
+    this.ani.addTalk(ANI_TALK);
+    this.malu.addTalk(MALU_TALK);
     for (const s of [this.ani, this.malu]) {
       this.scene.add(s.mesh, s.shadow);
       s.shadow.material.opacity = 0.5;
@@ -232,6 +239,8 @@ export class ParkScene {
     this.phonePose = false;
     this.pauseK = 0;
     this.ani.stopClip();
+    this.malu.stopClip();
+    this.A.lock = this.M.lock = 0;
     ui.hint(null);
     ui.pause(null);
     ui.chapter(null);
@@ -283,6 +292,7 @@ export class ParkScene {
     this.pauseK = 0;
     this.applyPauseLook();
     this.ani.stopClip();
+    this.malu.stopClip();
     this.tweens.clear();
     this.token++;
     this.mg.stop();
@@ -390,11 +400,22 @@ export class ParkScene {
   }
   // fala em balão preto em cima da cabeça
   say(who, text, opts = {}) {
-    const mesh = who === 'malu' ? this.malu.mesh : this.ani.mesh;
+    const spr = who === 'malu' ? this.malu : this.ani;
+    const mesh = spr.mesh;
     const hold = opts.hold ?? 0.8 + text.length * 0.035;
     // quem fala dá uma "respiradinha" (game feel: o corpo acompanha a fala)
-    (who === 'malu' ? this.malu : this.ani).squash = 0.6;
-    return this.game.ui.bubbleWait(text, { id: who, hold, anchor: () => this.headScreen(mesh) });
+    spr.squash = 0.6;
+    // e mexe a boca junto com as letras (folha x-conversando), se estiver parada e de mãos livres
+    const talking = spr.talkStart(text);
+    return this.game.ui
+      .bubbleWait(text, {
+        id: who,
+        hold,
+        anchor: () => this.headScreen(mesh),
+        onChar: talking ? (c) => spr.talkChar(c) : null,
+        onTyped: talking ? () => spr.talkEnd() : null,
+      })
+      .finally(() => talking && spr.talking && spr.talkStop());
   }
 
   // -------------------------------------------------------------
@@ -410,13 +431,13 @@ export class ParkScene {
     this.mode = 'cut';
     this.busy = true;
 
-    // as duas lá dentro (a cortina esconde)
-    this.A.x = 0.05;
+    // as duas lá dentro (a cortina esconde): a Ani à esquerda, a Malu mais perto da máquina
+    this.A.x = -0.52;
     this.A.z = B.zb + 0.55;
-    this.M.x = -0.35;
+    this.M.x = -0.12;
     this.M.z = B.zb + 0.5;
     this.A.target = this.M.target = null;
-    this.ani.facing = -1;
+    this.ani.facing = 1;
     this.malu.facing = 1;
     B.curtain.open = 0;
 
@@ -487,63 +508,113 @@ export class ParkScene {
     if (!ok()) return;
     B.curtain.swayV = -3;
 
-    // a Malu sai primeiro, rindo
-    const mOut = this.M.walkTo(-0.5, LANE.z - 0.05, 1.3);
-    await tw.wait(0.5);
-    const aOut = this.A.walkTo(-0.2, B.z0 + 0.35, 1.0);
+    // ---- A cena da tirinha (folha cena-cabine, uma folha para cada: ANI_CABINE / MALU_CABINE) ----
+    // As duas saem juntas andando para a direita; a Ani para, a Malu vai até a fenda da máquina
+    // (à direita da cortina), pega a tirinha, ri das fotos, vira, volta e entrega para a Ani.
+    const ani = this.ani, malu = this.malu;
+    const cab = (sprite, seq, opts = {}) => sprite.play('cabine', { seq, hold: true, ...opts });
+    const step = (e) => e === 'passo' && sfx.step();
+    // passo da folha (row 0): 6 quadros, um pé no chão no 0 e no 3
+    const WALK = [[0, 0.13, 'passo'], [1, 0.13], [2, 0.13], [3, 0.13, 'passo'], [4, 0.13], [5, 0.13]];
+    const SLOT = B.slot ? B.slot.x : 0.44; // fenda da foto
+    const mx = SLOT - 0.44; // a Malu para com a mão esticada na fenda
+    const mz = LANE.minZ - 0.17;
+    const ax = mx - 0.98; // a Ani para um pouco antes
+    const az = LANE.minZ + 0.15;
+    const GIVE = 0.78; // distância das duas na entrega (a da folha: as mãos se encontram)
+
+    // a Malu sai primeiro, rindo; a Ani logo atrás. Elas andam viradas para a direita
+    // (a folha é de lado) mesmo saindo para a frente
+    this.A.lock = this.M.lock = 1;
+    cab(malu, [], { loop: WALK, onEvent: step });
+    const mOut = this.M.walkTo(mx - 0.16, mz + 0.1, 1.15);
+    await tw.wait(0.4);
+    if (!ok()) return;
+    cab(ani, [], { loop: WALK, onEvent: step });
+    const aOut = this.A.walkTo(ax, az, 1.1);
+    this.rig.follow = 'duas';
+    this.rig.lambda = 1.5;
+    await tw.wait(0.35);
+    if (!ok()) return;
+    const line1 = this.say('malu', 'Você piscou em todas. Todas!');
     await mOut;
     if (!ok()) return;
-    this.M.walkTo(-1.45, LANE.z, 1.0);
-    this.rig.follow = 'duas';
-    this.rig.lambda = 1.8;
-    await this.say('malu', 'Você piscou em todas. Todas!');
-    if (!ok()) return;
+    // ela chega na máquina: os últimos passos e para
+    cab(malu, [[6, 0.13, 'passo'], [7, 0.15], [8, 0.2, 'passo']]);
+    this.M.walkTo(mx, mz, 0.6);
     await aOut;
-    await this.A.walkTo(-0.45, LANE.z + 0.08, 0.9);
-    this.A.face(-1);
-    this.M.face(1);
+    if (!ok()) return;
+    cab(ani, [[6, 0.1]]); // a Ani para e fica olhando
+    this.A.lock = this.M.lock = 0;
+    await line1;
+    if (!ok()) return;
     await this.say('ani', 'Mentira. Na última eu tava de olho aberto.');
     if (!ok()) return;
     B.curtain.swayV = 2;
-    tw.to({ duration: 0.6, delay: 0.4, ease: ease.inOutSine, onUpdate: (k) => (B.curtain.open = 1 - k) });
+    tw.to({ duration: 0.6, delay: 0.2, ease: ease.inOutSine, onUpdate: (k) => (B.curtain.open = 1 - k) });
 
-    // a Malu vai buscar a tirinha na máquina
-    await this.M.walkTo(0.62, LANE.minZ - 0.12, 1.5);
+    // a Malu pega a tirinha na fenda, olha as fotos e ri
+    await cab(malu, [[9, 0.16], [9, 0.12, 'pega'], [10, 0.5], [11, 0.9]], {
+      onEvent: (e) => {
+        if (e !== 'pega') return;
+        sfx.page();
+        if (B.strip) B.strip.visible = false; // agora é a tirinha desenhada na mão dela
+        malu.squash = 0.4;
+      },
+    });
     if (!ok()) return;
-    this.M.face(1);
-    this.malu.reach(0.6);
     await tw.wait(0.25);
-    sfx.page();
-    this.stripHolder = this.M;
-    await tw.wait(0.45);
+    // vira para a Ani com a tirinha
     this.M.face(-1);
-    this.A.face(1);
+    await cab(malu, [[12, 0.14], [13, 0.1]]);
+    if (!ok()) return;
     await this.say('malu', 'Na última você tava olhando pra mim, isso sim.');
     if (!ok()) return;
     await tw.wait(0.3);
     await this.say('ani', '...Porque você falou que ia fazer careta e não fez.');
     if (!ok()) return;
+    cab(malu, [[12, 0.1]]); // sorrisinho de olhos fechados
     await this.say('malu', 'Fiz sim. Por dentro.');
     if (!ok()) return;
 
-    // ela entrega a tirinha
-    await this.M.walkTo(0.45, LANE.z - 0.04, 1.0);
+    // ela volta andando até a Ani
+    this.M.lock = -1;
+    cab(malu, [[13, 0.08]], { loop: [[14, 0.15, 'passo'], [15, 0.15], [16, 0.15, 'passo']], onEvent: step });
+    await this.M.walkTo(this.A.x + GIVE, this.A.z - 0.03, 0.75);
+    if (!ok()) return;
+    this.M.lock = 0;
     this.M.face(-1);
-    this.A.face(1);
-    await this.say('malu', 'Toma. Fica com você.', { hold: 0.9 });
-    if (!ok()) return;
-    this.malu.reach(0.5);
-    this.ani.reach(0.5);
-    await tw.wait(0.2);
-    sfx.page();
-    this.stripHolder = this.A;
-    await tw.wait(0.4);
-    await this.say('ani', 'A ideia foi sua. Fica você.');
-    if (!ok()) return;
-    await this.say('malu', 'Por isso mesmo. Eu lembro das coisas. Você precisa de prova.');
+    await cab(malu, [[17, 0.3]]);
     if (!ok()) return;
 
-    // ela sai andando na frente (para o lado do algodão-doce) e vira
+    // ela estende a tirinha
+    cab(malu, [[18, 0.1]]);
+    malu.squash = 0.4;
+    await this.say('malu', 'Toma. Fica com você.', { hold: 0.9 });
+    if (!ok()) return;
+    // a Ani pega
+    this.A.face(1);
+    cab(ani, [[19, 0.1]]);
+    cab(malu, [[19, 0.45], [20, 0.1]]);
+    sfx.page();
+    ani.squash = 0.45;
+    await tw.wait(0.5);
+    if (!ok()) return;
+    await this.say('ani', 'A ideia foi sua. Fica você.');
+    if (!ok()) return;
+    cab(malu, [[21, 0.1]]);
+    await this.say('malu', 'Por isso mesmo. Eu lembro das coisas. Você precisa de prova.');
+    if (!ok()) return;
+    // a Ani olha a tirinha e sorri; a Malu ri
+    cab(ani, [[20, 0.9], [21, 0.18], [22, 0.1]]);
+    await cab(malu, [[22, 0.5], [23, 0.1]]);
+    if (!ok()) return;
+    await tw.wait(0.7);
+    if (!ok()) return;
+    cab(ani, [[19, 0.1]]); // volta a olhar para ela
+
+    // ela sai andando na frente (para o lado do algodão-doce) e vira; a Ani continua com a tirinha
+    malu.stopClip();
     const mGo = this.M.walkTo(-1.9, LANE.z - 0.1, 1.5);
     await tw.wait(0.5);
     this.A.face(-1);
@@ -561,12 +632,12 @@ export class ParkScene {
     this.rig.follow = 'close';
     this.rig.lambda = 1.1;
     this.A.face(1);
-    this.ani.pose(14);
+    cab(ani, [[20, 0.1]]); // olhando a tirinha
     await tw.wait(1.6);
     if (!ok()) return;
     await ui.sayWait('Eu guardei.', { hold: 2.2 });
     if (!ok()) return;
-    this.ani.pose(null);
+    ani.stopClip(); // guarda no bolso
     this.stripHolder = null;
     if (B.strip) B.strip.visible = false;
     sfx.rustle();
@@ -1035,7 +1106,10 @@ export class ParkScene {
       } else if (Math.abs(A.x - M.x) > 0.2) M.face(Math.sign(A.x - M.x));
     }
     // guardando o celular: se o jogador já sai andando, ela guarda na hora
-    if (this.ani.anim && !this.phonePose && (A.vx || A.vz || A.target)) this.ani.stopClip();
+    if (this.ani.anim?.name === 'celular' && !this.phonePose && (A.vx || A.vz || A.target)) this.ani.stopClip();
+    // pausa em cena: as animações de cena congelam junto (o celular da pausa continua mexendo)
+    this.ani.clipPaused = frozen && this.ani.anim?.name !== 'celular';
+    this.malu.clipPaused = frozen;
     if (frozen) {
       // só respiram/piscam (e a Ani mexe no celular; a Malu olha para ela); ninguém morde
       if (this.phonePose && Math.abs(A.x - M.x) > 0.2) this.malu.facing = Math.sign(A.x - M.x);

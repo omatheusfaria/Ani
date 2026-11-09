@@ -5,8 +5,7 @@ import { buildRoom } from './room.js';
 import { makePhotoStrip, frameRect, STRIP_W, STRIP_H, FRAME_W, FRAME_H, METERS_PER_PX } from './photostrip.js';
 import { PhoneApp, W as SW, H as SH } from '../phone/app.js';
 import { POST_THOUGHTS } from '../phone/posts.js';
-import { makeHands } from '../phone/hands.js';
-import { AniSprite, AniTop } from '../chars/ani.js';
+import { AniSprite, AniTop, ANI_TRAVESSEIRO } from '../chars/ani.js';
 import { setGlow, squash } from './furniture.js';
 import { createCinema } from './cinema.js';
 import { PixelRenderer } from '../engine/renderer.js';
@@ -27,6 +26,25 @@ import { PixelRenderer } from '../engine/renderer.js';
 const SCREEN_W = 0.285;
 const SCREEN_H = 0.596;
 const FP_FOV = 50;
+// Celular na mão (primeira pessoa). A interface do app é nítida (passe HD), então o tamanho na tela
+// não depende mais da resolução do pixel art: a tela ocupa PHONE_FILL da altura da imagem, com o
+// aparelho em tamanho de verdade (PHONE_K do modelo) a um palmo do rosto, na frente da cama.
+const PHONE_FILL = 0.66;
+const PHONE_K = 0.24;
+// Mão do sprite (tools/recortar-mao-celular.py → mao-celular-quadros.png, grade 6×4): o celular
+// desenhado foi tirado; a tela e a moldura do desenho (px da célula) encaixam no modelo 3D.
+//   0–6 polegar parado · 7–11 rolada curta · 12–17 rolada longa · 18–23 outra rolada · 3 = toque
+const HAND = { url: 'assets/sprites/mao-celular-quadros.png', cell: 368, scr: [88, 16, 96, 193], frame: [81, 6, 110, 213] };
+const HAND_TAP = [[3, 0.07], [4, 0.08], [0, 0]];
+const HAND_SWIPES = [
+  [[7, 0.05], [8, 0.07], [9, 0.07], [10, 0.06], [11, 0.06], [0, 0]],
+  [[19, 0.05], [20, 0.06], [21, 0.08], [22, 0.06], [23, 0.06], [0, 0]],
+  [[13, 0.05], [14, 0.06], [15, 0.09], [16, 0.07], [17, 0.06], [0, 0]],
+];
+const HAND_IDLE = [[1, 0.16], [2, 0.22], [1, 0.16], [0, 0]];
+// olhos dela, encostada nos travesseiros, olhando o celular por cima do edredom
+const FP_EYE = new THREE.Vector3(-2.12, 1.06, -1.76);
+const FP_LOOK = new THREE.Vector3(-0.55, 0.6, -1.66);
 const WALK_SPEED = 1.7;
 const DEPTH_SPEED = 0.75; // andar para frente/trás é um pouco mais lento (a câmera vê de lado)
 const Z_MIN = -1.6; // o mais fundo que ela vai (perto dos móveis do fundo)
@@ -34,6 +52,7 @@ const Z_MAX = 0.0; // o mais perto da câmera (sem sair de baixo da caixa de di�
 const RIM_GAIN = 0.16;
 const FILL_DARK = new THREE.Color('#5a6aa8');
 const FILL_LIT = new THREE.Color('#f0d9cf');
+const PILLOW_GLOW = new THREE.Color('#fff4d0');
 const HAZE = new THREE.Color();
 
 function loadImage(src) {
@@ -172,7 +191,9 @@ export class QuartoScene {
     this.buildPhone();
 
     this.ani = new AniSprite();
+    this.ani.addSheetClip('travesseiro', ANI_TRAVESSEIRO);
     this.scene.add(this.ani.mesh, this.ani.shadow);
+    this.buildPillow();
     // iluminação cinematográfica: feixes de luar, recorte da janela, poeira
     this.cinema = createCinema(this.room, this.ani);
     this.scene.userData.lightPass = this.cinema.pass;
@@ -183,14 +204,43 @@ export class QuartoScene {
     this.scene.add(this.aniTop.mesh, this.aniTop.shadow);
   }
 
+  // O travesseiro da cabeceira é um sprite (assets/sprites/travesseiro-quadro.png, do
+  // travesseiro.png por tools/recortar-objeto.py), no mesmo traço e tamanho do que a Ani abraça na
+  // folha ani-travesseiro. O 3D antigo fica escondido.
+  buildPillow() {
+    const room = this.room;
+    const tex = new THREE.TextureLoader().load('assets/sprites/travesseiro-quadro.png');
+    tex.magFilter = tex.minFilter = THREE.NearestFilter;
+    tex.generateMipmaps = false;
+    tex.colorSpace = THREE.SRGBColorSpace;
+    const T = this.ani.clipTexel('travesseiro');
+    const [pw, ph] = ANI_TRAVESSEIRO.pillowPx;
+    const S = new THREE.Mesh(
+      new THREE.PlaneGeometry(pw * T, ph * T),
+      // sem luz 3D: tingido com o mesmo preenchimento da Ani (update), para o travesseiro da cama
+      // e o desenhado nos braços dela terem a mesma cor na troca
+      new THREE.MeshBasicMaterial({ map: tex, alphaTest: 0.5 })
+    );
+    // em cima do colchão, perto da cabeceira (a borda de baixo do desenho afunda um pouco)
+    S.position.set(-2.4, 0.49 + (ph * T) / 2 - 0.03, -2.0);
+    S.userData.home = S.position.clone();
+    room.group.add(S);
+    room.pillow.visible = false;
+    this.pillowSprite = S;
+    const it = room.interactables.find((o) => o.id === 'cama');
+    if (it) it.obj = S;
+  }
+
   buildPhone() {
     const phone = (this.phone = new THREE.Group());
     this.phoneRig = new THREE.Group(); // recebe balanço, tremor e susto
     this.phoneRig.add(phone);
     this.fpCam.add(this.phoneRig);
 
+    // medidas da mão desenhada: px da célula → metros no espaço do celular
+    const hs = SCREEN_W / HAND.scr[2], vs = SCREEN_H / HAND.scr[3];
     const body = new THREE.Mesh(
-      new RoundedBoxGeometry(0.31, 0.64, 0.036, 3, 0.03),
+      new RoundedBoxGeometry(HAND.frame[2] * hs, HAND.frame[3] * vs, 0.036, 3, 0.04),
       new THREE.MeshStandardMaterial({ color: '#16141d', roughness: 0.35, metalness: 0.35 })
     );
     phone.add(body);
@@ -210,16 +260,69 @@ export class QuartoScene {
     this.screenHD.layers.set(1);
     phone.add(this.screenHD);
 
-    const hands = makeHands();
-    phone.add(hands.back, hands.thumb);
-    this.thumb = hands.thumb;
-    this.thumbBase = hands.thumb.position.clone();
+    // a mão (sprite) na frente: dedos na beira, polegar por cima da tela. Fica no passe pixelado
+    // (grava alfa 1, então o passe nítido da tela não passa por cima do polegar)
+    const tex = new THREE.TextureLoader().load(HAND.url);
+    tex.magFilter = tex.minFilter = THREE.NearestFilter;
+    tex.generateMipmaps = false;
+    tex.colorSpace = THREE.SRGBColorSpace;
+    tex.repeat.set(1 / 6, 1 / 4);
+    this.hand = new THREE.Mesh(
+      new THREE.PlaneGeometry(HAND.cell * hs, HAND.cell * vs),
+      // cor fria e um pouco escura: a luz vem só da tela, no quarto escuro
+      new THREE.MeshBasicMaterial({ map: tex, alphaTest: 0.5, color: '#c0b3d6' })
+    );
+    this.hand.position.set(
+      (HAND.cell / 2 - (HAND.scr[0] + HAND.scr[2] / 2)) * hs,
+      -(HAND.cell / 2 - (HAND.scr[1] + HAND.scr[3] / 2)) * vs,
+      0.03
+    );
+    phone.add(this.hand);
+    this.handAnim = null;
+    this.handIdle = 3;
+    this.handSwipe = 0;
+    this.lastPress = 0;
+    this.setHandFrame(0);
 
     this.screenLight = new THREE.PointLight('#a9c4ff', 0.35, 0, 2);
     this.screenLight.position.set(0, 0, 0.22);
     phone.add(this.screenLight);
 
     this.phoneRig.visible = false;
+  }
+
+  setHandFrame(f) {
+    const t = this.hand.material.map;
+    t.offset.set((f % 6) / 6, 1 - (Math.floor(f / 6) + 1) / 4);
+  }
+
+  // toca uma sequência do polegar ([quadro, segundos], ...); a última fica
+  playHand(seq) {
+    this.handAnim = { seq, i: 0, t: 0 };
+    this.setHandFrame(seq[0][0]);
+  }
+
+  updateHand(dt) {
+    // toque (press sobe de repente) e rolada (scroll-tick em onAppEvent)
+    if (this.press > this.lastPress + 0.5) this.playHand(HAND_TAP);
+    this.lastPress = this.press;
+    const a = this.handAnim;
+    if (a) {
+      a.t += dt;
+      while (a.i < a.seq.length - 1 && a.t >= a.seq[a.i][1]) {
+        a.t -= a.seq[a.i][1];
+        a.i++;
+        this.setHandFrame(a.seq[a.i][0]);
+      }
+      if (a.i >= a.seq.length - 1) this.handAnim = null;
+      return;
+    }
+    // parada: de vez em quando o polegar se ajeita
+    this.handIdle -= dt;
+    if (this.handIdle <= 0 && this.mode === 'phone') {
+      this.playHand(HAND_IDLE);
+      this.handIdle = 3 + Math.random() * 4;
+    }
   }
 
   // -------------------------------------------------------------
@@ -394,8 +497,8 @@ export class QuartoScene {
     save.set({ cena: 'quarto' });
 
     // Câmera nos olhos dela, olhando para baixo, para o celular
-    this.fpCam.position.set(-0.9, 1.36, -1.72);
-    this.fpCam.lookAt(0.8, 0.6, -1.45);
+    this.fpCam.position.copy(FP_EYE);
+    this.fpCam.lookAt(FP_LOOK);
     this.baseQuat = this.fpCam.quaternion.clone();
 
     // Corte seco do olho para a tela: só um ajuste leve do celular na mão
@@ -471,6 +574,8 @@ export class QuartoScene {
         break;
       case 'scroll-tick':
         sfx.scrollTick();
+        // o polegar passa pela tela (uma rolada por vez, alternando o desenho)
+        if (!this.handAnim || this.handAnim.seq === HAND_IDLE) this.playHand(HAND_SWIPES[this.handSwipe++ % HAND_SWIPES.length]);
         break;
       case 'focus': // controle trocou o item escolhido
         sfx.hover();
@@ -642,7 +747,7 @@ export class QuartoScene {
     ui.layout(null);
     this.roll = 0;
     const pos = this.fpCam.position.clone();
-    const look = new THREE.Vector3(0.8, 0.6, -1.45);
+    const look = FP_LOOK.clone();
     this.camPos = pos;
     this.camLook = look;
 
@@ -658,13 +763,13 @@ export class QuartoScene {
     await tw.to({ duration: 1.4, ease: ease.inOutSine, onUpdate: (k) => look.lerpVectors(L0, L1, k) });
     if (tok !== this.token) return;
 
-    // tira as pernas da cama, inclinando para frente
+    // sai de baixo do edredom e chega para a beira, tirando as pernas da cama
     sfx.creak();
     sfx.rustle();
-    const P0 = pos.clone(), P1 = new THREE.Vector3(-0.88, 1.16, -1.3);
-    const L2 = new THREE.Vector3(-0.55, 0.0, 0.9);
+    const P0 = pos.clone(), P1 = new THREE.Vector3(-1.62, 1.14, -1.3);
+    const L2 = new THREE.Vector3(-1.2, 0.0, 0.9);
     await tw.to({
-      duration: 1.0, ease: ease.inOutCubic,
+      duration: 1.5, ease: ease.inOutCubic,
       onUpdate: (k) => {
         pos.lerpVectors(P0, P1, k);
         look.lerpVectors(L1, L2, k);
@@ -675,7 +780,7 @@ export class QuartoScene {
 
     // levanta
     sfx.thump();
-    const P2 = new THREE.Vector3(-0.85, 1.6, -0.82);
+    const P2 = new THREE.Vector3(-1.55, 1.6, -0.82);
     const L3 = new THREE.Vector3(1.8, 1.3, 0.4);
     await tw.to({
       duration: 1.35, ease: ease.outCubic,
@@ -728,6 +833,13 @@ export class QuartoScene {
     r.pillow.position.copy(home.pos);
     r.pillow.quaternion.copy(home.quat);
     r.pillow.scale.set(1, 1, 1);
+    if (this.pillowSprite) {
+      const S = this.pillowSprite;
+      S.position.copy(S.userData.home);
+      S.rotation.set(0, 0, 0);
+      S.scale.set(1, 1, 1);
+      S.visible = true;
+    }
     r.backpack.closed.visible = true;
     r.backpack.open.visible = false;
     for (const p of r.papers) {
@@ -991,9 +1103,11 @@ export class QuartoScene {
     const tok = this.token;
     const tw = this.tweens;
     const room = this.room;
-    const P = room.pillow;
-    const home = P.userData.home;
+    const S = this.pillowSprite;
+    const home = S.userData.home;
     const laneZ = room.lane.z;
+    const ani = this.ani;
+    const D = ANI_TRAVESSEIRO;
     ui.interact(null);
     // anda até a beira da cama
     const from = { x: this.x, z: this.z };
@@ -1007,64 +1121,76 @@ export class QuartoScene {
       },
     });
     if (tok !== this.token) return;
-    this.ani.facing = -1;
-    // se abaixa e pega
-    this.ani.pose(13);
-    sfx.rustle();
-    await tw.wait(0.16);
-    if (tok !== this.token) return;
-    const hold = new THREE.Vector3(spot.x - 0.2, 0.9, spot.z + 0.05); // abraçado contra o peito
-    const qHold = new THREE.Quaternion().setFromEuler(new THREE.Euler(0.5, 0.25, 0.3));
-    this.pillowQ = qHold;
-    const p0 = home.pos.clone();
-    const mid = p0.clone().lerp(hold, 0.5).add(new THREE.Vector3(0, 0.32, 0));
+    this.vel = this.velZ = 0;
+    ani.facing = -1;
     const bez = (a, m, c, k) => a.clone().multiplyScalar((1 - k) ** 2).addScaledVector(m, 2 * (1 - k) * k).addScaledVector(c, k * k);
-    let swapped = false;
-    await tw.to({
-      duration: 0.5, ease: ease.outCubic,
-      onUpdate: (k) => {
-        P.position.copy(bez(p0, mid, hold, k));
-        P.quaternion.slerpQuaternions(home.quat, qHold, k);
-        const st = Math.sin(k * Math.PI);
-        P.scale.set(1 - st * 0.08, 1 - st * 0.12, 1 + st * 0.16); // estica no ar
-        if (k > 0.45 && !swapped) {
-          swapped = true;
-          this.ani.pose(14);
+
+    // estica o corpo para a cama (0–3); o travesseiro vem voando e cai nos braços (9)
+    const fly = (a, c, dur, lift, spin, done) => {
+      const m = a.clone().lerp(c, 0.5).add(new THREE.Vector3(0, lift, 0));
+      tw.to({
+        duration: dur, ease: ease.inOutSine,
+        onUpdate: (k) => {
+          S.position.copy(bez(a, m, c, k));
+          S.rotation.z = spin * Math.sin(k * Math.PI);
+          const st = Math.sin(k * Math.PI);
+          S.scale.set(1 - st * 0.1, 1 + st * 0.12, 1); // estica no ar
+        },
+      }).then(done);
+    };
+    await ani.play('travesseiro', {
+      seq: [[0, 0.08], [1, 0.12, 'estica'], [2, 0.14], [3, 0.24], [9, 0.16, 'pega'], [10, 0.22], [11, 0.32], [12, 0.34], [13, 0.34], [14, 0.1]],
+      hold: true,
+      onEvent: (e) => {
+        if (tok !== this.token) return;
+        if (e === 'estica') {
+          sfx.rustle();
+          fly(home.clone(), ani.clipPoint('travesseiro', ...D.grab), 0.5, 0.3, 0.5, () => {});
+        } else if (e === 'pega') {
+          // agora é o travesseiro desenhado nos braços dela
+          S.visible = false;
+          ani.squash = 0.6;
+          sfx.cloth();
         }
       },
     });
     if (tok !== this.token) return;
-    // segura no alto, dá uma sacudida e olha embaixo
-    sfx.cloth();
-    this.pillowHold = { pos: hold.clone(), t: 0 };
-    ui.say('Nem embaixo do travesseiro.', { hold: 1.2 });
-    await tw.wait(1.9);
+    S.visible = false;
+    // abraçada, de olhos fechados
+    await ui.sayWait('Nem embaixo do travesseiro.', { hold: 1.2 });
     if (tok !== this.token) return;
-    this.pillowHold = null;
-    // devolve: cai na cama e afunda um pouco
-    this.ani.pose(13);
-    const h0 = P.position.clone();
-    const q0 = P.quaternion.clone();
-    const mid2 = h0.clone().lerp(home.pos, 0.5).add(new THREE.Vector3(0, 0.18, 0));
-    await tw.to({
-      duration: 0.38, ease: ease.inQuad,
-      onUpdate: (k) => {
-        P.position.copy(bez(h0, mid2, home.pos, k));
-        P.quaternion.slerpQuaternions(q0, home.quat, k);
+    await tw.wait(0.2);
+    if (tok !== this.token) return;
+
+    // abaixa os braços (16) e devolve: o travesseiro volta voando para a cama
+    let landed;
+    const land = new Promise((r) => (landed = r));
+    const putBack = ani.play('travesseiro', {
+      seq: [[15, 0.26], [16, 0.16, 'solta'], [3, 0.14], [2, 0.12], [1, 0.12], [0, 0.1]],
+      onEvent: (e) => {
+        if (e !== 'solta' || tok !== this.token) return;
+        const p0 = ani.clipPoint('travesseiro', ...D.drop);
+        S.position.copy(p0);
+        S.visible = true;
+        fly(p0, home.clone(), 0.4, 0.22, -0.4, landed);
       },
     });
+    await land;
     if (tok !== this.token) return;
+    S.position.copy(home);
+    S.rotation.z = 0;
     sfx.thump();
     sfx.rustle();
-    this.tweens.to({
+    // cai na cama e afunda um pouco
+    tw.to({
       duration: 0.6, ease: ease.outElastic,
       onUpdate: (k) => {
         const sq = 1 - k;
-        P.scale.set(1 + sq * 0.14, 1 - sq * 0.4, 1 + sq * 0.14);
+        S.scale.set(1 + sq * 0.18, 1 - sq * 0.3, 1);
       },
     });
-    await tw.wait(0.25);
-    this.ani.pose(null);
+    await putBack;
+    if (tok !== this.token) return;
     // volta para o meio do quarto
     const back = { x: spot.x + 0.2, z: laneZ };
     const s0 = { x: this.x, z: this.z };
@@ -2089,8 +2215,9 @@ export class QuartoScene {
         this.fpCam.quaternion.copy(this.baseQuat).multiply(off);
       }
 
-      // Distância para a tela ficar 1 pixel = 1 pixel
-      const d = (SCREEN_H * renderer.h) / (SH * 2 * Math.tan(THREE.MathUtils.degToRad(FP_FOV / 2)));
+      // Distância para a tela ocupar PHONE_FILL da altura (igual em qualquer janela/resolução)
+      const K = PHONE_K;
+      const d = (K * SCREEN_H) / (PHONE_FILL * 2 * Math.tan(THREE.MathUtils.degToRad(FP_FOV / 2)));
 
       // Balanço da mão, toque, vibração e susto
       this.press = Math.max(0, this.press - dt * 7);
@@ -2098,22 +2225,24 @@ export class QuartoScene {
       this.panic = Math.max(0, this.panic - dt * 0.12);
       const shake = this.buzz * 0.006 + this.panic * 0.01;
       const rig = this.phoneRig;
+      rig.scale.setScalar(K);
       rig.position.set(
-        Math.sin(t * 1.1) * 0.003 + (Math.random() - 0.5) * shake,
-        -0.012 + Math.sin(t * 1.7) * 0.004 + (Math.random() - 0.5) * shake - (1 - this.raise) * 0.5,
-        -d - this.press * 0.012
+        (0.02 + Math.sin(t * 1.1) * 0.003 + (Math.random() - 0.5) * shake) * K,
+        (-0.012 + Math.sin(t * 1.7) * 0.004 + (Math.random() - 0.5) * shake - (1 - this.raise) * 0.7) * K,
+        -d - this.press * 0.012 * K
       );
       rig.rotation.set(
         -0.06 + this.mouseSmooth.y * 0.05 + (1 - this.raise) * 0.6,
         -this.mouseSmooth.x * 0.07,
         Math.sin(t * 0.7) * 0.012 + (Math.random() - 0.5) * this.panic * 0.03
       );
-      this.thumb.position.set(this.thumbBase.x - this.press * 0.01, this.thumbBase.y + this.press * 0.012, this.thumbBase.z);
+      this.updateHand(dt);
 
       if (!this.app.dead) {
         const lockScreen = this.app.screen === 'lock';
         this.screenLight.color.set(lockScreen ? '#8a74ff' : '#c4ccff');
-        this.screenLight.intensity = 0.35 + (lockScreen ? 0 : 0.1);
+        // a tela perto do rosto acende o edredom e a mão (deixa ler que ela está deitada)
+        this.screenLight.intensity = 0.55 + (lockScreen ? 0 : 0.12);
       }
 
       // Pânico: coração disparado, glitch e tela avermelhada
@@ -2180,16 +2309,6 @@ export class QuartoScene {
       }
       this.ani.mesh.position.set(this.x, 0, this.z);
       if (this.ani.update(dt, this.ani.held != null ? 0 : animSpeed)) sfx.step();
-      // travesseiro na mão: segue a respiração dela e dá umas sacudidas
-      if (this.pillowHold) {
-        const ph = this.pillowHold;
-        ph.t += dt;
-        const P = this.room.pillow;
-        P.position.copy(ph.pos);
-        P.position.y += Math.sin(ph.t * 2.2) * 0.012 + (ph.t > 0.5 && ph.t < 0.9 ? Math.sin(ph.t * 40) * 0.01 : 0);
-        const wob = ph.t > 0.5 && ph.t < 0.9 ? Math.sin(ph.t * 34) * 0.06 : 0;
-        P.quaternion.copy(this.pillowQ).multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(0, 0, wob)));
-      }
       // iluminada pelas luzes do quarto (no escuro vira quase silhueta sozinha)
       this.updateRim();
       fx.vignette = lerp(0.85, 0.55, this.room.light);
@@ -2213,6 +2332,12 @@ export class QuartoScene {
         if (glowObj) this.game.sfx.hover();
       }
       if (glowObj) setGlow(glowObj, 0.16 + Math.sin(t * 4) * 0.07);
+      // travesseiro (sprite): mesma luz de preenchimento da Ani; o brilho de interação é na cor
+      if (this.pillowSprite) {
+        const k = this.room.light;
+        const c = this.pillowSprite.material.color.copy(FILL_DARK).lerp(FILL_LIT, k).multiplyScalar(lerp(0.8, 1.02, k));
+        if (glowObj === this.pillowSprite) c.lerp(PILLOW_GLOW, 0.2 + Math.sin(t * 4) * 0.08);
+      }
       if (it) {
         if (it.id === 'cortina') it.label = this.room.curtain > 0.5 ? 'Abrir cortina' : 'Fechar cortina';
         if (it.id === 'interruptor') it.label = dark ? 'Acender a luz' : 'Apagar a luz';

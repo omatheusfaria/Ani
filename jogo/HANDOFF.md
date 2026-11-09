@@ -1,6 +1,91 @@
 # Handoff — Ani-Game (TG Fatec)
 
-Atualizado em 07/11/2026. Leia este arquivo inteiro antes de mexer no projeto.
+Atualizado em 08/11/2026. Leia este arquivo inteiro antes de mexer no projeto.
+
+## Sessão de 08/11 (feita no PC Windows) — LEIA PRIMEIRO
+
+Neste dia o usuário trabalhou no PC Windows (`D:\Usuários\Desktop\Ani Game`). Tudo abaixo foi gravado
+lá e **não tem commit**. No notebook, essas mudanças chegam pelo pacote `ani-game-mudancas-08-11.zip`
+(extrair por cima da pasta do projeto, mantendo os caminhos). Antes de editar, confira se estão no
+notebook, por exemplo procurando `addFoods` em `js/chars/ani.js` e `phonePause` em `js/engine/ui.js`.
+
+Feito e aprovado pelo usuário:
+1. **Interruptor do quarto** (`ani-interruptor-quadros.png`): animação da Ani apertando, apagar/acender
+   a luz, tecla 3D basculante com mola (room.js `setSwitch`, quarto.js `SWITCH_SPOT`).
+2. **Pausa no parque com o celular**: ESC → a Ani tira o celular do bolso e mexe (clip `celular` com
+   seq/loop/out e camada de brilho aditiva); câmera chega em plano médio, DOF, luz fria da tela.
+   O menu abre **na tela de um celular à esquerda, estilo app de Ajustes** (o usuário NÃO quer chat):
+   Continuar, Som (barra), Pixels (‹ ›), Tela cheia (chave), Menu principal. ←→ ajustam (ui.pauseAdjust).
+   A pausa congela roteiro, falas, minigame e roda-gigante.
+3. **Comidas desenhadas nos sprites** (parque): pegar no balcão (x-pegando-x) e comer parada/andando
+   (x-parada-x / x-andando-x), 4 estágios contínuos entre parada e andando. Ver parkfood.js abaixo.
+4. **Rosto da Ani com a maçã**: o sorrisão foi trocado pelo rosto calmo como na pipoca
+   (tools/ajustar-rosto-maca.py, parada e andando).
+
+## Sessão de 08/11 à noite (notebook, pela ponte) — cena da tirinha
+
+Feito (falta o usuário aprovar no jogo):
+5. **Cena da tirinha com `assets/sprites/cena-cabine.png`**: a folha tem as duas na mesma célula.
+   `tools/recortar-cena-dupla.py cena-cabine.png ani-cabine-quadros.png malu-cabine-quadros.png [previa.png]`
+   separa as duas por uma "costura" (programação dinâmica entre as pernas), devolve para a Malu os fios
+   laranja que caíram do lado da Ani (só o que fica ligado ao corpo dela: as fotinhas da tirinha também
+   têm laranja), costura de volta pé/mão que passou da borda da célula e grava uma folha 6×4 de célula
+   própria para cada (ANI_CABINE / MALU_CABINE em ani.js; quadros comentados lá).
+   No `intro()` (parque.js): as duas saem da cabine andando para a direita (`Actor.lock` = anda virada
+   para um lado), a Ani para, a Malu chega na fenda (B.slot), pega (evento 'pega': some a tirinha 3D,
+   `sfx.page`), ri das fotos, vira, volta e entrega; a Ani fica com a tirinha DESENHADA na mão até o
+   "Eu guardei." (não usa mais `stripHolder`/`pose(14)` nessa cena). As falas são as mesmas.
+   API nova do WalkSprite: `addSheetClip(nome, def)` e `play(nome, { seq, loop, hold })` — hold segura o
+   último quadro (a promessa resolve) até o próximo play()/stopClip(). `def.left` = quadros desenhados
+   virados para a esquerda (não espelha quando ela olha para a esquerda). Na pausa em cena as
+   animações de cena congelam (`clipPaused`); o celular da pausa continua mexendo.
+6. **Abertura do quarto (celular)**: o celular ficava longe/minúsculo porque a distância era
+   "1 px da tela = 1 px do jogo" com `renderer.h`, que muda com a janela (janela de 647 px + PEQUENOS
+   → escala 1 → h = 647 → celular a 1,7 m, atrás da beira da cama). Agora: tela ocupa PHONE_FILL (0,66)
+   da altura em qualquer janela/resolução (a interface é nítida, não precisa de 1:1) e o aparelho tem
+   tamanho real (phoneRig.scale = PHONE_K 0,24) a ~23 cm do rosto. Câmera FP_EYE encostada nos
+   travesseiros olhando por cima do edredom; o "levantar" sai dali para a beira da cama.
+   Mão = sprite `mao-celular-quadros.png` (`tools/recortar-mao-celular.py mao-celular.png saida.png
+   [previa.png]`): tira a tela preta e a moldura desenhadas, alinha os quadros pela tela, devolve o
+   contorno do polegar e continua a manga para fora da célula (o corte fica fora da tela). O modelo 3D
+   (moldura do tamanho da desenhada) fica atrás; o polegar fica no passe pixelado por cima da tela HD.
+   Polegar: HAND_TAP no toque, HAND_SWIPES no scroll-tick, HAND_IDLE de vez em quando.
+   `js/phone/hands.js` (mãos antigas em canvas) não é mais usado.
+7. **Boca falando** (`ani-conversando` / `malu-conversando`, recortadas com `tools/recortar-comida.py`,
+   que agora acha as células pelos vãos quando a folha não é 6×4 de 256): ANI_TALK / MALU_TALK em
+   ani.js. `parque.say()` chama talkStart → a boca abre/fecha no ritmo das letras do balão
+   (ui.bubble ganhou `onChar`/`onTyped`) e fecha na pontuação; falas ≥ 38 letras podem usar o gesto de
+   mão; a Malu às vezes termina com o sorrisinho (16). Só fala com a folha se estiver parada e de mãos
+   livres (comendo, andando ou em clip de cena fica como está). Corrigido: `play(..., {hold})` não
+   segurava o quadro se um quadro lento pulasse o trecho inteiro.
+8. **Travesseiro** (`ani-travesseiro.png` → `ani-travesseiro-quadros.png` com
+   `tools/recortar-comida.py ani ... --sem-branco --apagar-soltos=0,1,2,3,22,23 --medir=9,16`):
+   o travesseiro da cabeceira virou sprite (`travesseiro.png` → `travesseiro-quadro.png` por
+   `tools/recortar-objeto.py entrada saida 89`, mesmo tamanho do desenhado na folha), tingido com o
+   preenchimento da Ani (FILL_DARK/LIT) e brilho de interação na cor; o 3D (`room.pillow`) fica
+   escondido. `liftPillow`: anda até a beira, estica o corpo (0–3), o travesseiro voa da cama até
+   `ani.clipPoint('travesseiro', ...grab)` e no quadro 9 vira o desenhado; abraça (10–14, olhos
+   fechados) com "Nem embaixo do travesseiro."; 15→16 abaixa, o travesseiro volta voando de `drop`
+   para a cama e ela se endireita (3→0). Os quadros agachada até o chão (4–8, 17–21) não são usados.
+   Novo no WalkSprite: `clipTexel(nome)` e `clipPoint(nome, dxPx, dyPx)` (ponto desenhado → mundo).
+9. **Boca na cena da cabine**: lá elas seguram poses da folha da cabine (a Malu com a tirinha), então
+   a folha de conversa não serve. `tools/boca-aberta.py folha FW FH saida quadro:x,y ... [previa]`
+   acha a linha da boca perto do ponto e desenha uma boca aberta (3×2 em rosto miúdo, 5×3 normal) numa
+   5ª linha da folha. ani/malu-cabine-quadros.png agora têm ROWS: 5 e `mouth` (pose → boca aberta).
+   A fala tem o modo 'boca': com uma pose de cena que tem `mouth`, alterna pose/boca aberta sem sair
+   da pose (canTalk devolve 'fala' | 'boca' | false). `sheetClip` aceita `def.ROWS`.
+10. **Final da roda-gigante com `cena-final.png`**: as costas das duas (antes em canvas, com a Malu
+   "encostando" por rotação) viraram um sprite só da folha, recortada por
+   `tools/recortar-cena-costas.py cena-final.png cena-final-quadros.png [previa]` (acha os quadros pelos
+   vãos — na folha eles não batem com a grade de 256 —, alinha pela cintura, contorno de luz quente à
+   direita/frio à esquerda). wheelride.js: BACK_IDLE (0–1–2–1) → na hora de encostar BACK_LEAN (4 vira,
+   6 olha a Ani, 7–10 inclina, 12–16 se aninha) → BACK_REST (18–22, respirando). Quadros 5, 11, 17 e 23
+   vêm cortados na borda direita da folha original: não usar (ou pedir a folha de novo).
+
+Pendências:
+- Travesseiro: feito pela leitura "pegar da cama" (o usuário não respondeu a encenação; se ele quiser
+  o travesseiro no chão como na folha, dá para usar os quadros 4–8 / 17–21 que ficaram de fora).
+- Commit/push só quando ele pedir.
 
 ## O projeto
 
@@ -25,8 +110,15 @@ O usuário roda o servidor com `./iniciar-servidor.sh` (http://localhost:5500) e
   3. Gravar de volta usando o `mtime` esperado, para não apagar edições dele.
   4. Puxar de novo e comparar (`cmp`).
   - Nota: PNG pode voltar re-codificado. Compare os pixels, não os bytes.
-- Git: as mudanças das últimas sessões estão **só no disco do notebook**, sem commit e sem push.
-  Não faça commit nem push sem ele pedir.
+- Git: as mudanças das últimas sessões estão **sem commit e sem push** (as de 08/11 vieram do Windows
+  pelo zip). Não faça commit nem push sem ele pedir.
+- No PC Windows a ponte tinha um shell (VM Linux, pasta em `$HOME/mnt/<pasta>`); no notebook pode não ter.
+- Ferramentas de sprite (Python + numpy + Pillow), rodam no computador dele:
+  - `tools/recortar-folha.py`: folhas do Sprite Fusion → tira de células 168×246 (ani-interruptor, ani-celular).
+  - `tools/separar-brilho.py`: separa o brilho da tela do celular do corpo.
+  - `tools/recortar-comida.py ani|malu entrada.png saida-quadros.png`: grade 6×4 com célula própria.
+  - `tools/ajustar-rosto-maca.py`: rodar depois de recortar as folhas da maçã da Ani.
+  - `tools/recortar-cena-dupla.py`: folha de cena com as duas na mesma célula → uma folha para cada.
 
 ## Testes (na sessão em nuvem)
 
@@ -109,7 +201,8 @@ js/scenes/quarto.js     Cena 1 (23:47), em etapas:
 js/scenes/cinema.js     luz do quarto: luar volumétrico em meia resolução + blur, cone do lustre,
                         sombra da Ani (sprite), poeira
 js/scenes/parque.js     Capítulo 1 (ParkScene)
-                          intro: flash → cartão → grua → tirinha → cortina → conversa em balões pretos
+                          intro: flash → cartão → grua → tirinha → cortina → cena da cabine (folhas ANI/MALU_CABINE)
+                                 → conversa em balões pretos
                                  → "Eu guardei."
                           startFree: andar livre, a Malu segue
                           interact: falas por barraca e resposta da Malu

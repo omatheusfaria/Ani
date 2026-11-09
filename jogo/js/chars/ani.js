@@ -94,6 +94,55 @@ export const MALU_FOOD = {
   algodao2: food('malu', 'algodao', { FW: 196, FH: 254, H: 243 }, { FW: 170, FH: 258, H: 247 }, { FW: 190, FH: 257, H: 246 }),
   churros: food('malu', 'churros', { FW: 194, FH: 256, H: 244 }, { FW: 158, FH: 257, H: 247 }, { FW: 176, FH: 256, H: 244 }),
 };
+// ---------------------------------------------------------------
+// Cena da tirinha (parque, logo depois da cabine). A folha assets/sprites/cena-cabine.png tem as
+// duas na mesma célula; tools/recortar-cena-dupla.py separa uma folha para cada (grade 6×4, célula
+// própria, mesma escala da caminhada pelo H). A cena toca os trechos com play(nome, { seq, loop, hold }).
+//   Ani:  0–5 andando · 6–18 parada · 19 pega a tirinha · 20 olhando a tirinha · 21 olhos fechados
+//         · 22 sorri · 23 olha a tirinha de novo
+//   Malu: 0–5 andando · 6–8 para na máquina · 9 estica o braço · 10 tirinha na mão · 11 ri olhando
+//         · 12 vira para a Ani · 13 parada · 14–16 volta andando · 17 parada · 18 estende a tirinha
+//         · 19 entrega · 20–23 contente. Do 12 em diante ela está desenhada virada para a esquerda
+//         (left): o jogo não espelha esses quadros quando ela olha para a esquerda.
+// ---------------------------------------------------------------
+// mouth: quadro em que ela fala → o mesmo quadro de boca aberta (5ª linha da folha, feita por
+// tools/boca-aberta.py). Ela fala segurando a tirinha sem sair da pose.
+export const ANI_CABINE = { url: SPR('ani-cabine-quadros.png'), FW: 146, FH: 226, H: 213, ROWS: 5, mouth: { 6: 24, 19: 25 } };
+export const MALU_CABINE = {
+  url: SPR('malu-cabine-quadros.png'), FW: 168, FH: 249, H: 232, ROWS: 5,
+  left: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+  mouth: { 12: 24, 13: 25, 18: 26, 21: 27, 17: 28 },
+};
+// ---------------------------------------------------------------
+// Conversa: folhas x-conversando (tools/recortar-comida.py, células achadas pelos vãos). A boca
+// acompanha as letras do balão (talkStart / talkChar / talkEnd / talkStop). Duas "linhas" de rosto
+// parado (o corpo é o mesmo dentro de cada uma, então a boca troca sem o corpo pular) e o gesto
+// de mão para falas longas: in (levanta a mão) → abre/fecha → out (abaixa).
+// ---------------------------------------------------------------
+export const ANI_TALK = {
+  url: SPR('ani-conversando-quadros.png'), FW: 204, FH: 320, H: 310,
+  rows: [{ open: [1, 2, 3, 4], closed: [0, 5] }, { open: [19, 20, 21], closed: [18, 22, 23] }],
+  gesture: { in: [[9, 0.09]], open: [10, 11, 12, 13], closed: [9], out: [[16, 0.1], [17, 0.12]] },
+};
+export const MALU_TALK = {
+  url: SPR('malu-conversando-quadros.png'), FW: 190, FH: 321, H: 309,
+  rows: [{ open: [1, 2], closed: [0, 3, 4] }, { open: [18, 19, 20], closed: [21, 22, 23] }],
+  gesture: { in: [[8, 0.09]], open: [9, 11, 12], closed: [10, 13], out: [[14, 0.1], [15, 0.1], [17, 0.12]] },
+  smile: 16, // às vezes termina a fala com o sorrisinho de olhos fechados
+};
+// ---------------------------------------------------------------
+// Travesseiro (quarto): ani-travesseiro.png recortada com
+//   tools/recortar-comida.py ani ani-travesseiro.png ani-travesseiro-quadros.png --sem-branco
+//     --apagar-soltos=0,1,2,3,22,23 --medir=9,16
+// (o travesseiro deitado no chão foi apagado dos quadros em pé). A cena usa 0–3 (estica o corpo
+// para a cama), 9–15 (com o travesseiro nos braços, abraça de olhos fechados) e 16 (abaixa).
+// grab/drop = centro do travesseiro desenhado nos quadros 9 e 16 (px das pernas, px acima da sola):
+// é ali que o travesseiro de verdade chega voando e de onde ele volta para a cama.
+// ---------------------------------------------------------------
+export const ANI_TRAVESSEIRO = {
+  url: SPR('ani-travesseiro-quadros.png'), FW: 308, FH: 253, H: 231,
+  grab: [55, 127], drop: [71, 96], pillowPx: [91, 70],
+};
 const EAT_LEVELS = 4;
 // mordida parada: segundos por quadro da linha (o 4º é a mordida em si)
 const EAT_SEQ = [0.11, 0.12, 0.14, 0.24, 0.16, 0.22];
@@ -274,11 +323,143 @@ export class WalkSprite {
   // escala da folha de caminhada (H = altura da personagem nela) e com a sola no mesmo lugar
   sheetClip(def) {
     const tex = loadSheet(def.url);
-    tex.repeat.set(1 / 6, 1 / 4);
+    const ROWS = def.ROWS || 4;
+    tex.repeat.set(1 / 6, 1 / ROWS);
     const T = (this.cfg.TEXEL * this.cfg.PX) / def.H;
     const geo = new THREE.PlaneGeometry(def.FW * T, def.FH * T);
     geo.translate(this.cfg.LEG_OFF * (this.cfg.TEXEL - T), (def.FH * T) / 2 - this.cfg.FOOT_PAD * T, 0);
-    return { ...def, tex, geo, COLS: 6, ROWS: 4, COUNT: 24, texel: [1 / (def.FW * 6), 1 / (def.FH * 4)] };
+    return { ...def, tex, geo, COLS: 6, ROWS, COUNT: 6 * ROWS, texel: [1 / (def.FW * 6), 1 / (def.FH * ROWS)] };
+  }
+
+  // Folha de cena (grade 6×4, célula própria): os trechos vêm de quem toca (play com seq/loop/hold).
+  // def.left = quadros desenhados virados para a esquerda.
+  addSheetClip(name, def) {
+    this.clips[name] = { ...this.sheetClip(def), seq: def.seq || [], left: new Set(def.left || []) };
+  }
+
+  // escala (metros por px) de uma folha de célula própria
+  clipTexel(name) {
+    return (this.cfg.TEXEL * this.cfg.PX) / this.clips[name].H;
+  }
+
+  // ponto desenhado numa folha de célula própria (px a partir das pernas, px acima da sola) → mundo,
+  // do lado para onde ela está virada (para objetos de verdade encontrarem a mão desenhada)
+  clipPoint(name, dx, dy, out = new THREE.Vector3()) {
+    const T = this.clipTexel(name);
+    const sx = this.facing < 0 ? -1 : 1;
+    const p = this.mesh.position;
+    return out.set(p.x + (this.cfg.LEG_OFF * this.cfg.TEXEL + dx * T) * sx, p.y + dy * T, p.z + 0.02);
+  }
+
+  // ---- Fala: a boca acompanha o texto do balão ----
+  addTalk(def) {
+    this.addSheetClip('fala', def);
+    this.talkDef = def;
+    this.talking = null;
+  }
+
+  // 'fala': folha de conversa (parada e de mãos livres). 'boca': segurando uma pose de cena que tem
+  // quadro de boca aberta (clip.mouth) — fala sem sair da pose. false: fica como está.
+  canTalk() {
+    if (this.moving) return false;
+    const a = this.anim;
+    if (a && a.name !== 'fala') {
+      const base = a.hold && a.list.length ? a.list[a.list.length - 1][0] : null;
+      return base != null && a.clip.mouth?.[base] != null ? 'boca' : false;
+    }
+    return !!this.talkDef && !this.food && this.held == null && this.reaching <= 0 ? 'fala' : false;
+  }
+
+  talkStart(text = '') {
+    this.talking = null;
+    const mode = this.canTalk();
+    if (!mode) return false;
+    if (mode === 'boca') {
+      const a = this.anim;
+      const base = a.list[a.list.length - 1][0];
+      const set = { open: [a.clip.mouth[base]], closed: [base] };
+      this.talking = { mode, anim: a, set, open: false, next: 0, lastChar: -1, pauseUntil: 0, f: base, ended: false };
+      return true;
+    }
+    const D = this.talkDef;
+    // falas longas ganham o gesto de mão (escolha fixa por fala, para repetir igual)
+    let h = 0;
+    for (const ch of text) h = (h * 31 + ch.charCodeAt(0)) % 997;
+    const gesture = text.length >= 38 && h % 10 < 6;
+    const set = gesture ? D.gesture : D.rows[h % D.rows.length];
+    this.talking = { mode, set, gesture, open: false, next: 0, lastChar: -1, pauseUntil: 0, f: set.closed[0], ended: false, h };
+    if (gesture) this.play('fala', { seq: D.gesture.in, hold: true });
+    else this.play('fala', { seq: [[set.closed[0], 0.05]], hold: true });
+    return true;
+  }
+
+  talkChar(ch) {
+    const T = this.talking;
+    if (!T || !this.talkLive(T)) return;
+    T.lastChar = this.time;
+    if (',.!?;:…—'.includes(ch)) T.pauseUntil = this.time + 0.17; // a boca fecha na pausa
+  }
+
+  // a animação da fala ainda é a que está tocando? (a cena pode ter trocado de pose)
+  talkLive(T) {
+    return T.mode === 'boca' ? this.anim === T.anim : this.anim?.name === 'fala';
+  }
+
+  // texto terminou: fecha a boca (o gesto abaixa a mão)
+  talkEnd() {
+    const T = this.talking;
+    if (!T || T.ended) return;
+    T.ended = true;
+    if (!this.talkLive(T)) return;
+    if (T.mode === 'boca') return void this.sheetFrame(T.anim.clip, T.set.closed[0]);
+    const D = this.talkDef;
+    if (T.gesture) this.play('fala', { seq: D.gesture.out, hold: true });
+    else {
+      const f = D.smile != null && T.h % 3 === 0 ? D.smile : T.set.closed[0];
+      this.play('fala', { seq: [[f, 0.05]], hold: true });
+    }
+  }
+
+  // o balão sumiu: volta para a folha normal (com o piscar)
+  talkStop() {
+    const T = this.talking;
+    if (T?.mode === 'boca') {
+      // continua na pose da cena, de boca fechada
+      if (this.anim === T.anim) this.sheetFrame(T.anim.clip, T.set.closed[0]);
+    } else if (this.anim?.name === 'fala') this.stopClip();
+    this.talking = null;
+  }
+
+  updateTalk() {
+    const T = this.talking;
+    if (!T || T.ended) return;
+    const a = this.anim;
+    if (!a || !this.talkLive(T)) return void (this.talking = null);
+    if (this.moving) return void this.talkStop();
+    if (a.phase !== 'hold') return; // ainda levantando a mão / chegando na pose
+    const now = this.time;
+    // pausa (pontuação ou o texto parou de vir): boca fechada
+    const quiet = now < T.pauseUntil || now - T.lastChar > 0.14;
+    let want = T.f;
+    if (quiet) {
+      if (T.open) {
+        T.open = false;
+        want = T.set.closed[Math.floor(Math.random() * T.set.closed.length)];
+      }
+      T.next = now; // volta a abrir assim que as letras voltarem
+    } else if (now >= T.next) {
+      T.open = !T.open;
+      const pool = T.open ? T.set.open : T.set.closed;
+      // abre/fecha num ritmo de fala (não a cada letra, que seria rápido demais)
+      do want = pool[Math.floor(Math.random() * pool.length)];
+      while (pool.length > 1 && want === T.f);
+      T.next = now + (T.open ? 0.09 + Math.random() * 0.06 : 0.06 + Math.random() * 0.04);
+    }
+    if (want !== T.f) {
+      T.f = want;
+      if (T.mode !== 'boca') a.f = want; // na pose de cena o quadro "oficial" continua o da pose
+      this.sheetFrame(a.clip, want);
+    }
   }
 
   // Comidas do parque: animação de pegar no balcão + folhas parada/andando comendo
@@ -427,12 +608,15 @@ export class WalkSprite {
   // Toca uma animação extra. onEvent(nome) nos quadros marcados ('press', 'tela')
   // e 'loop' quando entra na parte que repete. Com loop, fica repetindo até release().
   // Devolve uma promessa que resolve quando termina (o sprite volta à folha normal).
-  play(name, { onEvent } = {}) {
+  // Opções para cenas: seq/loop trocam os trechos da animação; hold = no fim do trecho fica
+  // parada no último quadro (a promessa resolve, mas a folha continua) até o próximo play()
+  // ou stopClip(). Assim a cena encadeia trechos e segura uma pose enquanto as falas rolam.
+  play(name, { onEvent, seq, loop, hold = false } = {}) {
     const clip = this.clips[name];
     if (!clip) return Promise.resolve();
     this.anim?.resolve?.();
     return new Promise((resolve) => {
-      this.anim = { clip, list: clip.seq, phase: 'seq', t: 0, i: -1, onEvent, resolve };
+      this.anim = { name, clip, list: seq || clip.seq, loopList: loop || clip.loop, hold, phase: 'seq', t: 0, i: -1, f: null, onEvent, resolve };
       this.useSheet(clip);
       if (clip.glowTex) this.ensureGlow(clip.glowTex);
     });
@@ -471,15 +655,17 @@ export class WalkSprite {
   updateClip(dt) {
     const a = this.anim;
     if (!a) return false;
+    // segurando a pose do fim do trecho, ou a pausa congelou a cena
+    if (a.phase === 'hold' || this.clipPaused) return true;
     a.t += dt;
     let list = a.list;
     let acc = 0, i = 0;
     while (i < list.length && a.t >= acc + list[i][1]) acc += list[i++][1];
     if (i >= list.length) {
-      if (a.phase === 'seq' && a.clip.loop) {
+      if (a.phase === 'seq' && a.loopList) {
         // entra na repetição
         a.phase = 'loop';
-        a.list = list = a.clip.loop;
+        a.list = list = a.loopList;
         a.t -= acc;
         a.i = -1;
         i = 0;
@@ -488,6 +674,18 @@ export class WalkSprite {
         a.t -= acc;
         a.i = -1;
         i = 0;
+      } else if (a.hold && a.phase === 'seq' && list.length) {
+        // (vale também quando um quadro lento pula o trecho inteiro de uma vez)
+        // fim do trecho: fica no último quadro e avisa quem esperava
+        for (let k = a.i + 1; k < list.length; k++) if (list[k][2]) a.onEvent?.(list[k][2]);
+        const last = list[list.length - 1][0];
+        if (last !== a.f) {
+          a.f = last;
+          this.sheetFrame(a.clip, last);
+        }
+        a.phase = 'hold';
+        a.resolve();
+        return true;
       } else {
         this.stopClip();
         return false;
@@ -498,6 +696,7 @@ export class WalkSprite {
       for (let k = a.i + 1; k <= i; k++) if (list[k][2]) a.onEvent?.(list[k][2]);
       a.i = i;
       const f = list[i][0];
+      a.f = f;
       this.sheetFrame(a.clip, f);
       if (a.clip.glowTex) this.sheetFrame(a.clip, f, a.clip.glowTex);
       if (list[i][2] === 'press') this.squash = Math.max(this.squash, 0.35); // peso do aperto
@@ -563,6 +762,7 @@ export class WalkSprite {
 
     let frame = eye;
     const clipOn = this.updateClip(dt);
+    if (clipOn) this.updateTalk();
     let foodOn = false;
     if (clipOn) frame = this.frame; // a animação extra cuida do quadro
     else if (this.food) {
@@ -607,11 +807,14 @@ export class WalkSprite {
     this.lean += this.leanV * dt;
     const breath = moving ? 0 : Math.sin((this.time / 3.4) * Math.PI * 2) * 0.006;
     const sq = this.squash * 0.03;
-    this.mesh.scale.set(this.shown * (1 + sq * 0.5), 1 - sq + breath + this.bend, 1);
+    // quadro já desenhado virado para a esquerda (folha de cena): espelha ao contrário
+    const a = this.anim;
+    const flip = this.shown * (a && a.clip.left?.has(a.f) ? -1 : 1);
+    this.mesh.scale.set(flip * (1 + sq * 0.5), 1 - sq + breath + this.bend, 1);
     this.mesh.rotation.z = -this.lean * this.shown;
 
     // contorno de luz do lado da luz (em coordenadas da textura, que espelha junto)
-    if (this.rimX != null) this.uniforms.uRimDir.value = Math.sign(this.rimX - this.mesh.position.x || 1) * this.shown;
+    if (this.rimX != null) this.uniforms.uRimDir.value = Math.sign(this.rimX - this.mesh.position.x || 1) * flip;
 
     this.shadow.position.x = this.mesh.position.x;
     this.shadow.position.z = this.mesh.position.z + 0.02;

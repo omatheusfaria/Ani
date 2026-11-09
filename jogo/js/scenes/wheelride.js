@@ -10,7 +10,8 @@ import { ANI_SPRITE } from '../chars/ani.js';
 //   3. closes alternados no rosto de quem fala (o convite do show de março)
 //   4. a roda para lá no alto, a gôndola balança
 //   5. plano afastado por trás: as costas delas e a cidade inteira acesa,
-//      o céu estrelado, uma estrela cadente. Silêncio. "CONTINUA".
+//      o céu estrelado; a Malu deita no ombro da Ani (folha cena-final), uma estrela cadente.
+//      Silêncio. "CONTINUA".
 // ===============================================================
 
 const V3 = THREE.Vector3;
@@ -88,105 +89,29 @@ function makeCabin() {
 }
 
 // ---------------------------------------------------------------
-// As duas de costas (pixel art em canvas, da cintura para cima)
+// As duas de costas, da cintura para cima: assets/sprites/cena-final.png recortada por
+// tools/recortar-cena-costas.py (alinhada pela cintura, com contorno de luz quente à direita e
+// frio à esquerda). Um sprite só, porque a Malu deita no ombro da Ani.
+//   0–3 olhando a cidade · 4 a Malu vira a cabeça · 6 olha a Ani · 7–10 inclina · 12–16 se aninha
+//   no ombro · 18–22 descansando. (5, 11, 17 e 23 vêm cortados na borda da folha: não usar.)
 // ---------------------------------------------------------------
-function backCanvas(who) {
-  const Wp = 80, Hp = 116;
-  const c = document.createElement('canvas');
-  c.width = Wp;
-  c.height = Hp;
-  const g = c.getContext('2d');
-  let seed = who === 'ani' ? 11 : 29;
-  const rnd = () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646;
-  const px = (x, y, w, h, col) => {
-    g.fillStyle = col;
-    g.fillRect(Math.round(x), Math.round(y), w, h);
-  };
-  const disc = (cx, cy, r, col) => {
-    g.fillStyle = col;
-    for (let y = -r; y <= r; y++) {
-      const w = Math.round(Math.sqrt(Math.max(0, r * r - y * y)));
-      g.fillRect(Math.round(cx - w), Math.round(cy + y), w * 2 + 1, 1);
-    }
-  };
-  // ombros e tronco (de costas, da cintura para cima)
-  const torso = (top, col, colD, colL) => {
-    for (let y = top; y < Hp; y++) {
-      const k = clamp((y - top) / 18);
-      const w = Math.round(lerp(13, 30, Math.sqrt(k)) + (y > top + 30 ? (y - top - 30) * 0.04 : 0));
-      px(40 - w, y, w * 2, 1, col);
-      px(40 - w, y, 2, 1, colD); // lado da sombra
-      px(40 + w - 2, y, 2, 1, colL); // lado da luz
-    }
-  };
-  if (who === 'ani') {
-    torso(44, '#1c1a24', '#121018', '#2c2838');
-    // capuz caído nas costas (dobras)
-    disc(40, 52, 15, '#26222f');
-    disc(40, 53, 11, '#1a1822');
-    for (let i = -10; i <= 10; i += 5) px(40 + i, 47 + Math.abs(i) * 0.3, 2, 6, '#302b3c');
-    px(39, 66, 2, 50, '#14121a'); // costura do meio
-    // braços encostados no corpo
-    px(9, 74, 5, 42, '#17151e');
-    px(66, 74, 5, 42, '#17151e');
-    // pescoço
-    px(36, 36, 8, 8, '#d8a890');
-    px(36, 36, 8, 2, '#b88a76');
-    // cabelo chanel: topo redondo, corte reto na altura do queixo, mechas
-    disc(40, 22, 15, '#0f0f17');
-    px(25, 22, 30, 17, '#0f0f17');
-    for (let x = 25; x < 55; x += 3) px(x, 38 + (x % 2), 3, 2, '#0f0f17');
-    for (let i = 0; i < 9; i++) px(28 + i * 3, 12 + (i % 3) * 3, 1, 22 - (i % 2) * 6, '#1d1f2e'); // mechas
-    px(33, 9, 3, 10, '#2c3048'); // brilho do cabelo
-    px(44, 8, 2, 7, '#262a40');
-  } else {
-    torso(46, '#e2dce8', '#b8b0c4', '#fffaff');
-    px(8, 74, 6, 42, '#e3ab8c'); // braços
-    px(66, 74, 6, 42, '#e3ab8c');
-    px(8, 74, 6, 2, '#c88e72');
-    // cabelo ruivo, volumoso e cacheado, descendo até o meio das costas
-    const tones = ['#9a2e1a', '#b8401f', '#d0582a', '#7a2214'];
-    const curls = [];
-    for (let y = 8; y < 92; y += 3) {
-      const k = (y - 8) / 84;
-      // coroa redonda, volume nas laterais e pontas afinando (cachos soltos)
-      const half = 8 + Math.sin(Math.min(1, k * 2.4) * Math.PI * 0.5) * 17 - Math.pow(Math.max(0, k - 0.5) * 2, 1.6) * 15 + Math.sin(y * 0.7) * 1.5;
-      for (let x = -half; x <= half; x += 4) curls.push([40 + x + (rnd() - 0.5) * 3, y + (rnd() - 0.5) * 2, 3 + Math.floor(rnd() * 3)]);
-    }
-    for (const [x, y, r] of curls) disc(x, y, r, tones[3]);
-    for (const [x, y, r] of curls) disc(x - 0.5, y - 0.5, r - 1, tones[Math.floor(rnd() * 2)]);
-    for (const [x, y, r] of curls) if (rnd() < 0.5) px(x - 1, y - r + 1, 2, 1, tones[2]); // luz nos cachos
-    // o cachinho em pé no alto da cabeça
-    disc(42, 4, 3, '#b8401f');
-    px(41, 6, 2, 4, '#b8401f');
-  }
-  // contorno de luz: quente à direita (lâmpadas da roda), fria à esquerda (lua)
-  const d = g.getImageData(0, 0, Wp, Hp);
-  const a = (x, y) => (x < 0 || y < 0 || x >= Wp || y >= Hp ? 0 : d.data[(y * Wp + x) * 4 + 3]);
-  const out = g.createImageData(Wp, Hp);
-  out.data.set(d.data);
-  for (let y = 0; y < Hp; y++)
-    for (let x = 0; x < Wp; x++) {
-      if (!a(x, y)) continue;
-      const i = (y * Wp + x) * 4;
-      if (!a(x + 1, y)) out.data.set([255, 186, 120, 255], i);
-      else if (!a(x + 2, y)) out.data.set([Math.min(255, d.data[i] + 90), Math.min(255, d.data[i + 1] + 50), Math.min(255, d.data[i + 2] + 20), 255], i);
-      else if (!a(x - 1, y)) out.data.set([130, 142, 220, 255], i);
-      else if (!a(x, y - 1)) out.data.set([Math.min(255, d.data[i] + 60), Math.min(255, d.data[i + 1] + 50), Math.min(255, d.data[i + 2] + 70), 255], i);
-    }
-  g.putImageData(out, 0, 0);
-  return c;
-}
+const BACK = { url: 'assets/sprites/cena-final-quadros.png', FW: 262, FH: 211, aniPx: 189, aniX: 71 };
+// mesma altura da cabeça à cintura que os sprites de costas tinham (109 px da escala das personagens)
+const BS = (109 * T) / BACK.aniPx;
+const BACK_IDLE = [[0, 0.5], [1, 0.45], [2, 0.5], [1, 0.45]];
+const BACK_LEAN = [[4, 0.2], [6, 0.6], [7, 0.3], [8, 0.25], [9, 0.25], [10, 0.3], [12, 0.35], [13, 0.35], [14, 0.35], [15, 0.45], [16, 0.35]];
+const BACK_REST = [[18, 0.6], [20, 0.55], [21, 0.6], [22, 0.7], [21, 0.55], [20, 0.55]];
 
-function backSprite(who) {
-  const c = backCanvas(who);
-  const tex = new THREE.CanvasTexture(c);
-  tex.magFilter = THREE.NearestFilter;
-  tex.minFilter = THREE.NearestFilter;
+function backDuo() {
+  const tex = new THREE.TextureLoader().load(BACK.url);
+  tex.magFilter = tex.minFilter = THREE.NearestFilter;
+  tex.generateMipmaps = false;
   tex.colorSpace = THREE.SRGBColorSpace;
+  tex.repeat.set(1 / 6, 1 / 4);
   const mat = new THREE.MeshLambertMaterial({ map: tex, emissiveMap: tex, emissive: '#ffffff', emissiveIntensity: 0.25, alphaTest: 0.5 });
-  const geo = new THREE.PlaneGeometry(c.width * T, c.height * T);
-  geo.translate(0, (c.height * T) / 2, 0); // pivô embaixo (na cintura)
+  const geo = new THREE.PlaneGeometry(BACK.FW * BS, BACK.FH * BS);
+  // pivô na cintura da Ani (linha de baixo, 2 px acima da borda), x no meio dela
+  geo.translate((BACK.FW / 2 - BACK.aniX) * BS, (BACK.FH * BS) / 2 - 2 * BS, 0);
   const m = new THREE.Mesh(geo, mat);
   m.visible = false;
   return m;
@@ -208,9 +133,8 @@ export class WheelRide {
     this.oldKids = [...gm.children];
     this.cabin = makeCabin();
     this.cabin.position.z = OFFZ;
-    this.backAni = backSprite('ani');
-    this.backMalu = backSprite('malu');
-    this.cabin.add(this.backAni, this.backMalu);
+    this.back = backDuo();
+    this.cabin.add(this.back);
     // estrela cadente (um risco que atravessa o céu)
     const sg = new THREE.PlaneGeometry(3.2, 0.05);
     sg.translate(-1.6, 0, 0);
@@ -226,7 +150,32 @@ export class WheelRide {
     this.active = true;
     this.W.W.speed = 0;
     this.shot = 'side';
-    this.lean = 0;
+    this.backPlay(BACK_IDLE, true);
+  }
+
+  // quadros das costas: toca a sequência; loop repete, senão segue para o descanso
+  backPlay(seq, loop = false) {
+    this.backAnim = { seq, loop, i: 0, t: 0 };
+    this.backFrame(seq[0][0]);
+  }
+
+  backFrame(f) {
+    this.back.material.map.offset.set((f % 6) / 6, 1 - (Math.floor(f / 6) + 1) / 4);
+  }
+
+  updateBack(dt) {
+    const a = this.backAnim;
+    if (!a) return;
+    a.t += dt;
+    while (a.t >= a.seq[a.i][1]) {
+      a.t -= a.seq[a.i][1];
+      a.i++;
+      if (a.i >= a.seq.length) {
+        if (a.loop) a.i = 0;
+        else return this.backPlay(BACK_REST, true); // deitada no ombro, respirando
+      }
+      this.backFrame(a.seq[a.i][0]);
+    }
   }
 
   cleanup() {
@@ -245,7 +194,7 @@ export class WheelRide {
     const { ani, malu } = this.ps;
     ani.mesh.visible = malu.mesh.visible = true;
     ani.shadow.visible = malu.shadow.visible = true;
-    this.backAni.visible = this.backMalu.visible = false;
+    this.back.visible = false;
     const fxu = this.ps.fx.uniforms;
     if (this.saved) {
       fxu.uFogDen.value = this.saved.fog;
@@ -292,7 +241,7 @@ export class WheelRide {
     // personagens dentro da cabine
     if (this.shot === 'side') {
       ani.mesh.visible = malu.mesh.visible = true;
-      this.backAni.visible = this.backMalu.visible = false;
+      this.back.visible = false;
       const pa = this.at(-0.42, FLOOR, 0.12), pm = this.at(0.42, FLOOR, 0.08);
       ani.mesh.position.copy(pa);
       malu.mesh.position.copy(pm);
@@ -300,12 +249,10 @@ export class WheelRide {
       malu.facing = -1;
     } else {
       ani.mesh.visible = malu.mesh.visible = false;
-      this.backAni.visible = this.backMalu.visible = true;
-      // de costas para a câmera, olhando a cidade; a Malu encosta a cabeça
-      this.backAni.position.set(-0.24, FLOOR + 0.82, -0.16);
-      this.backMalu.position.set(0.28 - this.lean * 0.08, FLOOR + 0.84 - this.lean * 0.04, -0.18);
-      this.backMalu.rotation.z = this.lean * 0.16;
-      this.backAni.rotation.z = -this.lean * 0.03;
+      // de costas para a câmera, olhando a cidade; a Malu deita no ombro da Ani (folha cena-final)
+      this.back.visible = true;
+      this.back.position.set(-0.24, FLOOR + 0.82, -0.17);
+      this.updateBack(dt);
     }
     ani.shadow.visible = malu.shadow.visible = false;
     // câmera
@@ -454,7 +401,7 @@ export class WheelRide {
     tw.to({ duration: 16, ease: ease.inOutSine, onUpdate: (k) => { cam.p.lerpVectors(back0, back1, k); cam.l.lerpVectors(look0, look1, k); } });
     await tw.wait(3.5);
     if (!ok()) return;
-    tw.to({ duration: 2.2, ease: ease.inOutSine, onUpdate: (k) => (this.lean = k) }); // a Malu encosta a cabeça
+    this.backPlay(BACK_LEAN); // a Malu vira para a Ani e deita no ombro dela (depois fica respirando)
     await tw.wait(2.4);
     if (!ok()) return;
     // estrela cadente

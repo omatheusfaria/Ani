@@ -115,6 +115,7 @@ export class UI {
       }
       typed.textContent += chars[i];
       rest.textContent = chars.slice(i + 1).join('');
+      ctl?.onChar?.(chars[i]); // a boca de quem fala acompanha as letras
       if (chars[i] !== ' ' && i % 2 === 0) this.sfx.type();
       await this.nap(speed + (',.!?'.includes(chars[i]) ? 120 : 0), ctl);
     }
@@ -309,7 +310,8 @@ export class UI {
 
   // Balão de fala em cima da cabeça de um personagem (conversa).
   // id separa um balão por personagem; anchor é chamado a cada quadro.
-  async bubble(text, { anchor, id = 'fala', hold = 2.4, panic = false } = {}) {
+  // onChar(letra) a cada letra digitada e onTyped() quando o texto termina (boca falando).
+  async bubble(text, { anchor, id = 'fala', hold = 2.4, panic = false, onChar = null, onTyped = null } = {}) {
     let b = this.bubbles.get(id);
     if (!b) {
       const el = document.createElement('div');
@@ -346,10 +348,17 @@ export class UI {
     place();
     el.classList.remove('done');
     this.dropDlg(el);
-    const ctl = { stage: 'typing', fast: false, skip: false, wake: null, el };
+    const ctl = { stage: 'typing', fast: false, skip: false, wake: null, el, onChar };
     this.dlg.add(ctl);
+    let typedDone = false;
+    const typed = () => {
+      if (typedDone) return;
+      typedDone = true;
+      onTyped?.();
+    };
     try {
       const ok = await this.typeInto(el.querySelector('.typed'), el.querySelector('.rest'), text, () => tok === b.tok, panic ? 18 : 32, ctl);
+      typed();
       if (!ok) return;
       el.classList.add('done');
       ctl.stage = 'hold';
@@ -359,6 +368,7 @@ export class UI {
         cancelAnimationFrame(b.raf);
       }
     } finally {
+      typed();
       this.dlg.delete(ctl);
     }
   }
