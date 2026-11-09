@@ -10,7 +10,7 @@ No projeto **Ani**, os requisitos funcionais reúnem as funcionalidades atualmen
 
 | RF001-Movimentar personagem | Categoria: (  ) Oculto (X) Evidente | Prioridade: (X) Altíssima (  ) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |
-| **Descrição**: O sistema deve permitir que o jogador mova Ani lateralmente por teclado ou gamepad. | | |
+| **Descrição**: O sistema deve permitir que o jogador mova Ani pelo cenário, para os lados e em profundidade, por teclado ou gamepad. | | |
 
 | RF002-Colisão com cenário e objetos | Categoria: (  ) Oculto (X) Evidente | Prioridade: (X) Altíssima (  ) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |
@@ -86,7 +86,7 @@ No projeto **Ani**, os requisitos funcionais reúnem as funcionalidades atualmen
 
 | RF020-Aviso de conteúdo sensível | Categoria: (  ) Oculto (X) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |
-| **Descrição**: O sistema deve exibir, antes do início do jogo, um aviso sobre temas sensíveis (ansiedade, sofrimento psíquico). | | |
+| **Descrição**: O sistema deve exibir, antes do início do jogo, a classificação indicativa autoatribuída (faixa etária e descritores de conteúdo, conforme o Guia Prático de Classificação Indicativa) e um aviso sobre temas sensíveis (ansiedade, sofrimento psíquico), com indicação de onde buscar apoio. | | |
 
 | RF021-Pausar jogo | Categoria: (  ) Oculto (X) Evidente | Prioridade: (  ) Altíssima (X) Alta (  ) Média (  ) Baixa |
 | --- | --- | --- |

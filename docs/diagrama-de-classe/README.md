@@ -20,26 +20,26 @@ O Quadro 1 apresenta a estrutura de classes, atributos e métodos modelada para 
 
 | Classe | Atributos | Métodos |
 | --- | --- | --- |
-| Jogo | `titulo : string`, `atoAtual : Ato`, `cenarioAtual : Cenario`, `estadoAtual : EstadoJogo` | `iniciar()`, `pausar()`, `retomar()`, `encerrar()`, `salvarProgresso()`, `carregarProgresso()`, `alterarEstado(novoEstado : EstadoJogo)` |
-| Personagem | `nome : string`, `posicaoX : number`, `posicaoY : number`, `sprite : string`, `velocidade : number` | `mover()` |
+| Jogo | `titulo : FString`, `atoAtual : Ato`, `cenarioAtual : Cenario`, `estadoAtual : EstadoJogo` | `iniciar()`, `pausar()`, `retomar()`, `encerrar()`, `salvarProgresso()`, `carregarProgresso()`, `alterarEstado(novoEstado : EstadoJogo)` |
+| Personagem | `nome : FString`, `posicaoX : float`, `posicaoY : float`, `sprite : FString`, `velocidade : float` | `mover()` |
 | Ani | `estadoEmocional : EstadoEmocional`, `diario : Diario` | `interagir()`, `observar()`, `registrarMemoria()`, `iniciarCrise()`, `encerrarCrise()` |
 | NPC | `tipo : TipoNPC` | `falar()`, `interagir()` |
-| Dialogo | `id : number`, `linhas : Array<string>`, `fragmentado : boolean` | `iniciar()`, `avançar()`, `encerrar()` |
-| ObjetoInterativo | `id : number`, `descricao : string` | `ativar()` |
-| ObjetoMemoria | `coletada : boolean` | `exibir()`, `registrarNoDiario()` |
-| Memoria | `id : number`, `titulo : string`, `conteudo : string`, `atoOrigem : number`, `coletada : boolean` | `registrar()`, `atualizarLeitura()` |
-| Diario | `entradas : Array<EntradaDiario>` | `abrir()`, `adicionarEntrada()`, `consultarEntrada()`, `restaurar()` |
-| EntradaDiario | `titulo : string`, `conteudo : string`, `tipo : TipoEntradaDiario` | `atualizarLeitura()` |
-| Cenario | `nome : string`, `desbloqueado : boolean` | `carregarCenario()`, `desbloquearArea()`, `restaurarEstado()` |
-| Ato | `id : number`, `nome : string`, `descricao : string`, `concluido : boolean`, `limiarMemorias : number` | `iniciarAto()`, `verificarConclusao()`, `concluirAto()` |
+| Dialogo | `id : int32`, `linhas : TArray<FString>`, `fragmentado : bool` | `iniciar()`, `avançar()`, `encerrar()` |
+| ObjetoInterativo | `id : int32`, `descricao : FString` | `ativar()` |
+| ObjetoMemoria | `coletada : bool` | `exibir()`, `registrarNoDiario()` |
+| Memoria | `id : int32`, `titulo : FString`, `conteudo : FString`, `atoOrigem : int32`, `coletada : bool` | `registrar()`, `atualizarLeitura()` |
+| Diario | `entradas : TArray<EntradaDiario>` | `abrir()`, `adicionarEntrada()`, `consultarEntrada()`, `restaurar()` |
+| EntradaDiario | `titulo : FString`, `conteudo : FString`, `tipo : TipoEntradaDiario` | `atualizarLeitura()` |
+| Cenario | `nome : FString`, `desbloqueado : bool` | `carregarCenario()`, `desbloquearArea()`, `restaurarEstado()` |
+| Ato | `id : int32`, `nome : FString`, `descricao : FString`, `concluido : bool`, `limiarMemorias : int32` | `iniciarAto()`, `verificarConclusao()`, `concluirAto()` |
 | ObjetoRestauravel | `estado : EstadoObjeto` | `restaurar()` |
-| ObjetoContemplativo | `tempoMinimoObservacao : number` | `observar()`, `liberarNarracao()` |
-| EcoDecisao | `id : number`, `tentativas : number`, `desfecho : string` | `registrarTentativa()`, `conduzirAoImpasse()` |
-| Save | `idSave : number`, `dataCriacao : Date`, `dataUltimaAtualizacao : Date` | `salvar()`, `carregar()` |
+| ObjetoContemplativo | `tempoMinimoObservacao : float` | `observar()`, `liberarNarracao()` |
+| EcoDecisao | `id : int32`, `tentativas : int32`, `desfecho : FString` | `registrarTentativa()`, `conduzirAoImpasse()` |
+| Save | `idSave : int32`, `dataCriacao : FDateTime`, `dataUltimaAtualizacao : FDateTime` | `salvar()`, `carregar()` |
 
-Os tipos dos atributos seguem o JavaScript, linguagem da implementação (`boolean`, `number`, `string`, `Date`, `Array<...>`).
+Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`, `FString`, `FDateTime`, `TArray<...>`). Os nomes das classes e enumerações do modelo omitem os prefixos da convenção da Unreal (`U` para classes derivadas de `UObject`, `A` para atores, `F` para estruturas e `E` para enumerações), que podem ser aplicados na implementação.
 
-Na implementação, a notificação de `Ani` para `Jogo` no início e no fim das crises de ansiedade (`Jogo.alterarEstado()`) é feita por evento: `Ani` dispara o evento e `Jogo`, inscrito nele, altera o estado da sessão.
+Na implementação em Unreal Engine, a notificação de `Ani` para `Jogo` no início e no fim das crises de ansiedade (`Jogo.alterarEstado()`) é feita por um *delegate*.
 
 O Quadro 2 apresenta as enumerações utilizadas para restringir valores recorrentes da modelagem.
 

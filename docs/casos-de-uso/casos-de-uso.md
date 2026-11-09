@@ -198,7 +198,7 @@
 | **Descrição** | Este caso de uso permite que o jogador retome a jornada a partir do progresso salvo em arquivo local. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Menu inicial aberto. |
-| **Cenário Principal** | 1. Jogador seleciona a opção de continuar no menu inicial.<br>2. Sistema lê o arquivo de save.<br>3. Sistema restaura o ato em curso, as memórias registradas, o estado do diário e o estado visual da casa.<br>4. Sistema carrega o cenário correspondente e devolve o controle ao jogador. |
+| **Cenário Principal** | 1. Jogador seleciona a opção de continuar no menu inicial; se ainda não viu o aviso nesse acesso, o Sistema exibe a classificação indicativa e o aviso sobre temas sensíveis, e o Jogador confirma.<br>2. Sistema lê o arquivo de save.<br>3. Sistema restaura o ato em curso, as memórias registradas, o estado do diário e o estado visual da casa.<br>4. Sistema carrega o cenário correspondente e devolve o controle ao jogador. |
 | **Pós-condição** | A sessão é retomada no ponto em que o progresso foi salvo. |
 | **Cenário Alternativo** | 1a. Não existe arquivo de save:<br>1a.1. A opção de continuar fica indisponível no menu inicial.<br>2a. O arquivo de save não pode ser lido:<br>2a.1. O sistema notifica o jogador e retorna ao menu inicial. |
 
@@ -209,10 +209,10 @@
 | Caso de Uso – Iniciar Novo Jogo | |
 | --- | --- |
 | **ID** | UC-S014 |
-| **Descrição** | Este caso de uso permite que o jogador inicie uma nova jornada a partir do Ato I, depois de ver o aviso de conteúdo sensível. |
+| **Descrição** | Este caso de uso permite que o jogador inicie uma nova jornada a partir do Ato I, depois de ver a classificação indicativa e o aviso de conteúdo sensível. |
 | **Ator Primário** | Jogador |
 | **Pré-condição** | Menu inicial aberto. |
-| **Cenário Principal** | 1. Jogador seleciona a opção de novo jogo no menu inicial.<br>2. Sistema exibe o aviso sobre temas sensíveis (ansiedade, sofrimento psíquico).<br>3. Jogador prossegue após o aviso.<br>4. Sistema cria um novo estado de jogo e inicia o Ato I.<br>5. Sistema carrega o cenário inicial e entrega o controle ao jogador. |
+| **Cenário Principal** | 1. Jogador seleciona a opção de novo jogo no menu inicial.<br>2. Sistema exibe a classificação indicativa e o aviso sobre temas sensíveis (ansiedade, sofrimento psíquico), com indicação de onde buscar apoio.<br>3. Jogador confirma e prossegue após o aviso.<br>4. Sistema cria um novo estado de jogo e inicia o Ato I.<br>5. Sistema carrega o cenário inicial e entrega o controle ao jogador. |
 | **Pós-condição** | Uma nova sessão é iniciada no Ato I, sem progresso anterior. |
 | **Cenário Alternativo** | 1a. Existe um save anterior:<br>1a.1. Sistema pede confirmação para sobrescrever o progresso salvo.<br>1a.2. Se o jogador confirmar, o fluxo segue no passo 2 e o novo progresso substitui o save anterior.<br>1a.3. Se o jogador recusar, o sistema retorna ao menu inicial sem alterar o save. |
 

@@ -2,7 +2,7 @@
 
 Os jogos digitais narrativos constituem um campo relevante de investigação em software porque articulam sistemas computacionais, linguagem audiovisual, interação e modelagem de experiência. Diferentemente de mídias puramente lineares, o jogo permite que o sujeito não apenas acompanhe uma trajetória, mas a vivencie por meio de ações, ritmos, interrupções e respostas sistêmicas. No caso de experiências contemplativas, essa característica amplia a capacidade do software de representar estados subjetivos, sofrimento, memória e transformação interior, convertendo temas abstratos em situações interativas sensíveis.
 
-Nesse contexto, o projeto **Ani אֲנִי** propõe um side-scroller narrativo contemplativo centrado em consciência, sofrimento e descoberta gradual de sentido. A logline do projeto o define como “um side-scroller narrativo contemplativo sobre consciência, sofrimento e a descoberta lenta do sentido”. Sua sinopse apresenta Ani em seu quarto, às 23:47, presa à tela do celular, acompanhando o perfil de Malu numa rede social. Quando a bateria acaba e o quarto mergulha no escuro, ela se levanta e o explora em busca do carregador, e os objetos que encontra a levam para dentro das próprias memórias, um espaço ao mesmo tempo familiar e deformado, no qual memórias, silêncio e ruínas emocionais substituem objetivos tradicionais, combate ou tutoriais extensos. O nome **אֲנִי** significa “eu” em hebraico e sintetiza a intenção de aproximar jogador e protagonista, de modo que a experiência não seja observada à distância, mas habitada desde dentro. As características gerais do produto estão reunidas na Ficha do Produto (Quadro 3), na seção 1.1.1.
+Nesse contexto, o projeto **Ani אֲנִי** propõe uma aventura narrativa contemplativa em 2.5D, centrada em consciência, sofrimento e descoberta gradual de sentido. A logline do projeto o define como “uma aventura narrativa contemplativa em 2.5D sobre consciência, sofrimento e a descoberta lenta do sentido”. Sua sinopse apresenta Ani em seu quarto, às 23:47, presa à tela do celular, acompanhando o perfil de Malu numa rede social. Quando a bateria acaba e o quarto mergulha no escuro, ela se levanta e o explora em busca do carregador, e os objetos que encontra a levam para dentro das próprias memórias, um espaço ao mesmo tempo familiar e deformado, no qual memórias, silêncio e ruínas emocionais substituem objetivos tradicionais, combate ou tutoriais extensos. O nome **אֲנִי** significa “eu” em hebraico e sintetiza a intenção de aproximar jogador e protagonista, de modo que a experiência não seja observada à distância, mas habitada desde dentro. As características gerais do produto estão reunidas na Ficha do Produto (Quadro 3), na seção 1.1.1.
 
 A originalidade do projeto reside no fato de que sua espinha dorsal não é uma estrutura de moralidade binária, mas uma jornada de percepção organizada em cinco atos filosóficos. O percurso parte do pessimismo ocidental, associado a Zapffe, Mainländer e Bahnsen, e avança em direção a filosofias contemplativas japonesas, como Wabi-Sabi, Mono no Aware, Ikigai e Yugen. Essa transição não é tratada como exposição teórica, mas como mudança de atmosfera, espaço, ritmo, mecânica e linguagem sensorial (Quadro 1).
 
@@ -48,8 +48,8 @@ A identificação do projeto é apresentada no Quadro 2.
 | Tipo | Jogo digital narrativo contemplativo |
 | Área | Desenvolvimento de software e jogos digitais |
 | Plataforma inicial | PC (Windows), como software instalado; o protótipo é executado no navegador |
-| Motor de jogo | Jogo completo: [preencher]; protótipo: Three.js (biblioteca 3D sobre WebGL) |
-| Linguagem principal | Jogo completo: [preencher]; protótipo: JavaScript, com HTML e CSS |
+| Motor de jogo | Jogo completo: Unreal Engine 5.4.4; protótipo: Three.js (biblioteca 3D sobre WebGL) |
+| Linguagem principal | Jogo completo: C++; protótipo: JavaScript, com HTML e CSS |
 | Natureza do projeto | Projeto autoral com finalidade acadêmica e prototipação, com apoio de ferramentas de IA generativa na produção dos sprites e na modelagem 3D do protótipo |
 
 #### Ficha do Produto
@@ -59,10 +59,10 @@ As características do produto estão resumidas no Quadro 3.
 | Item | Descrição |
 | --- | --- |
 | Título | Ani |
-| Gênero | Side-scroller narrativo contemplativo |
+| Gênero | Aventura narrativa contemplativa em 2.5D |
 | Plataforma principal | PC (Windows), como software instalado; o protótipo é executado no navegador |
-| Engine | Jogo completo: [preencher]; protótipo: Three.js (biblioteca 3D sobre WebGL) |
-| Linguagem | Jogo completo: [preencher]; protótipo: JavaScript, com HTML e CSS |
+| Engine | Jogo completo: Unreal Engine 5.4.4; protótipo: Three.js (biblioteca 3D sobre WebGL) |
+| Linguagem | Jogo completo: C++; protótipo: JavaScript, com HTML e CSS |
 | Câmera | Lateral, com planos em primeira pessoa e de cima nos momentos de inspeção |
 | Público-alvo | 16 a 28 anos, com interesse em filosofia, arte e narrativas reflexivas |
 | Tom | Sombrio, melancólico e contemplativo, com redenção gradual |
@@ -107,7 +107,7 @@ As tecnologias e ferramentas utilizadas no protótipo são:
 - Claude Opus 5.5 para a modelagem 3D dos cenários em Three.js;
 - GitHub Actions e GitHub Pages para a verificação e a publicação do protótipo.
 
-O jogo completo será desenvolvido em uma engine de jogos, como software para PC. Para o protótipo, a tecnologia prevista inicialmente (Unreal Engine com C++) foi substituída por essa base web, executada no navegador, que também torna a apresentação mais simples. O principal motivo foi o tempo disponível para o desenvolvimento: após análise, concluiu-se que, no prazo do projeto, o Three.js era a tecnologia mais adequada para o protótipo. A produção do protótipo contou com apoio de IA generativa: o GPT-6, ao lado do Sprite Fusion, na geração dos sprites, e o Claude Opus 5.5 na modelagem 3D dos cenários.
+O jogo completo será desenvolvido na Unreal Engine 5.4.4, com C++, como software para PC. Para o protótipo, em vez da Unreal Engine, adotou-se essa base web, executada no navegador, que também torna a apresentação mais simples. O principal motivo foi o tempo disponível para o desenvolvimento: após análise, concluiu-se que, no prazo do projeto, o Three.js era a tecnologia mais adequada para o protótipo. A produção do protótipo contou com apoio de IA generativa: o GPT-6, ao lado do Sprite Fusion, na geração dos sprites, e o Claude Opus 5.5 na modelagem 3D dos cenários.
 
 ### 1.1.7 Escopo
 
@@ -141,7 +141,7 @@ O protótipo demonstra parte do design e das mecânicas do jogo por meio do iní
 
 #### Principais Características do Produto
 
-- Side-scroller narrativo contemplativo
+- Aventura narrativa contemplativa em 2.5D
 - Progressão em cinco atos filosóficos
 - Ausência de combate e moralidade binária
 - Mundo mental simbólico e mutável
@@ -348,7 +348,7 @@ O Quadro X apresenta os requisitos funcionais do sistema, organizados por códig
 
 | Código | Título | Categoria | Prioridade | Descrição |
 | --- | --- | --- | --- | --- |
-| RF001 | Movimentar personagem | Evidente | Altíssima | O sistema deve permitir que o jogador mova Ani lateralmente por teclado ou gamepad. |
+| RF001 | Movimentar personagem | Evidente | Altíssima | O sistema deve permitir que o jogador mova Ani pelo cenário, para os lados e em profundidade, por teclado ou gamepad. |
 | RF002 | Colisão com cenário e objetos | Evidente | Altíssima | O sistema deve impedir que Ani ultrapasse paredes, pisos e objetos sólidos. |
 | RF003 | Interagir com objetos | Evidente | Altíssima | O sistema deve permitir interação com objetos significativos para acessar memórias, fragmentos narrativos e elementos contemplativos do cenário. |
 | RF004 | Sistema de memórias | Evidente | Altíssima | O sistema deve apresentar memórias como fragmentos narrativos, como cartas, bilhetes, fotografias e diários, acessíveis por meio da interação com o ambiente. Como o jogador pode interagir com diferentes objetos de memória, a ordem de descoberta desses fragmentos pode variar entre sessões e trajetórias dentro de um mesmo ato. |
@@ -367,7 +367,7 @@ O Quadro X apresenta os requisitos funcionais do sistema, organizados por códig
 | RF017 | Dissolução de mecânicas no Ato V | Evidente | Alta | O sistema deve retirar progressivamente, no Ato V, as mecânicas centrais dos atos anteriores até restarem principalmente deslocamento e contemplação. |
 | RF018 | Crises de ansiedade como elemento sensorial | Evidente | Alta | O sistema deve representar crises de ansiedade por distorção visual, fragmentação sonora e intensificação das manifestações, sem depender de um sistema de escolhas morais. |
 | RF019 | Desbloqueio mínimo de memórias no Ato I | Oculto | Alta | O sistema deve contar, no Ato I, as memórias coletadas e liberar a passagem para o ato seguinte quando a contagem atingir o limiar mínimo definido na RN004. |
-| RF020 | Aviso de conteúdo sensível | Evidente | Alta | O sistema deve exibir, antes do início do jogo, um aviso sobre temas sensíveis (ansiedade, sofrimento psíquico). |
+| RF020 | Aviso de conteúdo sensível | Evidente | Alta | O sistema deve exibir, antes do início do jogo, a classificação indicativa autoatribuída (faixa etária e descritores de conteúdo, conforme o Guia Prático de Classificação Indicativa) e um aviso sobre temas sensíveis (ansiedade, sofrimento psíquico), com indicação de onde buscar apoio. |
 | RF021 | Pausar jogo | Evidente | Alta | O sistema deve permitir que o jogador pause a sessão em andamento, suspendendo o gameplay e exibindo o menu de pausa, e retome o jogo do mesmo ponto. |
 | RF022 | Configurar vídeo, áudio e controles | Evidente | Média | O sistema deve permitir que o jogador ajuste opções de vídeo, áudio e controles a partir do menu inicial ou do menu de pausa. |
 | RF023 | Sair do jogo | Evidente | Alta | O sistema deve permitir que o jogador encerre a aplicação, pedindo confirmação antes de sair. |
@@ -599,7 +599,7 @@ Os Quadros 12 a 26 detalham cada caso de uso, com pré-condição, cenário prin
 | Descrição | Este caso de uso permite que o jogador retome a jornada a partir do progresso salvo em arquivo local. |
 | Ator Primário | Jogador |
 | Pré-condição | Menu inicial aberto. |
-| Cenário Principal | 1. Jogador seleciona a opção de continuar no menu inicial.<br>2. Sistema lê o arquivo de save.<br>3. Sistema restaura o ato em curso, as memórias registradas, o estado do diário e o estado visual da casa.<br>4. Sistema carrega o cenário correspondente e devolve o controle ao jogador. |
+| Cenário Principal | 1. Jogador seleciona a opção de continuar no menu inicial; se ainda não viu o aviso nesse acesso, o Sistema exibe a classificação indicativa e o aviso sobre temas sensíveis, e o Jogador confirma.<br>2. Sistema lê o arquivo de save.<br>3. Sistema restaura o ato em curso, as memórias registradas, o estado do diário e o estado visual da casa.<br>4. Sistema carrega o cenário correspondente e devolve o controle ao jogador. |
 | Pós-condição | A sessão é retomada no ponto em que o progresso foi salvo. |
 | Cenários Alternativos | 1a. Não existe arquivo de save:<br>1a.1. A opção de continuar fica indisponível no menu inicial.<br>2a. O arquivo de save não pode ser lido:<br>2a.1. O sistema notifica o jogador e retorna ao menu inicial. |
 
@@ -608,10 +608,10 @@ Os Quadros 12 a 26 detalham cada caso de uso, com pré-condição, cenário prin
 | Campo | Conteúdo |
 | --- | --- |
 | ID | UC-S014 |
-| Descrição | Este caso de uso permite que o jogador inicie uma nova jornada a partir do Ato I, depois de ver o aviso de conteúdo sensível. |
+| Descrição | Este caso de uso permite que o jogador inicie uma nova jornada a partir do Ato I, depois de ver a classificação indicativa e o aviso de conteúdo sensível. |
 | Ator Primário | Jogador |
 | Pré-condição | Menu inicial aberto. |
-| Cenário Principal | 1. Jogador seleciona a opção de novo jogo no menu inicial.<br>2. Sistema exibe o aviso sobre temas sensíveis (ansiedade, sofrimento psíquico).<br>3. Jogador prossegue após o aviso.<br>4. Sistema cria um novo estado de jogo e inicia o Ato I.<br>5. Sistema carrega o cenário inicial e entrega o controle ao jogador. |
+| Cenário Principal | 1. Jogador seleciona a opção de novo jogo no menu inicial.<br>2. Sistema exibe a classificação indicativa e o aviso sobre temas sensíveis (ansiedade, sofrimento psíquico), com indicação de onde buscar apoio.<br>3. Jogador confirma e prossegue após o aviso.<br>4. Sistema cria um novo estado de jogo e inicia o Ato I.<br>5. Sistema carrega o cenário inicial e entrega o controle ao jogador. |
 | Pós-condição | Uma nova sessão é iniciada no Ato I, sem progresso anterior. |
 | Cenários Alternativos | 1a. Existe um save anterior:<br>1a.1. Sistema pede confirmação para sobrescrever o progresso salvo.<br>1a.2. Se o jogador confirmar, o fluxo segue no passo 2 e o novo progresso substitui o save anterior.<br>1a.3. Se o jogador recusar, o sistema retorna ao menu inicial sem alterar o save. |
 
@@ -637,13 +637,13 @@ Sua importância neste trabalho está em mostrar como a experiência contemplati
 
 As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sintetiza os cinco atos filosóficos; `Memoria`, `Diario` e `EntradaDiario` formalizam o sistema de memórias; `ObjetoMemoria` representa o gatilho interativo de revelação de memórias; `ObjetoRestauravel` traduz a lógica de Kintsugi do Ato III; `ObjetoContemplativo` traduz a contemplação ativa do Ato IV; `NPC` e `Dialogo` representam personagens de memória, arquétipos e seus fluxos textuais; `Ani` constitui a representação sistêmica da protagonista como sujeito da experiência; `EcoDecisao` registra as tentativas do jogador nos ecos de decisão do Ato II; e `Save` reúne o progresso persistido da partida, como a entidade SAVE do DER.
 
-`Jogo` e `Ani` mantêm uma associação bidirecional de multiplicidade 1 : 1: `Jogo` alcança o `Diario` por meio de `Ani`, sem associação direta entre `Jogo` e `Diario`, e `Ani` alcança `Jogo` para notificar o início e o fim das crises de ansiedade por meio de `Jogo.alterarEstado()`. Na implementação, essa notificação de `Ani` para `Jogo` é feita por evento: `Ani` dispara o evento, e `Jogo`, inscrito nele, altera o estado da sessão, o que evita que a personagem dependa diretamente da classe de jogo.
+`Jogo` e `Ani` mantêm uma associação bidirecional de multiplicidade 1 : 1: `Jogo` alcança o `Diario` por meio de `Ani`, sem associação direta entre `Jogo` e `Diario`, e `Ani` alcança `Jogo` para notificar o início e o fim das crises de ansiedade por meio de `Jogo.alterarEstado()`. Na implementação em Unreal Engine, essa notificação de `Ani` para `Jogo` é feita por um *delegate*: `Ani` dispara o evento, e `Jogo`, inscrito nele, altera o estado da sessão, o que evita que a personagem dependa diretamente da classe de jogo.
 
-Os tipos dos atributos seguem o JavaScript, linguagem da implementação (`boolean`, `number`, `string`, `Date`, `Array<...>`).
+Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`, `FString`, `FDateTime`, `TArray<...>`). Os nomes das classes e enumerações do modelo omitem os prefixos da convenção da Unreal (`U` para classes derivadas de `UObject`, `A` para atores, `F` para estruturas e `E` para enumerações), que podem ser aplicados na implementação.
 
 ### Classe: Jogo
 **Atributos:**
-- `- titulo: string`
+- `- titulo: FString`
 - `- atoAtual: Ato`
 - `- cenarioAtual: Cenario`
 - `- estadoAtual: EstadoJogo`
@@ -659,11 +659,11 @@ Os tipos dos atributos seguem o JavaScript, linguagem da implementação (`boole
 
 ### Classe: Personagem
 **Atributos:**
-- `- nome: string`
-- `- posicaoX: number`
-- `- posicaoY: number`
-- `- sprite: string`
-- `- velocidade: number`
+- `- nome: FString`
+- `- posicaoX: float`
+- `- posicaoY: float`
+- `- sprite: FString`
+- `- velocidade: float`
 
 **Métodos:**
 - `+ mover()`
@@ -690,9 +690,9 @@ Os tipos dos atributos seguem o JavaScript, linguagem da implementação (`boole
 
 ### Classe: Dialogo
 **Atributos:**
-- `- id: number`
-- `- linhas: Array<string>`
-- `- fragmentado: boolean`
+- `- id: int32`
+- `- linhas: TArray<FString>`
+- `- fragmentado: bool`
 
 **Métodos:**
 - `+ iniciar()`
@@ -701,15 +701,15 @@ Os tipos dos atributos seguem o JavaScript, linguagem da implementação (`boole
 
 ### Classe: ObjetoInterativo
 **Atributos:**
-- `- id: number`
-- `- descricao: string`
+- `- id: int32`
+- `- descricao: FString`
 
 **Métodos:**
 - `+ ativar()`
 
 ### Classe: ObjetoMemoria
 **Atributos:**
-- `- coletada: boolean`
+- `- coletada: bool`
 
 **Métodos:**
 - `+ exibir()`
@@ -717,11 +717,11 @@ Os tipos dos atributos seguem o JavaScript, linguagem da implementação (`boole
 
 ### Classe: Memoria
 **Atributos:**
-- `- id: number`
-- `- titulo: string`
-- `- conteudo: string`
-- `- atoOrigem: number`
-- `- coletada: boolean`
+- `- id: int32`
+- `- titulo: FString`
+- `- conteudo: FString`
+- `- atoOrigem: int32`
+- `- coletada: bool`
 
 **Métodos:**
 - `+ registrar()`
@@ -729,7 +729,7 @@ Os tipos dos atributos seguem o JavaScript, linguagem da implementação (`boole
 
 ### Classe: Diario
 **Atributos:**
-- `- entradas: Array<EntradaDiario>`
+- `- entradas: TArray<EntradaDiario>`
 
 **Métodos:**
 - `+ abrir()`
@@ -739,8 +739,8 @@ Os tipos dos atributos seguem o JavaScript, linguagem da implementação (`boole
 
 ### Classe: EntradaDiario
 **Atributos:**
-- `- titulo: string`
-- `- conteudo: string`
+- `- titulo: FString`
+- `- conteudo: FString`
 - `- tipo: TipoEntradaDiario`
 
 **Métodos:**
@@ -748,8 +748,8 @@ Os tipos dos atributos seguem o JavaScript, linguagem da implementação (`boole
 
 ### Classe: Cenario
 **Atributos:**
-- `- nome: string`
-- `- desbloqueado: boolean`
+- `- nome: FString`
+- `- desbloqueado: bool`
 
 **Métodos:**
 - `+ carregarCenario()`
@@ -758,11 +758,11 @@ Os tipos dos atributos seguem o JavaScript, linguagem da implementação (`boole
 
 ### Classe: Ato
 **Atributos:**
-- `- id: number`
-- `- nome: string`
-- `- descricao: string`
-- `- concluido: boolean`
-- `- limiarMemorias: number`
+- `- id: int32`
+- `- nome: FString`
+- `- descricao: FString`
+- `- concluido: bool`
+- `- limiarMemorias: int32`
 
 **Métodos:**
 - `+ iniciarAto()`
@@ -778,7 +778,7 @@ Os tipos dos atributos seguem o JavaScript, linguagem da implementação (`boole
 
 ### Classe: ObjetoContemplativo
 **Atributos:**
-- `- tempoMinimoObservacao: number`
+- `- tempoMinimoObservacao: float`
 
 **Métodos:**
 - `+ observar()`
@@ -786,9 +786,9 @@ Os tipos dos atributos seguem o JavaScript, linguagem da implementação (`boole
 
 ### Classe: EcoDecisao
 **Atributos:**
-- `- id: number`
-- `- tentativas: number`
-- `- desfecho: string`
+- `- id: int32`
+- `- tentativas: int32`
+- `- desfecho: FString`
 
 **Métodos:**
 - `+ registrarTentativa()`
@@ -796,9 +796,9 @@ Os tipos dos atributos seguem o JavaScript, linguagem da implementação (`boole
 
 ### Classe: Save
 **Atributos:**
-- `- idSave: number`
-- `- dataCriacao: Date`
-- `- dataUltimaAtualizacao: Date`
+- `- idSave: int32`
+- `- dataCriacao: FDateTime`
+- `- dataUltimaAtualizacao: FDateTime`
 
 **Métodos:**
 - `+ salvar()`
@@ -1463,13 +1463,13 @@ Este apêndice resume o Game Design Document (GDD) de **Ani**, mantido na ínteg
 
 ## C.1 Visão e ficha técnica
 
-**Ani** é um side-scroller narrativo contemplativo sobre consciência, sofrimento e a descoberta lenta do sentido. A protagonista é uma mulher comum, de aproximadamente 24 anos, em colapso existencial; seu nome vem do hebraico **אֲנִי**, "eu". O jogo não acompanha escolhas morais, e sim a mudança na forma como Ani percebe a existência. O Quadro 34 reúne a ficha técnica do jogo.
+**Ani** é uma aventura narrativa contemplativa em 2.5D sobre consciência, sofrimento e a descoberta lenta do sentido. A protagonista é uma mulher comum, de aproximadamente 24 anos, em colapso existencial; seu nome vem do hebraico **אֲנִי**, "eu". O jogo não acompanha escolhas morais, e sim a mudança na forma como Ani percebe a existência. O Quadro 34 reúne a ficha técnica do jogo.
 
 | Item | Descrição |
 | --- | --- |
-| Gênero | Side-scroller narrativo contemplativo |
+| Gênero | Aventura narrativa contemplativa em 2.5D |
 | Plataforma | PC (Windows); o protótipo é executado no navegador |
-| Engine e linguagem | Jogo completo: [preencher]; protótipo: Three.js (WebGL) e JavaScript |
+| Engine e linguagem | Jogo completo: Unreal Engine 5.4.4 e C++; protótipo: Three.js (WebGL) e JavaScript |
 | Câmera | Lateral, com planos em primeira pessoa e de cima nos momentos de inspeção |
 | Público-alvo | 16 a 28 anos, com interesse em filosofia, arte e narrativas reflexivas |
 | Tom | Sombrio, melancólico e contemplativo, com redenção gradual |

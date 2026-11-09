@@ -14,7 +14,7 @@ O Quadro 1 apresenta alguns dos requisitos funcionais do projeto.
 
 | Código | Título | Categoria | Prioridade | Descrição |
 | --- | --- | --- | --- | --- |
-| RF001 | Movimentar personagem | Evidente | Altíssima | O sistema deve permitir que o jogador mova Ani lateralmente por teclado ou gamepad. |
+| RF001 | Movimentar personagem | Evidente | Altíssima | O sistema deve permitir que o jogador mova Ani pelo cenário, para os lados e em profundidade, por teclado ou gamepad. |
 | RF003 | Interagir com objetos | Evidente | Altíssima | O sistema deve permitir interação com objetos significativos para acessar memórias, fragmentos narrativos e elementos contemplativos do cenário. |
 | RF005 | Diário de memórias | Evidente | Altíssima | O sistema deve registrar os fragmentos coletados em um diário estilizado acessível ao jogador. Os itens podem ganhar nova leitura visual ou contextual conforme os atos avançam. |
 | RF009 | Sistema de save/load | Evidente | Altíssima | O sistema deve salvar e carregar o progresso do jogador, incluindo ato atual, memórias registradas, estado do diário e estado visual da casa. |

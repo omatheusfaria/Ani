@@ -25,7 +25,7 @@ Ani é uma mulher comum em colapso existencial, atravessando espaços mentais di
 
 ### Logline
 
-Um side-scroller narrativo contemplativo sobre consciência, sofrimento e a descoberta lenta do sentido.
+Uma aventura narrativa contemplativa em 2.5D sobre consciência, sofrimento e a descoberta lenta do sentido.
 
 ### Sinopse
 
@@ -44,10 +44,10 @@ A tabela a seguir apresenta a ficha técnica base do projeto **Ani**.
 | Item | Descrição |
 | --- | --- |
 | Título | Ani |
-| Gênero | Side-scroller narrativo contemplativo |
+| Gênero | Aventura narrativa contemplativa em 2.5D |
 | Plataforma principal | PC (Windows), como software instalado; o protótipo é executado no navegador |
-| Engine | Jogo completo: [preencher]; protótipo: Three.js (biblioteca 3D sobre WebGL) |
-| Linguagem | Jogo completo: [preencher]; protótipo: JavaScript, com HTML e CSS |
+| Engine | Jogo completo: Unreal Engine 5.4.4; protótipo: Three.js (biblioteca 3D sobre WebGL) |
+| Linguagem | Jogo completo: C++; protótipo: JavaScript, com HTML e CSS |
 | Câmera | Lateral, com planos em primeira pessoa e de cima nos momentos de inspeção |
 | Público-alvo | 16 a 28 anos, com interesse em filosofia, arte e narrativas reflexivas |
 | Tom | Sombrio, melancólico e contemplativo, com redenção gradual |
@@ -301,7 +301,7 @@ A primeira aparição desse sistema está no início do Ato I: quando Ani curte 
 
 *→ Formalizado em RF018 — Crises de ansiedade como elemento sensorial e apoiado por RNF006 — Acessibilidade sensorial e de áudio (docs/requisitos/requisitos-funcionais.md; docs/requisitos/requisitos-nao-funcionais.md).*
 
-Por tratar de ansiedade e sofrimento psíquico, o jogo exibe, antes do início, um aviso sobre esses temas.
+Por tratar de ansiedade e sofrimento psíquico, o jogo exibe, antes do início e a cada acesso, a classificação indicativa autoatribuída pelos critérios do Guia Prático de Classificação Indicativa (no protótipo: não recomendado para menores de 10 anos, com o descritor "Temas sensíveis") e um aviso sobre esses temas, com a indicação do CVV (188) como apoio.
 
 *→ Formalizado em RF020 — Aviso de conteúdo sensível (docs/requisitos/requisitos-funcionais.md).*
 
@@ -377,7 +377,7 @@ A tabela a seguir apresenta a direção sonora associada a cada ato do jogo.
 
 ## 9. Principais Características
 
-- Side-scroller narrativo contemplativo
+- Aventura narrativa contemplativa em 2.5D
 - Progressão em cinco atos filosóficos
 - Ausência de combate e moralidade binária
 - Mundo mental simbólico e mutável
@@ -395,10 +395,10 @@ A tabela a seguir apresenta a base técnica atualmente definida para o projeto.
 
 | Item | Direção Atual |
 | --- | --- |
-| Engine | Jogo completo: [preencher]; protótipo: Three.js (biblioteca 3D sobre WebGL) |
-| Linguagem | Jogo completo: [preencher]; protótipo: JavaScript, com HTML e CSS |
+| Engine | Jogo completo: Unreal Engine 5.4.4; protótipo: Three.js (biblioteca 3D sobre WebGL) |
+| Linguagem | Jogo completo: C++; protótipo: JavaScript, com HTML e CSS |
 | Plataforma inicial | PC (Windows), como software instalado; o protótipo é executado no navegador |
-| Estrutura visual | Side-scroller lateral com elementos 3D estilizados |
+| Estrutura visual | Visão lateral em 2.5D, com cenários 3D estilizados e momentos em primeira pessoa |
 | Câmera | Lateral, com planos em primeira pessoa e de cima nos momentos de inspeção |
 | Texturas | Pixel art nas personagens e objetos, sobre cenários 3D estilizados com iluminação cinematográfica |
 | Efeitos visuais | Distorção emocional, vinheta dinâmica e transições de cor por ato |

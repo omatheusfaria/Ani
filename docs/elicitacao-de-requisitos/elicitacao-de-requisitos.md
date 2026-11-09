@@ -6,7 +6,7 @@ Este documento registra como os requisitos do projeto **Ani** foram levantados, 
 
 ## 2. Contexto do projeto
 
-**Ani** é um side-scroller narrativo contemplativo, com foco em progressão por atos filosóficos, exploração de memórias, diário diegético e interações simbólicas com o mundo do jogo. Por ser um projeto autoral em desenvolvimento acadêmico, a elicitação de requisitos ocorreu de modo iterativo, apoiando-se principalmente na análise documental do GDD e na introspecção estruturada do designer; um questionário exploratório aplicado ao público-alvo teve baixo aproveitamento.
+**Ani** é uma aventura narrativa contemplativa em 2.5D, com foco em progressão por atos filosóficos, exploração de memórias, diário diegético e interações simbólicas com o mundo do jogo. Por ser um projeto autoral em desenvolvimento acadêmico, a elicitação de requisitos ocorreu de modo iterativo, apoiando-se principalmente na análise documental do GDD e na introspecção estruturada do designer; um questionário exploratório aplicado ao público-alvo teve baixo aproveitamento.
 
 ## 3. Fontes utilizadas na elicitação
 
