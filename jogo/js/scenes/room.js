@@ -996,6 +996,7 @@ export function buildRoom({ posts, strip }) {
   let light = 0;
   let flicker = 1;
   let plasmaTouch = 0;
+  let plasmaOn = false; // ligada à mão: fica acesa mesmo com o quarto escuro
 
   // dados para a iluminação cinematográfica (cinema.js)
   const cineOpen = new THREE.Vector2();
@@ -1071,6 +1072,13 @@ export function buildRoom({ posts, strip }) {
     shakeCurtains(amount = 1) {
       for (const c of curtains) c.wave = Math.max(c.wave, amount);
     },
+    // luminária de plasma ligada pela Ani (no escuro é a única coisa que ela consegue ligar)
+    get plasmaOn() {
+      return plasmaOn;
+    },
+    setPlasma(on) {
+      plasmaOn = !!on;
+    },
     // uv do sprite da luminária (ou null) e o ponto 3D correspondente
     setPlasmaTouch(uv, world) {
       plasma.setTouch(uv);
@@ -1085,10 +1093,12 @@ export function buildRoom({ posts, strip }) {
       fairyLight.intensity = 1.6 * light;
       fillLight.intensity = 1.3 * k;
       plasmaTouch += ((plasma.touching ? 1 : 0) - plasmaTouch) * Math.min(1, dt * 8);
-      plasmaLight.intensity = (0.7 + plasmaTouch * 1.1) * light;
+      // acesa com a luz do quarto ou quando ela liga à mão (aí brilha sozinha no escuro)
+      const plasmaLit = light > 0.5 || plasmaOn;
+      plasmaLight.intensity = (0.7 + plasmaTouch * 1.1) * (plasmaOn ? 1 : light);
       plasmaLight.position.lerp(plasmaTarget, Math.min(1, dt * 10));
-      ledRing.material.color.setRGB(0.77, 0.42, 1).multiplyScalar(light > 0.5 ? 1.4 + plasmaTouch : 0.25);
-      plasma.update(dt, light > 0.5);
+      ledRing.material.color.setRGB(0.77, 0.42, 1).multiplyScalar(plasmaLit ? 1.4 + plasmaTouch : 0.25);
+      plasma.update(dt, plasmaLit);
       bag.update(t, dt);
       sticker.visible = light < 0.5;
       // tecla: mola rígida com um tiquinho de passada (clique físico)

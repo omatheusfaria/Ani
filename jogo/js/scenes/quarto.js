@@ -96,6 +96,14 @@ const LINES = {
   armario: 'Não tá no guarda-roupa.',
 };
 
+// No escuro ela não enxerga nada: toda interação (fora o interruptor e a luminária de plasma)
+// cai numa destas falas, em rodízio para não repetir sempre a mesma
+const DARK_LINES = [
+  'Não consigo enxergar nada nesse escuro. Preciso acender a luz.',
+  'Tá um breu. Assim não dá pra ver nada... cadê o interruptor?',
+  'No escuro eu não acho nada. Primeiro a luz.',
+];
+
 const titleCase = (t) => t.charAt(0) + t.slice(1).toLowerCase();
 const isAncestor = (a, o) => {
   for (; o; o = o.parent) if (o === a) return true;
@@ -342,6 +350,7 @@ export class QuartoScene {
     this.nextBeat = 0;
     this.seenProfile = false;
     this.thoughtsShown = new Set();
+    this.darkTries = 0; // rodízio das falas de "não enxergo nada" no escuro
     this.mouseSmooth = new THREE.Vector2();
     this.engage = { profile: false, posts: 0, deep: false, me: false };
     this.batteryClock = 0;
@@ -953,9 +962,12 @@ export class QuartoScene {
     this.ani.reach(0.45);
     this.ani.facing = Math.sign(it.x - this.x) || this.ani.facing;
 
-    if (dark) {
+    if (dark && it.id === 'criado') {
+      // a luminária de plasma é a única coisa que ela consegue ligar no escuro
+      this.togglePlasma();
+    } else if (dark) {
       sfx.deny();
-      this.thought('escuro', 'Tá escuro demais pra achar qualquer coisa.', { hold: 1.6 });
+      ui.say(DARK_LINES[this.darkTries++ % DARK_LINES.length], { hold: 1.8 });
     } else if (it.id === 'gaveta') {
       this.busy = false;
       this.openDrawer();
@@ -978,6 +990,21 @@ export class QuartoScene {
     }
     await this.tweens.wait(0.5);
     this.busy = false;
+  }
+
+  // Luminária de plasma no escuro: liga e desliga à mão e fica acesa mesmo com a luz apagada
+  togglePlasma() {
+    const { sfx, ui } = this.game;
+    const on = !this.room.plasmaOn;
+    sfx.click();
+    this.room.setPlasma(on);
+    if (on) {
+      sfx.hum();
+      if (!this.thoughtsShown.has('plasma-escuro')) {
+        this.thoughtsShown.add('plasma-escuro');
+        ui.say('Pelo menos a luminária. Mas ainda não dá pra procurar nada assim.', { hold: 2.2 });
+      }
+    }
   }
 
   // Cada lugar revistado conta uma vez; depois de dois, ela lembra da gaveta
@@ -2341,7 +2368,8 @@ export class QuartoScene {
       if (it) {
         if (it.id === 'cortina') it.label = this.room.curtain > 0.5 ? 'Abrir cortina' : 'Fechar cortina';
         if (it.id === 'interruptor') it.label = dark ? 'Acender a luz' : 'Apagar a luz';
-        const label = dark && it.id !== 'interruptor' ? '???' : it.label;
+        let label = dark && it.id !== 'interruptor' ? '???' : it.label;
+        if (dark && it.id === 'criado') label = this.room.plasmaOn ? 'Desligar luminária' : 'Ligar luminária';
         const p = it.anchor.clone().project(this.sideCam);
         ui.interact(label, ((p.x + 1) / 2) * window.innerWidth, ((1 - p.y) / 2) * window.innerHeight);
       } else {
