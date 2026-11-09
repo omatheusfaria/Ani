@@ -1,58 +1,27 @@
-// Aviso de classificação indicativa e de conteúdo sensível (RF020).
+// Aviso de conteúdo sensível (RF020).
 //
 // Aparece depois de Iniciar ou Continuar, antes de o jogo começar, uma vez a cada
-// acesso, e só some quando o jogador
-// confirma (botão, Enter/Espaço/E ou A no controle), como pede o Guia Prático de
-// Classificação Indicativa (MJSP, 5ª ed., 2025) para jogos e aplicações na web.
+// acesso, e só some quando o jogador confirma (botão, Enter/Espaço/E ou A no controle).
 //
-// Autoclassificação do protótipo pelos critérios do guia:
-//   - tendência "Angústia" (personagem em estado de depressão ou tristeza profunda)
-//     → não recomendado para menores de 10 anos;
-//   - descritor oficial correspondente: "Temas sensíveis".
-// Se o conteúdo mudar (novas fases, crises de ansiedade mais intensas), refaça a
-// autoclassificação: obra com conteúdo acrescentado exige nova classificação.
-//
-// Símbolo: obras autoclassificadas usam o símbolo PROVISÓRIO do Ministério da Justiça,
-// sem alterar cor, proporção ou ângulo. Baixe o de 10 anos no site da Classificação
-// Indicativa e salve em assets/classificacao/autoclassificacao-10.png. Sem o arquivo,
-// a tela mostra só o texto da faixa etária.
-
-export const CLASSIFICACAO = {
-  idade: 10,
-  texto: 'NÃO RECOMENDADO PARA MENORES DE 10 ANOS',
-  descritores: ['Temas sensíveis'],
-  simbolo: 'assets/classificacao/autoclassificacao-10.png',
-};
+// Classificação indicativa: por enquanto não é exibida, porque o protótipo não é
+// comercializado. Se o jogo for distribuído, faça a autoclassificação pelo Guia Prático
+// de Classificação Indicativa (MJSP) e exiba o símbolo oficial e os descritores aqui.
+// Pela análise de 09.nov.2026, o protótipo ficaria em "não recomendado para menores de
+// 10 anos", com o descritor "Temas sensíveis" (tendência "Angústia").
 
 const TEMPO_MINIMO = 1.2; // segundos antes de aceitar a confirmação (evita pular sem ler)
 
 export function showContentNotice(game) {
   const el = document.getElementById('aviso');
   if (!el) return Promise.resolve();
-  const c = CLASSIFICACAO;
 
   el.innerHTML = `
     <div class="av-card" role="dialog" aria-modal="true" aria-labelledby="av-titulo">
-      <p class="av-kicker" id="av-titulo">CLASSIFICAÇÃO INDICATIVA</p>
-      <div class="av-classif">
-        <img class="av-simbolo" alt="Símbolo de classificação indicativa: não recomendado para menores de ${c.idade} anos" hidden>
-        <div>
-          <p class="av-faixa">${c.texto}</p>
-          <p class="av-desc">APRESENTA: ${c.descritores.join(', ').toUpperCase()}</p>
-          <p class="av-auto">Autoclassificação</p>
-        </div>
-      </div>
-      <hr>
-      <p class="av-kicker">AVISO DE CONTEÚDO</p>
+      <p class="av-kicker" id="av-titulo">AVISO DE CONTEÚDO</p>
       <p class="av-texto">Ani aborda ansiedade, solidão e sofrimento psíquico, incluindo um momento de crise de ansiedade, com tremor e distorção na tela.</p>
       <p class="av-texto">Se você estiver passando por um momento difícil, converse com alguém de confiança ou procure o <b>CVV – Centro de Valorização da Vida</b>: ligação gratuita pelo <b>188</b> ou chat em <b>cvv.org.br</b>, 24 horas por dia.</p>
       <button class="av-ok" type="button">ENTENDI <span>ENTER / A</span></button>
     </div>`;
-
-  // símbolo oficial, se o arquivo existir
-  const img = el.querySelector('.av-simbolo');
-  img.onload = () => (img.hidden = false);
-  img.src = c.simbolo;
 
   return new Promise((resolve) => {
     const t0 = performance.now();
