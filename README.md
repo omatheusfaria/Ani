@@ -16,6 +16,8 @@ O projeto acompanha a jornada de um protagonista em colapso existencial que atra
 
 Este repositório concentra principalmente os artefatos de planejamento, levantamento de requisitos e modelagem produzidos para o projeto. Ele funciona como base acadêmica e técnica para a evolução do protótipo.
 
+O código do jogo jogável fica em [jogo/](./jogo/README.md), com instruções de como rodar.
+
 Os principais materiais estão em [docs/README.md](./docs/README.md), com destaque para:
 
 - [GDD](./docs/gdd.md)
@@ -30,6 +32,7 @@ Os principais materiais estão em [docs/README.md](./docs/README.md), com destaq
 ## Estrutura Atual
 
 ```text
+jogo/        (código do jogo: HTML, CSS, JavaScript e sprites)
 docs/
 |-- tap/
 |-- elicitacao-de-requisitos/

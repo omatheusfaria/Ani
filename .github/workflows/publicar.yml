@@ -1,12 +1,16 @@
-# Publica o jogo no GitHub Pages a cada push no main (ou na mão, em Actions → "Publicar o jogo").
+# Publica o jogo (pasta jogo/) no GitHub Pages a cada push no main que mexa no jogo
+# (ou na mão, em Actions → "Publicar o jogo"). Commits só da documentação não republicam.
 # O jogo é HTML/JS puro (sem build): o workflow confere a sintaxe dos .js e publica só o que o
-# navegador precisa (index.html, admin/, css/, js/, assets/). tools/, servidor e notas ficam de fora.
+# navegador precisa (jogo/index.html, admin/, css/, js/, assets/). tools/, servidor, notas e docs/ ficam de fora.
 # Antes da primeira vez: no GitHub, Settings → Pages → Source: "GitHub Actions".
 name: Publicar o jogo
 
 on:
   push:
     branches: [main]
+    paths:
+      - 'jogo/**'
+      - '.github/workflows/publicar.yml'
   workflow_dispatch:
 
 permissions:
@@ -31,12 +35,12 @@ jobs:
       - name: Sintaxe dos .js
         run: |
           set -e
-          for f in $(find js -name '*.js'); do
+          for f in $(find jogo/js -name '*.js'); do
             node --check "$f"
           done
           echo "Todos os .js passaram."
       - name: Sintaxe das ferramentas (Python)
-        run: python3 -m py_compile tools/*.py servidor.py
+        run: python3 -m py_compile jogo/tools/*.py jogo/servidor.py
 
   publicar:
     name: Publicar no GitHub Pages
@@ -50,7 +54,7 @@ jobs:
       - name: Montar o site
         run: |
           mkdir _site
-          cp -r index.html admin css js assets _site/
+          (cd jogo && cp -r index.html admin css js assets ../_site/)
           touch _site/.nojekyll
           du -sh _site
       - uses: actions/configure-pages@v5
