@@ -1,0 +1,10 @@
+# sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+# python do servidor local
+__pycache__/
+*.pyc
+# editores
+.vscode/
+.idea/
