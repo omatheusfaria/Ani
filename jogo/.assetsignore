@@ -1,0 +1,9 @@
+# Arquivos de jogo/ que não vão para a Cloudflare (o navegador não precisa deles).
+# Mesmo critério do workflow do GitHub Pages: só index.html, admin/, css/, js/ e assets/.
+.assetsignore
+tools/
+HANDOFF.md
+README.md
+servidor.py
+iniciar-servidor.bat
+iniciar-servidor.sh

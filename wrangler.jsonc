@@ -1,0 +1,12 @@
+// Publicação do jogo na Cloudflare (Workers com arquivos estáticos).
+// O jogo é HTML/JS puro, sem build: o Wrangler envia a pasta jogo/ como está,
+// menos o que estiver em jogo/.assetsignore (ferramentas, servidor local e notas).
+// Deploy: pela Cloudflare ligada ao GitHub (Workers Builds, comando "npx wrangler deploy")
+// ou na mão, na raiz do repositório: npx wrangler deploy
+{
+  "name": "ani",
+  "compatibility_date": "2026-11-09",
+  "assets": {
+    "directory": "./jogo"
+  }
+}
