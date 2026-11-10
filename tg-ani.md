@@ -1,3 +1,15 @@
+# Resumo
+
+Este trabalho apresenta o projeto de Ani, uma aventura narrativa contemplativa em 2.5D para computador sobre ansiedade, solidão e a descoberta lenta do sentido, organizada em cinco atos que partem do pessimismo filosófico ocidental e chegam a filosofias contemplativas japonesas. A questão que orienta o trabalho é como o design de um jogo narrativo pode representar uma jornada de transformação interior. Seguindo o modelo em cascata, o projeto reuniu o termo de abertura, o levantamento de 31 requisitos funcionais, 6 requisitos não funcionais, 8 regras de negócio e 17 casos de uso, e a modelagem em diagramas de classes, atividades, estados, sequência e entidade-relacionamento. Como resultado, foi desenvolvido um protótipo jogável do início do primeiro ato, com cerca de dez minutos, feito com tecnologias web e a biblioteca Three.js e executado no navegador: o quarto da protagonista, o celular, a exploração no escuro e a passagem, por uma fotografia, para a memória de um parque de diversões. O protótipo atende integralmente 14 dos requisitos funcionais e parcialmente outros 7; os demais pertencem aos atos seguintes. O desenvolvimento do jogo completo, previsto na Unreal Engine, foi estimado em 2.851 horas pelo método de Pontos de Caso de Uso, base de uma proposta de financiamento de cerca de 190 mil reais e oito meses.
+
+**Palavras-chave:** Engenharia de software; Jogos digitais; Narrativa contemplativa; Pontos de caso de uso; Protótipo.
+
+# Abstract
+
+This work presents the design of Ani, a contemplative 2.5D narrative adventure for computers about anxiety, loneliness and the slow discovery of meaning, organized in five acts that move from Western philosophical pessimism to contemplative Japanese philosophies. The question guiding the work is how the design of a narrative game can represent a journey of inner transformation. Following the waterfall model, the project produced the project charter, a set of 31 functional requirements, 6 non-functional requirements, 8 business rules and 17 use cases, and models in class, activity, state, sequence and entity-relationship diagrams. As a result, a playable prototype of the beginning of the first act, about ten minutes long, was built with web technologies and the Three.js library and runs in the browser: the protagonist's bedroom, her phone, the exploration in the dark and the passage, through a photograph, into the memory of an amusement park. The prototype fully meets 14 of the functional requirements and partially meets another 7; the others belong to the following acts. The development of the complete game, planned in Unreal Engine, was estimated at 2,851 hours with the Use Case Points method, which supports a funding proposal of about 190 thousand reais and eight months.
+
+**Keywords:** Contemplative narrative; Digital games; Prototype; Software engineering; Use case points.
+
 # 1 Introdução
 
 Os jogos digitais narrativos constituem um campo relevante de investigação em software porque articulam sistemas computacionais, linguagem audiovisual, interação e modelagem de experiência. Diferentemente de mídias puramente lineares, o jogo permite que o sujeito não apenas acompanhe uma trajetória, mas a vivencie por meio de ações, ritmos, interrupções e respostas sistêmicas. No caso de experiências contemplativas, essa característica amplia a capacidade do software de representar estados subjetivos, sofrimento, memória e transformação interior, convertendo temas abstratos em situações interativas sensíveis.
@@ -1137,7 +1149,7 @@ Além disso, as ferramentas utilizadas apresentam licenças compatíveis com uso
 **Justificativa de escolha:** é um gerador voltado especificamente a pixel art, com grade de pixels e paleta consistentes, o que permitiu produzir folhas de animação das personagens mantendo o mesmo estilo visual.
 
 ### Ferramenta: Python, NumPy e Pillow
-**Versão utilizada:** [preencher]  
+**Versão utilizada:** Python 3.10.12, NumPy 2.2.6 e Pillow 12.3.0  
 **Tipo de licença:** Python Software Foundation License (Python), BSD (NumPy) e MIT-CMU (Pillow), todas de código aberto  
 **Site oficial:** <https://www.python.org/>, <https://numpy.org/> e <https://python-pillow.org/>  
 **Função no projeto:** scripts da pasta `tools/` que recortam as folhas de sprites, alinham os quadros pelos pés, separam camadas de brilho e ajustam detalhes das personagens.  
@@ -1949,7 +1961,7 @@ O Quadro 34 mostra a situação de cada requisito no protótipo: atendido, atend
 | RF029 Minigames | Atendido | Estoure o Balão, Derrube as Latas e Pescaria (4.2.11) |
 | RF030 Personagem acompanhante | Atendido | A Malu no parque (4.2.9) |
 | RF031 Salvamento automático | Parcial | Um ponto de salvamento, no início do quarto (4.2.14) |
-| RNF001 Desempenho mínimo | A avaliar | Medição nos testes da seção 5.1 |
+| RNF001 Desempenho mínimo | Não verificado | Os testes da seção 5.1 foram feitos sem placa de vídeo; falta medir em hardware equivalente |
 | RNF002 Carregamento e integridade dos saves | Atendido | O save local é lido no início, sem espera perceptível |
 | RNF003 Portabilidade de código e assets | Parcial | Roda em navegadores com WebGL 2, sem instalação; depende de rede e não tem controle por toque (5.1) |
 | RNF004 Jogabilidade autoexplicativa | Atendido | Dicas de botões só no quarto, uma vez, e rótulos de interação junto aos objetos |
@@ -1981,14 +1993,22 @@ O protótipo roda no navegador e não precisa de instalação: basta abrir o end
 
 Pela análise do código, três pontos limitam a portabilidade do protótipo. O primeiro é a dependência de rede: o Three.js vem de uma CDN, e não do próprio repositório, então o jogo não abre sem internet nem quando é servido localmente pelo `iniciar-servidor.bat`. Copiar a biblioteca para a pasta do jogo resolve esse ponto sem mudar o código. O segundo é a falta de controle por toque, que deixa celulares e tablets fora do alcance mesmo quando o navegador do aparelho tem WebGL 2. O terceiro é o desempenho: a pós-produção de imagem (*bloom*, feixes de luz, profundidade de campo) exige uma placa de vídeo, e sem aceleração por hardware a taxa de quadros cai muito. Num teste feito com renderização só por software, sem placa de vídeo, o quarto e o parque rodaram a cerca de 3 quadros por segundo, embora todas as funções tenham funcionado.
 
-Para verificar o comportamento real, o protótipo foi testado nos navegadores e sistemas do Quadro 36, seguindo o mesmo roteiro em todos: menu e aviso de conteúdo, celular, quarto no escuro e com luz, inspeções, objeto-portal, parque (acompanhante, comidas e minigame), pausa e configurações, Continuar depois de recarregar a página e controle do Xbox. Em cada ambiente, a taxa de quadros foi medida no quarto com a luz acesa e no parque.
+Para verificar esses pontos na prática, o protótipo foi executado de forma automatizada no navegador Chromium, controlado pela ferramenta Playwright (Microsoft, s.d., online), em seis cenários. No primeiro, de referência, foi percorrido o roteiro completo do jogo: menu e aviso de conteúdo, celular, quarto no escuro e com luz, inspeções, objeto-portal, parque (acompanhante, comidas e minigame) e pausa, com a taxa de quadros medida no quarto com a luz acesa e no parque. Os demais cenários retiram, um de cada vez, um recurso do ambiente ou mudam a tela, para observar como o jogo se comporta. O Quadro 36 apresenta os resultados.
 
-| Ambiente (sistema, navegador e versão) | Hardware | Funções | FPS no quarto | FPS no parque | Observações |
-| --- | --- | --- | --- | --- | --- |
-| Linux, Chromium (renderização por software, sem placa de vídeo) | Máquina virtual sem GPU | Todas funcionaram | cerca de 3 | cerca de 3 | Teste automatizado; a taxa reflete a ausência de placa de vídeo |
-| [preencher] | [preencher] | [preencher] | [preencher] | [preencher] | [preencher] |
+| Cenário | Configuração | Resultado |
+| --- | --- | --- |
+| Referência | Linux, Chromium, WebGL 2 por software (sem placa de vídeo), tela de 1600 × 900 | Todas as funções do roteiro funcionaram; cerca de 3 quadros por segundo no quarto e no parque |
+| Outras resoluções | Telas de 1280 × 720, 1920 × 1080 e 2560 × 1440 | A imagem interna fica em 640 × 360 e é ampliada 2, 3 e 4 vezes, sem distorção |
+| Sem WebGL | Aceleração gráfica e WebGL desligados | Tela preta: o Three.js não consegue criar o contexto gráfico, e o jogador não recebe nenhuma mensagem |
+| Sem internet | Endereço da CDN bloqueado | Tela preta: o Three.js não é baixado e o jogo não inicia |
+| Sem armazenamento | `localStorage` bloqueado | O jogo funciona normalmente, mas nada é salvo e a opção Continuar fica indisponível |
+| Celular | Emulação de um Pixel 7 (412 × 839, com toque) | O menu abre e responde ao toque, mas a exploração exige teclado ou controle |
 
-[preencher: análise dos resultados dos testes, a ser escrita com os dados do Quadro 36, e conclusão sobre o RNF001]
+Os testes confirmam o que a análise do código indicava. O protótipo depende de dois recursos sem alternativa, o WebGL 2 e o acesso à internet na primeira carga, e nos dois casos falha sem avisar o jogador: a tela fica preta. Os recursos complementares têm alternativa: sem armazenamento, o jogo segue sem salvar; sem controle, o teclado e o mouse cobrem tudo. A escala inteira da imagem manteve a pixel art nítida nas três resoluções testadas. No celular, embora o menu funcione pelo toque, a falta de controles de toque para andar e interagir impede o jogo, o que confirma a limitação apontada antes.
+
+Os testes foram feitos só no Chromium, que é também a base do Google Chrome e do Microsoft Edge; por isso, esses dois navegadores devem se comportar da mesma forma. Para os outros navegadores, a compatibilidade foi avaliada pelos recursos de que o jogo não pode prescindir. O WebGL 2 é suportado desde o Chrome 56, o Firefox 51, o Edge 79 e o Safari 15 (W3C WebDX Community Group, s.d.b, online), e os *import maps*, desde o Chrome e o Edge 89, o Firefox 108 e o Safari 16.4 (W3C WebDX Community Group, s.d.a, online). Assim, o protótipo deve abrir nas versões atuais de todos esses navegadores, inclusive no Safari para Mac, mas o teste neles fica como trabalho futuro.
+
+Três mudanças simples ampliariam a portabilidade do protótipo: copiar o Three.js para a pasta do jogo, para que ele abra sem internet; mostrar uma mensagem quando o WebGL 2 não estiver disponível, em vez da tela preta; e acrescentar controles de toque, para levar o jogo a tablets e celulares. Quanto ao desempenho, os testes foram feitos numa máquina sem placa de vídeo, em que toda a renderização acontece no processador, e a taxa de cerca de 3 quadros por segundo não representa o uso real. Por isso, a meta de 60 quadros por segundo em hardware equivalente a Intel HD Graphics com 4 GB de memória (RNF001) não pôde ser verificada neste trabalho e fica pendente de medição em computador com placa de vídeo.
 
 No jogo completo, a portabilidade muda de natureza. A Unreal Engine 5.4.4 compila o mesmo projeto para Windows, macOS, Linux, consoles e dispositivos móveis, a partir do mesmo código C++ e dos mesmos assets; o que muda de uma plataforma para outra são os ajustes de desempenho, os controles e, nos consoles, os kits e as licenças de desenvolvimento de cada fabricante. Por isso, o RNF003 é atendido pela escolha da engine, e a portabilidade efetiva para consoles e celulares continua fora do escopo deste trabalho, como registrado no TAP.
 
@@ -2101,17 +2121,25 @@ O escopo é o definido no capítulo 2: os requisitos funcionais RF001 a RF031, o
 
 ### Investimento
 
-O valor-hora de desenvolvimento parte do salário médio da ocupação de desenvolvedor de multimídia (CBO 3171-20, que inclui o desenvolvedor de jogos), de R$ 5.722,00 por mês para 42 horas semanais, segundo dados do Novo CAGED (Salário.com.br, s.d., online). Sobre ele foram somados os encargos de uma contratação pelo regime CLT numa empresa do Simples Nacional (FGTS, 13º salário, férias e um terço de férias), de 27,44% (ValorFinal, 2026, online), e o custo mensal foi dividido por 182 horas: R$ 5.722,00 × 1,2744 ÷ 182 = R$ 40,07 por hora. O Quadro 42 apresenta o investimento previsto.
+O valor-hora de desenvolvimento parte do salário médio da ocupação de desenvolvedor de multimídia (CBO 3171-20, que inclui o desenvolvedor de jogos), de R$ 5.722,00 por mês para 42 horas semanais, segundo dados do Novo CAGED (Salário.com.br, s.d.b, online). Sobre ele foram somados os encargos de uma contratação pelo regime CLT numa empresa do Simples Nacional (FGTS, 13º salário, férias e um terço de férias), de 27,44% (ValorFinal, 2026, online), e o custo mensal foi dividido por 182 horas: R$ 5.722,00 × 1,2744 ÷ 182 = R$ 40,07 por hora.
+
+A produção de conteúdo foi estimada pela equipe necessária ao longo dos oito meses do cronograma, com os mesmos encargos de 27,44% sobre o salário médio de cada ocupação, também segundo o Novo CAGED:
+
+- **Arte 2D e 3D:** um artista em tempo integral nos oito meses, com o salário médio de ilustrador (CBO 2624-05), de R$ 3.471,28 (Salário.com.br, s.d.c, online), apoiado pelas ferramentas de inteligência artificial e pelos scripts de recorte usados no protótipo.
+- **Trilha sonora e efeitos sonoros:** um músico em meio período por seis meses, o equivalente a três meses de trabalho, com o salário médio de músico arranjador (CBO 2626-10), de R$ 3.710,67 (Salário.com.br, s.d.d, online).
+- **Roteiro e direção narrativa:** um roteirista em meio período por seis meses, o equivalente a três meses, com o salário médio de autor-roteirista multimídia (CBO 2615-05), de R$ 6.848,48 (Salário.com.br, s.d.a, online).
+
+O Quadro 42 apresenta o investimento previsto.
 
 | Item | Base de cálculo | Valor |
 | --- | --- | --- |
 | Engenharia de software (análise, programação e testes) | 2.851 horas × R$ 40,07 | R$ 114.239,57 |
-| Arte 2D e 3D (sprites, cenários e animações) | [preencher] | [preencher] |
-| Trilha sonora e efeitos sonoros | [preencher] | [preencher] |
-| Roteiro e direção narrativa | [preencher] | [preencher] |
+| Arte 2D e 3D (sprites, cenários e animações) | 8 meses × R$ 3.471,28 × 1,2744 | R$ 35.390,39 |
+| Trilha sonora e efeitos sonoros | 3 meses × R$ 3.710,67 × 1,2744 | R$ 14.186,63 |
+| Roteiro e direção narrativa | 3 meses × R$ 6.848,48 × 1,2744 | R$ 26.183,11 |
 | Licença da Unreal Engine | Gratuita até US$ 1 milhão de receita bruta; 5% acima disso, com vendas na Epic Games Store isentas (Epic Games, s.d., online) | R$ 0,00 |
 | Publicação na Steam | Taxa do Steam Direct por jogo, recuperável depois de US$ 1.000 em receita (Valve, s.d., online) | US$ 100,00 |
-| **Total** | | [preencher] |
+| **Total** | | **R$ 189.999,70 + US$ 100,00** |
 
 ### Cronograma
 
@@ -2131,6 +2159,18 @@ O prazo considera dois desenvolvedores em tempo integral para a engenharia de so
 - **Acompanhamento:** a cada marco, o financiador recebe uma versão jogável para avaliação.
 - **Propriedade intelectual:** a obra continua do autor; direitos de publicação e participação na receita são definidos em contrato.
 - **Validade da proposta:** 60 dias.
+
+Com o investimento de R$ 189.999,70, mais a taxa de publicação, a proposta cobre a produção do jogo completo em oito meses. A engenharia de software responde por cerca de 60% do valor, e a produção de conteúdo, pelos 40% restantes. Como os valores partem de salários médios e de premissas sobre o tamanho da equipe, eles devem ser revistos se a equipe ou o escopo mudarem.
+
+# 6 Considerações Finais
+
+O objetivo deste trabalho era conceber um jogo narrativo contemplativo capaz de representar, por meio de sistemas e de linguagem visual, uma jornada de transformação interior em cinco atos, e desenvolver um protótipo do início do Ato I aplicando práticas de engenharia de software. Os dois objetivos foram atingidos. A concepção do jogo está documentada no GDD, no TAP e no levantamento de requisitos, com 31 requisitos funcionais, 6 não funcionais, 8 regras de negócio e 17 casos de uso, e nos diagramas que modelam o jogo completo. O protótipo, com cerca de dez minutos, leva o jogador do quarto de Ani, no presente, à memória do parque de diversões, e atende integralmente 14 requisitos funcionais e parcialmente outros 7.
+
+Quanto à questão que orientou o trabalho, o protótipo mostra que as próprias mecânicas podem carregar o tema sem explicação. A bateria que acaba e deixa Ani no escuro, a interação que só devolve um "não consigo ver" até que a luz seja acesa, o pânico de uma curtida sem querer e a fotografia que se transforma em memória comunicam solidão, ansiedade e apego sem nenhum texto que os nomeie. A hipótese, porém, só poderá ser confirmada com testes com jogadores e com os atos seguintes, nos quais estão as mecânicas filosóficas centrais.
+
+O principal desafio foi o tempo. A tecnologia prevista para o protótipo, a Unreal Engine com C++, foi trocada por uma base web com Three.js, mais rápida de produzir e de apresentar, e o jogo completo continua planejado na Unreal. A troca exigiu separar com cuidado o que a documentação modela, que é o jogo completo, do que o protótipo implementa, e o Quadro 32 registra essa correspondência. A produção dos sprites com apoio de inteligência artificial também pediu ferramentas próprias, como os scripts que recortam e alinham as folhas de animação.
+
+Como trabalhos futuros, ficam a produção do jogo completo na Unreal Engine, nos termos da proposta da seção 5.3, com o diário de memórias, a progressão pelos cinco atos, as mecânicas filosóficas de cada ato, as crises de ansiedade completas e os puzzles; os testes com jogadores, para avaliar se a experiência transmite o que o design pretende; a medição de desempenho em hardware com placa de vídeo e os testes de compatibilidade no Firefox e no Safari; e, no protótipo, as melhorias de portabilidade apontadas na seção 5.1, como abrir sem internet e aceitar controles de toque. Também ficam como possibilidades a tradução dos textos (RNF005), os recursos de acessibilidade (RNF006), previstos para o jogo final, e a oferta de uma dica quando o jogador erra uma tentativa num puzzle, que ficou fora dos requisitos por decisão do autor.
 
 # Referências
 
@@ -2152,6 +2192,8 @@ KARNER, Gustav. *Resource estimation for Objectory projects*. Estocolmo: Objecti
 
 LUCIDCHART. *What is an Entity Relationship Diagram (ERD)?* Disponível em: <https://www.lucidchart.com/pages/er-diagrams/>. Acesso em: 25.mar.2026.
 
+MICROSOFT. *Playwright*. Disponível em: <https://playwright.dev/>. Acesso em: 09.nov.2026.
+
 OBJECT MANAGEMENT GROUP. *Business Process Model and Notation (BPMN), Version 2.0.2*. Needham: OMG, 2014.
 
 PRESSMAN, Roger S.; MAXIM, Bruce R. *Engenharia de Software: uma abordagem profissional*. 8. ed. Porto Alegre: AMGH, 2016.
@@ -2160,7 +2202,13 @@ PROJECT MANAGEMENT INSTITUTE. *Um Guia do Conhecimento em Gerenciamento de Proje
 
 RIBU, Kirsten. *Estimating object-oriented software projects with use cases*. 2001. Dissertação (Master of Science in Informatics) – University of Oslo, Oslo, 2001.
 
+SALÁRIO.COM.BR. *Autor-roteirista multimídia: salário*. Disponível em: <https://www.salario.com.br/profissao/autor-roteirista-multimidia-cbo-261505/>. Acesso em: 09.nov.2026.
+
 SALÁRIO.COM.BR. *Cargos da ocupação CBO 3171-20: desenvolvedor de multimídia*. Disponível em: <https://www.salario.com.br/ocupacao/cargos/cbo-317120-cargos/>. Acesso em: 09.nov.2026.
+
+SALÁRIO.COM.BR. *Ilustrador (artes visuais): salário*. Disponível em: <https://www.salario.com.br/profissao/ilustrador-artes-visuais-cbo-262405>. Acesso em: 09.nov.2026.
+
+SALÁRIO.COM.BR. *Músico arranjador: salário*. Disponível em: <https://www.salario.com.br/profissao/musico-arranjador-cbo-262610>. Acesso em: 09.nov.2026.
 
 SOMMERVILLE, Ian. *Engenharia de Software*. 10. ed. São Paulo: Pearson, 2019.
 
@@ -2169,6 +2217,10 @@ VALORFINAL. *Custo do funcionário CLT: encargos, provisões e quanto custa de v
 VALVE. *Steam Direct fee*. Disponível em: <https://partner.steamgames.com/doc/gettingstarted/appfee>. Acesso em: 09.nov.2026.
 
 VISUAL PARADIGM. *What is Class Diagram?* Disponível em: <https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-class-diagram/>. Acesso em: 22.mar.2026.
+
+W3C WEBDX COMMUNITY GROUP. *Import maps*. Web platform features explorer. Disponível em: <https://web-platform-dx.github.io/web-features-explorer/features/import-maps>. Acesso em: 09.nov.2026.
+
+W3C WEBDX COMMUNITY GROUP. *WebGL2*. Web platform features explorer. Disponível em: <https://web-platform-dx.github.io/web-features-explorer/features/webgl2>. Acesso em: 09.nov.2026.
 
 # Apêndice A - Perguntas do questionário e resumos das respostas selecionadas
 
