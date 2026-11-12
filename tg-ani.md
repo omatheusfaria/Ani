@@ -44,11 +44,11 @@ O projeto é desenvolvido segundo a metodologia Cascata, com fases sequenciais d
 
 ## 1.1 Termo de Abertura do Projeto (TAP)
 
-O Termo de Abertura do Projeto (TAP) é o documento que formaliza a existência de um projeto e registra seus direcionadores iniciais. No gerenciamento de projetos, sua função é consolidar propósito, escopo preliminar, stakeholders, premissas, restrições e critérios de sucesso, oferecendo uma base de alinhamento entre os envolvidos. Segundo o Project Management Institute, o documento de abertura autoriza formalmente o projeto e define seus elementos estruturantes em nível inicial (PROJECT MANAGEMENT INSTITUTE, 2017).
+O Termo de Abertura do Projeto (TAP) formaliza a existência de um projeto e registra seus direcionadores iniciais. Segundo o Project Management Institute, o documento de abertura autoriza formalmente o projeto e define seus elementos estruturantes em nível inicial (PROJECT MANAGEMENT INSTITUTE, 2017). Nele ficam o propósito, o escopo preliminar, os stakeholders, as premissas, as restrições e os critérios de sucesso.
 
-No contexto acadêmico, o TAP exerce papel equivalente ao de um contrato de projeto, pois delimita o que será construído, quem participa do processo, quais recursos são previstos e quais limites precisam ser respeitados. Em trabalhos de software, esse artefato também favorece a rastreabilidade entre problema de pesquisa, objetivos, modelagem e implementação, reduzindo ambiguidades nas etapas subsequentes.
+Em um trabalho acadêmico, o TAP funciona como um contrato de projeto. Ele delimita o que será construído, quem participa, quais recursos estão previstos e quais limites devem ser respeitados. Em software, também liga o problema de pesquisa aos objetivos, à modelagem e à implementação, o que diminui as ambiguidades nas etapas seguintes.
 
-No caso de Ani, o TAP organiza a proposta de um jogo narrativo contemplativo em termos de gerenciamento, escopo e viabilidade. A seguir, apresenta-se o conteúdo completo do artefato, acrescido da contextualização do produto digital a ser entregue.
+No caso de Ani, o TAP descreve a proposta do jogo quanto a gerenciamento, escopo e viabilidade. As subseções a seguir trazem o conteúdo do artefato e a contextualização do produto a ser entregue.
 
 ### 1.1.1 Identificação do Projeto
 
