@@ -1003,9 +1003,9 @@ A Figura 5 apresenta o ciclo de progressão do Ato I. A cada objeto de memória 
 
 ## 2.9 Diagrama de Estados
 
-O diagrama de máquina de estados da UML representa os estados pelos quais um objeto passa ao longo de sua existência e os eventos que provocam a transição de um estado para outro. Segundo Sommerville (2019), esse tipo de modelo mostra como o sistema reage a eventos internos e externos, e a IBM o inclui entre os diagramas comportamentais da UML (IBM, s.d.c, online). Como um jogo digital responde continuamente a eventos do jogador, esse modelo é adequado para descrever o ciclo de uma sessão de jogo.
+O diagrama de máquina de estados da UML mostra os estados de um objeto ao longo de sua existência e os eventos que o levam de um estado a outro. Para Sommerville (2019), esse modelo descreve como o sistema reage a eventos internos e externos. A IBM o inclui entre os diagramas comportamentais da UML (IBM, s.d.c, online). Um jogo reage o tempo todo aos comandos do jogador, por isso o modelo serve para descrever o ciclo de uma sessão.
 
-Em Ani, o diagrama de estados descreve o ciclo de vida da sessão de jogo controlada pela classe `Jogo`. Ele deixa explícito em que situações o jogador pode pausar, retomar ou encerrar a sessão, e como a crise de ansiedade se sobrepõe à exploração sem interrompê-la por punição sistêmica.
+Em Ani, o diagrama descreve o ciclo de vida da sessão controlada pela classe `Jogo`: quando o jogador pode pausar, retomar ou encerrar, e como a crise de ansiedade se sobrepõe à exploração sem punição sistêmica.
 
 ### Estados da classe Jogo
 
@@ -1015,9 +1015,9 @@ A Figura 6 apresenta os estados da classe `Jogo`, registrados no atributo `estad
 
 ## 2.10 Diagramas de Sequência
 
-O diagrama de sequência da UML representa a troca de mensagens entre os objetos que participam de uma interação, organizada na ordem em que acontece ao longo do tempo. Sommerville (2019) aponta que esse diagrama é usado para modelar as interações entre atores e objetos de um caso de uso, e a IBM o classifica entre os diagramas de interação da UML (IBM, s.d.c, online).
+Na UML, a troca de mensagens entre os objetos de uma interação, na ordem em que ocorre, é modelada pelo diagrama de sequência. Sommerville (2019) o indica para representar as interações entre atores e objetos de um caso de uso; a IBM o classifica entre os diagramas de interação (IBM, s.d.c, online).
 
-Sua importância neste trabalho está em ligar os casos de uso ao diagrama de classes: cada mensagem corresponde a um método existente, o que permite verificar se as classes modeladas são suficientes para realizar os fluxos descritos.
+Neste trabalho, os diagramas de sequência ligam os casos de uso ao diagrama de classes. Cada mensagem corresponde a um método existente. Assim é possível verificar se as classes modeladas bastam para realizar os fluxos descritos.
 
 ### Sequência: Interagir com objeto, registrar memória e consultar o diário (UC-S002 / UC-S005)
 
