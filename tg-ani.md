@@ -44,11 +44,11 @@ O projeto é desenvolvido segundo a metodologia Cascata, com fases sequenciais d
 
 ## 1.1 Termo de Abertura do Projeto (TAP)
 
-O Termo de Abertura do Projeto (TAP) formaliza a existência de um projeto e registra seus direcionadores iniciais. Segundo o Project Management Institute, o documento de abertura autoriza formalmente o projeto e define seus elementos estruturantes em nível inicial (PROJECT MANAGEMENT INSTITUTE, 2017). Nele ficam o propósito, o escopo preliminar, os stakeholders, as premissas, as restrições e os critérios de sucesso.
+O Termo de Abertura do Projeto (TAP) formaliza a existência de um projeto. Segundo o Project Management Institute, o documento de abertura autoriza formalmente o projeto e define seus elementos estruturantes em nível inicial (PROJECT MANAGEMENT INSTITUTE, 2017), entre eles o propósito, o escopo preliminar, os stakeholders, as premissas, as restrições e os critérios de sucesso.
 
-Em um trabalho acadêmico, o TAP funciona como um contrato de projeto. Ele delimita o que será construído, quem participa, quais recursos estão previstos e quais limites devem ser respeitados. Em software, também liga o problema de pesquisa aos objetivos, à modelagem e à implementação, o que diminui as ambiguidades nas etapas seguintes.
+Em um trabalho acadêmico, o TAP funciona como um contrato. Delimita o que será construído, quem participa, quais recursos estão previstos e quais limites devem ser respeitados. Em projetos de software, ele também liga o problema de pesquisa aos objetivos, à modelagem e à implementação, o que diminui as ambiguidades nas etapas seguintes.
 
-No caso de Ani, o TAP descreve a proposta do jogo quanto a gerenciamento, escopo e viabilidade. As subseções a seguir trazem o conteúdo do artefato e a contextualização do produto a ser entregue.
+No caso de Ani, o TAP descreve a proposta do jogo quanto a gerenciamento, escopo e viabilidade; as subseções a seguir trazem o conteúdo do artefato e a contextualização do produto.
 
 ### 1.1.1 Identificação do Projeto
 
