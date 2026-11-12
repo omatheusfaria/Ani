@@ -676,11 +676,11 @@ Os Quadros 12 a 28 detalham cada caso de uso, com pré-condição, cenário prin
 
 O Diagrama de Classes UML representa estruturalmente os elementos de um sistema orientado a objetos, indicando classes, atributos, operações e relacionamentos. Segundo a IBM, diagramas UML auxiliam a representar diferentes perspectivas de um sistema, enquanto a Visual Paradigm destaca que o diagrama de classes descreve a estrutura do sistema por meio de classes, atributos, métodos e relações (IBM, s.d.c, online; Visual Paradigm, s.d., online).
 
-Sua importância neste trabalho está em mostrar como a experiência contemplativa de Ani é traduzida em entidades de software com responsabilidades definidas. Ao explicitar a estrutura do jogo, o diagrama favorece a rastreabilidade entre requisitos, regras de negócio, persistência e implementação. A modelagem gráfica correspondente é apresentada na Figura 3, e a estrutura textual das classes é detalhada a seguir.
+O diagrama mostra como os elementos do jogo foram organizados em classes com responsabilidades definidas. Com ele, é possível conferir se requisitos, regras de negócio, persistência e implementação usam as mesmas entidades. A Figura 3 apresenta o diagrama, e a estrutura textual das classes é detalhada a seguir.
 
 [Figura 3 – Diagrama de Classes de Ani]
 
-As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sintetiza os cinco atos filosóficos; `Memoria`, `Diario` e `EntradaDiario` formalizam o sistema de memórias; `ObjetoMemoria` representa o gatilho interativo de revelação de memórias; `ObjetoRestauravel` traduz a lógica de Kintsugi do Ato III; `ObjetoContemplativo` traduz a contemplação ativa do Ato IV; `NPC` e `Dialogo` representam personagens de memória e seus fluxos textuais; `Ani` constitui a representação sistêmica da protagonista como sujeito da experiência; `EcoDecisao` registra as tentativas do jogador nos ecos de decisão do Ato II; e `Save` reúne o progresso persistido da partida, como a entidade SAVE do DER. As mecânicas do início do Ato I acrescentam `Celular` e `Publicacao`, que representam o celular em primeira pessoa e o feed (RF024); `Interruptor` e `FonteDeLuz`, que controlam a iluminação dos cômodos (RF025, RN007), com o atributo `iluminado` de `Cenario`; `ObjetoInspecionavel`, para a inspeção de objetos em primeira pessoa (RF026); `Barraca`, `Comida` e `Minigame`, para as barracas do parque (RF028, RF029, RN008); e `Configuracao`, que guarda as opções de vídeo e áudio (RF022). `ObjetoMemoria` leva Ani ao `Cenario` da memória (RF027), `Memoria.ordem` indica a posição da memória na sequência linear do ato (RN004), `Ato.totalMemorias` guarda o tamanho dessa sequência e `NPC.acompanhando` indica a personagem que segue Ani pelo cenário (RF030).
+As classes seguem os conceitos do jogo. `Ato` representa os cinco atos filosóficos; `Memoria`, `Diario` e `EntradaDiario` formalizam o sistema de memórias; `ObjetoMemoria` representa o gatilho interativo de revelação de memórias; `ObjetoRestauravel` traduz a lógica de Kintsugi do Ato III; `ObjetoContemplativo` traduz a contemplação ativa do Ato IV; `NPC` e `Dialogo` representam personagens de memória e seus fluxos textuais; `Ani` representa a protagonista; `EcoDecisao` registra as tentativas do jogador nos ecos de decisão do Ato II; e `Save` reúne o progresso persistido da partida, como a entidade SAVE do DER. As mecânicas do início do Ato I acrescentam `Celular` e `Publicacao`, que representam o celular em primeira pessoa e o feed (RF024); `Interruptor` e `FonteDeLuz`, que controlam a iluminação dos cômodos (RF025, RN007), com o atributo `iluminado` de `Cenario`; `ObjetoInspecionavel`, para a inspeção de objetos em primeira pessoa (RF026); `Barraca`, `Comida` e `Minigame`, para as barracas do parque (RF028, RF029, RN008); e `Configuracao`, que guarda as opções de vídeo e áudio (RF022). `ObjetoMemoria` leva Ani ao `Cenario` da memória (RF027), `Memoria.ordem` indica a posição da memória na sequência linear do ato (RN004), `Ato.totalMemorias` guarda o tamanho dessa sequência e `NPC.acompanhando` indica a personagem que segue Ani pelo cenário (RF030).
 
 `Jogo` e `Ani` mantêm uma associação bidirecional de multiplicidade 1 : 1: `Jogo` alcança o `Diario` por meio de `Ani`, sem associação direta entre `Jogo` e `Diario`, e `Ani` alcança `Jogo` para notificar o início e o fim das crises de ansiedade por meio de `Jogo.alterarEstado()`. Na implementação em Unreal Engine, essa notificação de `Ani` para `Jogo` é feita por um *delegate*: `Ani` dispara o evento, e `Jogo`, inscrito nele, altera o estado da sessão, o que evita que a personagem dependa diretamente da classe de jogo.
 
@@ -987,7 +987,7 @@ O Quadro 30 resume os relacionamentos entre as classes e suas multiplicidades.
 
 O diagrama de atividades da UML representa o fluxo de controle de um processo ou de uma funcionalidade, mostrando as ações executadas, as decisões, os laços e o ponto em que o fluxo termina. Sommerville (2019) destaca que esse diagrama ajuda a mostrar as atividades que compõem um processo e a ordem em que ocorrem, e a IBM o inclui entre os diagramas comportamentais da UML usados para descrever a dinâmica do sistema (IBM, s.d.c, online).
 
-Sua importância neste trabalho está em detalhar, passo a passo, fluxos que os casos de uso descrevem apenas em texto, separando o que cabe ao jogador e o que cabe ao sistema por meio de raias. Assim, decisões e repetições ficam visíveis antes da implementação. Os diagramas foram elaborados no draw.io e estão em `docs/diagramas/`.
+Aqui, os diagramas de atividades detalham, passo a passo, fluxos que os casos de uso descrevem apenas em texto, e separam por raias o que cabe ao jogador e o que cabe ao sistema. Decisões e repetições ficam visíveis antes da implementação. Os diagramas foram elaborados no draw.io e estão em `docs/diagramas/`.
 
 ### Atividade: Resolver Puzzle (UC-S014)
 
@@ -1035,7 +1035,7 @@ A Figura 8 apresenta a persistência do progresso. Ao salvar (UC-S011), o jogado
 
 O Diagrama Entidade-Relacionamento é um modelo conceitual voltado à representação de dados, entidades, atributos e relacionamentos de um domínio. A IBM descreve o DER como uma forma de visualizar entidades e relações em um domínio de dados, enquanto a Lucidchart destaca seu papel na organização lógica das informações e na compreensão das cardinalidades entre entidades (IBM, s.d.d, online; Lucidchart, s.d., online).
 
-No presente projeto, o DER deriva do Diagrama de Classes e das Regras de Negócio para representar aquilo que precisa ser persistido no jogo. Seu foco incide sobre progresso do jogador, memórias coletadas, estado do diário e relações mínimas entre atos, cenários e objetos interativos, especialmente em função de RF009, RN001 e RN005.
+O DER deste projeto deriva do Diagrama de Classes e das Regras de Negócio e representa o que precisa ser persistido no jogo: o progresso do jogador, as memórias coletadas, o estado do diário e as relações mínimas entre atos, cenários e objetos interativos, em especial por causa de RF009, RN001 e RN005.
 
 A modelagem gráfica correspondente é apresentada na Figura 9, e a descrição textual das entidades é detalhada na sequência.
 
@@ -1114,9 +1114,9 @@ Atributos: id_configuracao (PK), volume, resolucao, tela_cheia
 
 # 3 Ferramentas e Métodos
 
-A seleção de ferramentas do projeto foi orientada por três critérios centrais: adequação às especificações técnicas definidas para o jogo, suporte consolidado na comunidade de desenvolvimento de jogos e compatibilidade com a metodologia Cascata adotada no planejamento. Como o protótipo combina exploração lateral, progressão por atos, direção visual autoral e áudio adaptativo, tornou-se necessário escolher recursos que atendessem tanto às demandas de implementação quanto à coerência estética e documental.
+As ferramentas foram escolhidas por três critérios: adequação às especificações técnicas definidas para o jogo, suporte consolidado na comunidade de desenvolvimento de jogos e compatibilidade com a metodologia Cascata adotada no planejamento. O protótipo combina exploração lateral, progressão por atos, direção visual autoral e áudio adaptativo, e as ferramentas precisavam servir à implementação, à estética e à documentação.
 
-Além disso, as ferramentas utilizadas apresentam licenças compatíveis com uso acadêmico e estão alinhadas às tecnologias registradas no Termo de Abertura do Projeto. Sempre que os artefatos-fonte não informam versão específica utilizada, essa ausência é explicitada, a fim de preservar a fidelidade documental.
+Todas têm licenças compatíveis com uso acadêmico e correspondem às tecnologias registradas no Termo de Abertura do Projeto. Quando não há versão específica, como nos serviços web, isso é indicado na ficha da ferramenta.
 
 ### Ferramenta: Three.js
 Versão utilizada: 0.170.0  
@@ -1151,7 +1151,7 @@ Versão utilizada: Python 3.10.12, NumPy 2.2.6 e Pillow 12.3.0
 Tipo de licença: Python Software Foundation License (Python), BSD (NumPy) e MIT-CMU (Pillow), todas de código aberto  
 Site oficial: <https://www.python.org/>, <https://numpy.org/> e <https://python-pillow.org/>  
 Função no projeto: scripts da pasta `tools/` que recortam as folhas de sprites, alinham os quadros pelos pés, separam camadas de brilho e ajustam detalhes das personagens.  
-Justificativa de escolha: automatizam tarefas repetitivas de tratamento de imagem com precisão de pixel, o que garante que todas as folhas cheguem ao jogo no mesmo formato.
+Justificativa de escolha: automatizam tarefas repetitivas de tratamento de imagem com precisão de pixel, para que todas as folhas cheguem ao jogo no mesmo formato.
 
 ### Ferramenta: GPT-6
 Versão utilizada: GPT-6  
@@ -1172,7 +1172,7 @@ Versão utilizada: 29.6.5
 Tipo de licença: Apache 2.0, código aberto  
 Site oficial: <https://www.drawio.com/>  
 Função no projeto: modelagem de diagramas UML, BPMN e demais artefatos estruturais.  
-Justificativa de escolha: foi utilizada para representar visualmente a estrutura do sistema e o fluxo principal de gameplay, fortalecendo a documentação e a rastreabilidade entre modelagem e implementação.
+Justificativa de escolha: reúne em um único ambiente as formas nativas da UML e do BPMN, usadas para representar a estrutura do sistema e o fluxo principal de gameplay.
 
 ### Ferramenta: Git e GitHub
 Versão utilizada: Git 2.48.1.windows.1; GitHub não se aplica (plataforma web)  
