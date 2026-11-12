@@ -137,6 +137,15 @@ HEBRAICO = re.compile(r"([\u0590-\u05FF\uFB1D-\uFB4F]+(?:\s+[\u0590-\u05FF\uFB1D
 INLINE = re.compile(r"(\*\*.+?\*\*|`[^`]+`|(?<![\w*])\*[^*\s][^*]*?\*(?![\w*]))")
 FIGURA_LINHA = re.compile(r"\[(Figura (\d+)) – ([^\]]+)\]")
 CODIGO_LINHA = re.compile(r"\[(Código (\d+)) – (.+)\]")
+# Rótulos que abrem linha própria (classes, entidades e ferramentas). O texto
+# não usa negrito fora dos títulos, então o rótulo é reconhecido pelo nome.
+ROTULO = re.compile(r"^(\*\*)?(Atributos|Métodos|Relacionamentos|Versão utilizada|"
+                    r"Tipo de licença|Site oficial|Função no projeto|"
+                    r"Justificativa de escolha|Missão|Visão|Valores):")
+
+
+def eh_rotulo(texto):
+    return texto.startswith("**") or bool(ROTULO.match(texto))
 
 
 # ---------------------------------------------------------------- XML helpers
@@ -343,13 +352,13 @@ def ler_blocos(md: str, ate: str | None):
             blocos.append(("lista", ordenada, itens))
             continue
         # Parágrafo: linhas seguidas se juntam, exceto quando a anterior tem
-        # quebra forçada (dois espaços no fim) ou a nova começa com rótulo **X:**.
+        # quebra forçada (dois espaços no fim) ou a nova começa com rótulo X:.
         par = [s]
         quebra = ln.endswith("  ")
         i += 1
         while i < len(linhas) and linhas[i].strip() and not inicio_bloco.match(linhas[i].strip()):
             nova = linhas[i].strip()
-            if quebra or nova.startswith("**"):
+            if quebra or eh_rotulo(nova):
                 blocos.append(("paragrafo", " ".join(par)))
                 par = [nova]
             else:
@@ -404,7 +413,7 @@ class Gerador:
     def paragrafo(self, texto):
         texto = texto.replace("Quadro X", f"Quadro {self.n_quadro + 1}")
         p = self.doc.add_paragraph(style="0-Normal")
-        if texto.startswith("**"):  # linha de rótulo ("**Atributos:** ...")
+        if eh_rotulo(texto):  # linha de rótulo ("Atributos:", "Versão utilizada: ...")
             formatar_paragrafo(p, primeira=0)
         adicionar_runs(p, texto)
 
