@@ -1965,7 +1965,7 @@ O Quadro 35 mostra a situação de cada requisito no protótipo: atendido, atend
 | RNF005 Internacionalização de textos | Fora do protótipo | Os textos ainda ficam no código |
 | RNF006 Acessibilidade sensorial e de áudio | Fora do protótipo | Por decisão do autor, vale para o jogo final |
 
-Dos 31 requisitos funcionais, 14 são atendidos pelo protótipo, 7 de forma parcial e 10 ficam fora dele. Os atendidos concentram-se nas mecânicas do início do Ato I (RF024 a RF030), na movimentação e na interação, e na estrutura de sessão (aviso, pausa, configurações e gamepad). Os requisitos fora do protótipo são, na maior parte, os das mecânicas dos demais atos, que não fazem parte do escopo definido no TAP.
+Dos 31 requisitos funcionais, 14 são atendidos pelo protótipo, 7 de forma parcial e 10 ficam fora dele. Os atendidos estão nas mecânicas do início do Ato I (RF024 a RF030), na movimentação, na interação e na estrutura de sessão, que reúne aviso, pausa, configurações e gamepad. Os que ficam fora são, em sua maioria, mecânicas dos outros atos. O TAP as deixou fora do escopo.
 
 # 5 Resultados e Discussão
 
