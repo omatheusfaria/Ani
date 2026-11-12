@@ -2221,11 +2221,11 @@ W3C WEBDX COMMUNITY GROUP. *WebGL2*. Web platform features explorer. Disponível
 
 # Apêndice A - Perguntas do questionário e resumos das respostas selecionadas
 
-Este apêndice apresenta as perguntas do formulário aplicado ao público-alvo e resumos anônimos das respostas consideradas mais úteis para a elicitação de requisitos do projeto **Ani**.
+Este apêndice apresenta as perguntas do formulário aplicado ao público-alvo do projeto Ani e resumos anônimos de algumas respostas.
 
-O formulário foi respondido por 8 participantes. As respostas foram, em geral, vagas e não geraram mecânicas nem decisões de design.
+O formulário foi respondido por 8 participantes. As respostas foram, em geral, vagas e não geraram mecânicas nem decisões de design; nenhum requisito deste trabalho tem o questionário como fonte.
 
-Os textos abaixo são resumos das respostas, não transcrições: as respostas originais do formulário não foram preservadas. Os nomes dos participantes foram removidos. Respostas muito vagas, ofensivas, sem relação com o projeto ou pouco aproveitáveis do ponto de vista analítico não foram reproduzidas.
+As respostas originais do formulário não foram preservadas. Os textos abaixo são, portanto, reconstruções resumidas de respostas que já eram vagas, e não transcrições nem dados que possam ser verificados. Os nomes dos participantes foram removidos. Respostas muito vagas, ofensivas, sem relação com o projeto ou pouco aproveitáveis do ponto de vista analítico não foram reproduzidas.
 
 ## 1. O que mais te atrai em um jogo narrativo?
 
@@ -2237,7 +2237,7 @@ Os textos abaixo são resumos das respostas, não transcrições: as respostas o
 
 ### Síntese
 
-As respostas indicam interesse por jogos que combinam impacto estético, profundidade temática e narrativa com valor reflexivo.
+Os resumos indicam interesse por jogos que combinam impacto estético, profundidade temática e narrativa com valor reflexivo.
 
 ## 2. Sobre a fluidez e a programação
 
@@ -2249,7 +2249,7 @@ As respostas indicam interesse por jogos que combinam impacto estético, profund
 
 ### Síntese
 
-As respostas reforçam requisitos ligados à responsividade, estabilidade, fluidez e preservação da imersão.
+Os resumos tratam de responsividade, estabilidade, fluidez e preservação da imersão.
 
 ## 3. Sobre as mecânicas de jogo
 
@@ -2261,7 +2261,7 @@ As respostas reforçam requisitos ligados à responsividade, estabilidade, fluid
 
 ### Síntese
 
-As respostas mostram preferência por mecânicas de exploração com função narrativa, em vez de interações puramente instrumentais. Sugestões muito distantes da proposta consolidada do projeto, como combate central ou estrutura fortemente ramificada, não foram adotadas como base principal.
+Os resumos mostram preferência por mecânicas de exploração com função narrativa, em vez de interações puramente instrumentais. Sugestões distantes da proposta do projeto, como combate central ou estrutura fortemente ramificada, não foram adotadas.
 
 ## 4. Sobre a arte e o design
 
@@ -2273,7 +2273,7 @@ As respostas mostram preferência por mecânicas de exploração com função na
 
 ### Síntese
 
-As respostas apontam para a importância de uma direção artística sensível, coerente e articulada com o estado emocional do jogo.
+Os resumos apontam para uma direção artística sensível e coerente com o estado emocional do jogo.
 
 ## 5. Sobre a história e o significado
 
@@ -2285,7 +2285,7 @@ As respostas apontam para a importância de uma direção artística sensível, 
 
 ### Síntese
 
-As respostas reforçam que o jogo deve buscar significado, densidade interpretativa e reflexão, sem depender apenas de explicações diretas.
+Os resumos falam em significado, densidade interpretativa e reflexão, sem depender apenas de explicações diretas.
 
 ## 6. Temas recorrentes nos resumos das respostas
 
