@@ -14,7 +14,7 @@ This work presents the design of Ani, a contemplative 2.5D narrative adventure f
 
 Os jogos digitais narrativos constituem um campo relevante de investigação em software porque articulam sistemas computacionais, linguagem audiovisual, interação e modelagem de experiência. Diferentemente de mídias puramente lineares, o jogo permite que o sujeito não apenas acompanhe uma trajetória, mas a vivencie por meio de ações, ritmos, interrupções e respostas sistêmicas. No caso de experiências contemplativas, essa característica amplia a capacidade do software de representar estados subjetivos, sofrimento, memória e transformação interior, convertendo temas abstratos em situações interativas sensíveis.
 
-Nesse contexto, o projeto **Ani אֲנִי** propõe uma aventura narrativa contemplativa em 2.5D, centrada em consciência, sofrimento e descoberta gradual de sentido. A logline do projeto o define como “uma aventura narrativa contemplativa em 2.5D sobre consciência, sofrimento e a descoberta lenta do sentido”. Sua sinopse apresenta Ani em seu quarto, às 23:47, presa à tela do celular, acompanhando o perfil de Malu numa rede social. Quando a bateria acaba e o quarto mergulha no escuro, ela se levanta e o explora em busca do carregador, e os objetos que encontra a levam para dentro das próprias memórias, um espaço ao mesmo tempo familiar e deformado, no qual memórias, silêncio e ruínas emocionais substituem objetivos tradicionais, combate ou tutoriais extensos. O nome **אֲנִי** significa “eu” em hebraico e sintetiza a intenção de aproximar jogador e protagonista, de modo que a experiência não seja observada à distância, mas habitada desde dentro. As características gerais do produto estão reunidas na Ficha do Produto (Quadro 3), na seção 1.1.1.
+Nesse contexto, o projeto Ani אֲנִי propõe uma aventura narrativa contemplativa em 2.5D, centrada em consciência, sofrimento e descoberta gradual de sentido. A logline do projeto o define como “uma aventura narrativa contemplativa em 2.5D sobre consciência, sofrimento e a descoberta lenta do sentido”. Sua sinopse apresenta Ani em seu quarto, às 23:47, presa à tela do celular, acompanhando o perfil de Malu numa rede social. Quando a bateria acaba e o quarto mergulha no escuro, ela se levanta e o explora em busca do carregador, e os objetos que encontra a levam para dentro das próprias memórias, um espaço ao mesmo tempo familiar e deformado, no qual memórias, silêncio e ruínas emocionais substituem objetivos tradicionais, combate ou tutoriais extensos. O nome אֲנִי significa “eu” em hebraico e sintetiza a intenção de aproximar jogador e protagonista, de modo que a experiência não seja observada à distância, mas habitada desde dentro. As características gerais do produto estão reunidas na Ficha do Produto (Quadro 3), na seção 1.1.1.
 
 A originalidade do projeto reside no fato de que sua espinha dorsal não é uma estrutura de moralidade binária, mas uma jornada de percepção organizada em cinco atos filosóficos. O percurso parte do pessimismo ocidental, associado a Zapffe, Mainländer e Bahnsen, e avança em direção a filosofias contemplativas japonesas, como Wabi-Sabi, Mono no Aware, Ikigai e Yugen. Essa transição não é tratada como exposição teórica, mas como mudança de atmosfera, espaço, ritmo, mecânica e linguagem sensorial (Quadro 1).
 
@@ -38,7 +38,7 @@ A questão-problema que conduz o trabalho é a seguinte: “De que forma o desig
 
 O objetivo geral do projeto é conceber um jogo narrativo contemplativo que represente, por meio de sistemas, mecânicas e linguagem visual, uma jornada filosófica de transformação interior estruturada em cinco atos, do pessimismo existencial à contemplação, e desenvolver um protótipo funcional do início do Ato I, com cerca de dez minutos de jogo, que demonstre parte do design e das mecânicas propostos, aplicando práticas de engenharia de software no planejamento e na construção do projeto. Como objetivos específicos, destacam-se a consolidação da direção conceitual e filosófica do jogo, o levantamento e a classificação de requisitos, a modelagem dos fluxos principais por BPMN e casos de uso, o projeto de sistemas capazes de traduzir cada ato em interação e a implementação de um protótipo do início do Ato I coerente com a documentação produzida.
 
-A justificativa do trabalho apoia-se na singularidade dos jogos digitais como meio para representar experiências internas e subjetivas. Em **Ani**, a ausência de combate, de HUD numérico permanente e de moralidade binária não decorre de limitação técnica, mas de aderência ao objeto de pesquisa. A única exceção são os minigames das barracas do parque, no Ato I: como reproduzem jogos de parque de diversões, exibem placar e interface própria enquanto duram, sem efeito sobre a progressão. Como o foco está na travessia do sofrimento, na observação e na transformação de percepção, a interface minimalista, as pausas, o silêncio e as mecânicas contemplativas tornam-se escolhas metodologicamente coerentes com o que se pretende investigar em software interativo.
+A justificativa do trabalho apoia-se na singularidade dos jogos digitais como meio para representar experiências internas e subjetivas. Em Ani, a ausência de combate, de HUD numérico permanente e de moralidade binária não decorre de limitação técnica, mas de aderência ao objeto de pesquisa. A única exceção são os minigames das barracas do parque, no Ato I: como reproduzem jogos de parque de diversões, exibem placar e interface própria enquanto duram, sem efeito sobre a progressão. Como o foco está na travessia do sofrimento, na observação e na transformação de percepção, a interface minimalista, as pausas, o silêncio e as mecânicas contemplativas tornam-se escolhas metodologicamente coerentes com o que se pretende investigar em software interativo.
 
 O projeto é desenvolvido segundo a metodologia Cascata, com fases sequenciais de levantamento de requisitos, modelagem, design de sistemas e implementação. As ferramentas centrais do protótipo são HTML, CSS e JavaScript com a biblioteca Three.js, executados no navegador, o Visual Studio Code, o Sprite Fusion e o GPT-6 para a geração dos sprites, scripts em Python (NumPy e Pillow) para o tratamento deles e o Claude Opus 5.5 para a modelagem 3D dos cenários em Three.js. A organização deste documento acompanha esse percurso: após a introdução, apresenta-se o Termo de Abertura do Projeto; em seguida, o levantamento de requisitos, com BPMN, requisitos, regras, casos de uso, diagrama de classes e DER; depois, as ferramentas e métodos empregados; por fim, descreve-se o desenvolvimento do protótipo funcional. O Apêndice B apresenta a missão, a visão e os valores do projeto. O Apêndice C traz uma versão resumida do Game Design Document, que reúne a direção criativa da qual os requisitos foram derivados.
 
@@ -48,7 +48,7 @@ O Termo de Abertura do Projeto (TAP) é o documento que formaliza a existência 
 
 No contexto acadêmico, o TAP exerce papel equivalente ao de um contrato de projeto, pois delimita o que será construído, quem participa do processo, quais recursos são previstos e quais limites precisam ser respeitados. Em trabalhos de software, esse artefato também favorece a rastreabilidade entre problema de pesquisa, objetivos, modelagem e implementação, reduzindo ambiguidades nas etapas subsequentes.
 
-No caso de **Ani**, o TAP organiza a proposta de um jogo narrativo contemplativo em termos de gerenciamento, escopo e viabilidade. A seguir, apresenta-se o conteúdo completo do artefato, acrescido da contextualização do produto digital a ser entregue.
+No caso de Ani, o TAP organiza a proposta de um jogo narrativo contemplativo em termos de gerenciamento, escopo e viabilidade. A seguir, apresenta-se o conteúdo completo do artefato, acrescido da contextualização do produto digital a ser entregue.
 
 ### 1.1.1 Identificação do Projeto
 
@@ -100,7 +100,7 @@ Conceber um jogo narrativo contemplativo que represente, por meio de sistemas, m
 
 Jogos digitais constituem um meio singular para explorar experiências internas e subjetivas: a interatividade permite que o jogador não apenas observe uma jornada, mas a habite ativamente, vivenciando estados emocionais, percepções e transformações de dentro para fora. Essa capacidade imersiva distingue o jogo de outras mídias narrativas e o torna especialmente adequado para representar processos internos complexos, como identidade, sofrimento e transformação filosófica.
 
-**Ani** parte dessa premissa para investigar como a filosofia pode funcionar como linguagem acessível dentro de um jogo narrativo. Correntes como o pessimismo existencial de Zapffe e Mainländer e filosofias contemplativas japonesas, como Wabi-Sabi, Mono no Aware e Yugen, carregam ideias densas que, quando traduzidas em espaço, mecânica e atmosfera, tornam-se experienciáveis sem depender de mediação teórica.
+Ani parte dessa premissa para investigar como a filosofia pode funcionar como linguagem acessível dentro de um jogo narrativo. Correntes como o pessimismo existencial de Zapffe e Mainländer e filosofias contemplativas japonesas, como Wabi-Sabi, Mono no Aware e Yugen, carregam ideias densas que, quando traduzidas em espaço, mecânica e atmosfera, tornam-se experienciáveis sem depender de mediação teórica.
 
 O jogo se torna, assim, não um veículo de ensino da filosofia, mas um modo de sentir o que ela descreve.
 
@@ -165,7 +165,7 @@ O protótipo demonstra parte do design e das mecânicas do jogo por meio do iní
 
 ### 1.1.8 Principais Entregas
 
-- conceito consolidado de **Ani** como jogo narrativo contemplativo;
+- conceito consolidado de Ani como jogo narrativo contemplativo;
 - documentação funcional e estrutural de apoio ao desenvolvimento;
 - modelagem dos principais fluxos e interações do sistema;
 - protótipo jogável do início do Ato I (cerca de dez minutos de jogo), executado no navegador e publicado no GitHub Pages;
@@ -234,7 +234,7 @@ Os riscos iniciais e seus impactos estão listados no Quadro 5.
 
 ### 1.1.15 Critério de Sucesso
 
-O projeto será considerado bem-sucedido se conseguir entregar um protótipo funcional capaz de expressar com clareza a proposta central de **Ani**: uma jornada contemplativa, simbólica e interativa de transformação interior, coerente em suas mecânicas, atmosfera e identidade visual.
+O projeto será considerado bem-sucedido se conseguir entregar um protótipo funcional capaz de expressar com clareza a proposta central de Ani: uma jornada contemplativa, simbólica e interativa de transformação interior, coerente em suas mecânicas, atmosfera e identidade visual.
 
 # 2 Levantamento de Requisitos
 
@@ -246,13 +246,13 @@ No presente projeto, foi aplicado por formulário um questionário exploratório
 
 Por esse baixo aproveitamento, a elicitação foi conduzida principalmente por análise documental e refinamento iterativo. A documentação já existente do jogo funcionou como base primária para transformar intenções conceituais em exigências formais de software. Em especial, o documento de direção do projeto exerceu o papel de fonte de requisitos de produto, registrando narrativa, mecânicas, mundo, interface, áudio e especificações técnicas que depois foram convertidos em artefatos de engenharia.
 
-Além da análise documental, o refinamento ocorreu pelo confronto entre intenção de design e viabilidade de implementação do protótipo. Isso permitiu distinguir funcionalidades centrais do protótipo, desdobrar mecânicas em regras verificáveis e traduzir elementos atmosféricos em restrições não funcionais e comportamentos do sistema. Tal processo foi particularmente importante porque **Ani** não depende apenas de ações visíveis, mas também de transformações internas, progressão sensorial e mudanças de leitura ao longo dos atos.
+Além da análise documental, o refinamento ocorreu pelo confronto entre intenção de design e viabilidade de implementação do protótipo. Isso permitiu distinguir funcionalidades centrais do protótipo, desdobrar mecânicas em regras verificáveis e traduzir elementos atmosféricos em restrições não funcionais e comportamentos do sistema. Tal processo foi particularmente importante porque Ani não depende apenas de ações visíveis, mas também de transformações internas, progressão sensorial e mudanças de leitura ao longo dos atos.
 
-Quanto à classificação, adotou-se a distinção entre requisitos **evidentes**, cujo efeito é percebido pelo jogador, e requisitos **ocultos**, que ocorrem sem que o jogador perceba, independentemente de serem acionados por ele. Também se utilizou priorização por níveis, com destaque para Altíssima, Alta e Média, permitindo identificar o núcleo funcional indispensável do protótipo.
+Quanto à classificação, adotou-se a distinção entre requisitos evidentes, cujo efeito é percebido pelo jogador, e requisitos ocultos, que ocorrem sem que o jogador perceba, independentemente de serem acionados por ele. Também se utilizou priorização por níveis, com destaque para Altíssima, Alta e Média, permitindo identificar o núcleo funcional indispensável do protótipo.
 
-O conjunto de mecânicas e diretrizes do projeto orientou diretamente a geração dos requisitos. A mecânica de **Peso Literal**, no Ato I, originou RF013; **Ecos de Decisão**, no Ato II, originou RF014; a **Restauração por Aceitação**, no Ato III, originou RF015; a **Contemplação Ativa**, no Ato IV, originou RF016; e a **Dissolução de Mecânicas**, no Ato V, originou RF017. O **Sistema de Memórias** e o **Diário** originaram RF004 e RF005; as **Crises de Ansiedade** originaram RF018; a **jogabilidade autoexplicativa** sustentou RNF004; a **Progressão em cinco atos filosóficos** fundamentou RF012 e RF006; e a **direção de áudio por ato** fundamentou RF010.
+O conjunto de mecânicas e diretrizes do projeto orientou diretamente a geração dos requisitos. A mecânica de Peso Literal, no Ato I, originou RF013; Ecos de Decisão, no Ato II, originou RF014; a Restauração por Aceitação, no Ato III, originou RF015; a Contemplação Ativa, no Ato IV, originou RF016; e a Dissolução de Mecânicas, no Ato V, originou RF017. O Sistema de Memórias e o Diário originaram RF004 e RF005; as Crises de Ansiedade originaram RF018; a jogabilidade autoexplicativa sustentou RNF004; a Progressão em cinco atos filosóficos fundamentou RF012 e RF006; e a direção de áudio por ato fundamentou RF010.
 
-Essa rastreabilidade mostra que os requisitos de **Ani** derivam de uma visão de produto em que atmosfera, percepção, tempo e transformação são tão importantes quanto comandos, colisão e persistência. Assim, a elicitação não apenas identificou funcionalidades, mas formalizou em linguagem de software a proposta filosófica, estética e interativa do projeto.
+Essa rastreabilidade mostra que os requisitos de Ani derivam de uma visão de produto em que atmosfera, percepção, tempo e transformação são tão importantes quanto comandos, colisão e persistência. Assim, a elicitação não apenas identificou funcionalidades, mas formalizou em linguagem de software a proposta filosófica, estética e interativa do projeto.
 
 Os Quadros 6 e 7 sintetizam, respectivamente, a progressão visual e o clima sonoro previstos para cada ato, elementos atmosféricos que a elicitação traduziu em requisitos.
 
@@ -354,7 +354,7 @@ O uso da BPMN é importante neste projeto porque aproxima visão conceitual e l�
 
 Requisitos funcionais descrevem os serviços e comportamentos que o sistema deve oferecer ao usuário ou executar internamente para atender ao propósito do software. Para Sommerville (2019), eles definem as funções do sistema e suas respostas a entradas, situações e regras operacionais. Em um jogo digital, isso inclui não apenas comandos e menus, mas também mecânicas, regras de progressão, persistência e respostas sensoriais organizadas por software.
 
-Em **Ani**, os requisitos funcionais descrevem tanto funcionalidades convencionais quanto mecanismos capazes de converter intenção artística em experiência jogável. Assim, além de mover a personagem, interagir com objetos ou salvar progresso, os RFs também formalizam peso literal, ecos de decisão, contemplação ativa, dissolução de mecânicas e adaptação sonora por ato.
+Em Ani, os requisitos funcionais descrevem tanto funcionalidades convencionais quanto mecanismos capazes de converter intenção artística em experiência jogável. Assim, além de mover a personagem, interagir com objetos ou salvar progresso, os RFs também formalizam peso literal, ecos de decisão, contemplação ativa, dissolução de mecânicas e adaptação sonora por ato.
 
 O Quadro X apresenta os requisitos funcionais do sistema, organizados por código, título, categoria, prioridade e descrição.
 
@@ -398,7 +398,7 @@ Observa-se uma distribuição de 9 requisitos com prioridade Altíssima, 16 com 
 
 Requisitos não funcionais expressam restrições de qualidade, desempenho, usabilidade, portabilidade e demais condições que moldam como o sistema deve operar. Segundo Sommerville (2019), eles não descrevem serviços específicos, mas propriedades e limites que influenciam o comportamento global do software. Pressman e Maxim (2016) reforçam que tais requisitos afetam diretamente a aceitabilidade do produto.
 
-Em **Ani**, os RNFs não se limitam a desempenho técnico. Eles também registram compromissos com portabilidade, acessibilidade, localização e jogabilidade autoexplicativa. Assim, os requisitos não funcionais delimitam condições de qualidade que ajudam a preservar a proposta contemplativa do jogo.
+Em Ani, os RNFs não se limitam a desempenho técnico. Eles também registram compromissos com portabilidade, acessibilidade, localização e jogabilidade autoexplicativa. Assim, os requisitos não funcionais delimitam condições de qualidade que ajudam a preservar a proposta contemplativa do jogo.
 
 O Quadro X apresenta os requisitos não funcionais do sistema, indicando os critérios de qualidade e suas respectivas classificações.
 
@@ -417,9 +417,9 @@ Os RNFs podem ser agrupados por tema da seguinte forma: desempenho e persistênc
 
 Regras de negócio são enunciados que impõem restrições, condições ou políticas sobre o comportamento de um sistema dentro de seu domínio. Em termos de modelagem, elas definem o que pode, deve ou não deve acontecer em determinados cenários, garantindo coerência operacional entre objetivos, entidades e processos. Em projetos de software, essas regras exercem papel fundamental na transformação de intenções de domínio em comportamentos verificáveis.
 
-No caso de **Ani**, as regras de negócio não se limitam a validações administrativas; elas traduzem diretamente opções filosóficas e narrativas do projeto. A regra de convergência dos ecos de decisão, por exemplo, expressa em linguagem sistêmica a irresolução do Ato II, em que diferentes tentativas do jogador ainda convergem para o mesmo impasse narrativo.
+No caso de Ani, as regras de negócio não se limitam a validações administrativas; elas traduzem diretamente opções filosóficas e narrativas do projeto. A regra de convergência dos ecos de decisão, por exemplo, expressa em linguagem sistêmica a irresolução do Ato II, em que diferentes tentativas do jogador ainda convergem para o mesmo impasse narrativo.
 
-O Quadro X apresenta as regras de negócio do sistema, descrevendo as restrições conceituais que orientam a progressão e o comportamento narrativo de **Ani**.
+O Quadro X apresenta as regras de negócio do sistema, descrevendo as restrições conceituais que orientam a progressão e o comportamento narrativo de Ani.
 
 | Código | Nome | Descrição |
 | --- | --- | --- |
@@ -440,7 +440,7 @@ Casos de uso são descrições estruturadas das interações entre atores e sist
 
 Sua importância reside em tornar explícito quem aciona o sistema, em que condições, com quais passos principais e com quais alternativas. Em projetos de software interativo, esse tipo de artefato ajuda a conectar requisitos abstratos a fluxos operacionais verificáveis, servindo como ponte entre análise e implementação. Essa modelagem também favorece a comunicação entre os envolvidos no projeto, pois delimita o escopo funcional do sistema e torna mais clara a ligação entre atores, objetivos e funcionalidades (IBM, s.d.a, online; IBM, s.d.b, online).
 
-Em **Ani**, os casos de uso foram derivados dos requisitos funcionais e das mecânicas do projeto. Eles cobrem tanto ações clássicas, como movimentar, pausar e salvar, quanto interações alinhadas ao núcleo da experiência, como ativar objetos significativos, acessar o diário de memórias e carregar cenários coerentes com a progressão por atos.
+Em Ani, os casos de uso foram derivados dos requisitos funcionais e das mecânicas do projeto. Eles cobrem tanto ações clássicas, como movimentar, pausar e salvar, quanto interações alinhadas ao núcleo da experiência, como ativar objetos significativos, acessar o diário de memórias e carregar cenários coerentes com a progressão por atos.
 
 O Quadro X apresenta o índice de casos de uso do sistema, enquanto a modelagem gráfica correspondente é apresentada na Figura 2.
 
@@ -678,7 +678,7 @@ Os Quadros 12 a 28 detalham cada caso de uso, com pré-condição, cenário prin
 
 O Diagrama de Classes UML representa estruturalmente os elementos de um sistema orientado a objetos, indicando classes, atributos, operações e relacionamentos. Segundo a IBM, diagramas UML auxiliam a representar diferentes perspectivas de um sistema, enquanto a Visual Paradigm destaca que o diagrama de classes descreve a estrutura do sistema por meio de classes, atributos, métodos e relações (IBM, s.d.c, online; Visual Paradigm, s.d., online).
 
-Sua importância neste trabalho está em mostrar como a experiência contemplativa de **Ani** é traduzida em entidades de software com responsabilidades definidas. Ao explicitar a estrutura do jogo, o diagrama favorece a rastreabilidade entre requisitos, regras de negócio, persistência e implementação. A modelagem gráfica correspondente é apresentada na Figura 3, e a estrutura textual das classes é detalhada a seguir.
+Sua importância neste trabalho está em mostrar como a experiência contemplativa de Ani é traduzida em entidades de software com responsabilidades definidas. Ao explicitar a estrutura do jogo, o diagrama favorece a rastreabilidade entre requisitos, regras de negócio, persistência e implementação. A modelagem gráfica correspondente é apresentada na Figura 3, e a estrutura textual das classes é detalhada a seguir.
 
 [Figura 3 – Diagrama de Classes de Ani]
 
@@ -689,13 +689,13 @@ As classes do projeto refletem diretamente sua arquitetura conceitual. `Ato` sin
 Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`, `FString`, `FDateTime`, `TArray<...>`). Os nomes das classes e enumerações do modelo omitem os prefixos da convenção da Unreal (`U` para classes derivadas de `UObject`, `A` para atores, `F` para estruturas e `E` para enumerações), que podem ser aplicados na implementação.
 
 ### Classe: Jogo
-**Atributos:**
+Atributos:
 - `- titulo: FString`
 - `- atoAtual: Ato`
 - `- cenarioAtual: Cenario`
 - `- estadoAtual: EstadoJogo`
 
-**Métodos:**
+Métodos:
 - `+ iniciar()`
 - `+ pausar()`
 - `+ retomar()`
@@ -705,7 +705,7 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 - `+ alterarEstado(novoEstado: EstadoJogo)`
 
 ### Classe: Personagem
-**Atributos:**
+Atributos:
 - `- nome: FString`
 - `- posicaoX: float`
 - `- posicaoY: float`
@@ -713,15 +713,15 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 - `- sprite: FString`
 - `- velocidade: float`
 
-**Métodos:**
+Métodos:
 - `+ mover()`
 
 ### Classe: Ani
-**Atributos:**
+Atributos:
 - `- estadoEmocional: EstadoEmocional`
 - `- diario: Diario`
 
-**Métodos:**
+Métodos:
 - `+ interagir()`
 - `+ observar()`
 - `+ registrarMemoria()`
@@ -729,45 +729,45 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 - `+ encerrarCrise()`
 
 ### Classe: NPC
-**Atributos:**
+Atributos:
 - `- tipo: TipoNPC`
 - `- acompanhando: bool`
 
-**Métodos:**
+Métodos:
 - `+ falar()`
 - `+ interagir()`
 - `+ seguir()`
 
 ### Classe: Dialogo
-**Atributos:**
+Atributos:
 - `- id: int32`
 - `- linhas: TArray<FString>`
 - `- fragmentado: bool`
 
-**Métodos:**
+Métodos:
 - `+ iniciar()`
 - `+ avançar()`
 - `+ encerrar()`
 
 ### Classe: ObjetoInterativo
-**Atributos:**
+Atributos:
 - `- id: int32`
 - `- descricao: FString`
 
-**Métodos:**
+Métodos:
 - `+ ativar()`
 
 ### Classe: ObjetoMemoria
-**Atributos:**
+Atributos:
 - `- coletada: bool`
 
-**Métodos:**
+Métodos:
 - `+ exibir()`
 - `+ registrarNoDiario()`
 - `+ abrirMemoria()`
 
 ### Classe: Memoria
-**Atributos:**
+Atributos:
 - `- id: int32`
 - `- titulo: FString`
 - `- conteudo: FString`
@@ -775,162 +775,162 @@ Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`,
 - `- ordem: int32`
 - `- coletada: bool`
 
-**Métodos:**
+Métodos:
 - `+ registrar()`
 - `+ atualizarLeitura()`
 
 ### Classe: Diario
-**Atributos:**
+Atributos:
 - `- entradas: TArray<EntradaDiario>`
 
-**Métodos:**
+Métodos:
 - `+ abrir()`
 - `+ adicionarEntrada()`
 - `+ consultarEntrada()`
 - `+ restaurar()`
 
 ### Classe: EntradaDiario
-**Atributos:**
+Atributos:
 - `- titulo: FString`
 - `- conteudo: FString`
 - `- tipo: TipoEntradaDiario`
 
-**Métodos:**
+Métodos:
 - `+ atualizarLeitura()`
 
 ### Classe: Cenario
-**Atributos:**
+Atributos:
 - `- nome: FString`
 - `- desbloqueado: bool`
 - `- iluminado: bool`
 
-**Métodos:**
+Métodos:
 - `+ carregarCenario()`
 - `+ desbloquearArea()`
 - `+ restaurarEstado()`
 
 ### Classe: Ato
-**Atributos:**
+Atributos:
 - `- id: int32`
 - `- nome: FString`
 - `- descricao: FString`
 - `- concluido: bool`
 - `- totalMemorias: int32`
 
-**Métodos:**
+Métodos:
 - `+ iniciarAto()`
 - `+ verificarConclusao()`
 - `+ concluirAto()`
 
 ### Classe: ObjetoRestauravel
-**Atributos:**
+Atributos:
 - `- estado: EstadoObjeto`
 
-**Métodos:**
+Métodos:
 - `+ restaurar()`
 
 ### Classe: ObjetoContemplativo
-**Atributos:**
+Atributos:
 - `- tempoMinimoObservacao: float`
 
-**Métodos:**
+Métodos:
 - `+ observar()`
 - `+ liberarNarracao()`
 
 ### Classe: EcoDecisao
-**Atributos:**
+Atributos:
 - `- id: int32`
 - `- tentativas: int32`
 - `- desfecho: FString`
 
-**Métodos:**
+Métodos:
 - `+ registrarTentativa()`
 - `+ conduzirAoImpasse()`
 
 ### Classe: Save
-**Atributos:**
+Atributos:
 - `- idSave: int32`
 - `- dataCriacao: FDateTime`
 - `- dataUltimaAtualizacao: FDateTime`
 
-**Métodos:**
+Métodos:
 - `+ salvar()`
 - `+ carregar()`
 
 ### Classe: Celular
-**Atributos:**
+Atributos:
 - `- bateria: int32`
 - `- ligado: bool`
 
-**Métodos:**
+Métodos:
 - `+ ligar()`
 - `+ desligar()`
 - `+ rolarFeed()`
 
 ### Classe: Publicacao
-**Atributos:**
+Atributos:
 - `- autor: FString`
 - `- legenda: FString`
 - `- curtida: bool`
 
-**Métodos:**
+Métodos:
 - `+ curtir()`
 
 ### Classe: Interruptor
-**Atributos:**
+Atributos:
 - `- cenario: Cenario`
 
-**Métodos:**
+Métodos:
 - `+ alternarIluminacao()`
 
 ### Classe: FonteDeLuz
-**Atributos:**
+Atributos:
 - `- acesa: bool`
 
-**Métodos:**
+Métodos:
 - `+ acender()`
 - `+ apagar()`
 
 ### Classe: ObjetoInspecionavel
-**Atributos:**
+Atributos:
 - `- itens: TArray<FString>`
 
-**Métodos:**
+Métodos:
 - `+ inspecionar()`
 
 ### Classe: Barraca
-**Atributos:**
+Atributos:
 - `- nome: FString`
 
-**Métodos:**
+Métodos:
 - `+ venderComida()`
 - `+ abrirMinigame()`
 
 ### Classe: Comida
-**Atributos:**
+Atributos:
 - `- nome: FString`
 - `- estagio: int32`
 
-**Métodos:**
+Métodos:
 - `+ consumir()`
 
 ### Classe: Minigame
-**Atributos:**
+Atributos:
 - `- nome: FString`
 - `- placar: int32`
 
-**Métodos:**
+Métodos:
 - `+ iniciar()`
 - `+ registrarJogada()`
 - `+ encerrar()`
 
 ### Classe: Configuracao
-**Atributos:**
+Atributos:
 - `- volume: float`
 - `- resolucao: FString`
 - `- telaCheia: bool`
 
-**Métodos:**
+Métodos:
 - `+ aplicar()`
 - `+ restaurarPadrao()`
 
@@ -1007,7 +1007,7 @@ A Figura 5 apresenta o ciclo de progressão do Ato I. A cada objeto de memória 
 
 O diagrama de máquina de estados da UML representa os estados pelos quais um objeto passa ao longo de sua existência e os eventos que provocam a transição de um estado para outro. Segundo Sommerville (2019), esse tipo de modelo mostra como o sistema reage a eventos internos e externos, e a IBM o inclui entre os diagramas comportamentais da UML (IBM, s.d.c, online). Como um jogo digital responde continuamente a eventos do jogador, esse modelo é adequado para descrever o ciclo de uma sessão de jogo.
 
-Em **Ani**, o diagrama de estados descreve o ciclo de vida da sessão de jogo controlada pela classe `Jogo`. Ele deixa explícito em que situações o jogador pode pausar, retomar ou encerrar a sessão, e como a crise de ansiedade se sobrepõe à exploração sem interrompê-la por punição sistêmica.
+Em Ani, o diagrama de estados descreve o ciclo de vida da sessão de jogo controlada pela classe `Jogo`. Ele deixa explícito em que situações o jogador pode pausar, retomar ou encerrar a sessão, e como a crise de ansiedade se sobrepõe à exploração sem interrompê-la por punição sistêmica.
 
 ### Estados da classe Jogo
 
@@ -1047,72 +1047,72 @@ Ao contrário do diagrama de classes, o DER não representa todas as classes do 
 
 ### Entidade: SAVE
 Representa a unidade de persistência da partida.
-**Atributos:** id_save (PK), data_criacao, data_ultima_atualizacao
-**Relacionamentos:**
+Atributos: id_save (PK), data_criacao, data_ultima_atualizacao
+Relacionamentos:
 - estaEm ATO: cada save está em um ato; um ato pode estar associado a vários saves.
 - estaEm CENARIO: cada save está em um cenário, onde o jogo continua ao ser carregado.
 - Possui DIARIO: cada save possui um diário associado.
 
 ### Entidade: ATO
 Representa cada etapa da progressão narrativa do jogo; `total_memorias` guarda a quantidade de memórias da sequência linear do ato (RN004).
-**Atributos:** id_ato (PK), nome, descricao, concluido, total_memorias
-**Relacionamentos:**
+Atributos: id_ato (PK), nome, descricao, concluido, total_memorias
+Relacionamentos:
 - Contem CENARIO: um ato contém um ou vários cenários; cada cenário pertence a um ato.
 - estaEm (com SAVE): um ato pode estar associado a vários saves.
 
 ### Entidade: CENARIO
 Representa os cenários pertencentes aos atos.
-**Atributos:** id_cenario (PK), nome, descricao, desbloqueado
-**Relacionamentos:**
+Atributos: id_cenario (PK), nome, descricao, desbloqueado
+Relacionamentos:
 - Contem (com ATO): cada cenário pertence a um ato.
 - Pertence (com OBJETO_INTERATIVO): um cenário pode possuir zero ou vários objetos interativos.
 - estaEm (com SAVE): um cenário pode estar associado a vários saves.
 
 ### Entidade: DIARIO
 Representa o diário associado ao progresso salvo.
-**Atributos:** id_diario (PK), titulo, descricao
-**Relacionamentos:**
+Atributos: id_diario (PK), titulo, descricao
+Relacionamentos:
 - Possui (com SAVE): cada diário pertence a um save.
 - Contem ENTRADA_DIARIO: um diário pode conter zero ou várias entradas.
 
 ### Entidade: ENTRADA_DIARIO
 Representa cada entrada consultável no diário.
-**Atributos:** id_entrada (PK), titulo, texto, ordem
-**Relacionamentos:**
+Atributos: id_entrada (PK), titulo, texto, ordem
+Relacionamentos:
 - Contem (com DIARIO): cada entrada pertence a um diário.
 - Referencia MEMORIA: uma entrada pode referenciar uma memória, mantendo o vínculo narrativo no diário.
 
 ### Entidade: MEMORIA
 Representa os fragmentos narrativos relacionados ao diário e aos objetos do mundo.
-**Atributos:** id_memoria (PK), titulo, conteudo, ato_origem, ordem, coletada
-**Relacionamentos:**
+Atributos: id_memoria (PK), titulo, conteudo, ato_origem, ordem, coletada
+Relacionamentos:
 - Referencia (com ENTRADA_DIARIO): pode ser referenciada por uma entrada do diário.
 - Revela (com OBJETO_MEMORIA): é revelada por um objeto de memória.
 
 ### Entidade: OBJETO_INTERATIVO
 Superentidade dos objetos interativos do jogo.
-**Atributos:** id_objeto (PK), nome, descricao
-**Relacionamentos:**
+Atributos: id_objeto (PK), nome, descricao
+Relacionamentos:
 - Pertence CENARIO: cada objeto interativo pertence a um cenário.
 - Especialização em OBJETO_MEMORIA, OBJETO_RESTAURAVEL e OBJETO_CONTEMPLATIVO.
 
 ### Entidade: OBJETO_MEMORIA
 Subtipo que dispara a revelação e o registro de memórias.
-**Atributos:** coletada (herda id_objeto de OBJETO_INTERATIVO)
-**Relacionamentos:**
+Atributos: coletada (herda id_objeto de OBJETO_INTERATIVO)
+Relacionamentos:
 - Revela MEMORIA: atua como gatilho para revelar uma memória.
 
 ### Entidade: OBJETO_RESTAURAVEL
 Subtipo que guarda o estado de objetos restauráveis do Ato III.
-**Atributos:** estado (herda id_objeto de OBJETO_INTERATIVO)
+Atributos: estado (herda id_objeto de OBJETO_INTERATIVO)
 
 ### Entidade: OBJETO_CONTEMPLATIVO
 Subtipo que controla a contemplação por tempo de observação do Ato IV.
-**Atributos:** tempoMinimoObservacao (herda id_objeto de OBJETO_INTERATIVO)
+Atributos: tempoMinimoObservacao (herda id_objeto de OBJETO_INTERATIVO)
 
 ### Entidade: CONFIGURACAO
 Representa as opções de vídeo e áudio escolhidas pelo jogador (RF022). É salva à parte do progresso e, por isso, não se relaciona com SAVE: as opções continuam valendo quando o jogador inicia um novo jogo.
-**Atributos:** id_configuracao (PK), volume, resolucao, tela_cheia
+Atributos: id_configuracao (PK), volume, resolucao, tela_cheia
 
 # 3 Ferramentas e Métodos
 
@@ -1121,67 +1121,67 @@ A seleção de ferramentas do projeto foi orientada por três critérios centrai
 Além disso, as ferramentas utilizadas apresentam licenças compatíveis com uso acadêmico e estão alinhadas às tecnologias registradas no Termo de Abertura do Projeto. Sempre que os artefatos-fonte não informam versão específica utilizada, essa ausência é explicitada, a fim de preservar a fidelidade documental.
 
 ### Ferramenta: Three.js
-**Versão utilizada:** 0.170.0  
-**Tipo de licença:** MIT, código aberto  
-**Site oficial:** <https://threejs.org/>  
-**Função no projeto:** biblioteca de renderização 3D sobre WebGL, responsável pelos cenários, câmeras, luzes e pelo pós-processamento que dá ao protótipo a estética de pixel art.  
-**Justificativa de escolha:** roda diretamente no navegador, sem instalação nem etapa de build, e oferece controle fino sobre iluminação, câmera e pós-processamento, o que permitiu combinar cenários 3D estilizados com personagens em pixel art.
+Versão utilizada: 0.170.0  
+Tipo de licença: MIT, código aberto  
+Site oficial: <https://threejs.org/>  
+Função no projeto: biblioteca de renderização 3D sobre WebGL, responsável pelos cenários, câmeras, luzes e pelo pós-processamento que dá ao protótipo a estética de pixel art.  
+Justificativa de escolha: roda diretamente no navegador, sem instalação nem etapa de build, e oferece controle fino sobre iluminação, câmera e pós-processamento, o que permitiu combinar cenários 3D estilizados com personagens em pixel art.
 
 ### Ferramenta: JavaScript, HTML e CSS
-**Versão utilizada:** ECMAScript 2022 (módulos ES); HTML e CSS nos padrões atuais dos navegadores  
-**Tipo de licença:** padrões abertos (Ecma International, WHATWG e W3C), sem licença de uso  
-**Site oficial:** <https://tc39.es/ecma262/>, <https://html.spec.whatwg.org/> e <https://www.w3.org/Style/CSS/>  
-**Função no projeto:** JavaScript implementa a lógica do jogo (cenas, interação, diálogos, minigames e salvamento); HTML e CSS estruturam e estilizam a interface sobreposta ao jogo.  
-**Justificativa de escolha:** executam nativamente em qualquer navegador moderno, sem compilação, e dão acesso direto às APIs usadas pelo protótipo: WebGL para a imagem, Web Audio para os sons sintetizados, Gamepad para o controle e armazenamento local para o salvamento.
+Versão utilizada: ECMAScript 2022 (módulos ES); HTML e CSS nos padrões atuais dos navegadores  
+Tipo de licença: padrões abertos (Ecma International, WHATWG e W3C), sem licença de uso  
+Site oficial: <https://tc39.es/ecma262/>, <https://html.spec.whatwg.org/> e <https://www.w3.org/Style/CSS/>  
+Função no projeto: JavaScript implementa a lógica do jogo (cenas, interação, diálogos, minigames e salvamento); HTML e CSS estruturam e estilizam a interface sobreposta ao jogo.  
+Justificativa de escolha: executam nativamente em qualquer navegador moderno, sem compilação, e dão acesso direto às APIs usadas pelo protótipo: WebGL para a imagem, Web Audio para os sons sintetizados, Gamepad para o controle e armazenamento local para o salvamento.
 
 ### Ferramenta: Visual Studio Code
-**Versão utilizada:** 1.145.0  
-**Tipo de licença:** licença de software da Microsoft para a distribuição oficial (o código-fonte Code - OSS é MIT)  
-**Site oficial:** <https://code.visualstudio.com/>  
-**Função no projeto:** editor do código JavaScript do jogo, dos scripts em Python e da documentação em Markdown.  
-**Justificativa de escolha:** é leve, tem suporte nativo a JavaScript e reúne edição de código, terminal e controle de versão em um só ambiente.
+Versão utilizada: 1.145.0  
+Tipo de licença: licença de software da Microsoft para a distribuição oficial (o código-fonte Code - OSS é MIT)  
+Site oficial: <https://code.visualstudio.com/>  
+Função no projeto: editor do código JavaScript do jogo, dos scripts em Python e da documentação em Markdown.  
+Justificativa de escolha: é leve, tem suporte nativo a JavaScript e reúne edição de código, terminal e controle de versão em um só ambiente.
 
 ### Ferramenta: Sprite Fusion
-**Versão utilizada:** não se aplica (serviço web)  
-**Tipo de licença:** proprietária, por assinatura  
-**Site oficial:** <https://www.spritefusion.com/>  
-**Função no projeto:** geração das folhas de sprites em pixel art das personagens, das animações de cena e de objetos.  
-**Justificativa de escolha:** é um gerador voltado especificamente a pixel art, com grade de pixels e paleta consistentes, o que permitiu produzir folhas de animação das personagens mantendo o mesmo estilo visual.
+Versão utilizada: não se aplica (serviço web)  
+Tipo de licença: proprietária, por assinatura  
+Site oficial: <https://www.spritefusion.com/>  
+Função no projeto: geração das folhas de sprites em pixel art das personagens, das animações de cena e de objetos.  
+Justificativa de escolha: é um gerador voltado especificamente a pixel art, com grade de pixels e paleta consistentes, o que permitiu produzir folhas de animação das personagens mantendo o mesmo estilo visual.
 
 ### Ferramenta: Python, NumPy e Pillow
-**Versão utilizada:** Python 3.10.12, NumPy 2.2.6 e Pillow 12.3.0  
-**Tipo de licença:** Python Software Foundation License (Python), BSD (NumPy) e MIT-CMU (Pillow), todas de código aberto  
-**Site oficial:** <https://www.python.org/>, <https://numpy.org/> e <https://python-pillow.org/>  
-**Função no projeto:** scripts da pasta `tools/` que recortam as folhas de sprites, alinham os quadros pelos pés, separam camadas de brilho e ajustam detalhes das personagens.  
-**Justificativa de escolha:** automatizam tarefas repetitivas de tratamento de imagem com precisão de pixel, o que garante que todas as folhas cheguem ao jogo no mesmo formato.
+Versão utilizada: Python 3.10.12, NumPy 2.2.6 e Pillow 12.3.0  
+Tipo de licença: Python Software Foundation License (Python), BSD (NumPy) e MIT-CMU (Pillow), todas de código aberto  
+Site oficial: <https://www.python.org/>, <https://numpy.org/> e <https://python-pillow.org/>  
+Função no projeto: scripts da pasta `tools/` que recortam as folhas de sprites, alinham os quadros pelos pés, separam camadas de brilho e ajustam detalhes das personagens.  
+Justificativa de escolha: automatizam tarefas repetitivas de tratamento de imagem com precisão de pixel, o que garante que todas as folhas cheguem ao jogo no mesmo formato.
 
 ### Ferramenta: GPT-6
-**Versão utilizada:** GPT-6  
-**Tipo de licença:** proprietária, acesso por assinatura ou API (OpenAI)  
-**Site oficial:** <https://openai.com/>  
-**Função no projeto:** geração de imagens de referência e de folhas de sprites das personagens, de objetos e de animações de cena.  
-**Justificativa de escolha:** complementa o Sprite Fusion na produção dos sprites, gerando a partir de descrições em texto as poses e cenas específicas que o jogo precisava, no mesmo estilo de pixel art.
+Versão utilizada: GPT-6  
+Tipo de licença: proprietária, acesso por assinatura ou API (OpenAI)  
+Site oficial: <https://openai.com/>  
+Função no projeto: geração de imagens de referência e de folhas de sprites das personagens, de objetos e de animações de cena.  
+Justificativa de escolha: complementa o Sprite Fusion na produção dos sprites, gerando a partir de descrições em texto as poses e cenas específicas que o jogo precisava, no mesmo estilo de pixel art.
 
 ### Ferramenta: Claude Opus 5.5
-**Versão utilizada:** Claude Opus 5.5  
-**Tipo de licença:** proprietária, acesso por assinatura ou API (Anthropic)  
-**Site oficial:** <https://www.anthropic.com/claude>  
-**Função no projeto:** modelagem 3D dos cenários em Three.js, como o quarto de Ani e o parque de diversões, escritos diretamente em código.  
-**Justificativa de escolha:** como o Three.js monta os cenários por código, um assistente capaz de escrever esse código permitiu construir os ambientes 3D dentro do prazo, o que se alinha ao motivo da troca de tecnologia.
+Versão utilizada: Claude Opus 5.5  
+Tipo de licença: proprietária, acesso por assinatura ou API (Anthropic)  
+Site oficial: <https://www.anthropic.com/claude>  
+Função no projeto: modelagem 3D dos cenários em Three.js, como o quarto de Ani e o parque de diversões, escritos diretamente em código.  
+Justificativa de escolha: como o Three.js monta os cenários por código, um assistente capaz de escrever esse código permitiu construir os ambientes 3D dentro do prazo, o que se alinha ao motivo da troca de tecnologia.
 
 ### Ferramenta: draw.io (diagrams.net)
-**Versão utilizada:** 29.6.5  
-**Tipo de licença:** Apache 2.0, código aberto  
-**Site oficial:** <https://www.drawio.com/>  
-**Função no projeto:** modelagem de diagramas UML, BPMN e demais artefatos estruturais.  
-**Justificativa de escolha:** foi utilizada para representar visualmente a estrutura do sistema e o fluxo principal de gameplay, fortalecendo a documentação e a rastreabilidade entre modelagem e implementação.
+Versão utilizada: 29.6.5  
+Tipo de licença: Apache 2.0, código aberto  
+Site oficial: <https://www.drawio.com/>  
+Função no projeto: modelagem de diagramas UML, BPMN e demais artefatos estruturais.  
+Justificativa de escolha: foi utilizada para representar visualmente a estrutura do sistema e o fluxo principal de gameplay, fortalecendo a documentação e a rastreabilidade entre modelagem e implementação.
 
 ### Ferramenta: Git e GitHub
-**Versão utilizada:** Git 2.48.1.windows.1; GitHub não se aplica (plataforma web)  
-**Tipo de licença:** GPLv2 (Git); proprietária, com uso gratuito e pago (GitHub)  
-**Site oficial:** <https://git-scm.com/> e <https://github.com/>  
-**Função no projeto:** controle de versão do código e da documentação; o GitHub Actions confere a sintaxe dos arquivos JavaScript e Python a cada envio, e o GitHub Pages publica o protótipo jogável na web.  
-**Justificativa de escolha:** mantêm o histórico de alterações e permitem que cada versão do protótipo fique disponível para teste no navegador, sem instalação.
+Versão utilizada: Git 2.48.1.windows.1; GitHub não se aplica (plataforma web)  
+Tipo de licença: GPLv2 (Git); proprietária, com uso gratuito e pago (GitHub)  
+Site oficial: <https://git-scm.com/> e <https://github.com/>  
+Função no projeto: controle de versão do código e da documentação; o GitHub Actions confere a sintaxe dos arquivos JavaScript e Python a cada envio, e o GitHub Pages publica o protótipo jogável na web.  
+Justificativa de escolha: mantêm o histórico de alterações e permitem que cada versão do protótipo fique disponível para teste no navegador, sem instalação.
 
 O Quadro 31 relaciona cada artefato do projeto à ferramenta ou ao meio de produção utilizado.
 
@@ -1199,7 +1199,7 @@ O Quadro 31 relaciona cada artefato do projeto à ferramenta ou ao meio de produ
 
 # 4 Desenvolvimento
 
-Este capítulo descreve a implementação do protótipo de **Ani**, que cobre o início do Ato I, com cerca de dez minutos de jogo: o quarto de Ani no presente, o celular, a busca pelo carregador no escuro e a passagem, pela tirinha de fotos, para a memória do parque de diversões. Como registrado no TAP (1.1.6), o protótipo foi feito em HTML, CSS e JavaScript com Three.js 0.170 e roda no navegador; o jogo completo segue planejado em Unreal Engine 5.4.4 com C++, e é ele que os diagramas UML do capítulo 2 modelam.
+Este capítulo descreve a implementação do protótipo de Ani, que cobre o início do Ato I, com cerca de dez minutos de jogo: o quarto de Ani no presente, o celular, a busca pelo carregador no escuro e a passagem, pela tirinha de fotos, para a memória do parque de diversões. Como registrado no TAP (1.1.6), o protótipo foi feito em HTML, CSS e JavaScript com Three.js 0.170 e roda no navegador; o jogo completo segue planejado em Unreal Engine 5.4.4 com C++, e é ele que os diagramas UML do capítulo 2 modelam.
 
 Seguindo a Cascata, a implementação começou depois da especificação de requisitos e do design. O protótipo foi construído cena a cena, na ordem em que o jogador as percorre (menu, quarto, parque), e cada mecânica foi testada no navegador assim que ficou pronta. O código é versionado no Git, no mesmo repositório da documentação (pasta `jogo/`), e publicado no GitHub Pages por um fluxo do GitHub Actions a cada envio para a ramificação principal. O protótipo não tem etapa de compilação: o navegador carrega os módulos JavaScript diretamente.
 
@@ -1299,13 +1299,13 @@ As seções a seguir descrevem cada sistema do protótipo, com os requisitos e a
 
 ### 4.2.1 Renderização em Pixel Art sobre Cenários 3D
 
-O visual de **Ani** combina personagens em pixel art com cenários modelados em 3D. Para que os dois convivam, o renderizador desenha a cena 3D numa resolução baixa, que o CSS amplia sem suavização, e aplica um pós-processamento com brilho (*bloom*), gradação de cor, vinheta, granulado, aberração cromática, *glitch* e *dithering*. Os feixes de luar, a névoa e a profundidade de campo são calculados num passe de luz próprio, em meia resolução.
+O visual de Ani combina personagens em pixel art com cenários modelados em 3D. Para que os dois convivam, o renderizador desenha a cena 3D numa resolução baixa, que o CSS amplia sem suavização, e aplica um pós-processamento com brilho (*bloom*), gradação de cor, vinheta, granulado, aberração cromática, *glitch* e *dithering*. Os feixes de luar, a névoa e a profundidade de campo são calculados num passe de luz próprio, em meia resolução.
 
-- **Arquivos:** `js/engine/renderer.js`, `js/scenes/cinema.js`, `js/scenes/parkfx.js`
-- **Requisitos correspondentes:** RF012 (mesma identidade visual ao longo dos atos), RNF001
-- **Classes do modelo:** `Cenario`
-- **Trecho de código:** Código 2
-- **Captura de tela:** Figura 10
+- Arquivos: `js/engine/renderer.js`, `js/scenes/cinema.js`, `js/scenes/parkfx.js`
+- Requisitos correspondentes: RF012 (mesma identidade visual ao longo dos atos), RNF001
+- Classes do modelo: `Cenario`
+- Trecho de código: Código 2
+- Captura de tela: Figura 10
 
 O tamanho do pixel é definido pela quantidade de linhas da imagem, escolhida pelo jogador no menu (pixels grandes, médios ou pequenos). O Código 2 mostra como o renderizador calcula a resolução interna a partir dessa escolha.
 
@@ -1342,10 +1342,10 @@ A tela do celular é a exceção: como precisa ser legível, ela é desenhada nu
 
 Ani e Malu são sprites 2D colocados no mundo 3D. As folhas de sprites foram geradas com o Sprite Fusion e o GPT-6, em grades de 6 × 4 quadros, e depois recortadas e alinhadas por scripts Python (pasta `tools/`), que igualam a altura dos quadros e alinham cada um pelos pés e pelo rosto. No jogo, cada folha é descrita por uma configuração que diz o tamanho da célula, os quadros de cada animação e a escala em metros.
 
-- **Arquivos:** `js/chars/ani.js`, `tools/*.py`
-- **Requisitos correspondentes:** RF001, RF008, RF028
-- **Classes do modelo:** `Personagem`, `Ani`, `NPC`
-- **Trecho de código:** Código 3
+- Arquivos: `js/chars/ani.js`, `tools/*.py`
+- Requisitos correspondentes: RF001, RF008, RF028
+- Classes do modelo: `Personagem`, `Ani`, `NPC`
+- Trecho de código: Código 3
 
 [Código 3 – Configuração da folha de caminhada de Ani (`js/chars/ani.js`)]
 
@@ -1368,11 +1368,11 @@ A classe `WalkSprite` escolhe o quadro pela velocidade do personagem, faz Ani pi
 
 No quarto e no parque, a câmera acompanha Ani de lado, e o jogador a move para os lados e em profundidade, para frente e para o fundo do cenário. Os móveis do quarto viram retângulos no chão, vistos de cima, que ela contorna; tapetes e papéis, por serem baixos, ficam de fora.
 
-- **Arquivos:** `js/scenes/quarto.js`, `js/scenes/parque.js`
-- **Requisitos correspondentes:** RF001, RF002, RF011
-- **Casos de uso:** UC-S001
-- **Classes do modelo:** `Ani`, `Personagem`
-- **Trecho de código:** Código 4
+- Arquivos: `js/scenes/quarto.js`, `js/scenes/parque.js`
+- Requisitos correspondentes: RF001, RF002, RF011
+- Casos de uso: UC-S001
+- Classes do modelo: `Ani`, `Personagem`
+- Trecho de código: Código 4
 
 [Código 4 – Movimento em x e z com colisão (`js/scenes/quarto.js`)]
 
@@ -1407,12 +1407,12 @@ Testar o movimento em x e em z separadamente faz Ani deslizar ao longo de um mó
 
 O jogo começa com Ani deitada no escuro, às 23:47, olhando o celular. O celular é um modelo 3D segurado pela mão de Ani, em sprite, e a tela mostra o "Pixgram", uma rede social fictícia desenhada num *canvas* e aplicada como textura. O jogador vê a notificação da Malu, abre o perfil dela, rola o feed, abre publicações e pode curtir com um toque duplo.
 
-- **Arquivos:** `js/phone/app.js`, `js/phone/posts.js`, `js/scenes/quarto.js`
-- **Requisitos correspondentes:** RF024
-- **Casos de uso:** UC-S015
-- **Classes do modelo:** `Celular`, `Publicacao`
-- **Trecho de código:** Código 5
-- **Captura de tela:** Figura 11
+- Arquivos: `js/phone/app.js`, `js/phone/posts.js`, `js/scenes/quarto.js`
+- Requisitos correspondentes: RF024
+- Casos de uso: UC-S015
+- Classes do modelo: `Celular`, `Publicacao`
+- Trecho de código: Código 5
+- Captura de tela: Figura 11
 
 [Figura 11 – Celular em primeira pessoa com o perfil da Malu no aplicativo Pixgram]
 
@@ -1450,11 +1450,11 @@ Quando o celular apaga, uma cena em primeira pessoa mostra Ani se levantando da 
 
 Se o jogador curte sem querer uma publicação antiga da Malu, Ani entra em pânico. É a primeira aparição, ainda breve, da crise de ansiedade descrita no RF018: a tela treme, fica avermelhada, sofre distorções (*glitch* e aberração cromática) e o coração dispara, com batimentos que aceleram conforme a intensidade.
 
-- **Arquivos:** `js/scenes/quarto.js`, `js/engine/renderer.js`, `js/engine/audio.js`
-- **Requisitos correspondentes:** RF018 (parcial)
-- **Classes do modelo:** `Ani` (`iniciarCrise()`, `encerrarCrise()`)
-- **Trecho de código:** Código 6
-- **Captura de tela:** Figura 12
+- Arquivos: `js/scenes/quarto.js`, `js/engine/renderer.js`, `js/engine/audio.js`
+- Requisitos correspondentes: RF018 (parcial)
+- Classes do modelo: `Ani` (`iniciarCrise()`, `encerrarCrise()`)
+- Trecho de código: Código 6
+- Captura de tela: Figura 12
 
 [Código 6 – Efeitos do pânico na imagem e no som (`js/scenes/quarto.js`)]
 
@@ -1481,13 +1481,13 @@ Todos os efeitos saem de um único valor, `panic`, que sobe no susto e cai sozin
 
 Sem a luz do celular, o quarto fica no escuro, iluminado só pelo luar. Ani precisa achar o interruptor, que tem uma figurinha que brilha no escuro, para acender a luz e procurar o carregador. Enquanto o quarto está escuro, qualquer interação mostra uma fala de que não dá para ver, e os objetos aparecem com o rótulo "???"; a única exceção é a luminária de plasma, que pode ser ligada e continua acesa mesmo com a luz apagada.
 
-- **Arquivos:** `js/scenes/quarto.js`, `js/scenes/room.js`, `js/scenes/cinema.js`
-- **Requisitos correspondentes:** RF025, RF003
-- **Regras de negócio:** RN007
-- **Casos de uso:** UC-S002
-- **Classes do modelo:** `Interruptor`, `FonteDeLuz`, `Cenario` (`iluminado`)
-- **Trecho de código:** Código 7
-- **Captura de tela:** Figuras 13 e 14
+- Arquivos: `js/scenes/quarto.js`, `js/scenes/room.js`, `js/scenes/cinema.js`
+- Requisitos correspondentes: RF025, RF003
+- Regras de negócio: RN007
+- Casos de uso: UC-S002
+- Classes do modelo: `Interruptor`, `FonteDeLuz`, `Cenario` (`iluminado`)
+- Trecho de código: Código 7
+- Captura de tela: Figuras 13 e 14
 
 [Código 7 – Interação no escuro e luminária de plasma (`js/scenes/quarto.js`)]
 
@@ -1526,12 +1526,12 @@ Ao usar o interruptor, Ani anda até a parede e toca a animação de apertar; a 
 
 Com a luz acesa, cada objeto do quarto tem uma interação própria. Na estante, no criado-mudo e na mochila, a câmera voa da visão lateral para a primeira pessoa: o mouse move a cabeça de Ani, passar sobre um item o destaca e clicar o examina, com uma fala. Os papéis no chão são vistos de cima, com Ani agachada, e o papel escolhido vem até a tela como um papel de verdade. A cortina abre e fecha, e na cama Ani levanta o travesseiro.
 
-- **Arquivos:** `js/scenes/quarto.js`, `js/scenes/furniture.js`, `js/scenes/papers.js`
-- **Requisitos correspondentes:** RF026, RF003
-- **Casos de uso:** UC-S002
-- **Classes do modelo:** `ObjetoInspecionavel`, `ObjetoInterativo`
-- **Trecho de código:** Código 8
-- **Captura de tela:** Figuras 15 e 16
+- Arquivos: `js/scenes/quarto.js`, `js/scenes/furniture.js`, `js/scenes/papers.js`
+- Requisitos correspondentes: RF026, RF003
+- Casos de uso: UC-S002
+- Classes do modelo: `ObjetoInspecionavel`, `ObjetoInterativo`
+- Trecho de código: Código 8
+- Captura de tela: Figuras 15 e 16
 
 [Código 8 – Examinar o item escolhido na inspeção (`js/scenes/quarto.js`)]
 
@@ -1567,12 +1567,12 @@ Nos objetos que Ani revista procurando o carregador, uma contagem guarda os luga
 
 Na gaveta da escrivaninha, Ani acha o carregador e uma tirinha de fotos de cabine dela com a Malu. A câmera se aproxima até a última foto ocupar a tela inteira; então o flash da cabine carrega, estoura a tela de branco e o jogo passa para a noite em que a foto foi tirada, um ano antes, no parque de diversões. A tirinha é o objeto ligado à memória, e o flash é a passagem do presente para a lembrança.
 
-- **Arquivos:** `js/scenes/quarto.js`, `js/scenes/photostrip.js`, `js/scenes/parque.js`
-- **Requisitos correspondentes:** RF027, RF004 (parcial)
-- **Casos de uso:** UC-S002
-- **Classes do modelo:** `ObjetoMemoria` (`abrirMemoria()`), `Cenario`
-- **Trecho de código:** Código 9
-- **Captura de tela:** Figuras 17 e 18
+- Arquivos: `js/scenes/quarto.js`, `js/scenes/photostrip.js`, `js/scenes/parque.js`
+- Requisitos correspondentes: RF027, RF004 (parcial)
+- Casos de uso: UC-S002
+- Classes do modelo: `ObjetoMemoria` (`abrirMemoria()`), `Cenario`
+- Trecho de código: Código 9
+- Captura de tela: Figuras 17 e 18
 
 [Código 9 – O flash da foto leva à memória do parque (`js/scenes/quarto.js`)]
 
@@ -1608,12 +1608,12 @@ O protótipo usa dois tipos de fala, como em jogos narrativos do mesmo estilo. A
 
 No parque, a Malu acompanha Ani pela rua das barracas, um pouco atrás e mais para o fundo, comenta algumas barracas quando está perto e participa das compras e dos minigames.
 
-- **Arquivos:** `js/engine/ui.js`, `js/scenes/parque.js`
-- **Requisitos correspondentes:** RF008, RF030
-- **Casos de uso:** UC-S003
-- **Classes do modelo:** `NPC` (`acompanhando`, `seguir()`), `Dialogo`
-- **Trecho de código:** Código 10
-- **Captura de tela:** Figuras 19 e 20
+- Arquivos: `js/engine/ui.js`, `js/scenes/parque.js`
+- Requisitos correspondentes: RF008, RF030
+- Casos de uso: UC-S003
+- Classes do modelo: `NPC` (`acompanhando`, `seguir()`), `Dialogo`
+- Trecho de código: Código 10
+- Captura de tela: Figuras 19 e 20
 
 [Código 10 – A Malu acompanha Ani sem grudar (`js/scenes/parque.js`)]
 
@@ -1644,12 +1644,12 @@ A zona de tolerância de 0,9 m evita que a Malu se mexa a cada passo de Ani, o q
 
 Nas barracas de algodão-doce, pipoca e churros com maçã do amor, as duas vão até o balcão, conversam, quem paga estende a mão e os pedidos voam do balcão até a mão de cada uma. Depois, cada uma come aos poucos, parada ou andando, e a comida diminui em estágios visíveis até acabar. Se a Malu terminar o algodão-doce antes, ela rouba um pedaço do de Ani.
 
-- **Arquivos:** `js/scenes/parque.js`, `js/scenes/parkfood.js`, `js/chars/ani.js`
-- **Requisitos correspondentes:** RF028
-- **Casos de uso:** UC-S016
-- **Classes do modelo:** `Barraca`, `Comida` (`estagio`, `consumir()`)
-- **Trecho de código:** Código 11
-- **Captura de tela:** Figura 21
+- Arquivos: `js/scenes/parque.js`, `js/scenes/parkfood.js`, `js/chars/ani.js`
+- Requisitos correspondentes: RF028
+- Casos de uso: UC-S016
+- Classes do modelo: `Barraca`, `Comida` (`estagio`, `consumir()`)
+- Trecho de código: Código 11
+- Captura de tela: Figura 21
 
 [Código 11 – Cada mordida avança um estágio da comida (`js/scenes/parkfood.js`)]
 
@@ -1695,13 +1695,13 @@ Quando a comida tem folha de sprite própria, como acontece com Ani e Malu, o sp
 
 Três barracas têm minigames: Estoure o Balão (dardos, com uma mira que balança como uma mão nervosa), Derrube as Latas (mira e força: segurar e soltar na faixa certa) e Pescaria (descer o anzol quando a argolinha do patinho passar). A câmera assume o olhar de Ani, Ani joga primeiro e a Malu depois, e o placar compara as duas. Os minigames são a exceção registrada à ausência de HUD e de pontuação: o placar e a interface existem só enquanto a partida dura, e o resultado muda apenas o comentário das duas, nunca a progressão.
 
-- **Arquivos:** `js/scenes/minigames.js`, `js/scenes/parque.js`
-- **Requisitos correspondentes:** RF029
-- **Regras de negócio:** RN008
-- **Casos de uso:** UC-S017
-- **Classes do modelo:** `Minigame` (`placar`, `iniciar()`, `registrarJogada()`, `encerrar()`), `Barraca`
-- **Trecho de código:** Código 12
-- **Captura de tela:** Figura 22
+- Arquivos: `js/scenes/minigames.js`, `js/scenes/parque.js`
+- Requisitos correspondentes: RF029
+- Regras de negócio: RN008
+- Casos de uso: UC-S017
+- Classes do modelo: `Minigame` (`placar`, `iniciar()`, `registrarJogada()`, `encerrar()`), `Barraca`
+- Trecho de código: Código 12
+- Captura de tela: Figura 22
 
 [Código 12 – O resultado do minigame só escolhe as falas (`js/scenes/parque.js`)]
 
@@ -1733,12 +1733,12 @@ O menu principal é um olho em 3D, fechado no começo. Ao apertar qualquer tecla
 
 Ao escolher Iniciar ou Continuar, o jogo mostra o aviso de conteúdo sensível antes de começar, uma vez a cada acesso. O aviso cita a ansiedade, a solidão e o sofrimento psíquico abordados no jogo, inclusive o momento de crise com tremor e distorção na tela, e indica o CVV (Centro de Valorização da Vida), pelo telefone 188 ou pelo chat. Ele só fecha quando o jogador confirma, e só aceita a confirmação depois de 1,2 s, para não ser pulado sem leitura.
 
-- **Arquivos:** `js/scenes/menu.js`, `js/engine/aviso.js`, `js/main.js`
-- **Requisitos correspondentes:** RF020, RF022
-- **Casos de uso:** UC-S007, UC-S013, UC-S012
-- **Classes do modelo:** `Configuracao`, `Jogo`
-- **Trecho de código:** Código 13
-- **Captura de tela:** Figuras 23 e 24
+- Arquivos: `js/scenes/menu.js`, `js/engine/aviso.js`, `js/main.js`
+- Requisitos correspondentes: RF020, RF022
+- Casos de uso: UC-S007, UC-S013, UC-S012
+- Classes do modelo: `Configuracao`, `Jogo`
+- Trecho de código: Código 13
+- Captura de tela: Figuras 23 e 24
 
 [Código 13 – O aviso de conteúdo antes de o jogo começar (`js/scenes/menu.js` e `js/engine/aviso.js`)]
 
@@ -1773,12 +1773,12 @@ A Figura 23 mostra o menu principal e a Figura 24, o aviso de conteúdo.
 
 A tecla Esc, ou o botão Menu do controle, pausa o jogo. No quarto, o menu de pausa oferece Continuar e Menu principal. No parque, a pausa é diegética: Ani tira o celular do bolso, a câmera se aproxima e o menu abre na tela do celular, no estilo de um aplicativo de ajustes, com Continuar, Som, Pixels, Tela cheia e Menu principal. A pausa congela o roteiro, as falas, os minigames e a roda-gigante.
 
-- **Arquivos:** `js/engine/ui.js`, `js/scenes/quarto.js`, `js/scenes/parque.js`
-- **Requisitos correspondentes:** RF021, RF022
-- **Casos de uso:** UC-S006, UC-S007
-- **Classes do modelo:** `Jogo` (`pausar()`, `retomar()`, `alterarEstado()`)
-- **Trecho de código:** Código 14
-- **Captura de tela:** Figura 25
+- Arquivos: `js/engine/ui.js`, `js/scenes/quarto.js`, `js/scenes/parque.js`
+- Requisitos correspondentes: RF021, RF022
+- Casos de uso: UC-S006, UC-S007
+- Classes do modelo: `Jogo` (`pausar()`, `retomar()`, `alterarEstado()`)
+- Trecho de código: Código 14
+- Captura de tela: Figura 25
 
 [Código 14 – Menu de pausa do quarto (`js/scenes/quarto.js`)]
 
@@ -1802,11 +1802,11 @@ Enquanto `ui.pauseOpen` é verdadeiro, `main.js` desvia as teclas para o menu de
 
 O progresso e as configurações ficam no armazenamento local do navegador (`localStorage`), em duas chaves: `ani:save`, com o ponto do jogo, e `ani:config`, com o volume e o tamanho dos pixels. No protótipo, o salvamento é automático e acontece no início do quarto, quando o celular aparece; a opção Continuar do menu só fica disponível depois disso.
 
-- **Arquivos:** `js/main.js`, `js/scenes/quarto.js`, `js/scenes/menu.js`
-- **Requisitos correspondentes:** RF009 (parcial), RF031 (parcial), RNF002
-- **Casos de uso:** UC-S011, UC-S012
-- **Classes do modelo:** `Save`, `Configuracao`, `Jogo` (`salvarProgresso()`, `carregarProgresso()`)
-- **Trecho de código:** Código 15
+- Arquivos: `js/main.js`, `js/scenes/quarto.js`, `js/scenes/menu.js`
+- Requisitos correspondentes: RF009 (parcial), RF031 (parcial), RNF002
+- Casos de uso: UC-S011, UC-S012
+- Classes do modelo: `Save`, `Configuracao`, `Jogo` (`salvarProgresso()`, `carregarProgresso()`)
+- Trecho de código: Código 15
 
 [Código 15 – Leitura e gravação no armazenamento local (`js/main.js`)]
 
@@ -1838,9 +1838,9 @@ As leituras e gravações ficam dentro de `try/catch` porque o armazenamento pod
 
 O protótipo não usa arquivos de som: todos os efeitos e ambientes são sintetizados em tempo real com a Web Audio API, a partir de osciladores e de ruído filtrado. Cada cena tem o seu ambiente sonoro: o menu, um zumbido grave; o quarto, o ruído baixo da cidade ao longe e um zumbido elétrico; o parque, o murmúrio das pessoas e uma valsa de realejo ao longe. Como os navegadores só liberam o áudio depois de um gesto do jogador, o contexto de áudio é criado no primeiro clique ou tecla.
 
-- **Arquivos:** `js/engine/audio.js`
-- **Requisitos correspondentes:** RF010 (parcial)
-- **Trecho de código:** Código 16
+- Arquivos: `js/engine/audio.js`
+- Requisitos correspondentes: RF010 (parcial)
+- Trecho de código: Código 16
 
 [Código 16 – Um tom sintetizado com envelope (`js/engine/audio.js`)]
 
@@ -1870,9 +1870,9 @@ Sintetizar os sons dispensou a busca e o licenciamento de arquivos de áudio e d
 
 Todo o protótipo pode ser jogado com um controle no padrão Xbox, sem configuração. Para não duplicar a lógica das cenas, o módulo `gamepad.js` converte os botões em eventos de tecla (A vira Enter, B vira Backspace, Menu vira Esc) e o analógico esquerdo em velocidade analógica, de modo que inclinar pouco faz Ani andar devagar. Não há cursor: no celular, na estante, no criado-mudo, na mochila e nos papéis, o direcional troca o item escolhido, como num menu. Alguns sons importantes também fazem o controle vibrar.
 
-- **Arquivos:** `js/engine/gamepad.js`, `js/engine/glyphs.js`
-- **Requisitos correspondentes:** RF011, RF001, RNF004
-- **Trecho de código:** Código 17
+- Arquivos: `js/engine/gamepad.js`, `js/engine/glyphs.js`
+- Requisitos correspondentes: RF011, RF001, RNF004
+- Trecho de código: Código 17
 
 [Código 17 – Botões do controle convertidos nas teclas que as cenas já entendem (`js/engine/gamepad.js`)]
 
@@ -1912,14 +1912,14 @@ As dicas de botões aparecem só no quarto, uma vez, como tutorial, e mudam entr
 
 Os sistemas a seguir constam dos requisitos e dos diagramas do capítulo 2, mas ficam fora do protótipo, que cobre apenas o início do Ato I. Eles serão implementados no jogo completo, em Unreal Engine 5.4.4 com C++.
 
-- **Diário de memórias** (RF005, RN001, RN005): registro único de cada fragmento coletado, consulta pelo diário e releitura dos itens ao longo dos atos, com as classes `Memoria`, `Diario` e `EntradaDiario`.
-- **Progressão por atos e sequência de memórias** (RF006, RF012, RF019, RN002 a RN004): os cinco atos em ordem fixa, a sequência linear de memórias de cada ato e o desbloqueio de cômodos, passagens e escadas da casa, com as classes `Ato` e `Cenario`.
-- **Mecânicas filosóficas dos atos** (RF013 a RF017): o peso literal do Ato I, os ecos de decisão do Ato II (`EcoDecisao`, RN006), a restauração por aceitação do Ato III (`ObjetoRestauravel`), a contemplação ativa do Ato IV (`ObjetoContemplativo`) e a dissolução das mecânicas no Ato V.
-- **Crises de ansiedade completas** (RF018): além do momento de pânico do protótipo, as manifestações, a respiração de Ani e o som fragmentado, com o estado Crise da classe `Jogo`.
-- **Puzzles contextuais** (RF007, UC-S014): puzzles de várias etapas, sem punição pelo erro e com saída a qualquer momento.
-- **Trilha e efeitos por ato** (RF010): a direção sonora de cada ato, descrita no GDD.
-- **Save completo** (RF009, RNF002): ato atual, memórias registradas, estado do diário e estado visual da casa.
-- **Sair do jogo** (RF023): no navegador, a sessão termina ao fechar a aba; a opção de sair, com confirmação, é do software para PC.
+- Diário de memórias (RF005, RN001, RN005): registro único de cada fragmento coletado, consulta pelo diário e releitura dos itens ao longo dos atos, com as classes `Memoria`, `Diario` e `EntradaDiario`.
+- Progressão por atos e sequência de memórias (RF006, RF012, RF019, RN002 a RN004): os cinco atos em ordem fixa, a sequência linear de memórias de cada ato e o desbloqueio de cômodos, passagens e escadas da casa, com as classes `Ato` e `Cenario`.
+- Mecânicas filosóficas dos atos (RF013 a RF017): o peso literal do Ato I, os ecos de decisão do Ato II (`EcoDecisao`, RN006), a restauração por aceitação do Ato III (`ObjetoRestauravel`), a contemplação ativa do Ato IV (`ObjetoContemplativo`) e a dissolução das mecânicas no Ato V.
+- Crises de ansiedade completas (RF018): além do momento de pânico do protótipo, as manifestações, a respiração de Ani e o som fragmentado, com o estado Crise da classe `Jogo`.
+- Puzzles contextuais (RF007, UC-S014): puzzles de várias etapas, sem punição pelo erro e com saída a qualquer momento.
+- Trilha e efeitos por ato (RF010): a direção sonora de cada ato, descrita no GDD.
+- Save completo (RF009, RNF002): ato atual, memórias registradas, estado do diário e estado visual da casa.
+- Sair do jogo (RF023): no navegador, a sessão termina ao fechar a aba; a opção de sair, com confirmação, é do software para PC.
 
 Na Unreal Engine, a arquitetura segue os diagramas do capítulo 2. A entrada será tratada pelo Enhanced Input, que associa a mesma *Input Action* à tecla e ao botão do controle, papel que no protótipo é do `gamepad.js`. O *GameMode* e a *GameInstance*, junto com a classe `Jogo`, guardarão o estado da sessão entre trocas de nível, e a notificação de `Ani` para `Jogo` no início e no fim das crises será feita por um *delegate*.
 
@@ -1975,7 +1975,7 @@ Este capítulo apresenta os resultados do projeto em três partes, como pede o m
 
 ## 5.1 Análise de Portabilidade
 
-A portabilidade é a facilidade com que um software pode ser transferido de um ambiente de hardware, software ou uso para outro. A norma ISO/IEC 25010 a trata como uma característica de qualidade dividida em adaptabilidade, capacidade de ser instalado e capacidade de substituir outro produto com o mesmo fim (ISO/IEC, 2011). Em **Ani**, ela aparece no RNF003, que pede uma estrutura de código e de assets adaptável a outras plataformas com alterações mínimas.
+A portabilidade é a facilidade com que um software pode ser transferido de um ambiente de hardware, software ou uso para outro. A norma ISO/IEC 25010 a trata como uma característica de qualidade dividida em adaptabilidade, capacidade de ser instalado e capacidade de substituir outro produto com o mesmo fim (ISO/IEC, 2011). Em Ani, ela aparece no RNF003, que pede uma estrutura de código e de assets adaptável a outras plataformas com alterações mínimas.
 
 O protótipo roda no navegador e não precisa de instalação: basta abrir o endereço publicado no GitHub Pages. Por isso, a sua portabilidade depende das interfaces do navegador que o código usa. O Quadro 36 relaciona essas interfaces e o que acontece quando alguma falta.
 
@@ -2013,18 +2013,18 @@ No jogo completo, a portabilidade muda de natureza. A Unreal Engine 5.4.4 compil
 
 ## 5.2 Cálculo das Métricas
 
-Métricas de software permitem estimar o tamanho de um sistema e, a partir dele, o esforço, o prazo e o custo do desenvolvimento. Neste trabalho foi usado o método de Pontos de Caso de Uso (*Use Case Points*), proposto por Karner (1993), que mede o tamanho a partir dos atores e dos casos de uso já especificados e o ajusta por fatores técnicos e ambientais (Clemmons, 2006). O método foi escolhido porque os casos de uso de **Ani** já descrevem as funções do jogo completo (seção 2.6), enquanto métodos baseados em dados persistidos, como a Análise de Pontos de Função, rendem pouco num jogo, que guarda poucos dados.
+Métricas de software permitem estimar o tamanho de um sistema e, a partir dele, o esforço, o prazo e o custo do desenvolvimento. Neste trabalho foi usado o método de Pontos de Caso de Uso (*Use Case Points*), proposto por Karner (1993), que mede o tamanho a partir dos atores e dos casos de uso já especificados e o ajusta por fatores técnicos e ambientais (Clemmons, 2006). O método foi escolhido porque os casos de uso de Ani já descrevem as funções do jogo completo (seção 2.6), enquanto métodos baseados em dados persistidos, como a Análise de Pontos de Função, rendem pouco num jogo, que guarda poucos dados.
 
 O cálculo segue cinco etapas: o peso dos atores (UAW), o peso dos casos de uso (UUCW), os pontos não ajustados (UUCP = UAW + UUCW), os fatores de ajuste técnico (TCF) e ambiental (ECF) e, por fim, os pontos ajustados (UCP = UUCP × TCF × ECF), que multiplicados pelo fator de produtividade dão o esforço em horas.
 
 ### Peso dos atores
 
-Os atores são classificados em simples (outro sistema acessado por uma interface de programação, peso 1), médios (outro sistema acessado por um protocolo, peso 2) e complexos (uma pessoa que usa uma interface gráfica, peso 3). **Ani** tem um único ator, o Jogador, que interage pela interface do jogo, como mostra o Quadro 38.
+Os atores são classificados em simples (outro sistema acessado por uma interface de programação, peso 1), médios (outro sistema acessado por um protocolo, peso 2) e complexos (uma pessoa que usa uma interface gráfica, peso 3). Ani tem um único ator, o Jogador, que interage pela interface do jogo, como mostra o Quadro 38.
 
 | Ator | Classificação | Peso |
 | --- | --- | --- |
 | Jogador | Complexo: pessoa que usa uma interface gráfica | 3 |
-| **UAW** | | **3** |
+| UAW | | 3 |
 
 ### Peso dos casos de uso
 
@@ -2049,7 +2049,7 @@ Cada caso de uso é classificado pela quantidade de passos dos seus cenários, c
 | UC-S015 Usar Celular | 4 + 2 = 6 | Médio | 10 |
 | UC-S016 Comprar e Consumir Comida | 4 + 1 = 5 | Médio | 10 |
 | UC-S017 Jogar Minigame | 5 + 1 = 6 | Médio | 10 |
-| **UUCW** (4 complexos e 13 médios) | | | **190** |
+| UUCW (4 complexos e 13 médios) | | | 190 |
 
 Com isso, os pontos de caso de uso não ajustados são UUCP = 3 + 190 = 193.
 
@@ -2072,7 +2072,7 @@ Os 13 fatores técnicos recebem notas de 0 (sem influência) a 5 (influência fo
 | T11 Recursos de segurança | 1 | 0 | 0 | Sem dados pessoais nem contas |
 | T12 Acesso direto de terceiros | 1 | 0 | 0 | Sem integração com outros sistemas |
 | T13 Treinamento especial dos usuários | 1 | 0 | 0 | Nenhum treinamento necessário |
-| **Soma** | | | **23** | **TCF = 0,6 + 0,01 × 23 = 0,83** |
+| Soma | | | 23 | TCF = 0,6 + 0,01 × 23 = 0,83 |
 
 ### Fatores ambientais
 
@@ -2088,7 +2088,7 @@ Os oito fatores ambientais descrevem a equipe e o contexto do projeto, também c
 | E6 Requisitos estáveis | 2 | 3 | 6 | Requisitos revistos durante o protótipo, mas agora consolidados |
 | E7 Trabalhadores em tempo parcial | −1 | 0 | 0 | Equipe dedicada em tempo integral |
 | E8 Dificuldade da linguagem de programação | −1 | 4 | −4 | C++ na Unreal Engine |
-| **Soma** | | | **17** | **ECF = 1,4 − 0,03 × 17 = 0,89** |
+| Soma | | | 17 | ECF = 1,4 − 0,03 × 17 = 0,89 |
 
 ### Pontos ajustados e esforço
 
@@ -2112,7 +2112,7 @@ A proposta a seguir é dirigida a uma publicadora, investidor ou edital de fomen
 
 ### Apresentação e objeto
 
-**Ani** é uma aventura narrativa contemplativa em 2.5D sobre ansiedade, solidão e a descoberta lenta do sentido, para PC. O protótipo apresentado neste trabalho cobre o início do Ato I, com cerca de dez minutos de jogo, e demonstra o estilo visual, as mecânicas de exploração e o tom da obra. O objeto da proposta é a produção do jogo completo em Unreal Engine 5.4.4 com C++, com os cinco atos, para Windows, pronto para publicação em lojas digitais.
+Ani é uma aventura narrativa contemplativa em 2.5D sobre ansiedade, solidão e a descoberta lenta do sentido, para PC. O protótipo apresentado neste trabalho cobre o início do Ato I, com cerca de dez minutos de jogo, e demonstra o estilo visual, as mecânicas de exploração e o tom da obra. O objeto da proposta é a produção do jogo completo em Unreal Engine 5.4.4 com C++, com os cinco atos, para Windows, pronto para publicação em lojas digitais.
 
 ### Escopo
 
@@ -2124,9 +2124,9 @@ O valor-hora de desenvolvimento parte do salário médio da ocupação de desenv
 
 A produção de conteúdo foi estimada pela equipe necessária ao longo dos oito meses do cronograma, com os mesmos encargos de 27,44% sobre o salário médio de cada ocupação, também segundo o Novo CAGED:
 
-- **Arte 2D e 3D:** um artista em tempo integral nos oito meses, com o salário médio de ilustrador (CBO 2624-05), de R$ 3.471,28 (Salário.com.br, s.d.c, online), apoiado pelas ferramentas de inteligência artificial e pelos scripts de recorte usados no protótipo.
-- **Trilha sonora e efeitos sonoros:** um músico em meio período por seis meses, o equivalente a três meses de trabalho, com o salário médio de músico arranjador (CBO 2626-10), de R$ 3.710,67 (Salário.com.br, s.d.d, online).
-- **Roteiro e direção narrativa:** um roteirista em meio período por seis meses, o equivalente a três meses, com o salário médio de autor-roteirista multimídia (CBO 2615-05), de R$ 6.848,48 (Salário.com.br, s.d.a, online).
+- Arte 2D e 3D: um artista em tempo integral nos oito meses, com o salário médio de ilustrador (CBO 2624-05), de R$ 3.471,28 (Salário.com.br, s.d.c, online), apoiado pelas ferramentas de inteligência artificial e pelos scripts de recorte usados no protótipo.
+- Trilha sonora e efeitos sonoros: um músico em meio período por seis meses, o equivalente a três meses de trabalho, com o salário médio de músico arranjador (CBO 2626-10), de R$ 3.710,67 (Salário.com.br, s.d.d, online).
+- Roteiro e direção narrativa: um roteirista em meio período por seis meses, o equivalente a três meses, com o salário médio de autor-roteirista multimídia (CBO 2615-05), de R$ 6.848,48 (Salário.com.br, s.d.a, online).
 
 O Quadro 43 apresenta o investimento previsto.
 
@@ -2138,7 +2138,7 @@ O Quadro 43 apresenta o investimento previsto.
 | Roteiro e direção narrativa | 3 meses × R$ 6.848,48 × 1,2744 | R$ 26.183,11 |
 | Licença da Unreal Engine | Gratuita até US$ 1 milhão de receita bruta; 5% acima disso, com vendas na Epic Games Store isentas (Epic Games, s.d., online) | R$ 0,00 |
 | Publicação na Steam | Taxa do Steam Direct por jogo, recuperável depois de US$ 1.000 em receita (Valve, s.d., online) | US$ 100,00 |
-| **Total** | | **R$ 189.999,70 + US$ 100,00** |
+| Total | | R$ 189.999,70 + US$ 100,00 |
 
 ### Cronograma
 
@@ -2154,10 +2154,10 @@ O prazo considera dois desenvolvedores em tempo integral para a engenharia de so
 
 ### Condições
 
-- **Pagamento:** em cinco parcelas de 20%, na assinatura e na aprovação de cada marco do Quadro 44.
-- **Acompanhamento:** a cada marco, o financiador recebe uma versão jogável para avaliação.
-- **Propriedade intelectual:** a obra continua do autor; direitos de publicação e participação na receita são definidos em contrato.
-- **Validade da proposta:** 60 dias.
+- Pagamento: em cinco parcelas de 20%, na assinatura e na aprovação de cada marco do Quadro 44.
+- Acompanhamento: a cada marco, o financiador recebe uma versão jogável para avaliação.
+- Propriedade intelectual: a obra continua do autor; direitos de publicação e participação na receita são definidos em contrato.
+- Validade da proposta: 60 dias.
 
 Com o investimento de R$ 189.999,70, mais a taxa de publicação, a proposta cobre a produção do jogo completo em oito meses. A engenharia de software responde por cerca de 60% do valor, e a produção de conteúdo, pelos 40% restantes. Como os valores partem de salários médios e de premissas sobre o tamanho da equipe, eles devem ser revistos se a equipe ou o escopo mudarem.
 
