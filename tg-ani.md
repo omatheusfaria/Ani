@@ -48,7 +48,7 @@ O Termo de Abertura do Projeto (TAP) formaliza a existência de um projeto. Segu
 
 Em um trabalho acadêmico, o TAP funciona como um contrato. Delimita o que será construído, quem participa, quais recursos estão previstos e quais limites devem ser respeitados. Em projetos de software, ele também liga o problema de pesquisa aos objetivos, à modelagem e à implementação, o que diminui as ambiguidades nas etapas seguintes.
 
-No caso de Ani, o TAP descreve a proposta do jogo quanto a gerenciamento, escopo e viabilidade; as subseções a seguir trazem o conteúdo do artefato e a contextualização do produto.
+Neste trabalho, o TAP descreve a proposta do jogo quanto a gerenciamento, escopo e viabilidade. As subseções a seguir trazem o conteúdo do artefato e a contextualização do produto.
 
 ### 1.1.1 Identificação do Projeto
 
@@ -104,9 +104,9 @@ Ani parte dessa premissa para investigar como a filosofia pode funcionar como li
 
 ### 1.1.6 Metodologia / Tecnologias
 
-O projeto é conduzido segundo a metodologia Cascata (Waterfall), com fases sequenciais e dependentes: levantamento de requisitos, modelagem, design de sistemas e implementação.
+O projeto segue a metodologia Cascata (Waterfall), em fases sequenciais, cada uma dependente da anterior: levantamento de requisitos, modelagem, design de sistemas e implementação.
 
-A modelagem utiliza BPMN para representação dos fluxos de gameplay e UML para casos de uso e estrutura do sistema, garantindo rastreabilidade entre as decisões conceituais do projeto e as decisões técnicas do protótipo.
+A modelagem usa BPMN para os fluxos de gameplay e UML para os casos de uso e a estrutura do sistema. Com isso, as decisões técnicas do protótipo podem ser relacionadas às decisões conceituais do projeto.
 
 As tecnologias e ferramentas utilizadas no protótipo são:
 
@@ -117,7 +117,7 @@ As tecnologias e ferramentas utilizadas no protótipo são:
 - Claude Opus 5.5 para a modelagem 3D dos cenários em Three.js;
 - GitHub Actions e GitHub Pages para a verificação e a publicação do protótipo.
 
-O jogo completo será desenvolvido na Unreal Engine 5.4.4, com C++, como software para PC. Para o protótipo, em vez da Unreal Engine, adotou-se essa base web, executada no navegador, que também torna a apresentação mais simples. O principal motivo foi o tempo disponível para o desenvolvimento: após análise, concluiu-se que, no prazo do projeto, o Three.js era a tecnologia mais adequada para o protótipo. A produção do protótipo contou com apoio de IA generativa: o GPT-6, ao lado do Sprite Fusion, na geração dos sprites, e o Claude Opus 5.5 na modelagem 3D dos cenários.
+O jogo completo será desenvolvido na Unreal Engine 5.4.4, com C++, como software para PC. O protótipo, porém, foi feito sobre essa base web, executada no navegador. O motivo principal foi o tempo: após análise, concluiu-se que, no prazo do projeto, o Three.js era a tecnologia mais adequada para o protótipo. Rodar no navegador também simplifica a apresentação. A produção contou com IA generativa: o GPT-6, ao lado do Sprite Fusion, gerou os sprites, e o Claude Opus 5.5 modelou os cenários 3D.
 
 ### 1.1.7 Escopo
 
