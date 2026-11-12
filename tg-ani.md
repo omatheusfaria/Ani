@@ -1471,7 +1471,7 @@ fx.shakeY = (Math.random() - 0.5) * this.panic * 3;
 fx.vignette = 0.6 + this.panic * 0.35;                    // a visão se fecha
 ```
 
-Todos os efeitos saem de um único valor, `panic`, que sobe no susto e cai sozinho com o tempo; assim, a crise se acalma de forma gradual, sem punição nem perda de progresso. O aviso de conteúdo, apresentado na seção 4.2.12, cita esse momento. A Figura 12 mostra a tela durante o pânico.
+Todos os efeitos saem de um único valor, `panic`, que sobe no susto e cai sozinho com o tempo. A crise se acalma aos poucos, sem punição nem perda de progresso. O aviso de conteúdo, apresentado na seção 4.2.12, cita esse momento. A Figura 12 mostra a tela durante o pânico.
 
 [Figura 12 – Momento de pânico: tela avermelhada, distorção e tremor]
 
@@ -1514,7 +1514,7 @@ togglePlasma() {
 }
 ```
 
-Ao usar o interruptor, Ani anda até a parede e toca a animação de apertar; a luz muda no quadro em que o dedo encosta na tecla. Acender a luz também muda a gradação de cor da cena, de índigo e prata no escuro para âmbar com a luz acesa, e simula o olho se adaptando: a imagem estoura e depois assenta. A Figura 13 mostra o quarto escuro com a luminária ligada e a Figura 14, a fala que aparece ao tentar interagir com um objeto no escuro.
+Ao usar o interruptor, Ani anda até a parede e toca a animação de apertar; a luz muda no quadro em que o dedo encosta na tecla. Acender a luz também muda a gradação de cor da cena, de índigo e prata no escuro para âmbar com a luz acesa. Por um instante a imagem fica clara demais e depois volta ao normal, como o olho se adaptando à luz. A Figura 13 mostra o quarto escuro com a luminária ligada e a Figura 14, a fala que aparece ao tentar interagir com um objeto no escuro.
 
 [Figura 13 – Quarto no escuro com a luminária de plasma ligada]
 
@@ -1563,7 +1563,7 @@ Nos objetos que Ani revista procurando o carregador, uma contagem guarda os luga
 
 ### 4.2.8 Objeto-Portal: da Gaveta à Memória do Parque
 
-Na gaveta da escrivaninha, Ani acha o carregador e uma tirinha de fotos de cabine dela com a Malu. A câmera se aproxima até a última foto ocupar a tela inteira; então o flash da cabine carrega, estoura a tela de branco e o jogo passa para a noite em que a foto foi tirada, um ano antes, no parque de diversões. A tirinha é o objeto ligado à memória, e o flash é a passagem do presente para a lembrança.
+Na gaveta da escrivaninha, Ani acha o carregador e uma tirinha de fotos de cabine dela com a Malu. A câmera se aproxima até a última foto ocupar a tela inteira; então o flash da cabine carrega, estoura a tela de branco e o jogo passa para a noite em que a foto foi tirada, um ano antes, no parque de diversões. Nessa sequência, a tirinha é o objeto ligado à memória, e o flash marca a mudança do presente para a lembrança.
 
 - Arquivos: `js/scenes/quarto.js`, `js/scenes/photostrip.js`, `js/scenes/parque.js`
 - Requisitos correspondentes: RF027, RF004 (parcial)
