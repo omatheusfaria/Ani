@@ -76,23 +76,25 @@ TITULOS_QUADROS = [
     "Requisitos Não Funcionais do sistema",        # 9  2.4
     "Regras de Negócio do sistema",                # 10 2.5
     "Índice de Casos de Uso",                      # 11 2.6
-    "Enumerações do Diagrama de Classes",          # 27 2.7
-    "Relacionamentos entre Classes",               # 28 2.7
-    "Artefatos e Ferramentas de Produção",         # 29 3
-    "Correspondência entre o Modelo de Classes e o Protótipo",  # 30 4.1
-    "Mapeamento de Controles",                     # 31 4.2.16
-    "Atendimento dos Requisitos no Protótipo",     # 32 4.4
-    "Recursos do Navegador Usados pelo Protótipo",  # 33 5.1
-    "Testes de Portabilidade do Protótipo",        # 34 5.1
-    "Peso dos Atores",                             # 35 5.2
-    "Classificação dos Casos de Uso",              # 36 5.2
-    "Fatores Técnicos",                            # 37 5.2
-    "Fatores Ambientais",                          # 38 5.2
-    "Cálculo dos Pontos de Caso de Uso",           # 39 5.2
-    "Investimento Previsto",                       # 40 5.3
-    "Cronograma de Produção",                      # 41 5.3
-    "Ficha Técnica do Jogo",                       # 34 Apêndice C
-    "Atos do Jogo",                                # 35 Apêndice C
+    # 12 a 28: quadros de caso de uso
+    "Enumerações do Diagrama de Classes",          # 29 2.7
+    "Relacionamentos entre Classes",               # 30 2.7
+    "Artefatos e Ferramentas de Produção",         # 31 3
+    "Organização dos diretórios e arquivos do protótipo",  # 32 4.1
+    "Correspondência entre o Modelo de Classes e o Protótipo",  # 33 4.1
+    "Mapeamento de Controles",                     # 34 4.2.16
+    "Atendimento dos Requisitos no Protótipo",     # 35 4.4
+    "Recursos do Navegador Usados pelo Protótipo",  # 36 5.1
+    "Testes de Portabilidade do Protótipo",        # 37 5.1
+    "Peso dos Atores",                             # 38 5.2
+    "Classificação dos Casos de Uso",              # 39 5.2
+    "Fatores Técnicos",                            # 40 5.2
+    "Fatores Ambientais",                          # 41 5.2
+    "Cálculo dos Pontos de Caso de Uso",           # 42 5.2
+    "Investimento Previsto",                       # 43 5.3
+    "Cronograma de Produção",                      # 44 5.3
+    "Ficha Técnica do Jogo",                       # 45 Apêndice C
+    "Atos do Jogo",                                # 46 Apêndice C
 ]
 
 # Figuras com imagem (as demais entram como placeholder).

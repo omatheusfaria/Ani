@@ -1207,20 +1207,19 @@ Seguindo a Cascata, a implementação começou depois da especificação de requ
 
 O protótipo é organizado em módulos JavaScript (ES Modules), carregados a partir do `index.html`. O Three.js é importado por um *import map*, sem gerenciador de pacotes. A estrutura de pastas separa o motor do jogo (renderização, áudio, interface e entrada) das cenas e dos personagens:
 
-```text
-jogo/
-  index.html            página, import map e camadas de interface em HTML
-  css/style.css         caixas de fala, balões, pausa, aviso e HUD dos minigames
-  js/main.js            objeto game, entrada (mouse, teclado, controle), loop e save
-  js/engine/            renderer.js, audio.js, ui.js, gamepad.js, tween.js, aviso.js
-  js/scenes/            menu.js, quarto.js (+ room.js, furniture.js, papers.js, cinema.js),
-                        parque.js (+ park.js, parkfx.js, parkfood.js, minigames.js,
-                        wheelride.js, photostrip.js)
-  js/phone/             app.js (aplicativo de rede social) e posts.js
-  js/chars/ani.js       sprites de Ani e Malu e suas animações
-  assets/               sprites (PNG) e fontes
-  tools/                scripts Python que recortam e alinham as folhas de sprites
-```
+O Quadro 32 demonstra a estrutura e organização dos diretórios do protótipo.
+
+| Diretório ou arquivo | Arquivos principais | Responsabilidade |
+| --- | --- | --- |
+| index.html |  | página, import map e camadas de interface em HTML |
+| css/ | style.css | Estilização das caixas de diálogo, balões, menus e HUD dos minigames. |
+| js/ | main.js | Inicialização do jogo, entrada, controle do teclado, loop principal e salvamento. |
+| js/engine/ | renderer.js, audio.js, ui.js, gamepad.js, tween.js, aviso.js | Componentes centrais do motor do jogo. |
+| js/scenes/ | menu.js, quarto.js, parque.js, cinema.js, entre outros | Implementação dos ambientes, objetos e minigames. |
+| js/phone/ | app.js, posts.js | Aplicativo de rede social e gerenciamento de publicações. |
+| js/chars/ani.js | ani.js | Sprites e animações da personagem Ani e da personagem Malu. |
+| assets/ | Imagens PNG e fontes | Recursos gráficos e tipográficos utilizados no protótipo. |
+| tools/ | Scripts Python | Recorte, processamento e alinhamento das folhas de sprites. |
 
 O centro da arquitetura é o objeto `game`, criado em `main.js`. Ele reúne o renderizador, o áudio, a interface, as configurações e o save, e guarda a cena atual. Cada cena (`MenuScene`, `QuartoScene` e `ParkScene`) segue o mesmo contrato: `enter()` e `exit()` na troca de cena, `update(dt, t)` a cada quadro e métodos de entrada (`onKey`, `onPointerDown`, `onWheel`) que `main.js` repassa. O Código 1 mostra esse objeto, a troca de cenas e o laço principal.
 
@@ -1257,9 +1256,9 @@ function frame(now) {
 }
 ```
 
-O limite de 0,05 s no passo de tempo evita que uma queda de desempenho faça os personagens atravessarem móveis ou que as animações pulem etapas. Todas as cenas recebem o mesmo `dt`, e as animações de câmera, falas e transições usam um gerenciador de interpolações (`Tweens`, em `tween.js`) atualizado com ele.
+O limite de 0,05 segundos no passo de tempo evita que uma queda de desempenho faça os personagens atravessarem móveis ou que as animações pulem etapas. Todas as cenas recebem o mesmo intervalo, e as animações de câmera, falas e transições usam um gerenciador de interpolações (`Tweens`, em `tween.js`) atualizado com ele.
 
-O diagrama de classes da seção 2.7 modela o jogo completo, em Unreal Engine. O protótipo não reproduz essas classes uma a uma: em JavaScript, várias responsabilidades ficam em funções e objetos das cenas. O Quadro 32 relaciona cada classe do modelo ao elemento do protótipo que cumpre o seu papel.
+O diagrama de classes da seção 2.7 modela o jogo completo, em Unreal Engine. O protótipo não reproduz essas classes uma a uma: em JavaScript, várias responsabilidades ficam em funções e objetos das cenas. O Quadro 33 relaciona cada classe do modelo ao elemento do protótipo que cumpre o seu papel.
 
 | Classe do modelo | Elemento no protótipo | Arquivo |
 | --- | --- | --- |
@@ -1897,7 +1896,7 @@ press(i) {
 }
 ```
 
-As dicas de botões aparecem só no quarto, uma vez, como tutorial, e mudam entre teclado e controle conforme o dispositivo que o jogador está usando. O Quadro 33 apresenta o mapeamento dos controles.
+As dicas de botões aparecem só no quarto, uma vez, como tutorial, e mudam entre teclado e controle conforme o dispositivo que o jogador está usando. O Quadro 34 apresenta o mapeamento dos controles.
 
 | Ação | Teclado e mouse | Gamepad (padrão Xbox) |
 | --- | --- | --- |
@@ -1926,7 +1925,7 @@ Na Unreal Engine, a arquitetura segue os diagramas do capítulo 2. A entrada ser
 
 ## 4.4 Atendimento dos Requisitos no Protótipo
 
-O Quadro 34 mostra a situação de cada requisito no protótipo: atendido, atendido em parte ou fora do protótipo, quando o requisito depende de partes do jogo que ainda não foram construídas.
+O Quadro 35 mostra a situação de cada requisito no protótipo: atendido, atendido em parte ou fora do protótipo, quando o requisito depende de partes do jogo que ainda não foram construídas.
 
 | Requisito | Situação no protótipo | Observação |
 | --- | --- | --- |
@@ -1978,7 +1977,7 @@ Este capítulo apresenta os resultados do projeto em três partes, como pede o m
 
 A portabilidade é a facilidade com que um software pode ser transferido de um ambiente de hardware, software ou uso para outro. A norma ISO/IEC 25010 a trata como uma característica de qualidade dividida em adaptabilidade, capacidade de ser instalado e capacidade de substituir outro produto com o mesmo fim (ISO/IEC, 2011). Em **Ani**, ela aparece no RNF003, que pede uma estrutura de código e de assets adaptável a outras plataformas com alterações mínimas.
 
-O protótipo roda no navegador e não precisa de instalação: basta abrir o endereço publicado no GitHub Pages. Por isso, a sua portabilidade depende das interfaces do navegador que o código usa. O Quadro 35 relaciona essas interfaces e o que acontece quando alguma falta.
+O protótipo roda no navegador e não precisa de instalação: basta abrir o endereço publicado no GitHub Pages. Por isso, a sua portabilidade depende das interfaces do navegador que o código usa. O Quadro 36 relaciona essas interfaces e o que acontece quando alguma falta.
 
 | Recurso usado | Para quê | Sem o recurso |
 | --- | --- | --- |
@@ -1993,7 +1992,7 @@ O protótipo roda no navegador e não precisa de instalação: basta abrir o end
 
 Pela análise do código, três pontos limitam a portabilidade do protótipo. O primeiro é a dependência de rede: o Three.js vem de uma CDN, e não do próprio repositório, então o jogo não abre sem internet nem quando é servido localmente pelo `iniciar-servidor.bat`. Copiar a biblioteca para a pasta do jogo resolve esse ponto sem mudar o código. O segundo é a falta de controle por toque, que deixa celulares e tablets fora do alcance mesmo quando o navegador do aparelho tem WebGL 2. O terceiro é o desempenho: a pós-produção de imagem (*bloom*, feixes de luz, profundidade de campo) exige uma placa de vídeo, e sem aceleração por hardware a taxa de quadros cai muito. Num teste feito com renderização só por software, sem placa de vídeo, o quarto e o parque rodaram a cerca de 3 quadros por segundo, embora todas as funções tenham funcionado.
 
-Para verificar esses pontos na prática, o protótipo foi executado de forma automatizada no navegador Chromium, controlado pela ferramenta Playwright (Microsoft, s.d., online), em seis cenários. No primeiro, de referência, foi percorrido o roteiro completo do jogo: menu e aviso de conteúdo, celular, quarto no escuro e com luz, inspeções, objeto-portal, parque (acompanhante, comidas e minigame) e pausa, com a taxa de quadros medida no quarto com a luz acesa e no parque. Os demais cenários retiram, um de cada vez, um recurso do ambiente ou mudam a tela, para observar como o jogo se comporta. O Quadro 36 apresenta os resultados.
+Para verificar esses pontos na prática, o protótipo foi executado de forma automatizada no navegador Chromium, controlado pela ferramenta Playwright (Microsoft, s.d., online), em seis cenários. No primeiro, de referência, foi percorrido o roteiro completo do jogo: menu e aviso de conteúdo, celular, quarto no escuro e com luz, inspeções, objeto-portal, parque (acompanhante, comidas e minigame) e pausa, com a taxa de quadros medida no quarto com a luz acesa e no parque. Os demais cenários retiram, um de cada vez, um recurso do ambiente ou mudam a tela, para observar como o jogo se comporta. O Quadro 37 apresenta os resultados.
 
 | Cenário | Configuração | Resultado |
 | --- | --- | --- |
@@ -2020,7 +2019,7 @@ O cálculo segue cinco etapas: o peso dos atores (UAW), o peso dos casos de uso 
 
 ### Peso dos atores
 
-Os atores são classificados em simples (outro sistema acessado por uma interface de programação, peso 1), médios (outro sistema acessado por um protocolo, peso 2) e complexos (uma pessoa que usa uma interface gráfica, peso 3). **Ani** tem um único ator, o Jogador, que interage pela interface do jogo, como mostra o Quadro 37.
+Os atores são classificados em simples (outro sistema acessado por uma interface de programação, peso 1), médios (outro sistema acessado por um protocolo, peso 2) e complexos (uma pessoa que usa uma interface gráfica, peso 3). **Ani** tem um único ator, o Jogador, que interage pela interface do jogo, como mostra o Quadro 38.
 
 | Ator | Classificação | Peso |
 | --- | --- | --- |
@@ -2029,7 +2028,7 @@ Os atores são classificados em simples (outro sistema acessado por uma interfac
 
 ### Peso dos casos de uso
 
-Cada caso de uso é classificado pela quantidade de passos dos seus cenários, contando o cenário principal e os alternativos (Clemmons, 2006): até três passos, simples (peso 5); de quatro a sete, médio (peso 10); mais de sete, complexo (peso 15). Foram contados os passos numerados do cenário principal e os subpassos de cada cenário alternativo (por exemplo, 4a.1), sem contar a linha que apenas nomeia a condição do cenário alternativo. O Quadro 38 apresenta a classificação dos 17 casos de uso.
+Cada caso de uso é classificado pela quantidade de passos dos seus cenários, contando o cenário principal e os alternativos (Clemmons, 2006): até três passos, simples (peso 5); de quatro a sete, médio (peso 10); mais de sete, complexo (peso 15). Foram contados os passos numerados do cenário principal e os subpassos de cada cenário alternativo (por exemplo, 4a.1), sem contar a linha que apenas nomeia a condição do cenário alternativo. O Quadro 39 apresenta a classificação dos 17 casos de uso.
 
 | Caso de uso | Passos (principal + alternativos) | Classificação | Peso |
 | --- | --- | --- | --- |
@@ -2056,7 +2055,7 @@ Com isso, os pontos de caso de uso não ajustados são UUCP = 3 + 190 = 193.
 
 ### Fatores técnicos
 
-Os 13 fatores técnicos recebem notas de 0 (sem influência) a 5 (influência forte), que são multiplicadas pelos pesos do método; o fator de complexidade técnica é TCF = 0,6 + 0,01 × soma (Clemmons, 2006). As notas do Quadro 39 consideram o jogo completo, em Unreal Engine, para PC e sem modo multijogador.
+Os 13 fatores técnicos recebem notas de 0 (sem influência) a 5 (influência forte), que são multiplicadas pelos pesos do método; o fator de complexidade técnica é TCF = 0,6 + 0,01 × soma (Clemmons, 2006). As notas do Quadro 40 consideram o jogo completo, em Unreal Engine, para PC e sem modo multijogador.
 
 | Fator técnico | Peso | Nota | Resultado | Justificativa |
 | --- | --- | --- | --- | --- |
@@ -2077,7 +2076,7 @@ Os 13 fatores técnicos recebem notas de 0 (sem influência) a 5 (influência fo
 
 ### Fatores ambientais
 
-Os oito fatores ambientais descrevem a equipe e o contexto do projeto, também com notas de 0 a 5; o fator ambiental é ECF = 1,4 − 0,03 × soma (Clemmons, 2006). As notas do Quadro 40 consideram a produção proposta na seção 5.3, com equipe dedicada em tempo integral.
+Os oito fatores ambientais descrevem a equipe e o contexto do projeto, também com notas de 0 a 5; o fator ambiental é ECF = 1,4 − 0,03 × soma (Clemmons, 2006). As notas do Quadro 41 consideram a produção proposta na seção 5.3, com equipe dedicada em tempo integral.
 
 | Fator ambiental | Peso | Nota | Resultado | Justificativa |
 | --- | --- | --- | --- | --- |
@@ -2093,7 +2092,7 @@ Os oito fatores ambientais descrevem a equipe e o contexto do projeto, também c
 
 ### Pontos ajustados e esforço
 
-O Quadro 41 resume o cálculo. Para converter os pontos em horas, foi usado o fator de produtividade de 20 horas por ponto de caso de uso proposto por Karner (1993), indicado para equipes sem histórico de projetos anteriores (Clemmons, 2006); Ribu (2001) registra variação entre 15 e 30 horas por ponto, conforme a experiência da equipe.
+O Quadro 42 resume o cálculo. Para converter os pontos em horas, foi usado o fator de produtividade de 20 horas por ponto de caso de uso proposto por Karner (1993), indicado para equipes sem histórico de projetos anteriores (Clemmons, 2006); Ribu (2001) registra variação entre 15 e 30 horas por ponto, conforme a experiência da equipe.
 
 | Etapa | Cálculo | Resultado |
 | --- | --- | --- |
@@ -2129,7 +2128,7 @@ A produção de conteúdo foi estimada pela equipe necessária ao longo dos oito
 - **Trilha sonora e efeitos sonoros:** um músico em meio período por seis meses, o equivalente a três meses de trabalho, com o salário médio de músico arranjador (CBO 2626-10), de R$ 3.710,67 (Salário.com.br, s.d.d, online).
 - **Roteiro e direção narrativa:** um roteirista em meio período por seis meses, o equivalente a três meses, com o salário médio de autor-roteirista multimídia (CBO 2615-05), de R$ 6.848,48 (Salário.com.br, s.d.a, online).
 
-O Quadro 42 apresenta o investimento previsto.
+O Quadro 43 apresenta o investimento previsto.
 
 | Item | Base de cálculo | Valor |
 | --- | --- | --- |
@@ -2143,7 +2142,7 @@ O Quadro 42 apresenta o investimento previsto.
 
 ### Cronograma
 
-O prazo considera dois desenvolvedores em tempo integral para a engenharia de software, com a produção de conteúdo em paralelo, e segue a Cascata adotada no trabalho. O Quadro 43 apresenta as etapas e os marcos de entrega.
+O prazo considera dois desenvolvedores em tempo integral para a engenharia de software, com a produção de conteúdo em paralelo, e segue a Cascata adotada no trabalho. O Quadro 44 apresenta as etapas e os marcos de entrega.
 
 | Etapa | Meses | Entrega (marco) |
 | --- | --- | --- |
@@ -2155,7 +2154,7 @@ O prazo considera dois desenvolvedores em tempo integral para a engenharia de so
 
 ### Condições
 
-- **Pagamento:** em cinco parcelas de 20%, na assinatura e na aprovação de cada marco do Quadro 43.
+- **Pagamento:** em cinco parcelas de 20%, na assinatura e na aprovação de cada marco do Quadro 44.
 - **Acompanhamento:** a cada marco, o financiador recebe uma versão jogável para avaliação.
 - **Propriedade intelectual:** a obra continua do autor; direitos de publicação e participação na receita são definidos em contrato.
 - **Validade da proposta:** 60 dias.
@@ -2168,7 +2167,7 @@ O objetivo deste trabalho era conceber um jogo narrativo contemplativo capaz de 
 
 Quanto à questão que orientou o trabalho, o protótipo mostra que as próprias mecânicas podem carregar o tema sem explicação. A bateria que acaba e deixa Ani no escuro, a interação que só devolve um "não consigo ver" até que a luz seja acesa, o pânico de uma curtida sem querer e a fotografia que se transforma em memória comunicam solidão, ansiedade e apego sem nenhum texto que os nomeie. A hipótese, porém, só poderá ser confirmada com testes com jogadores e com os atos seguintes, nos quais estão as mecânicas filosóficas centrais.
 
-O principal desafio foi o tempo. A tecnologia prevista para o protótipo, a Unreal Engine com C++, foi trocada por uma base web com Three.js, mais rápida de produzir e de apresentar, e o jogo completo continua planejado na Unreal. A troca exigiu separar com cuidado o que a documentação modela, que é o jogo completo, do que o protótipo implementa, e o Quadro 32 registra essa correspondência. A produção dos sprites com apoio de inteligência artificial também pediu ferramentas próprias, como os scripts que recortam e alinham as folhas de animação.
+O principal desafio foi o tempo. A tecnologia prevista para o protótipo, a Unreal Engine com C++, foi trocada por uma base web com Three.js, mais rápida de produzir e de apresentar, e o jogo completo continua planejado na Unreal. A troca exigiu separar com cuidado o que a documentação modela, que é o jogo completo, do que o protótipo implementa, e o Quadro 33 registra essa correspondência. A produção dos sprites com apoio de inteligência artificial também pediu ferramentas próprias, como os scripts que recortam e alinham as folhas de animação.
 
 Como trabalhos futuros, ficam a produção do jogo completo na Unreal Engine, nos termos da proposta da seção 5.3, com o diário de memórias, a progressão pelos cinco atos, as mecânicas filosóficas de cada ato, as crises de ansiedade completas e os puzzles; os testes com jogadores, para avaliar se a experiência transmite o que o design pretende; a medição de desempenho em hardware com placa de vídeo e os testes de compatibilidade no Firefox e no Safari; e, no protótipo, as melhorias de portabilidade apontadas na seção 5.1, como abrir sem internet e aceitar controles de toque. Também ficam como possibilidades a tradução dos textos (RNF005), os recursos de acessibilidade (RNF006), previstos para o jogo final, e a oferta de uma dica quando o jogador erra uma tentativa num puzzle, que ficou fora dos requisitos por decisão do autor.
 
@@ -2320,7 +2319,7 @@ Este apêndice resume o Game Design Document (GDD) de **Ani**, mantido na ínteg
 
 ## C.1 Visão e ficha técnica
 
-**Ani** é uma aventura narrativa contemplativa em 2.5D sobre consciência, sofrimento e a descoberta lenta do sentido. A protagonista é uma mulher comum, de aproximadamente 24 anos, em colapso existencial; seu nome vem do hebraico **אֲנִי**, "eu". O jogo não acompanha escolhas morais, e sim a mudança na forma como Ani percebe a existência. O Quadro 44 reúne a ficha técnica do jogo.
+**Ani** é uma aventura narrativa contemplativa em 2.5D sobre consciência, sofrimento e a descoberta lenta do sentido. A protagonista é uma mulher comum, de aproximadamente 24 anos, em colapso existencial; seu nome vem do hebraico **אֲנִי**, "eu". O jogo não acompanha escolhas morais, e sim a mudança na forma como Ani percebe a existência. O Quadro 45 reúne a ficha técnica do jogo.
 
 | Item | Descrição |
 | --- | --- |
@@ -2334,7 +2333,7 @@ Este apêndice resume o Game Design Document (GDD) de **Ani**, mantido na ínteg
 
 ## C.2 Pilar conceitual e atos
 
-A jornada parte do pessimismo da filosofia ocidental e caminha, em cinco atos de ordem fixa, para filosofias contemplativas japonesas. A transição se manifesta no ambiente, no som, nas mecânicas e no ritmo, sem explicação didática. O Quadro 45 resume os cinco atos.
+A jornada parte do pessimismo da filosofia ocidental e caminha, em cinco atos de ordem fixa, para filosofias contemplativas japonesas. A transição se manifesta no ambiente, no som, nas mecânicas e no ritmo, sem explicação didática. O Quadro 46 resume os cinco atos.
 
 | Ato | Referência | Ideia central | Símbolo | Mecânica própria |
 | --- | --- | --- | --- | --- |
