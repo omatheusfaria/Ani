@@ -1265,7 +1265,7 @@ O diagrama de classes da seção 2.7 modela o jogo completo, em Unreal Engine. O
 | `Personagem`, `Ani` | `WalkSprite` e `AniSprite` (sprite e animações); a posição em x e z fica com a cena | `js/chars/ani.js` |
 | `NPC` | Malu: `WalkSprite` com a folha da Malu, movida pela classe `Actor` | `js/chars/ani.js`, `js/scenes/parque.js` |
 | `Dialogo` | `ui.say()` (caixa embaixo) e `ui.bubble()` (balão sobre a cabeça) | `js/engine/ui.js` |
-| `Celular`, `Publicacao` | `PhoneApp` (aplicativo "Pixgram") e a lista de publicações | `js/phone/app.js`, `js/phone/posts.js` |
+| `Celular`, `Publicacao` | `PhoneApp` (aplicativo Pixgram) e a lista de publicações | `js/phone/app.js`, `js/phone/posts.js` |
 | `ObjetoInterativo` | Lista `interactables` do quarto e do parque | `js/scenes/room.js`, `js/scenes/park.js` |
 | `Interruptor`, `FonteDeLuz` | `room.setSwitch()` e `room.setPlasma()` | `js/scenes/room.js`, `js/scenes/quarto.js` |
 | `ObjetoInspecionavel` | `enterInspect()` e `enterZenital()` (estante, criado-mudo, mochila e papéis) | `js/scenes/quarto.js` |
@@ -1403,7 +1403,7 @@ Testar o movimento em x e em z separadamente faz Ani deslizar ao longo de um mó
 
 ### 4.2.4 Celular em Primeira Pessoa
 
-O jogo começa com Ani deitada no escuro, às 23:47, olhando o celular. O celular é um modelo 3D segurado pela mão de Ani, em sprite, e a tela mostra o "Pixgram", uma rede social fictícia desenhada num *canvas* e aplicada como textura. O jogador vê a notificação da Malu, abre o perfil dela, rola o feed, abre publicações e pode curtir com um toque duplo.
+O jogo começa com Ani deitada no escuro, às 23:47, olhando o celular. O celular é um modelo 3D segurado pela mão de Ani, em sprite, e a tela mostra o Pixgram, uma rede social fictícia desenhada num *canvas* e aplicada como textura. O jogador vê a notificação da Malu, abre o perfil dela, rola o feed, abre publicações e pode curtir com um toque duplo.
 
 - Arquivos: `js/phone/app.js`, `js/phone/posts.js`, `js/scenes/quarto.js`
 - Requisitos correspondentes: RF024
