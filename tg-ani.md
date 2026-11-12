@@ -98,11 +98,9 @@ Conceber um jogo narrativo contemplativo que represente, por meio de sistemas, m
 
 ### 1.1.5 Justificativa
 
-Jogos digitais constituem um meio singular para explorar experiências internas e subjetivas: a interatividade permite que o jogador não apenas observe uma jornada, mas a habite ativamente, vivenciando estados emocionais, percepções e transformações de dentro para fora. Essa capacidade imersiva distingue o jogo de outras mídias narrativas e o torna especialmente adequado para representar processos internos complexos, como identidade, sofrimento e transformação filosófica.
+Jogos digitais permitem explorar experiências internas e subjetivas. Pela interatividade, o jogador participa do percurso do personagem em vez de apenas observá-lo, e passa pelos estados emocionais e pelas mudanças de percepção a partir de dentro. Isso diferencia o jogo de outras mídias narrativas e o torna adequado para representar processos internos como a identidade, o sofrimento e a transformação filosófica.
 
-Ani parte dessa premissa para investigar como a filosofia pode funcionar como linguagem acessível dentro de um jogo narrativo. Correntes como o pessimismo existencial de Zapffe e Mainländer e filosofias contemplativas japonesas, como Wabi-Sabi, Mono no Aware e Yugen, carregam ideias densas que, quando traduzidas em espaço, mecânica e atmosfera, tornam-se experienciáveis sem depender de mediação teórica.
-
-O jogo se torna, assim, não um veículo de ensino da filosofia, mas um modo de sentir o que ela descreve.
+Ani parte dessa premissa para investigar como a filosofia pode funcionar como linguagem acessível em um jogo narrativo. O pessimismo existencial de Zapffe e Mainländer e as filosofias contemplativas japonesas, como Wabi-Sabi, Mono no Aware e Yugen, trazem ideias densas. Traduzidas em espaço, mecânica e atmosfera, essas ideias podem ser vividas pelo jogador sem mediação teórica. O jogo não pretende ensinar filosofia; sua proposta é permitir que o jogador perceba aquilo que ela descreve.
 
 ### 1.1.6 Metodologia / Tecnologias
 
