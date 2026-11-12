@@ -3,3 +3,5 @@
 *.docx
 .claude/skills/
 skills-lock.json
+.claude/agents/detector-ia-tg.md
+scripts/detector_ia.py
