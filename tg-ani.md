@@ -350,9 +350,9 @@ O uso da BPMN é importante neste projeto porque aproxima visão conceitual e l�
 
 ## 2.3 Requisitos Funcionais
 
-Requisitos funcionais descrevem os serviços e comportamentos que o sistema deve oferecer ao usuário ou executar internamente para atender ao propósito do software. Para Sommerville (2019), eles definem as funções do sistema e suas respostas a entradas, situações e regras operacionais. Em um jogo digital, isso inclui não apenas comandos e menus, mas também mecânicas, regras de progressão, persistência e respostas sensoriais organizadas por software.
+Requisitos funcionais descrevem os serviços e comportamentos que o sistema deve oferecer ao usuário ou executar internamente para atender ao propósito do software. Para Sommerville (2019), eles definem as funções do sistema e suas respostas a entradas, situações e regras operacionais. Em um jogo digital, entram aí os comandos e menus e também as mecânicas, as regras de progressão, a persistência e as respostas sensoriais controladas por software.
 
-Em Ani, os requisitos funcionais descrevem tanto funcionalidades convencionais quanto mecanismos capazes de converter intenção artística em experiência jogável. Assim, além de mover a personagem, interagir com objetos ou salvar progresso, os RFs também formalizam peso literal, ecos de decisão, contemplação ativa, dissolução de mecânicas e adaptação sonora por ato.
+Além das funções comuns a qualquer jogo, como mover a personagem, interagir com objetos e salvar o progresso, os RFs deste projeto formalizam as mecânicas dos atos (peso literal, ecos de decisão, contemplação ativa e dissolução de mecânicas) e a adaptação sonora por ato.
 
 O Quadro X apresenta os requisitos funcionais do sistema, organizados por código, título, categoria, prioridade e descrição.
 
@@ -394,9 +394,9 @@ Observa-se uma distribuição de 9 requisitos com prioridade Altíssima, 16 com 
 
 ## 2.4 Requisitos Não Funcionais
 
-Requisitos não funcionais expressam restrições de qualidade, desempenho, usabilidade, portabilidade e demais condições que moldam como o sistema deve operar. Segundo Sommerville (2019), eles não descrevem serviços específicos, mas propriedades e limites que influenciam o comportamento global do software. Pressman e Maxim (2016) reforçam que tais requisitos afetam diretamente a aceitabilidade do produto.
+Requisitos não funcionais expressam restrições de qualidade, desempenho, usabilidade, portabilidade e demais condições que moldam como o sistema deve operar. Segundo Sommerville (2019), eles tratam de propriedades e limites que influenciam o comportamento global do software, e não de serviços específicos. Pressman e Maxim (2016) observam que esses requisitos afetam diretamente a aceitabilidade do produto.
 
-Em Ani, os RNFs não se limitam a desempenho técnico. Eles também registram compromissos com portabilidade, acessibilidade, localização e jogabilidade autoexplicativa. Assim, os requisitos não funcionais delimitam condições de qualidade que ajudam a preservar a proposta contemplativa do jogo.
+Os RNFs deste projeto vão além do desempenho técnico e tratam também de portabilidade, acessibilidade, localização e jogabilidade autoexplicativa. A exigência de jogabilidade autoexplicativa, por exemplo, sustenta a ausência de tutoriais extensos prevista na proposta do jogo.
 
 O Quadro X apresenta os requisitos não funcionais do sistema, indicando os critérios de qualidade e suas respectivas classificações.
 
@@ -413,9 +413,9 @@ Os RNFs podem ser agrupados por tema da seguinte forma: desempenho e persistênc
 
 ## 2.5 Regras de Negócio
 
-Regras de negócio são enunciados que impõem restrições, condições ou políticas sobre o comportamento de um sistema dentro de seu domínio. Em termos de modelagem, elas definem o que pode, deve ou não deve acontecer em determinados cenários, garantindo coerência operacional entre objetivos, entidades e processos. Em projetos de software, essas regras exercem papel fundamental na transformação de intenções de domínio em comportamentos verificáveis.
+Regras de negócio são enunciados que impõem restrições, condições ou políticas sobre o comportamento de um sistema dentro de seu domínio. Em termos de modelagem, elas definem o que pode, deve ou não deve acontecer em determinados cenários. Em projetos de software, são elas que transformam intenções do domínio em comportamentos verificáveis.
 
-No caso de Ani, as regras de negócio não se limitam a validações administrativas; elas traduzem diretamente opções filosóficas e narrativas do projeto. A regra de convergência dos ecos de decisão, por exemplo, expressa em linguagem sistêmica a irresolução do Ato II, em que diferentes tentativas do jogador ainda convergem para o mesmo impasse narrativo.
+Aqui, as regras de negócio registram opções filosóficas e narrativas do projeto, e não validações administrativas. A regra de convergência dos ecos de decisão, por exemplo, representa no sistema a irresolução do Ato II: diferentes tentativas do jogador continuam levando ao mesmo impasse narrativo.
 
 O Quadro X apresenta as regras de negócio do sistema, descrevendo as restrições conceituais que orientam a progressão e o comportamento narrativo de Ani.
 
@@ -434,11 +434,11 @@ Em termos de rastreabilidade, RN001 origina-se da seção de exploração e diá
 
 ## 2.6 Casos de Uso
 
-Casos de uso são descrições estruturadas das interações entre atores e sistema, com o objetivo de evidenciar como determinadas funcionalidades são acionadas e quais respostas são esperadas. Na perspectiva da UML, esse artefato contribui para a compreensão do comportamento externo do sistema, permitindo documentar cenários principais, pré-condições, pós-condições e caminhos alternativos. A IBM destaca que diagramas e visões de caso de uso ajudam a representar as funcionalidades esperadas do sistema e a relação entre atores externos e serviços oferecidos pela aplicação (IBM, s.d.a, online; IBM, s.d.b, online).
+Um caso de uso descreve, de forma estruturada, a interação entre atores e sistema: como uma funcionalidade é acionada e que resposta se espera dela. Na UML, ele documenta o comportamento externo do sistema por meio do cenário principal, das pré-condições, das pós-condições e dos caminhos alternativos. Segundo a IBM, diagramas e visões de caso de uso representam as funcionalidades esperadas do sistema e a relação entre os atores externos e os serviços oferecidos pela aplicação (IBM, s.d.a, online; IBM, s.d.b, online).
 
-Sua importância reside em tornar explícito quem aciona o sistema, em que condições, com quais passos principais e com quais alternativas. Em projetos de software interativo, esse tipo de artefato ajuda a conectar requisitos abstratos a fluxos operacionais verificáveis, servindo como ponte entre análise e implementação. Essa modelagem também favorece a comunicação entre os envolvidos no projeto, pois delimita o escopo funcional do sistema e torna mais clara a ligação entre atores, objetivos e funcionalidades (IBM, s.d.a, online; IBM, s.d.b, online).
+O caso de uso deixa explícito quem aciona o sistema, em que condições, com quais passos e com quais alternativas. Assim, liga requisitos abstratos a fluxos que podem ser verificados e serve de ponte entre análise e implementação. Ao delimitar o escopo funcional, também deixa mais clara, para os envolvidos no projeto, a ligação entre atores, objetivos e funcionalidades (IBM, s.d.a, online; IBM, s.d.b, online).
 
-Em Ani, os casos de uso foram derivados dos requisitos funcionais e das mecânicas do projeto. Eles cobrem tanto ações clássicas, como movimentar, pausar e salvar, quanto interações alinhadas ao núcleo da experiência, como ativar objetos significativos, acessar o diário de memórias e carregar cenários coerentes com a progressão por atos.
+Os casos de uso deste projeto foram derivados dos requisitos funcionais e das mecânicas. Alguns cobrem ações comuns em jogos, como movimentar, pausar e salvar. Outros tratam do que é próprio de Ani: ativar objetos significativos, acessar o diário de memórias e carregar cenários de acordo com a progressão por atos.
 
 O Quadro X apresenta o índice de casos de uso do sistema, enquanto a modelagem gráfica correspondente é apresentada na Figura 2.
 
@@ -464,7 +464,7 @@ O Quadro X apresenta o índice de casos de uso do sistema, enquanto a modelagem 
 
 [Figura 2 – Diagrama de Casos de Uso de Ani]
 
-Os casos de uso articulam-se diretamente com as mecânicas do projeto: UC-S001 relaciona-se a RF001, RF002 e RF011 e à exploração em visão lateral; UC-S002 conecta-se a RF003, RF004, RF015 e RF016, cobrindo objetos significativos e mecânicas por ato, além da iluminação dos cômodos (RF025 e RN007), da inspeção em primeira pessoa (RF026) e do objeto que leva às memórias (RF027); UC-S003 deriva de RF008 e dos personagens de memória, incluindo o personagem acompanhante (RF030); UC-S004 e UC-S005 conectam-se a RF005 e ao diário de memórias; UC-S006 corresponde a RF021 (pausa); UC-S007, UC-S008 e UC-S009, a RF022 (configurações de vídeo e áudio); UC-S010, a RF023 (saída); UC-S011 e UC-S012 correspondem a RF009, salvando e carregando o progresso, com o salvamento automático (RF031) no UC-S011; UC-S013 corresponde a RF020 (aviso de conteúdo sensível), a RF012 (início no Ato I) e a RF009 (sobrescrita do save anterior); UC-S014 corresponde a RF007 (puzzles contextuais); UC-S015, a RF024 (celular) e a RF018 (o momento de pânico); UC-S016, a RF028 (comidas); e UC-S017, a RF029 (minigames) e à RN008.
+Cada caso de uso se liga a requisitos e mecânicas do projeto: UC-S001 relaciona-se a RF001, RF002 e RF011 e à exploração em visão lateral; UC-S002 conecta-se a RF003, RF004, RF015 e RF016, cobrindo objetos significativos e mecânicas por ato, além da iluminação dos cômodos (RF025 e RN007), da inspeção em primeira pessoa (RF026) e do objeto que leva às memórias (RF027); UC-S003 deriva de RF008 e dos personagens de memória, incluindo o personagem acompanhante (RF030); UC-S004 e UC-S005 conectam-se a RF005 e ao diário de memórias; UC-S006 corresponde a RF021 (pausa); UC-S007, UC-S008 e UC-S009, a RF022 (configurações de vídeo e áudio); UC-S010, a RF023 (saída); UC-S011 e UC-S012 correspondem a RF009, salvando e carregando o progresso, com o salvamento automático (RF031) no UC-S011; UC-S013 corresponde a RF020 (aviso de conteúdo sensível), a RF012 (início no Ato I) e a RF009 (sobrescrita do save anterior); UC-S014 corresponde a RF007 (puzzles contextuais); UC-S015, a RF024 (celular) e a RF018 (o momento de pânico); UC-S016, a RF028 (comidas); e UC-S017, a RF029 (minigames) e à RN008.
 
 Os Quadros 12 a 28 detalham cada caso de uso, com pré-condição, cenário principal, pós-condição e cenários alternativos.
 
