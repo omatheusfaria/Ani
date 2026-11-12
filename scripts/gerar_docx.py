@@ -38,7 +38,7 @@ from docx.enum.section import WD_ORIENT, WD_SECTION
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
-from docx.shared import Cm, Pt
+from docx.shared import Cm, Pt, RGBColor
 
 RAIZ = Path(__file__).resolve().parent.parent
 BASE = RAIZ / "TG_Matheus_Ani_modelo.docx"
@@ -129,7 +129,7 @@ IMAGENS_FIGURAS = {
 PAISAGEM = {1, 3, 9}  # BPMN, classes e DER: largos demais para retrato
 
 # Capítulos que ainda não existem no tg-ani.md; entram antes das Referências.
-CAPITULOS_PENDENTES = ["6 Considerações Finais"]
+CAPITULOS_PENDENTES = []
 
 HEBRAICO = re.compile(r"([\u0590-\u05FF\uFB1D-\uFB4F]+(?:\s+[\u0590-\u05FF\uFB1D-\uFB4F]+)*)")
 INLINE = re.compile(r"(\*\*.+?\*\*|`[^`]+`|(?<![\w*])\*[^*\s][^*]*?\*(?![\w*]))")
@@ -188,7 +188,7 @@ def formatar_paragrafo(p, *, primeira=None, esquerda=None, deslocamento=None,
         pf.line_spacing = 1.0
 
 
-def _run(p, texto, *, negrito=False, italico=False, tamanho=None):
+def _run(p, texto, *, negrito=False, italico=False, tamanho=None, cor=None):
     """Run com texto literal; U+00AD vira hífen opcional do Word."""
     r = p.add_run()
     for k, pedaco in enumerate(texto.split("\u00ad")):
@@ -205,6 +205,8 @@ def _run(p, texto, *, negrito=False, italico=False, tamanho=None):
         r.italic = True
     if tamanho:
         r.font.size = Pt(tamanho)
+    if cor:
+        r.font.color.rgb = RGBColor.from_string(cor)
     return r
 
 
@@ -223,16 +225,21 @@ def adicionar_runs(p, texto, *, negrito=False, italico=False, tamanho=None):
         for seg in HEBRAICO.split(t):
             if not seg:
                 continue
-            r = _run(p, seg, negrito=b, italico=i, tamanho=tamanho)
-            if HEBRAICO.fullmatch(seg):
-                rpr = r._r.get_or_add_rPr()
-                # Mesma família (Arial) para o script complexo e direção RTL.
-                fonts = rpr.find(qn("w:rFonts"))
-                if fonts is None:
-                    fonts = OxmlElement("w:rFonts")
-                    rpr.insert(0, fonts)
-                fonts.set(qn("w:cs"), "Arial")
-                _set(rpr, "w:rtl")
+            for trecho in re.split(r"(\[(?:preencher|definir)(?::[^\]]*)?\])", seg, flags=re.I):
+                if not trecho:
+                    continue
+                marcador = bool(re.fullmatch(r"\[(?:preencher|definir)(?::[^\]]*)?\]", trecho, flags=re.I))
+                r = _run(p, trecho, negrito=b, italico=i, tamanho=tamanho,
+                         cor="FF0000" if marcador else None)
+                if HEBRAICO.fullmatch(trecho):
+                    rpr = r._r.get_or_add_rPr()
+                    # Mesma família (Arial) para o script complexo e direção RTL.
+                    fonts = rpr.find(qn("w:rFonts"))
+                    if fonts is None:
+                        fonts = OxmlElement("w:rFonts")
+                        rpr.insert(0, fonts)
+                    fonts.set(qn("w:cs"), "Arial")
+                    _set(rpr, "w:rtl")
 
 
 def limpar_marcas(el):
@@ -312,7 +319,8 @@ def ler_blocos(md: str, ate: str | None):
             continue
         m = CODIGO_LINHA.fullmatch(s)
         if m:
-            blocos.append(("legenda_codigo", int(m.group(2)), m.group(3)))
+            titulo = re.sub(r"\s+\([^()]*\)\s*$", "", m.group(3)).strip()
+            blocos.append(("legenda_codigo", int(m.group(2)), titulo))
             i += 1
             continue
         m = FIGURA_LINHA.fullmatch(s)
@@ -400,7 +408,7 @@ class Gerador:
 
     def referencia(self, texto):
         p = self.doc.add_paragraph(style="Bibliography")
-        p.alignment = 0  # ABNT NBR 6023: alinhada à esquerda
+        formatar_paragrafo(p, primeira=0, alinhamento=0, simples=True, antes=0, depois=240)
         adicionar_runs(p, texto)
 
     def lista(self, ordenada, itens):
@@ -436,9 +444,8 @@ class Gerador:
                                depois=240 if k == len(linhas) - 1 else 0,
                                manter_com_proximo=k < len(linhas) - 1)
             _run(p, ln, tamanho=10)
-        if self.fonte_codigo_pendente:
-            self.fonte_codigo_pendente = False
-            self.fonte()
+        self.fonte_codigo_pendente = False
+        self.fonte()
 
     # ---- legendas (padrão dos quadros de exemplo do modelo)
     def legenda(self, rotulo, titulo):
@@ -679,37 +686,61 @@ def substituir_texto(p_el, textos):
             p_el.remove(r)
 
 
-def montar_resumo(body, copias):
-    for chave, textos in (("resumo_tit", None), ("vazio", None),
-                          ("resumo_txt", [PLACEHOLDER]), ("vazio", None),
-                          ("palavras", ["Palavras-chave:", f" {PLACEHOLDER}."]),
-                          ("vazio", None), ("abstract_tit", None), ("vazio", None),
-                          ("abstract_txt", [PLACEHOLDER]), ("vazio", None),
-                          ("keywords", ["Keywords:", f" {PLACEHOLDER}."])):
+def separar_resumo(md):
+    """Tira do markdown as seções "# Resumo" e "# Abstract" (antes da Introdução).
+
+    Devolve o markdown sem elas e um dicionário com o texto do resumo, as
+    palavras-chave, o abstract e as keywords (None quando faltar).
+    """
+    dados = {"resumo": None, "palavras": None, "abstract": None, "keywords": None}
+    m = re.match(r"\s*# Resumo\n(.*?)\n# Abstract\n(.*?)\n(?=# )", md, re.S)
+    if not m:
+        return md, dados
+    for bloco, txt, rot, chave_txt, chave_rot in ((m.group(1), "resumo", "Palavras-chave", "resumo", "palavras"),
+                                                   (m.group(2), "abstract", "Keywords", "abstract", "keywords")):
+        partes = [x.strip() for x in bloco.strip().split("\n\n") if x.strip()]
+        for parte in partes:
+            r = re.match(rf"\*\*{rot}:\*\*\s*(.*)", parte, re.S)
+            if r:
+                dados[chave_rot] = " " + " ".join(r.group(1).split())
+            else:
+                dados[chave_txt] = " ".join(parte.split())
+    return md[m.end():], dados
+
+
+def montar_resumo(body, copias, dados=None):
+    dados = dados or {}
+    resumo = dados.get("resumo") or PLACEHOLDER
+    abstract = dados.get("abstract") or PLACEHOLDER
+    sequencia = [("resumo_tit", None), ("vazio", None), ("resumo_txt", [resumo])]
+    if dados.get("palavras"):
+        sequencia += [("vazio", None), ("palavras", ["Palavras-chave:", dados["palavras"]])]
+    sequencia += [("vazio", None), ("abstract_tit", None), ("vazio", None), ("abstract_txt", [abstract])]
+    if dados.get("keywords"):
+        sequencia += [("vazio", None), ("keywords", ["Keywords:", dados["keywords"]])]
+    for chave, textos in sequencia:
         el = copy.deepcopy(copias[chave])
         if textos:
             substituir_texto(el, textos)
         limpar_marcas(el)
+        if textos and any(PLACEHOLDER in texto for texto in textos):
+            for run in el.iter(qn("w:r")):
+                if PLACEHOLDER in "".join(t.text or "" for t in run.iter(qn("w:t"))):
+                    _set(_set(run, "w:rPr"), "w:color", val="FF0000")
         body.insert(len(body) - 1, el)
 
 
 def ajustar_folha_de_rosto(doc):
-    """Titulação do orientador e início do corpo em nova página (capa sozinha)."""
+    """Ajusta apenas a linha do orientador, preservando os demais elementos."""
     trocado = False
     for p in doc.paragraphs[:IDX_ULTIMO_MANTIDO]:
-        for r in p.runs:
-            if ORIENTADOR_DE in r.text:
-                r.text = r.text.replace(ORIENTADOR_DE, ORIENTADOR_PARA)
-                trocado = True
+        if p.text.strip().startswith("Orientador:") and p.runs:
+            p.runs[0].text = "Orientador: Prof. Me. "
+            for r in p.runs[1:]:
+                r.text = ""
+            trocado = True
     if not trocado:
         print("AVISO: titulação do orientador não encontrada", file=sys.stderr)
-    # O ano ultrapassava a página 1 por ~2 pt: remove um parágrafo vazio entre
-    # o orientador e FRANCA/SP (sem mudar texto nem formatação da capa).
-    vazio = doc.paragraphs[IDX_VAZIO_CAPA]
-    if vazio.text.strip() or doc.paragraphs[IDX_VAZIO_CAPA + 1].text != "FRANCA/SP":
-        sys.exit("ERRO: parágrafo vazio da capa não está onde se espera")
-    vazio._p.getparent().remove(vazio._p)
-    doc.sections[-1].start_type = WD_SECTION.NEW_PAGE
 
 
 def remover_imagens_orfas(doc):
@@ -740,11 +771,12 @@ def main():
             body.remove(el)
 
     ajustar_folha_de_rosto(doc)
-    montar_resumo(body, copias)
+    md, dados_resumo = separar_resumo(FONTE_MD.read_text(encoding="utf-8"))
+    montar_resumo(body, copias, dados_resumo)
 
     g = Gerador(doc)
     secao = None
-    for b in ler_blocos(FONTE_MD.read_text(encoding="utf-8"), args.ate):
+    for b in ler_blocos(md, args.ate):
         tipo = b[0]
         if tipo == "titulo":
             if b[1] == 1:
