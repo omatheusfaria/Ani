@@ -46,7 +46,7 @@ O projeto segue a metodologia Cascata, com fases sequenciais de levantamento de 
 
 O Termo de Abertura do Projeto (TAP) formaliza a existência de um projeto. Segundo o Project Management Institute, o documento de abertura autoriza formalmente o projeto e define seus elementos estruturantes em nível inicial (PROJECT MANAGEMENT INSTITUTE, 2017), entre eles o propósito, o escopo preliminar, os stakeholders, as premissas, as restrições e os critérios de sucesso.
 
-Em um trabalho acadêmico, o TAP funciona como um contrato. Delimita o que será construído, quem participa, quais recursos estão previstos e quais limites devem ser respeitados (PROJECT MANAGEMENT INSTITUTE, 2017). Em projetos de software, ele também liga o problema de pesquisa aos objetivos, à modelagem e à implementação, o que diminui as ambiguidades nas etapas seguintes.
+Em um trabalho acadêmico, o TAP funciona como um contrato. Delimita o que será construído, quem participa, quais recursos estão previstos e quais limites devem ser respeitados (PROJECT MANAGEMENT INSTITUTE, 2017). Em projetos de software, ele também liga o problema de pesquisa aos objetivos, à modelagem e à implementação, o que diminui as ambiguidades nas etapas seguintes (PROJECT MANAGEMENT INSTITUTE, 2017).
 
 Neste trabalho, o TAP descreve a proposta do jogo quanto a gerenciamento, escopo e viabilidade. As subseções a seguir trazem o conteúdo do artefato e a contextualização do produto.
 
@@ -413,7 +413,7 @@ Os RNFs podem ser agrupados por tema da seguinte forma: desempenho e persistênc
 
 ## 2.5 Regras de Negócio
 
-Regras de negócio são enunciados que impõem restrições, condições ou políticas sobre o comportamento de um sistema dentro de seu domínio (BUSINESS RULES GROUP, 2000). Em termos de modelagem, elas definem o que pode, deve ou não deve acontecer em determinados cenários. Em projetos de software, são elas que transformam intenções do domínio em comportamentos verificáveis.
+Regras de negócio são enunciados que impõem restrições, condições ou políticas sobre o comportamento de um sistema dentro de seu domínio (BUSINESS RULES GROUP, 2000). Em termos de modelagem, elas definem o que pode, deve ou não deve acontecer em determinados cenários. Em projetos de software, são elas que transformam intenções do domínio em comportamentos verificáveis (BUSINESS RULES GROUP, 2000).
 
 Aqui, as regras de negócio registram opções filosóficas e narrativas do projeto, e não validações administrativas. A regra de convergência dos ecos de decisão, por exemplo, representa no sistema a irresolução do Ato II: diferentes tentativas do jogador continuam levando ao mesmo impasse narrativo.
 
@@ -682,9 +682,9 @@ O diagrama mostra como os elementos do jogo foram organizados em classes com res
 
 As classes seguem os conceitos do jogo. `Ato` representa os cinco atos filosóficos; `Memoria`, `Diario` e `EntradaDiario` formalizam o sistema de memórias; `ObjetoMemoria` representa o gatilho interativo de revelação de memórias; `ObjetoRestauravel` traduz a lógica de Kintsugi do Ato III; `ObjetoContemplativo` traduz a contemplação ativa do Ato IV; `NPC` e `Dialogo` representam personagens de memória e seus fluxos textuais; `Ani` representa a protagonista; `EcoDecisao` registra as tentativas do jogador nos ecos de decisão do Ato II; e `Save` reúne o progresso persistido da partida, como a entidade SAVE do DER. As mecânicas do início do Ato I acrescentam `Celular` e `Publicacao`, que representam o celular em primeira pessoa e o feed (RF024); `Interruptor` e `FonteDeLuz`, que controlam a iluminação dos cômodos (RF025, RN007), com o atributo `iluminado` de `Cenario`; `ObjetoInspecionavel`, para a inspeção de objetos em primeira pessoa (RF026); `Barraca`, `Comida` e `Minigame`, para as barracas do parque (RF028, RF029, RN008); e `Configuracao`, que guarda as opções de vídeo e áudio (RF022). `ObjetoMemoria` leva Ani ao `Cenario` da memória (RF027), `Memoria.ordem` indica a posição da memória na sequência linear do ato (RN004), `Ato.totalMemorias` guarda o tamanho dessa sequência e `NPC.acompanhando` indica a personagem que segue Ani pelo cenário (RF030).
 
-`Jogo` e `Ani` mantêm uma associação bidirecional de multiplicidade 1 : 1: `Jogo` alcança o `Diario` por meio de `Ani`, sem associação direta entre `Jogo` e `Diario`, e `Ani` alcança `Jogo` para notificar o início e o fim das crises de ansiedade por meio de `Jogo.alterarEstado()`. Na implementação em Unreal Engine, essa notificação de `Ani` para `Jogo` é feita por um *delegate*: `Ani` dispara o evento, e `Jogo`, inscrito nele, altera o estado da sessão, o que evita que a personagem dependa diretamente da classe de jogo.
+`Jogo` e `Ani` mantêm uma associação bidirecional de multiplicidade 1 : 1: `Jogo` alcança o `Diario` por meio de `Ani`, sem associação direta entre `Jogo` e `Diario`, e `Ani` alcança `Jogo` para notificar o início e o fim das crises de ansiedade por meio de `Jogo.alterarEstado()`. Na implementação em Unreal Engine, essa notificação de `Ani` para `Jogo` é feita por um *delegate*: `Ani` dispara o evento, e `Jogo`, inscrito nele, altera o estado da sessão, o que evita que a personagem dependa diretamente da classe de jogo (Epic Games, s.d.a, online).
 
-Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`, `FString`, `FDateTime`, `TArray<...>`). Os nomes das classes e enumerações do modelo omitem os prefixos da convenção da Unreal (`U` para classes derivadas de `UObject`, `A` para atores, `F` para estruturas e `E` para enumerações), que podem ser aplicados na implementação.
+Os tipos dos atributos seguem a Unreal Engine 5 / C++ (`bool`, `int32`, `float`, `FString`, `FDateTime`, `TArray<...>`). Os nomes das classes e enumerações do modelo omitem os prefixos da convenção da Unreal (`U` para classes derivadas de `UObject`, `A` para atores, `F` para estruturas e `E` para enumerações), que podem ser aplicados na implementação (Epic Games, s.d.c, online).
 
 ### Classe: Jogo
 Atributos:
@@ -1602,7 +1602,7 @@ A cena do parque começa no mesmo branco do flash, que assenta e revela a noite:
 
 ### 4.2.9 Diálogos e Personagem Acompanhante
 
-O protótipo usa dois tipos de fala, como em jogos narrativos do mesmo estilo. A caixa embaixo da tela é usada para pensamentos e para a interação com objetos; o balão sobre a cabeça, para a conversa entre personagens, e acompanha o personagem na tela. O texto aparece letra a letra; um clique completa a fala e outro a pula. Enquanto o balão é escrito, a boca do sprite abre e fecha no ritmo das letras.
+O protótipo usa dois tipos de fala, como em jogos narrativos do mesmo estilo (MOJIKEN STUDIO, 2023; POLYCHROMA GAMES, 2024). A caixa embaixo da tela é usada para pensamentos e para a interação com objetos; o balão sobre a cabeça, para a conversa entre personagens, e acompanha o personagem na tela. O texto aparece letra a letra; um clique completa a fala e outro a pula. Enquanto o balão é escrito, a boca do sprite abre e fecha no ritmo das letras.
 
 No parque, a Malu acompanha Ani pela rua das barracas, um pouco atrás e mais para o fundo, comenta algumas barracas quando está perto e participa das compras e dos minigames.
 
@@ -1919,7 +1919,7 @@ Os sistemas a seguir constam dos requisitos e dos diagramas do capítulo 2, mas 
 - Save completo (RF009, RNF002): ato atual, memórias registradas, estado do diário e estado visual da casa.
 - Sair do jogo (RF023): no navegador, a sessão termina ao fechar a aba; a opção de sair, com confirmação, é do software para PC.
 
-Na Unreal Engine, a arquitetura segue os diagramas do capítulo 2. A entrada será tratada pelo Enhanced Input, que associa a mesma *Input Action* à tecla e ao botão do controle (Epic Games, s.d.b, online), papel que no protótipo é do `gamepad.js`. O *GameMode* e a *GameInstance*, junto com a classe `Jogo`, guardarão o estado da sessão entre trocas de nível (Epic Games, s.d.c, online), e a notificação de `Ani` para `Jogo` no início e no fim das crises será feita por um *delegate* (Epic Games, s.d.a, online).
+Na Unreal Engine, a arquitetura segue os diagramas do capítulo 2. A entrada será tratada pelo Enhanced Input, que associa a mesma *Input Action* à tecla e ao botão do controle (Epic Games, s.d.b, online), papel que no protótipo é do `gamepad.js`. O *GameMode* e a *GameInstance*, junto com a classe `Jogo`, guardarão o estado da sessão entre trocas de nível (Epic Games, s.d.d, online), e a notificação de `Ani` para `Jogo` no início e no fim das crises será feita por um *delegate* (Epic Games, s.d.a, online).
 
 ## 4.4 Atendimento dos Requisitos no Protótipo
 
@@ -2007,11 +2007,11 @@ Os testes foram feitos só no Chromium, que é também a base do Google Chrome e
 
 Três mudanças simples ampliariam a portabilidade do protótipo: copiar o Three.js para a pasta do jogo, para que ele abra sem internet; mostrar uma mensagem quando o WebGL 2 não estiver disponível, em vez da tela preta; e acrescentar controles de toque, para levar o jogo a tablets e celulares. Quanto ao desempenho, os testes foram feitos numa máquina sem placa de vídeo, em que toda a renderização acontece no processador, e a taxa de cerca de 3 quadros por segundo não representa o uso real. Por isso, a meta de 60 quadros por segundo em hardware equivalente a Intel HD Graphics com 4 GB de memória (RNF001) não pôde ser verificada neste trabalho e fica pendente de medição em computador com placa de vídeo.
 
-No jogo completo, a portabilidade muda de natureza. A Unreal Engine 5.4.4 compila o mesmo projeto para Windows, macOS, Linux, consoles e dispositivos móveis (Epic Games, s.d.d, online), a partir do mesmo código C++ e dos mesmos assets; o que muda de uma plataforma para outra são os ajustes de desempenho, os controles e, nos consoles, os kits e as licenças de desenvolvimento de cada fabricante. A escolha da engine é, portanto, coerente com o RNF003, que só poderá ser verificado quando o jogo completo for implementado; a portabilidade efetiva para consoles e celulares continua fora do escopo deste trabalho, como registrado no TAP.
+No jogo completo, a portabilidade muda de natureza. A Unreal Engine 5.4.4 compila o mesmo projeto para Windows, macOS, Linux, consoles e dispositivos móveis (Epic Games, s.d.e, online), a partir do mesmo código C++ e dos mesmos assets; o que muda de uma plataforma para outra são os ajustes de desempenho, os controles e, nos consoles, os kits e as licenças de desenvolvimento de cada fabricante. A escolha da engine é, portanto, coerente com o RNF003, que só poderá ser verificado quando o jogo completo for implementado; a portabilidade efetiva para consoles e celulares continua fora do escopo deste trabalho, como registrado no TAP.
 
 ## 5.2 Cálculo das Métricas
 
-Métricas de software permitem estimar o tamanho de um sistema e, a partir dele, o esforço, o prazo e o custo do desenvolvimento. Neste trabalho foi usado o método de Pontos de Caso de Uso (*Use Case Points*), proposto por Karner (1993), que mede o tamanho a partir dos atores e dos casos de uso já especificados e o ajusta por fatores técnicos e ambientais (Clemmons, 2006). O método foi escolhido porque os casos de uso de Ani já descrevem as funções do jogo completo (seção 2.6), enquanto métodos baseados em dados persistidos, como a Análise de Pontos de Função, rendem pouco num jogo, que guarda poucos dados.
+Métricas de software permitem estimar o tamanho de um sistema e, a partir dele, o esforço, o prazo e o custo do desenvolvimento (PRESSMAN; MAXIM, 2016). Neste trabalho foi usado o método de Pontos de Caso de Uso (*Use Case Points*), proposto por Karner (1993), que mede o tamanho a partir dos atores e dos casos de uso já especificados e o ajusta por fatores técnicos e ambientais (Clemmons, 2006). O método foi escolhido porque os casos de uso de Ani já descrevem as funções do jogo completo (seção 2.6), enquanto métodos baseados em dados persistidos, como a Análise de Pontos de Função (INTERNATIONAL FUNCTION POINT USERS GROUP, 2010), rendem pouco num jogo, que guarda poucos dados.
 
 O cálculo segue cinco etapas: o peso dos atores (UAW), o peso dos casos de uso (UUCW), os pontos não ajustados (UUCP = UAW + UUCW), os fatores de ajuste técnico (TCF) e ambiental (ECF) e, por fim, os pontos ajustados (UCP = UUCP × TCF × ECF), que multiplicados pelo fator de produtividade dão o esforço em horas (Clemmons, 2006).
 
@@ -2134,7 +2134,7 @@ O Quadro 43 apresenta o investimento previsto.
 | Arte 2D e 3D (sprites, cenários e animações) | 8 meses × R$ 3.471,28 × 1,2744 | R$ 35.390,39 |
 | Trilha sonora e efeitos sonoros | 3 meses × R$ 3.710,67 × 1,2744 | R$ 14.186,63 |
 | Roteiro e direção narrativa | 3 meses × R$ 6.848,48 × 1,2744 | R$ 26.183,11 |
-| Licença da Unreal Engine | Gratuita até US$ 1 milhão de receita bruta; 5% acima disso, com vendas na Epic Games Store isentas (Epic Games, s.d.e, online) | R$ 0,00 |
+| Licença da Unreal Engine | Gratuita até US$ 1 milhão de receita bruta; 5% acima disso, com vendas na Epic Games Store isentas (Epic Games, s.d.f, online) | R$ 0,00 |
 | Publicação na Steam | Taxa do Steam Direct por jogo, recuperável depois de US$ 1.000 em receita (Valve, s.d., online) | US$ 100,00 |
 | Total | | R$ 189.999,70 + US$ 100,00 |
 
@@ -2185,6 +2185,8 @@ EPIC GAMES. *Delegates and lambda functions in Unreal Engine*. Disponível em: <
 
 EPIC GAMES. *Enhanced Input in Unreal Engine*. Disponível em: <https://dev.epicgames.com/documentation/unreal-engine/enhanced-input-in-unreal-engine>. Acesso em: 16.nov.2026.
 
+EPIC GAMES. *Epic C++ coding standard for Unreal Engine*. Disponível em: <https://dev.epicgames.com/documentation/unreal-engine/epic-cplusplus-coding-standard-for-unreal-engine>. Acesso em: 16.nov.2026.
+
 EPIC GAMES. *Gameplay framework in Unreal Engine*. Disponível em: <https://dev.epicgames.com/documentation/unreal-engine/gameplay-framework-in-unreal-engine>. Acesso em: 16.nov.2026.
 
 EPIC GAMES. *Packaging your project*. Disponível em: <https://dev.epicgames.com/documentation/unreal-engine/packaging-your-project>. Acesso em: 16.nov.2026.
@@ -2198,6 +2200,8 @@ IBM. *UML diagrams*. Disponível em: <https://www.ibm.com/docs/en/radfws/9.6.1?t
 IBM. *Use case view*. Disponível em: <https://www.ibm.com/docs/en/systems-engineering/1.5.0?topic=views-use-case-view>. Acesso em: 22.mar.2026.
 
 IBM. *What is an entity relationship diagram?* Disponível em: <https://www.ibm.com/think/topics/entity-relationship-diagram>. Acesso em: 25.mar.2026.
+
+INTERNATIONAL FUNCTION POINT USERS GROUP. *Function point counting practices manual*: release 4.3.1. [S.l.]: IFPUG, 2010.
 
 ISBISTER, Katherine. *How games move us: emotion by design*. Cambridge, MA: MIT Press, 2016.
 
@@ -2217,6 +2221,8 @@ MDN WEB DOCS. *Web Audio API best practices*. Disponível em: <https://developer
 
 MICROSOFT. *Playwright*. Disponível em: <https://playwright.dev/>. Acesso em: 09.nov.2026.
 
+MOJIKEN STUDIO. *A Space for the Unbound*. [S.l.]: Toge Productions, 2023. Jogo eletrônico.
+
 MURRAY, Janet H. *Hamlet no Holodeck: o futuro da narrativa no ciberespaço*. Tradução de Elissa Khoury Daher e Marcelo Fernandez Cuzziol. São Paulo: Itaú Cultural: Unesp, 2003.
 
 OBJECT MANAGEMENT GROUP. *Business Process Model and Notation (BPMN), Version 2.0.2*. Needham: OMG, 2014.
@@ -2224,6 +2230,8 @@ OBJECT MANAGEMENT GROUP. *Business Process Model and Notation (BPMN), Version 2.
 OBJECT MANAGEMENT GROUP. *OMG Unified Modeling Language (OMG UML), Version 2.5.1*. Needham: OMG, 2017.
 
 PARKES, Graham; LOUGHNANE, Adam. Japanese aesthetics. *Stanford Encyclopedia of Philosophy*. Stanford: Stanford University, 2023. Disponível em: <https://plato.stanford.edu/entries/japanese-aesthetics/>. Acesso em: 16.nov.2026.
+
+POLYCHROMA GAMES. *Until Then*. [S.l.]: Maximum Entertainment, 2024. Jogo eletrônico.
 
 PRESSMAN, Roger S.; MAXIM, Bruce R. *Engenharia de Software: uma abordagem profissional*. 8. ed. Porto Alegre: AMGH, 2016.
 
