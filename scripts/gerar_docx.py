@@ -54,6 +54,8 @@ IDX_RESUMO_TIT, IDX_RESUMO_TXT, IDX_PALAVRAS = 33, 35, 41
 IDX_ABSTRACT_TIT, IDX_ABSTRACT_TXT, IDX_KEYWORDS = 43, 45, 47
 
 ORIENTADOR_DE, ORIENTADOR_PARA = "Prof. Dr./Me. ", "Prof. Me. "
+# Autores na ordem da capa; o primeiro já está no modelo, os demais entram abaixo dele.
+AUTORES = ["Matheus Faria de Souza Junior", "Miguel Kelton Rocha"]
 IDX_VAZIO_CAPA = 25  # parágrafo vazio logo antes de "FRANCA/SP"
 QUADRO_PEQUENO = 15  # quadros genéricos com até N linhas não se dividem entre páginas
 
@@ -269,6 +271,9 @@ def largura_minima(palavras, negrito=False, tamanho_pt=10):
     """Largura (twips) da maior palavra em Arial `tamanho_pt`, mais as margens da célula."""
     from PIL import ImageFont
     arq = r"C:\Windows\Fonts\arialbd.ttf" if negrito else r"C:\Windows\Fonts\arial.ttf"
+    if not Path(arq).exists():  # fora do Windows: Liberation Sans tem as mesmas métricas da Arial
+        arq = ("/usr/share/fonts/truetype/liberation/LiberationSans-"
+               + ("Bold.ttf" if negrito else "Regular.ttf"))
     fonte = _FONTES_MEDIDA.setdefault(arq, ImageFont.truetype(arq, 200))
     maior = max(fonte.getlength(p) for p in palavras)  # px a 200 px/em
     return int(maior / 200 * tamanho_pt * 20) + 2 * 108 + 60  # + margens + folga
@@ -742,16 +747,56 @@ def montar_resumo(body, copias, dados=None):
 
 
 def ajustar_folha_de_rosto(doc):
-    """Ajusta apenas a linha do orientador, preservando os demais elementos."""
+    """Titulação do orientador, segundo autor e capa sozinha na página 1."""
     trocado = False
     for p in doc.paragraphs[:IDX_ULTIMO_MANTIDO]:
-        if p.text.strip().startswith("Orientador:") and p.runs:
-            p.runs[0].text = "Orientador: Prof. Me. "
-            for r in p.runs[1:]:
-                r.text = ""
-            trocado = True
+        for r in p.runs:
+            if ORIENTADOR_DE in r.text:
+                r.text = r.text.replace(ORIENTADOR_DE, ORIENTADOR_PARA)
+                trocado = True
     if not trocado:
         print("AVISO: titulação do orientador não encontrada", file=sys.stderr)
+    # O ano ultrapassava a página 1 por ~2 pt: remove um parágrafo vazio entre
+    # o orientador e FRANCA/SP (sem mudar texto nem formatação da capa).
+    vazio = doc.paragraphs[IDX_VAZIO_CAPA]
+    if vazio.text.strip() or doc.paragraphs[IDX_VAZIO_CAPA + 1].text != "FRANCA/SP":
+        sys.exit("ERRO: parágrafo vazio da capa não está onde se espera")
+    vazio._p.getparent().remove(vazio._p)
+    doc.sections[-1].start_type = WD_SECTION.NEW_PAGE
+    adicionar_coautores(doc)
+
+
+def adicionar_coautores(doc):
+    """Põe os demais autores, um por linha, abaixo do primeiro (capa e bloco do Resumo).
+
+    Na capa, o nome ocupa a linha vazia logo abaixo (mesmo estilo), para não
+    empurrar o restante da página; no bloco do Resumo, entra um parágrafo novo.
+    Cada nome é uma cópia do parágrafo do primeiro autor, com a mesma formatação.
+    """
+    principais = [p for p in doc.paragraphs[:IDX_ULTIMO_MANTIDO + 1]
+                  if p.text.strip() == AUTORES[0]]
+    if len(principais) != 2:
+        print(f"AVISO: {len(principais)} ocorrências de {AUTORES[0]!r} (esperadas 2)",
+              file=sys.stderr)
+    for p in principais:
+        anterior = p._p
+        for nome in AUTORES[1:]:
+            novo = copy.deepcopy(p._p)
+            substituir_texto(novo, [nome])
+            seguinte = anterior.getnext()
+            estilo = p._p.pPr.pStyle if p._p.pPr is not None else None
+            estilo_seg = (seguinte.pPr.pStyle if seguinte is not None and seguinte.tag == qn("w:p")
+                          and seguinte.pPr is not None else None)
+            vazio = (seguinte is not None and seguinte.tag == qn("w:p")
+                     and not "".join(seguinte.itertext()).strip()
+                     and estilo is not None and estilo_seg is not None
+                     and estilo.val == estilo_seg.val)
+            if vazio:
+                seguinte.addprevious(novo)
+                seguinte.getparent().remove(seguinte)
+            else:
+                anterior.addnext(novo)
+            anterior = novo
 
 
 def remover_imagens_orfas(doc):
