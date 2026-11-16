@@ -1830,7 +1830,7 @@ const settings = readJSON(SETTINGS_KEY, { volume: 1, rows: 360 });
 save.set({ cena: 'quarto' });
 ```
 
-As leituras e gravações ficam dentro de `try/catch` porque o armazenamento pode estar bloqueado (MDN Web Docs, s.d.c, online), por exemplo numa janela anônima; nesse caso o jogo continua, só que sem salvar. A estrutura completa do save, com ato, memórias, diário e estado da casa, depende dos sistemas previstos na seção 4.3.
+As leituras e gravações ficam dentro de `try/catch` porque o armazenamento pode estar bloqueado, por exemplo numa janela anônima; nesse caso o jogo continua, só que sem salvar. A estrutura completa do save, com ato, memórias, diário e estado da casa, depende dos sistemas previstos na seção 4.3.
 
 ### 4.2.15 Áudio Sintetizado
 
@@ -1866,7 +1866,7 @@ Sintetizar os sons dispensou a busca e o licenciamento de arquivos de áudio e d
 
 ### 4.2.16 Suporte a Gamepad e Mapeamento de Controles
 
-Todo o protótipo pode ser jogado com um controle no padrão Xbox, sem configuração (W3C, 2026). Para não duplicar a lógica das cenas, o módulo `gamepad.js` converte os botões em eventos de tecla (A vira Enter, B vira Backspace, Menu vira Esc) e o analógico esquerdo em velocidade analógica, de modo que inclinar pouco faz Ani andar devagar. Não há cursor: no celular, na estante, no criado-mudo, na mochila e nos papéis, o direcional troca o item escolhido, como num menu. Alguns sons importantes também fazem o controle vibrar.
+Todo o protótipo pode ser jogado com um controle no padrão Xbox, sem configuração. Para não duplicar a lógica das cenas, o módulo `gamepad.js` converte os botões em eventos de tecla (A vira Enter, B vira Backspace, Menu vira Esc) e o analógico esquerdo em velocidade analógica, de modo que inclinar pouco faz Ani andar devagar. Não há cursor: no celular, na estante, no criado-mudo, na mochila e nos papéis, o direcional troca o item escolhido, como num menu. Alguns sons importantes também fazem o controle vibrar.
 
 - Arquivos: `js/engine/gamepad.js`, `js/engine/glyphs.js`
 - Requisitos correspondentes: RF011, RF001, RNF004
@@ -2215,8 +2215,6 @@ MDN WEB DOCS. *image-rendering*. Disponível em: <https://developer.mozilla.org/
 
 MDN WEB DOCS. *Web Audio API best practices*. Disponível em: <https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Best_practices>. Acesso em: 16.nov.2026.
 
-MDN WEB DOCS. *Window: localStorage property*. Disponível em: <https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage>. Acesso em: 16.nov.2026.
-
 MICROSOFT. *Playwright*. Disponível em: <https://playwright.dev/>. Acesso em: 09.nov.2026.
 
 MURRAY, Janet H. *Hamlet no Holodeck: o futuro da narrativa no ciberespaço*. Tradução de Elissa Khoury Daher e Marcelo Fernandez Cuzziol. São Paulo: Itaú Cultural: Unesp, 2003.
@@ -2254,8 +2252,6 @@ VALVE. *Steam Direct fee*. Disponível em: <https://partner.steamgames.com/doc/g
 VISUAL PARADIGM. *What is Class Diagram?* Disponível em: <https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-class-diagram/>. Acesso em: 22.mar.2026.
 
 W3C. *Web Audio API*. W3C Recommendation, 17 jun. 2021. Disponível em: <https://www.w3.org/TR/2021/REC-webaudio-20210617/>. Acesso em: 16.nov.2026.
-
-W3C. *Gamepad*. W3C Working Draft, 14 nov. 2026. Disponível em: <https://www.w3.org/TR/2026/WD-gamepad-20261114/>. Acesso em: 16.nov.2026.
 
 W3C WEBDX COMMUNITY GROUP. *Import maps*. Web platform features explorer. Disponível em: <https://web-platform-dx.github.io/web-features-explorer/features/import-maps>. Acesso em: 09.nov.2026.
 
