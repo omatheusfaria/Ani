@@ -12,11 +12,11 @@ This work presents the design of Ani, a contemplative 2.5D narrative adventure f
 
 # 1 Introdução
 
-Jogos digitais narrativos interessam à engenharia de software porque reúnem, num mesmo produto, sistemas computacionais, linguagem audiovisual e interação. Em uma mídia linear, o público acompanha a trajetória de um personagem. No jogo, o jogador a percorre por meio de ações, ritmos, interrupções e respostas do sistema. Isso permite representar estados subjetivos, como o sofrimento, a memória e a transformação interior, em situações que o jogador vive pela interação.
+Jogos digitais narrativos interessam à engenharia de software porque reúnem, num mesmo produto, sistemas computacionais, linguagem audiovisual e interação. Em uma mídia linear, o público acompanha a trajetória de um personagem. No jogo, o jogador a percorre por meio de ações, ritmos, interrupções e respostas do sistema. Isso permite representar estados subjetivos, como o sofrimento, a memória e a transformação interior, em situações que o jogador vive pela interação (MURRAY, 2003; BOGOST, 2007).
 
 Ani אֲנִי é uma aventura narrativa contemplativa em 2.5D. A logline do projeto o define como “uma aventura narrativa contemplativa em 2.5D sobre consciência, sofrimento e a descoberta lenta do sentido”. Na sinopse, Ani está em seu quarto, às 23:47, presa à tela do celular, acompanhando o perfil de Malu numa rede social. Quando a bateria acaba e o quarto fica escuro, ela se levanta e procura o carregador. Os objetos que encontra a levam para dentro das próprias memórias, um espaço familiar e deformado ao mesmo tempo, onde memórias, silêncio e ruínas emocionais ocupam o lugar de objetivos tradicionais, combate ou tutoriais extensos. O nome אֲנִי significa “eu” em hebraico e indica a intenção de aproximar jogador e protagonista, para que a experiência seja vivida de dentro. As características gerais do produto estão na Ficha do Produto (Quadro 3), na seção 1.1.1.
 
-O jogo não se estrutura em escolhas morais binárias. Ele acompanha uma mudança de percepção ao longo de cinco atos filosóficos, que partem do pessimismo ocidental, associado a Zapffe, Mainländer e Bahnsen, e chegam a filosofias contemplativas japonesas, como Wabi-Sabi, Mono no Aware, Ikigai e Yugen. A passagem de um ato a outro aparece na atmosfera, no espaço, no ritmo, nas mecânicas e na linguagem sensorial, sem exposição teórica (Quadro 1).
+O jogo não se estrutura em escolhas morais binárias. Ele acompanha uma mudança de percepção ao longo de cinco atos filosóficos, que partem do pessimismo ocidental, associado a Zapffe, Mainländer e Bahnsen (ZAPFFE, 2004; BEISER, 2016), e chegam a filosofias contemplativas japonesas, como Wabi-Sabi, Mono no Aware, Ikigai e Yugen (KOREN, 1994; MATHEWS, 1996; PARKES; LOUGHNANE, 2023). A passagem de um ato a outro aparece na atmosfera, no espaço, no ritmo, nas mecânicas e na linguagem sensorial, sem exposição teórica (Quadro 1).
 
 | Ato | Referência Filosófica | Tom | Símbolo |
 | --- | --- | --- | --- |
@@ -38,15 +38,15 @@ A questão-problema que conduz o trabalho é a seguinte: “De que forma o desig
 
 O objetivo geral do projeto é conceber um jogo narrativo contemplativo que represente, por meio de sistemas, mecânicas e linguagem visual, uma jornada filosófica de transformação interior estruturada em cinco atos, do pessimismo existencial à contemplação, e desenvolver um protótipo funcional do início do Ato I, com cerca de dez minutos de jogo, que demonstre parte do design e das mecânicas propostos, aplicando práticas de engenharia de software no planejamento e na construção do projeto. Os objetivos específicos são consolidar a direção conceitual e filosófica do jogo, levantar e classificar os requisitos, modelar os fluxos principais por BPMN e casos de uso, projetar sistemas que traduzam cada ato em interação e implementar um protótipo do início do Ato I coerente com a documentação produzida.
 
-Jogos digitais permitem representar experiências internas e subjetivas, e é nisso que o trabalho se justifica. A ausência de combate, de HUD numérico permanente e de moralidade binária é uma decisão ligada ao tema do trabalho, e não uma limitação técnica. A única exceção são os minigames das barracas do parque, no Ato I: como reproduzem jogos de parque de diversões, exibem placar e interface própria enquanto duram, sem efeito sobre a progressão. O jogo trata da travessia do sofrimento, da observação e da mudança de percepção. Por isso a interface mínima, as pausas, o silêncio e as mecânicas contemplativas são coerentes com o que se pretende investigar.
+Jogos digitais permitem representar experiências internas e subjetivas (ISBISTER, 2016), e é nisso que o trabalho se justifica. A ausência de combate, de HUD numérico permanente e de moralidade binária é uma decisão ligada ao tema do trabalho, e não uma limitação técnica. A única exceção são os minigames das barracas do parque, no Ato I: como reproduzem jogos de parque de diversões, exibem placar e interface própria enquanto duram, sem efeito sobre a progressão. O jogo trata da travessia do sofrimento, da observação e da mudança de percepção. Por isso a interface mínima, as pausas, o silêncio e as mecânicas contemplativas são coerentes com o que se pretende investigar.
 
-O projeto segue a metodologia Cascata, com fases sequenciais de levantamento de requisitos, modelagem, design de sistemas e implementação. O protótipo foi feito em HTML, CSS e JavaScript com a biblioteca Three.js e roda no navegador. Também foram usados o Visual Studio Code, o Sprite Fusion e o GPT-6 para gerar os sprites, scripts em Python (NumPy e Pillow) para tratá-los e o Claude Opus 5.5 para modelar os cenários 3D em Three.js. O documento segue essa ordem: depois da introdução vêm o Termo de Abertura do Projeto, o levantamento de requisitos (com BPMN, requisitos, regras, casos de uso, diagrama de classes e DER), as ferramentas e métodos empregados e, por fim, o desenvolvimento do protótipo funcional. O Apêndice B apresenta a missão, a visão e os valores do projeto. O Apêndice C traz uma versão resumida do Game Design Document, que reúne a direção criativa da qual os requisitos foram derivados.
+O projeto segue a metodologia Cascata, com fases sequenciais de levantamento de requisitos, modelagem, design de sistemas e implementação (ROYCE, 1970; PRESSMAN; MAXIM, 2016). O protótipo foi feito em HTML, CSS e JavaScript com a biblioteca Three.js e roda no navegador. Também foram usados o Visual Studio Code, o Sprite Fusion e o GPT-6 para gerar os sprites, scripts em Python (NumPy e Pillow) para tratá-los e o Claude Opus 5.5 para modelar os cenários 3D em Three.js. O documento segue essa ordem: depois da introdução vêm o Termo de Abertura do Projeto, o levantamento de requisitos (com BPMN, requisitos, regras, casos de uso, diagrama de classes e DER), as ferramentas e métodos empregados e, por fim, o desenvolvimento do protótipo funcional. O Apêndice B apresenta a missão, a visão e os valores do projeto. O Apêndice C traz uma versão resumida do Game Design Document, que reúne a direção criativa da qual os requisitos foram derivados.
 
 ## 1.1 Termo de Abertura do Projeto (TAP)
 
 O Termo de Abertura do Projeto (TAP) formaliza a existência de um projeto. Segundo o Project Management Institute, o documento de abertura autoriza formalmente o projeto e define seus elementos estruturantes em nível inicial (PROJECT MANAGEMENT INSTITUTE, 2017), entre eles o propósito, o escopo preliminar, os stakeholders, as premissas, as restrições e os critérios de sucesso.
 
-Em um trabalho acadêmico, o TAP funciona como um contrato. Delimita o que será construído, quem participa, quais recursos estão previstos e quais limites devem ser respeitados. Em projetos de software, ele também liga o problema de pesquisa aos objetivos, à modelagem e à implementação, o que diminui as ambiguidades nas etapas seguintes.
+Em um trabalho acadêmico, o TAP funciona como um contrato. Delimita o que será construído, quem participa, quais recursos estão previstos e quais limites devem ser respeitados (PROJECT MANAGEMENT INSTITUTE, 2017). Em projetos de software, ele também liga o problema de pesquisa aos objetivos, à modelagem e à implementação, o que diminui as ambiguidades nas etapas seguintes.
 
 Neste trabalho, o TAP descreve a proposta do jogo quanto a gerenciamento, escopo e viabilidade. As subseções a seguir trazem o conteúdo do artefato e a contextualização do produto.
 
@@ -98,15 +98,15 @@ Conceber um jogo narrativo contemplativo que represente, por meio de sistemas, m
 
 ### 1.1.5 Justificativa
 
-Jogos digitais permitem explorar experiências internas e subjetivas. Pela interatividade, o jogador participa do percurso do personagem em vez de apenas observá-lo, e passa pelos estados emocionais e pelas mudanças de percepção a partir de dentro. Isso diferencia o jogo de outras mídias narrativas e o torna adequado para representar processos internos como a identidade, o sofrimento e a transformação filosófica.
+Jogos digitais permitem explorar experiências internas e subjetivas (ISBISTER, 2016). Pela interatividade, o jogador participa do percurso do personagem em vez de apenas observá-lo, e passa pelos estados emocionais e pelas mudanças de percepção a partir de dentro (MURRAY, 2003). Isso diferencia o jogo de outras mídias narrativas e o torna adequado para representar processos internos como a identidade, o sofrimento e a transformação filosófica (BOGOST, 2007).
 
-Ani parte dessa premissa para investigar como a filosofia pode funcionar como linguagem acessível em um jogo narrativo. O pessimismo existencial de Zapffe e Mainländer e as filosofias contemplativas japonesas, como Wabi-Sabi, Mono no Aware e Yugen, trazem ideias densas. Traduzidas em espaço, mecânica e atmosfera, essas ideias podem ser vividas pelo jogador sem mediação teórica. O jogo não pretende ensinar filosofia; sua proposta é permitir que o jogador perceba aquilo que ela descreve.
+Ani parte dessa premissa para investigar como a filosofia pode funcionar como linguagem acessível em um jogo narrativo. O pessimismo existencial de Zapffe e Mainländer e as filosofias contemplativas japonesas, como Wabi-Sabi, Mono no Aware e Yugen, trazem ideias densas (ZAPFFE, 2004; BEISER, 2016; KOREN, 1994; PARKES; LOUGHNANE, 2023). Traduzidas em espaço, mecânica e atmosfera, essas ideias podem ser vividas pelo jogador sem mediação teórica. O jogo não pretende ensinar filosofia; sua proposta é permitir que o jogador perceba aquilo que ela descreve.
 
 ### 1.1.6 Metodologia / Tecnologias
 
-O projeto segue a metodologia Cascata (Waterfall), em fases sequenciais, cada uma dependente da anterior: levantamento de requisitos, modelagem, design de sistemas e implementação.
+O projeto segue a metodologia Cascata (Waterfall), em fases sequenciais, cada uma dependente da anterior: levantamento de requisitos, modelagem, design de sistemas e implementação (ROYCE, 1970; PRESSMAN; MAXIM, 2016).
 
-A modelagem usa BPMN para os fluxos de gameplay e UML para os casos de uso e a estrutura do sistema. Com isso, as decisões técnicas do protótipo podem ser relacionadas às decisões conceituais do projeto.
+A modelagem usa BPMN para os fluxos de gameplay e UML para os casos de uso e a estrutura do sistema (OBJECT MANAGEMENT GROUP, 2014, 2017). Com isso, as decisões técnicas do protótipo podem ser relacionadas às decisões conceituais do projeto.
 
 As tecnologias e ferramentas utilizadas no protótipo são:
 
@@ -238,7 +238,7 @@ O projeto será considerado bem-sucedido se conseguir entregar um protótipo fun
 
 ## 2.1 Elicitação e Especificação dos Requisitos
 
-A elicitação de requisitos corresponde ao processo de identificar, compreender, negociar e documentar os serviços, restrições e comportamentos esperados de um sistema. Para Sommerville (2019), os requisitos expressam aquilo que o software deve fazer e as condições sob as quais deve operar; Pressman e Maxim (2016) observam que a qualidade da solução depende da qualidade da descoberta inicial dessas necessidades. Em projetos digitais complexos, a elicitação inclui também a interpretação técnica do domínio.
+A elicitação de requisitos corresponde ao processo de identificar, compreender, negociar e documentar os serviços, restrições e comportamentos esperados de um sistema. Para Sommerville (2019), os requisitos expressam aquilo que o software deve fazer e as condições sob as quais deve operar; Pressman e Maxim (2016) observam que a qualidade da solução depende da qualidade da descoberta inicial dessas necessidades. Em projetos digitais complexos, a elicitação inclui também a interpretação técnica do domínio (SOMMERVILLE, 2019).
 
 No presente projeto, foi aplicado por formulário um questionário exploratório a 8 participantes com perfil próximo ao público-alvo, com cinco perguntas: o que atrai o participante em um jogo narrativo, e o que ele espera quanto à fluidez e à programação, às mecânicas, à arte e ao design, e à história e ao significado. As respostas foram, em geral, vagas e não geraram mecânicas nem decisões de design; as que tinham algum conteúdo aproveitável foram anonimizadas e resumidas no Apêndice A (os resumos não são transcrições; as respostas originais não foram preservadas). Nenhum requisito deste trabalho tem o questionário como fonte.
 
@@ -274,7 +274,7 @@ Os Quadros 6 e 7 sintetizam, respectivamente, a progressão visual e o clima son
 
 A BPMN (*Business Process Model and Notation*) é uma notação padronizada para modelagem de processos, utilizada para representar atividades, decisões, participantes e fluxos de execução de forma compreensível para públicos técnicos e não técnicos. Conforme a Object Management Group, a notação organiza visualmente a dinâmica de um processo e favorece sua comunicação, análise e aperfeiçoamento (OBJECT MANAGEMENT GROUP, 2014).
 
-No contexto de software, a BPMN é útil para explicitar como o sistema responde às ações do usuário e quais validações ou laços condicionais estruturam a experiência. Em **Ani**, sua utilização é pertinente porque o ciclo principal de gameplay não se resume a movimentar a personagem, mas envolve explorar, interagir, classificar objetos, processar memórias, registrar progresso e decidir se a exploração continua ou se a sessão se encerra.
+No contexto de software, a BPMN é útil para explicitar como o sistema responde às ações do usuário e quais validações ou laços condicionais estruturam a experiência (OBJECT MANAGEMENT GROUP, 2014). Em **Ani**, sua utilização é pertinente porque o ciclo principal de gameplay não se resume a movimentar a personagem, mas envolve explorar, interagir, classificar objetos, processar memórias, registrar progresso e decidir se a exploração continua ou se a sessão se encerra.
 
 O loop de progressão documentado no projeto estabelece que cada ato segue cinco passos: explorar a casa e perceber mudanças; encontrar a passagem para uma memória ou região mental; atravessar a experiência central do ato; retornar à casa e registrar o avanço no diário; e abrir passagem para o ato seguinte. Esse ciclo é a origem conceitual do BPMN do projeto, pois transforma a progressão simbólica da experiência em um fluxo operacional observável e modelável, representado na Figura 1.
 
@@ -413,7 +413,7 @@ Os RNFs podem ser agrupados por tema da seguinte forma: desempenho e persistênc
 
 ## 2.5 Regras de Negócio
 
-Regras de negócio são enunciados que impõem restrições, condições ou políticas sobre o comportamento de um sistema dentro de seu domínio. Em termos de modelagem, elas definem o que pode, deve ou não deve acontecer em determinados cenários. Em projetos de software, são elas que transformam intenções do domínio em comportamentos verificáveis.
+Regras de negócio são enunciados que impõem restrições, condições ou políticas sobre o comportamento de um sistema dentro de seu domínio (BUSINESS RULES GROUP, 2000). Em termos de modelagem, elas definem o que pode, deve ou não deve acontecer em determinados cenários. Em projetos de software, são elas que transformam intenções do domínio em comportamentos verificáveis.
 
 Aqui, as regras de negócio registram opções filosóficas e narrativas do projeto, e não validações administrativas. A regra de convergência dos ecos de decisão, por exemplo, representa no sistema a irresolução do Ato II: diferentes tentativas do jogador continuam levando ao mesmo impasse narrativo.
 
@@ -1297,7 +1297,7 @@ As seções a seguir descrevem cada sistema do protótipo, com os requisitos e a
 
 ### 4.2.1 Renderização em Pixel Art sobre Cenários 3D
 
-O visual de Ani combina personagens em pixel art com cenários modelados em 3D. Para que os dois convivam, o renderizador desenha a cena 3D numa resolução baixa, que o CSS amplia sem suavização, e aplica um pós-processamento com brilho (*bloom*), gradação de cor, vinheta, granulado, aberração cromática, *glitch* e *dithering*. Os feixes de luar, a névoa e a profundidade de campo são calculados num passe de luz próprio, em meia resolução.
+O visual de Ani combina personagens em pixel art com cenários modelados em 3D. Para que os dois convivam, o renderizador desenha a cena 3D numa resolução baixa, que o CSS amplia sem suavização (MDN Web Docs, s.d.a, online), e aplica um pós-processamento com brilho (*bloom*), gradação de cor, vinheta, granulado, aberração cromática, *glitch* e *dithering*. Os feixes de luar, a névoa e a profundidade de campo são calculados num passe de luz próprio, em meia resolução.
 
 - Arquivos: `js/engine/renderer.js`, `js/scenes/cinema.js`, `js/scenes/parkfx.js`
 - Requisitos correspondentes: RF012 (mesma identidade visual ao longo dos atos), RNF001
@@ -1729,7 +1729,7 @@ Os três minigames aceitam mouse, teclado e controle. A Figura 22 mostra a parti
 
 O menu principal é um olho em 3D, fechado no começo. Ao apertar qualquer tecla, ele acorda, uma tela acende na frente dele e as opções aparecem refletidas na íris; o olho segue o mouse e pisca sozinho. As opções são Iniciar, Continuar, Configurações (som, tamanho dos pixels e tela cheia) e Créditos. As configurações também ficam no menu de pausa do parque e são salvas no navegador.
 
-Ao escolher Iniciar ou Continuar, o jogo mostra o aviso de conteúdo sensível antes de começar, uma vez a cada acesso. O aviso cita a ansiedade, a solidão e o sofrimento psíquico abordados no jogo, inclusive o momento de crise com tremor e distorção na tela, e indica o CVV (Centro de Valorização da Vida), pelo telefone 188 ou pelo chat. Ele só fecha quando o jogador confirma, e só aceita a confirmação depois de 1,2 s, para não ser pulado sem leitura.
+Ao escolher Iniciar ou Continuar, o jogo mostra o aviso de conteúdo sensível antes de começar, uma vez a cada acesso. O aviso cita a ansiedade, a solidão e o sofrimento psíquico abordados no jogo, inclusive o momento de crise com tremor e distorção na tela, e indica o CVV (Centro de Valorização da Vida), pelo telefone 188 ou pelo chat (Centro de Valorização da Vida, s.d., online). Ele só fecha quando o jogador confirma, e só aceita a confirmação depois de 1,2 s, para não ser pulado sem leitura.
 
 - Arquivos: `js/scenes/menu.js`, `js/engine/aviso.js`, `js/main.js`
 - Requisitos correspondentes: RF020, RF022
@@ -1830,11 +1830,11 @@ const settings = readJSON(SETTINGS_KEY, { volume: 1, rows: 360 });
 save.set({ cena: 'quarto' });
 ```
 
-As leituras e gravações ficam dentro de `try/catch` porque o armazenamento pode estar bloqueado, por exemplo numa janela anônima; nesse caso o jogo continua, só que sem salvar. A estrutura completa do save, com ato, memórias, diário e estado da casa, depende dos sistemas previstos na seção 4.3.
+As leituras e gravações ficam dentro de `try/catch` porque o armazenamento pode estar bloqueado (MDN Web Docs, s.d.c, online), por exemplo numa janela anônima; nesse caso o jogo continua, só que sem salvar. A estrutura completa do save, com ato, memórias, diário e estado da casa, depende dos sistemas previstos na seção 4.3.
 
 ### 4.2.15 Áudio Sintetizado
 
-O protótipo não usa arquivos de som: todos os efeitos e ambientes são sintetizados em tempo real com a Web Audio API, a partir de osciladores e de ruído filtrado. Cada cena tem o seu ambiente sonoro: o menu, um zumbido grave; o quarto, o ruído baixo da cidade ao longe e um zumbido elétrico; o parque, o murmúrio das pessoas e uma valsa de realejo ao longe. Como os navegadores só liberam o áudio depois de um gesto do jogador, o contexto de áudio é criado no primeiro clique ou tecla.
+O protótipo não usa arquivos de som: todos os efeitos e ambientes são sintetizados em tempo real com a Web Audio API, a partir de osciladores e de ruído filtrado (W3C, 2021). Cada cena tem o seu ambiente sonoro: o menu, um zumbido grave; o quarto, o ruído baixo da cidade ao longe e um zumbido elétrico; o parque, o murmúrio das pessoas e uma valsa de realejo ao longe. Como os navegadores só liberam o áudio depois de um gesto do jogador (MDN Web Docs, s.d.b, online), o contexto de áudio é criado no primeiro clique ou tecla.
 
 - Arquivos: `js/engine/audio.js`
 - Requisitos correspondentes: RF010 (parcial)
@@ -1866,7 +1866,7 @@ Sintetizar os sons dispensou a busca e o licenciamento de arquivos de áudio e d
 
 ### 4.2.16 Suporte a Gamepad e Mapeamento de Controles
 
-Todo o protótipo pode ser jogado com um controle no padrão Xbox, sem configuração. Para não duplicar a lógica das cenas, o módulo `gamepad.js` converte os botões em eventos de tecla (A vira Enter, B vira Backspace, Menu vira Esc) e o analógico esquerdo em velocidade analógica, de modo que inclinar pouco faz Ani andar devagar. Não há cursor: no celular, na estante, no criado-mudo, na mochila e nos papéis, o direcional troca o item escolhido, como num menu. Alguns sons importantes também fazem o controle vibrar.
+Todo o protótipo pode ser jogado com um controle no padrão Xbox, sem configuração (W3C, 2026). Para não duplicar a lógica das cenas, o módulo `gamepad.js` converte os botões em eventos de tecla (A vira Enter, B vira Backspace, Menu vira Esc) e o analógico esquerdo em velocidade analógica, de modo que inclinar pouco faz Ani andar devagar. Não há cursor: no celular, na estante, no criado-mudo, na mochila e nos papéis, o direcional troca o item escolhido, como num menu. Alguns sons importantes também fazem o controle vibrar.
 
 - Arquivos: `js/engine/gamepad.js`, `js/engine/glyphs.js`
 - Requisitos correspondentes: RF011, RF001, RNF004
@@ -1919,7 +1919,7 @@ Os sistemas a seguir constam dos requisitos e dos diagramas do capítulo 2, mas 
 - Save completo (RF009, RNF002): ato atual, memórias registradas, estado do diário e estado visual da casa.
 - Sair do jogo (RF023): no navegador, a sessão termina ao fechar a aba; a opção de sair, com confirmação, é do software para PC.
 
-Na Unreal Engine, a arquitetura segue os diagramas do capítulo 2. A entrada será tratada pelo Enhanced Input, que associa a mesma *Input Action* à tecla e ao botão do controle, papel que no protótipo é do `gamepad.js`. O *GameMode* e a *GameInstance*, junto com a classe `Jogo`, guardarão o estado da sessão entre trocas de nível, e a notificação de `Ani` para `Jogo` no início e no fim das crises será feita por um *delegate*.
+Na Unreal Engine, a arquitetura segue os diagramas do capítulo 2. A entrada será tratada pelo Enhanced Input, que associa a mesma *Input Action* à tecla e ao botão do controle (Epic Games, s.d.b, online), papel que no protótipo é do `gamepad.js`. O *GameMode* e a *GameInstance*, junto com a classe `Jogo`, guardarão o estado da sessão entre trocas de nível (Epic Games, s.d.c, online), e a notificação de `Ani` para `Jogo` no início e no fim das crises será feita por um *delegate* (Epic Games, s.d.a, online).
 
 ## 4.4 Atendimento dos Requisitos no Protótipo
 
@@ -1979,7 +1979,7 @@ O protótipo roda no navegador e não precisa de instalação: basta abrir o end
 
 | Recurso usado | Para quê | Sem o recurso |
 | --- | --- | --- |
-| WebGL 2 (por meio do Three.js 0.170) | Desenhar os cenários 3D e o pós-processamento | O jogo não abre; o Three.js deixou de suportar o WebGL 1 a partir da versão 0.163 |
+| WebGL 2 (por meio do Three.js 0.170) | Desenhar os cenários 3D e o pós-processamento | O jogo não abre; o Three.js deixou de suportar o WebGL 1 a partir da versão 0.163 (Three.js, s.d., online) |
 | Módulos JavaScript e *import map* | Carregar o código e o Three.js sem etapa de compilação | O jogo não abre |
 | Web Audio API | Sintetizar todos os sons | O jogo roda em silêncio (o código verifica se a API existe) |
 | Gamepad API | Controle no padrão Xbox | Só teclado e mouse |
@@ -2007,17 +2007,17 @@ Os testes foram feitos só no Chromium, que é também a base do Google Chrome e
 
 Três mudanças simples ampliariam a portabilidade do protótipo: copiar o Three.js para a pasta do jogo, para que ele abra sem internet; mostrar uma mensagem quando o WebGL 2 não estiver disponível, em vez da tela preta; e acrescentar controles de toque, para levar o jogo a tablets e celulares. Quanto ao desempenho, os testes foram feitos numa máquina sem placa de vídeo, em que toda a renderização acontece no processador, e a taxa de cerca de 3 quadros por segundo não representa o uso real. Por isso, a meta de 60 quadros por segundo em hardware equivalente a Intel HD Graphics com 4 GB de memória (RNF001) não pôde ser verificada neste trabalho e fica pendente de medição em computador com placa de vídeo.
 
-No jogo completo, a portabilidade muda de natureza. A Unreal Engine 5.4.4 compila o mesmo projeto para Windows, macOS, Linux, consoles e dispositivos móveis, a partir do mesmo código C++ e dos mesmos assets; o que muda de uma plataforma para outra são os ajustes de desempenho, os controles e, nos consoles, os kits e as licenças de desenvolvimento de cada fabricante. A escolha da engine é, portanto, coerente com o RNF003, que só poderá ser verificado quando o jogo completo for implementado; a portabilidade efetiva para consoles e celulares continua fora do escopo deste trabalho, como registrado no TAP.
+No jogo completo, a portabilidade muda de natureza. A Unreal Engine 5.4.4 compila o mesmo projeto para Windows, macOS, Linux, consoles e dispositivos móveis (Epic Games, s.d.d, online), a partir do mesmo código C++ e dos mesmos assets; o que muda de uma plataforma para outra são os ajustes de desempenho, os controles e, nos consoles, os kits e as licenças de desenvolvimento de cada fabricante. A escolha da engine é, portanto, coerente com o RNF003, que só poderá ser verificado quando o jogo completo for implementado; a portabilidade efetiva para consoles e celulares continua fora do escopo deste trabalho, como registrado no TAP.
 
 ## 5.2 Cálculo das Métricas
 
 Métricas de software permitem estimar o tamanho de um sistema e, a partir dele, o esforço, o prazo e o custo do desenvolvimento. Neste trabalho foi usado o método de Pontos de Caso de Uso (*Use Case Points*), proposto por Karner (1993), que mede o tamanho a partir dos atores e dos casos de uso já especificados e o ajusta por fatores técnicos e ambientais (Clemmons, 2006). O método foi escolhido porque os casos de uso de Ani já descrevem as funções do jogo completo (seção 2.6), enquanto métodos baseados em dados persistidos, como a Análise de Pontos de Função, rendem pouco num jogo, que guarda poucos dados.
 
-O cálculo segue cinco etapas: o peso dos atores (UAW), o peso dos casos de uso (UUCW), os pontos não ajustados (UUCP = UAW + UUCW), os fatores de ajuste técnico (TCF) e ambiental (ECF) e, por fim, os pontos ajustados (UCP = UUCP × TCF × ECF), que multiplicados pelo fator de produtividade dão o esforço em horas.
+O cálculo segue cinco etapas: o peso dos atores (UAW), o peso dos casos de uso (UUCW), os pontos não ajustados (UUCP = UAW + UUCW), os fatores de ajuste técnico (TCF) e ambiental (ECF) e, por fim, os pontos ajustados (UCP = UUCP × TCF × ECF), que multiplicados pelo fator de produtividade dão o esforço em horas (Clemmons, 2006).
 
 ### Peso dos atores
 
-Os atores são classificados em simples (outro sistema acessado por uma interface de programação, peso 1), médios (outro sistema acessado por um protocolo, peso 2) e complexos (uma pessoa que usa uma interface gráfica, peso 3). Ani tem um único ator, o Jogador, que interage pela interface do jogo, como mostra o Quadro 38.
+Os atores são classificados em simples (outro sistema acessado por uma interface de programação, peso 1), médios (outro sistema acessado por um protocolo, peso 2) e complexos (uma pessoa que usa uma interface gráfica, peso 3) (Clemmons, 2006). Ani tem um único ator, o Jogador, que interage pela interface do jogo, como mostra o Quadro 38.
 
 | Ator | Classificação | Peso |
 | --- | --- | --- |
@@ -2134,7 +2134,7 @@ O Quadro 43 apresenta o investimento previsto.
 | Arte 2D e 3D (sprites, cenários e animações) | 8 meses × R$ 3.471,28 × 1,2744 | R$ 35.390,39 |
 | Trilha sonora e efeitos sonoros | 3 meses × R$ 3.710,67 × 1,2744 | R$ 14.186,63 |
 | Roteiro e direção narrativa | 3 meses × R$ 6.848,48 × 1,2744 | R$ 26.183,11 |
-| Licença da Unreal Engine | Gratuita até US$ 1 milhão de receita bruta; 5% acima disso, com vendas na Epic Games Store isentas (Epic Games, s.d., online) | R$ 0,00 |
+| Licença da Unreal Engine | Gratuita até US$ 1 milhão de receita bruta; 5% acima disso, com vendas na Epic Games Store isentas (Epic Games, s.d.e, online) | R$ 0,00 |
 | Publicação na Steam | Taxa do Steam Direct por jogo, recuperável depois de US$ 1.000 em receita (Valve, s.d., online) | US$ 100,00 |
 | Total | | R$ 189.999,70 + US$ 100,00 |
 
@@ -2171,7 +2171,23 @@ Como trabalhos futuros, ficam a produção do jogo completo na Unreal Engine, no
 
 # Referências
 
+BEISER, Frederick C. *Weltschmerz: pessimism in German philosophy, 1860-1900*. Oxford: Oxford University Press, 2016.
+
+BOGOST, Ian. *Persuasive games: the expressive power of videogames*. Cambridge, MA: MIT Press, 2007.
+
+BUSINESS RULES GROUP. *Defining business rules: what are they really?* Final report, revision 1.3. [S.l.]: Business Rules Group, 2000.
+
+CENTRO DE VALORIZAÇÃO DA VIDA. *CVV: Centro de Valorização da Vida*. Disponível em: <https://cvv.org.br/>. Acesso em: 16.nov.2026.
+
 CLEMMONS, Roy K. Project estimation with use case points. *CrossTalk: The Journal of Defense Software Engineering*, v. 19, n. 2, fev. 2006.
+
+EPIC GAMES. *Delegates and lambda functions in Unreal Engine*. Disponível em: <https://dev.epicgames.com/documentation/unreal-engine/delegates-and-lambda-functions-in-unreal-engine>. Acesso em: 16.nov.2026.
+
+EPIC GAMES. *Enhanced Input in Unreal Engine*. Disponível em: <https://dev.epicgames.com/documentation/unreal-engine/enhanced-input-in-unreal-engine>. Acesso em: 16.nov.2026.
+
+EPIC GAMES. *Gameplay framework in Unreal Engine*. Disponível em: <https://dev.epicgames.com/documentation/unreal-engine/gameplay-framework-in-unreal-engine>. Acesso em: 16.nov.2026.
+
+EPIC GAMES. *Packaging your project*. Disponível em: <https://dev.epicgames.com/documentation/unreal-engine/packaging-your-project>. Acesso em: 16.nov.2026.
 
 EPIC GAMES. *Unreal Engine licensing options*. Disponível em: <https://www.unrealengine.com/en-US/license>. Acesso em: 09.nov.2026.
 
@@ -2183,21 +2199,41 @@ IBM. *Use case view*. Disponível em: <https://www.ibm.com/docs/en/systems-engin
 
 IBM. *What is an entity relationship diagram?* Disponível em: <https://www.ibm.com/think/topics/entity-relationship-diagram>. Acesso em: 25.mar.2026.
 
+ISBISTER, Katherine. *How games move us: emotion by design*. Cambridge, MA: MIT Press, 2016.
+
 ISO/IEC. *ISO/IEC 25010:2011: Systems and software engineering – Systems and software Quality Requirements and Evaluation (SQuaRE) – System and software quality models*. Genebra: ISO, 2011.
 
 KARNER, Gustav. *Resource estimation for Objectory projects*. Estocolmo: Objective Systems SF AB, 1993.
 
+KOREN, Leonard. *Wabi-sabi for artists, designers, poets & philosophers*. Berkeley: Stone Bridge Press, 1994.
+
 LUCIDCHART. *What is an Entity Relationship Diagram (ERD)?* Disponível em: <https://www.lucidchart.com/pages/er-diagrams/>. Acesso em: 25.mar.2026.
+
+MATHEWS, Gordon. *What makes life worth living? How Japanese and Americans make sense of their worlds*. Berkeley: University of California Press, 1996.
+
+MDN WEB DOCS. *image-rendering*. Disponível em: <https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering>. Acesso em: 16.nov.2026.
+
+MDN WEB DOCS. *Web Audio API best practices*. Disponível em: <https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Best_practices>. Acesso em: 16.nov.2026.
+
+MDN WEB DOCS. *Window: localStorage property*. Disponível em: <https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage>. Acesso em: 16.nov.2026.
 
 MICROSOFT. *Playwright*. Disponível em: <https://playwright.dev/>. Acesso em: 09.nov.2026.
 
+MURRAY, Janet H. *Hamlet no Holodeck: o futuro da narrativa no ciberespaço*. Tradução de Elissa Khoury Daher e Marcelo Fernandez Cuzziol. São Paulo: Itaú Cultural: Unesp, 2003.
+
 OBJECT MANAGEMENT GROUP. *Business Process Model and Notation (BPMN), Version 2.0.2*. Needham: OMG, 2014.
+
+OBJECT MANAGEMENT GROUP. *OMG Unified Modeling Language (OMG UML), Version 2.5.1*. Needham: OMG, 2017.
+
+PARKES, Graham; LOUGHNANE, Adam. Japanese aesthetics. *Stanford Encyclopedia of Philosophy*. Stanford: Stanford University, 2023. Disponível em: <https://plato.stanford.edu/entries/japanese-aesthetics/>. Acesso em: 16.nov.2026.
 
 PRESSMAN, Roger S.; MAXIM, Bruce R. *Engenharia de Software: uma abordagem profissional*. 8. ed. Porto Alegre: AMGH, 2016.
 
 PROJECT MANAGEMENT INSTITUTE. *Um Guia do Conhecimento em Gerenciamento de Projetos (Guia PMBOK)*. 6. ed. Newtown Square: PMI, 2017.
 
 RIBU, Kirsten. *Estimating object-oriented software projects with use cases*. 2001. Dissertação (Master of Science in Informatics) – University of Oslo, Oslo, 2001.
+
+ROYCE, Winston W. Managing the development of large software systems. In: IEEE WESCON, 1970, Los Angeles. *Proceedings* [...]. Los Angeles: IEEE, 1970. p. 1-9.
 
 SALÁRIO.COM.BR. *Autor-roteirista multimídia: salário*. Disponível em: <https://www.salario.com.br/profissao/autor-roteirista-multimidia-cbo-261505/>. Acesso em: 09.nov.2026.
 
@@ -2209,15 +2245,23 @@ SALÁRIO.COM.BR. *Músico arranjador: salário*. Disponível em: <https://www.sa
 
 SOMMERVILLE, Ian. *Engenharia de Software*. 10. ed. São Paulo: Pearson, 2019.
 
+THREE.JS. *WebGLRenderer*. Disponível em: <https://threejs.org/docs/pages/WebGLRenderer>. Acesso em: 16.nov.2026.
+
 VALORFINAL. *Custo do funcionário CLT: encargos, provisões e quanto custa de verdade (2026)*. 2026. Disponível em: <https://valorfinal.com.br/guia/custo-funcionario>. Acesso em: 09.nov.2026.
 
 VALVE. *Steam Direct fee*. Disponível em: <https://partner.steamgames.com/doc/gettingstarted/appfee>. Acesso em: 09.nov.2026.
 
 VISUAL PARADIGM. *What is Class Diagram?* Disponível em: <https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-class-diagram/>. Acesso em: 22.mar.2026.
 
+W3C. *Web Audio API*. W3C Recommendation, 17 jun. 2021. Disponível em: <https://www.w3.org/TR/2021/REC-webaudio-20210617/>. Acesso em: 16.nov.2026.
+
+W3C. *Gamepad*. W3C Working Draft, 14 nov. 2026. Disponível em: <https://www.w3.org/TR/2026/WD-gamepad-20261114/>. Acesso em: 16.nov.2026.
+
 W3C WEBDX COMMUNITY GROUP. *Import maps*. Web platform features explorer. Disponível em: <https://web-platform-dx.github.io/web-features-explorer/features/import-maps>. Acesso em: 09.nov.2026.
 
 W3C WEBDX COMMUNITY GROUP. *WebGL2*. Web platform features explorer. Disponível em: <https://web-platform-dx.github.io/web-features-explorer/features/webgl2>. Acesso em: 09.nov.2026.
+
+ZAPFFE, Peter Wessel. The last messiah. Tradução de Gisle R. Tangenes. *Philosophy Now*, Londres, n. 45, mar./abr. 2004. Publicado originalmente em norueguês: Den sidste Messias. *Janus*, n. 9, 1933.
 
 # Apêndice A - Perguntas do questionário e resumos das respostas selecionadas
 
@@ -2331,7 +2375,7 @@ Este apêndice resume o Game Design Document (GDD) de **Ani**, mantido na ínteg
 
 ## C.2 Pilar conceitual e atos
 
-A jornada parte do pessimismo da filosofia ocidental e caminha, em cinco atos de ordem fixa, para filosofias contemplativas japonesas. A transição se manifesta no ambiente, no som, nas mecânicas e no ritmo, sem explicação didática. O Quadro 46 resume os cinco atos.
+A jornada parte do pessimismo da filosofia ocidental e caminha, em cinco atos de ordem fixa, para filosofias contemplativas japonesas (BEISER, 2016; PARKES; LOUGHNANE, 2023). A transição se manifesta no ambiente, no som, nas mecânicas e no ritmo, sem explicação didática. O Quadro 46 resume os cinco atos.
 
 | Ato | Referência | Ideia central | Símbolo | Mecânica própria |
 | --- | --- | --- | --- | --- |
