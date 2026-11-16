@@ -12,7 +12,7 @@ Regras de formatação (decididas com o autor):
 - Referências e Apêndices: centralizados, negrito, nova página (ABNT);
 - quadros e figuras: título acima ("Quadro N – ..."), fonte abaixo, 10 pt,
   como nos quadros de exemplo do modelo;
-- figuras listadas em PAISAGEM ficam sozinhas numa seção em paisagem.
+- diagramas largos ficam sozinhos numa seção em paisagem (ver em_paisagem).
 
 Figuras: PNG exportados dos .drawio para entrega/figuras/ com o CLI do
 draw.io desktop, por exemplo:
@@ -130,7 +130,32 @@ IMAGENS_FIGURAS = {
         25: "fig25-pausa-parque.png",
     }.items()},
 }
-PAISAGEM = {1, 3, 9}  # BPMN, classes e DER: largos demais para retrato
+# Diagramas (Figuras 1 a 9): cada um vai para a orientação de página em que
+# fica maior. Os largos (BPMN, classes, DER) caem em paisagem; os quadrados e
+# os altos, em retrato. As capturas de tela ficam sempre em retrato.
+DIAGRAMAS = set(range(1, 10))
+# Área útil para a imagem (cm), descontados título e fonte da figura.
+CAIXA_RETRATO = (16.0, 22.0)    # 21 - 3 - 2 de largura; 29,7 - 3 - 2 menos legendas
+CAIXA_PAISAGEM = (24.5, 13.5)   # 29,7 - 3 - 2 de largura; 21 - 3 - 2 menos legendas
+ALTURA_PRESA_AO_TEXTO = 15.0    # acima disso (cm), a figura em retrato não se prende ao texto
+
+
+def tamanho_na_caixa(lw, lh, caixa):
+    """Largura e altura (cm) da imagem de lw x lh px ajustada à caixa."""
+    larg, alt = caixa
+    escala = min(larg / lw, alt / lh)
+    return lw * escala, lh * escala
+
+
+def em_paisagem(numero, img):
+    """Diagrama vai para paisagem quando lá ocupa mais área do que em retrato."""
+    if numero not in DIAGRAMAS or not (img and img.exists()):
+        return False
+    from PIL import Image
+    with Image.open(img) as im:
+        lw, lh = im.size
+    area = lambda caixa: (lambda w, h: w * h)(*tamanho_na_caixa(lw, lh, caixa))
+    return area(CAIXA_PAISAGEM) > area(CAIXA_RETRATO)
 
 # Capítulos que ainda não existem no tg-ani.md; entram antes das Referências.
 CAPITULOS_PENDENTES = []
@@ -464,10 +489,10 @@ class Gerador:
         self.fonte()
 
     # ---- legendas (padrão dos quadros de exemplo do modelo)
-    def legenda(self, rotulo, titulo):
+    def legenda(self, rotulo, titulo, prender_anterior=True):
         # O parágrafo que cita o quadro/figura fica na mesma página dele.
         ultimo = self.doc.element.body[-2]
-        if ultimo.tag == qn("w:p"):
+        if prender_anterior and ultimo.tag == qn("w:p"):
             anterior = docx.text.paragraph.Paragraph(ultimo, self.doc)
             if re.search(rf"\b{rotulo.split()[0]}s? [\d e a]*\b{rotulo.split()[1]}\b", anterior.text):
                 anterior.paragraph_format.keep_with_next = True
@@ -661,23 +686,25 @@ class Gerador:
         if numero != self.n_figura:
             print(f"AVISO: Figura {numero} fora de sequência (esperado {self.n_figura})",
                   file=sys.stderr)
-        paisagem = numero in PAISAGEM
-        if paisagem:
-            self._secao(True)
-        self.legenda(f"Figura {self.n_figura}", titulo)
-        p = self.doc.add_paragraph(style="Normal")
-        formatar_paragrafo(p, primeira=0, alinhamento=1, simples=True,
-                           manter_com_proximo=True)
         img = IMAGENS_FIGURAS.get(numero)
+        paisagem = em_paisagem(numero, img)
+        larg = alt = None
         if img and img.exists():
             from PIL import Image
             with Image.open(img) as im:
                 lw, lh = im.size
-            larg, alt_max = (24.5, 13.5) if paisagem else (16.0, 20.0)
-            if lh / lw * larg > alt_max:
-                p.add_run().add_picture(str(img), height=Cm(alt_max))
-            else:
-                p.add_run().add_picture(str(img), width=Cm(larg))
+            larg, alt = tamanho_na_caixa(lw, lh, CAIXA_PAISAGEM if paisagem else CAIXA_RETRATO)
+        if paisagem:
+            self._secao(True)
+        # Figura alta não cabe na página junto com o parágrafo que a cita: o
+        # título fica preso à imagem e à fonte, e não ao parágrafo anterior.
+        grande = not paisagem and alt is not None and alt > ALTURA_PRESA_AO_TEXTO
+        self.legenda(f"Figura {self.n_figura}", titulo, prender_anterior=not grande)
+        p = self.doc.add_paragraph(style="Normal")
+        formatar_paragrafo(p, primeira=0, alinhamento=1, simples=True,
+                           manter_com_proximo=True)
+        if larg is not None:
+            p.add_run().add_picture(str(img), width=Cm(larg))
         else:
             texto = "[inserir captura de tela"
             texto += f" – {descricao}]" if descricao else "]"
